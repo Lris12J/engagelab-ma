@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA · 宠物智能硬件 × APP 商城行业增长方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+    .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.92em; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 900px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-5 { grid-template-columns: repeat(5, 1fr); }
+    .grid-1-2 { grid-template-columns: 1fr 2fr; }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .hero { break-before: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA · 宠物智能硬件方案</span>
+      <a href="#s-market">行业机会</a>
+      <a href="#s-funnel">商城漏斗</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-scenarios">六大场景</a>
+      <a href="#s-journey1">旅程示意</a>
+      <a href="#s-ops">运营落地</a>
+      <a href="#s-benchmark">行业对标</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-info">宠物智能硬件 · APP 商城</span>
+        <span class="pill">软硬件一体化品牌</span>
+        <span class="pill">智能摄像头 · 饮水机 · 宠物用品</span>
+      </div>
+      <h1>EngageLab MA · 宠物智能硬件 × APP 商城行业增长方案</h1>
+      <p class="hero-subtitle">
+        面向自有宠物智能硬件品牌（摄像头 / 饮水机 / 自动喂食器 / 宠物食品）——
+        以 App 为核心运营阵地，将"硬件卖出即结束"升级为
+        <span class="bold">耗材复购 · 关联销售 · 品牌黏性</span>的持续增长引擎，
+        帮助 <span class="bold">小团队用自动化旅程</span> 替代专职运营人员，
+        4 周完成首批旅程上线，效果可量化验收。
+      </p>
+      <hr class="divider" />
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value">￥3,800亿+</div><div class="stat-label">2025 年中国宠物行业市场规模预期</div></div>
+        <div class="stat"><div class="stat-value info">1.5亿+</div><div class="stat-label">中国养宠家庭数量</div></div>
+        <div class="stat"><div class="stat-value warn">60%+</div><div class="stat-label">App 商城用户从未复购（最大增量空间）</div></div>
+        <div class="stat"><div class="stat-value success">+35%</div><div class="stat-label">自动化运营后复购率提升幅度（行业对标）</div></div>
+      </div>
+    </section>
+
+    <!-- 1. Market -->
+    <section id="s-market" class="section-plain">
+      <h2>一、为什么宠物智能硬件品牌的 App 商城必须做用户运营</h2>
+      <p>
+        中国宠物行业已进入"精养化 · 数字化"深水区：养宠家庭数量超 1.5 亿，
+        宠物食品和用品电商规模持续扩大，而<span class="bold">智能硬件品牌的 App 用户天然是最高价值的电商人群</span>——
+        他们已经为宠物购买了摄像头、饮水机，对宠物消费的决策门槛最低、复购意愿最强。
+        但现实是，多数硬件品牌的 App 商城处于"野生生长"状态：
+        用户安装硬件、激活 App 后沉默，<span class="bold">商城月活跃率不足 20%，复购全靠自然流量</span>。
+        在这个环节，"自动化旅程 × 行为触发精准触达"是撬动商城 GMV 最直接的工具——
+        无需增加投放预算，仅凭现有用户存量即可系统性提升转化。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">宠物智能硬件品牌 App 商城 · 核心用户运营机会</div>
+          <div class="card-body">
+            <div class="chart" id="chart-market"></div>
+            <p class="small muted" style="margin-top:10px">
+              硬件卖出后，App 商城是唯一能持续产生营收的触点。
+              摄像头用户需要充电宝/存储卡；饮水机用户每 2-3 个月需要换滤芯；
+              宠物粮用户每月复购——这些都是可以用 MA 自动化的高确定性场景。
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">核心业务信号</div>
+          <div class="card-body p-sm">
+            <div class="signal-row"><div class="left"><div class="label">App 商城用户沉默占比</div><div class="hint">安装硬件后从未在商城消费</div></div><div class="value">55 – 65%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">电商弃购率</div><div class="hint">加购未下单（行业通用）</div></div><div class="value">60 – 70%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">耗材自然复购率</div><div class="hint">无运营干预的自然状态</div></div><div class="value">15 – 25%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">MA 自动化后耗材复购提升</div><div class="hint">行业同类案例基准</div></div><div class="value">+30 – 50%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">硬件→耗材交叉销售转化率</div><div class="hint">有旅程编排时的对标数据</div></div><div class="value">18 – 28%</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Funnel -->
+    <section id="s-funnel" class="section-plain">
+      <h2>二、App 商城用户漏斗：每一层都是可通过 MA 系统性提升的增量</h2>
+      <p>
+        宠物智能硬件 App 的用户路径清晰——从购机激活到成为活跃商城消费者，
+        每一层的转化衰减都对应一个可用自动化旅程定向挽回的运营缺口，
+        而这些收益完全来自现有用户存量，<span class="bold">无需额外获客投入</span>。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">App 商城用户漏斗 · 当前转化率 vs 自动化运营后预期</div>
+        <div class="card-body">
+          <div class="chart" id="chart-funnel"></div>
+          <div class="grid grid-3" style="margin-top:14px">
+            <div class="stat"><div class="stat-value success">+25%</div><div class="stat-label">设备激活后首购转化率提升（对标参考）</div></div>
+            <div class="stat"><div class="stat-value success">3×</div><div class="stat-label">弃单自动挽回效果（行业对标最佳案例）</div></div>
+            <div class="stat"><div class="stat-value success">+40%</div><div class="stat-label">耗材自动补货提醒带来的复购频次提升</div></div>
+          </div>
+          <p class="small muted" style="margin-top:12px">
+            数据参考：2024–2026 年宠物电商行业报告 + 同类消费品电商 MA 公开案例综合测算。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why EngageLab -->
+    <section id="s-why" class="section-plain">
+      <h2>三、EngageLab MA 为什么适合宠物智能硬件品牌</h2>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">小团队，大运营</div><div class="card-body">
+          <ul>
+            <li>拖拽式 <span class="bold">零代码旅程编排</span>，运营人员无需开发介入即可配置上线</li>
+            <li>自动化触达替代人工群发——一个运营可管理 <span class="bold">10+ 条并行旅程</span></li>
+            <li>模板化场景库，参考现有方案 <span class="bold">3 天内完成首条旅程上线</span></li>
+            <li>实时数据看板，随时查看旅程效果，及时调整策略</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">硬件 × 商城 × 行为一体化</div><div class="card-body">
+          <ul>
+            <li>接入 App SDK 后，设备事件（绑定 / 在线 / 使用时长）与商城行为（浏览 / 加购 / 下单）<span class="bold">统一打通</span></li>
+            <li>基于"已购设备"属性实现 <span class="bold">智能商品推荐</span>（摄像头用户推耗材，饮水机用户推滤芯）</li>
+            <li>用户标签 <span class="bold">实时计算</span>，行为发生后秒级触达</li>
+            <li>支持按购买周期属性自动计算<span class="bold">补货触发时间</span></li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">稳定可靠的消息底座</div><div class="card-body">
+          <ul>
+            <li>App Push 送达率 <span class="bold">&gt; 95%</span>，覆盖华为 / 小米 / OPPO / vivo / iOS 全主流平台</li>
+            <li>并发 <span class="bold">100 万条/秒</span>，大促期间消息峰值稳定投递</li>
+            <li>SMS 覆盖全国运营商，送达率 <span class="bold">95%+</span>，高优先级通知兜底触达</li>
+            <li>频控策略自动保护用户体验，避免过度打扰降低推送权限</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>3.1 EngageLab 在宠物智能硬件场景中的渠道能力</h3>
+      <table>
+        <thead><tr>
+          <th>渠道</th><th>在宠物硬件 App 商城中的主要用途</th><th class="align-right">单条成本</th>
+          <th class="align-right">效果参考</th><th class="align-center">适用场景</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td>App Push 通知</td><td>弃单提醒、补货提醒、新品上架、限时活动</td><td class="align-right">≈ 0</td><td class="align-right">行为触发类点击率 5-12%</td><td class="align-center">全场景首选</td></tr>
+          <tr class="tone-success"><td>App Push 自定义</td><td>商城首页 Banner、大促运营位、跨品类推荐卡片</td><td class="align-right">≈ 0</td><td class="align-right">App 内展示率 25-40%</td><td class="align-center">商城运营位驱动</td></tr>
+          <tr><td>SMS</td><td>首购专属优惠码、弃单兜底触达、重要服务通知</td><td class="align-right">按量计费</td><td class="align-right">阅读率 98%，30分钟内</td><td class="align-center">高优先级兜底</td></tr>
+          <tr><td>Email</td><td>订单确认、发货通知、月度消费账单、促销活动</td><td class="align-right">$0.002</td><td class="align-right">触发类打开率 25-35%</td><td class="align-center">正式通知 · 长内容</td></tr>
+          <tr><td>Web Push</td><td>官网访客召回、PC 端活动通知</td><td class="align-right">≈ 0</td><td class="align-right">点击率 6-10%</td><td class="align-center">Web 端用户补充</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 4. Scenarios Overview -->
+    <section id="s-scenarios" class="section-plain">
+      <h2>四、六大高 ROI 运营场景</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center">#</th><th>场景</th><th>生命周期阶段</th>
+          <th>触达策略</th><th>核心亮点</th><th class="align-right">预期效果</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td class="align-center">1</td><td>设备激活 → 商城首购激活</td><td>新客转化</td><td>激活事件触发 · 先观察再触达</td><td>将硬件用户转化为商城消费者，打通软硬件增长飞轮</td><td class="align-right">首购率 +20-35%</td></tr>
+          <tr class="tone-success"><td class="align-center">2</td><td>加购未下单弃单挽回</td><td>购买转化</td><td>30min 内触发 Push · SMS 兜底</td><td>最高 ROI 场景，行业弃单率 60-70% 是最大转化缺口</td><td class="align-right">弃单回收 +25-40%</td></tr>
+          <tr class="tone-success"><td class="align-center">3</td><td>耗材智能补货提醒</td><td>留存复购</td><td>按购买周期自动触发 · 到期前提醒</td><td>用购买历史推算补货时间，让复购"提前发生"</td><td class="align-right">复购频次 +30-50%</td></tr>
+          <tr class="tone-success"><td class="align-center">4</td><td>商城沉默用户分层召回</td><td>流失挽回</td><td>30/60/90 天三级分层 · 递进优惠</td><td>将沉默用户按深度差异化触达，优惠从小到大精准投放</td><td class="align-right">召回率 +15-30%</td></tr>
+          <tr><td class="align-center">5</td><td>新品上架精准推送</td><td>新品转化</td><td>按已购设备类型条件分流</td><td>不同用户看到专属推荐，而非同一张群发海报</td><td class="align-right">新品首日销量 +25-40%</td></tr>
+          <tr><td class="align-center">6</td><td>关联品类交叉销售</td><td>客单价提升</td><td>购买设备后 7 天触发互补推荐</td><td>买了摄像头的用户是最精准的饮水机潜在用户</td><td class="align-right">客单价 +15-25%</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        六个场景覆盖从新设备激活到老用户深度运营的完整生命周期——旅程数量越多、协同度越高，撬动的累计 GMV 增量越大。
+      </p>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain">
+      <h2>场景 1｜设备激活 → 商城首购激活</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">优先级最高</span>
+        <span class="pill pill-info">新客转化</span>
+        <span class="pill">激活事件触发 · 先观察再触达 · App Push + SMS</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j1"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              硬件用户安装 App 后，商城对他们来说是"陌生的购物入口"——不知道有什么可买、不知道自己需要什么。
+              绝大多数用户在激活后沉默，从未在商城产生第一笔消费，后续召回难度大幅上升。
+              <span class="bold">首购是打通"硬件用户 → 商城消费者"最关键的节点。</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"设备绑定成功"触发进入（一次性事件，不可再次进入）</li>
+                <li><span class="bold">先观察 1 小时</span>：等待事件"浏览商城"，已浏览者直接进入购买等待，未浏览才发推送</li>
+                <li><span class="bold">Push 1</span>：欢迎 + 为您精选的配套好物推荐（深链直达商城耗材页）</li>
+                <li><span class="bold">等待事件 24h</span>：观察是否首购成功 → 已购退出 / 未购继续</li>
+                <li><span class="bold">Push 2</span>：使用 1 天心得 + 首购专属折扣码（可发送时间 09:00–21:00）</li>
+                <li><span class="bold">SMS 兜底</span>：等待 48h 仍未购买 → SMS 触达（限时 24h 专属券）</li>
+                <li><span class="bold">提前退出</span>：事件"首次支付成功"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"支付成功"事件，统计时间 3 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              同类消费品 App 在接入自动化首购旅程后，<span class="bold">首购转化率普遍提升 20-35%</span>。
+              关键在于"先观察再触达"——对已自然浏览商城的用户不发无谓的欢迎 Push，
+              仅对真正需要引导的用户定向触达，精准度高、打扰感低。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain">
+      <h2>场景 2｜加购未下单弃单挽回</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">高 ROI 首选</span>
+        <span class="pill pill-info">购买转化</span>
+        <span class="pill">30min 触发 · 三步递进 · 弃单率 60-70% 待挽回</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j2"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              电商行业平均弃购率 60-70%——每 10 个加购的用户，有 6-7 个没有最终下单。
+              宠物耗材类商品尤为明显：用户想买但被价格、比价、不紧迫感等因素打断。
+              <span class="bold">弃单挽回是当前商城最大的"免费增量"</span>：无需引新客，挽回已有意向用户即可。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"加入购物车"触发（可再次进入，间隔 7 天）</li>
+                <li><span class="bold">等待事件 30min</span>：观察是否自行下单 → 已下单退出 / 未下单继续</li>
+                <li><span class="bold">Push 1</span>：直接提醒（"购物车里的 XX 还等着您"，深链直达购物车）</li>
+                <li><span class="bold">等待事件 2h</span>：是否下单 → 已购退出 / 未购继续</li>
+                <li><span class="bold">可发送时间 09:00–21:00</span> + <span class="bold">Push 2</span>：加码限时优惠（"今日下单立减 5 元"）</li>
+                <li><span class="bold">等待事件 24h</span>：是否下单 → 已购退出 / 未购继续</li>
+                <li><span class="bold">SMS 兜底</span>：最后一次触达（专属优惠码 + 24h 有效）</li>
+                <li><span class="bold">转化统计</span>：监听"支付成功"，统计时间 2 小时</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              行业最佳案例：某头部餐饮 App 接入 MA 后，弃单/菜单浏览恢复提升 <span class="bold">3.6×</span>。
+              宠物电商场景中，自动弃单挽回普遍可带来 <span class="bold">弃单回收率提升 25-40%</span>，
+              是单位成本最低的 GMV 增量来源。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain">
+      <h2>场景 3｜耗材智能补货提醒</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">宠物硬件独有场景</span>
+        <span class="pill pill-info">留存复购</span>
+        <span class="pill">按购买周期自动触发 · 猫粮 · 滤芯 · 耗材</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j3"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              猫粮、饮水机滤芯、猫砂等耗材有清晰的消费周期（猫粮约 30 天，滤芯约 60-90 天）。
+              用户常常"忘了补货"，导致流失到其他平台临时购买，品牌商城的复购窗口就此错失。
+              <span class="bold">主动提醒补货 = 在竞争对手抢先前锁定订单。</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"购买耗材类商品成功"（可再次进入，间隔与商品周期一致）</li>
+                <li><span class="bold">等待</span>：按商品属性"使用周期 - 7 天"等待（如猫粮 30 天装 → 等 23 天）</li>
+                <li><span class="bold">条件分支</span>：是否已再次购买该品类 → 已购退出 / 未购继续</li>
+                <li><span class="bold">可发送时间 09:00–21:00</span> + <span class="bold">Push 1</span>："XX 快用完了，一键补货还有积分赠送"</li>
+                <li><span class="bold">等待事件 7 天</span>：是否补购 → 已购退出 / 未购继续</li>
+                <li><span class="bold">可发送时间</span> + <span class="bold">Push 2</span>：加码积分奖励 + 搭配好物推荐</li>
+                <li><span class="bold">SMS 兜底</span>：最终提醒（"宠物在等您！耗材快配送到了"）</li>
+                <li><span class="bold">收入统计</span>：监听"支付成功"事件，统计时间 7 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              耗材自动提醒是宠物 App 商城<span class="bold">复购频次提升最稳定的场景</span>，
+              行业案例中自动补货提醒可带来 <span class="bold">复购频次 +30-50%</span>，
+              同时显著降低用户流向竞品的概率。周期性商品的"提前提醒"是转化率最高的 Push 类型之一。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain">
+      <h2>场景 4｜商城沉默用户分层召回（30 / 60 / 90 天）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-warn">沉默用户存量大</span>
+        <span class="pill pill-info">流失挽回</span>
+        <span class="pill">三级分层 · 优惠递进 · Push + SMS</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j4"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              App 商城的沉默用户占比高达 55-65%——他们是"已经信任品牌、买过硬件"的高潜用户，
+              召回成本远低于获取新客。但沉默时间越长，召回难度越大：
+              <span class="bold">30 天沉默用优惠小礼，60 天沉默用折扣激活，90 天沉默需要终极挽留。</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：用户属性"最近商城下单距今 ≥ 30 天"（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">条件分支</span>：按沉默深度分层（30-59 天 / 60-89 天 / 90 天+）</li>
+                <li><span class="bold">30 天分支</span>：可发送时间 + Push（关怀提醒 + 宠物健康 Tips + 新品推荐）</li>
+                <li><span class="bold">60 天分支</span>：可发送时间 + Push（专属 88 折优惠券）→ 等待事件 7 天 → 未购则 SMS 兜底</li>
+                <li><span class="bold">90 天分支</span>：SMS（重磅礼包 + 限时）</li>
+                <li><span class="bold">提前退出</span>：事件"支付成功"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"支付成功"，统计时间 5 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              分层召回的关键逻辑是"优惠精准投放"——30 天沉默用户只需轻触达就能激活，
+              不必浪费大额优惠券；90 天沉默才需要下重注。
+              合理分层可将 <span class="bold">整体召回成本降低 30-40%</span>，同时将召回率提升至 <span class="bold">15-30%</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain">
+      <h2>场景 5｜新品上架精准推送（按已购设备分类）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">新品转化</span>
+        <span class="pill">条件分支 · 按设备属性精准匹配 · 替代群发海报</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j5"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              现有运营方式是全量发一张促销图，不同设备用户看到同一内容——
+              摄像头用户看到饮水机广告毫无共鸣，饮水机用户看到摄像头促销也不感兴趣。
+              <span class="bold">同样的推送预算，精准分层后转化率可提升 2-3 倍。</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"新品上架"（运营手动触发或系统事件，可再次进入，间隔 7 天）</li>
+                <li><span class="bold">条件分支</span>：按用户属性"已购设备类型"分流</li>
+                <li><span class="bold">摄像头用户</span>：推送摄像头配套新品（充电宝、存储卡、安装支架）</li>
+                <li><span class="bold">饮水机用户</span>：推送滤芯新款 + 搭配猫粮优惠套餐</li>
+                <li><span class="bold">其他/未分类用户</span>：推送品牌精选新品</li>
+                <li><span class="bold">等待事件 3 天</span>：是否加购/收藏 → 已互动退出 / 未互动继续</li>
+                <li><span class="bold">可发送时间 09:00–21:00</span> + <span class="bold">Push 2</span>：新品热销提醒（含销售数据背书）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              个性化推送比全量群发的转化率<span class="bold">高 2-3 倍</span>（行业 Benchmark）。
+              新品首日精准推送可带来 <span class="bold">销量提升 25-40%</span>，
+              同时降低用户因不相关推送而关闭通知权限的概率。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain">
+      <h2>场景 6｜关联品类交叉销售（设备购买后 7 天）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">客单价提升</span>
+        <span class="pill">购买事件触发 · 7 天后推荐互补品 · 场景化文案</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j6"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              宠物智能硬件具有天然的品类协同性：摄像头用户是饮水机最精准的潜在买家，
+              饮水机用户有极强的宠物粮需求，喂食器用户往往还在找合适的摄像头监控宠物吃饭。
+              <span class="bold">设备购买 7 天后，用户对品牌信任度最高、场景共鸣最强，是交叉销售的黄金窗口。</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"购买智能设备成功"触发（可再次进入，不同设备品类分开触发）</li>
+                <li><span class="bold">等待 7 天</span>：让用户先充分体验新设备，建立场景认知</li>
+                <li><span class="bold">条件分支</span>：按"已购设备类型"分流</li>
+                <li><span class="bold">摄像头用户</span>：可发送时间 + Push（"视频里记录了多少温馨瞬间？搭配智能饮水机更安心"）</li>
+                <li><span class="bold">饮水机用户</span>：可发送时间 + Push（"干净的水 + 优质宠物粮 = 健康的宠物"）</li>
+                <li><span class="bold">喂食器用户</span>：可发送时间 + Push（"知道宠物什么时候吃饭了，也来看看TA怎么吃的吧"）</li>
+                <li><span class="bold">等待事件 3 天</span>：是否互动 → 已互动退出 / 未互动 → Push 套装组合优惠</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              交叉销售旅程的核心是"场景化文案"而非促销文案——
+              "看到宠物喝水的瞬间"比"饮水机 8 折"更有购买转化力。
+              行业数据：购买第二件互补设备的用户，12 个月留存率比单设备用户<span class="bold">高 40-60%</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Small Team Ops Guide -->
+    <section id="s-ops" class="section-plain">
+      <h2>五、小团队运营落地建议：1 人管 6 条旅程</h2>
+      <p>
+        针对团队规模小、运营人员兼职的情况，EngageLab MA 提供了完整的"轻运营"模式——
+        一旦旅程配置完成，<span class="bold">无需每日人工操作，系统自动判断、自动触达、自动归因</span>。
+        以下是面向 1-2 人小团队的落地优先级和操作建议。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">第 1 周：先跑最高 ROI 的 2 条旅程</div><div class="card-body">
+          <ul>
+            <li>优先上线：<span class="bold">弃单挽回（场景 2）</span> + <span class="bold">耗材补货提醒（场景 3）</span></li>
+            <li>理由：这两条旅程触发条件明确、文案简单、效果最快可见</li>
+            <li>配置时间：各旅程 2-4 小时完成，无需额外开发</li>
+            <li>结果：2 周内即可看到可量化的 GMV 增量</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">第 2-3 周：完善全生命周期覆盖</div><div class="card-body">
+          <ul>
+            <li>新增：<span class="bold">设备激活首购（场景 1）</span> + <span class="bold">沉默召回（场景 4）</span></li>
+            <li>参考已提供的旅程模板，直接套用，修改文案即可上线</li>
+            <li>沉默召回旅程从 30 天分支开始，60/90 天分支后续追加</li>
+            <li>此阶段可同步完成商城用户属性（设备类型）的数据上报</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">第 4 周起：精细化与扩展</div><div class="card-body">
+          <ul>
+            <li>上线：<span class="bold">新品精准推送（场景 5）</span> + <span class="bold">交叉销售（场景 6）</span></li>
+            <li>对已有旅程做 A/B 文案测试，找到最优话术</li>
+            <li>根据复购率数据调整耗材补货的触发时间</li>
+            <li>全 6 条旅程稳定运行后，运营工作量 < 每周 2 小时</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <h3>5.1 运营自动化 vs 人工运营对比</h3>
+      <table>
+        <thead><tr>
+          <th>运营任务</th><th>人工运营方式</th><th>EngageLab MA 自动化方式</th><th class="align-right">效率对比</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td>弃单用户触达</td><td>每日手动导出未付款订单 → 逐一发短信</td><td>加购事件触发 → 自动 30min 内 Push</td><td class="align-right">效率 ×100+</td></tr>
+          <tr class="tone-success"><td>耗材复购提醒</td><td>按购买时间人工计算到期日 → 群发</td><td>购买事件后按周期自动等待，精准触发</td><td class="align-right">效率 ×50+</td></tr>
+          <tr class="tone-info"><td>沉默用户分层</td><td>T+1 导出用户列表 → 分组 → 人工发送</td><td>用户属性实时计算，自动分层触达</td><td class="align-right">实时 vs T+1</td></tr>
+          <tr class="tone-info"><td>新品推送</td><td>全量群发一张图，不区分用户类型</td><td>按设备属性自动分流，各用户看个性化内容</td><td class="align-right">转化 ×2-3</td></tr>
+          <tr><td>效果数据统计</td><td>手动统计发送量、点击量（不含转化）</td><td>自动统计发送/送达/点击/转化/收入，实时看板</td><td class="align-right">完整归因</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">关键建议：埋点是一切自动化的前提</div>
+        <div class="callout-body">
+          <p>以下 6 个事件的埋点是启动所有旅程的基础——优先与开发团队确认这 6 个事件的上报能力：</p>
+          <p><span class="bold">① 设备绑定成功</span>（含设备类型属性）· <span class="bold">② 浏览商品详情</span>（含商品品类） · <span class="bold">③ 加入购物车</span>（含商品 ID）</p>
+          <p><span class="bold">④ 支付成功</span>（含商品品类 + 金额） · <span class="bold">⑤ 商城首页访问</span> · <span class="bold">⑥ App 打开</span></p>
+          <p>用户属性需上报：<span class="bold">已购设备类型</span>、<span class="bold">最近商城下单时间</span>、<span class="bold">历史累计购买品类</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benchmark -->
+    <section id="s-benchmark" class="section-plain">
+      <h2>六、行业对标 · 自动化运营的可参考效果</h2>
+      <p>
+        以下数据来自同类消费品（宠物 / 快消电商 / 智能硬件）App 接入 MA 自动化运营后的公开案例及行业报告。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">自动化运营效果对比 · 行业 Benchmark</div>
+        <div class="card-body">
+          <div class="chart" id="chart-benchmark"></div>
+          <p class="small muted" style="margin-top:10px">
+            数据来源：2024–2026 年宠物电商、消费品电商、智能硬件 App MA 公开案例综合整理。
+          </p>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">东南亚头部饮品 App（800+ 门店）</div><div class="card-body">
+          <ul>
+            <li>接入 MA 自动化后：弃单/浏览恢复 <span class="bold">+3.6×</span></li>
+            <li>季度复购率提升 <span class="bold">+43%</span></li>
+            <li>首次 App 打开转化提升 <span class="bold">+40%</span></li>
+            <li>3 个月内实现以上效果</li>
+          </ul>
+          <p class="small muted">与宠物 App 商城的用户行为高度类似（高频耗材 + App 点单）</p>
+        </div></div>
+        <div class="card"><div class="card-header">全球头部 QSR 连锁品牌</div><div class="card-body">
+          <ul>
+            <li>弃单恢复转化 <span class="bold">6.75×</span></li>
+            <li>新用户激活率 <span class="bold">+18.7%</span></li>
+            <li>忠诚计划收入 <span class="bold">+20%</span></li>
+            <li>多阶段旅程 + 分时段投送策略</li>
+          </ul>
+          <p class="small muted">弃单挽回和新客激活场景逻辑与宠物 App 商城完全一致</p>
+        </div></div>
+        <div class="card"><div class="card-header">全球智能安防硬件品牌（同类客户）</div><div class="card-body">
+          <ul>
+            <li>新客首月收入 <span class="bold">+11.5%</span></li>
+            <li>App Push 点击率 <span class="bold">6.82%</span>（续费提醒）</li>
+            <li>全球多区域 Push 送达率 <span class="bold">95-99.85%</span></li>
+            <li>13 条旅程并行运行，稳定 2 个月+</li>
+          </ul>
+          <p class="small muted">同为智能硬件 + App 模式，技术架构和场景设计直接可参考</p>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- Compliance -->
+    <section class="section-plain">
+      <h2>七、数据安全与合规</h2>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">数据安全</div><div class="card-body">
+          <ul>
+            <li>全链路 <span class="bold">TLS</span> 加密传输，传输层与存储层数据分离</li>
+            <li>VPC 网络隔离，数据中心多活灾备，可按客户安全需求灵活扩展</li>
+            <li>PII 字段脱敏、日志审计、数据访问全链路可追溯</li>
+            <li>基于角色的访问控制（RBAC），运营人员不可裸查原始用户数据</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">合规支持</div><div class="card-body">
+          <ul>
+            <li>已通过 <span class="bold">GDPR</span> 合规认证 + <span class="bold">SOC 2 Type II</span> 安全审计</li>
+            <li>可协助客户满足《<span class="bold">个人信息保护法</span>》（PIPL）、《数据安全法》等国内合规要求</li>
+            <li>支持用户数据删除、导出、同意管理等合规权利</li>
+            <li>消息发送记录保留 <span class="bold">60 天</span>，可随时导出用于合规审查</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">运营护栏</div>
+        <div class="callout-body">
+          <p>· 频控策略：每用户每日最多 N 次推送，旅程内自动去重，防止同一用户被多条旅程重复触达；</p>
+          <p>· 可发送时间：基于用户本地时区自动控制发送窗口（如 09:00–21:00），避免深夜打扰；</p>
+          <p>· 内容预览：消息发送前支持完整样式预览，确认效果后再发送；</p>
+          <p>· 提前退出：用户一旦完成目标行为（如下单），立即从旅程退出，不再继续触达。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>八、4 周测试计划 · 可量化验收</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center">周</th><th>阶段</th><th>工作内容</th>
+          <th>交付物</th><th>验收指标</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="align-center bold">Week 1</td><td>启动 & 数据打通</td><td>场景优先级共创 · 6 个核心埋点方案确认 · SDK 接入 · 用户属性（设备类型）映射</td><td>埋点方案 + 数据入库验证</td><td>6 个事件入库率 ≥ 95%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 2</td><td>首批旅程上线</td><td>弃单挽回 + 耗材补货提醒 2 条旅程构建上线，小流量验证（5-10% 用户）</td><td>2 条旅程跑通 + 推送送达确认</td><td>旅程触发成功率 ≥ 98%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 3</td><td>扩量 & 完善</td><td>2 条旅程扩全量 · 新增设备激活首购 + 沉默召回旅程 · A/B 测试文案</td><td>4 条旅程全量运行 + A/B 数据</td><td>弃单触达率 ≥ 50%，首购 Push 点击率 ≥ 5%</td></tr>
+          <tr class="tone-success"><td class="align-center bold">Week 4</td><td>复盘 & 扩面</td><td>数据复盘 · GMV 增量结算 · 新增新品推送 + 交叉销售旅程 · 下阶段扩展规划</td><td>测试结案报告 + 完整旅程体系</td><td>商城复购率 uplift · 弃单恢复率 uplift</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="stat"><div class="stat-value">4 周</div><div class="stat-label">从数据打通到首批旅程全量运行</div></div>
+        <div class="stat"><div class="stat-value success">$0</div><div class="stat-label">测试期间授权费用</div></div>
+        <div class="stat"><div class="stat-value">专属</div><div class="stat-label">EngageLab 交付团队 1v1 支持</div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <hr class="divider" />
+      <h3>下一步建议</h3>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header"><span class="step-num">1</span>对齐</div><div class="card-body">
+          确认 App 商城核心用户行为路径（加购 / 下单 / 设备绑定），共同确认 6 个优先埋点事件，以及用户属性（设备类型、最近下单时间）的上报方式。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">2</span>SDK 接入</div><div class="card-body">
+          根据 EngageLab 交付团队提供的埋点接入方案，完成 App SDK 集成、用户属性上报和核心商城行为事件埋点。通常 1-2 名开发人员 2-3 天可完成。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">3</span>旅程验证</div><div class="card-body">
+          开通测试 VIP 账号，优先搭建弃单挽回 + 耗材补货 2 条旅程，小流量验证后扩全量；
+          基于真实数据效果驱动后续旅程的扩展和迭代。
+        </div></div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      本方案中行业对标数据来自 2024–2026 年宠物电商、消费品电商、智能硬件 App 等公开案例及行业报告综合整理；
+      预期效果数据为同类场景参考区间，实际效果以双方测试数据为准。
+      <br />© EngageLab · Marketing Automation Solution for Pet Smart Hardware & App Mall
+    </footer>
+  </main>
+
+  <script>
+  (function () {
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', neutral: '#94a3b8', muted: '#cbd5e1',
+      text: '#374151', textMute: '#9ca3af', grid: '#e5e7eb',
+    };
+
+    function svg(w, h) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('width', '100%');
+      s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      return s;
+    }
+    function el(tag, attrs) {
+      const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 600, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 56;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 20) * 20 || 100;
+      const groupCount = categories.length;
+      const barsPerGroup = series.length;
+      const groupW = innerW / groupCount;
+      const barW = Math.min(22, (groupW - 12) / barsPerGroup);
+      const s = svg(W, H);
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+        if (cat.length > 5) {
+          const t2 = el('text', { x: gx + groupW / 2, y: H - PAD_B + 32, 'text-anchor': 'middle', 'font-size': 10, fill: COLORS.textMute });
+          t2.textContent = '';
+          s.appendChild(t2);
+        }
+      });
+      if (series.length > 1) {
+        const legY = H - 14;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          legX += 14 + (se.name.length * 7.5) + 16;
+        });
+      }
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {};
+      const incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const startX = (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          const x = startX + i * (NODE_W + NODE_GAP);
+          const y = 20 + r * (NODE_H + RANK_GAP);
+          pos[it.node.id] = { x, y };
+        });
+      });
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) {
+              cur.x = prev.x + NODE_W + NODE_GAP;
+            }
+          }
+        });
+      }
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // ========== Charts ==========
+
+    // Market opportunity chart
+    drawBarChart(document.getElementById('chart-market'), {
+      categories: ['摄像头用户', '饮水机用户', '喂食器用户', '综合用户'],
+      series: [
+        { name: '商城月活跃率 (当前)', data: [18, 15, 12, 10], tone: 'neutral' },
+        { name: '商城月活跃率 (MA后预期)', data: [35, 32, 28, 25], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 240,
+    });
+
+    // Mall funnel chart
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['硬件激活', '首次打开商城', '加购行为', '首次下单', '二次购买', '长期留存'],
+      series: [
+        { name: '当前转化率', data: [100, 35, 22, 12, 6, 3], tone: 'neutral' },
+        { name: 'MA 自动化后预期', data: [100, 48, 32, 22, 14, 8], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // Benchmark chart
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['弃单恢复率', '首购转化提升', '复购频次提升', '沉默召回率'],
+      series: [
+        { name: '无 MA 运营（当前）', data: [8, 0, 0, 5], tone: 'neutral' },
+        { name: 'MA 自动化运营（行业参考）', data: [30, 28, 40, 22], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // ========== Journey DAGs ==========
+
+    // J1: 设备激活→商城首购
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 设备绑定成功' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '浏览商城 · 1 小时' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '欢迎 · 配套好物推荐' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: '是否下单 · 24h' },
+        { id: 'ok1',    kind: 'exitOk',   title: '首单成功',    sub: '进入老客旅程' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push2',  kind: 'channel',  title: 'App Push',   sub: '1天体验 · 首购折扣码' },
+        { id: 'wfe3',   kind: 'branch',   title: '等待事件',    sub: '是否下单 · 48h' },
+        { id: 'ok2',    kind: 'exitOk',   title: '首单成功',    sub: '' },
+        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'sms1',   kind: 'channel',  title: 'SMS',        sub: '首购专享券·24h限时' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '转入沉默召回旅程' },
+      ],
+      [
+        { from: 'start',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'ok1',   label: '已浏览+下单' },
+        { from: 'wfe1',   to: 'push1', label: '未浏览(超时)' },
+        { from: 'push1',  to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok1',   label: '已下单' },
+        { from: 'wfe2',   to: 'st2',   label: '未下单(超时)' },
+        { from: 'st2',    to: 'push2' },
+        { from: 'push2',  to: 'wfe3' },
+        { from: 'wfe3',   to: 'ok2',   label: '已下单' },
+        { from: 'wfe3',   to: 'st3',   label: '未下单(超时)' },
+        { from: 'st3',    to: 'sms1' },
+        { from: 'sms1',   to: 'end' },
+      ]);
+
+    // J2: 弃单挽回
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 加入购物车' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '是否下单 · 30min' },
+        { id: 'ok1',    kind: 'exitOk',   title: '自然下单',    sub: '无需干预' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '购物车提醒·一键结算' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: '是否下单 · 2h' },
+        { id: 'ok2',    kind: 'exitOk',   title: '已下单',      sub: '' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push2',  kind: 'channel',  title: 'App Push',   sub: '限时优惠·今日下单立减' },
+        { id: 'wfe3',   kind: 'branch',   title: '等待事件',    sub: '是否下单 · 24h' },
+        { id: 'ok3',    kind: 'exitOk',   title: '已下单',      sub: '' },
+        { id: 'sms',    kind: 'channel',  title: 'SMS',        sub: '专属优惠码·兜底触达' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '' },
+      ],
+      [
+        { from: 'start',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'ok1',   label: '已下单' },
+        { from: 'wfe1',   to: 'push1', label: '未下单(30min)' },
+        { from: 'push1',  to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok2',   label: '已下单' },
+        { from: 'wfe2',   to: 'st1',   label: '未下单(2h)' },
+        { from: 'st1',    to: 'push2' },
+        { from: 'push2',  to: 'wfe3' },
+        { from: 'wfe3',   to: 'ok3',   label: '已下单' },
+        { from: 'wfe3',   to: 'sms',   label: '未下单(24h)' },
+        { from: 'sms',    to: 'end' },
+      ]);
+
+    // J3: 耗材补货提醒
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 购买耗材类商品' },
+        { id: 'wait1',  kind: 'wait',     title: '等待',        sub: '使用周期 - 7 天' },
+        { id: 'cond',   kind: 'branch',   title: '条件分支',    sub: '是否已再次购买该品类' },
+        { id: 'ok1',    kind: 'exitOk',   title: '自然复购',    sub: '无需干预' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '耗材快用完·一键补货' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '是否补购 · 7 天' },
+        { id: 'ok2',    kind: 'exitOk',   title: '已补购',      sub: '' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push2',  kind: 'channel',  title: 'App Push',   sub: '积分加倍·搭配推荐' },
+        { id: 'sms',    kind: 'channel',  title: 'SMS',        sub: '宠物等您·耗材快到了' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '下次购买后再进入' },
+      ],
+      [
+        { from: 'start',  to: 'wait1' },
+        { from: 'wait1',  to: 'cond' },
+        { from: 'cond',   to: 'ok1',   label: '已复购' },
+        { from: 'cond',   to: 'st1',   label: '未复购' },
+        { from: 'st1',    to: 'push1' },
+        { from: 'push1',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'ok2',   label: '已补购' },
+        { from: 'wfe1',   to: 'st2',   label: '未购(超时)' },
+        { from: 'st2',    to: 'push2' },
+        { from: 'push2',  to: 'sms' },
+        { from: 'sms',    to: 'end' },
+      ]);
+
+    // J4: 商城沉默用户分层召回
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start',    kind: 'entry',    title: '开始',        sub: '属性: 距上次购买 ≥ 30天' },
+        { id: 'cond',     kind: 'branch',   title: '条件分支',     sub: '沉默深度分层' },
+        { id: 'st_30',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_30',  kind: 'channel',  title: 'App Push',    sub: '30天·关怀+新品推荐' },
+        { id: 'ok_30',    kind: 'exitOk',   title: '已唤醒',       sub: '30天召回成功' },
+        { id: 'st_60',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_60',  kind: 'channel',  title: 'App Push',    sub: '60天·专属88折优惠券' },
+        { id: 'wfe_60',   kind: 'branch',   title: '等待事件',     sub: '是否购买 · 7 天' },
+        { id: 'ok_60',    kind: 'exitOk',   title: '已唤醒',       sub: '60天召回成功' },
+        { id: 'sms_60',   kind: 'channel',  title: 'SMS',         sub: '限时大额券·兜底召回' },
+        { id: 'st_90',    kind: 'sendtime', title: '可发送时间',    sub: '10:00 – 20:00' },
+        { id: 'sms_90',   kind: 'channel',  title: 'SMS',         sub: '90天·终极礼包挽回' },
+        { id: 'end',      kind: 'exitEnd',  title: '结束',         sub: '归档 · 间隔30天再进' },
+      ],
+      [
+        { from: 'start',   to: 'cond' },
+        { from: 'cond',    to: 'st_30',   label: '30-59天' },
+        { from: 'cond',    to: 'st_60',   label: '60-89天' },
+        { from: 'cond',    to: 'st_90',   label: '90天+' },
+        { from: 'st_30',   to: 'push_30' },
+        { from: 'push_30', to: 'ok_30' },
+        { from: 'st_60',   to: 'push_60' },
+        { from: 'push_60', to: 'wfe_60' },
+        { from: 'wfe_60',  to: 'ok_60',   label: '已购买' },
+        { from: 'wfe_60',  to: 'sms_60',  label: '未购(超时)' },
+        { from: 'sms_60',  to: 'end' },
+        { from: 'st_90',   to: 'sms_90' },
+        { from: 'sms_90',  to: 'end' },
+        { from: 'ok_30',   to: 'end' },
+        { from: 'ok_60',   to: 'end' },
+      ]);
+
+    // J5: 新品精准推送
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start',      kind: 'entry',    title: '开始',        sub: '事件: 新品上架(运营触发)' },
+        { id: 'cond',       kind: 'branch',   title: '条件分支',     sub: '已购设备类型' },
+        { id: 'push_cam',   kind: 'channel',  title: 'App Push',    sub: '摄像头用户·配件推荐' },
+        { id: 'push_water', kind: 'channel',  title: 'App Push',    sub: '饮水机用户·滤芯+猫粮' },
+        { id: 'push_other', kind: 'channel',  title: 'App Push',    sub: '其他用户·精选新品' },
+        { id: 'wfe',        kind: 'branch',   title: '等待事件',     sub: '加购/收藏 · 3 天' },
+        { id: 'ok',         kind: 'exitOk',   title: '已互动',       sub: '进入弃单旅程' },
+        { id: 'st2',        kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push2',      kind: 'channel',  title: 'App Push',    sub: '新品热销·限时优惠' },
+        { id: 'end',        kind: 'exitEnd',  title: '结束',         sub: '' },
+      ],
+      [
+        { from: 'start',      to: 'cond' },
+        { from: 'cond',       to: 'push_cam',   label: '已购摄像头' },
+        { from: 'cond',       to: 'push_water', label: '已购饮水机' },
+        { from: 'cond',       to: 'push_other', label: '其他用户' },
+        { from: 'push_cam',   to: 'wfe' },
+        { from: 'push_water', to: 'wfe' },
+        { from: 'push_other', to: 'wfe' },
+        { from: 'wfe',        to: 'ok',    label: '已互动' },
+        { from: 'wfe',        to: 'st2',   label: '未互动(超时)' },
+        { from: 'st2',        to: 'push2' },
+        { from: 'push2',      to: 'end' },
+      ]);
+
+    // J6: 关联品类交叉销售
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start',      kind: 'entry',    title: '开始',        sub: '事件: 购买智能设备成功' },
+        { id: 'wait1',      kind: 'wait',     title: '等待',         sub: '7 天' },
+        { id: 'cond',       kind: 'branch',   title: '条件分支',     sub: '购买的设备类型' },
+        { id: 'st_cam',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_cam',   kind: 'channel',  title: 'App Push',    sub: '摄像头→推荐智能饮水机' },
+        { id: 'st_water',   kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_water', kind: 'channel',  title: 'App Push',    sub: '饮水机→推荐猫粮套餐' },
+        { id: 'st_feeder',  kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_feeder',kind: 'channel',  title: 'App Push',    sub: '喂食器→推荐摄像头' },
+        { id: 'wfe',        kind: 'branch',   title: '等待事件',     sub: '是否加购 · 3 天' },
+        { id: 'ok',         kind: 'exitOk',   title: '交叉销售成功',  sub: '' },
+        { id: 'st2',        kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push2',      kind: 'channel',  title: 'App Push',    sub: '套装优惠·一起更优惠' },
+        { id: 'end',        kind: 'exitEnd',  title: '结束',         sub: '' },
+      ],
+      [
+        { from: 'start',       to: 'wait1' },
+        { from: 'wait1',       to: 'cond' },
+        { from: 'cond',        to: 'st_cam',     label: '摄像头' },
+        { from: 'cond',        to: 'st_water',   label: '饮水机' },
+        { from: 'cond',        to: 'st_feeder',  label: '喂食器' },
+        { from: 'st_cam',      to: 'push_cam' },
+        { from: 'st_water',    to: 'push_water' },
+        { from: 'st_feeder',   to: 'push_feeder' },
+        { from: 'push_cam',    to: 'wfe' },
+        { from: 'push_water',  to: 'wfe' },
+        { from: 'push_feeder', to: 'wfe' },
+        { from: 'wfe',         to: 'ok',    label: '已加购' },
+        { from: 'wfe',         to: 'st2',   label: '未购(超时)' },
+        { from: 'st2',         to: 'push2' },
+        { from: 'push2',       to: 'end' },
+        { from: 'ok',          to: 'end' },
+      ]);
+
+  })();
+  </script>
+</body>
+</html>
