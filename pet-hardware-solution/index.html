@@ -226,9 +226,10 @@
           <div class="card-body">
             <div class="chart" id="chart-market"></div>
             <p class="small muted" style="margin-top:10px">
-              硬件卖出后，App 商城是唯一能持续产生营收的触点。
-              摄像头用户需要充电宝/存储卡；饮水机用户每 2-3 个月需要换滤芯；
-              宠物粮用户每月复购——这些都是可以用 MA 自动化的高确定性场景。
+              硬件卖出后，App 商城是品牌<strong>完整掌握用户数据、自主触达运营</strong>的核心渠道。
+              淘宝、京东等平台也会产生销售，但用户行为数据无法回流、推送权限受平台控制；
+              只有 App 商城才能让 MA 做到：用户加购 30 分钟内自动推送、按购买周期自动提醒补货、
+              按已购设备精准推荐——这正是 MA 自动化最大价值所在。
             </p>
           </div>
         </div>
@@ -368,13 +369,14 @@
             <div class="card-body">
               <ul>
                 <li><span class="bold">开始组件</span>：事件"设备绑定成功"触发进入（一次性事件，不可再次进入）</li>
-                <li><span class="bold">先观察 1 小时</span>：等待事件"浏览商城"，已浏览者直接进入购买等待，未浏览才发推送</li>
-                <li><span class="bold">Push 1</span>：欢迎 + 为您精选的配套好物推荐（深链直达商城耗材页）</li>
-                <li><span class="bold">等待事件 24h</span>：观察是否首购成功 → 已购退出 / 未购继续</li>
-                <li><span class="bold">Push 2</span>：使用 1 天心得 + 首购专属折扣码（可发送时间 09:00–21:00）</li>
-                <li><span class="bold">SMS 兜底</span>：等待 48h 仍未购买 → SMS 触达（限时 24h 专属券）</li>
-                <li><span class="bold">提前退出</span>：事件"首次支付成功"→ 自动退出旅程</li>
-                <li><span class="bold">转化统计</span>：监听"支付成功"事件，统计时间 3 天</li>
+                <li><span class="bold">等待事件 1h</span>：监听"访问商城"事件，据此区分两条触达路径</li>
+                <li><span class="bold">未访问路径</span>：用户未打开商城 → 发完整欢迎 Push（引导发现耗材商城）</li>
+                <li><span class="bold">已访问路径</span>：用户已有浏览意向但未下单 → 发轻量 Push（强化下单动机）</li>
+                <li><span class="bold">等待事件 24h</span>：两条路径汇合，监听"支付成功"→ 已购退出 / 未购继续</li>
+                <li><span class="bold">Push 2</span>：首购专属折扣码（可发送时间 09:00–21:00）</li>
+                <li><span class="bold">SMS 兜底</span>：再等待 48h 仍未购 → SMS 触达（限时 24h 专属券）</li>
+                <li><span class="bold">提前退出</span>：事件"支付成功"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"支付成功"事件，统计时间 1 天</li>
               </ul>
             </div>
           </div>
@@ -425,7 +427,7 @@
                 <li><span class="bold">可发送时间 09:00–21:00</span> + <span class="bold">Push 2</span>：加码限时优惠（"今日下单立减 5 元"）</li>
                 <li><span class="bold">等待事件 24h</span>：是否下单 → 已购退出 / 未购继续</li>
                 <li><span class="bold">SMS 兜底</span>：最后一次触达（专属优惠码 + 24h 有效）</li>
-                <li><span class="bold">转化统计</span>：监听"支付成功"，统计时间 2 小时</li>
+                <li><span class="bold">转化统计</span>：监听"支付成功"，统计时间 24 小时</li>
               </ul>
             </div>
           </div>
@@ -460,32 +462,42 @@
           <div class="callout warn">
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
-              猫粮、饮水机滤芯、猫砂等耗材有清晰的消费周期（猫粮约 30 天，滤芯约 60-90 天）。
-              用户常常"忘了补货"，导致流失到其他平台临时购买，品牌商城的复购窗口就此错失。
-              <span class="bold">主动提醒补货 = 在竞争对手抢先前锁定订单。</span>
+              猫粮约 30 天用完，饮水机滤芯约 60-90 天，不同耗材周期各异。
+              用户常"忘了补货"而流向淘宝/京东临时购买，品牌商城窗口错失。
+              更大的问题是：过去运营无法区分品类，发一条通用提醒毫无共鸣。
+              <span class="bold">按品类发专属提醒 + 时间精准卡点 = 在竞争对手抢先前锁定订单。</span>
             </div>
           </div>
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：事件"购买耗材类商品成功"（可再次进入，间隔与商品周期一致）</li>
-                <li><span class="bold">等待</span>：按商品属性"使用周期 - 7 天"等待（如猫粮 30 天装 → 等 23 天）</li>
-                <li><span class="bold">条件分支</span>：是否已再次购买该品类 → 已购退出 / 未购继续</li>
-                <li><span class="bold">可发送时间 09:00–21:00</span> + <span class="bold">Push 1</span>："XX 快用完了，一键补货还有积分赠送"</li>
-                <li><span class="bold">等待事件 7 天</span>：是否补购 → 已购退出 / 未购继续</li>
-                <li><span class="bold">可发送时间</span> + <span class="bold">Push 2</span>：加码积分奖励 + 搭配好物推荐</li>
-                <li><span class="bold">SMS 兜底</span>：最终提醒（"宠物在等您！耗材快配送到了"）</li>
-                <li><span class="bold">收入统计</span>：监听"支付成功"事件，统计时间 7 天</li>
+                <li><span class="bold">开始组件</span>：事件"支付成功"（商品品类 = 耗材类）触发（可再次进入，间隔 = 该商品消耗周期天数）</li>
+                <li><span class="bold">等待</span>：利用事件属性"预计消耗完成时间（estimated_empty_date）"提前 7 天触发，无需按品类写死天数，自动适配不同规格商品</li>
+                <li><span class="bold">条件分支</span>：按触发事件的"商品品类（product_category）"属性分流，各品类发送专属文案</li>
+                <li><span class="bold">猫粮/狗粮</span>：可发送时间 + Push（"XX 快用完了，提前备货更省心"）</li>
+                <li><span class="bold">饮水机滤芯</span>：可发送时间 + Push（"滤芯使用到期了，换新才喝得健康"）</li>
+                <li><span class="bold">其他耗材</span>：可发送时间 + Push（通用补货提醒）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"支付成功"（product_category = 同品类）→ 已补购退出 / 超时继续</li>
+                <li><span class="bold">SMS 兜底</span>：最终一次触达（"宠物在等您！耗材快送到"）</li>
+                <li><span class="bold">收入统计</span>：监听"支付成功"，统计时间 7 天</li>
               </ul>
+            </div>
+          </div>
+          <div class="callout info">
+            <div class="callout-title">埋点要求（此旅程的关键前提）</div>
+            <div class="callout-body">
+              <p>"支付成功"事件需携带以下属性，旅程才能完整运转：</p>
+              <p>· <span class="bold">product_category</span>：商品品类（如 cat_food / water_filter / cat_litter 等，条件分支分流依据）</p>
+              <p>· <span class="bold">estimated_empty_date</span>：预计消耗完成时间（= 购买日期 + 商品消耗周期天数，可由服务端计算后随事件上报）</p>
             </div>
           </div>
           <div class="callout success">
             <div class="callout-title">预期效益参考</div>
             <div class="callout-body">
               耗材自动提醒是宠物 App 商城<span class="bold">复购频次提升最稳定的场景</span>，
-              行业案例中自动补货提醒可带来 <span class="bold">复购频次 +30-50%</span>，
-              同时显著降低用户流向竞品的概率。周期性商品的"提前提醒"是转化率最高的 Push 类型之一。
+              行业案例中自动补货提醒可带来 <span class="bold">复购频次 +30-50%</span>。
+              按品类差异化文案后，Push 点击率比通用补货提醒提升 2-3 倍。
             </div>
           </div>
         </div>
@@ -520,11 +532,11 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：用户属性"最近商城下单距今 ≥ 30 天"（可再次进入，间隔 30 天）</li>
-                <li><span class="bold">条件分支</span>：按沉默深度分层（30-59 天 / 60-89 天 / 90 天+）</li>
-                <li><span class="bold">30 天分支</span>：可发送时间 + Push（关怀提醒 + 宠物健康 Tips + 新品推荐）</li>
-                <li><span class="bold">60 天分支</span>：可发送时间 + Push（专属 88 折优惠券）→ 等待事件 7 天 → 未购则 SMS 兜底</li>
-                <li><span class="bold">90 天分支</span>：SMS（重磅礼包 + 限时）</li>
+                <li><span class="bold">开始组件</span>：用户属性"最后购买时间距今超过 30 天"（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">条件分支</span>：按沉默深度分层（30-59 天 / 60-89 天 / 90 天+），三条独立路径互不干扰</li>
+                <li><span class="bold">30 天分支</span>：可发送时间 + Push → 等待事件 7 天（监听"支付成功"）→ 已购唤醒成功 / 未购归档</li>
+                <li><span class="bold">60 天分支</span>：可发送时间 + Push（专属 88 折优惠券）→ 等待事件 7 天（监听"支付成功"）→ 已购退出 / 未购再发 SMS 兜底</li>
+                <li><span class="bold">90 天分支</span>：可发送时间 + SMS（终极礼包 + 限时）→ 归档</li>
                 <li><span class="bold">提前退出</span>：事件"支付成功"→ 自动退出旅程</li>
                 <li><span class="bold">转化统计</span>：监听"支付成功"，统计时间 5 天</li>
               </ul>
@@ -574,8 +586,8 @@
                 <li><span class="bold">摄像头用户</span>：推送摄像头配套新品（充电宝、存储卡、安装支架）</li>
                 <li><span class="bold">饮水机用户</span>：推送滤芯新款 + 搭配猫粮优惠套餐</li>
                 <li><span class="bold">其他/未分类用户</span>：推送品牌精选新品</li>
-                <li><span class="bold">等待事件 3 天</span>：是否加购/收藏 → 已互动退出 / 未互动继续</li>
-                <li><span class="bold">可发送时间 09:00–21:00</span> + <span class="bold">Push 2</span>：新品热销提醒（含销售数据背书）</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"加入购物车"事件 → 已加购退出（自动进入弃单旅程）/ 超时继续</li>
+                <li><span class="bold">可发送时间 09:00–21:00</span> + <span class="bold">Push 2</span>：新品热销提醒（含销售数量背书，营造紧迫感）</li>
               </ul>
             </div>
           </div>
@@ -624,7 +636,7 @@
                 <li><span class="bold">摄像头用户</span>：可发送时间 + Push（"视频里记录了多少温馨瞬间？搭配智能饮水机更安心"）</li>
                 <li><span class="bold">饮水机用户</span>：可发送时间 + Push（"干净的水 + 优质宠物粮 = 健康的宠物"）</li>
                 <li><span class="bold">喂食器用户</span>：可发送时间 + Push（"知道宠物什么时候吃饭了，也来看看TA怎么吃的吧"）</li>
-                <li><span class="bold">等待事件 3 天</span>：是否互动 → 已互动退出 / 未互动 → Push 套装组合优惠</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"加入购物车"事件 → 已加购退出（进入弃单旅程）/ 未加购(超时) → Push 套装组合优惠</li>
               </ul>
             </div>
           </div>
@@ -694,9 +706,9 @@
         <div class="callout-title">关键建议：埋点是一切自动化的前提</div>
         <div class="callout-body">
           <p>以下 6 个事件的埋点是启动所有旅程的基础——优先与开发团队确认这 6 个事件的上报能力：</p>
-          <p><span class="bold">① 设备绑定成功</span>（含设备类型属性）· <span class="bold">② 浏览商品详情</span>（含商品品类） · <span class="bold">③ 加入购物车</span>（含商品 ID）</p>
-          <p><span class="bold">④ 支付成功</span>（含商品品类 + 金额） · <span class="bold">⑤ 商城首页访问</span> · <span class="bold">⑥ App 打开</span></p>
-          <p>用户属性需上报：<span class="bold">已购设备类型</span>、<span class="bold">最近商城下单时间</span>、<span class="bold">历史累计购买品类</span></p>
+          <p><span class="bold">① 设备绑定成功</span>（含 device_type）· <span class="bold">② 访问商城首页</span> · <span class="bold">③ 加入购物车</span>（含 product_id、product_category）</p>
+          <p><span class="bold">④ 支付成功</span>（含 product_category、estimated_empty_date、order_amount）· <span class="bold">⑤ App 打开</span></p>
+          <p>用户属性需上报：<span class="bold">owned_device_types</span>（已购设备类型列表）、<span class="bold">last_order_time</span>（最近商城下单时间）</p>
         </div>
       </div>
     </section>
@@ -851,7 +863,7 @@
 
     function drawBarChart(mount, opts) {
       const { categories, series, valueSuffix = '', height = 240 } = opts;
-      const W = 600, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 56;
+      const W = 700, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 72;
       const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
       const max = Math.max(...series.flatMap(s => s.data), 1);
       const niceMax = Math.ceil(max / 20) * 20 || 100;
@@ -901,7 +913,8 @@
           const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
           t.textContent = se.name;
           s.appendChild(t);
-          legX += 14 + (se.name.length * 7.5) + 16;
+          // 中文字符实际渲染宽度约 11px，用 11 估算后加 24px 项间距
+          legX += 14 + (se.name.length * 11) + 24;
         });
       }
       mount.innerHTML = '';
@@ -954,7 +967,10 @@
           return a.anchor - b.anchor;
         });
         const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
-        const startX = (maxWidth - totalW) / 2 + 20;
+        const definedAnchors = withAnchor.filter(n => n.anchor !== null).map(n => n.anchor);
+        const startX = definedAnchors.length > 0
+          ? Math.max(20, definedAnchors.reduce((a, b) => a + b, 0) / definedAnchors.length - totalW / 2)
+          : (maxWidth - totalW) / 2 + 20;
         withAnchor.forEach((it, i) => {
           const x = startX + i * (NODE_W + NODE_GAP);
           const y = 20 + r * (NODE_H + RANK_GAP);
@@ -1054,33 +1070,35 @@
 
     // ========== Journey DAGs ==========
 
-    // J1: 设备激活→商城首购
+    // J1: 设备激活→商城首购（双分支：已访问 / 未访问商城）
     drawJourney(document.getElementById('dag-j1'),
       [
-        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 设备绑定成功' },
-        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '浏览商城 · 1 小时' },
-        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '欢迎 · 配套好物推荐' },
-        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: '是否下单 · 24h' },
-        { id: 'ok1',    kind: 'exitOk',   title: '首单成功',    sub: '进入老客旅程' },
-        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
-        { id: 'push2',  kind: 'channel',  title: 'App Push',   sub: '1天体验 · 首购折扣码' },
-        { id: 'wfe3',   kind: 'branch',   title: '等待事件',    sub: '是否下单 · 48h' },
-        { id: 'ok2',    kind: 'exitOk',   title: '首单成功',    sub: '' },
-        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
-        { id: 'sms1',   kind: 'channel',  title: 'SMS',        sub: '首购专享券·24h限时' },
-        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '转入沉默召回旅程' },
+        { id: 'start',   kind: 'entry',    title: '开始',        sub: '事件: 设备绑定成功' },
+        { id: 'wfe1',    kind: 'branch',   title: '等待事件',     sub: '访问商城 · 1 小时' },
+        { id: 'push1a',  kind: 'channel',  title: 'App Push',    sub: '欢迎·引导发现好物' },
+        { id: 'push1b',  kind: 'channel',  title: 'App Push',    sub: '欢迎·强化下单动机' },
+        { id: 'wfe2',    kind: 'branch',   title: '等待事件',     sub: '支付成功 · 24h' },
+        { id: 'ok1',     kind: 'exitOk',   title: '首单成功',     sub: '进入老客旅程' },
+        { id: 'st2',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push2',   kind: 'channel',  title: 'App Push',    sub: '首购专属折扣码' },
+        { id: 'wfe3',    kind: 'branch',   title: '等待事件',     sub: '支付成功 · 48h' },
+        { id: 'ok2',     kind: 'exitOk',   title: '首单成功',     sub: '' },
+        { id: 'st3',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'sms1',    kind: 'channel',  title: 'SMS',         sub: '首购专享券·24h限时' },
+        { id: 'end',     kind: 'exitEnd',  title: '结束',         sub: '转入沉默召回旅程' },
       ],
       [
         { from: 'start',  to: 'wfe1' },
-        { from: 'wfe1',   to: 'ok1',   label: '已浏览+下单' },
-        { from: 'wfe1',   to: 'push1', label: '未浏览(超时)' },
-        { from: 'push1',  to: 'wfe2' },
-        { from: 'wfe2',   to: 'ok1',   label: '已下单' },
-        { from: 'wfe2',   to: 'st2',   label: '未下单(超时)' },
+        { from: 'wfe1',   to: 'push1a', label: '未访问(超时)' },
+        { from: 'wfe1',   to: 'push1b', label: '已访问商城' },
+        { from: 'push1a', to: 'wfe2' },
+        { from: 'push1b', to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok1',    label: '已下单' },
+        { from: 'wfe2',   to: 'st2',    label: '未下单(超时)' },
         { from: 'st2',    to: 'push2' },
         { from: 'push2',  to: 'wfe3' },
-        { from: 'wfe3',   to: 'ok2',   label: '已下单' },
-        { from: 'wfe3',   to: 'st3',   label: '未下单(超时)' },
+        { from: 'wfe3',   to: 'ok2',    label: '已下单' },
+        { from: 'wfe3',   to: 'st3',    label: '未下单(超时)' },
         { from: 'st3',    to: 'sms1' },
         { from: 'sms1',   to: 'end' },
       ]);
@@ -1115,69 +1133,82 @@
         { from: 'sms',    to: 'end' },
       ]);
 
-    // J3: 耗材补货提醒
+    // J3: 耗材智能补货提醒（按品类分支发差异化内容）
     drawJourney(document.getElementById('dag-j3'),
       [
-        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 购买耗材类商品' },
-        { id: 'wait1',  kind: 'wait',     title: '等待',        sub: '使用周期 - 7 天' },
-        { id: 'cond',   kind: 'branch',   title: '条件分支',    sub: '是否已再次购买该品类' },
-        { id: 'ok1',    kind: 'exitOk',   title: '自然复购',    sub: '无需干预' },
-        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
-        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '耗材快用完·一键补货' },
-        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '是否补购 · 7 天' },
-        { id: 'ok2',    kind: 'exitOk',   title: '已补购',      sub: '' },
-        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
-        { id: 'push2',  kind: 'channel',  title: 'App Push',   sub: '积分加倍·搭配推荐' },
-        { id: 'sms',    kind: 'channel',  title: 'SMS',        sub: '宠物等您·耗材快到了' },
-        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '下次购买后再进入' },
+        { id: 'start',       kind: 'entry',    title: '开始',        sub: '支付成功·品类=耗材类' },
+        { id: 'wait1',       kind: 'wait',     title: '等待',         sub: '至预计耗完前 7 天' },
+        { id: 'cond',        kind: 'branch',   title: '条件分支',     sub: '事件属性: 商品品类' },
+        { id: 'st_food',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_food',   kind: 'channel',  title: 'App Push',    sub: '猫粮/狗粮快用完了' },
+        { id: 'st_filter',   kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_filter', kind: 'channel',  title: 'App Push',    sub: '滤芯到期·换新更健康' },
+        { id: 'st_other',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_other',  kind: 'channel',  title: 'App Push',    sub: '耗材快用完·提前备货' },
+        { id: 'wfe',         kind: 'branch',   title: '等待事件',     sub: '支付成功·同品类·7天' },
+        { id: 'ok',          kind: 'exitOk',   title: '已补购',       sub: '' },
+        { id: 'sms',         kind: 'channel',  title: 'SMS',         sub: '补货提醒·宠物等您' },
+        { id: 'end',         kind: 'exitEnd',  title: '结束',         sub: '下次购买后再进入' },
       ],
       [
-        { from: 'start',  to: 'wait1' },
-        { from: 'wait1',  to: 'cond' },
-        { from: 'cond',   to: 'ok1',   label: '已复购' },
-        { from: 'cond',   to: 'st1',   label: '未复购' },
-        { from: 'st1',    to: 'push1' },
-        { from: 'push1',  to: 'wfe1' },
-        { from: 'wfe1',   to: 'ok2',   label: '已补购' },
-        { from: 'wfe1',   to: 'st2',   label: '未购(超时)' },
-        { from: 'st2',    to: 'push2' },
-        { from: 'push2',  to: 'sms' },
-        { from: 'sms',    to: 'end' },
+        { from: 'start',       to: 'wait1' },
+        { from: 'wait1',       to: 'cond' },
+        { from: 'cond',        to: 'st_food',    label: '猫粮/狗粮' },
+        { from: 'cond',        to: 'st_filter',  label: '饮水机滤芯' },
+        { from: 'cond',        to: 'st_other',   label: '其他耗材' },
+        { from: 'st_food',     to: 'push_food' },
+        { from: 'st_filter',   to: 'push_filter' },
+        { from: 'st_other',    to: 'push_other' },
+        { from: 'push_food',   to: 'wfe' },
+        { from: 'push_filter', to: 'wfe' },
+        { from: 'push_other',  to: 'wfe' },
+        { from: 'wfe',         to: 'ok',    label: '已购买' },
+        { from: 'wfe',         to: 'sms',   label: '超时未购' },
+        { from: 'sms',         to: 'end' },
       ]);
 
-    // J4: 商城沉默用户分层召回
+    // J4: 商城沉默用户分层召回（三条独立分支，避免连线交叉）
     drawJourney(document.getElementById('dag-j4'),
       [
-        { id: 'start',    kind: 'entry',    title: '开始',        sub: '属性: 距上次购买 ≥ 30天' },
+        { id: 'start',    kind: 'entry',    title: '开始',        sub: '最后购买时间距今超过30天' },
         { id: 'cond',     kind: 'branch',   title: '条件分支',     sub: '沉默深度分层' },
+        // 30-59天分支
         { id: 'st_30',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
         { id: 'push_30',  kind: 'channel',  title: 'App Push',    sub: '30天·关怀+新品推荐' },
-        { id: 'ok_30',    kind: 'exitOk',   title: '已唤醒',       sub: '30天召回成功' },
+        { id: 'wfe_30',   kind: 'branch',   title: '等待事件',     sub: '支付成功 · 7 天' },
+        { id: 'ok_30',    kind: 'exitOk',   title: '唤醒成功',     sub: '30天召回' },
+        { id: 'end_30',   kind: 'exitEnd',  title: '结束',         sub: '归档' },
+        // 60-89天分支
         { id: 'st_60',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
-        { id: 'push_60',  kind: 'channel',  title: 'App Push',    sub: '60天·专属88折优惠券' },
-        { id: 'wfe_60',   kind: 'branch',   title: '等待事件',     sub: '是否购买 · 7 天' },
-        { id: 'ok_60',    kind: 'exitOk',   title: '已唤醒',       sub: '60天召回成功' },
-        { id: 'sms_60',   kind: 'channel',  title: 'SMS',         sub: '限时大额券·兜底召回' },
+        { id: 'push_60',  kind: 'channel',  title: 'App Push',    sub: '60天·专属88折券' },
+        { id: 'wfe_60',   kind: 'branch',   title: '等待事件',     sub: '支付成功 · 7 天' },
+        { id: 'ok_60',    kind: 'exitOk',   title: '唤醒成功',     sub: '60天召回' },
+        { id: 'sms_60',   kind: 'channel',  title: 'SMS',         sub: '限时大额券·兜底' },
+        { id: 'end_60',   kind: 'exitEnd',  title: '结束',         sub: '归档' },
+        // 90天+分支
         { id: 'st_90',    kind: 'sendtime', title: '可发送时间',    sub: '10:00 – 20:00' },
         { id: 'sms_90',   kind: 'channel',  title: 'SMS',         sub: '90天·终极礼包挽回' },
-        { id: 'end',      kind: 'exitEnd',  title: '结束',         sub: '归档 · 间隔30天再进' },
+        { id: 'end_90',   kind: 'exitEnd',  title: '结束',         sub: '归档·间隔30天再进' },
       ],
       [
         { from: 'start',   to: 'cond' },
         { from: 'cond',    to: 'st_30',   label: '30-59天' },
         { from: 'cond',    to: 'st_60',   label: '60-89天' },
         { from: 'cond',    to: 'st_90',   label: '90天+' },
+        // 30天分支
         { from: 'st_30',   to: 'push_30' },
-        { from: 'push_30', to: 'ok_30' },
+        { from: 'push_30', to: 'wfe_30' },
+        { from: 'wfe_30',  to: 'ok_30',   label: '已购买' },
+        { from: 'wfe_30',  to: 'end_30',  label: '仍未购' },
+        // 60天分支
         { from: 'st_60',   to: 'push_60' },
         { from: 'push_60', to: 'wfe_60' },
         { from: 'wfe_60',  to: 'ok_60',   label: '已购买' },
-        { from: 'wfe_60',  to: 'sms_60',  label: '未购(超时)' },
-        { from: 'sms_60',  to: 'end' },
+        { from: 'wfe_60',  to: 'sms_60',  label: '仍未购' },
+        { from: 'sms_60',  to: 'end_60' },
+        // 90天分支
         { from: 'st_90',   to: 'sms_90' },
-        { from: 'sms_90',  to: 'end' },
-        { from: 'ok_30',   to: 'end' },
-        { from: 'ok_60',   to: 'end' },
+        { from: 'sms_90',  to: 'end_90' },
       ]);
 
     // J5: 新品精准推送
@@ -1188,8 +1219,8 @@
         { id: 'push_cam',   kind: 'channel',  title: 'App Push',    sub: '摄像头用户·配件推荐' },
         { id: 'push_water', kind: 'channel',  title: 'App Push',    sub: '饮水机用户·滤芯+猫粮' },
         { id: 'push_other', kind: 'channel',  title: 'App Push',    sub: '其他用户·精选新品' },
-        { id: 'wfe',        kind: 'branch',   title: '等待事件',     sub: '加购/收藏 · 3 天' },
-        { id: 'ok',         kind: 'exitOk',   title: '已互动',       sub: '进入弃单旅程' },
+        { id: 'wfe',        kind: 'branch',   title: '等待事件',     sub: '加入购物车 · 3 天' },
+        { id: 'ok',         kind: 'exitOk',   title: '已加购',       sub: '进入弃单旅程' },
         { id: 'st2',        kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
         { id: 'push2',      kind: 'channel',  title: 'App Push',    sub: '新品热销·限时优惠' },
         { id: 'end',        kind: 'exitEnd',  title: '结束',         sub: '' },
@@ -1202,8 +1233,8 @@
         { from: 'push_cam',   to: 'wfe' },
         { from: 'push_water', to: 'wfe' },
         { from: 'push_other', to: 'wfe' },
-        { from: 'wfe',        to: 'ok',    label: '已互动' },
-        { from: 'wfe',        to: 'st2',   label: '未互动(超时)' },
+        { from: 'wfe',        to: 'ok',    label: '已加购' },
+        { from: 'wfe',        to: 'st2',   label: '未加购(超时)' },
         { from: 'st2',        to: 'push2' },
         { from: 'push2',      to: 'end' },
       ]);
@@ -1239,10 +1270,9 @@
         { from: 'push_water',  to: 'wfe' },
         { from: 'push_feeder', to: 'wfe' },
         { from: 'wfe',         to: 'ok',    label: '已加购' },
-        { from: 'wfe',         to: 'st2',   label: '未购(超时)' },
+        { from: 'wfe',         to: 'st2',   label: '未加购(超时)' },
         { from: 'st2',         to: 'push2' },
         { from: 'push2',       to: 'end' },
-        { from: 'ok',          to: 'end' },
       ]);
 
   })();
