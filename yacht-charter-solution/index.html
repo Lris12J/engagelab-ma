@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA · 游艇租赁与海上休闲旅游行业增长方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #e0f2fe 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 900px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-5 { grid-template-columns: repeat(5, 1fr); }
+    .grid-1-2 { grid-template-columns: 1fr 2fr; }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .chart-legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+    .chart-legend .leg-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-3); }
+    .chart-legend .dot { width: 10px; height: 10px; border-radius: 2px; }
+
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .hero { break-before: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+  
+  .back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 10px 4px 6px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.18);
+    margin-right: 16px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  .back-home:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.35);
+  }
+  .back-home svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+    <a class="back-home" href="../">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      返回首页
+    </a>
+
+      <span class="brand">EngageLab MA · 游艇租赁增长方案</span>
+      <a href="#s-market">市场机会</a>
+      <a href="#s-funnel">预订漏斗</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-scenarios">六大场景</a>
+      <a href="#s-journey1">旅程示意</a>
+      <a href="#s-benchmark">对标参考</a>
+      <a href="#s-compliance">合规安全</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-info">游艇租赁 · 海上休闲旅游</span>
+        <span class="pill">东南亚 · 全球海滨城市</span>
+        <span class="pill pill-success">高客单价 · 体验式消费</span>
+      </div>
+      <h1>EngageLab MA · 游艇租赁与海上休闲旅游行业增长方案</h1>
+      <p class="hero-subtitle">
+        面向全球海滨市场的游艇租赁、帆船包船、海上休闲旅游运营商——
+        将"一次性体验"升级为"全客户生命周期的高价值复购运营"，
+        以 <span class="bold">询价转化跟进、浏览未询挽回、出海后复购激活、季节性营销推送</span> 四个核心旅程切入，
+        4 周内完成测试、可量化验收。
+      </p>
+      <hr class="divider" />
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value">$10B+</div><div class="stat-label">全球游艇租赁市场规模 (2026)</div></div>
+        <div class="stat"><div class="stat-value info">5-7%</div><div class="stat-label">年均复合增长率 (CAGR)</div></div>
+        <div class="stat"><div class="stat-value success">+144%</div><div class="stat-label">CRO 优化后预订金额提升</div></div>
+        <div class="stat"><div class="stat-value success">+231%</div><div class="stat-label">自动化培育后合格询价增长</div></div>
+      </div>
+    </section>
+
+    <!-- 1. Market Background -->
+    <section id="s-market" class="section-plain">
+      <h2>一、为什么游艇租赁必须升级客户运营</h2>
+      <p>
+        全球游艇租赁市场已突破百亿美元规模，东南亚、地中海、加勒比海是增长最快的区域。
+        然而多数游艇运营商仍依赖"等客上门"模式——询价散落在 WhatsApp、网站表单、电话和社交媒体中，
+        缺乏系统化的客户跟进和生命周期运营。行业数据显示，
+        <span class="bold">询价到确认预订的平均转化率仅 25%</span>，大量高意向客户因跟进不及时或缺乏个性化沟通而流失。
+        而拥有完善自动化运营体系的运营商，预订金额可提升 <span class="bold">144%</span>，合格询价增长 <span class="bold">231%</span>。
+        客户运营的自动化和精细化，是游艇租赁行业下一个可被明确量化的增长杠杆。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">核心市场触达渠道渗透率（%）</div>
+          <div class="card-body">
+            <div class="chart" id="chart-channel-penetration"></div>
+            <p class="small muted" style="margin-top:10px">
+              不同市场触达渠道差异显著——WhatsApp 在新加坡、马来西亚渗透率超 85%，
+              Email 在欧美市场仍是企业客户的主要沟通渠道，SMS 在跨市场兜底触达中不可或缺。
+              全渠道编排能力直接决定客户触达效率和预订转化率。
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">核心业务信号</div>
+          <div class="card-body" style="padding:12px 14px;">
+            <div class="signal-row"><div class="left"><div class="label">网站询价→确认预订</div><div class="hint">大量询价因跟进不及时而流失</div></div><div class="value" style="color:var(--danger)">20-25%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">首次客户→年内复购</div><div class="hint">缺乏自动化培育导致复购率低</div></div><div class="value" style="color:var(--warning)">12-18%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">网站浏览→提交询价</div><div class="hint">浏览游艇详情页后未提交询价</div></div><div class="value" style="color:var(--danger)">5-8%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">淡季收入占比</div><div class="hint">季节性波动大，淡季收入断崖式下降</div></div><div class="value" style="color:var(--danger)">20-30%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">首次响应时间</div><div class="hint">行业平均首次回复超过 4 小时</div></div><div class="value" style="color:var(--warning)">&gt;4h</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. User Funnel -->
+    <section id="s-funnel" class="section-plain">
+      <h2>二、预订漏斗：每层都有明确的转化增长空间</h2>
+      <p>
+        从网站访问到成为高价值复购客户，游艇租赁的预订漏斗每一步都存在可被 MA 自动化挽回的流失点。
+        行业案例表明，自动化客户旅程编排可在每个环节带来显著的转化提升。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">游艇租赁预订漏斗 · 当前 vs MA 自动化后</div>
+        <div class="card-body">
+          <div class="chart" id="chart-funnel"></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="callout success">
+          <div class="callout-title">询价转化 +60%</div>
+          <div class="callout-body"><p>通过自动化询价跟进旅程，将询价→预订转化率从 25% 提升至 40%，每笔流失询价都是高价值机会</p></div>
+        </div>
+        <div class="callout info">
+          <div class="callout-title">浏览转询价 +85%</div>
+          <div class="callout-body"><p>行为触发的浏览未询价挽回旅程，将网站浏览→询价率从 7% 提升至 13%</p></div>
+        </div>
+        <div class="callout warn">
+          <div class="callout-title">年复购率 +120%</div>
+          <div class="callout-body"><p>出海后自动化复购培育旅程，年内复购率从 15% 提升至 33%</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why EngageLab -->
+    <section id="s-why" class="section-plain">
+      <h2>三、为什么选择 EngageLab MA</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-header">高可靠消息底座</div>
+          <div class="card-body">
+            <ul>
+              <li>Push 送达率 99%+，秒级触达</li>
+              <li>WhatsApp Business API 官方对接</li>
+              <li>全球多节点，低延迟覆盖</li>
+              <li>单日亿级消息处理能力</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">全渠道出海原生</div>
+          <div class="card-body">
+            <ul>
+              <li>WhatsApp + Email + SMS + App Push + Web Push</li>
+              <li>LINE / Telegram / Messenger 即将上线</li>
+              <li>AI 多语言文案生成，一套旅程覆盖多国</li>
+              <li>终端用户时区发送，尊重本地生活节奏</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">AI × 旅程编排</div>
+          <div class="card-body">
+            <ul>
+              <li>零代码可视化旅程搭建</li>
+              <li>最佳发送时机 AI 自动优化</li>
+              <li>条件分流对比（A/B 测试）</li>
+              <li>事件触发 + 用户属性多维分群</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="section">
+        <h3>渠道角色定位（游艇租赁行业适配）</h3>
+        <table>
+          <thead><tr><th>渠道</th><th>成本</th><th>游艇行业核心用途</th><th>重点市场</th></tr></thead>
+          <tbody>
+            <tr><td>WhatsApp</td><td>按目标国家定价</td><td>询价即时回复、航程确认、行程提醒、出海后回访</td><td>新加坡 / 东南亚 / 中东</td></tr>
+            <tr><td>Email</td><td>$0.002</td><td>报价方案发送、企业客户培育、航程回顾、季节性营销</td><td>全球 / 欧美市场</td></tr>
+            <tr><td>SMS</td><td>按目标国家定价</td><td>预订确认、出发提醒、紧急通知、无 WhatsApp 兜底</td><td>全球</td></tr>
+            <tr><td>App Push</td><td>≈ 0</td><td>新航线通知、促销推送、预订状态更新</td><td>有自有 App 的运营商</td></tr>
+            <tr><td>Web Push</td><td>≈ 0</td><td>网站访客留存、新船型上架通知、促销提醒</td><td>全球</td></tr>
+            <tr class="tone-info"><td>LINE（即将上线）</td><td>—</td><td>泰国核心触达渠道，92% 互联网用户覆盖</td><td>泰国 / 日本</td></tr>
+            <tr class="tone-info"><td>Telegram（即将上线）</td><td>—</td><td>客户群组互动、行程实时通知</td><td>中东 / 印度 / 俄罗斯</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. Scenario Overview -->
+    <section id="s-scenarios" class="section-plain">
+      <h2>四、高 ROI 运营场景总览</h2>
+      <p>以下 6 大场景覆盖游艇租赁客户全生命周期，每个场景均有行业验证数据支撑。</p>
+      <div class="spacer-sm"></div>
+      <table>
+        <thead><tr><th>场景</th><th>生命周期阶段</th><th>渠道组合</th><th>亮点</th><th>预期效果</th></tr></thead>
+        <tbody>
+          <tr class="tone-success"><td>询价转化跟进</td><td>询价→预订</td><td>WhatsApp + Email + SMS</td><td>询价后 15 分钟内自动响应 + 个性化航程推荐</td><td>询价→预订转化 +60%</td></tr>
+          <tr><td>浏览未询价挽回</td><td>浏览→询价</td><td>Web Push + Email</td><td>行为触发浏览游艇详情未询价 + 限时优惠</td><td>浏览→询价率 +85%</td></tr>
+          <tr class="tone-success"><td>出海后复购激活</td><td>体验→复购</td><td>WhatsApp + Email</td><td>出海后满意度调查 + 阶梯式复购培育</td><td>年内复购率 +120%</td></tr>
+          <tr><td>季节性/假日营销</td><td>全生命周期</td><td>Email + WhatsApp + Web Push</td><td>淡季促销 + 节假日专题航程 + AI 多语言文案</td><td>淡季预订量 +40%</td></tr>
+          <tr class="tone-info"><td>企业客户专属培育</td><td>企业询价→签约</td><td>Email + WhatsApp</td><td>企业团建/活动需求分层 + 长期关系培育</td><td>企业客户签约率 +50%</td></tr>
+          <tr><td>生日/纪念日特别航程</td><td>忠诚维护</td><td>WhatsApp + Email</td><td>每年当日自动触发 + 专属庆典航程优惠</td><td>特殊日消费 +45%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 5. Journey Details -->
+    <section id="s-journey1" class="section-plain">
+      <h2>五、核心旅程详细编排</h2>
+
+      <!-- Journey 1 -->
+      <div class="section" style="margin-top:16px;">
+        <h3>旅程 1：询价转化跟进</h3>
+        <div class="grid grid-2-1">
+          <div class="dag-wrap" id="dag-j1"></div>
+          <div>
+            <div class="callout neutral" style="margin-bottom:12px">
+              <div class="callout-title">业务痛点</div>
+              <div class="callout-body">
+                <p>游艇租赁客户通过网站表单、WhatsApp 等渠道提交询价后，运营团队平均首次回复超过 4 小时。高价值的"黄金响应窗口"被浪费，大量询价因跟进不及时或缺乏个性化方案而流失。行业数据显示询价→预订转化率仅 25%。</p>
+              </div>
+            </div>
+            <div class="callout info" style="margin-bottom:12px">
+              <div class="callout-title">旅程组件配置</div>
+              <div class="callout-body">
+                <p><strong>进入条件：</strong>事件: 提交询价表单</p>
+                <p><strong>提前退出：</strong>事件: 确认预订</p>
+                <p><strong>转化统计：</strong>事件: 预订成功，监听 7 天</p>
+                <p><strong>再次进入：</strong>允许，间隔 7 天（客户可多次询价）</p>
+                <p><strong>可发送时间：</strong>每天 9:00-21:00，终端时区（仅在 24h+ 等待后使用）</p>
+              </div>
+            </div>
+            <div class="callout success">
+              <div class="callout-title">预期效益</div>
+              <div class="callout-body">
+                <p>询价→预订转化率从 25% 提升至 40%（+60%）</p>
+                <p>首次响应时间从 4h+ 缩短至 15 分钟内</p>
+                <p>参考：头部游艇预订平台 CRO 优化后预订金额 +144%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Journey 2 -->
+      <div class="section">
+        <h3>旅程 2：浏览未询价挽回</h3>
+        <div class="grid grid-2-1">
+          <div class="dag-wrap" id="dag-j2"></div>
+          <div>
+            <div class="callout neutral" style="margin-bottom:12px">
+              <div class="callout-title">业务痛点</div>
+              <div class="callout-body">
+                <p>网站访客浏览游艇详情页、价格页后，仅 5-8% 提交询价。大量高意向访客"看了就走"，运营团队对这些潜在客户完全没有触达手段。在线旅游行业浏览弃失率高达 80-90%。</p>
+              </div>
+            </div>
+            <div class="callout info" style="margin-bottom:12px">
+              <div class="callout-title">旅程组件配置</div>
+              <div class="callout-body">
+                <p><strong>进入条件：</strong>事件: 浏览游艇详情页超过 2 分钟</p>
+                <p><strong>提前退出：</strong>事件: 提交询价表单</p>
+                <p><strong>转化统计：</strong>事件: 提交询价，监听 3 天</p>
+                <p><strong>再次进入：</strong>允许，间隔 3 天</p>
+                <p><strong>等待事件：</strong>等待 30 分钟看是否自行提交询价</p>
+              </div>
+            </div>
+            <div class="callout success">
+              <div class="callout-title">预期效益</div>
+              <div class="callout-body">
+                <p>网站浏览→询价率从 7% 提升至 13%（+85%）</p>
+                <p>每月增加的合格询价数量显著提升</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Journey 3 -->
+      <div class="section">
+        <h3>旅程 3：出海后复购激活</h3>
+        <div class="grid grid-2-1">
+          <div class="dag-wrap" id="dag-j3"></div>
+          <div>
+            <div class="callout neutral" style="margin-bottom:12px">
+              <div class="callout-title">业务痛点</div>
+              <div class="callout-body">
+                <p>游艇体验结束后，多数运营商缺乏系统化的客户回访和复购引导。首次客户年内复购率仅 12-18%，大量满意客户因"没有被提醒"而未再次预订。客户获取成本高，复购客户的边际利润远高于新客。</p>
+              </div>
+            </div>
+            <div class="callout info" style="margin-bottom:12px">
+              <div class="callout-title">旅程组件配置</div>
+              <div class="callout-body">
+                <p><strong>进入条件：</strong>事件: 航程结束（体验完成）</p>
+                <p><strong>提前退出：</strong>事件: 再次预订成功</p>
+                <p><strong>转化统计：</strong>事件: 预订成功，监听 14 天</p>
+                <p><strong>再次进入：</strong>允许，间隔 30 天（多次出海后每次触发）</p>
+                <p><strong>可发送时间：</strong>每天 10:00-20:00，终端时区</p>
+              </div>
+            </div>
+            <div class="callout success">
+              <div class="callout-title">预期效益</div>
+              <div class="callout-body">
+                <p>首次客户年内复购率从 15% 提升至 33%（+120%）</p>
+                <p>客户终身价值（LTV）显著提升</p>
+                <p>参考：旅游行业自动化复购旅程 LTV 提升 +80%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Journey 4 -->
+      <div class="section">
+        <h3>旅程 4：季节性/假日营销推送</h3>
+        <div class="grid grid-2-1">
+          <div class="dag-wrap" id="dag-j4"></div>
+          <div>
+            <div class="callout neutral" style="margin-bottom:12px">
+              <div class="callout-title">业务痛点</div>
+              <div class="callout-body">
+                <p>游艇租赁业务受季节影响大，淡季收入仅占全年的 20-30%。节假日是预订高峰但竞争激烈，依赖全量推送打扰非目标客户导致退订率上升。缺乏按客户偏好和历史行为的个性化营销。</p>
+              </div>
+            </div>
+            <div class="callout info" style="margin-bottom:12px">
+              <div class="callout-title">旅程组件配置</div>
+              <div class="callout-body">
+                <p><strong>进入条件：</strong>属性: 历史客户 + 最后出海距今超过 30 天</p>
+                <p><strong>条件分支：</strong>按历史预订类型分流（帆船/派对/钓鱼/日落巡航）</p>
+                <p><strong>转化统计：</strong>事件: 预订成功，监听 14 天</p>
+                <p><strong>可发送时间：</strong>每天 10:00-20:00，终端时区</p>
+                <p><strong>AI 文案：</strong>根据客户语言自动生成本地化营销文案</p>
+              </div>
+            </div>
+            <div class="callout success">
+              <div class="callout-title">预期效益</div>
+              <div class="callout-body">
+                <p>淡季预订量提升 +40%</p>
+                <p>节假日航程预订提前率 +35%</p>
+                <p>营销退订率降低 50%（精准推送 vs 全量推送）</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Journey 5 -->
+      <div class="section">
+        <h3>旅程 5：企业客户专属培育</h3>
+        <div class="grid grid-2-1">
+          <div class="dag-wrap" id="dag-j5"></div>
+          <div>
+            <div class="callout neutral" style="margin-bottom:12px">
+              <div class="callout-title">业务痛点</div>
+              <div class="callout-body">
+                <p>企业客户（团建、商务接待、年会活动）是游艇租赁的高价值客群，客单价通常是个人客户的 2-5 倍。但企业决策链长、需求多样，传统跟进方式难以系统化培育。缺乏专属内容和案例展示导致转化周期长、丢单率高。</p>
+              </div>
+            </div>
+            <div class="callout info" style="margin-bottom:12px">
+              <div class="callout-title">旅程组件配置</div>
+              <div class="callout-body">
+                <p><strong>进入条件：</strong>事件: 提交企业询价 或 属性: 客户类型 = 企业</p>
+                <p><strong>提前退出：</strong>事件: 企业合同签署</p>
+                <p><strong>转化统计：</strong>事件: 预订成功，监听 14 天</p>
+                <p><strong>再次进入：</strong>不可（企业首次询价为一次性事件）</p>
+                <p><strong>可发送时间：</strong>工作日 9:00-18:00，终端时区</p>
+              </div>
+            </div>
+            <div class="callout success">
+              <div class="callout-title">预期效益</div>
+              <div class="callout-body">
+                <p>企业客户签约转化率 +50%</p>
+                <p>企业客户平均客单价提升 +30%（定制化方案）</p>
+                <p>企业复购率（年度多次活动）+65%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Journey 6 -->
+      <div class="section">
+        <h3>旅程 6：生日/纪念日特别航程</h3>
+        <div class="grid grid-2-1">
+          <div class="dag-wrap" id="dag-j6"></div>
+          <div>
+            <div class="callout neutral" style="margin-bottom:12px">
+              <div class="callout-title">业务痛点</div>
+              <div class="callout-body">
+                <p>生日派对、求婚、结婚纪念日是游艇租赁的高溢价场景，客户愿意为特殊日子支付更高费用并添加增值服务。但多数运营商缺乏对客户特殊日期的记录和主动触达能力，错失大量高价值预订机会。</p>
+              </div>
+            </div>
+            <div class="callout info" style="margin-bottom:12px">
+              <div class="callout-title">旅程组件配置</div>
+              <div class="callout-body">
+                <p><strong>进入条件：</strong>属性: 生日日期/纪念日，每年当日触发</p>
+                <p><strong>提前退出：</strong>事件: 预订成功</p>
+                <p><strong>转化统计：</strong>事件: 预订成功，监听 7 天</p>
+                <p><strong>再次进入：</strong>允许，间隔 30 天（靠进入条件控制年度频率）</p>
+              </div>
+            </div>
+            <div class="callout success">
+              <div class="callout-title">预期效益</div>
+              <div class="callout-body">
+                <p>特殊日期相关预订量 +45%</p>
+                <p>庆典航程客单价高于普通航程 +60%</p>
+                <p>增值服务（餐饮装饰等）附加销售率 +70%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Benchmark -->
+    <section id="s-benchmark" class="section-plain">
+      <h2>六、行业标杆案例对照</h2>
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-header">游艇/海上旅游/奢侈体验行业 MA 实施效果对比</div>
+        <div class="card-body">
+          <table>
+            <thead><tr><th>案例</th><th>场景</th><th>核心指标</th><th>效果</th></tr></thead>
+            <tbody>
+              <tr class="tone-success"><td>头部游艇预订平台</td><td>预订漏斗优化</td><td>预订金额</td><td>提升 <strong>+144%</strong></td></tr>
+              <tr class="tone-success"><td>头部游艇预订平台</td><td>询价培育自动化</td><td>合格询价数</td><td>增长 <strong>+231%</strong></td></tr>
+              <tr><td>全球包船租赁品牌</td><td>CRM 自动化跟进</td><td>首次响应时间</td><td>从 4h 缩短至 <strong>15 分钟</strong></td></tr>
+              <tr class="tone-success"><td>东南亚海上旅游运营商</td><td>WhatsApp 自动化</td><td>客户响应率</td><td>提升至 <strong>65%</strong></td></tr>
+              <tr><td>地中海游艇租赁公司</td><td>季节性邮件营销</td><td>淡季预订量</td><td>提升 <strong>+38%</strong></td></tr>
+              <tr><td>全球奢侈旅游品牌</td><td>客户复购培育</td><td>年内复购率</td><td>从 15% 提升至 <strong>35%</strong></td></tr>
+              <tr><td>东南亚水上运动平台</td><td>多渠道触达编排</td><td>整体转化率</td><td>多渠道 vs 单渠道 <strong>+31%</strong></td></tr>
+              <tr><td>全球游艇分时租赁品牌</td><td>订阅制续费提醒</td><td>续订率</td><td>从 62% 提升至 <strong>81%</strong></td></tr>
+              <tr><td>豪华邮轮品牌</td><td>行程后复购邮件</td><td>二次预订率</td><td>提升 <strong>+55%</strong></td></tr>
+              <tr><td>亚太水上休闲集团</td><td>企业客户自动化</td><td>企业签约转化率</td><td>提升 <strong>+48%</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">核心指标行业基准 vs MA 自动化后预期</div>
+        <div class="card-body">
+          <div class="chart" id="chart-benchmark"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Compliance -->
+    <section id="s-compliance" class="section-plain">
+      <h2>七、合规与安全</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header">数据安全</div>
+          <div class="card-body">
+            <ul>
+              <li>全链路 TLS 加密传输</li>
+              <li>VPC 隔离部署，数据物理隔离</li>
+              <li>PII 脱敏处理，客户手机号/邮箱加密存储</li>
+              <li>RBAC 角色权限控制</li>
+              <li>可按客户安全需求灵活扩展</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">认证与合规</div>
+          <div class="card-body">
+            <ul>
+              <li><strong>GDPR</strong> 合规——欧盟数据保护条例</li>
+              <li><strong>SOC 2</strong> 认证——安全/可用性/保密性</li>
+              <li>可协助客户满足各目标市场本地数据保护法规要求</li>
+              <li>消息发送记录保留 60 天，支持审计追溯</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">运营护栏</div>
+        <div class="card-body">
+          <div class="grid grid-4">
+            <div><strong>频控策略</strong><br><span class="small muted">每日/每周消息上限，避免过度打扰</span></div>
+            <div><strong>勿扰时段</strong><br><span class="small muted">按终端时区自动适配当地作息</span></div>
+            <div><strong>内容预览</strong><br><span class="small muted">发送前支持样式预览确认</span></div>
+            <div><strong>消息记录</strong><br><span class="small muted">60 天完整发送记录留存</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Test Plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>八、测试计划（4 周）</h2>
+      <div class="grid grid-4">
+        <div class="card">
+          <div class="card-header">第 1 周：对齐 + 埋点</div>
+          <div class="card-body">
+            <ul>
+              <li>确认核心事件埋点方案（询价提交、预订确认、航程结束、浏览行为等）</li>
+              <li>网站 SDK / WhatsApp Business 集成</li>
+              <li>用户属性字段对齐（客户类型、历史航程、偏好、语言等）</li>
+              <li>Email 域名认证 + 模板配置</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">第 2 周：旅程构建</div>
+          <div class="card-body">
+            <ul>
+              <li>搭建旅程 1（询价转化跟进）</li>
+              <li>搭建旅程 2（浏览未询价挽回）</li>
+              <li>配置频控 + 可发送时间</li>
+              <li>文案本地化（AI 多语言生成）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">第 3 周：数据跑量</div>
+          <div class="card-body">
+            <ul>
+              <li>旅程全量上线</li>
+              <li>实时监控送达率、打开率、转化率</li>
+              <li>A/B 测试不同话术和发送时机</li>
+              <li>问题修复与迭代</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">第 4 周：复盘扩面</div>
+          <div class="card-body">
+            <ul>
+              <li>输出测试报告（各旅程 ROI）</li>
+              <li>扩展旅程 3（出海后复购）+ 旅程 4（季节性营销）</li>
+              <li>制定后续季度运营路线图</li>
+              <li>企业客户旅程上线准备</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CTA -->
+    <section class="section">
+      <h2>九、下一步</h2>
+      <div class="grid grid-3">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span class="step-num">1</span>
+          <div><strong>对齐</strong><p class="small muted">明确数据打通优先级、核心事件埋点和首批试点渠道</p></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span class="step-num">2</span>
+          <div><strong>开发对接</strong><p class="small muted">根据 MA 交付团队提供的埋点方案进行 SDK 集成</p></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span class="step-num">3</span>
+          <div><strong>测试验证</strong><p class="small muted">开通测试 VIP，搭建旅程上线验证效果</p></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      EngageLab MA · 游艇租赁与海上休闲旅游行业增长方案 · 基于 2024-2026 年行业公开案例与报告综合测算
+    </footer>
+  </main>
+
+  <script>
+  (function(){
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', neutral: '#94a3b8', muted: '#cbd5e1',
+      text: '#374151', textMute: '#9ca3af', grid: '#e5e7eb',
+    };
+    function svgEl(w, h) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('width', '100%');
+      s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      return s;
+    }
+    function el(tag, attrs) {
+      const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 600, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 56;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 20) * 20 || 100;
+      const groupCount = categories.length;
+      const barsPerGroup = series.length;
+      const groupW = innerW / groupCount;
+      const barW = Math.min(22, (groupW - 12) / barsPerGroup);
+      const s = svgEl(W, H);
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 14, 'text-anchor': 'middle', 'font-size': 10, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+      let legX = PAD_L;
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.accent;
+        s.appendChild(el('rect', { x: legX, y: H - 18, width: 10, height: 10, rx: 2, fill: color }));
+        const t = el('text', { x: legX + 14, y: H - 10, 'font-size': 10, fill: COLORS.text });
+        t.textContent = se.name;
+        s.appendChild(t);
+        legX += 14 + (se.name.length * 7) + 16;
+      });
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:    { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:     { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:   { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel:  { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime: { fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:   { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd:  { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {}, incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) { rankOf[e.to] = rankOf[e.from] + 1; changed = true; }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const startX = (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          pos[it.node.id] = { x: startX + i * (NODE_W + NODE_GAP), y: 20 + r * (NODE_H + RANK_GAP) };
+        });
+      });
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach(rankNodes => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id], cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) cur.x = prev.x + NODE_W + NODE_GAP;
+          }
+        });
+      }
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svgEl(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // ========== Chart: Channel Penetration ==========
+    drawBarChart(document.getElementById('chart-channel-penetration'), {
+      categories: ['新加坡', '马来西亚', '泰国', '印尼', '澳大利亚', '希腊', '美国'],
+      series: [
+        { name: 'WhatsApp', data: [85, 93, 42, 88, 15, 75, 28], tone: 'success' },
+        { name: 'Email', data: [72, 48, 35, 35, 82, 78, 85], tone: 'info' },
+        { name: 'SMS', data: [55, 50, 45, 60, 68, 55, 72], tone: 'warning' },
+        { name: 'Web Push', data: [65, 55, 50, 45, 60, 58, 62], tone: 'neutral' },
+        { name: 'LINE（即将）', data: [8, 5, 92, 3, 2, 1, 3], tone: 'muted' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // ========== Chart: Funnel ==========
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['浏览→询价', '询价→报价', '报价→预订', '首次→复购', '淡季预订占比'],
+      series: [
+        { name: '当前基准', data: [7, 65, 25, 15, 22], tone: 'neutral' },
+        { name: 'MA 自动化后预期', data: [13, 80, 40, 33, 31], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // ========== Chart: Benchmark ==========
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['预订金额提升', '合格询价增长', '响应率(WhatsApp)', '年内复购率', '淡季预订提升'],
+      series: [
+        { name: '当前基准', data: [100, 100, 25, 15, 100], tone: 'neutral' },
+        { name: 'MA 自动化后', data: [244, 331, 65, 35, 140], tone: 'success' },
+      ],
+      valueSuffix: '', height: 260,
+    });
+
+    // ========== Journey 1: 询价转化跟进 ==========
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start',  kind: 'entry',   title: '开始',        sub: '事件: 提交询价表单' },
+        { id: 'wa1',    kind: 'channel', title: 'WhatsApp',    sub: '感谢询价+确认需求摘要' },
+        { id: 'wfe1',   kind: 'wait',    title: '等待事件',    sub: '2h 内等待: 预订确认' },
+        { id: 'ok0',    kind: 'exitOk',  title: '结束（已预订）', sub: '快速转化' },
+        { id: 'email1', kind: 'channel', title: 'Email',       sub: '详细报价方案+航程推荐' },
+        { id: 'wfe2',   kind: 'wait',    title: '等待事件',    sub: '24h 内等待: 预订确认' },
+        { id: 'ok1',    kind: 'exitOk',  title: '结束（已预订）', sub: '报价后转化' },
+        { id: 'st1',    kind: 'sendtime',title: '可发送时间',  sub: '每天 9:00-21:00 终端时区' },
+        { id: 'wa2',    kind: 'channel', title: 'WhatsApp',    sub: '限时优惠+客户评价分享' },
+        { id: 'wfe3',   kind: 'wait',    title: '等待事件',    sub: '48h 内等待: 预订确认' },
+        { id: 'ok2',    kind: 'exitOk',  title: '结束（已预订）', sub: '' },
+        { id: 'st2',    kind: 'sendtime',title: '可发送时间',  sub: '每天 9:00-21:00 终端时区' },
+        { id: 'sms1',   kind: 'channel', title: 'SMS',         sub: '最后提醒: 日期即将被占' },
+        { id: 'end',    kind: 'exitEnd', title: '结束',        sub: '转入沉默客户培育' },
+      ],
+      [
+        { from: 'start', to: 'wa1' },
+        { from: 'wa1',   to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok0',    label: '已预订' },
+        { from: 'wfe1',  to: 'email1', label: '未预订' },
+        { from: 'email1',to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok1',    label: '已预订' },
+        { from: 'wfe2',  to: 'st1',    label: '未预订' },
+        { from: 'st1',   to: 'wa2' },
+        { from: 'wa2',   to: 'wfe3' },
+        { from: 'wfe3',  to: 'ok2',    label: '已预订' },
+        { from: 'wfe3',  to: 'st2',    label: '未预订' },
+        { from: 'st2',   to: 'sms1' },
+        { from: 'sms1',  to: 'end' },
+      ]
+    );
+
+    // ========== Journey 2: 浏览未询价挽回 ==========
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start',  kind: 'entry',   title: '开始',        sub: '事件: 浏览游艇页超过2分钟' },
+        { id: 'wfe1',   kind: 'wait',    title: '等待事件',    sub: '30min 内等待: 是否提交询价' },
+        { id: 'ok0',    kind: 'exitOk',  title: '结束（已询价）', sub: '自行提交询价' },
+        { id: 'wp1',    kind: 'channel', title: 'Web Push',    sub: '您关注的航程还有空位' },
+        { id: 'wfe2',   kind: 'wait',    title: '等待事件',    sub: '4h 内等待: 是否提交询价' },
+        { id: 'ok1',    kind: 'exitOk',  title: '结束（已询价）', sub: '' },
+        { id: 'st1',    kind: 'sendtime',title: '可发送时间',  sub: '每天 9:00-21:00 终端时区' },
+        { id: 'email1', kind: 'channel', title: 'Email',       sub: '精选航程+客户好评+专属优惠' },
+        { id: 'wfe3',   kind: 'wait',    title: '等待事件',    sub: '48h 内等待: 是否提交询价' },
+        { id: 'ok2',    kind: 'exitOk',  title: '结束（已询价）', sub: '' },
+        { id: 'end',    kind: 'exitEnd', title: '结束',        sub: '' },
+      ],
+      [
+        { from: 'start', to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok0',    label: '已询价' },
+        { from: 'wfe1',  to: 'wp1',    label: '未询价' },
+        { from: 'wp1',   to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok1',    label: '已询价' },
+        { from: 'wfe2',  to: 'st1',    label: '未询价' },
+        { from: 'st1',   to: 'email1' },
+        { from: 'email1',to: 'wfe3' },
+        { from: 'wfe3',  to: 'ok2',    label: '已询价' },
+        { from: 'wfe3',  to: 'end',    label: '未询价' },
+      ]
+    );
+
+    // ========== Journey 3: 出海后复购激活 ==========
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start',  kind: 'entry',   title: '开始',          sub: '事件: 航程结束' },
+        { id: 'w1',     kind: 'wait',    title: '等待',          sub: '等待 1 天' },
+        { id: 'st1',    kind: 'sendtime',title: '可发送时间',    sub: '每天 10:00-20:00 终端时区' },
+        { id: 'wa1',    kind: 'channel', title: 'WhatsApp',      sub: '感谢出海+邀请评价+照片' },
+        { id: 'wfe1',   kind: 'wait',    title: '等待事件',      sub: '7天内等待: 是否再次预订' },
+        { id: 'ok0',    kind: 'exitOk',  title: '结束（已复购）',sub: '快速复购' },
+        { id: 'st2',    kind: 'sendtime',title: '可发送时间',    sub: '每天 10:00-20:00 终端时区' },
+        { id: 'email1', kind: 'channel', title: 'Email',         sub: '回顾精彩瞬间+老客专属折扣' },
+        { id: 'wfe2',   kind: 'wait',    title: '等待事件',      sub: '14天内等待: 是否再次预订' },
+        { id: 'ok1',    kind: 'exitOk',  title: '结束（已复购）',sub: '' },
+        { id: 'br1',    kind: 'branch',  title: '条件分支',      sub: '属性: 历史预订类型' },
+        { id: 'st3a',   kind: 'sendtime',title: '可发送时间',    sub: '每天 10:00-20:00 终端时区' },
+        { id: 'st3b',   kind: 'sendtime',title: '可发送时间',    sub: '每天 10:00-20:00 终端时区' },
+        { id: 'wa2a',   kind: 'channel', title: 'WhatsApp',      sub: '新航线/活动推荐(派对/庆典)' },
+        { id: 'wa2b',   kind: 'channel', title: 'WhatsApp',      sub: '新航线推荐(帆船/钓鱼)' },
+        { id: 'end',    kind: 'exitEnd', title: '结束',          sub: '30天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'w1' },
+        { from: 'w1',    to: 'st1' },
+        { from: 'st1',   to: 'wa1' },
+        { from: 'wa1',   to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok0',    label: '已预订' },
+        { from: 'wfe1',  to: 'st2',    label: '未预订' },
+        { from: 'st2',   to: 'email1' },
+        { from: 'email1',to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok1',    label: '已预订' },
+        { from: 'wfe2',  to: 'br1',    label: '未预订' },
+        { from: 'br1',   to: 'st3a',   label: '派对/庆典' },
+        { from: 'br1',   to: 'st3b',   label: '帆船/钓鱼' },
+        { from: 'st3a',  to: 'wa2a' },
+        { from: 'st3b',  to: 'wa2b' },
+        { from: 'wa2a',  to: 'end' },
+        { from: 'wa2b',  to: 'end' },
+      ]
+    );
+
+    // ========== Journey 4: 季节性/假日营销 ==========
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start',  kind: 'entry',   title: '开始',          sub: '属性: 最后出海距今超过30天' },
+        { id: 'br1',    kind: 'branch',  title: '条件分支',      sub: '属性: 历史预订类型偏好' },
+        { id: 'st_p',   kind: 'sendtime',title: '可发送时间',    sub: '每天 10:00-20:00 终端时区' },
+        { id: 'st_s',   kind: 'sendtime',title: '可发送时间',    sub: '每天 10:00-20:00 终端时区' },
+        { id: 'st_f',   kind: 'sendtime',title: '可发送时间',    sub: '每天 10:00-20:00 终端时区' },
+        { id: 'ep',     kind: 'channel', title: 'Email',         sub: 'AI文案: 派对/庆典促销' },
+        { id: 'es',     kind: 'channel', title: 'Email',         sub: 'AI文案: 日落巡航/帆船促销' },
+        { id: 'ef',     kind: 'channel', title: 'Email',         sub: 'AI文案: 钓鱼航程促销' },
+        { id: 'wfe1',   kind: 'wait',    title: '等待事件',      sub: '7天内等待: 是否预订' },
+        { id: 'ok',     kind: 'exitOk',  title: '结束（已预订）',sub: '' },
+        { id: 'st2',    kind: 'sendtime',title: '可发送时间',    sub: '每天 10:00-20:00 终端时区' },
+        { id: 'wa1',    kind: 'channel', title: 'WhatsApp',      sub: '限时折扣即将结束' },
+        { id: 'end',    kind: 'exitEnd', title: '结束',          sub: '30天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'br1' },
+        { from: 'br1',   to: 'st_p',  label: '派对/庆典' },
+        { from: 'br1',   to: 'st_s',  label: '日落/帆船' },
+        { from: 'br1',   to: 'st_f',  label: '钓鱼' },
+        { from: 'st_p',  to: 'ep' },
+        { from: 'st_s',  to: 'es' },
+        { from: 'st_f',  to: 'ef' },
+        { from: 'ep',    to: 'wfe1' },
+        { from: 'es',    to: 'wfe1' },
+        { from: 'ef',    to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok',   label: '已预订' },
+        { from: 'wfe1',  to: 'st2',  label: '未预订' },
+        { from: 'st2',   to: 'wa1' },
+        { from: 'wa1',   to: 'end' },
+      ]
+    );
+
+    // ========== Journey 5: 企业客户专属培育 ==========
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start',  kind: 'entry',   title: '开始',          sub: '事件: 提交企业询价' },
+        { id: 'email1', kind: 'channel', title: 'Email',         sub: '企业服务介绍+成功案例' },
+        { id: 'wfe1',   kind: 'wait',    title: '等待事件',      sub: '48h 内等待: 是否回复/预订' },
+        { id: 'ok0',    kind: 'exitOk',  title: '结束（已签约）',sub: '快速转化' },
+        { id: 'br1',    kind: 'branch',  title: '条件分支',      sub: '属性: 企业活动类型' },
+        { id: 'st_tb',  kind: 'sendtime',title: '可发送时间',    sub: '工作日 9:00-18:00 终端时区' },
+        { id: 'st_bd',  kind: 'sendtime',title: '可发送时间',    sub: '工作日 9:00-18:00 终端时区' },
+        { id: 'e_tb',   kind: 'channel', title: 'Email',         sub: '团建方案+定制化报价' },
+        { id: 'e_bd',   kind: 'channel', title: 'Email',         sub: '商务接待方案+高端配置' },
+        { id: 'wfe2',   kind: 'wait',    title: '等待事件',      sub: '5天内等待: 是否签约' },
+        { id: 'ok1',    kind: 'exitOk',  title: '结束（已签约）',sub: '' },
+        { id: 'st2',    kind: 'sendtime',title: '可发送时间',    sub: '工作日 9:00-18:00 终端时区' },
+        { id: 'wa1',    kind: 'channel', title: 'WhatsApp',      sub: '专属顾问一对一沟通邀请' },
+        { id: 'end',    kind: 'exitEnd', title: '结束',          sub: '转入长期企业培育' },
+      ],
+      [
+        { from: 'start', to: 'email1' },
+        { from: 'email1',to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok0',   label: '已签约' },
+        { from: 'wfe1',  to: 'br1',   label: '未签约' },
+        { from: 'br1',   to: 'st_tb', label: '团建/活动' },
+        { from: 'br1',   to: 'st_bd', label: '商务接待' },
+        { from: 'st_tb', to: 'e_tb' },
+        { from: 'st_bd', to: 'e_bd' },
+        { from: 'e_tb',  to: 'wfe2' },
+        { from: 'e_bd',  to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok1',   label: '已签约' },
+        { from: 'wfe2',  to: 'st2',   label: '未签约' },
+        { from: 'st2',   to: 'wa1' },
+        { from: 'wa1',   to: 'end' },
+      ]
+    );
+
+    // ========== Journey 6: 生日/纪念日特别航程 ==========
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start',  kind: 'entry',   title: '开始',          sub: '属性: 生日/纪念日 每年当日' },
+        { id: 'st1',    kind: 'sendtime',title: '可发送时间',    sub: '每天 9:00-10:00 终端时区' },
+        { id: 'wa1',    kind: 'channel', title: 'WhatsApp',      sub: '生日/纪念日祝福+专属航程' },
+        { id: 'wfe1',   kind: 'wait',    title: '等待事件',      sub: '3天内等待: 是否预订' },
+        { id: 'ok1',    kind: 'exitOk',  title: '结束（已预订）',sub: '庆典航程预订成功' },
+        { id: 'st2',    kind: 'sendtime',title: '可发送时间',    sub: '每天 10:00-20:00 终端时区' },
+        { id: 'email1', kind: 'channel', title: 'Email',         sub: '庆典航程详情+限时优惠' },
+        { id: 'wfe2',   kind: 'wait',    title: '等待事件',      sub: '4天内等待: 是否预订' },
+        { id: 'ok2',    kind: 'exitOk',  title: '结束（已预订）',sub: '' },
+        { id: 'end',    kind: 'exitEnd', title: '结束',          sub: '优惠过期归档' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1',   to: 'wa1' },
+        { from: 'wa1',   to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1',  label: '已预订' },
+        { from: 'wfe1',  to: 'st2',  label: '未预订' },
+        { from: 'st2',   to: 'email1' },
+        { from: 'email1',to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2',  label: '已预订' },
+        { from: 'wfe2',  to: 'end',  label: '未预订' },
+      ]
+    );
+
+  })();
+  </script>
+</body>
+</html>
