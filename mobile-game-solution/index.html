@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA · 手游出海增长方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 920px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+
+    @media (max-width: 900px) {
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-12-1 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA · 手游出海方案</span>
+      <a href="#s-market">市场机会</a>
+      <a href="#s-funnel">用户漏斗</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-scenarios">六大场景</a>
+      <a href="#s-journey1">旅程示意</a>
+      <a href="#s-benchmark">数据参照</a>
+      <a href="#s-compliance">合规安全</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <a class="back-home" href="../">← 返回首页</a>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-info">手游出海 · F2P / IAP</span>
+        <span class="pill">全球新兴市场</span>
+        <span class="pill">东南亚 · 南亚 · 拉美 · 中东 · 非洲</span>
+      </div>
+      <h1>EngageLab MA · 手游出海增长方案</h1>
+      <p class="hero-subtitle">
+        面向全球新兴市场手游发行商与工作室——
+        在买量成本持续走高、下载增长放缓的背景下，把增长重心从「再投一波广告」转向
+        <span class="bold">新手引导完成、首充转化、流失召回、版本更新唤回</span> 等高 ROI 自动化旅程，
+        4 周内完成测试、可量化验收。
+      </p>
+      <hr class="divider" />
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value">$157B+</div><div class="stat-label">全球手游市场规模 (2025)</div></div>
+        <div class="stat"><div class="stat-value info">10.2%</div><div class="stat-label">全球手游市场 CAGR (至 2030)</div></div>
+        <div class="stat"><div class="stat-value success">35%+</div><div class="stat-label">MA 自动化可影响的转化份额</div></div>
+        <div class="stat"><div class="stat-value success">3×</div><div class="stat-label">精细化触达 vs 粗放群发效果</div></div>
+      </div>
+    </section>
+
+    <!-- 1. Market -->
+    <section id="s-market" class="section-plain">
+      <h2>一、为什么出海手游必须重做用户运营</h2>
+      <p>
+        全球手游已从「拼下载」进入「拼留存与付费深度」阶段。2025 年全球手游市场规模约 1570 亿美元，
+        但下载量连续下滑，收入增长更多依赖既有玩家的生命周期价值（LTV）。
+        新兴市场（东南亚、南亚、拉美、中东、非洲）仍是增量主力，同时面临获客成本上升、
+        D1/D7 留存承压、付费转化窗口极短等共性挑战。
+        运营层的<span class="bold">「行为触发 + 分层召回 + 全渠道编排」</span>是下一阶段可被明确量化的增长杠杆。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">全球主要新兴市场触达渠道渗透率（%）</div>
+          <div class="card-body">
+            <div class="chart" id="chart-channel-penetration"></div>
+            <p class="small muted" style="margin-top:10px">
+              App Push 是手游场景的首选触达方式；WhatsApp 在东南亚、南亚、拉美是强补充渠道；
+              SMS 在非洲与弱网市场仍是可靠兜底。全渠道编排能力决定了能否在不同市场高效触达玩家。
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">核心业务信号</div>
+          <div class="card-body p-sm">
+            <div class="signal-row"><div class="left"><div class="label">新兴市场 CPI（USD）</div><div class="hint">休闲 / 中重度差异大</div></div><div class="value">0.8 – 4.5</div></div>
+            <div class="signal-row"><div class="left"><div class="label">行业平均次日留存（D1）</div><div class="hint">安装次日回访率</div></div><div class="value">25 – 40%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">行业平均 7 日留存（D7）</div><div class="hint">长期留存健康度核心指标</div></div><div class="value">6 – 15%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">新手引导完成率</div><div class="hint">未完成即流失的首道关口</div></div><div class="value">40 – 70%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">注册→首充 7 日转化</div><div class="hint">F2P 行业中位数区间</div></div><div class="value">2 – 8%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">30 日沉睡玩家占比</div><div class="hint">存量池中可召回空间</div></div><div class="value">35 – 55%</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Funnel -->
+    <section id="s-funnel" class="section-plain">
+      <h2>二、手游典型用户漏斗：每层都有明确的挽回空间</h2>
+      <p>
+        下图基于全球新兴市场手游公开数据与行业报告综合整理。漏斗每一层衰减，都对应一个可通过
+        <span class="bold">自动化旅程定向干预</span>的运营缺口——无需追加广告预算，由生命周期运营产生增量。
+        手游客户普遍将 <span class="bold">D1 / D7 留存</span> 与 <span class="bold">首充转化</span> 作为核心北极星指标；
+        注册后 72 小时内的行为，直接决定后续付费与长期留存上限。
+        <span class="muted small">（行业计日惯例：安装当天为 Day 0，次日回访即 D1）</span>
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">典型用户漏斗 · 当前转化率 vs 自动化运营后预期</div>
+        <div class="card-body">
+          <div class="chart" id="chart-funnel"></div>
+          <div class="grid grid-4" style="margin-top:14px">
+            <div class="stat"><div class="stat-value success">+8 – 15%</div><div class="stat-label">新手引导完成率提升</div></div>
+            <div class="stat"><div class="stat-value success">+5 – 10%</div><div class="stat-label">次日留存提升（D1）</div></div>
+            <div class="stat"><div class="stat-value success">+3 – 6%</div><div class="stat-label">7 日留存提升（D7）</div></div>
+            <div class="stat"><div class="stat-value success">+2 – 5%</div><div class="stat-label">首充转化率提升</div></div>
+          </div>
+          <p class="small muted" style="margin-top:12px">
+            基准参考：2023–2025 年全球手游公开案例与行业用户增长报告综合测算；实际效果以测试数据为准。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why -->
+    <section id="s-why" class="section-plain">
+      <h2>三、为什么选择 EngageLab MA</h2>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">高可靠消息底座</div><div class="card-body">
+          <ul>
+            <li><span class="bold">100 万条/秒</span> 并发，消息平均响应 <span class="bold">&lt; 200ms</span></li>
+            <li>App Push 送达 <span class="bold">&gt; 95%</span>，邮件触达 <span class="bold">99.97%</span></li>
+            <li>全链路 TLS 加密，传输层与存储层数据分离</li>
+            <li>已在多家跨境手游、电商、内容平台生产环境规模化运行</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">全渠道 × 出海原生</div><div class="card-body">
+          <ul>
+            <li>原生集成 <span class="bold">WhatsApp Business API</span>、App Push、SMS、Email、Web Push</li>
+            <li>113 国接入、1000+ 发信 IP</li>
+            <li>数据中心可根据客户安全需求灵活扩展</li>
+            <li>一条 Journey 跨渠道编排，不再拼接多套系统</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">AI × 用户旅程编排</div><div class="card-body">
+          <ul>
+            <li><span class="bold">EUID</span> 统一用户视图，跨渠道行为归一</li>
+            <li>拖拽式 Journey Builder + AI 多语言文案生成</li>
+            <li>最佳发送时机、智能分群、条件分流对比</li>
+            <li>零代码运营，业务侧即可定义旅程</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>3.1 各渠道在手游业务中的角色定位</h3>
+      <table>
+        <thead><tr>
+          <th>渠道</th><th>主要用途</th><th class="align-right">单条成本</th>
+          <th class="align-right">平均打开率</th><th class="align-center">海外适用度</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>App Push</td><td>新手引导、签到/活动提醒、版本更新、付费引导</td><td class="align-right">按 DAU 定价</td><td class="align-right">8–22%</td><td class="align-center">高 · 首选渠道</td></tr>
+          <tr class="tone-success"><td>WhatsApp Business</td><td>首充礼包、高价值召回、重要活动通知</td><td class="align-right">按目标国家定价</td><td class="align-right">80%+ 送达 / 45%+ 打开</td><td class="align-center">东南亚/南亚/拉美 首选</td></tr>
+          <tr><td>SMS</td><td>关键通知兜底、卸载/弱 Push 用户触达</td><td class="align-right">按目标国家定价</td><td class="align-right">95% 送达</td><td class="align-center">全渠道兜底</td></tr>
+          <tr><td>Email</td><td>版本更新说明、活动长内容、月度战报</td><td class="align-right">$0.002</td><td class="align-right">20–30%（触发类更高）</td><td class="align-center">中 · 拉美/南亚高</td></tr>
+          <tr><td>Web Push</td><td>官网/社区页玩家唤回、未装 App 触达</td><td class="align-right">按 DAU 定价</td><td class="align-right">6–12%</td><td class="align-center">中</td></tr>
+          <tr class="tone-info"><td>LINE <span class="pill" style="font-size:11px;padding:1px 6px;vertical-align:middle">即将上线</span></td><td>泰国/日本/台湾玩家触达</td><td class="align-right">按消息量</td><td class="align-right">92% 周活跃（泰国）</td><td class="align-center">泰国/日本 必选</td></tr>
+          <tr class="tone-info"><td>Telegram <span class="pill" style="font-size:11px;padding:1px 6px;vertical-align:middle">即将上线</span></td><td>玩家社群通知、Bot 活动播报</td><td class="align-right">按消息量</td><td class="align-right">85%+ 送达</td><td class="align-center">印度/中东/非洲</td></tr>
+          <tr class="tone-info"><td>Facebook Messenger <span class="pill" style="font-size:11px;padding:1px 6px;vertical-align:middle">即将上线</span></td><td>玩家客服互动、活动引导</td><td class="align-right">按消息量</td><td class="align-right">70%+ 打开</td><td class="align-center">菲律宾/拉美</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        行业数据表明，每增加一个有效渠道可使整体转化提升 8–15%；多渠道编排 vs 单渠道转化约 +31%。
+      </p>
+    </section>
+
+    <!-- 4. Scenarios -->
+    <section id="s-scenarios" class="section-plain">
+      <h2>四、六大高 ROI 手游运营场景</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center">#</th><th>场景</th><th>生命周期</th>
+          <th>主渠道组合</th><th>亮点</th><th class="align-right">预期效果</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td class="align-center">1</td><td>新手引导完成</td><td>新用户激活</td><td>App Push → WhatsApp</td><td>先观察再触达，避免打扰已完成引导的玩家</td><td class="align-right">完成率 +8 – 15%</td></tr>
+          <tr class="tone-success"><td class="align-center">2</td><td>首充激活 · 3 日黄金期</td><td>首次付费</td><td>App Push + WhatsApp + SMS</td><td>引导完成后即时礼包 + 分层触达</td><td class="align-right">首充 +2 – 5%</td></tr>
+          <tr class="tone-success"><td class="align-center">3</td><td>内购未完成挽回</td><td>付费转化</td><td>App Push → WhatsApp</td><td>商城/购买行为触发，分钟级追回</td><td class="align-right">完成率 +15 – 25%</td></tr>
+          <tr class="tone-success"><td class="align-center">4</td><td>沉睡玩家分层召回</td><td>D3 / D7 / 深度流失</td><td>App Push → WhatsApp → SMS</td><td>按沉默天数 3/7/14 分层递进</td><td class="align-right">召回 +20 – 40%</td></tr>
+          <tr><td class="align-center">5</td><td>版本更新唤回</td><td>Live Ops</td><td>App Push + Email</td><td>按 App 版本号分群 + Deep Link 跳转商店</td><td class="align-right">更新率 +10 – 20%</td></tr>
+          <tr><td class="align-center">6</td><td>限时活动 / 通行证提醒</td><td>活跃激励</td><td>App Push + WhatsApp</td><td>活动结束前 T-2 / T-1 进度催促</td><td class="align-right">活动参与 +12 – 25%</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        六大场景覆盖玩家全生命周期——越多旅程协同运行，越能撬动全漏斗累计收益；建议测试期优先上线前 3 条。
+      </p>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain">
+      <h2>场景 1｜新手引导完成</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">新用户激活</span>
+        <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j1"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              大量新装用户在新手引导中途流失，行业引导完成率仅 40–70%。
+              未完成引导的玩家几乎无法形成核心玩法循环，直接拉低 D1 留存与后续付费转化。
+              注册后前 24 小时是干预的最佳窗口。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「用户注册」触发进入</li>
+                <li><span class="bold">提前退出</span>：事件「新手引导完成」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「新手引导完成」，监听 1 天</li>
+                <li><span class="bold">等待事件</span>：30 分钟内先观察是否自行完成——已完成则结束，未完成再触达</li>
+                <li><span class="bold">App Push</span>：引导续玩提醒 + Deep Link 回到引导节点</li>
+                <li><span class="bold">等待事件</span>：12 小时内等待完成；超时后进入可发送时间 → WhatsApp</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00（第 2 轮起加入）</li>
+                <li><span class="bold">再次进入</span>：不可再次进入（注册事件仅发生一次）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              同类手游通过新手引导旅程，引导完成率预期提升 8–15%，并为 D1 留存提供上游供给。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain">
+      <h2>场景 2｜首充激活 · 3 日黄金期</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">首次付费转化</span>
+        <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j2"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              F2P 手游注册用户中仅约 2–8% 会完成首次内购。新手引导完成后的 72 小时是首充黄金窗口——
+              超时后转化率显著下降。需在「刚理解玩法」的时刻给出清晰的首充价值主张。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「新手引导完成」+ 属性：累计付费金额 = 0</li>
+                <li><span class="bold">提前退出</span>：事件「付费成功」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「付费成功」，监听 1 天</li>
+                <li><span class="bold">收入统计</span>：事件「付费成功」，金额属性 purchase_amount，监听 1 天</li>
+                <li><span class="bold">第一步</span>：引导完成即时推送首充礼包（用户仍在活跃窗口，无需可发送时间）</li>
+                <li><span class="bold">等待事件</span>：24 小时内等待付费；超时 → 可发送时间 → App Push 催促</li>
+                <li><span class="bold">条件分支</span>：按累计登录天数分层（≥2 天走 WhatsApp，&lt;2 天继续 Push）</li>
+                <li><span class="bold">再次进入</span>：不可再次进入</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              首充激活旅程可将 7 日首充转化率提升 2–5%；触发类 Push 点击率显著高于全量群发。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain">
+      <h2>场景 3｜内购未完成挽回</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">付费转化</span>
+        <span class="pill">再次进入：1 天后，不限次数</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j3"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              玩家打开商城或点击购买后，常因支付中断、网络波动、犹豫观望而放弃。
+              这是付费漏斗中最高频、也最易用自动化挽回的流失点——时机越近，挽回效率越高。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「打开商城」或「点击购买按钮」</li>
+                <li><span class="bold">提前退出</span>：事件「付费成功」→ 自动退出</li>
+                <li><span class="bold">转化 / 收入统计</span>：事件「付费成功」，监听 2 小时</li>
+                <li><span class="bold">等待事件</span>：15 分钟内先观察是否自行完成支付</li>
+                <li><span class="bold">App Push</span>：商品提醒 + 商城 Deep Link（距触发仅 15 分钟，无需可发送时间）</li>
+                <li><span class="bold">等待事件</span>：2 小时内等待付费；超时 → WhatsApp 限时礼包提醒</li>
+                <li><span class="bold">再次进入</span>：1 天后可再次进入</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              行为触发的内购挽回，完成率预期提升 15–25%；分钟级触达显著优于次日群发。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain">
+      <h2>场景 4｜沉睡玩家分层召回（3 / 7 / 14 日）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">留存 / 召回</span>
+        <span class="pill">再次进入：3 天后</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j4"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              D3 是手游最关键的早期留存节点之一；超过 7 日未登录的玩家召回成本显著上升。
+              存量中约 35–55% 处于 30 日沉睡状态。「一刀切群发」效果差，需按沉默天数分层、递进激励。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「最后登录时间距今超过 3 天」</li>
+                <li><span class="bold">提前退出</span>：事件「登录」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「登录」，监听 5 天</li>
+                <li><span class="bold">条件分支</span>：按最后登录距今天数分流（3–6 天 / 7–13 天 / ≥14 天）</li>
+                <li><span class="bold">可发送时间</span>：各路径消息前均加入，终端时区 9:00–21:00</li>
+                <li><span class="bold">触达策略</span>：轻度沉默以回归礼包 Push；中度叠加 WhatsApp；深度流失加 SMS 兜底</li>
+                <li><span class="bold">再次进入</span>：3 天后（与进入条件阈值对齐）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              分层召回旅程可将沉睡玩家回登率提升 20–40%；轻度沉默窗口的单位召回成本显著低于深度流失。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain">
+      <h2>场景 5｜版本更新唤回</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">Live Ops</span>
+        <span class="pill">再次进入：7 天后</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j5"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              大版本 / 新赛季上线后，大量存量玩家停留在旧版本，无法参与新内容与活动。
+              版本碎片化会直接稀释 Live Ops 投入效果。按 App 版本号精准分群 + Deep Link 跳转商店，是最高效的唤回方式。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「App 版本号 &lt; 目标版本」且「最后登录距今不超过 30 天」</li>
+                <li><span class="bold">提前退出</span>：事件「应用更新完成」或「登录」且版本 ≥ 目标版本</li>
+                <li><span class="bold">转化统计</span>：事件「应用更新完成」，监听 3 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 10:00–21:00（批量触达，需控制时段）</li>
+                <li><span class="bold">App Push</span>：新版本卖点 + 商店 Deep Link</li>
+                <li><span class="bold">等待事件</span>：2 天内等待更新；超时 → Email 更新说明</li>
+                <li><span class="bold">再次进入</span>：7 天后</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              版本更新唤回可将目标版本覆盖率提升 10–20%，显著提高新内容首周参与度。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain">
+      <h2>场景 6｜限时活动 / 通行证进度提醒</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">活跃激励</span>
+        <span class="pill">再次进入：7 天后</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j6"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              限时活动与战斗通行证是中重度手游的核心变现与留存引擎，但大量玩家因忘记进度而错过奖励，
+              导致活动参与与付费深度双双受损。在活动结束前精准催促，可显著提升完成率与相关付费。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「活动结束日提前 2 天」+「通行证进度 &lt; 100%」</li>
+                <li><span class="bold">提前退出</span>：事件「通行证完成」或「活动奖励领取完成」</li>
+                <li><span class="bold">转化统计</span>：事件「登录」，监听 3 天；收入统计可配置「活动内付费成功」</li>
+                <li><span class="bold">可发送时间</span>：终端时区 10:00–22:00（手游晚高峰可适当后延）</li>
+                <li><span class="bold">条件分支</span>：按通行证进度分流（≥80% 冲刺文案 / &lt;80% 进度补强文案）</li>
+                <li><span class="bold">等待事件</span>：1 天内等待登录；超时 → WhatsApp 最后机会提醒</li>
+                <li><span class="bold">再次进入</span>：7 天后（匹配活动周期）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              活动结束前进度提醒，可将活动参与 / 通行证完成率提升 12–25%，并带动活动窗口内付费。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Benchmark -->
+    <section id="s-benchmark" class="section-plain">
+      <h2>五、标杆数据参照</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header">各场景可参考效果区间</div>
+          <div class="card-body">
+            <div class="chart" id="chart-benchmark"></div>
+            <p class="small muted" style="margin-top:8px">基于 2023–2025 年全球手游公开案例与行业报告综合测算。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">多渠道编排带来的转化提升</div>
+          <div class="card-body">
+            <div class="chart" id="chart-channel-lift"></div>
+            <p class="small muted" style="margin-top:8px">每增加一个有效渠道，整体转化约 +8–15%。</p>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">行业公开案例对照（脱敏）</div>
+        <div class="card-body" style="padding:0">
+          <table>
+            <thead><tr>
+              <th>案例主体</th><th>场景</th><th>公开效果</th><th>对手游业务的参考价值</th>
+            </tr></thead>
+            <tbody>
+              <tr class="tone-success"><td>全球头部 F2P 手游发行商</td><td>行为触发 Push</td><td>个性化触达打开率 2–3× 群发</td><td>新手引导 / 首充 / 活动提醒应行为触发而非全量群发</td></tr>
+              <tr><td>东南亚中重度手游</td><td>沉睡召回</td><td>分层召回回登率 +25–40%</td><td>按 3/7/14 日分层，避免一刀切</td></tr>
+              <tr class="tone-info"><td>拉美休闲手游</td><td>WhatsApp + Push</td><td>多渠道编排转化 +31%</td><td>新兴市场高价值玩家宜叠加 WhatsApp</td></tr>
+              <tr><td>全球手游 Live Ops 团队</td><td>版本 / 活动通知</td><td>更新覆盖与活动参与双提升</td><td>版本号分群 + 活动 T-2 催促可标准化</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Compliance -->
+    <section id="s-compliance" class="section-plain">
+      <h2>六、合规与安全</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-header">数据安全</div>
+          <div class="card-body">
+            <ul>
+              <li>全链路 TLS 传输加密</li>
+              <li>VPC 网络隔离，存储层与传输层分离</li>
+              <li>PII 字段脱敏存储与访问</li>
+              <li>基于角色的权限控制（RBAC）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">认证与合规</div>
+          <div class="card-body">
+            <ul>
+              <li>已通过 <span class="bold">GDPR</span> 与 <span class="bold">SOC 2</span> 认证</li>
+              <li>可协助客户满足各目标市场本地数据保护法规要求</li>
+              <li>数据中心可按客户安全需求灵活扩展</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">运营护栏</div>
+          <div class="card-body">
+            <ul>
+              <li><span class="bold">频控策略</span>：旅程级限制每日/每周消息数量</li>
+              <li><span class="bold">勿扰时段</span>：可发送时间组件控制本地时段</li>
+              <li><span class="bold">内容预览</span>：发送前支持样式预览</li>
+              <li><span class="bold">消息记录</span>：发送记录保留 60 天</li>
+              <li><span class="bold">提前退出</span>：完成目标行为后自动停止触达</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Test plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>七、4 周测试计划</h2>
+      <div class="grid grid-4">
+        <div class="card">
+          <div class="card-header"><span class="step-num">1</span>第 1 周 · 对齐 + 埋点</div>
+          <div class="card-body">
+            <ul>
+              <li>对齐核心北极星：D1、引导完成率、首充转化</li>
+              <li>确认事件清单：注册、引导完成、登录、打开商城、付费成功、版本更新</li>
+              <li>确认用户属性：累计付费、最后登录、App 版本、通行证进度</li>
+              <li>SDK 接入与测试环境联调</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">2</span>第 2 周 · 旅程构建</div>
+          <div class="card-body">
+            <ul>
+              <li>核心旅程全量上线：新手引导 + 首充激活 + 内购挽回</li>
+              <li>配置进入条件、提前退出、频控与转化统计</li>
+              <li>多语言文案（AI Write）与 Deep Link 验收</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">3</span>第 3 周 · 跑量测试</div>
+          <div class="card-body">
+            <ul>
+              <li>观察各旅程发送/点击/转化漏斗</li>
+              <li>对比测试组 vs 对照组留存与首充</li>
+              <li>按渠道与地区微调文案与时段</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">4</span>第 4 周 · 复盘扩面</div>
+          <div class="card-body">
+            <ul>
+              <li>复盘 3 周数据，固化高效场景</li>
+              <li>扩展：沉睡召回 + 版本更新 + 活动提醒</li>
+              <li>输出持续运营路线图</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CTA -->
+    <section class="section-plain">
+      <h2>八、下一步</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-header"><span class="step-num">1</span>对齐</div>
+          <div class="card-body">
+            <p>明确数据打通优先级，确认核心事件埋点方案与用户属性字段清单。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">2</span>开发对接</div>
+          <div class="card-body">
+            <p>根据 EngageLab MA 交付团队提供的埋点方案，完成 SDK 集成与事件数据上报。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">3</span>测试验证</div>
+          <div class="card-body">
+            <p>开通测试 VIP 账号，搭建核心旅程上线并验证转化效果，4 周内完成可量化验收。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      EngageLab MA · 手游出海增长方案 · 仅供内部及合作客户参考使用
+    </footer>
+  </main>
+
+  <script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function el(tag, attrs) {
+      const e = document.createElementNS(NS, tag);
+      if (attrs) Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+      return e;
+    }
+    function svg(w, h) {
+      const s = el('svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('xmlns', NS);
+      return s;
+    }
+
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', danger: '#dc2626', neutral: '#6b7280',
+      grid: '#e5e7eb', text: '#374151', textMute: '#9ca3af',
+    };
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const barsPerGroup = series.length;
+      const W = 600, H = height, PAD_L = 36, PAD_R = 10, PAD_T = 14, PAD_B = series.length > 1 ? 56 : 40;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const maxVal = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(maxVal / 10) * 10 || 100;
+      const groupW = innerW / categories.length;
+      const barW = Math.min((groupW * 0.72) / barsPerGroup, 30);
+      const s = svg(W, H);
+
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 4, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+
+      if (series.length > 1) {
+        const legY = H - 18;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          legX += 14 + (se.name.length * 8) + 16;
+        });
+      }
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    function drawLineChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 600, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 14, PAD_B = 56;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 10) * 10 || 100;
+      const n = categories.length;
+      const xStep = innerW / (n - 1);
+      const s = svg(W, H);
+
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+
+      categories.forEach((cat, i) => {
+        const x = PAD_L + xStep * i;
+        const t = el('text', { x, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.accent;
+        let d = '';
+        const points = se.data.map((v, i) => [PAD_L + xStep * i, PAD_T + innerH - (v / niceMax) * innerH]);
+        points.forEach(([x, y], i) => { d += (i === 0 ? 'M' : 'L') + x + ',' + y; });
+        const area = d + ' L' + points[points.length - 1][0] + ',' + (PAD_T + innerH)
+          + ' L' + points[0][0] + ',' + (PAD_T + innerH) + ' Z';
+        s.appendChild(el('path', { d: area, fill: color, opacity: 0.08 }));
+        s.appendChild(el('path', { d, fill: 'none', stroke: color, 'stroke-width': 2 }));
+        points.forEach(([x, y]) => {
+          s.appendChild(el('circle', { cx: x, cy: y, r: 3.5, fill: '#fff', stroke: color, 'stroke-width': 1.8 }));
+        });
+      });
+
+      const legY = H - 18;
+      let legX = PAD_L;
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.accent;
+        s.appendChild(el('circle', { cx: legX + 5, cy: legY - 4, r: 4, fill: color }));
+        const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+        t.textContent = se.name;
+        s.appendChild(t);
+        legX += 14 + (se.name.length * 8) + 18;
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {}, incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const startX = (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          pos[it.node.id] = { x: startX + i * (NODE_W + NODE_GAP), y: 20 + r * (NODE_H + RANK_GAP) };
+        });
+      });
+
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) cur.x = prev.x + NODE_W + NODE_GAP;
+          }
+        });
+      }
+
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // Charts
+    drawBarChart(document.getElementById('chart-channel-penetration'), {
+      categories: ['印尼', '菲律宾', '越南', '印度', '巴西', '尼日利亚'],
+      series: [
+        { name: 'WhatsApp', data: [87, 83, 72, 78, 93, 45], tone: 'success' },
+        { name: 'SMS', data: [92, 95, 95, 90, 85, 97], tone: 'warning' },
+        { name: 'App Push', data: [78, 72, 70, 75, 68, 55], tone: 'info' },
+        { name: 'Email', data: [42, 38, 40, 48, 55, 32], tone: 'neutral' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['安装注册', '引导完成', 'D1 留存', '首充', 'D7 留存', 'D30 留存'],
+      series: [
+        { name: '当前转化率', data: [100, 55, 32, 5, 10, 4], tone: 'neutral' },
+        { name: 'MA 自动化后预期', data: [100, 68, 40, 8, 14, 6], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['新手引导', '首充激活', '内购挽回', '沉睡召回', '版本更新', '活动提醒'],
+      series: [
+        { name: '消息点击率', data: [18, 14, 12, 3, 8, 7], tone: 'info' },
+        { name: '旅程转化率', data: [12, 6, 15, 22, 16, 18], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    drawLineChart(document.getElementById('chart-channel-lift'), {
+      categories: ['单渠道 Push', '+ Email', '+ WhatsApp', '+ SMS', 'AI 个性化'],
+      series: [
+        { name: '转化提升 (%)', data: [0, 10, 24, 31, 42], tone: 'info' },
+        { name: '打开率 (%)', data: [5.2, 7.5, 12.8, 14.2, 16.0], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 240,
+    });
+
+    // Journey 1: 新手引导完成
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 用户注册' },
+        { id: 'wfe0', kind: 'branch', title: '等待事件', sub: '30min 内等待 引导完成' },
+        { id: 'ok0', kind: 'exitOk', title: '结束 · 已完成', sub: '进入首充激活旅程' },
+        { id: 'push1', kind: 'channel', title: 'App Push', sub: 'AI Write · 继续新手引导' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '12h 内等待 引导完成' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已完成', sub: '' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '模板 · 引导步骤说明' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'wfe0' },
+        { from: 'wfe0', to: 'ok0', label: '已完成' },
+        { from: 'wfe0', to: 'push1', label: '超时未完成' },
+        { from: 'push1', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已完成' },
+        { from: 'wfe1', to: 'st1', label: '超时未完成' },
+        { from: 'st1', to: 'wa' },
+        { from: 'wa', to: 'end' },
+      ]);
+
+    // Journey 2: 首充激活
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 引导完成 · 付费金额=0' },
+        { id: 'push0', kind: 'channel', title: 'App Push', sub: 'AI Write · 首充礼包激活' },
+        { id: 'wfe0', kind: 'branch', title: '等待事件', sub: '24h 内等待 付费成功' },
+        { id: 'ok0', kind: 'exitOk', title: '结束 · 已首充', sub: '进入留存运营' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 累计登录天数' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '活跃玩家: 限时双倍礼包' },
+        { id: 'push1', kind: 'channel', title: 'App Push', sub: 'AI Write · 新手首充引导' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '48h 内等待 付费成功' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已首充', sub: '' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '首充活动即将到期' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'push0' },
+        { from: 'push0', to: 'wfe0' },
+        { from: 'wfe0', to: 'ok0', label: '已付费' },
+        { from: 'wfe0', to: 'st1', label: '超时未付费' },
+        { from: 'st1', to: 'cond' },
+        { from: 'cond', to: 'wa', label: '≥2天' },
+        { from: 'cond', to: 'push1', label: '<2天' },
+        { from: 'wa', to: 'wfe1' },
+        { from: 'push1', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已付费' },
+        { from: 'wfe1', to: 'st2', label: '超时未付费' },
+        { from: 'st2', to: 'sms' },
+        { from: 'sms', to: 'end' },
+      ]);
+
+    // Journey 3: 内购未完成挽回
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 打开商城或点击购买' },
+        { id: 'wfe0', kind: 'branch', title: '等待事件', sub: '15min 内等待 付费成功' },
+        { id: 'ok0', kind: 'exitOk', title: '结束 · 已付费', sub: '' },
+        { id: 'push', kind: 'channel', title: 'App Push', sub: 'AI Write · 商城商品提醒' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '2h 内等待 付费成功' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已付费', sub: '' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '限时礼包 · 一键回商城' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '1 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'wfe0' },
+        { from: 'wfe0', to: 'ok0', label: '已完成' },
+        { from: 'wfe0', to: 'push', label: '超时未完成' },
+        { from: 'push', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已完成' },
+        { from: 'wfe1', to: 'wa', label: '超时未完成' },
+        { from: 'wa', to: 'end' },
+      ]);
+
+    // Journey 4: 沉睡分层召回
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 最后登录距今超过3天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 最后登录距今天数' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'push_d3', kind: 'channel', title: 'App Push', sub: 'AI Write · 回归礼包等你' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wa_d7', kind: 'channel', title: 'WhatsApp', sub: '新活动 + 专属回归奖励' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'sms_d14', kind: 'channel', title: 'SMS', sub: '最后机会 · 限时召回礼' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '2天内等待 登录' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已回登', sub: '返回活跃用户池' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '3 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'cond' },
+        { from: 'cond', to: 'st1', label: '3–6天' },
+        { from: 'cond', to: 'st2', label: '7–13天' },
+        { from: 'cond', to: 'st3', label: '≥14天' },
+        { from: 'st1', to: 'push_d3' },
+        { from: 'st2', to: 'wa_d7' },
+        { from: 'st3', to: 'sms_d14' },
+        { from: 'push_d3', to: 'wfe' },
+        { from: 'wa_d7', to: 'wfe' },
+        { from: 'sms_d14', to: 'wfe' },
+        { from: 'wfe', to: 'ok', label: '已登录' },
+        { from: 'wfe', to: 'end', label: '超时未登录' },
+      ]);
+
+    // Journey 5: 版本更新唤回
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: App版本 < 目标版本' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
+        { id: 'push', kind: 'channel', title: 'App Push', sub: 'AI Write · 新版本卖点 + 商店链接' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '2天内等待 应用更新完成' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已更新', sub: '进入新版本活动旅程' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
+        { id: 'email', kind: 'channel', title: 'Email', sub: '更新说明 · 新内容预览' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '7 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1', to: 'push' },
+        { from: 'push', to: 'wfe' },
+        { from: 'wfe', to: 'ok', label: '已更新' },
+        { from: 'wfe', to: 'st2', label: '超时未更新' },
+        { from: 'st2', to: 'email' },
+        { from: 'email', to: 'end' },
+      ]);
+
+    // Journey 6: 限时活动 / 通行证进度提醒
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 活动结束日 T-2 · 进度<100%' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–22:00' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 通行证进度' },
+        { id: 'push_hi', kind: 'channel', title: 'App Push', sub: 'AI Write · 冲刺：还差一点' },
+        { id: 'push_lo', kind: 'channel', title: 'App Push', sub: 'AI Write · 进度补强提醒' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '1天内等待 登录' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已回登', sub: '' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–22:00' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '最后机会 · 活动即将结束' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '7 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1', to: 'cond' },
+        { from: 'cond', to: 'push_hi', label: '≥80%' },
+        { from: 'cond', to: 'push_lo', label: '<80%' },
+        { from: 'push_hi', to: 'wfe' },
+        { from: 'push_lo', to: 'wfe' },
+        { from: 'wfe', to: 'ok', label: '已登录' },
+        { from: 'wfe', to: 'st2', label: '超时未登录' },
+        { from: 'st2', to: 'wa' },
+        { from: 'wa', to: 'end' },
+      ]);
+  </script>
+</body>
+</html>
