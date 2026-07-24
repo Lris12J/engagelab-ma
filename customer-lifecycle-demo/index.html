@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EngageLab MA 客户全生命周期自动化演示</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              purple: '#5A69E0',
+              dark: '#394551',
+              green: '#CEFB62',
+              purpleLight: '#EEF0FD',
+              purpleDark: '#3D4DB7',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8f9fc 0%, #eef0fd 50%, #f8f9fc 100%);
+      min-height: 100vh;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(50px) scale(0.9); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-pulse-custom { animation: pulse 2s ease-in-out infinite; }
+    .animate-spin-custom { animation: spin 1s linear infinite; }
+    .animate-slide-in { animation: slideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    .animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .back-home {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #394551;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px 6px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(57,69,81,0.2);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(16,24,40,0.08);
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .back-home:hover {
+      color: #5A69E0;
+      border-color: rgba(90,105,224,0.4);
+      background: #fff;
+    }
+    .back-home svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <a class="back-home" href="../">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    返回首页
+  </a>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useCallback } = React;
+
+    // ============ 图标组件 ============
+    const Icons = {
+      Mail: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>,
+      MessageCircle: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>,
+      Smartphone: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>,
+      Bell: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>,
+      Globe: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0 3-4.03 3-9s-1.343-9-3-9m-9 9a9 9 0 019-9" /></svg>,
+      UserPlus: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" /></svg>,
+      ShoppingCart: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>,
+      Eye: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>,
+      Clock: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+      Crown: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3" /></svg>,
+      Zap: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
+      Users: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>,
+      Tag: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>,
+      Timer: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+      Send: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>,
+      Check: () => <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>,
+      ArrowRight: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>,
+      ArrowDown: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>,
+      RefreshCw: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>,
+      TrendingUp: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>,
+      Sparkles: () => <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>,
+    };
+
+    // ============ 场景定义 ============
+    const scenarios = [
+      {
+        id: 'new-customer',
+        name: '新客注册 → 首单转化',
+        icon: 'UserPlus',
+        color: 'purple',
+        bgGradient: 'from-[#5A69E0] to-[#3D4DB7]',
+        borderColor: 'border-[#5A69E0]',
+        userSegment: '新客 · 高价值来源',
+        description: '新用户注册后自动打标，发放欢迎礼包引导首单转化',
+        steps: [
+          { id: 'nc-trigger', type: 'trigger', label: '用户注册成功', description: '触发条件：新用户完成注册' },
+          { id: 'nc-tag', type: 'tag', label: '自动打标', description: '标记「高价值新客」' },
+          { id: 'nc-email-1', type: 'action', label: '发送欢迎邮件', description: '新人专属优惠礼包', channel: 'email', message: { subject: '🎉 欢迎加入！您的专属新人礼包已到账', title: '欢迎来到跨境电商平台！', body: '亲爱的用户，\n\n感谢您的注册！我们为您准备了一份专属新人礼包：\n• 首单立享 9 折（使用码 NEW10）\n• 订单满 $50 免国际运费\n• 新品优先购买权\n\n立即选购，开启您的跨境购物之旅！\n支持全球配送，7天无理由退换。', preview: '我们为您准备了一份专属新人礼包...' } },
+          { id: 'nc-delay', type: 'delay', label: '等待24小时', description: '监测用户活动' },
+          { id: 'nc-condition', type: 'condition', label: '是否完成首单？', description: '决策节点', conditionLabel: '首单？' },
+          { id: 'nc-branch-yes', type: 'action', label: '已下单路径', description: '感谢+推荐更多', channel: 'whatsapp', branchType: 'yes', message: { title: '感谢您的购买！🎉', body: '我们注意到您已完成首单！\n\n以下是您可能喜欢的热卖推荐：\n🌟 无线蓝牙耳机 - 8折优惠\n🌟 智能手表 - 库存有限\n🌟 高端手机壳 - 免运费' } },
+          { id: 'nc-branch-no', type: 'action', label: '未下单路径', description: '提醒+热卖推荐', channel: 'sms', branchType: 'no', message: { title: '您的专属优惠券等您使用！', body: '[跨境电商] 您好！您的首单 9 折优惠券还未使用哦~\n\n订单满 $50 即可享受免费国际配送！\n\n🔥 热卖推荐：\n📱 无线蓝牙耳机 - 限时特惠\n⌚ 智能手表 - 库存有限\n🛡️ 高端手机壳 - 包邮\n\n立即选购 → engagelab.com/deals 退订回T' } },
+          { id: 'nc-push', type: 'action', label: 'App Push 推送', description: '热卖商品通知', channel: 'app_push', message: { title: '您的新人礼包已到账 🎁', body: '新客专享：首单 9 折 + 满$50免运费，热卖3C数码等您来选！' } },
+        ],
+      },
+      {
+        id: 'browse-intent',
+        name: '浏览未购 → 精准推荐',
+        icon: 'Eye',
+        color: 'purple',
+        bgGradient: 'from-[#5A69E0] to-[#3D4DB7]',
+        borderColor: 'border-[#5A69E0]',
+        userSegment: '高意向 · 消费电子',
+        description: '精准推荐高浏览频次用户，提升转化率',
+        steps: [
+          { id: 'bi-trigger', type: 'trigger', label: '浏览≥3次', description: '触发条件：高频率浏览行为' },
+          { id: 'bi-tag', type: 'tag', label: '自动打标', description: '标记「高意向-消费电子」' },
+          { id: 'bi-condition', type: 'condition', label: '有购买偏好？', description: '检查偏好记录', conditionLabel: '有偏好？' },
+          { id: 'bi-branch-yes', type: 'action', label: '有偏好路径', description: '基于历史推荐', channel: 'email', branchType: 'yes', message: { subject: '🔥 热销推荐：为您精选的消费电子产品', title: '根据您的兴趣精选推荐', body: '我们注意到您对消费电子品类感兴趣...\n\n根据您的浏览记录，为您推荐：\n📱 无线蓝牙耳机 - 爆款热卖 $29.99\n⌚ 智能手表 - 运动健康款 $49.99\n🛡️ 高端手机壳 - 限时 5 折\n\n点击查看详情 →', preview: '根据您的浏览记录，为您推荐...' } },
+          { id: 'bi-branch-no', type: 'action', label: '无偏好路径', description: '推荐热卖商品', channel: 'email', branchType: 'no', message: { subject: '🌍 全球热销：国际爆款精选 🌍', title: '全球热销商品', body: '发现全球消费者都在买什么！\n\n🔥 无线蓝牙耳机 - $29.99，热销500+\n🔥 智能手表 - $49.99，免运费\n🔥 手机壳套装 - $9.99，买二送一', preview: '发现全球消费者都在买什么！' } },
+          { id: 'bi-delay', type: 'delay', label: '等待4小时', description: '监测邮件互动' },
+          { id: 'bi-condition-2', type: 'condition', label: '邮件是否点击？', description: '决策节点', conditionLabel: '邮件点击？' },
+          { id: 'bi-branch-clicked', type: 'action', label: '已点击路径', description: '发送 WhatsApp 优惠', channel: 'whatsapp', branchType: 'yes', message: { title: '⏰ 限时优惠！', body: '还在考虑那款无线耳机吗？ 🔥\n\n这款正在热卖中！\n\n今日专属优惠：\n• 电子产品全场 8 折\n• 免国际运费\n• 会员专享价\n\n不要错过！' } },
+          { id: 'bi-branch-unclicked', type: 'action', label: '未点击路径', description: 'App Push + SMS 组合', channel: 'app_push', branchType: 'no', message: { title: '📦 电子产品促销：最高 7 折', body: '潮流消费电子产品促销中！智能手表、耳机等热卖商品免费国际配送 →' } },
+          { id: 'bi-sms', type: 'action', label: 'SMS 提醒', description: '多渠道触达', channel: 'sms', message: { title: '促销提醒', body: '[跨境电商] 电子产品大促！使用码 TECH20 享 8 折优惠，满$50免运费。立即选购：engagelab.com/tech 退订回T' } },
+        ],
+      },
+      {
+        id: 'cart-abandon',
+        name: '购物车放弃 → 黄金挽回',
+        icon: 'ShoppingCart',
+        color: 'purple',
+        bgGradient: 'from-[#5A69E0] to-[#3D4DB7]',
+        borderColor: 'border-[#5A69E0]',
+        userSegment: '高价值 · 购物车放弃者',
+        description: '智能挽回序列，最佳时机多渠道触达',
+        steps: [
+          { id: 'ca-trigger', type: 'trigger', label: '购物车放弃', description: '触发条件：加入购物车但未购买' },
+          { id: 'ca-delay-15', type: 'delay', label: '等待15分钟', description: '首次挽回窗口' },
+          { id: 'ca-whatsapp-1', type: 'action', label: 'WhatsApp 提醒', description: '温和提醒', channel: 'whatsapp', message: { title: '🛒 您的购物车还在等您！', body: '您的智能手表和手机壳已为您预留 2 小时~\n\n现在完成订单即可：\n• 免费国际配送\n• 会员专属折扣\n\n点击继续支付 →' } },
+          { id: 'ca-delay-2h', type: 'delay', label: '等待2小时', description: '监测回流活动' },
+          { id: 'ca-condition', type: 'condition', label: '是否返回网站？', description: '决策节点', conditionLabel: '已返回？' },
+          { id: 'ca-branch-no', type: 'action', label: '未返回路径', description: '发送免运费邮件', channel: 'email', branchType: 'no', message: { subject: '📦 别忘了您的商品！附赠免运费福利', title: '您的商品还在购物车里等着您...', body: '我们发现您还没回来完成订单~\n\n为了方便您，我们准备了：\n🎁 免费国际配送（24小时内有效）\n🎁 专属优惠码：RETURN5（再享 95 折）\n\n您的智能手表现货紧张，建议尽快下单！', preview: '为了方便您，我们准备了...' } },
+          { id: 'ca-delay-24h', type: 'delay', label: '等待24小时', description: '最终挽回窗口' },
+          { id: 'ca-condition-2', type: 'condition', label: '仍未转化？', description: '最终决策', conditionLabel: '未转化？' },
+          { id: 'ca-sms-final', type: 'action', label: 'SMS 最终提醒', description: '紧迫性通知', channel: 'sms', branchType: 'no', message: { title: '最后机会！', body: '[跨境电商] 温馨提醒：您的购物车商品热销中！完成结账即可免国际运费。专属优惠 24 小时内有效！退订回T' } },
+          { id: 'ca-push-price', type: 'action', label: 'App Push 降价提醒', description: '价格变动提醒', channel: 'app_push', message: { title: '💰 好消息！您关注的商品降价了', body: '您的智能手表已降价 15%！立即下单还可享免费国际配送。' } },
+        ],
+      },
+      {
+        id: 're-engage',
+        name: '沉睡用户唤醒',
+        icon: 'Clock',
+        color: 'purple',
+        bgGradient: 'from-[#5A69E0] to-[#3D4DB7]',
+        borderColor: 'border-[#5A69E0]',
+        userSegment: '沉睡用户 · 按价值分层',
+        description: '30天未活跃用户智能分层唤醒',
+        steps: [
+          { id: 're-trigger', type: 'trigger', label: '30天未活跃', description: '触发条件：30天无活动' },
+          { id: 're-condition', type: 'condition', label: '价值分层', description: '基于购买历史', conditionLabel: '高价值用户？' },
+          { id: 're-branch-high', type: 'tag', label: 'VIP 沉睡用户', description: '标记「高价值沉睡用户(VIP)」', branchType: 'yes' },
+          { id: 're-email-vip', type: 'action', label: 'VIP 邮件', description: 'VIP专属权益', channel: 'email', branchType: 'yes', message: { subject: '💎 好久不见！您的专属回归礼包已准备好', title: '亲爱的 VIP 会员', body: '好久不见！\n\n我们已经很久没有看到您的身影了~\n\n作为尊贵的 VIP 客户，我们为您准备了：\n👑 价值 $20 的专属回归券\n👑 全单 85 折优惠\n👑 免费快递配送\n👑 新品优先购买权\n\n我们一直在等您回来 ❤️', preview: '我们已经很久没有看到您的身影了...' } },
+          { id: 're-whatsapp-vip', type: 'action', label: 'WhatsApp 私人联系', description: '个人化触达', channel: 'whatsapp', branchType: 'yes', message: { title: '好久不见！😊', body: '亲爱的用户，\n\n自从您上次访问以来，我们上新了 200+ 款商品：\n🆕 最新智能手表\n🆕 新款蓝牙耳机\n🆕 时尚手机壳\n\n这是给您的 85 折回归优惠，欢迎回来看看！' } },
+          { id: 're-branch-normal', type: 'tag', label: '普通沉睡用户', description: '标记「普通沉睡用户」', branchType: 'no' },
+          { id: 're-sms-normal', type: 'action', label: 'SMS 轻触达', description: '促销活动', channel: 'sms', branchType: 'no', message: { title: '促销提醒', body: '[跨境电商] 好久不见！全单 85 折 + 免运费，200+ 新品等您来选！立即选购：engagelab.com 退订回T' } },
+          { id: 're-delay', type: 'delay', label: '等待7天', description: '监测回流情况' },
+          { id: 're-condition-2', type: 'condition', label: '是否回流？', description: '决策节点', conditionLabel: '已回流？' },
+          { id: 're-branch-back', type: 'action', label: '已回流路径', description: '欢迎回来优惠', channel: 'email', branchType: 'yes', message: { subject: '🎁 欢迎回来！您的专属回归优惠', title: '欢迎回到跨境电商平台', body: '很高兴再次见到您！\n\n我们为您准备了专属回归优惠：\n• 全单 85 折\n• 免费国际配送\n• 双倍积分奖励\n\n有效期 7 天，感谢回来！', preview: '我们为您准备了专属回归优惠...' } },
+          { id: 're-sms-final', type: 'action', label: '最终 SMS', description: '最后机会触达', channel: 'sms', branchType: 'no', message: { title: '最后机会', body: '[跨境电商] 最后机会！全场额外 8 折 + 免运费，新品即将售罄！退订回T' } },
+        ],
+      },
+      {
+        id: 'vip-upgrade',
+        name: 'VIP升级庆祝',
+        icon: 'Crown',
+        color: 'purple',
+        bgGradient: 'from-[#5A69E0] to-[#3D4DB7]',
+        borderColor: 'border-[#5A69E0]',
+        userSegment: '黄金VIP · 升级会员',
+        description: 'VIP等级升级专属庆祝旅程',
+        steps: [
+          { id: 'vu-trigger', type: 'trigger', label: 'VIP 等级升级', description: '触发条件：达到积分/消费阈值' },
+          { id: 'vu-tag', type: 'tag', label: '自动打标', description: '标记「黄金VIP会员」' },
+          { id: 'vu-email-celebrate', type: 'action', label: '邮件庆祝', description: 'VIP 权益说明', channel: 'email', message: { subject: '🏆 恭喜！您已升级为黄金 VIP 会员', title: '恭喜您升级为 VIP！', body: '尊敬的会员，\n\n恭喜您升级为黄金 VIP！\n\n🎖️ 黄金 VIP 专属权益：\n• 全场 9 折优惠\n• 优先客服通道\n• 每月专属优惠券\n• 免费加急配送\n• 生日月双倍奖励\n• 新品优先购买权\n\n感谢您的信赖与支持！', preview: '恭喜您升级为黄金 VIP！...' } },
+          { id: 'vu-push', type: 'action', label: 'App Push', description: '即时升级通知', channel: 'app_push', message: { title: '🎉 恭喜升级！您现在是黄金 VIP 会员', body: '尊享黄金权益：全场 9 折、优先客服、免费加急配送。查看您的权益 →' } },
+          { id: 'vu-whatsapp', type: 'action', label: 'WhatsApp VIP 专线', description: '个人 VIP 支持邀请', channel: 'whatsapp', message: { title: '🏆 您的黄金 VIP 专属服务已就位', body: '亲爱的黄金 VIP 会员，\n\n恭喜您升级！\n\n黄金会员专属权益：\n• 7×24 优先客服\n• 独家优惠 & 新品优先\n• 免费加急配送\n• 专属购物顾问\n\n您的 VIP 专属顾问已就位，随时为您服务！' } },
+          { id: 'vu-delay-30d', type: 'delay', label: '30天后', description: '满意度调查' },
+          { id: 'vu-survey', type: 'action', label: 'SMS 调研', description: '收集反馈', channel: 'sms', message: { title: '快速调研', body: '[跨境电商] 您的购物体验如何？留下评价即可获得 $5 优惠券。退订回T' } },
+          { id: 'vu-webpush', type: 'action', label: 'Web Push 提醒', description: '权益即将到期提醒', channel: 'web_push', message: { title: '⏰ 您的黄金 VIP 优惠券即将到期！', body: '您有一张 $10 黄金 VIP 折扣券 3 天后过期，立即下单享专属优惠！' } },
+        ],
+      },
+    ];
+
+    // ============ 渠道配置 ============
+    const channelIcons = {
+      email: () => <Icons.Mail />,
+      whatsapp: () => <Icons.MessageCircle />,
+      sms: () => <Icons.Smartphone />,
+      app_push: () => <Icons.Bell />,
+      web_push: () => <Icons.Globe />,
+    };
+
+    const channelColors = {
+      email: { bg: 'bg-[#5A69E0]/10', border: 'border-[#5A69E0]/30', icon: 'text-[#5A69E0]', bubble: 'bg-[#5A69E0]' },
+      whatsapp: { bg: 'bg-[#25D366]/10', border: 'border-[#25D366]/30', icon: 'text-[#25D366]', bubble: 'bg-[#25D366]' },
+      sms: { bg: 'bg-gray-100', border: 'border-gray-300', icon: 'text-gray-600', bubble: 'bg-gray-500' },
+      app_push: { bg: 'bg-[#5A69E0]/10', border: 'border-[#5A69E0]/30', icon: 'text-[#5A69E0]', bubble: 'bg-[#5A69E0]' },
+      web_push: { bg: 'bg-[#5A69E0]/10', border: 'border-[#5A69E0]/30', icon: 'text-[#5A69E0]', bubble: 'bg-[#5A69E0]' },
+    };
+
+    const channelNames = {
+      email: '邮件',
+      whatsapp: 'WhatsApp',
+      sms: 'SMS',
+      app_push: 'App Push',
+      web_push: 'Web Push',
+    };
+
+    // ============ 工作流节点组件 ============
+    const WorkflowNode = ({ step, isActive, isCompleted, isPending, index }) => {
+      const getNodeStyle = () => {
+        if (isCompleted) return 'bg-[#CEFB62] text-[#394551] border-[#CEFB62]';
+        if (isActive) return 'bg-gradient-to-r from-[#5A69E0] to-[#3D4DB7] text-white border-[#5A69E0] shadow-lg shadow-[#5A69E0]/50 scale-105';
+        return 'bg-white text-[#394551] border-gray-200 hover:border-[#5A69E0]/50';
+      };
+
+      const getIconForStep = () => {
+        const iconClass = isActive ? 'text-white' : isCompleted ? 'text-[#394551]' : 'text-[#5A69E0]';
+        switch (step.type) {
+          case 'trigger': return <span className={iconClass}><Icons.Zap /></span>;
+          case 'tag': return <span className={iconClass}><Icons.Tag /></span>;
+          case 'condition': return <span className={iconClass}><Icons.Users /></span>;
+          case 'delay': return <span className={iconClass}><Icons.Timer /></span>;
+          default:
+            if (step.channel && channelIcons[step.channel]) {
+              const IconComp = channelIcons[step.channel];
+              return <span className={isActive ? 'text-white' : isCompleted ? 'text-[#394551]' : channelColors[step.channel].icon}><IconComp /></span>;
+            }
+            return <span className={iconClass}><Icons.Send /></span>;
+        }
+      };
+
+      const isConditionNode = step.type === 'condition';
+
+      return (
+        <div style={{ animationDelay: `${index * 0.1}s` }} className={`flex flex-col items-center gap-2 animate-slide-up`}>
+          <div className={`${isConditionNode ? 'rounded-xl w-16 h-16 flex items-center justify-center rotate-45' : 'rounded-xl px-4 py-3 min-w-[180px] flex items-center gap-3'} ${getNodeStyle()} border-2 transition-all duration-300 shadow-md`}>
+            {isConditionNode ? (
+              <span className="-rotate-45 flex flex-col items-center"><Icons.Users /></span>
+            ) : (
+              <>
+                {getIconForStep()}
+                <div className="flex flex-col flex-1 min-w-0">
+                  <span className="font-semibold text-sm truncate">{step.label}</span>
+                  <span className={`text-xs truncate ${isActive ? 'text-white/80' : isCompleted ? 'text-[#394551]/70' : 'text-gray-500'}`}>{step.description}</span>
+                </div>
+              </>
+            )}
+          </div>
+          {step.type === 'condition' && step.conditionLabel && (
+            <div className={`text-xs font-medium px-3 py-1 rounded-full mt-1 ${isActive || isCompleted ? 'bg-[#CEFB62]/20 text-[#394551]' : 'bg-gray-100 text-gray-600'}`}>
+              {step.conditionLabel}
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    // ============ 连接线组件 ============
+    const Connector = ({ isActive, isCompleted }) => (
+      <div className="flex items-center gap-2">
+        <div className={`h-0.5 w-12 ${isCompleted || isActive ? 'bg-[#CEFB62]' : 'bg-gray-300'}`} />
+        <span className={isCompleted || isActive ? 'text-[#CEFB62]' : 'text-gray-400'}><Icons.ArrowRight /></span>
+      </div>
+    );
+
+    const VerticalConnector = ({ isActive, isCompleted }) => (
+      <div className={`h-8 w-0.5 ${isCompleted ? 'bg-[#CEFB62]' : isActive ? 'bg-[#5A69E0]' : 'bg-gray-300'}`} />
+    );
+
+    // ============ 分支布局组件 ============
+    const BranchSection = ({ conditionStep, yesSteps, noSteps, currentStepIndex, steps, onRenderStep }) => {
+      const conditionIndex = steps.findIndex(s => s.id === conditionStep.id);
+      const yesIndices = yesSteps.map(s => steps.findIndex(s2 => s2.id === s.id));
+      const noIndices = noSteps.map(s => steps.findIndex(s2 => s2.id === s.id));
+      
+      // 判断条件节点状态
+      const conditionState = currentStepIndex > conditionIndex
+        ? { isActive: false, isCompleted: true, isPending: false }
+        : currentStepIndex === conditionIndex
+        ? { isActive: true, isCompleted: false, isPending: false }
+        : { isActive: false, isCompleted: false, isPending: true };
+
+      // 判断分支中各步骤的状态
+      const getBranchStepState = (stepIndex) => {
+        if (currentStepIndex > stepIndex) return { isActive: false, isCompleted: true, isPending: false };
+        if (currentStepIndex === stepIndex) return { isActive: true, isCompleted: false, isPending: false };
+        // 如果条件还未到达，分支步骤都是 pending
+        if (currentStepIndex <= conditionIndex) return { isActive: false, isCompleted: false, isPending: true };
+        // 如果条件已过但这个分支步骤还没到，可能是条件之后但在分支中的位置
+        return { isActive: false, isCompleted: false, isPending: true };
+      };
+
+      const maxYesSteps = yesSteps.length;
+      const maxNoSteps = noSteps.length;
+      const maxSteps = Math.max(maxYesSteps, maxNoSteps);
+      
+      // 节点高度估算：每个节点约 80px (含间距)
+      const nodeHeight = 80;
+      const branchHeight = Math.max(maxSteps * nodeHeight, 0);
+
+      return (
+        <div className="flex flex-col items-center">
+          {/* 条件节点 */}
+          <WorkflowNode
+            step={conditionStep}
+            isActive={conditionState.isActive}
+            isCompleted={conditionState.isCompleted}
+            isPending={conditionState.isPending}
+            index={conditionIndex}
+          />
+
+          {/* 分叉区域 */}
+          <div className="relative" style={{ minHeight: `${branchHeight + 60}px` }}>
+            {/* 顶部连接点 */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2">
+              <div className={`w-3 h-3 rounded-full ${conditionState.isCompleted ? 'bg-[#CEFB62]' : conditionState.isActive ? 'bg-[#5A69E0]' : 'bg-gray-300'}`} />
+            </div>
+
+            {/* 斜线连接 */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2" style={{ height: '30px' }}>
+              {/* 左斜线 */}
+              <div 
+                className="absolute left-1/2 top-0 w-0.5 h-8 origin-top"
+                style={{ 
+                  transform: 'translateX(-50%) rotate(25deg)',
+                  background: conditionState.isCompleted || conditionState.isActive ? '#CEFB62' : '#d1d5db'
+                }}
+              />
+              {/* 右斜线 */}
+              <div 
+                className="absolute left-1/2 top-0 w-0.5 h-8 origin-top"
+                style={{ 
+                  transform: 'translateX(-50%) rotate(-25deg)',
+                  background: conditionState.isCompleted || conditionState.isActive ? '#CEFB62' : '#d1d5db'
+                }}
+              />
+            </div>
+
+            {/* 左右分支容器 */}
+            <div className="flex items-start gap-16 pt-10" style={{ minHeight: `${branchHeight}px` }}>
+              {/* 左分支：是 */}
+              <div className="flex flex-col items-center flex-1 max-w-[220px]">
+                <div className={`text-xs font-medium px-3 py-1 rounded-full mb-4 ${conditionState.isCompleted ? 'bg-[#5A69E0] text-white' : conditionState.isActive ? 'bg-[#5A69E0]/20 text-[#5A69E0]' : 'bg-gray-100 text-gray-500'}`}>
+                  → 是
+                </div>
+                
+                {yesSteps.length > 0 ? (
+                  <div className="flex flex-col items-center gap-2">
+                    {yesSteps.map((step, idx) => {
+                      const stepIndex = steps.findIndex(s => s.id === step.id);
+                      const state = getBranchStepState(stepIndex);
+                      return (
+                        <React.Fragment key={step.id}>
+                          <WorkflowNode
+                            step={step}
+                            isActive={state.isActive}
+                            isCompleted={state.isCompleted}
+                            isPending={state.isPending}
+                            index={stepIndex}
+                          />
+                          {idx < yesSteps.length - 1 && (
+                            <div className={`h-8 w-0.5 ${state.isCompleted ? 'bg-[#CEFB62]' : 'bg-gray-300'}`} />
+                          )}
+                        </React.Fragment>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className={`text-xs px-3 py-2 rounded-lg border ${conditionState.isCompleted ? 'border-[#CEFB62] bg-[#CEFB62]/10 text-gray-600' : 'border-gray-200 bg-gray-50 text-gray-400'}`}>
+                    无后续步骤
+                  </div>
+                )}
+              </div>
+
+              {/* 右分支：否 */}
+              <div className="flex flex-col items-center flex-1 max-w-[220px]">
+                <div className={`text-xs font-medium px-3 py-1 rounded-full mb-4 ${conditionState.isCompleted ? 'bg-gray-500 text-white' : conditionState.isActive ? 'bg-gray-200 text-gray-600' : 'bg-gray-100 text-gray-500'}`}>
+                  → 否
+                </div>
+                
+                {noSteps.length > 0 ? (
+                  <div className="flex flex-col items-center gap-2">
+                    {noSteps.map((step, idx) => {
+                      const stepIndex = steps.findIndex(s => s.id === step.id);
+                      const state = getBranchStepState(stepIndex);
+                      return (
+                        <React.Fragment key={step.id}>
+                          <WorkflowNode
+                            step={step}
+                            isActive={state.isActive}
+                            isCompleted={state.isCompleted}
+                            isPending={state.isPending}
+                            index={stepIndex}
+                          />
+                          {idx < noSteps.length - 1 && (
+                            <div className={`h-8 w-0.5 ${state.isCompleted ? 'bg-[#CEFB62]' : 'bg-gray-300'}`} />
+                          )}
+                        </React.Fragment>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className={`text-xs px-3 py-2 rounded-lg border ${conditionState.isCompleted ? 'border-[#CEFB62] bg-[#CEFB62]/10 text-gray-600' : 'border-gray-200 bg-gray-50 text-gray-400'}`}>
+                    无后续步骤
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* 合并线 */}
+            {yesSteps.length > 0 || noSteps.length > 0 ? (
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2" style={{ minWidth: '200px' }}>
+                <div className="flex justify-center">
+                  <div 
+                    className="h-0.5"
+                    style={{ 
+                      width: '100%',
+                      background: conditionState.isCompleted ? '#CEFB62' : '#d1d5db'
+                    }}
+                  />
+                </div>
+                <div 
+                  className="absolute left-1/2 transform -translate-x-1/2 -top-1 w-3 h-3 rounded-full"
+                  style={{ 
+                    background: conditionState.isCompleted ? '#CEFB62' : '#d1d5db'
+                  }}
+                />
+              </div>
+            ) : (
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2">
+                <div 
+                  className="w-3 h-3 rounded-full"
+                  style={{ 
+                    background: conditionState.isCompleted ? '#CEFB62' : '#d1d5db'
+                  }}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    };
+
+    // ============ 解析 steps 为段落列表 ============
+    const parseStepsToSections = (steps) => {
+      const sections = [];
+      let i = 0;
+      
+      while (i < steps.length) {
+        const step = steps[i];
+        
+        if (step.type === 'condition') {
+          // 这是一个条件节点，后面跟分支
+          const yesBranch = [];
+          const noBranch = [];
+          i++;
+          
+          // 收集 yes 分支步骤
+          while (i < steps.length && steps[i].branchType === 'yes') {
+            yesBranch.push(steps[i]);
+            i++;
+          }
+          
+          // 收集 no 分支步骤
+          while (i < steps.length && steps[i].branchType === 'no') {
+            noBranch.push(steps[i]);
+            i++;
+          }
+          
+          sections.push({ 
+            type: 'branch', 
+            condition: step, 
+            yesBranch, 
+            noBranch 
+          });
+        } else {
+          // 非条件节点，属于线性流程
+          sections.push({ type: 'linear', step });
+          i++;
+        }
+      }
+      
+      return sections;
+    };
+
+    // ============ 消息卡片组件 ============
+    const MessageCard = ({ message, index }) => {
+      const colors = channelColors[message.channel];
+      const IconComp = channelIcons[message.channel];
+      const name = channelNames[message.channel];
+
+      const formatTime = (date) => {
+        return date.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      };
+
+      // Email 样式
+      if (message.channel === 'email') {
+        return (
+          <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden animate-slide-in" style={{ animationDelay: `${index * 0.1}s` }}>
+            <div className="bg-gradient-to-r from-[#5A69E0] to-[#3D4DB7] px-4 py-3">
+              <div className="flex items-center gap-2 text-white">
+                <IconComp />
+                <span className="font-semibold text-sm">{name}</span>
+                <span className="ml-auto text-xs opacity-80">{formatTime(message.timestamp)}</span>
+              </div>
+            </div>
+            <div className="p-4">
+              <h4 className="font-semibold text-[#394551] mb-2">{message.content.subject}</h4>
+              <p className="text-sm text-gray-600 mb-3 leading-relaxed whitespace-pre-line">
+                {message.content.body.split('\n').slice(0, 3).join('\n')}
+              </p>
+              {message.content.preview && (
+                <div className="bg-gray-50 rounded-lg p-3 border-l-4 border-[#5A69E0]">
+                  <p className="text-xs text-gray-500 italic">{message.content.preview}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      }
+
+      // WhatsApp 样式
+      if (message.channel === 'whatsapp') {
+        return (
+          <div className="bg-[#ECE5DD] rounded-xl p-4 shadow-lg animate-slide-in" style={{ animationDelay: `${index * 0.1}s` }}>
+            <div className="flex items-center gap-2 mb-2">
+              <div className={`${colors.bg} p-1.5 rounded-full`}>
+                <span className={colors.icon}><IconComp /></span>
+              </div>
+              <span className="font-semibold text-sm text-gray-800">{name}</span>
+              <span className="ml-auto text-xs text-gray-500">{formatTime(message.timestamp)}</span>
+            </div>
+            <div className="bg-white rounded-lg rounded-tl-none p-3 shadow-sm">
+              <p className="text-sm text-gray-800 whitespace-pre-line leading-relaxed">{message.content.body}</p>
+            </div>
+          </div>
+        );
+      }
+
+      // App Push / Web Push 样式
+      if (message.channel === 'app_push' || message.channel === 'web_push') {
+        const isWeb = message.channel === 'web_push';
+        return (
+          <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden animate-slide-in" style={{ animationDelay: `${index * 0.1}s` }}>
+            <div className="bg-[#394551] px-4 py-2 flex items-center gap-2">
+              <div className="flex gap-1">
+                <div className="w-2 h-2 rounded-full bg-red-500" />
+                <div className="w-2 h-2 rounded-full bg-yellow-500" />
+                <div className="w-2 h-2 rounded-full bg-green-500" />
+              </div>
+              <span className="text-xs text-gray-400 ml-2">{isWeb ? '浏览器通知' : '应用通知'}</span>
+            </div>
+            <div className="p-3 flex items-start gap-3">
+              <div className={`${colors.bg} p-2 rounded-lg`}>
+                <span className={colors.icon}><IconComp /></span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-sm text-[#394551]">{message.content.title}</span>
+                  <span className="text-xs text-gray-400">{formatTime(message.timestamp)}</span>
+                </div>
+                <p className="text-sm text-gray-600 truncate">{message.content.body}</p>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      // SMS 样式
+      return (
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 animate-slide-in" style={{ animationDelay: `${index * 0.1}s` }}>
+          <div className="flex items-center gap-2 mb-3">
+            <div className={`${colors.bg} p-1.5 rounded-full`}>
+              <span className={colors.icon}><IconComp /></span>
+            </div>
+            <span className="font-semibold text-sm text-gray-800">{name}</span>
+            <span className="ml-auto text-xs text-gray-500">{formatTime(message.timestamp)}</span>
+          </div>
+          <p className="text-sm text-gray-700 leading-relaxed mb-3 whitespace-pre-line">{message.content.body}</p>
+          <p className="text-xs text-gray-400 italic">退订回T</p>
+        </div>
+      );
+    };
+
+    // ============ 场景卡片组件 ============
+    const ScenarioCard = ({ scenario, isActive, isPlaying, onClick }) => {
+      const IconComp = Icons[scenario.icon] || Icons.Zap;
+      return (
+        <button
+          onClick={onClick}
+          disabled={isPlaying}
+          className={`
+            relative overflow-hidden rounded-xl p-4 text-left transition-all duration-300
+            ${isActive
+              ? `bg-gradient-to-br ${scenario.bgGradient} text-white shadow-xl ring-2 ring-white/30`
+              : 'bg-white shadow-sm border border-gray-200 text-[#394551] hover:border-[#5A69E0]/50'
+            }
+            ${isPlaying && !isActive ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+          `}
+        >
+          <div className={`w-10 h-10 rounded-lg mb-3 flex items-center justify-center ${isActive ? 'bg-white/20' : 'bg-[#5A69E0]/10'}`}>
+            <span className={isActive ? 'text-white' : 'text-[#5A69E0]'}><IconComp /></span>
+          </div>
+          <h3 className="font-semibold text-sm mb-1">{scenario.name}</h3>
+          <p className={`text-xs ${isActive ? 'text-white/80' : 'text-gray-500'}`}>
+            {scenario.userSegment}
+          </p>
+        </button>
+      );
+    };
+
+    // ============ 主组件 ============
+    const EngageLabMASimulator = () => {
+      const [activeScenarioId, setActiveScenarioId] = useState(null);
+      const [currentStepIndex, setCurrentStepIndex] = useState(-1);
+      const [messages, setMessages] = useState([]);
+      const [isPlaying, setIsPlaying] = useState(false);
+      const [isCompleted, setIsCompleted] = useState(false);
+
+      const activeScenario = scenarios.find(s => s.id === activeScenarioId);
+
+      const resetSimulation = useCallback(() => {
+        setCurrentStepIndex(-1);
+        setMessages([]);
+        setIsPlaying(false);
+        setIsCompleted(false);
+      }, []);
+
+      const startScenario = useCallback((scenarioId) => {
+        resetSimulation();
+        setActiveScenarioId(scenarioId);
+        setIsPlaying(true);
+      }, [resetSimulation]);
+
+      // 自动推进工作流（分支二选一逻辑）
+      useEffect(() => {
+        if (!isPlaying || !activeScenario) return;
+
+        if (currentStepIndex === -1) {
+          const timer = setTimeout(() => setCurrentStepIndex(0), 500);
+          return () => clearTimeout(timer);
+        }
+
+        if (currentStepIndex >= activeScenario.steps.length) {
+          setIsPlaying(false);
+          setIsCompleted(true);
+          return;
+        }
+
+        const currentStep = activeScenario.steps[currentStepIndex];
+
+        // 检测是否进入"否"分支的开头
+        // 当前步骤是 branchType='no'，且前一个步骤是 condition 或 branchType='yes'
+        // 这意味着"是"分支已走完，需要清除"是"分支的消息
+        if (currentStep.branchType === 'no') {
+          // 找到这个分支段中所有 yes 分支步骤的 stepId
+          const prevStep = currentStepIndex > 0 ? activeScenario.steps[currentStepIndex - 1] : null;
+          if (prevStep && (prevStep.type === 'condition' || prevStep.branchType === 'yes')) {
+            // 清除 yes 分支的消息
+            setMessages(prev => prev.filter(msg => {
+              // 保留非分支消息和 no 分支消息
+              return !activeScenario.steps.some(s => 
+                s.branchType === 'yes' && s.id === msg.stepId
+              );
+            }));
+          }
+        }
+
+        if (currentStep.channel && currentStep.message) {
+          const newMessage = {
+            id: `${currentStep.id}-${Date.now()}`,
+            channel: currentStep.channel,
+            content: currentStep.message,
+            timestamp: new Date(),
+            stepId: currentStep.id,
+          };
+          setMessages(prev => [...prev, newMessage]);
+        }
+
+        const timer = setTimeout(() => setCurrentStepIndex(prev => prev + 1), 1500);
+        return () => clearTimeout(timer);
+      }, [isPlaying, currentStepIndex, activeScenario]);
+
+      const getStepState = (index) => {
+        if (!activeScenario) return { isActive: false, isCompleted: false, isPending: true };
+        if (currentStepIndex > index) return { isActive: false, isCompleted: true, isPending: false };
+        if (currentStepIndex === index) return { isActive: true, isCompleted: false, isPending: false };
+        return { isActive: false, isCompleted: false, isPending: true };
+      };
+
+      const getSegmentBadgeColor = (color) => {
+        const colors = {
+          purple: 'bg-[#5A69E0]/10 text-[#5A69E0] border-[#5A69E0]/30',
+          emerald: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30',
+          violet: 'bg-violet-500/10 text-violet-600 border-violet-500/30',
+          orange: 'bg-orange-500/10 text-orange-600 border-orange-500/30',
+          slate: 'bg-slate-500/10 text-slate-600 border-slate-500/30',
+          amber: 'bg-amber-500/10 text-amber-600 border-amber-500/30',
+        };
+        return colors[color] || colors.purple;
+      };
+
+      // 渲染工作流内容
+      const renderWorkflowContent = () => {
+        if (!activeScenario) return null;
+
+        const sections = parseStepsToSections(activeScenario.steps);
+        const steps = activeScenario.steps;
+
+        return (
+          <div className="flex flex-col items-center">
+            <div className="text-center mb-8">
+              <h3 className="text-[#394551] text-xl font-bold">{activeScenario.name}</h3>
+              <p className="text-gray-500 text-sm mt-1">{activeScenario.description}</p>
+              <div className={`inline-flex items-center gap-2 mt-3 px-3 py-1.5 rounded-full text-xs font-medium border ${getSegmentBadgeColor(activeScenario.color)}`}>
+                <Icons.Users />
+                {activeScenario.userSegment}
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center gap-0">
+              {sections.map((section, sectionIdx) => {
+                if (section.type === 'linear') {
+                  const stepIndex = steps.findIndex(s => s.id === section.step.id);
+                  const { isActive, isCompleted, isPending } = getStepState(stepIndex);
+                  
+                  return (
+                    <React.Fragment key={section.step.id}>
+                      {sectionIdx > 0 && (
+                        <VerticalConnector isActive={isActive} isCompleted={isCompleted} />
+                      )}
+                      <WorkflowNode
+                        step={section.step}
+                        isActive={isActive}
+                        isCompleted={isCompleted}
+                        isPending={isPending}
+                        index={stepIndex}
+                      />
+                    </React.Fragment>
+                  );
+                } else if (section.type === 'branch') {
+                  return (
+                    <React.Fragment key={section.condition.id}>
+                      {sectionIdx > 0 && (
+                        <VerticalConnector 
+                          isActive={getStepState(steps.findIndex(s => s.id === section.condition.id)).isActive} 
+                          isCompleted={getStepState(steps.findIndex(s => s.id === section.condition.id)).isCompleted} 
+                        />
+                      )}
+                      <BranchSection
+                        conditionStep={section.condition}
+                        yesSteps={section.yesBranch}
+                        noSteps={section.noBranch}
+                        currentStepIndex={currentStepIndex}
+                        steps={steps}
+                      />
+                    </React.Fragment>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </div>
+        );
+      };
+
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-[#f8f9fc] via-[#eef0fd] to-[#f8f9fc] pb-12">
+          {/* 顶部标题栏 */}
+          <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+            <div className="px-8 py-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <img 
+                    src="https://www.coze.cn/s/EavPktuJbVc/" 
+                    alt="EngageLab Logo" 
+                    className="w-12 h-12 rounded-xl object-contain shadow-lg"
+                  />
+                  <div>
+                    <h1 className="text-2xl font-bold text-[#394551]">EngageLab MA</h1>
+                    <p className="text-sm text-[#5A69E0]">客户全生命周期自动化演示</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2 bg-[#CEFB62]/20 border border-[#CEFB62]/30 rounded-full px-4 py-2">
+                    <span className="w-2 h-2 bg-[#CEFB62] rounded-full animate-pulse" />
+                    <span className="text-[#394551] text-sm font-medium">系统运行中</span>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[#394551] font-medium">{new Date().toLocaleDateString('zh-CN')}</p>
+                    <p className="text-gray-500 text-xs">实时演示</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          {/* 场景选择卡片 */}
+          <div className="px-8 py-6">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-[#5A69E0]"><Icons.Users /></span>
+              <span className="text-[#394551] text-sm font-medium">选择自动化场景</span>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {scenarios.map((scenario) => (
+                <ScenarioCard
+                  key={scenario.id}
+                  scenario={scenario}
+                  isActive={activeScenarioId === scenario.id}
+                  isPlaying={isPlaying}
+                  onClick={() => startScenario(scenario.id)}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* 主内容区域 - 固定视口高度，两面板独立滚动 */}
+          <div className="px-8 pb-8" style={{ height: 'calc(100vh - 200px)' }}>
+            <div className="flex flex-col lg:flex-row gap-6 h-full">
+              {/* 左侧：工作流画布 */}
+              <div className="flex-1 bg-white shadow-lg rounded-2xl border border-gray-200 overflow-hidden flex flex-col">
+                <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#5A69E0] to-[#3D4DB7] flex items-center justify-center">
+                      <span className="text-white"><Icons.TrendingUp /></span>
+                    </div>
+                    <div>
+                      <h2 className="text-[#394551] font-semibold">EngageLab MA 自动化工作流引擎</h2>
+                      <p className="text-gray-500 text-xs">自动化工作流可视化</p>
+                    </div>
+                  </div>
+                  {activeScenario && (
+                    <div className="flex items-center gap-3">
+                      {isPlaying && (
+                        <div className="flex items-center gap-2 bg-[#5A69E0]/10 border border-[#5A69E0]/30 rounded-full px-3 py-1.5">
+                          <span className="text-[#5A69E0] animate-spin-custom"><Icons.RefreshCw /></span>
+                          <span className="text-[#5A69E0] text-xs">执行中...</span>
+                        </div>
+                      )}
+                      {isCompleted && (
+                        <div className="flex items-center gap-2 bg-[#CEFB62]/20 border border-[#CEFB62]/30 rounded-full px-3 py-1.5">
+                          <span className="text-[#394551]"><Icons.Check /></span>
+                          <span className="text-[#394551] text-xs">已完成</span>
+                        </div>
+                      )}
+                      <button
+                        onClick={resetSimulation}
+                        className="text-gray-400 hover:text-[#394551] transition-colors"
+                      >
+                        <Icons.RefreshCw />
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-8 flex-1 overflow-y-auto scrollbar-hide">
+                  {!activeScenario ? (
+                    <div className="h-full flex flex-col items-center justify-center text-center py-12">
+                      <div className="w-20 h-20 rounded-2xl bg-[#5A69E0]/5 flex items-center justify-center mb-4">
+                        <span className="text-gray-400"><Icons.Sparkles /></span>
+                      </div>
+                      <h3 className="text-[#394551] text-lg font-medium mb-2">点击上方场景卡片开始演示</h3>
+                      <p className="text-gray-500 text-sm max-w-md">
+                        点击下方场景卡片，体验跨境电商自动化营销工作流
+                      </p>
+                    </div>
+                  ) : (
+                    renderWorkflowContent()
+                  )}
+                </div>
+              </div>
+
+              {/* 右侧：渠道消息流面板 - 固定在视口内，独立滚动 */}
+              <div className="w-full lg:w-[420px] bg-white shadow-lg rounded-2xl border border-gray-200 overflow-hidden flex flex-col flex-shrink-0" style={{ maxHeight: '100%' }}>
+                <div className="px-6 py-4 border-b border-gray-200 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#CEFB62] to-[#a8d94a] flex items-center justify-center">
+                    <span className="text-[#394551]"><Icons.MessageCircle /></span>
+                  </div>
+                  <div>
+                    <h2 className="text-[#394551] font-semibold">渠道消息流</h2>
+                    <p className="text-gray-500 text-xs">实时触达记录</p>
+                  </div>
+                  <div className="ml-auto">
+                    <span className="text-2xl font-bold text-[#394551]">{messages.length}</span>
+                    <span className="text-gray-500 text-xs ml-1">条消息</span>
+                  </div>
+                </div>
+
+                <div className="p-4 flex-1 overflow-y-auto scrollbar-hide space-y-4">
+                  {messages.length === 0 ? (
+                    <div className="h-full flex flex-col items-center justify-center text-center py-12">
+                      <div className="w-16 h-16 rounded-2xl bg-[#5A69E0]/5 flex items-center justify-center mb-4">
+                        <span className="text-gray-400"><Icons.Mail /></span>
+                      </div>
+                      <h3 className="text-[#394551] font-medium mb-2">暂无消息</h3>
+                      <p className="text-gray-500 text-sm">
+                        工作流执行后，触发的渠道消息将在这里显示
+                      </p>
+                      <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                        <div className="flex items-center gap-2 text-gray-500">
+                          <Icons.Mail />
+                          <span className="text-xs">邮件</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-500">
+                          <Icons.MessageCircle />
+                          <span className="text-xs">WhatsApp</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-500">
+                          <Icons.Smartphone />
+                          <span className="text-xs">SMS</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-500">
+                          <Icons.Bell />
+                          <span className="text-xs">推送</span>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    messages.map((message, index) => (
+                      <MessageCard key={message.id} message={message} index={index} />
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 底部状态栏 */}
+          <div className="fixed bottom-0 left-0 right-0 bg-white shadow-sm border-t border-gray-200 px-8 py-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#CEFB62]" />
+                  <span className="text-gray-500 text-xs">MA 引擎运行中</span>
+                </div>
+                <div className="hidden md:flex items-center gap-4 text-xs text-gray-500">
+                  <span>邮件</span>
+                  <span className="w-1 h-1 rounded-full bg-gray-400" />
+                  <span>WhatsApp</span>
+                  <span className="w-1 h-1 rounded-full bg-gray-400" />
+                  <span>SMS</span>
+                  <span className="w-1 h-1 rounded-full bg-gray-400" />
+                  <span>App Push</span>
+                  <span className="w-1 h-1 rounded-full bg-gray-400" />
+                  <span>Web Push</span>
+                </div>
+              </div>
+              <div className="text-gray-500 text-xs">
+                EngageLab 营销自动化 · 演示版 · v2.0
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // 渲染应用
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<EngageLabMASimulator />);
+  </script>
+</body>
+</html>
