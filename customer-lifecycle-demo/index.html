@@ -58,7 +58,7 @@
 
     .back-home {
       position: fixed;
-      bottom: 24px;
+      top: 22px;
       left: 24px;
       z-index: 9999;
       display: inline-flex;
@@ -68,12 +68,12 @@
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
-      padding: 9px 16px 9px 12px;
+      padding: 8px 14px 8px 10px;
       border-radius: 999px;
       border: 1px solid rgba(57,69,81,0.15);
       background: rgba(255,255,255,0.95);
       backdrop-filter: blur(8px);
-      box-shadow: 0 4px 16px rgba(16,24,40,0.12);
+      box-shadow: 0 2px 10px rgba(16,24,40,0.08);
       white-space: nowrap;
       transition: all 0.2s ease;
     }
@@ -81,8 +81,7 @@
       color: #5A69E0;
       border-color: rgba(90,105,224,0.4);
       background: #fff;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(90,105,224,0.18);
+      box-shadow: 0 4px 14px rgba(90,105,224,0.18);
     }
     .back-home svg {
       width: 14px;
@@ -829,14 +828,15 @@
         <div className="min-h-screen bg-gradient-to-br from-[#f8f9fc] via-[#eef0fd] to-[#f8f9fc] pb-12">
           {/* 顶部标题栏 */}
           <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-            <div className="px-8 py-6">
+            <div className="pl-40 pr-8 py-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <img 
-                    src="https://www.coze.cn/s/EavPktuJbVc/" 
-                    alt="EngageLab Logo" 
-                    className="w-12 h-12 rounded-xl object-contain shadow-lg"
-                  />
+                  <div
+                    className="w-12 h-12 rounded-xl shadow-lg flex items-center justify-center text-white font-bold text-xl"
+                    style={{background: 'linear-gradient(135deg, #5A69E0 0%, #3D4DB7 100%)'}}
+                  >
+                    E
+                  </div>
                   <div>
                     <h1 className="text-2xl font-bold text-[#394551]">EngageLab MA</h1>
                     <p className="text-sm text-[#5A69E0]">客户全生命周期自动化演示</p>
