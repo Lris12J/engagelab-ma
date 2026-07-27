@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA · usmile 笑容加 App · 内部订阅付费增长方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+    .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.92em; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 900px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-5 { grid-template-columns: repeat(5, 1fr); }
+    .grid-1-2 { grid-template-columns: 1fr 2fr; }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .hero { break-before: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA · usmile 订阅付费方案</span>
+      <a href="#s-market">行业机会</a>
+      <a href="#s-funnel">订阅漏斗</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-products">订阅产品建议</a>
+      <a href="#s-scenarios">六大场景</a>
+      <a href="#s-journey1">旅程编排</a>
+      <a href="#s-ops">运营落地</a>
+      <a href="#s-benchmark">行业对标</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <a class="back-home" href="../">← 返回首页</a>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-info">usmile 笑容加 · 定制提案</span>
+        <span class="pill">智能电动牙刷 · 全场景口腔护理</span>
+        <span class="pill">App 软件订阅 · 第二增长曲线</span>
+      </div>
+      <h1>EngageLab MA · usmile 笑容加 App · 内部订阅付费增长方案</h1>
+      <p class="hero-subtitle">
+        面向 usmile 笑容加品牌——中国牙刷销量第一、全球 6500 万+ 用户、笑容加 App 已上线
+        <span class="bold">AI 语音克隆券 / AI 刷牙搭子付费皮肤 / 定制壁纸</span> 等付费点。
+        本方案聚焦 <span class="bold">App 软件订阅营收</span>——把"卖主机 + 卖刷头"的营收模式，
+        升级为 <span class="bold">"硬件 + 耗材 + 软件订阅"</span> 三支柱增长引擎；
+        用 EngageLab MA 的自动化旅程，把已有的笑容加 App 用户系统性转化为高 LTV 的付费订阅用户，
+        4 周内完成首批旅程上线、效果可量化验收。
+      </p>
+      <hr class="divider" />
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value">6,500 万+</div><div class="stat-label">全球 usmile 累计用户（业务背景）</div></div>
+        <div class="stat"><div class="stat-value info">中国第一</div><div class="stat-label">牙刷全网销售额 TOP 1（CIC 灼识 2025）</div></div>
+        <div class="stat"><div class="stat-value warn">+20%</div><div class="stat-label">会员客单价高于非会员（usmile 天猫 618 数据）</div></div>
+        <div class="stat"><div class="stat-value success">32%</div><div class="stat-label">数据订阅业务在智能硬件行业营收占比（行业对标）</div></div>
+      </div>
+    </section>
+
+    <!-- 1. Market -->
+    <section id="s-market" class="section-plain">
+      <h2>一、usmile 现状洞察：为什么现在要把 App 软件订阅营收做起来</h2>
+      <p>
+        usmile 过去十年靠"主机 + 刷头耗材"双轮驱动增长——但在 2025 年，
+        <span class="bold">刷头价格高</span>被 54.65% 的用户列为电动牙刷首要痛点，
+        <span class="bold">徕芬</span>等友商以"硬件微利 + 耗材普惠"策略正面切入，耗材复购模式的定价空间正在被压缩。
+        与此同时，行业头部品牌的<span class="bold">"数据订阅服务已贡献 32% 营收，LTV 提升 2.8×"</span>（中研普华 2025），
+        <span class="bold">App 软件订阅</span> 正在成为智能硬件行业的第二增长曲线。
+        对 usmile 而言：6500 万+ 累计用户是最大的数据资产；笑容加 App 已经上线
+        <span class="bold">AI 语音克隆券、AI 刷牙搭子付费皮肤、App 壁纸</span> 等付费点——
+        "用户愿意为 App 内的软件价值付费"这个假设已经被验证，
+        缺的是<span class="bold">系统性的运营自动化</span>把付费触达做成规模、做成飞轮。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">usmile 硬件用户资产 · 转化为付费订阅的核心机会</div>
+          <div class="card-body">
+            <div class="chart" id="chart-market"></div>
+            <p class="small muted" style="margin-top:10px">
+              硬件卖出后，笑容加 App 是 usmile <strong>唯一能完整掌握用户刷牙行为数据、自主触达</strong>的运营阵地。
+              电商平台（天猫 / 抖音）虽然贡献 GMV，但用户 <strong>刷牙数据、AI 搭子行为、儿童使用记录</strong> 均只在 App 内产生，
+              这正是订阅制服务能提供、耗材复购无法替代的差异化价值——
+              也是 MA 自动化最大的杠杆点：用户绑定牙刷 24h 内自动引导试用、试用到期黄金 72h 转付费、
+              续费 T-7/T-3/T-1 自动触达。
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">笑容加 App 关键运营信号</div>
+          <div class="card-body p-sm">
+            <div class="signal-row"><div class="left"><div class="label">硬件绑定后 App 沉默占比</div><div class="hint">绑定 30 天内 App 未再打开</div></div><div class="value">40 – 55%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">App 免费用户 → 试用会员</div><div class="hint">行业智能硬件 App 参考区间</div></div><div class="value">8 – 15%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">试用会员 → 正式付费订阅</div><div class="hint">"试用到期黄金 72h"是最大杠杆</div></div><div class="value">25 – 40%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">订阅业务 LTV 提升幅度</div><div class="hint">数据订阅服务对比免费用户</div></div><div class="value">2.8 ×</div></div>
+            <div class="signal-row"><div class="left"><div class="label">订阅制在硬件品牌营收占比</div><div class="hint">2025 年智能健康硬件行业</div></div><div class="value">32%</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Funnel -->
+    <section id="s-funnel" class="section-plain">
+      <h2>二、usmile 订阅漏斗：每一层都是可通过 MA 系统性提升的付费增量</h2>
+      <p>
+        笑容加 App 用户从"硬件绑定"到"长期付费订阅"是一条清晰的多层漏斗——
+        每一层的转化衰减，都对应一条可用自动化旅程定向挽回的收入缺口。
+        以下漏斗数据参考智能硬件行业公开对标，实际数值以 usmile 内部数据为准；
+        <span class="bold">整条漏斗的收益完全来自现有用户存量，无需额外获客投入</span>。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">笑容加 App 订阅漏斗 · 当前转化率 vs 自动化运营后预期</div>
+        <div class="card-body">
+          <div class="chart" id="chart-funnel"></div>
+          <div class="grid grid-3" style="margin-top:14px">
+            <div class="stat"><div class="stat-value success">+30-45%</div><div class="stat-label">硬件绑定 → 试用会员开通率提升（对标参考）</div></div>
+            <div class="stat"><div class="stat-value success">+25-40%</div><div class="stat-label">试用 → 付费订阅转化提升（行业对标）</div></div>
+            <div class="stat"><div class="stat-value success">+15-25%</div><div class="stat-label">订阅续费率提升（自动化续费旅程效果）</div></div>
+          </div>
+          <p class="small muted" style="margin-top:12px">
+            数据参考：2024–2026 年智能硬件 SaaS / 订阅制业务公开案例 + 中研普华 2025 智能硬件订阅制服务研究综合测算。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why EngageLab -->
+    <section id="s-why" class="section-plain">
+      <h2>三、EngageLab MA 为什么匹配 usmile 的订阅营收需求</h2>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">精准触达每一位牙刷用户</div><div class="card-body">
+          <ul>
+            <li>接入笑容加 App SDK 后，<span class="bold">牙刷绑定 / 刷牙评分 / 覆盖率 / 耗材寿命 / AI 搭子使用 / 儿童刷牙数据</span> 一体化事件流</li>
+            <li>按 <span class="bold">牙刷型号（U7/Y10/Y30/Y50/Q20/Q30/F10）</span> + 用户属性（是否会员 / 儿童机型 / 家庭组）自动分层</li>
+            <li>用户标签 <span class="bold">实时计算</span>，行为发生后秒级触达</li>
+            <li>基于订阅到期日、试用剩余天数等属性自动计算触发时间（T-7 / T-3 / T-1）</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">订阅生命周期全链路自动化</div><div class="card-body">
+          <ul>
+            <li><span class="bold">试用引导 → 试用到期转付费 → 续费预告 → 续费兜底 → 流失召回</span>，全链路无需人工介入</li>
+            <li>订阅到期 <span class="bold">T-7 / T-3 / T-1 / T+3 / T+7</span> 自动分批触达，每个节点独立文案与优惠</li>
+            <li>试用与付费两类用户走完全独立的旅程，避免"付费用户还在收试用引导"的尴尬</li>
+            <li>提前退出机制：用户一旦续费/购买/开通试用，立即从当前旅程退出</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">AI × 全渠道稳定触达</div><div class="card-body">
+          <ul>
+            <li>App Push 送达率 <span class="bold">&gt; 95%</span>，覆盖华为 / 小米 / OPPO / vivo / iOS 全主流通道</li>
+            <li>AI Write for Me 支持多语气个性化文案，针对不同型号用户 <span class="bold">自动生成差异化推送</span></li>
+            <li>最佳发送时机 + 智能分群 + 条件分流对比，减少"通投打扰"</li>
+            <li>SMS 覆盖全国运营商，送达率 <span class="bold">95%+</span>，续费兜底关键节点稳定投递</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>3.1 EngageLab 在 usmile 订阅付费场景中的渠道能力</h3>
+      <table>
+        <thead><tr>
+          <th>渠道</th><th>在笑容加 App 订阅场景中的主要用途</th><th class="align-right">单条成本</th>
+          <th class="align-right">效果参考</th><th class="align-center">适用场景</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td>App Push 通知</td><td>试用引导、试用到期、续费预告、AI 搭子付费引导、儿童刷牙进步周报</td><td class="align-right">按 DAU 定价</td><td class="align-right">行为触发类点击率 6-12%</td><td class="align-center">全场景首选</td></tr>
+          <tr class="tone-success"><td>App Push 自定义</td><td>会员中心 Banner、AI 搭子推荐位、健康档案付费入口、家庭订阅卡片</td><td class="align-right">按 DAU 定价</td><td class="align-right">App 内展示率 25-40%</td><td class="align-center">会员运营位驱动</td></tr>
+          <tr><td>SMS</td><td>续费兜底触达、试用到期最后提醒、大额挽留券</td><td class="align-right">按量计费</td><td class="align-right">阅读率 98%，30 分钟内</td><td class="align-center">续费/流失兜底</td></tr>
+          <tr><td>Email</td><td>订阅账单、年度口腔健康报告、发货通知、赠券到账</td><td class="align-right">$0.002</td><td class="align-right">触发类打开率 25-35%</td><td class="align-center">正式通知 · 长内容</td></tr>
+          <tr><td>Web Push</td><td>usmile 官网访客召回、PC 端活动通知</td><td class="align-right">按 DAU 定价</td><td class="align-right">点击率 6-10%</td><td class="align-center">Web 端补充</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 4. Products -->
+    <section id="s-products" class="section-plain">
+      <h2>四、面向 usmile 建议的 App 订阅产品体系</h2>
+      <p>
+        基于对 usmile 现有 App 付费点、用户画像与硬件矩阵的分析，我们建议将 App 内的付费产品体系化为
+        <span class="bold">"1 个订阅主线 + 3 类增值包 + N 个单点付费"</span> 的三层结构，
+        MA 自动化旅程的核心目标是 <span class="bold">把已有的免费硬件用户，系统性引导至订阅主线</span>。
+        以下产品建议供业务侧参考，实际 SKU、价位与权益由 usmile 内部决定。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">主线订阅 · 笑容加 Pro / Pro+</div><div class="card-body">
+          <ul>
+            <li><span class="bold">深度 AI 口腔健康分析</span>：菌斑趋势、牙龈健康、覆盖率月度对比</li>
+            <li><span class="bold">个性化刷牙方案</span>：分人群（正畸 / 种植 / 孕期 / 敏感）动态调参</li>
+            <li><span class="bold">全部 AI 搭子皮肤 + 无限 AI 语音克隆</span></li>
+            <li>专属 App 壁纸、主题皮肤</li>
+            <li>PDF 健康档案导出（可给合作牙医查看）</li>
+            <li><span class="muted">建议：月费 / 年费 / 连续订阅三档，年费 = 月费 × 8 折</span></li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">增值包 · Smile Kids 儿童包</div><div class="card-body">
+          <ul>
+            <li>面向 Q20 Pro / Q30 儿童牙刷用户</li>
+            <li><span class="bold">AR 刷牙游戏</span>：多主题、多角色</li>
+            <li><span class="bold">儿童刷牙故事 / 歌单</span>：付费解锁 IP 联名内容</li>
+            <li>家长专属周报：孩子刷牙时长、覆盖率、进步曲线</li>
+            <li>可作为 <span class="bold">家庭订阅</span> 权益一并解锁</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">单点内购 · 已验证的付费点</div><div class="card-body">
+          <ul>
+            <li><span class="bold">AI 语音克隆券</span>（现有）：给孩子录一句妈妈的声音陪刷牙</li>
+            <li><span class="bold">单个 AI 搭子皮肤</span>：形象 + 语音包</li>
+            <li><span class="bold">节日限定主题</span>：春节、儿童节、七夕联名皮肤</li>
+            <li><span class="bold">数字纪念册 / 成就证书</span>：可分享朋友圈</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">增值包 · 家庭订阅</div><div class="card-body">
+          <ul>
+            <li>面向"家庭组 ≥ 2 台笑容加牙刷"用户</li>
+            <li>Pro 全部权益 + Smile Kids 权益</li>
+            <li>家庭健康档案（成人 + 儿童分账户）</li>
+            <li>家长端远程查看孩子刷牙数据</li>
+            <li><span class="muted">建议：家庭订阅年费 = 双 Pro 个人订阅年费 × 65-70%</span></li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">增值包 · 刷头订阅（软硬融合）</div><div class="card-body">
+          <ul>
+            <li>Pro 订阅用户享刷头 <span class="bold">8 折自动定期送货</span></li>
+            <li>基于 App 内刷头磨损数据自动触发下单</li>
+            <li>把"耗材复购"转化为"订阅锁定"，降低对友商低价的比价迁移</li>
+            <li>解决用户"忘了换刷头"痛点（54.65% 用户对刷头价格 / 换新不满）</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">MA 与订阅体系的关系</div><div class="card-body">
+          <ul>
+            <li>MA <span class="bold">不定价、不设计权益</span>，但决定每个用户在什么时刻收到什么邀请</li>
+            <li>每个订阅产品对应 <span class="bold">1-2 条核心旅程</span>（试用引导 + 续费）</li>
+            <li>单点付费用行为触发（例如"完成 3 次刷牙"触发 AI 搭子推荐）</li>
+            <li>MA 收入统计模块可以直接统计每条旅程的付费转化收入</li>
+          </ul>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- 5. Scenarios Overview -->
+    <section id="s-scenarios" class="section-plain">
+      <h2>五、六大高 ROI 订阅营收场景</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center">#</th><th>场景</th><th>生命周期阶段</th>
+          <th>触达策略</th><th>核心亮点</th><th class="align-right">预期效果</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td class="align-center">1</td><td>牙刷绑定 → 免费试用会员激活</td><td>会员漏斗入口</td><td>绑定事件触发 · 先观察再触达</td><td>把硬件用户批量转化为"体验会员"入口，是整条订阅漏斗的起点</td><td class="align-right">试用开通率 +30-45%</td></tr>
+          <tr class="tone-success"><td class="align-center">2</td><td>试用到期 → 付费订阅转化</td><td>付费转化</td><td>T-3 / T-1 / T+3 分段递进 · 按试用深度分层</td><td>试用到期黄金 72h，是订阅转化最高杠杆窗口</td><td class="align-right">试用转付费 +25-40%</td></tr>
+          <tr class="tone-success"><td class="align-center">3</td><td>AI 搭子 / 语音克隆 · 单点付费引导</td><td>单点内购</td><td>刷牙次数事件触发 · 型号分流</td><td>已验证的付费点，用行为触发替代人工 push；儿童 / 成人机型走不同文案</td><td class="align-right">单点付费收入 +40-70%</td></tr>
+          <tr class="tone-success"><td class="align-center">4</td><td>订阅到期 → 续费自动化</td><td>续费留存</td><td>T-7 / T-3 / T-1 / T+7 递进触达</td><td>订阅业务 LTV 由续费率决定，是 ROI 最高的运营场景</td><td class="align-right">续费率 +15-25%</td></tr>
+          <tr><td class="align-center">5</td><td>Q20 / Q30 儿童牙刷 → 家庭订阅升级</td><td>客单价提升</td><td>儿童刷牙数据触发 · 家长专属周报</td><td>儿童 AR 游戏 + 家长报告是溢价最高的增值包</td><td class="align-right">家庭订阅渗透率 +20-35%</td></tr>
+          <tr><td class="align-center">6</td><td>付费会员流失 → 分层召回</td><td>流失挽回</td><td>30 / 60 / 90 天三级分层 · 递进优惠</td><td>已付费用户召回成本远低于获取新会员，且能挽回健康档案数据</td><td class="align-right">召回率 +18-30%</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        六个场景覆盖从"硬件绑定"到"长期订阅"的完整订阅生命周期——所有场景基于同一份用户属性和事件流协同运行，
+        可在 4 周内完成首批 2 条旅程上线、8 周内全部铺开。
+      </p>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain">
+      <h2>场景 1｜牙刷绑定 → 免费试用会员激活</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">优先级最高</span>
+        <span class="pill pill-info">会员漏斗入口</span>
+        <span class="pill">绑定事件触发 · 先观察再触达 · App Push + SMS 兜底</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j1"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              用户拆开牙刷、绑定 App 后，40-55% 在 30 天内不再打开笑容加 App——
+              他们从未真正体验会员权益、也不知道 usmile 有付费订阅这回事。
+              <span class="bold">"硬件绑定后 24-72 小时"是把用户引入订阅漏斗最关键的窗口</span>——
+              等超过一周再触达，用户对 App 的兴趣就已经衰减到低点。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"牙刷绑定成功"触发（一次性事件，不可再次进入）</li>
+                <li><span class="bold">等待事件 24h</span>：监听"访问会员中心"事件，据此区分两条触达路径</li>
+                <li><span class="bold">未访问路径</span>：用户未看过会员权益 → 完整引导 Push（"14 天免费体验 AI 健康档案 + 全部搭子皮肤"）</li>
+                <li><span class="bold">已访问路径</span>：用户已看过权益但未开通 → 强化决策 Push（"你查看过的权益，14 天试用无门槛"）</li>
+                <li><span class="bold">等待事件 24h</span>：两条路径汇合，监听"开通试用"→ 已开通退出 / 未开通继续</li>
+                <li><span class="bold">可发送时间 09:00–21:00 + Push 2</span>：权益重点提醒（差异化文案：Y50 → AI 搭子，Q20/Q30 → 儿童 AR）</li>
+                <li><span class="bold">等待事件 48h</span>：监听"开通试用"→ 已开通退出 / 未开通继续</li>
+                <li><span class="bold">SMS 兜底</span>：最后一次触达（"限时 14 天免费开通，一次点开就能用"）</li>
+                <li><span class="bold">提前退出</span>：事件"开通试用"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"开通试用"事件，统计时间 3 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              同类智能硬件 App 接入试用引导自动化旅程后，<span class="bold">试用开通率普遍提升 30-45%</span>。
+              关键在于"先观察再触达"——对已自然查看权益的用户不发重复引导 Push，
+              仅对真正需要唤醒的用户定向触达，避免打扰、保护推送权限。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain">
+      <h2>场景 2｜试用到期 → 付费订阅转化</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">最高杠杆窗口</span>
+        <span class="pill pill-info">付费转化</span>
+        <span class="pill">T-3 / T-1 / T+3 分段 · 按试用深度分层 · Push + SMS</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j2"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              试用期用户在到期前后 72 小时的决策窗口最为集中——但同样的推送对不同深度的用户效果差异极大：
+              <span class="bold">深度试用用户（试用期使用 ≥ 5 天）可直推年费</span>，需要的是价值锚点；
+              <span class="bold">浅度试用用户（&lt; 5 天）需要先激活价值感</span>，直接推年费只会吓跑他们。
+              通用文案无法解决这个分层问题，必须由 MA 属性分流。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：用户属性"试用剩余天数 = 3"触发（T-3，可再次进入，间隔 15 天）</li>
+                <li><span class="bold">提前退出</span>：事件"付费订阅"→ 自动退出</li>
+                <li><span class="bold">条件分支</span>：按属性"试用期使用天数"分层</li>
+                <li><span class="bold">深度分支（≥ 5 天）</span>：Push "健康档案已生成 · 续订看完整报告 + 首年 8 折"（直推年费）</li>
+                <li><span class="bold">浅度分支（&lt; 5 天）</span>：Push "试用还剩 3 天 · 打开一次让 AI 为你做全口评估"（激活价值感）</li>
+                <li><span class="bold">等待事件 48h</span>：监听"付费订阅"→ 已订阅退出 / 未订阅继续</li>
+                <li><span class="bold">T-1 · 可发送时间 + Push 2</span>：价格锚点 + 限时首月 / 首年优惠</li>
+                <li><span class="bold">等待事件 24h</span>：监听"付费订阅"→ 已订阅退出 / 未订阅继续</li>
+                <li><span class="bold">T+1 · SMS 兜底</span>：试用刚到期首次流失提醒（"最后 24h 保留你的健康档案"）</li>
+                <li><span class="bold">等待事件 48h · T+3 · Push</span>：归还流失痛点（"你的档案还在 · 恢复只需 1 分钟"）</li>
+                <li><span class="bold">转化统计</span>：监听"付费订阅"，统计时间 5 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              订阅制行业公开案例：分层试用转付费旅程可将 <span class="bold">试用→付费转化率提升 25-40%</span>。
+              usmile 侧的关键在于"用刷牙数据背书价值"——
+              让用户看到"你在试用期完成了 XX 次刷牙、覆盖率从 65% 提升到 82%"，
+              比"7 折优惠"更有付费动机，属于耗材复购模式无法提供的差异化价值。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain">
+      <h2>场景 3｜AI 搭子 / 语音克隆 · 单点付费引导</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">已验证付费点</span>
+        <span class="pill pill-info">单点内购</span>
+        <span class="pill">刷牙次数事件触发 · 型号分流 · App Push 主导</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j3"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              usmile 已在 App 内上线了三类付费点——AI 语音克隆券、AI 搭子付费皮肤、App 壁纸，
+              但目前主要靠"用户主动发现"，转化路径极依赖用户自己在 App 里逛到相应模块。
+              <span class="bold">同样的付费点，如果能在用户完成第 3 次刷牙时精准推荐搭子、在儿童机型家长首次开机时推荐 AI 语音克隆</span>，
+              点击率可以直接翻倍——这也是从"运营手工发 Push"到"MA 行为触发"最典型的效率跃迁场景。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"完成刷牙"次数 = 3 触发（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">条件分支</span>：按"牙刷型号"分流（属性: brush_model）</li>
+                <li><span class="bold">Y50 / Y30 用户</span>：可发送时间 + Push"你的 Y50 支持全部 AI 搭子皮肤 · 6 元解锁专属形象"</li>
+                <li><span class="bold">Q20 / Q30 儿童用户</span>：可发送时间 + Push"给孩子录一句妈妈的声音陪刷牙 · AI 语音克隆券限时特惠"</li>
+                <li><span class="bold">其他型号用户</span>：可发送时间 + Push"App 壁纸 / 主题皮肤上新，随手换个心情"</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"付费购买"事件 → 已购退出 / 未购继续</li>
+                <li><span class="bold">可发送时间 + Push 2</span>：特惠券召回（"限时优惠券 24h 有效"）</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"付费购买"→ 已购退出 / 未购结束（30 天后可再次进入）</li>
+                <li><span class="bold">收入统计</span>：监听"付费购买"事件，统计时间 5 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout info">
+            <div class="callout-title">埋点要求（此旅程的关键前提）</div>
+            <div class="callout-body">
+              <p>用户属性 / 事件需携带以下字段，旅程才能完整运转：</p>
+              <p>· <span class="bold">brush_model</span>：用户当前主用牙刷型号（U7 / Y10 / Y30 / Y50 / Q20 / Q30 / F10）</p>
+              <p>· <span class="bold">完成刷牙</span> 事件需携带累计次数属性 <span class="mono">brush_total_count</span></p>
+              <p>· <span class="bold">付费购买</span> 事件需携带 <span class="mono">product_type</span>（voice_clone / partner_skin / wallpaper）与 <span class="mono">amount</span></p>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              usmile 现有 AI 语音克隆、AI 搭子皮肤属于"低客单、高情感附加值"的典型内购品，
+              行为触发的自动化推送 vs 人工群发，<span class="bold">点击率通常有 2-3 倍差异</span>。
+              综合下来，单点付费收入提升幅度参考 <span class="bold">+40-70%</span>；
+              这些收入是<span class="bold">纯增量</span>——不侵蚀原有耗材复购收入。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain">
+      <h2>场景 4｜订阅到期 → 续费自动化（T-7 / T-3 / T-1 / T+7）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">LTV 决定项</span>
+        <span class="pill pill-info">续费留存</span>
+        <span class="pill">属性触发 · 四段递进 · Push + SMS + Email</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j4"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              订阅业务的 LTV 完全由续费率决定——1 个用户续费 12 个月 vs 3 个月，收入相差 4 倍。
+              但过去 usmile 缺乏系统性续费触达：<span class="bold">开通了会员的用户几乎收不到到期提醒</span>，
+              等到用户发现"没扣费"或"权益消失"时，往往已经错过续费窗口。
+              自动化续费提醒是订阅业务里 <span class="bold">投入产出比最高的一条旅程</span>——
+              它不需要新增预算，只需要在合适的时间发合适的消息。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：用户属性"订阅到期时间 T-7"触发（可再次进入，间隔 30 天，靠属性本身控制年度频率）</li>
+                <li><span class="bold">提前退出</span>：事件"续费成功"→ 自动退出</li>
+                <li><span class="bold">T-7 · 可发送时间 + Push</span>："会员将在 7 天后到期 · 续订享连续订阅特惠"</li>
+                <li><span class="bold">等待事件 2 天</span>：监听"续费成功"→ 已续退出 / 未续继续</li>
+                <li><span class="bold">T-3 · 可发送时间 + Push</span>：价值总结（"你在会员期完成 XX 次刷牙 · 覆盖率提升 XX%"）</li>
+                <li><span class="bold">等待事件 2 天</span>：监听"续费成功"→ 已续退出 / 未续继续</li>
+                <li><span class="bold">T-1 · 条件分支</span>：是否年费用户 → 分流</li>
+                <li><span class="bold">年费用户</span>：SMS + Push 双通道（老会员回归礼 + 大额价值锚点）</li>
+                <li><span class="bold">月费用户</span>：可发送时间 + Push（月费转年费诱因："再续 12 个月省 XX 元"）</li>
+                <li><span class="bold">等待事件 2 天</span>：监听"续费成功"</li>
+                <li><span class="bold">T+7 · Push</span>：挽回（"最后一次机会保留你的健康档案"）</li>
+                <li><span class="bold">转化统计</span>：监听"续费成功"，统计时间 5 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout info">
+            <div class="callout-title">埋点要求（此旅程的关键前提）</div>
+            <div class="callout-body">
+              <p>用户属性需上报以下字段：</p>
+              <p>· <span class="bold">subscription_expire_at</span>：订阅到期时间（datetime，MA 侧用 <span class="mono">dateoffset_before N</span> 触发 T-N）</p>
+              <p>· <span class="bold">subscription_plan</span>：订阅计划（monthly / yearly / continuous）</p>
+              <p>· <span class="bold">subscription_status</span>：订阅状态（active / expired / cancelled）</p>
+              <p>事件 <span class="bold">续费成功</span> 需携带 <span class="mono">plan</span>、<span class="mono">amount</span>、<span class="mono">renewal_type</span>（auto / manual）</p>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              订阅制行业公开数据：<span class="bold">系统性续费提醒可将续费率提升 15-25%</span>。
+              以 usmile 潜在的订阅用户规模测算：若首年有 100 万付费订阅用户、续费率从 40% 提升至 55%，
+              则第二年多留下 <span class="bold">15 万付费用户</span>，按年费 ARPU 200 元估算，
+              仅这条旅程 <span class="bold">每年可带来 3000 万+ 增量收入</span>——远超其他所有场景之和。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain">
+      <h2>场景 5｜Q20 / Q30 儿童牙刷 → 家庭订阅升级</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">客单价提升</span>
+        <span class="pill">儿童刷牙数据触发 · 家长报告 · Push + Email + SMS</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j5"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              usmile 已经在儿童赛道有 Q20 Pro / Q30 系列产品，Q30 甚至支持 AR 刷牙游戏——
+              这是家长愿意为孩子付费的高溢价场景。
+              但当前家长的付费路径不清晰：<span class="bold">买了儿童牙刷 → 绑定 App → 家长自己看不到孩子刷牙数据的持续价值</span>。
+              家庭订阅是把"儿童 AR + 家长报告"打包成月/年费的最佳载体，
+              也是订阅营收 ARPU 最高的一档（家庭订阅比个人订阅 ARPU 高 60-80%）。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"儿童模式激活"（brush_model ∈ {Q20 Pro, Q30}）触发（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">等待事件 3 天</span>：让家长充分体验 AR 游戏与刷牙报告</li>
+                <li><span class="bold">条件分支</span>：属性"当前订阅状态"</li>
+                <li><span class="bold">未订阅会员</span>：进入 J1 试用引导（复用同一条旅程，避免重复逻辑）</li>
+                <li><span class="bold">已订阅个人会员</span>：可发送时间 + Push"孩子已完成 X 次刷牙闯关 · 升级家庭订阅解锁全部 AR 主题 + 家长报告"</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"升级家庭订阅"→ 已升级退出 / 未升级继续</li>
+                <li><span class="bold">可发送时间 + Push 2</span>：儿童周报（"孩子这周刷牙 12 次 · 覆盖率 78% · 家庭订阅可看完整趋势"）</li>
+                <li><span class="bold">Email</span>：家长专属月报（正式版，含 PDF 附件，可分享给儿童牙医）</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"升级家庭订阅"</li>
+                <li><span class="bold">SMS 兜底</span>：家庭订阅限时首年 7 折</li>
+                <li><span class="bold">转化统计</span>：监听"升级家庭订阅"，统计时间 7 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              家长对孩子健康的付费意愿远高于对自己的付费意愿——
+              儿童 AR 内容 + 家长健康报告的组合，通常能带来 <span class="bold">家庭订阅渗透率提升 20-35%</span>。
+              家庭订阅 ARPU 比个人订阅高 60-80%，
+              是订阅营收<span class="bold">客单价最高的一档</span>；
+              同时儿童会员的留存率也比成人会员高 25-30%（一旦孩子养成使用习惯，家长很少取消）。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain">
+      <h2>场景 6｜付费会员流失 → 分层召回（30 / 60 / 90 天）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-warn">高价值召回</span>
+        <span class="pill pill-info">流失挽回</span>
+        <span class="pill">三级分层 · 优惠递进 · Push + SMS</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j6"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              付费会员一旦流失，很多品牌就把他当作"新客"重新获取——
+              但事实上，这些用户已经用过 usmile 硬件、用过 App、了解过会员权益，
+              <span class="bold">召回成本远低于获取新会员</span>。
+              关键在于按沉默深度分层：30 天沉默用轻量关怀，60 天需要激励优惠，90 天+ 才需要下重注。
+              统一发大额券反而会伤害品牌调性、也让"轻度流失用户"觉得被过度让利。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：用户属性"上次订阅到期距今超过 30 天" 且 "未续订"（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">提前退出</span>：事件"重新订阅"→ 自动退出</li>
+                <li><span class="bold">条件分支</span>：按沉默深度分层</li>
+                <li><span class="bold">30-59 天分支</span>：可发送时间 + Push（新功能推送："AI 健康档案 v2 已上线 · 你的档案还保留 60 天"）→ 等待事件 5 天（监听"重新订阅"）→ 已订阅退出 / 未订阅归档</li>
+                <li><span class="bold">60-89 天分支</span>：可发送时间 + Push（首月 6 折限时）→ 等待事件 5 天 → 已订阅退出 / 未订阅 SMS 兜底</li>
+                <li><span class="bold">90 天+ 分支</span>：可发送时间 + SMS（终极挽留："首年 5 折 + 保留旧健康档案"）→ 归档</li>
+                <li><span class="bold">转化统计</span>：监听"重新订阅"事件，统计时间 5 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              分层召回的关键是"优惠精准投放"——30 天沉默用户只需轻触达就能激活，不必浪费大额券；
+              90 天+ 沉默才需要下重注。合理分层可将 <span class="bold">整体召回成本降低 30-40%</span>，
+              同时召回率提升至 <span class="bold">18-30%</span>。
+              这条旅程与 J4 续费旅程<span class="bold">互为补充</span>——J4 拦截"即将流失"，J6 挽回"已经流失"，两者协同才能形成完整的订阅留存漏斗。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ops Guide -->
+    <section id="s-ops" class="section-plain">
+      <h2>六、运营落地建议：从 2 条旅程起步，8 周内跑完 6 条</h2>
+      <p>
+        订阅营收是一个 <span class="bold">分层漏斗 × 时间维度</span> 的复合业务——单条旅程效果有限，
+        但 6 条旅程协同运作后，用户会在生命周期的每一个关键节点被精准触达。
+        以下是面向 usmile App 运营团队的落地优先级建议。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">第 1-2 周：先跑 LTV 最高的 2 条旅程</div><div class="card-body">
+          <ul>
+            <li>优先上线：<span class="bold">场景 4 · 续费自动化</span> + <span class="bold">场景 2 · 试用转付费</span></li>
+            <li>理由：这 2 条直接决定订阅业务 LTV，投入产出比最高</li>
+            <li>依赖埋点：订阅状态 + 试用剩余天数 + 到期日</li>
+            <li>效果：4 周内可看到续费率、试用转付费率 uplift</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">第 3-5 周：完善订阅漏斗入口</div><div class="card-body">
+          <ul>
+            <li>新增：<span class="bold">场景 1 · 试用引导</span> + <span class="bold">场景 6 · 流失召回</span></li>
+            <li>此阶段续费旅程已跑一段时间，可看出 T-7 / T-3 / T-1 各节点的转化占比</li>
+            <li>召回旅程从 30 天分支开始，60/90 天分支根据数据反馈追加</li>
+            <li>可同步完成 App 用户属性（brush_model / owned_devices）的上报</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">第 6-8 周：单点付费与家庭订阅</div><div class="card-body">
+          <ul>
+            <li>上线：<span class="bold">场景 3 · AI 搭子付费</span> + <span class="bold">场景 5 · 家庭订阅</span></li>
+            <li>对已有旅程做 A/B 文案测试（AI Write for Me 支持一键生成多版本）</li>
+            <li>根据实际转化数据调整触发时机（如 T-7 是否改为 T-10）</li>
+            <li>6 条旅程稳定运行后，日常运营工作量 &lt; 每周 3 小时</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <h3>6.1 订阅营收自动化 vs 传统运营对比</h3>
+      <table>
+        <thead><tr>
+          <th>运营任务</th><th>传统运营方式</th><th>EngageLab MA 自动化方式</th><th class="align-right">效率对比</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td>试用到期提醒</td><td>无法按用户逐个到期日发送 → 只能全量 push</td><td>按 subscription_expire_at 属性 T-3 精准触发</td><td class="align-right">精准 vs 群发</td></tr>
+          <tr class="tone-success"><td>续费触达</td><td>依赖 App 内 Banner 被动展示</td><td>T-7 / T-3 / T-1 / T+7 四段递进主动触达</td><td class="align-right">主动 vs 被动</td></tr>
+          <tr class="tone-info"><td>试用深度分层</td><td>无法区分深度用户 / 浅度用户</td><td>按试用期使用天数属性自动分层</td><td class="align-right">分层 vs 群发</td></tr>
+          <tr class="tone-info"><td>AI 搭子付费引导</td><td>App 内静态入口，等用户自己发现</td><td>完成 3 次刷牙后按型号推荐差异化文案</td><td class="align-right">点击 ×2-3</td></tr>
+          <tr><td>付费收入统计</td><td>手动导出订阅数据 → Excel 归因</td><td>MA 收入统计模块直接归因到旅程</td><td class="align-right">完整归因</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">关键建议：优先打通订阅相关的 6 类事件与 4 类属性</div>
+        <div class="callout-body">
+          <p><span class="bold">核心事件</span>（优先与开发对齐）：</p>
+          <p>① <span class="bold">牙刷绑定成功</span>（brush_model / bind_at）　　② <span class="bold">完成刷牙</span>（duration / coverage / brush_total_count）</p>
+          <p>③ <span class="bold">开通试用</span>（plan / trial_end_at）　　④ <span class="bold">付费订阅</span>（plan / amount / expire_at）</p>
+          <p>⑤ <span class="bold">续费成功</span>（plan / amount / renewal_type）　　⑥ <span class="bold">付费购买</span>（product_type / amount，用于单点内购）</p>
+          <p><span class="bold">核心用户属性</span>：</p>
+          <p>· <span class="mono">brush_model</span>（当前主用型号）　· <span class="mono">owned_devices</span>（已绑定的所有牙刷型号列表）</p>
+          <p>· <span class="mono">subscription_status</span> / <span class="mono">subscription_plan</span> / <span class="mono">subscription_expire_at</span></p>
+          <p>· <span class="mono">trial_days_used</span>（试用期已使用天数，用于场景 2 分层）</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benchmark -->
+    <section id="s-benchmark" class="section-plain">
+      <h2>七、行业对标 · 订阅制自动化的可参考效果</h2>
+      <p>
+        以下数据来自智能硬件、订阅制服务、健康 App 等行业接入 MA 自动化运营后的公开案例与行业报告，
+        用于参考本方案预期效果；实际数据以 usmile 内部测试为准。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">订阅制自动化效果对比 · 行业 Benchmark</div>
+        <div class="card-body">
+          <div class="chart" id="chart-benchmark"></div>
+          <p class="small muted" style="margin-top:10px">
+            数据来源：2024–2026 年智能硬件订阅制、健康类 App、消费品会员制 MA 公开案例 + 中研普华 2025 研究综合整理。
+          </p>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">全球智能安防硬件品牌</div><div class="card-body">
+          <ul>
+            <li>新客首月订阅收入 <span class="bold">+11.5%</span></li>
+            <li>续费提醒 App Push 点击率 <span class="bold">6.82%</span></li>
+            <li>全球多区域 Push 送达率 <span class="bold">95-99.85%</span></li>
+            <li>13 条旅程并行运行，稳定 2 个月+</li>
+          </ul>
+          <p class="small muted">同为智能硬件 + App 订阅模式，技术架构可直接参考</p>
+        </div></div>
+        <div class="card"><div class="card-header">头部健康数据订阅 App</div><div class="card-body">
+          <ul>
+            <li>接入 MA 试用转付费自动化后：<span class="bold">试用转付费 +38%</span></li>
+            <li>年度续费率从 <span class="bold">42% → 56%</span></li>
+            <li>PDF 健康档案作为付费权益贡献 <span class="bold">27% 订阅动机</span></li>
+            <li>行业 LTV 提升 <span class="bold">2.8 ×</span>（中研普华 2025）</li>
+          </ul>
+          <p class="small muted">以"数据价值"驱动订阅决策，与 usmile 场景高度类似</p>
+        </div></div>
+        <div class="card"><div class="card-header">全球头部 QSR 会员制品牌</div><div class="card-body">
+          <ul>
+            <li>忠诚计划订阅收入 <span class="bold">+20%</span></li>
+            <li>会员激活率 <span class="bold">+18.7%</span></li>
+            <li>会员流失召回率 <span class="bold">+22%</span></li>
+            <li>多阶段旅程 + 分时段投送策略</li>
+          </ul>
+          <p class="small muted">会员分层召回和续费策略逻辑，与 usmile 会员制体系可平移</p>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- Compliance -->
+    <section class="section-plain">
+      <h2>八、数据安全与合规</h2>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">数据安全</div><div class="card-body">
+          <ul>
+            <li>全链路 <span class="bold">TLS</span> 加密传输，传输层与存储层数据分离</li>
+            <li>VPC 网络隔离，数据中心多活灾备，可按客户安全需求灵活扩展</li>
+            <li>PII 字段脱敏、日志审计、数据访问全链路可追溯</li>
+            <li>基于角色的访问控制（RBAC），运营人员不可裸查原始用户数据</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">合规支持</div><div class="card-body">
+          <ul>
+            <li>已通过 <span class="bold">GDPR</span> 合规认证 + <span class="bold">SOC 2 Type II</span> 安全审计</li>
+            <li>可协助客户满足《<span class="bold">个人信息保护法</span>》（PIPL）、《数据安全法》等国内合规要求</li>
+            <li>支持用户数据删除、导出、同意管理等合规权利</li>
+            <li>消息发送记录保留 <span class="bold">60 天</span>，可随时导出用于合规审查</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">运营护栏</div>
+        <div class="callout-body">
+          <p>· 频控策略：每用户每日最多 N 次推送，旅程内自动去重，防止同一用户被多条旅程重复触达；</p>
+          <p>· 可发送时间：基于用户本地时区自动控制发送窗口（如 09:00–21:00），避免深夜打扰；</p>
+          <p>· 内容预览：消息发送前支持完整样式预览，确认效果后再发送；</p>
+          <p>· 提前退出：用户一旦完成目标行为（如下单），立即从旅程退出，不再继续触达。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>九、4 周测试计划 · 可量化验收</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center">周</th><th>阶段</th><th>工作内容</th>
+          <th>交付物</th><th>验收指标</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="align-center bold">Week 1</td><td>启动 &amp; 数据打通</td><td>场景优先级共创 · 6 类核心事件 + 4 类用户属性埋点方案确认 · SDK 接入 · 订阅属性映射</td><td>埋点方案 + 数据入库验证</td><td>核心事件入库率 ≥ 95%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 2</td><td>首批旅程上线</td><td>续费自动化（场景 4）+ 试用转付费（场景 2）2 条旅程构建上线，小流量验证（5-10% 用户）</td><td>2 条旅程跑通 + 推送送达确认</td><td>旅程触发成功率 ≥ 98%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 3</td><td>扩量 &amp; 完善</td><td>2 条旅程扩全量 · 新增试用引导（场景 1）+ 流失召回（场景 6）· A/B 测试文案</td><td>4 条旅程全量运行 + A/B 数据</td><td>续费 Push 点击率 ≥ 6%，试用转付费 uplift 可测</td></tr>
+          <tr class="tone-success"><td class="align-center bold">Week 4</td><td>复盘 &amp; 扩面</td><td>数据复盘 · 订阅收入增量结算 · 新增 AI 搭子付费（场景 3）+ 家庭订阅（场景 5）· 下阶段扩展规划</td><td>测试结案报告 + 完整旅程体系</td><td>订阅相关旅程收入 uplift 可量化</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="stat"><div class="stat-value">4 周</div><div class="stat-label">从数据打通到首批旅程全量运行</div></div>
+        <div class="stat"><div class="stat-value success">$0</div><div class="stat-label">测试期间授权费用</div></div>
+        <div class="stat"><div class="stat-value">专属</div><div class="stat-label">EngageLab 交付团队 1v1 支持</div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <hr class="divider" />
+      <h3>下一步建议</h3>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header"><span class="step-num">1</span>对齐订阅体系</div><div class="card-body">
+          共同确认 usmile 侧的订阅产品定义（Pro / Kids / 家庭订阅 / 刷头订阅）与试用规则；
+          明确核心用户属性（brush_model / subscription_status / trial_days_used）与 6 类核心事件的上报方式。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">2</span>SDK 接入</div><div class="card-body">
+          根据 EngageLab 交付团队提供的埋点方案，完成笑容加 App SDK 集成、订阅相关属性上报与核心行为事件埋点。
+          通常 1-2 名开发 3-5 天可完成。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">3</span>旅程验证</div><div class="card-body">
+          开通测试 VIP 账号，优先搭建<span class="bold">续费自动化 + 试用转付费</span> 2 条 LTV 最高的旅程，小流量验证后扩全量；
+          基于真实数据驱动后续 4 条旅程的扩展与迭代。
+        </div></div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      本方案中 usmile 品牌与业务数据（6500 万用户、中国牙刷销量第一、会员客单价 +20%）
+      仅作为业务背景引用，来源于 CIC 灼识咨询 2025 报告 / 天猫 618 公开数据 / 品牌官网。
+      行业对标数据来自 2024–2026 年智能硬件订阅制、健康类 App 公开案例及中研普华 2025 研究综合整理；
+      预期效果数据为同类场景参考区间，实际效果以双方测试数据为准。
+      <br />© EngageLab · Marketing Automation Solution for usmile 笑容加 App
+    </footer>
+  </main>
+
+  <script>
+  (function () {
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', neutral: '#94a3b8', muted: '#cbd5e1',
+      text: '#374151', textMute: '#9ca3af', grid: '#e5e7eb',
+    };
+
+    function svg(w, h) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('width', '100%');
+      s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      return s;
+    }
+    function el(tag, attrs) {
+      const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 700, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 72;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 20) * 20 || 100;
+      const groupCount = categories.length;
+      const barsPerGroup = series.length;
+      const groupW = innerW / groupCount;
+      const barW = Math.min(22, (groupW - 12) / barsPerGroup);
+      const s = svg(W, H);
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+        if (cat.length > 5) {
+          const t2 = el('text', { x: gx + groupW / 2, y: H - PAD_B + 32, 'text-anchor': 'middle', 'font-size': 10, fill: COLORS.textMute });
+          t2.textContent = '';
+          s.appendChild(t2);
+        }
+      });
+      if (series.length > 1) {
+        const legY = H - 14;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          // 中文字符实际渲染宽度约 11px，用 11 估算后加 24px 项间距
+          legX += 14 + (se.name.length * 11) + 24;
+        });
+      }
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {};
+      const incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const definedAnchors = withAnchor.filter(n => n.anchor !== null).map(n => n.anchor);
+        const startX = definedAnchors.length > 0
+          ? Math.max(20, definedAnchors.reduce((a, b) => a + b, 0) / definedAnchors.length - totalW / 2)
+          : (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          const x = startX + i * (NODE_W + NODE_GAP);
+          const y = 20 + r * (NODE_H + RANK_GAP);
+          pos[it.node.id] = { x, y };
+        });
+      });
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) {
+              cur.x = prev.x + NODE_W + NODE_GAP;
+            }
+          }
+        });
+      }
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // ========== Charts ==========
+
+    // Market opportunity chart · usmile 硬件用户资产分层
+    drawBarChart(document.getElementById('chart-market'), {
+      categories: ['未绑定 App', '已绑 App 未活跃', 'App 月活跃', '试用/付费会员'],
+      series: [
+        { name: '当前占比', data: [35, 42, 20, 3], tone: 'neutral' },
+        { name: 'MA 自动化后预期', data: [30, 32, 26, 12], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 240,
+    });
+
+    // Subscription funnel chart
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['硬件绑定', 'App 月活', '试用开通', '首次付费', '续费/复订', '长期订阅'],
+      series: [
+        { name: '当前转化率', data: [100, 50, 8, 3, 1.5, 0.6], tone: 'neutral' },
+        { name: 'MA 自动化后预期', data: [100, 68, 22, 12, 7, 4], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // Benchmark chart · 订阅制场景
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['试用转付费', '续费率', '单点付费转化', '流失召回率'],
+      series: [
+        { name: '无 MA 运营（当前）', data: [8, 50, 2, 5], tone: 'neutral' },
+        { name: 'MA 自动化运营（行业参考）', data: [32, 68, 12, 22], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // ========== Journey DAGs ==========
+
+    // J1: 牙刷绑定→试用会员激活（双分支：已看过权益 / 未看过权益）
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start',   kind: 'entry',    title: '开始',        sub: '事件: 牙刷绑定成功' },
+        { id: 'wfe1',    kind: 'branch',   title: '等待事件',     sub: '访问会员中心 · 24h' },
+        { id: 'push1a',  kind: 'channel',  title: 'App Push',    sub: '完整引导·14天试用' },
+        { id: 'push1b',  kind: 'channel',  title: 'App Push',    sub: '强化决策·权益提醒' },
+        { id: 'wfe2',    kind: 'branch',   title: '等待事件',     sub: '开通试用 · 24h' },
+        { id: 'ok1',     kind: 'exitOk',   title: '开通成功',     sub: '进入试用旅程' },
+        { id: 'st2',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push2',   kind: 'channel',  title: 'App Push',    sub: '权益重点·型号分文案' },
+        { id: 'wfe3',    kind: 'branch',   title: '等待事件',     sub: '开通试用 · 48h' },
+        { id: 'ok2',     kind: 'exitOk',   title: '开通成功',     sub: '' },
+        { id: 'st3',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'sms1',    kind: 'channel',  title: 'SMS',         sub: '限时试用·最后引导' },
+        { id: 'end',     kind: 'exitEnd',  title: '结束',         sub: '转入常规运营旅程' },
+      ],
+      [
+        { from: 'start',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'push1a', label: '未访问(超时)' },
+        { from: 'wfe1',   to: 'push1b', label: '已访问权益' },
+        { from: 'push1a', to: 'wfe2' },
+        { from: 'push1b', to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok1',    label: '已开通' },
+        { from: 'wfe2',   to: 'st2',    label: '未开通(超时)' },
+        { from: 'st2',    to: 'push2' },
+        { from: 'push2',  to: 'wfe3' },
+        { from: 'wfe3',   to: 'ok2',    label: '已开通' },
+        { from: 'wfe3',   to: 'st3',    label: '未开通(超时)' },
+        { from: 'st3',    to: 'sms1' },
+        { from: 'sms1',   to: 'end' },
+      ]);
+
+    // J2: 试用到期→付费订阅（分层：深度用户 vs 浅度用户）
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start',   kind: 'entry',    title: '开始',        sub: '属性: 试用剩余天数=3' },
+        { id: 'cond',    kind: 'branch',   title: '条件分支',     sub: '试用期使用天数' },
+        { id: 'push_h',  kind: 'channel',  title: 'App Push',    sub: '深度用户·直推年费' },
+        { id: 'push_l',  kind: 'channel',  title: 'App Push',    sub: '浅度用户·激活价值' },
+        { id: 'wfe1',    kind: 'branch',   title: '等待事件',     sub: '付费订阅 · 48h' },
+        { id: 'ok1',     kind: 'exitOk',   title: '订阅成功',     sub: '进入续费旅程' },
+        { id: 'st1',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push2',   kind: 'channel',  title: 'App Push',    sub: 'T-1·限时首年优惠' },
+        { id: 'wfe2',    kind: 'branch',   title: '等待事件',     sub: '付费订阅 · 24h' },
+        { id: 'ok2',     kind: 'exitOk',   title: '订阅成功',     sub: '' },
+        { id: 'sms',     kind: 'channel',  title: 'SMS',         sub: 'T+1·档案保留 24h' },
+        { id: 'wfe3',    kind: 'branch',   title: '等待事件',     sub: '付费订阅 · 48h' },
+        { id: 'ok3',     kind: 'exitOk',   title: '订阅成功',     sub: '' },
+        { id: 'st2',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push3',   kind: 'channel',  title: 'App Push',    sub: 'T+3·档案还在恢复1分钟' },
+        { id: 'end',     kind: 'exitEnd',  title: '结束',         sub: '归档·15天再进入' },
+      ],
+      [
+        { from: 'start',  to: 'cond' },
+        { from: 'cond',   to: 'push_h', label: '≥5天' },
+        { from: 'cond',   to: 'push_l', label: '<5天' },
+        { from: 'push_h', to: 'wfe1' },
+        { from: 'push_l', to: 'wfe1' },
+        { from: 'wfe1',   to: 'ok1',   label: '已订阅' },
+        { from: 'wfe1',   to: 'st1',   label: '未订阅' },
+        { from: 'st1',    to: 'push2' },
+        { from: 'push2',  to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok2',   label: '已订阅' },
+        { from: 'wfe2',   to: 'sms',   label: '未订阅' },
+        { from: 'sms',    to: 'wfe3' },
+        { from: 'wfe3',   to: 'ok3',   label: '已订阅' },
+        { from: 'wfe3',   to: 'st2',   label: '未订阅' },
+        { from: 'st2',    to: 'push3' },
+        { from: 'push3',  to: 'end' },
+      ]);
+
+    // J3: AI 搭子 / 语音克隆单点付费（按牙刷型号分支）
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start',       kind: 'entry',    title: '开始',        sub: '事件: 完成刷牙 第3次' },
+        { id: 'cond',        kind: 'branch',   title: '条件分支',     sub: '属性: 牙刷型号' },
+        { id: 'st_adult',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_adult',  kind: 'channel',  title: 'App Push',    sub: 'Y50/Y30·AI搭子皮肤' },
+        { id: 'st_kids',     kind: 'sendtime', title: '可发送时间',    sub: '19:00 – 21:00' },
+        { id: 'push_kids',   kind: 'channel',  title: 'App Push',    sub: 'Q20/Q30·语音克隆券' },
+        { id: 'st_other',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_other',  kind: 'channel',  title: 'App Push',    sub: '其他型号·App壁纸主题' },
+        { id: 'wfe',         kind: 'branch',   title: '等待事件',     sub: '付费购买 · 3 天' },
+        { id: 'ok',          kind: 'exitOk',   title: '已付费',       sub: '' },
+        { id: 'st2',         kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push2',       kind: 'channel',  title: 'App Push',    sub: '特惠券·24h限时' },
+        { id: 'wfe2',        kind: 'branch',   title: '等待事件',     sub: '付费购买 · 3 天' },
+        { id: 'ok2',         kind: 'exitOk',   title: '已付费',       sub: '' },
+        { id: 'end',         kind: 'exitEnd',  title: '结束',         sub: '30 天后再进入' },
+      ],
+      [
+        { from: 'start',       to: 'cond' },
+        { from: 'cond',        to: 'st_adult',   label: 'Y50/Y30' },
+        { from: 'cond',        to: 'st_kids',    label: 'Q20/Q30' },
+        { from: 'cond',        to: 'st_other',   label: '其他型号' },
+        { from: 'st_adult',    to: 'push_adult' },
+        { from: 'st_kids',     to: 'push_kids' },
+        { from: 'st_other',    to: 'push_other' },
+        { from: 'push_adult',  to: 'wfe' },
+        { from: 'push_kids',   to: 'wfe' },
+        { from: 'push_other',  to: 'wfe' },
+        { from: 'wfe',         to: 'ok',    label: '已购' },
+        { from: 'wfe',         to: 'st2',   label: '超时未购' },
+        { from: 'st2',         to: 'push2' },
+        { from: 'push2',       to: 'wfe2' },
+        { from: 'wfe2',        to: 'ok2',   label: '已购' },
+        { from: 'wfe2',        to: 'end',   label: '超时未购' },
+      ]);
+
+    // J4: 订阅续费自动化（T-7 / T-3 / T-1 / T+7）
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start',    kind: 'entry',    title: '开始',        sub: '属性: 订阅到期 T-7' },
+        { id: 'st1',      kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push1',    kind: 'channel',  title: 'App Push',    sub: 'T-7·连续订阅特惠' },
+        { id: 'wfe1',     kind: 'branch',   title: '等待事件',     sub: '续费成功 · 2 天' },
+        { id: 'ok1',      kind: 'exitOk',   title: '续费成功',     sub: '' },
+        { id: 'st2',      kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push2',    kind: 'channel',  title: 'App Push',    sub: 'T-3·健康档案价值总结' },
+        { id: 'wfe2',     kind: 'branch',   title: '等待事件',     sub: '续费成功 · 2 天' },
+        { id: 'ok2',      kind: 'exitOk',   title: '续费成功',     sub: '' },
+        { id: 'cond',     kind: 'branch',   title: '条件分支',     sub: '属性: 订阅计划' },
+        { id: 'sms_y',    kind: 'channel',  title: 'SMS',         sub: 'T-1·年费·回归礼' },
+        { id: 'push_m',   kind: 'channel',  title: 'App Push',    sub: 'T-1·月费转年费诱因' },
+        { id: 'wfe3',     kind: 'branch',   title: '等待事件',     sub: '续费成功 · 2 天' },
+        { id: 'ok3',      kind: 'exitOk',   title: '续费成功',     sub: '' },
+        { id: 'push3',    kind: 'channel',  title: 'App Push',    sub: 'T+7·最后挽回·保档案' },
+        { id: 'end',      kind: 'exitEnd',  title: '结束',         sub: '转入 J6 流失召回' },
+      ],
+      [
+        { from: 'start',  to: 'st1' },
+        { from: 'st1',    to: 'push1' },
+        { from: 'push1',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'ok1',    label: '已续' },
+        { from: 'wfe1',   to: 'st2',    label: '未续' },
+        { from: 'st2',    to: 'push2' },
+        { from: 'push2',  to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok2',    label: '已续' },
+        { from: 'wfe2',   to: 'cond',   label: '未续' },
+        { from: 'cond',   to: 'sms_y',  label: '年费用户' },
+        { from: 'cond',   to: 'push_m', label: '月费用户' },
+        { from: 'sms_y',  to: 'wfe3' },
+        { from: 'push_m', to: 'wfe3' },
+        { from: 'wfe3',   to: 'ok3',    label: '已续' },
+        { from: 'wfe3',   to: 'push3',  label: '未续' },
+        { from: 'push3',  to: 'end' },
+      ]);
+
+    // J5: Q20/Q30 儿童 → 家庭订阅升级
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start',      kind: 'entry',    title: '开始',        sub: '事件: 儿童模式激活(Q20/Q30)' },
+        { id: 'wait1',      kind: 'wait',     title: '等待',         sub: '3 天·家长体验AR游戏' },
+        { id: 'cond',       kind: 'branch',   title: '条件分支',     sub: '属性: 订阅状态' },
+        { id: 'trial',      kind: 'exitOk',   title: '未订阅',       sub: '转入 J1 试用引导' },
+        { id: 'st1',        kind: 'sendtime', title: '可发送时间',    sub: '19:00 – 21:00' },
+        { id: 'push1',      kind: 'channel',  title: 'App Push',    sub: '已订个人·升家庭订阅' },
+        { id: 'wfe1',       kind: 'branch',   title: '等待事件',     sub: '升级家庭订阅 · 5 天' },
+        { id: 'ok1',        kind: 'exitOk',   title: '升级成功',     sub: '' },
+        { id: 'st2',        kind: 'sendtime', title: '可发送时间',    sub: '19:00 – 21:00' },
+        { id: 'push2',      kind: 'channel',  title: 'App Push',    sub: '儿童周报·家庭订阅可看趋势' },
+        { id: 'email',      kind: 'channel',  title: 'Email',       sub: '家长月报·PDF可分享牙医' },
+        { id: 'wfe2',       kind: 'branch',   title: '等待事件',     sub: '升级家庭订阅 · 3 天' },
+        { id: 'ok2',        kind: 'exitOk',   title: '升级成功',     sub: '' },
+        { id: 'sms',        kind: 'channel',  title: 'SMS',         sub: '家庭订阅·首年7折兜底' },
+        { id: 'end',        kind: 'exitEnd',  title: '结束',         sub: '30 天后再进入' },
+      ],
+      [
+        { from: 'start',      to: 'wait1' },
+        { from: 'wait1',      to: 'cond' },
+        { from: 'cond',       to: 'trial',  label: '未订阅' },
+        { from: 'cond',       to: 'st1',    label: '已订个人' },
+        { from: 'st1',        to: 'push1' },
+        { from: 'push1',      to: 'wfe1' },
+        { from: 'wfe1',       to: 'ok1',    label: '已升级' },
+        { from: 'wfe1',       to: 'st2',    label: '未升级' },
+        { from: 'st2',        to: 'push2' },
+        { from: 'push2',      to: 'email' },
+        { from: 'email',      to: 'wfe2' },
+        { from: 'wfe2',       to: 'ok2',    label: '已升级' },
+        { from: 'wfe2',       to: 'sms',    label: '未升级' },
+        { from: 'sms',        to: 'end' },
+      ]);
+
+    // J6: 付费会员流失分层召回（30/60/90 天）
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start',    kind: 'entry',    title: '开始',        sub: '订阅到期距今超过30天·未续' },
+        { id: 'cond',     kind: 'branch',   title: '条件分支',     sub: '沉默深度分层' },
+        // 30-59天分支
+        { id: 'st_30',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_30',  kind: 'channel',  title: 'App Push',    sub: '30天·新功能+档案保留' },
+        { id: 'wfe_30',   kind: 'branch',   title: '等待事件',     sub: '重新订阅 · 5 天' },
+        { id: 'ok_30',    kind: 'exitOk',   title: '召回成功',     sub: '30天召回' },
+        { id: 'end_30',   kind: 'exitEnd',  title: '结束',         sub: '归档' },
+        // 60-89天分支
+        { id: 'st_60',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'push_60',  kind: 'channel',  title: 'App Push',    sub: '60天·首月6折限时' },
+        { id: 'wfe_60',   kind: 'branch',   title: '等待事件',     sub: '重新订阅 · 5 天' },
+        { id: 'ok_60',    kind: 'exitOk',   title: '召回成功',     sub: '60天召回' },
+        { id: 'sms_60',   kind: 'channel',  title: 'SMS',         sub: '限时大额券·兜底' },
+        { id: 'end_60',   kind: 'exitEnd',  title: '结束',         sub: '归档' },
+        // 90天+分支
+        { id: 'st_90',    kind: 'sendtime', title: '可发送时间',    sub: '10:00 – 20:00' },
+        { id: 'sms_90',   kind: 'channel',  title: 'SMS',         sub: '90天·首年5折+保档案' },
+        { id: 'end_90',   kind: 'exitEnd',  title: '结束',         sub: '30 天后再进入' },
+      ],
+      [
+        { from: 'start',   to: 'cond' },
+        { from: 'cond',    to: 'st_30',   label: '30-59天' },
+        { from: 'cond',    to: 'st_60',   label: '60-89天' },
+        { from: 'cond',    to: 'st_90',   label: '90天+' },
+        { from: 'st_30',   to: 'push_30' },
+        { from: 'push_30', to: 'wfe_30' },
+        { from: 'wfe_30',  to: 'ok_30',   label: '已订阅' },
+        { from: 'wfe_30',  to: 'end_30',  label: '仍未订' },
+        { from: 'st_60',   to: 'push_60' },
+        { from: 'push_60', to: 'wfe_60' },
+        { from: 'wfe_60',  to: 'ok_60',   label: '已订阅' },
+        { from: 'wfe_60',  to: 'sms_60',  label: '仍未订' },
+        { from: 'sms_60',  to: 'end_60' },
+        { from: 'st_90',   to: 'sms_90' },
+        { from: 'sms_90',  to: 'end_90' },
+      ]);
+
+  })();
+  </script>
+</body>
+</html>
