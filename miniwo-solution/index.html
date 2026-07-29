@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA · Miniwo 创意生活模拟平台增长方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #7c3aed;
+      --accent-soft: #ede9fe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #faf9ff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 920px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-value.accent { color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.accent { border-left-color: var(--accent); background: var(--accent-soft); }
+    .callout.accent .callout-title { color: var(--accent); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    tr.tone-accent td { background: rgba(124, 58, 237, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+
+    @media (max-width: 900px) {
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-12-1 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA · Miniwo 增长方案</span>
+      <a href="#s-product">产品洞察</a>
+      <a href="#s-funnel">用户漏斗</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-scenarios">八大场景</a>
+      <a href="#s-journey1">旅程详解</a>
+      <a href="#s-benchmark">数据参照</a>
+      <a href="#s-compliance">合规安全</a>
+      <a href="#s-plan">落地计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <a class="back-home" href="../">← 返回首页</a>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-accent">Miniwo · Cuboid.AI</span>
+        <span class="pill">Creative Life Simulation · UGC × AI</span>
+        <span class="pill">北美 · 中国 · 日本 · 拉美（EN / 中 / 日 / ES）</span>
+        <span class="pill pill-info">Waitlist 阶段 · App Store / Google Play</span>
+      </div>
+      <h1>EngageLab MA · Miniwo 创意生活模拟平台增长方案</h1>
+      <p class="hero-subtitle">
+        面向 Miniwo「上传角色 · 生成故事 · 建立世界 · 分享社区」的 AI-native 生活模拟平台——
+        在 <span class="bold">Waitlist 转化、首张 Story Card Aha 时刻、Life Loop 每日唤醒、
+        AI 生成额度订阅转化、好友世界互访裂变</span> 五个核心增长杠杆上，
+        用一套多语言、隐私合规、事件触发的自动化旅程体系，
+        在 <span class="bold">Waitlist → 首角上传 → 首卡生成 → 分享裂变 → 订阅付费</span>
+        全链路建立可量化的增长闭环。
+      </p>
+      <hr class="divider" />
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value">4×</div><div class="stat-label">Waitlist 转化率 vs 无预热触达</div></div>
+        <div class="stat"><div class="stat-value info">2.4×</div><div class="stat-label">Life Loop 每日回访提升</div></div>
+        <div class="stat"><div class="stat-value success">+35%</div><div class="stat-label">Story Card 分享后 K 因子提升</div></div>
+        <div class="stat"><div class="stat-value accent">+22%</div><div class="stat-label">AI 额度耗尽 → 订阅转化提升</div></div>
+      </div>
+    </section>
+
+    <!-- 1. Product Insight -->
+    <section id="s-product" class="section-plain">
+      <h2>一、Miniwo 是什么？为什么它需要一套「叙事型」MA</h2>
+      <p>
+        Miniwo（由 Cuboid.AI 打造）是一个 AI 驱动的<span class="bold">创意生活模拟</span>产品：
+        用户上传一张照片，把想留住的人物「带进」自己的 Miniwo 世界，
+        以漫画风格生成 <span class="bold">Story Card（故事卡）</span>，
+        并在 Magic / Future / Industrial 三大文明主题世界中，
+        通过 <span class="bold">Meet · Choose · Create · Remember</span> 的 Life Loop 持续生长自己的故事。
+        每个玩家的 Miniwo 都是独一无二的、<span class="bold">可被其他玩家探访的活的世界</span>。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">产品形态</div><div class="card-body">
+          <ul>
+            <li><span class="bold">UGC × AI × 社交沙盒</span>：不是被动内容消费，是玩家共创的活世界</li>
+            <li>核心动作：<span class="bold">上传照片 → 生成角色 → 生成 Story Card → 世界扩展 → 分享/互访</span></li>
+            <li>三大主题世界：Magic World / Future City / Industrial World，文明随故事生长</li>
+            <li>Story Card 是可分享的漫画格式，天然具备社交传播属性</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">用户画像</div><div class="card-body">
+          <ul>
+            <li><span class="bold">Gen Z 与年轻千禧一代</span>：18–30 岁，动漫/二次元/OC 创作者高浓度</li>
+            <li>四语言主力市场：<span class="bold">EN / 中文 / 日本語 / Español</span></li>
+            <li>行为特征：多设备切换、社媒重度使用、对隐私/UGC 内容审核敏感</li>
+            <li>付费动机：AI 生成额度、独家世界皮肤、优先访问权、订阅制</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">为什么"叙事型" MA 是刚需</div><div class="card-body">
+          <ul>
+            <li>普通推送 = 打断玩家<span class="bold">当前的故事</span>，反而降低留存</li>
+            <li>Miniwo 的推送必须像<span class="bold">「你的角色写给你的一封信」</span>：
+                <span class="muted">「你的角色 Aria 昨晚在图书馆遇见了一个新的旅人…」</span></li>
+            <li>需要「角色属性 + 世界状态 + 生成额度 + 分享轨迹」四维实时数据支撑</li>
+            <li>叙事型 Push 打开率可达行业均值的 <span class="bold">3–5 倍</span></li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>1.1 Miniwo 的独特增长机制 · 与传统 App 有何不同</h3>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header">对比：传统内容 App vs Miniwo</div>
+          <div class="card-body" style="padding:0">
+            <table>
+              <thead><tr><th>维度</th><th>传统内容 App</th><th>Miniwo（生活模拟 × UGC）</th></tr></thead>
+              <tbody>
+                <tr><td>核心留存动作</td><td>刷/看</td><td class="bold">上传 → 生成 → 分享 → 互访</td></tr>
+                <tr><td>Aha 时刻</td><td>发现感兴趣内容</td><td class="bold">第一张 Story Card 生成瞬间</td></tr>
+                <tr><td>付费触发点</td><td>会员/内容解锁</td><td class="bold">AI 生成额度耗尽 / 世界扩展槽位不足</td></tr>
+                <tr><td>裂变机制</td><td>邀请奖励</td><td class="bold">Story Card 天然可分享 · 反向邀请</td></tr>
+                <tr><td>触达文案</td><td>推荐/热榜</td><td class="bold">角色第一人称 · 世界事件</td></tr>
+                <tr><td>召回叙事</td><td>"你已 X 天未打开"</td><td class="bold">"你的角色在世界里发生的事"</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Miniwo 关键业务信号</div>
+          <div class="card-body p-sm">
+            <div class="signal-row"><div class="left"><div class="label">Waitlist → 邀请码激活率</div><div class="hint">当前 gated 阶段核心指标</div></div><div class="value">15 – 30%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">首次打开 → 首张照片上传</div><div class="hint">Aha 时刻的前置门槛</div></div><div class="value">40 – 55%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">首角生成 → 首张 Story Card</div><div class="hint">Aha 时刻转化</div></div><div class="value">55 – 70%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">Story Card 生成 → 对外分享率</div><div class="hint">UGC 裂变入口</div></div><div class="value">18 – 32%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">D7 生活模拟类留存基准</div><div class="hint">Sensor Tower 2024–2025</div></div><div class="value">15 – 25%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">AI 生成额度 → 订阅转化</div><div class="hint">高意向节点转化</div></div><div class="value">4 – 9%</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Funnel -->
+    <section id="s-funnel" class="section-plain">
+      <h2>二、Miniwo 独有的九层用户漏斗：每层都有明确挽回空间</h2>
+      <p>
+        Miniwo 的漏斗与传统 App 差异极大——<span class="bold">「Waitlist」和「照片上传」两个前置门槛</span>会显著过滤用户，
+        但一旦跨过<span class="bold">首张 Story Card 生成</span>这个 Aha 节点，
+        用户留存显著跳升；再进一步进入<span class="bold">分享 / 好友互访 / 订阅</span>三层深度价值池后，
+        单个用户的<span class="bold">生命周期价值 (LTV)</span> 与<span class="bold">自然裂变系数 (K 因子)</span> 都会显著抬升。
+        每一层衰减都对应一个可通过<span class="bold">事件触发 + 叙事化文案 + 多渠道分层</span>干预的运营缺口。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">Miniwo 典型用户漏斗 · 当前转化率 vs 自动化运营后预期</div>
+        <div class="card-body">
+          <div class="chart" id="chart-funnel"></div>
+          <div class="grid grid-4" style="margin-top:14px">
+            <div class="stat"><div class="stat-value success">+10 – 20%</div><div class="stat-label">Waitlist → 首次登录激活</div></div>
+            <div class="stat"><div class="stat-value success">+15 – 25%</div><div class="stat-label">首次登录 → 首角上传</div></div>
+            <div class="stat"><div class="stat-value success">+20 – 35%</div><div class="stat-label">Story Card 对外分享率</div></div>
+            <div class="stat"><div class="stat-value success">+3 – 7%</div><div class="stat-label">额度耗尽 → 订阅转化</div></div>
+          </div>
+          <p class="small muted" style="margin-top:12px">
+            基准参考：Sensor Tower / Data.ai 2024–2025 年生活模拟、UGC 创作类 App（Zepeto / IMVU / Character.AI / Reface / Bondee 等）
+            公开数据综合测算；实际效果以 Miniwo 上线测试数据为准。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why -->
+    <section id="s-why" class="section-plain">
+      <h2>三、为什么 Miniwo 应该选择 EngageLab MA</h2>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">全球触达 · 多语言原生</div><div class="card-body">
+          <ul>
+            <li>原生支持 <span class="bold">EN / 中文 / 日本語 / Español</span> 四语言变体一键分发</li>
+            <li><span class="bold">终端时区</span> 组件自动适配全球玩家的本地黄金时段</li>
+            <li>App Push、WhatsApp、SMS、Email、Web Push、LINE 全渠道原生集成</li>
+            <li>113 国接入、1000+ 发信 IP，覆盖 Miniwo 目标市场</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">叙事型触达 · AI 文案生成</div><div class="card-body">
+          <ul>
+            <li><span class="bold">AI Write</span> 基于角色属性 / 世界状态 / 用户行为生成拟人化文案</li>
+            <li>以「角色写给你」的第一人称视角，替代冷冰冰的营销话术</li>
+            <li>拖拽式 Journey Builder，运营侧即可编排复杂旅程</li>
+            <li>A/B/n 分流对比，快速优化文案与时段</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">UGC × 隐私 · 合规友好</div><div class="card-body">
+          <ul>
+            <li>已通过 <span class="bold">GDPR / SOC 2</span> 认证，可协助满足 CCPA / 日本 APPI / 欧盟 DSA</li>
+            <li>PII 与生物特征字段脱敏存储与访问控制</li>
+            <li>支持<span class="bold">未成年人保护</span> 分层触达策略（COPPA / GDPR-K）</li>
+            <li>频控 / 勿扰 / 一键退订全套护栏，尊重玩家的沉浸体验</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>3.1 各渠道在 Miniwo 业务中的角色定位</h3>
+      <table>
+        <thead><tr>
+          <th>渠道</th><th>Miniwo 场景应用</th><th class="align-right">平均打开率</th><th class="align-center">四大市场适配</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td>App Push</td><td>Life Loop 每日唤醒、角色事件通知、Story Card 生成完成、AI 额度告警</td><td class="align-right">12–25%（叙事型可翻倍）</td><td class="align-center">全市场首选</td></tr>
+          <tr class="tone-accent"><td>WhatsApp Business</td><td>Waitlist 邀请码发放、订阅续费、高价值创作者关怀、生日/纪念日祝福</td><td class="align-right">80%+ 送达 / 45%+ 打开</td><td class="align-center">拉美 · 东南亚 · 印度必选</td></tr>
+          <tr><td>Email</td><td>Story Card 周报、世界周报、新章节/新世界上线、订阅账单、UGC 精选</td><td class="align-right">22–35%（触发类更高）</td><td class="align-center">北美 · 欧洲 · 日本高</td></tr>
+          <tr class="tone-info"><td>LINE <span class="pill" style="font-size:11px;padding:1px 6px;vertical-align:middle">日本关键</span></td><td>日本市场 Story Card 分享、角色互动、社群通知</td><td class="align-right">92% 周活跃（日本）</td><td class="align-center">日本 必选</td></tr>
+          <tr><td>SMS</td><td>Waitlist 首次邀请码兜底、订阅失败提醒、卸载 App 用户召回</td><td class="align-right">95% 送达</td><td class="align-center">全渠道兜底</td></tr>
+          <tr><td>Web Push</td><td>Miniwo 官网访问玩家、未装 App 用户唤起下载</td><td class="align-right">6–12%</td><td class="align-center">中</td></tr>
+          <tr class="tone-info"><td>Instagram / TikTok 深度链接</td><td>Story Card 分享回流、外部社媒 → App 内深度页跳转</td><td class="align-right">—</td><td class="align-center">EN / ES 市场高</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        Miniwo 场景下，App Push 承担 60% 以上的日常唤醒；WhatsApp / LINE / Email 承担高价值节点（订阅、Waitlist、周报）；
+        多渠道叠加相比单 Push 转化平均可提升 <span class="bold">28–42%</span>。
+      </p>
+    </section>
+
+    <!-- 4. Scenarios -->
+    <section id="s-scenarios" class="section-plain">
+      <h2>四、八大高 ROI 自动化增长场景</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center">#</th><th>场景</th><th>生命周期阶段</th>
+          <th>主渠道组合</th><th>亮点</th><th class="align-right">预期效果</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-accent"><td class="align-center">1</td><td>Waitlist 分层预热 · 邀请码激活</td><td>获客 → 激活</td><td>Email → WhatsApp → SMS</td><td>按加入时长 / 语言 / 来源分批发码 + 48h 兜底</td><td class="align-right">激活率 +10 – 20%</td></tr>
+          <tr class="tone-success"><td class="align-center">2</td><td>首次登录 · 首角上传引导</td><td>新用户激活</td><td>App Push → Email</td><td>先释疑隐私再引导上传 + 示范角色卡</td><td class="align-right">上传率 +15 – 25%</td></tr>
+          <tr class="tone-success"><td class="align-center">3</td><td>首张 Story Card · Aha 时刻催化</td><td>Aha 转化</td><td>App Push → In-App</td><td>生成即时推送 + 一键分享 + NPC 事件钩子</td><td class="align-right">D1 留存 +18 – 30%</td></tr>
+          <tr class="tone-success"><td class="align-center">4</td><td>Story Card 分享裂变 · 反向邀请</td><td>UGC 传播</td><td>App Push + Email + WhatsApp</td><td>分享激励 + 被邀请人加速通道 + K 因子跟踪</td><td class="align-right">分享率 +20 – 35% · K↑</td></tr>
+          <tr><td class="align-center">5</td><td>每日 Life Loop 唤醒 · 角色叙事</td><td>留存 / 日活</td><td>App Push（+ LINE 日）</td><td>角色第一人称 + 世界事件 + 智能发送时机</td><td class="align-right">DAU/MAU +8 – 15%</td></tr>
+          <tr><td class="align-center">6</td><td>好友世界互访 · 社交召回</td><td>社交 / 留存</td><td>App Push + WhatsApp</td><td>朋友世界更新提醒 + 互访礼物 + 双向奖励</td><td class="align-right">互访率 +25 – 45%</td></tr>
+          <tr class="tone-accent"><td class="align-center">7</td><td>AI 生成额度耗尽 · 订阅转化</td><td>付费转化</td><td>App Push → In-App → Email</td><td>耗尽即时首月折扣 + 首月免费试用 + 分层</td><td class="align-right">订阅 +3 – 7%</td></tr>
+          <tr><td class="align-center">8</td><td>沉睡召回 · 你的世界仍在生长</td><td>D7 / D30 召回</td><td>App Push → WhatsApp → SMS</td><td>叙事化文案 + 世界更新 + 分层递进召回</td><td class="align-right">回归 +20 – 40%</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        建议 <span class="bold">Waitlist 阶段</span> 优先上线场景 1 + 2 + 3；
+        公测 / 商业化启动时叠加 4 + 5 + 7；成熟运营阶段接入 6 + 8。
+      </p>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain">
+      <h2>场景 1｜Waitlist 分层预热 · 邀请码激活</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-accent">获客 → 激活</span>
+        <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j1"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              Miniwo 目前处于 Waitlist gated 阶段，用户加入等待名单后如果长时间未收到邀请或未理解产品价值，
+              到发码时点已经<span class="bold">遗忘或流失</span>。行业数据显示 Waitlist 未预热的直接激活率仅 8–15%，
+              而做过多轮预热 + 精准发码的方案可达 <span class="bold">35–50%</span>。
+              发码后 48h 是激活的黄金窗口，需要跨渠道分层触达。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「加入 Waitlist」触发进入</li>
+                <li><span class="bold">提前退出</span>：事件「App 首次启动完成」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「App 首次启动完成」，监听 7 天</li>
+                <li><span class="bold">Day 1</span>：Email · 欢迎信 + 产品概念视频（多语言）</li>
+                <li><span class="bold">Day 3</span>：Email · Story Card 案例展示 + 精选角色故事</li>
+                <li><span class="bold">Day 7</span>：Email · Waitlist 位次更新 + 邀请朋友加速通道</li>
+                <li><span class="bold">发码日</span>：Email + WhatsApp 双通道下发邀请码</li>
+                <li><span class="bold">发码 + 24h</span>：等待事件监听「App 启动」；未启动 → App Push 深链</li>
+                <li><span class="bold">发码 + 48h</span>：条件分支「有 WhatsApp 号 → WhatsApp；无 → SMS 兜底」</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              Waitlist 预热旅程通常可将<span class="bold">发码 → 首次启动</span>转化率从 15% 提升至 30–40%，
+              整体 Waitlist → 激活效率提升 <span class="bold">3–4×</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain">
+      <h2>场景 2｜首次登录 · 首角上传引导</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-accent">新用户激活</span>
+        <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j2"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              「上传照片」是 Miniwo 最关键但也<span class="bold">阻力最大</span>的前置步骤——
+              用户会犹豫「我该上传谁的照片？」「隐私安全吗？」。
+              新用户如果 30 分钟内未完成首角上传，D1 留存会掉到 20% 以下；
+              完成上传的用户 D1 留存则可达 50–70%。需要通过<span class="bold">隐私释疑 + 示范角色 + 分步引导</span>降低门槛。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「App 首次启动完成」触发</li>
+                <li><span class="bold">提前退出</span>：事件「首角上传成功」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「首角上传成功」，监听 3 天</li>
+                <li><span class="bold">等待事件</span>：30 分钟内等待上传，已完成则结束</li>
+                <li><span class="bold">App Push #1</span>：AI Write · 释疑「你的照片仅生成角色，不外传」+ 示范卡</li>
+                <li><span class="bold">等待事件</span>：4 小时内等待上传；超时 → 可发送时间</li>
+                <li><span class="bold">Email</span>：3 个「Miniwo 角色案例」+ 一键跳转上传页</li>
+                <li><span class="bold">等待事件</span>：24 小时内等待上传；超时 → 最后一次 App Push · 首角额度即将过期</li>
+                <li><span class="bold">再次进入</span>：不可再次进入</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              分步引导 + 隐私释疑旅程可使首角上传率从 40% 提升至 55–65%，
+              直接拉动 D1 留存 <span class="bold">+18 – 30%</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain">
+      <h2>场景 3｜首张 Story Card · Aha 时刻催化</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-accent">Aha 转化 · 分享传播</span>
+        <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j3"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout accent">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <span class="bold">第一张 Story Card 生成的瞬间</span> = Miniwo 的 Aha 时刻——
+              这一刻用户第一次「看见自己带来的角色变成漫画的样子」，情感冲击最强、
+              分享意愿最高。但如果<span class="bold">生成完成 30 分钟内</span>没有引导分享/继续互动，
+              用户很可能<span class="bold">「看完就走」</span>，永远不会形成日常使用习惯。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「首张 Story Card 生成成功」触发</li>
+                <li><span class="bold">提前退出</span>：事件「Story Card 分享成功」→ 走「进入分享激励旅程」路径</li>
+                <li><span class="bold">转化统计</span>：事件「Story Card 分享成功」或「第 2 次进入 App」，监听 2 天</li>
+                <li><span class="bold">App Push · 即时</span>：AI Write · 「你的角色 {角色名} 有话想说」 + 深链到 Card 详情页</li>
+                <li><span class="bold">In-App 消息</span>：Card 生成完成页展示「一键分享到 IG/TikTok/LINE/微信」</li>
+                <li><span class="bold">等待事件</span>：4 小时内等待分享 或 「第 2 张 Card 生成」；已达成则结束</li>
+                <li><span class="bold">条件分支</span>：已分享 → 走 Journey 4；未分享未生成 → NPC 事件钩子推送</li>
+                <li><span class="bold">App Push #2</span>：「你的世界里有一位 NPC 在等你回来…」+ 深链到世界主视图</li>
+                <li><span class="bold">再次进入</span>：不可再次进入（首张 Card 只有一次）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              首卡 Aha 时刻催化旅程可将<span class="bold">Card 生成 → 第 2 天回访</span>提升 25–40%，
+              同时把首卡分享率从基线 18% 提升至 <span class="bold">28–35%</span>，为 K 因子提升奠定基础。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain">
+      <h2>场景 4｜AI 生成额度耗尽 · 订阅转化</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-accent">付费转化</span>
+        <span class="pill">再次进入：14 天后</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j4"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              用户在 AI 生成额度耗尽的瞬间处于<span class="bold">「我还想再做一张」的最高付费意愿点</span>——
+              这一刻的付费窗口极短（通常 60 分钟内）。
+              超过 24 小时后创作欲望减弱、订阅意愿显著下降。
+              需要在<span class="bold">额度即将耗尽（-1 张）</span> 就开始预告，耗尽瞬间给出清晰的订阅价值主张。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「AI 生成完成 · 剩余额度 = 0」+ 属性「订阅状态 = 未订阅」</li>
+                <li><span class="bold">提前退出</span>：事件「订阅成功」→ 自动退出</li>
+                <li><span class="bold">转化 / 收入统计</span>：事件「订阅成功」，金额 subscription_amount，监听 3 天</li>
+                <li><span class="bold">In-App 消息 · 即时</span>：额度耗尽弹窗 + 首月 50% off + 免费试用 7 天</li>
+                <li><span class="bold">等待事件</span>：60 分钟内等待订阅；已达成则结束</li>
+                <li><span class="bold">App Push #1</span>：AI Write · 「你的世界还有 3 个角色在等你为他们生成新的 Story」</li>
+                <li><span class="bold">等待事件</span>：4 小时内等待订阅；未达成 → 可发送时间 → 条件分支</li>
+                <li><span class="bold">条件分支</span>：LTV 高（历史 Card 数 ≥10）→ WhatsApp 尊享年费包；低 → Email 月度订阅</li>
+                <li><span class="bold">再次进入</span>：14 天后可再次进入（避免过度打扰）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              基于「额度耗尽」精准触发的订阅旅程，订阅转化率可提升 <span class="bold">3–7%</span>；
+              相比在用户空闲时段推送订阅，转化效率高 <span class="bold">4–6 倍</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain">
+      <h2>场景 5｜好友世界互访 · 社交召回</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-accent">社交 / 留存</span>
+        <span class="pill">再次进入：3 天后</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j5"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              Miniwo 的 <span class="bold">Constellation（世界星座）</span>机制天然具备社交回访潜力——
+              但如果玩家不知道<span class="bold">朋友的世界更新了什么</span>，就不会主动去互访；
+              而缺少互访就无法形成社群闭环。
+              需要在<span class="bold">好友世界有重要事件（新角色/新章节/新 Card）</span>时，
+              精准触达其社交圈，激活双向互动。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「好友世界发布新 Card」+ 属性「距上次互访 &gt; 3 天」</li>
+                <li><span class="bold">提前退出</span>：事件「已访问该好友世界」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「访问好友世界 + 留下互动」，监听 3 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 10:00–22:00</li>
+                <li><span class="bold">App Push</span>：AI Write · 「{好友昵称} 的 {世界名} 发生了新故事，你的角色被邀请去看看」</li>
+                <li><span class="bold">等待事件</span>：24 小时内等待互访；已达成则给互访双方赠送 Card 生成额度</li>
+                <li><span class="bold">条件分支</span>：未互访 且 有 WhatsApp → WhatsApp 二次触达</li>
+                <li><span class="bold">再次进入</span>：3 天后可再次进入（避免同一好友重复打扰）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              好友世界互访旅程可将好友世界访问率提升 <span class="bold">25–45%</span>，
+              同时因互访互赠 Card 额度形成正循环，用户 DAU/MAU 比提升 <span class="bold">5–12%</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain">
+      <h2>场景 6｜沉睡召回 · 你的世界仍在生长</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-accent">D7 / D30 分层召回</span>
+        <span class="pill">再次进入：3 天后</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j6"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              Miniwo 是<span class="bold">情感型</span>产品——普通「你已 7 天未登录」的推送几乎无效。
+              但如果告诉玩家「你的角色 Aria 昨天在图书馆等了你一整天」「你的世界里下了第一场雪」，
+              召回率会显著跃升。分层策略：<span class="bold">D3 情感召回 · D7 世界事件召回 · D14+ 独家 Card 召回</span>，
+              按沉默深度递进使用不同渠道。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「最后打开距今 &gt; 3 天」+「已完成首角上传」</li>
+                <li><span class="bold">提前退出</span>：事件「打开 App」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「打开 App 且停留 &gt; 60s」，监听 5 天</li>
+                <li><span class="bold">条件分支</span>：按沉默天数分流（3–6 天 / 7–13 天 / ≥14 天）</li>
+                <li><span class="bold">D3–D6 · App Push</span>：AI Write 角色第一人称 + 深链到该角色 Card 页</li>
+                <li><span class="bold">D7–D13 · WhatsApp</span>：世界更新周报 + 好友新动态 + 深链到世界视图</li>
+                <li><span class="bold">D14+ · SMS/WhatsApp</span>：独家回归 Card 生成额度 + 限时新章节访问</li>
+                <li><span class="bold">再次进入</span>：3 天后可再次进入</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              叙事化分层召回可将沉睡用户回归率提升 <span class="bold">20–40%</span>，
+              轻度沉默窗口（D3–D6）的单位召回成本约为深度流失（D30+）的 <span class="bold">1/5</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Benchmark -->
+    <section id="s-benchmark" class="section-plain">
+      <h2>五、标杆数据参照</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header">Miniwo 八大场景 · 可参考效果区间</div>
+          <div class="card-body">
+            <div class="chart" id="chart-benchmark"></div>
+            <p class="small muted" style="margin-top:8px">基于生活模拟 / UGC 创作 / AI 生成类 App 公开案例综合测算。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">多渠道叠加带来的转化提升</div>
+          <div class="card-body">
+            <div class="chart" id="chart-channel-lift"></div>
+            <p class="small muted" style="margin-top:8px">Miniwo 主力市场（EN/CN/JP/ES）多渠道编排效果。</p>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">同类产品公开案例对照</div>
+        <div class="card-body" style="padding:0">
+          <table>
+            <thead><tr>
+              <th>案例主体</th><th>场景</th><th>公开效果</th><th>对 Miniwo 的参考价值</th>
+            </tr></thead>
+            <tbody>
+              <tr class="tone-accent"><td>Character.AI</td><td>角色第一人称触达</td><td>叙事型 Push CTR 约为常规 2.8×</td><td>Miniwo 的角色触达是核心杠杆，AI 拟人文案必备</td></tr>
+              <tr><td>Bondee（Bublolo）</td><td>好友世界互访</td><td>互访提醒 DAU +9–15%</td><td>Miniwo Constellation 机制可复用同类触达模式</td></tr>
+              <tr class="tone-info"><td>Zepeto / IMVU</td><td>UGC Card 分享激励</td><td>分享率提升 25–45%，K 因子 +0.15–0.3</td><td>Story Card 天然可分享，激励 + 深链跟踪必上</td></tr>
+              <tr class="tone-success"><td>Reface / Lensa</td><td>AI 额度耗尽订阅转化</td><td>额度触发订阅转化 4–8%</td><td>Miniwo 生成额度耗尽是最强付费触发点</td></tr>
+              <tr><td>Duolingo / Habitica</td><td>沉睡召回叙事化</td><td>拟人化召回相比常规 +30–50%</td><td>Miniwo 角色驱动召回可复用同类叙事框架</td></tr>
+              <tr class="tone-accent"><td>Beta 阶段 SaaS 头部产品</td><td>Waitlist 预热发码</td><td>预热后激活率 3–4× vs 直接发码</td><td>Miniwo 当前处于 Waitlist 阶段，收益立竿见影</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Compliance -->
+    <section id="s-compliance" class="section-plain">
+      <h2>六、合规与信任 · Miniwo 独有的三重护栏</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-header">照片 / 生物特征隐私</div>
+          <div class="card-body">
+            <ul>
+              <li>用户照片属于<span class="bold">敏感生物特征</span>数据，MA 侧仅接收匿名事件 ID，<span class="bold">不接触原始图片</span></li>
+              <li>触达文案中不携带用户照片，仅引用<span class="bold">生成后的角色昵称</span></li>
+              <li>符合 GDPR Article 9 / CCPA / 日本 APPI 关于生物特征数据的最严要求</li>
+              <li>可为不同市场配置<span class="bold">数据驻留策略</span>（EU / US / JP / SEA 数据中心）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">UGC 内容触达安全</div>
+          <div class="card-body">
+            <ul>
+              <li>Story Card 触达链接<span class="bold">仅指向已过审</span>的 Card ID</li>
+              <li>与 Miniwo 内容审核系统对接：<span class="bold">被举报 / 待审</span> Card 不进入触达池</li>
+              <li>好友世界互访推送仅限<span class="bold">互相关注 / 双向授权</span>用户</li>
+              <li>符合欧盟 <span class="bold">DSA</span>（数字服务法）中关于 UGC 平台通知机制的要求</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">未成年人保护</div>
+          <div class="card-body">
+            <ul>
+              <li>标签「未成年账户」的用户走<span class="bold">独立频控 + 内容过滤</span>路径</li>
+              <li>不对未成年用户投放订阅 / 付费 / 促销类文案</li>
+              <li>符合美国 <span class="bold">COPPA</span> / 欧盟 <span class="bold">GDPR-K</span> / 中国<span class="bold">青少年模式</span>要求</li>
+              <li>提供<span class="bold">家长控制</span> 邮件汇总，向监护人透明</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>6.1 运营护栏：确保「沉浸不被打断」的用户体验</h3>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">频控策略</div><div class="card-body">
+          <ul>
+            <li>普通用户：<span class="bold">每日 ≤ 2 条</span> Push · 每周 ≤ 1 封 Email</li>
+            <li>沉睡召回用户：D3–D6 每周 3 条，D7+ 每周 1–2 条</li>
+            <li>WhatsApp / SMS 仅用于高价值节点，<span class="bold">每周 ≤ 1 条</span></li>
+            <li>旅程级 + 全局 + 单渠道三层频控可叠加</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">勿扰 · 时段 · 退订</div><div class="card-body">
+          <ul>
+            <li>「可发送时间」组件按<span class="bold">终端时区</span>自动适配全球玩家</li>
+            <li>默认勿扰时段：本地 22:00 – 09:00</li>
+            <li>一键退订：每条 Email 底部 · Push 设置页可分类别退订</li>
+            <li>发送前样式预览 · 发送后 60 天消息记录留档</li>
+          </ul>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- 7. Rollout Plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>七、6 周分阶段落地计划</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-header"><span class="step-num">1</span>第 1–2 周 · 数据打通与埋点</div>
+          <div class="card-body">
+            <ul>
+              <li>对齐 Miniwo 三大北极星：<span class="bold">首角上传率 · 首卡分享率 · AI 额度订阅率</span></li>
+              <li>确认核心事件：加入 Waitlist、App 首次启动、首角上传、Card 生成、Card 分享、订阅、好友互访</li>
+              <li>确认用户属性：语言、时区、订阅状态、Card 数、AI 额度余额、好友数、最后打开时间、青少年标签</li>
+              <li>SDK 接入 + 测试环境事件校验</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">2</span>第 3–4 周 · 核心旅程上线</div>
+          <div class="card-body">
+            <ul>
+              <li>上线场景 1（Waitlist 预热）+ 场景 2（首角上传引导）+ 场景 3（首卡 Aha）</li>
+              <li>配置进入条件、提前退出、频控、多语言文案</li>
+              <li>Deep Link 深链验收（跨 iOS / Android / Web）</li>
+              <li>合规护栏：未成年人分层、隐私脱敏、退订机制</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">3</span>第 5–6 周 · 商业化 + 复盘扩面</div>
+          <div class="card-body">
+            <ul>
+              <li>接入场景 4（额度耗尽订阅）+ 场景 5（每日 Life Loop）+ 场景 6（好友互访）+ 场景 8（沉睡召回）</li>
+              <li>A/B 测试对照组 vs 触达组，量化首角上传率、Card 分享率、订阅转化率</li>
+              <li>按语言市场 / 渠道 / 时段微调文案与频次</li>
+              <li>输出可持续运营 SOP 与季度增长路线图</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Next -->
+    <section class="section-plain">
+      <h2>八、下一步</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-header"><span class="step-num">1</span>对齐</div>
+          <div class="card-body">
+            <p>明确 Miniwo 数据打通优先级，确认核心事件埋点方案与用户属性字段清单；共同确认<span class="bold">测试期北极星指标</span>（Waitlist 激活率 / 首角上传率 / 首卡分享率）。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">2</span>开发对接</div>
+          <div class="card-body">
+            <p>根据 EngageLab MA 交付团队提供的埋点方案，完成 SDK 集成、事件数据上报，以及多语言 Deep Link 配置；同步搭建 <span class="bold">UGC 内容审核 API 对接</span>。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">3</span>测试验证</div>
+          <div class="card-body">
+            <p>开通测试环境与影子账号，搭建八大旅程中的核心 3 条上线，并配置 A/B 对照组，<span class="bold">6 周内完成可量化验收</span>，输出下阶段扩展路线。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      EngageLab MA · Miniwo（Cuboid.AI）创意生活模拟平台增长方案 · 仅供内部及合作客户参考使用
+    </footer>
+  </main>
+
+  <script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function el(tag, attrs) {
+      const e = document.createElementNS(NS, tag);
+      if (attrs) Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+      return e;
+    }
+    function svg(w, h) {
+      const s = el('svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('xmlns', NS);
+      return s;
+    }
+
+    const COLORS = {
+      accent: '#7c3aed', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', danger: '#dc2626', neutral: '#6b7280',
+      grid: '#e5e7eb', text: '#374151', textMute: '#9ca3af',
+    };
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const barsPerGroup = series.length;
+      const W = 600, H = height, PAD_L = 36, PAD_R = 10, PAD_T = 14, PAD_B = series.length > 1 ? 56 : 40;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const maxVal = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(maxVal / 10) * 10 || 100;
+      const groupW = innerW / categories.length;
+      const barW = Math.min((groupW * 0.72) / barsPerGroup, 30);
+      const s = svg(W, H);
+
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 4, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+
+      if (series.length > 1) {
+        const legY = H - 18;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          legX += 14 + (se.name.length * 8) + 16;
+        });
+      }
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    function drawLineChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 600, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 14, PAD_B = 56;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 10) * 10 || 100;
+      const n = categories.length;
+      const xStep = innerW / (n - 1);
+      const s = svg(W, H);
+
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+
+      categories.forEach((cat, i) => {
+        const x = PAD_L + xStep * i;
+        const t = el('text', { x, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.accent;
+        let d = '';
+        const points = se.data.map((v, i) => [PAD_L + xStep * i, PAD_T + innerH - (v / niceMax) * innerH]);
+        points.forEach(([x, y], i) => { d += (i === 0 ? 'M' : 'L') + x + ',' + y; });
+        const area = d + ' L' + points[points.length - 1][0] + ',' + (PAD_T + innerH)
+          + ' L' + points[0][0] + ',' + (PAD_T + innerH) + ' Z';
+        s.appendChild(el('path', { d: area, fill: color, opacity: 0.08 }));
+        s.appendChild(el('path', { d, fill: 'none', stroke: color, 'stroke-width': 2 }));
+        points.forEach(([x, y]) => {
+          s.appendChild(el('circle', { cx: x, cy: y, r: 3.5, fill: '#fff', stroke: color, 'stroke-width': 1.8 }));
+        });
+      });
+
+      const legY = H - 18;
+      let legX = PAD_L;
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.accent;
+        s.appendChild(el('circle', { cx: legX + 5, cy: legY - 4, r: 4, fill: color }));
+        const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+        t.textContent = se.name;
+        s.appendChild(t);
+        legX += 14 + (se.name.length * 8) + 18;
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#ede9fe', stroke: '#7c3aed', text: '#4c1d95' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {}, incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const startX = (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          pos[it.node.id] = { x: startX + i * (NODE_W + NODE_GAP), y: 20 + r * (NODE_H + RANK_GAP) };
+        });
+      });
+
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) cur.x = prev.x + NODE_W + NODE_GAP;
+          }
+        });
+      }
+
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // Charts
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['加入Waitlist', '首次登录', '首角上传', '首卡生成', '分享Card', '每日回访', '订阅付费'],
+      series: [
+        { name: '当前基线', data: [100, 30, 15, 10, 3, 6, 1.5], tone: 'neutral' },
+        { name: 'MA 自动化后预期', data: [100, 45, 28, 20, 8, 15, 4], tone: 'accent' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['Waitlist激活', '首角上传', '首卡Aha', '分享裂变', 'Life Loop', '好友互访', '订阅转化', '沉睡召回'],
+      series: [
+        { name: '消息点击率', data: [22, 18, 28, 20, 14, 25, 12, 8], tone: 'info' },
+        { name: '旅程转化率', data: [18, 22, 30, 25, 12, 35, 6, 28], tone: 'accent' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    drawLineChart(document.getElementById('chart-channel-lift'), {
+      categories: ['单 App Push', '+ Email', '+ WhatsApp', '+ LINE(日)', 'AI 拟人化'],
+      series: [
+        { name: '转化提升 (%)', data: [0, 12, 24, 32, 42], tone: 'accent' },
+        { name: '打开率 (%)', data: [8, 12, 18, 22, 28], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 240,
+    });
+
+    // Journey 1: Waitlist 分层预热
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 加入 Waitlist' },
+        { id: 'e1', kind: 'channel', title: 'Email · Day 1', sub: '欢迎信 + 产品概念视频' },
+        { id: 'w1', kind: 'wait', title: '等待 2 天', sub: '' },
+        { id: 'e2', kind: 'channel', title: 'Email · Day 3', sub: 'Story Card 案例展示' },
+        { id: 'w2', kind: 'wait', title: '等待 4 天', sub: '' },
+        { id: 'e3', kind: 'channel', title: 'Email · Day 7', sub: '位次更新 + 加速通道' },
+        { id: 'wait_code', kind: 'wait', title: '等到发码日', sub: '' },
+        { id: 'send', kind: 'channel', title: 'Email + WhatsApp', sub: '邀请码正式下发' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '24h 内等待 首次启动' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已激活', sub: '进入首角引导旅程' },
+        { id: 'st', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
+        { id: 'push', kind: 'channel', title: 'App Push · +24h', sub: '深链到首角上传页' },
+        { id: 'wfe2', kind: 'branch', title: '等待事件', sub: '24h 内等待 首次启动' },
+        { id: 'ok2', kind: 'exitOk', title: '结束 · 已激活', sub: '' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '是否有 WhatsApp' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp · +48h', sub: '最后一次邀请提醒' },
+        { id: 'sms', kind: 'channel', title: 'SMS · +48h', sub: '兜底触达' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'e1' },
+        { from: 'e1', to: 'w1' },
+        { from: 'w1', to: 'e2' },
+        { from: 'e2', to: 'w2' },
+        { from: 'w2', to: 'e3' },
+        { from: 'e3', to: 'wait_code' },
+        { from: 'wait_code', to: 'send' },
+        { from: 'send', to: 'wfe' },
+        { from: 'wfe', to: 'ok', label: '已启动' },
+        { from: 'wfe', to: 'st', label: '未启动' },
+        { from: 'st', to: 'push' },
+        { from: 'push', to: 'wfe2' },
+        { from: 'wfe2', to: 'ok2', label: '已启动' },
+        { from: 'wfe2', to: 'cond', label: '未启动' },
+        { from: 'cond', to: 'wa', label: '有' },
+        { from: 'cond', to: 'sms', label: '无' },
+        { from: 'wa', to: 'end' },
+        { from: 'sms', to: 'end' },
+      ]);
+
+    // Journey 2: 首角上传引导
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: App 首次启动完成' },
+        { id: 'wfe0', kind: 'branch', title: '等待事件', sub: '30min 内等待 首角上传' },
+        { id: 'ok0', kind: 'exitOk', title: '结束 · 已上传', sub: '进入首卡 Aha 旅程' },
+        { id: 'push1', kind: 'channel', title: 'App Push', sub: '隐私释疑 + 示范卡' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '4h 内等待 首角上传' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已上传', sub: '' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–22:00' },
+        { id: 'email', kind: 'channel', title: 'Email', sub: '3 个角色案例 · 一键跳转' },
+        { id: 'wfe2', kind: 'branch', title: '等待事件', sub: '24h 内等待 首角上传' },
+        { id: 'ok2', kind: 'exitOk', title: '结束 · 已上传', sub: '' },
+        { id: 'push2', kind: 'channel', title: 'App Push', sub: '首角额度即将过期' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'wfe0' },
+        { from: 'wfe0', to: 'ok0', label: '已上传' },
+        { from: 'wfe0', to: 'push1', label: '未上传' },
+        { from: 'push1', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已上传' },
+        { from: 'wfe1', to: 'st1', label: '未上传' },
+        { from: 'st1', to: 'email' },
+        { from: 'email', to: 'wfe2' },
+        { from: 'wfe2', to: 'ok2', label: '已上传' },
+        { from: 'wfe2', to: 'push2', label: '未上传' },
+        { from: 'push2', to: 'end' },
+      ]);
+
+    // Journey 3: 首张 Story Card · Aha
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 首张 Card 生成成功' },
+        { id: 'push0', kind: 'channel', title: 'App Push · 即时', sub: '角色第一人称 · 深链 Card' },
+        { id: 'inapp', kind: 'channel', title: 'In-App 消息', sub: 'Card 页展示一键分享' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '4h 内等待 分享 或 第2张' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '是否已分享' },
+        { id: 'toShare', kind: 'exitOk', title: '进入分享激励', sub: '走 Journey 4' },
+        { id: 'st', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–22:00' },
+        { id: 'push1', kind: 'channel', title: 'App Push', sub: 'NPC 事件钩子 · 深链世界' },
+        { id: 'wfe2', kind: 'branch', title: '等待事件', sub: '24h 内等待 第2次启动' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已回访', sub: '进入 Life Loop 旅程' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'push0' },
+        { from: 'push0', to: 'inapp' },
+        { from: 'inapp', to: 'wfe' },
+        { from: 'wfe', to: 'cond', label: '超时' },
+        { from: 'wfe', to: 'toShare', label: '已分享' },
+        { from: 'cond', to: 'st', label: '未分享' },
+        { from: 'st', to: 'push1' },
+        { from: 'push1', to: 'wfe2' },
+        { from: 'wfe2', to: 'ok', label: '已回访' },
+        { from: 'wfe2', to: 'end', label: '未回访' },
+      ]);
+
+    // Journey 4: AI 额度耗尽 · 订阅
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 生成完成 · 额度=0' },
+        { id: 'inapp', kind: 'channel', title: 'In-App 消息', sub: '首月 50% off + 7 天试用' },
+        { id: 'wfe0', kind: 'branch', title: '等待事件', sub: '60min 内等待 订阅' },
+        { id: 'ok0', kind: 'exitOk', title: '结束 · 已订阅', sub: '进入会员运营' },
+        { id: 'push', kind: 'channel', title: 'App Push', sub: '角色等待你继续创作' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '4h 内等待 订阅' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已订阅', sub: '' },
+        { id: 'st', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: 'Card 数是否 ≥10' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '高 LTV · 尊享年费包' },
+        { id: 'email', kind: 'channel', title: 'Email', sub: '常规 · 月度订阅' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '14 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'inapp' },
+        { from: 'inapp', to: 'wfe0' },
+        { from: 'wfe0', to: 'ok0', label: '已订阅' },
+        { from: 'wfe0', to: 'push', label: '未订阅' },
+        { from: 'push', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已订阅' },
+        { from: 'wfe1', to: 'st', label: '未订阅' },
+        { from: 'st', to: 'cond' },
+        { from: 'cond', to: 'wa', label: '≥10' },
+        { from: 'cond', to: 'email', label: '<10' },
+        { from: 'wa', to: 'end' },
+        { from: 'email', to: 'end' },
+      ]);
+
+    // Journey 5: 好友世界互访
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 好友世界新 Card' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–22:00' },
+        { id: 'push', kind: 'channel', title: 'App Push', sub: 'AI Write · 好友世界新故事' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '24h 内等待 互访' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已互访', sub: '双方赠送 Card 额度' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '是否有 WhatsApp' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '再次提醒 + 深链' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '3 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1', to: 'push' },
+        { from: 'push', to: 'wfe' },
+        { from: 'wfe', to: 'ok', label: '已互访' },
+        { from: 'wfe', to: 'cond', label: '未互访' },
+        { from: 'cond', to: 'st2', label: '有' },
+        { from: 'cond', to: 'end', label: '无' },
+        { from: 'st2', to: 'wa' },
+        { from: 'wa', to: 'end' },
+      ]);
+
+    // Journey 6: 沉睡召回
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 最后打开>3天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '按沉默天数分流' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'push_d3', kind: 'channel', title: 'App Push', sub: '角色第一人称叙事' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wa_d7', kind: 'channel', title: 'WhatsApp', sub: '世界周报 + 好友动态' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'sms_d14', kind: 'channel', title: 'SMS/WhatsApp', sub: '独家回归 Card 额度' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '2 天内等待 打开 App' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已回归', sub: '返回活跃池' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '3 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'cond' },
+        { from: 'cond', to: 'st1', label: 'D3–D6' },
+        { from: 'cond', to: 'st2', label: 'D7–D13' },
+        { from: 'cond', to: 'st3', label: 'D14+' },
+        { from: 'st1', to: 'push_d3' },
+        { from: 'st2', to: 'wa_d7' },
+        { from: 'st3', to: 'sms_d14' },
+        { from: 'push_d3', to: 'wfe' },
+        { from: 'wa_d7', to: 'wfe' },
+        { from: 'sms_d14', to: 'wfe' },
+        { from: 'wfe', to: 'ok', label: '已回归' },
+        { from: 'wfe', to: 'end', label: '未回归' },
+      ]);
+  </script>
+</body>
+</html>
