@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA · 闪铸 Flashforge · 消费级 3D 打印机 DTC 增长方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --purple: #7c3aed;
+      --purple-soft: #ede9fe;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+    .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.92em; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 900px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+    .pill-purple { background: var(--purple-soft); border-color: var(--purple); color: var(--purple); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-5 { grid-template-columns: repeat(5, 1fr); }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.purple { border-left-color: var(--purple); background: var(--purple-soft); }
+    .callout.purple .callout-title { color: var(--purple); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    tr.tone-purple td { background: rgba(124, 58, 237, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    .stage-card { border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; background: var(--bg-elev); }
+    .stage-card .stage-head { padding: 12px 16px; background: var(--info-soft);
+      border-bottom: 1px solid var(--border); }
+    .stage-card.stage-2 .stage-head { background: var(--warning-soft); }
+    .stage-card.stage-3 .stage-head { background: var(--purple-soft); }
+    .stage-card .stage-title { font-size: 15px; font-weight: 700; color: var(--info); margin-bottom: 2px; }
+    .stage-card.stage-2 .stage-title { color: var(--warning); }
+    .stage-card.stage-3 .stage-title { color: var(--purple); }
+    .stage-card .stage-sub { font-size: 12px; color: var(--text-3); }
+    .stage-card .stage-body { padding: 14px 16px; font-size: 13px; }
+    .stage-card .stage-body ul { margin: 0; padding-left: 18px; }
+    .stage-card .stage-body li { margin-bottom: 3px; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .hero { break-before: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA · 闪铸 Flashforge 定制方案</span>
+      <a href="#s-market">行业机会</a>
+      <a href="#s-current">触达现状</a>
+      <a href="#s-why">为什么 MA</a>
+      <a href="#s-preset">SDK 预置能力</a>
+      <a href="#s-scenarios">六大旅程</a>
+      <a href="#s-journey1">旅程编排</a>
+      <a href="#s-roadmap">三阶段路线</a>
+      <a href="#s-benchmark">行业对标</a>
+      <a href="#s-compliance">合规护栏</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <a class="back-home" href="../">← 返回首页</a>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-info">闪铸 Flashforge · 定制提案</span>
+        <span class="pill">消费级 3D 打印机 · DTC 独立站</span>
+        <span class="pill">App Push 已合作 · 复用即扩展</span>
+        <span class="pill pill-success">零埋点冷启动 · 4 周验证</span>
+      </div>
+      <h1>EngageLab MA · 闪铸 Flashforge · 消费级 3D 打印机 DTC 生命周期增长方案</h1>
+      <p class="hero-subtitle">
+        闪铸产品覆盖全球 200+ 国家、近百万用户，自建推荐算法与埋点体系已支撑独立站商品推荐，
+        App Push 触达通道也已就绪。<span class="bold">MA 的定位是给现有 Push 装上"运营大脑"——
+        什么时候发、发给谁、跨渠道协同、发完看归因</span>。
+        本方案采用<span class="bold">三阶段渐进式接入路线</span>：
+        第一阶段仅需 SDK 集成（0.5–1 天），即可跑通 4 条基于 SDK 预置事件的旅程，让运营团队用最低成本先感受 MA 价值；
+        之后再按业务节奏补齐电商与设备事件，逐步覆盖全链路。
+      </p>
+      <div class="grid grid-4">
+        <div class="stat">
+          <div class="stat-value">$26.5 <span style="font-size:14px;font-weight:500">亿</span></div>
+          <div class="stat-label">全球桌面级 3D 打印机市场规模（2025，Valuates Report）</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value success">200+</div>
+          <div class="stat-label">闪铸产品已进驻国家与地区（含近百万用户，官网数据）</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value info">4 条</div>
+          <div class="stat-label">阶段一即可跑起来的旅程（零业务埋点）</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value warn">0.5–1 天</div>
+          <div class="stat-label">Web + App SDK 集成的前端投入</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market opportunity -->
+    <section id="s-market" class="section">
+      <h2>一、行业机会 · 消费级 3D 打印机 DTC 已经进入"生命周期运营"阶段</h2>
+      <div class="grid grid-2-1">
+        <div>
+          <p>消费级 3D 打印机赛道过去 3 年经历了两次重要转变：</p>
+          <p>
+            <span class="bold">第一次转变</span>：从"极客工具"走向"家庭桌面消费品"——用户群体大幅泛化，
+            用户对开箱难度、切片教程、模型资源的依赖大幅增加，
+            <span class="bold">首打成功率</span>成为决定复购与口碑的关键指标。
+          </p>
+          <p>
+            <span class="bold">第二次转变</span>：从"平台电商为主"走向"独立站+平台协同"——
+            头部品牌普遍把独立站作为"品牌与私域主阵地"、把平台作为"市场覆盖辅助"。
+            这背后的核心是<span class="bold">用户资产沉淀权</span>——用户数据、行为、模型偏好都留在自己手里，才能做长期运营。
+          </p>
+          <p>
+            在这样的行业结构下，运营环节的核心命题已经从"投流转化"转向了
+            <span class="bold">"用户全生命周期自动化"</span>——从访问、注册、下单、开箱、首打、模型消费、耗材复购到升级换代，
+            每个阶段都有明确的触达价值，也都需要跨渠道自动化。
+          </p>
+        </div>
+        <div>
+          <div class="card">
+            <div class="card-header">头部品牌独立站的流量结构（公开数据）</div>
+            <div class="card-body">
+              <div class="signal-row">
+                <div class="left">
+                  <div class="label">直接访问占比</div>
+                  <div class="hint">品牌力与私域运营驱动</div>
+                </div>
+                <div class="value">54.9%</div>
+              </div>
+              <div class="signal-row">
+                <div class="left">
+                  <div class="label">自然搜索占比</div>
+                  <div class="hint">SEO + 品牌词沉淀</div>
+                </div>
+                <div class="value">30%</div>
+              </div>
+              <div class="signal-row">
+                <div class="left">
+                  <div class="label">付费广告占比</div>
+                  <div class="hint">低占比 · 私域为主</div>
+                </div>
+                <div class="value">6%</div>
+              </div>
+              <div class="signal-row">
+                <div class="left">
+                  <div class="label">购机一年后仍活跃用户</div>
+                  <div class="hint">软硬件生态 + 私域运营</div>
+                </div>
+                <div class="value">90%+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">对闪铸的直接含义</div>
+        <div class="callout-body">
+          <p>· 闪铸的产品力（FDM + DLP + MJP 全技术栈、MJP 全球销量第一、Adventurer 5M 亚马逊冠军）已经在赛道上，200+ 国家的渠道深度不输任何头部品牌；</p>
+          <p>· 独立站 + 自建推荐 + App Push 的基础触达能力已经就位；</p>
+          <p>· <span class="bold">目前欠缺的是"跨渠道生命周期运营"这一层</span>——不是缺埋点、不是缺分析、不是缺 CDP，而是缺一个能自动化把用户从"访问 → 使用 → 复购"每个阶段串起来的运营大脑；</p>
+          <p>· 这正是 EngageLab MA 定位的核心价值，也是本方案的落地重点。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Current touchpoint audit -->
+    <section id="s-current" class="section">
+      <h2>二、闪铸当前触达能力盘点 · 加装 MA 后的价值放大</h2>
+      <table>
+        <thead><tr>
+          <th style="width:16%">触达渠道 / 能力</th>
+          <th style="width:24%">闪铸当前状态</th>
+          <th style="width:30%">加装 MA 后的新增价值</th>
+          <th>是否需替换现有能力</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success">
+            <td class="bold">App Push</td>
+            <td>已合作 EngageLab（触达通道就绪）</td>
+            <td>用旅程编排能力包裹现有 Push 通道，自动决定"什么时候发、发给谁、跟其他渠道怎么协同"</td>
+            <td class="align-center bold" style="color:var(--success)">否 · 直接叠加</td>
+          </tr>
+          <tr>
+            <td class="bold">Web Push</td>
+            <td>暂未启用</td>
+            <td>独立站 SDK 接入后即可开通，覆盖"未登录浏览用户"这一块最大的流量池</td>
+            <td class="align-center">— · 新增能力</td>
+          </tr>
+          <tr>
+            <td class="bold">Email</td>
+            <td>主要用于订单/发货交易邮件</td>
+            <td>MA 用于欢迎邮件、耗材复购、活动预热、流失召回等运营邮件，与交易邮件并存</td>
+            <td class="align-center bold" style="color:var(--success)">否 · 补充运营邮件</td>
+          </tr>
+          <tr>
+            <td class="bold">SMS</td>
+            <td>可能通过阿里云/腾讯云短信</td>
+            <td>MA 提供旅程内 SMS 兜底能力，可直接使用现有短信供应商，不需迁移</td>
+            <td class="align-center bold" style="color:var(--success)">否 · 保留现有供应商</td>
+          </tr>
+          <tr>
+            <td class="bold">WhatsApp</td>
+            <td>暂未启用</td>
+            <td>覆盖闪铸主战场的东南亚、拉美、欧洲部分市场（WhatsApp 普及率高）</td>
+            <td class="align-center">— · 可选新增</td>
+          </tr>
+          <tr class="tone-info">
+            <td class="bold">自建推荐 + 埋点 CDP</td>
+            <td>已成熟，用于站内商品推荐</td>
+            <td>MA 与 CDP 分工：CDP 做"画像 + 站内推荐"，MA 做"跨渠道旅程 + 触达"。CDP 计算好的分群/标签可通过接口批量同步到 MA 作为旅程分支条件</td>
+            <td class="align-center bold" style="color:var(--success)">否 · 分层协作</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="callout success">
+        <div class="callout-title">核心结论 · MA 不替换任何现有能力，只补齐"跨渠道运营大脑"这一层</div>
+        <div class="callout-body">
+          <p>闪铸现有的每一项投入——App Push、独立站、自建推荐 CDP、埋点体系——都会因为加装 MA 而 ROI 放大。
+          尤其 App Push 的 ROI 会在 MA 旅程编排之后有明显跃升，因为"消息发出去"和"消息发得对"是两件事。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why MA -->
+    <section id="s-why" class="section">
+      <h2>三、为什么现在是接入 EngageLab MA 的最佳时机</h2>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">1. Push 已合作 → MA 无缝叠加</div><div class="card-body">
+          <p>Push 服务只解决"消息发得出去"，MA 解决"什么时候发、发给谁、跨渠道怎么协同、发完看归因"。
+          <span class="bold">MA 不替换 Push，是给 Push 装上驾驶座</span>——你现有的 Push 投入 ROI 会因为加装 MA 而放大。</p>
+          <ul style="margin-top:8px;padding-left:18px;">
+            <li>Push 通道复用 · 无需重新对接</li>
+            <li>触达数据打通 · 送达/点击/转化归因</li>
+            <li>频控与去重 · 避免多条旅程重复打扰</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">2. SDK 预置能力 → 零业务埋点冷启动</div><div class="card-body">
+          <p>EngageLab MA SDK 自带 <span class="bold">10+ 预置事件</span>与 <span class="bold">10+ 预置用户属性</span>——
+          App 冷启动、页面浏览、通知权限开关、EUID 注册、会话开始、首次 UTM、累计购买次数、最后活跃时间…
+          <span class="bold">SDK 一装就自动上报</span>。</p>
+          <ul style="margin-top:8px;padding-left:18px;">
+            <li>前端投入仅 <span class="bold">0.5–1 天</span></li>
+            <li>业务方不需要新增任何埋点</li>
+            <li>4 条基础旅程立即可用</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">3. 未来国内 App → 1:1 迁移</div><div class="card-body">
+          <p>闪铸正在规划国内 App 开发。EngageLab（海外）与极光 JPush + 极光 MA（国内）是<span class="bold">同一集团、同一产品逻辑</span>，
+          海外 MA 上跑通的旅程模板、埋点规范、运营 SOP 可以 <span class="bold">1:1 复用到国内</span>。</p>
+          <ul style="margin-top:8px;padding-left:18px;">
+            <li>海外 MA 经验可直接迁移</li>
+            <li>跨海内外双轨运营基础设施</li>
+            <li>单次投入 · 长期复用</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <h3 style="margin-top:16px;">渠道能力总览 · 全渠道旅程一体化编排</h3>
+      <table>
+        <thead><tr>
+          <th>渠道</th><th>核心用途</th><th>定价方式</th><th>闪铸海外市场匹配度</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="bold">App Push</td><td>App 内活跃用户高频触达 · 通知权限利用</td><td>按 DAU 定价</td><td class="align-center bold" style="color:var(--success)">已合作</td></tr>
+          <tr><td class="bold">Web Push</td><td>独立站未登录/未下载 App 用户 · 浏览器订阅推送</td><td>按 DAU 定价</td><td class="align-center bold" style="color:var(--info)">强烈推荐 · 覆盖最大流量池</td></tr>
+          <tr><td class="bold">Email</td><td>运营邮件（欢迎/复购/召回/活动预热）</td><td>$0.002 / 封</td><td class="align-center">推荐 · 与交易邮件互补</td></tr>
+          <tr><td class="bold">SMS</td><td>关键节点兜底（如订单/物流关键状态）</td><td>按目标国家定价</td><td class="align-center">可选 · 保留现有供应商</td></tr>
+          <tr><td class="bold">WhatsApp</td><td>东南亚/拉美/欧洲部分市场 · 高触达率对话</td><td>按目标国家定价</td><td class="align-center">可选 · 后续覆盖新兴市场</td></tr>
+          <tr class="tone-info"><td class="bold">LINE / Telegram / Messenger</td><td>即将上线 · 日本/欧美/新兴市场</td><td>—</td><td class="align-center">未来扩展 · 匹配闪铸多区域布局</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SDK Preset Capabilities -->
+    <section id="s-preset" class="section">
+      <h2>四、SDK 预置能力 · 零业务埋点即可跑起来</h2>
+      <p>EngageLab MA SDK 集成完成后（Web + App，前端 0.5–1 天工作量），以下事件与用户属性会 <span class="bold">自动上报</span>，
+      业务方不需要新增任何埋点。第一阶段 4 条旅程完全基于这些预置能力。</p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header">SDK 预置事件（自动上报）</div>
+          <div class="card-body">
+            <table style="border:none">
+              <thead><tr><th>事件</th><th>触发时机</th></tr></thead>
+              <tbody>
+                <tr><td class="bold">App Launch</td><td>App 冷启动 / 从后台唤起</td></tr>
+                <tr><td class="bold">Session Start / End</td><td>会话开始与结束</td></tr>
+                <tr><td class="bold">Page View</td><td>Web 页面访问 / URL 变化</td></tr>
+                <tr><td class="bold">Page Stay</td><td>页面停留（5s / 30s / 60s / 2min / 5min / 10min 分档）</td></tr>
+                <tr><td class="bold">Switch to Foreground</td><td>App 由后台切前台 / Web 回到当前 Tab</td></tr>
+                <tr><td class="bold">Switch to Background</td><td>App 切后台 / Web 最小化或切换 Tab</td></tr>
+                <tr><td class="bold">Notification State On</td><td>用户开启通知权限（App / Web Push）</td></tr>
+                <tr><td class="bold">Notification State Off</td><td>用户关闭通知权限</td></tr>
+                <tr><td class="bold">User Activation</td><td>新用户 EUID 注册成功</td></tr>
+                <tr><td class="bold">App Update</td><td>App 版本更新后重启</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">SDK 预置用户属性（自动计算）</div>
+          <div class="card-body">
+            <table style="border:none">
+              <thead><tr><th>属性</th><th>说明</th></tr></thead>
+              <tbody>
+                <tr><td class="bold">创建时间</td><td>用户首次被识别的时间戳</td></tr>
+                <tr><td class="bold">最后活跃时间</td><td>用于"距今 N 天"类判断</td></tr>
+                <tr><td class="bold">首次 / 最后会话开始时间</td><td>会话时序追踪</td></tr>
+                <tr><td class="bold">累计购买金额 / 次数</td><td>需业务方上报 purchase 后自动累计</td></tr>
+                <tr><td class="bold">最后购买时间</td><td>用于"复购提醒 / 沉睡召回"</td></tr>
+                <tr><td class="bold">激活渠道</td><td>App / Web 激活来源</td></tr>
+                <tr><td class="bold">首次来源页 URL / 域名</td><td>Web 首访来源追踪</td></tr>
+                <tr><td class="bold">首次 UTM Source</td><td>google / facebook / youtube 等</td></tr>
+                <tr><td class="bold">首次 UTM Medium / Campaign</td><td>渠道媒介 / 活动 ID 归因</td></tr>
+                <tr><td class="bold">首次 UTM Term / Content</td><td>关键词 / 素材归因</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout success">
+        <div class="callout-title">价值主张：4 条旅程 · 零业务埋点</div>
+        <div class="callout-body">
+          <p>基于以上预置事件与属性，第一阶段 4 条旅程（通知权限欢迎、EUID 激活、长期未活跃召回、UTM 归因分层欢迎）
+          <span class="bold">完全不需要业务方新增任何埋点</span>。
+          闪铸前端团队集成 SDK 后，MA 就可以直接跑起来，用最低成本验证价值。
+          等看到效果之后，再决定是否投入阶段二、三的业务埋点。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scenarios Overview -->
+    <section id="s-scenarios" class="section">
+      <h2>五、六大高 ROI 旅程场景总览</h2>
+      <table>
+        <thead><tr>
+          <th style="width:5%">#</th>
+          <th style="width:12%">阶段</th>
+          <th style="width:20%">场景</th>
+          <th style="width:22%">进入条件</th>
+          <th style="width:20%">主推渠道</th>
+          <th>核心价值</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-info">
+            <td class="bold">J1</td>
+            <td><span class="pill pill-info">阶段一 · 零埋点</span></td>
+            <td class="bold">通知权限开启欢迎</td>
+            <td>事件：通知权限开启</td>
+            <td>App Push → Email</td>
+            <td>用户刚打开权限即精准触达，转化率最高的黄金窗口</td>
+          </tr>
+          <tr class="tone-info">
+            <td class="bold">J2</td>
+            <td><span class="pill pill-info">阶段一 · 零埋点</span></td>
+            <td class="bold">新用户激活引导</td>
+            <td>事件：EUID 注册成功</td>
+            <td>App Push → Email</td>
+            <td>先观察是否自主浏览，未浏览再补充引导，降低打扰</td>
+          </tr>
+          <tr class="tone-info">
+            <td class="bold">J3</td>
+            <td><span class="pill pill-info">阶段一 · 零埋点</span></td>
+            <td class="bold">长期未活跃召回</td>
+            <td>属性：最后活跃距今超过 14 天 且 累计购买 = 0</td>
+            <td>App Push → Web Push → Email</td>
+            <td>拉回沉睡访客，避免"访问了没下单就流失"的最大漏损</td>
+          </tr>
+          <tr class="tone-info">
+            <td class="bold">J4</td>
+            <td><span class="pill pill-info">阶段一 · 零埋点</span></td>
+            <td class="bold">UTM 归因分层欢迎</td>
+            <td>属性：首次 UTM Source 不为空</td>
+            <td>Web Push</td>
+            <td>按来源渠道差异化触达（搜索 / 社交 / 视频用户各不同）</td>
+          </tr>
+          <tr class="tone-purple">
+            <td class="bold">J5</td>
+            <td><span class="pill pill-warn">阶段二 · 电商事件</span></td>
+            <td class="bold">加购未下单挽回</td>
+            <td>事件：加入购物车</td>
+            <td>Web Push → App Push → Email</td>
+            <td>DTC 独立站转化漏斗最大的漏损环节，18 小时内三段挽回</td>
+          </tr>
+          <tr class="tone-purple">
+            <td class="bold">J6</td>
+            <td><span class="pill pill-purple">阶段三 · 设备事件</span></td>
+            <td class="bold">打印机绑定首打引导</td>
+            <td>事件：打印机绑定成功</td>
+            <td>App Push → Email</td>
+            <td>首打成功率 = 长期留存的核心指标（对标拓竹 90%+ 一年留存）</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Journeys -->
+    <section id="s-journey1" class="section">
+      <h2>六、核心旅程详细编排</h2>
+
+      <!-- J1 -->
+      <h3 style="margin-top:8px;">J1 · 通知权限开启欢迎旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j1"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
+            <ul>
+              <li><span class="bold">开始</span>：事件 · 通知权限开启（SDK 预置）</li>
+              <li><span class="bold">再次进入</span>：不可（一次性事件）</li>
+              <li><span class="bold">提前退出</span>：用户完成下单则出旅程</li>
+              <li><span class="bold">转化统计</span>：页面浏览事件 · 监听 3 天</li>
+              <li><span class="bold">频控</span>：旅程内每用户 ≤ 3 条消息</li>
+            </ul>
+          </div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
+            <ul>
+              <li>用户刚开权限时正处于最高意愿窗口</li>
+              <li>Push 首触 + Email 深度内容 · 双通道协同</li>
+              <li>SDK 一装就跑，零业务埋点</li>
+              <li>预期打开率参考区间：Push 18–28% · Email 24–38%</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <!-- J2 -->
+      <h3>J2 · 新用户激活引导旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j2"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
+            <ul>
+              <li><span class="bold">开始</span>：事件 · EUID 注册成功（SDK 预置）</li>
+              <li><span class="bold">再次进入</span>：不可</li>
+              <li><span class="bold">转化统计</span>：页面浏览事件 · 监听 3 天</li>
+              <li><span class="bold">先观察再触达</span>：等 1 小时看用户是否自主浏览</li>
+            </ul>
+          </div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
+            <ul>
+              <li>自主浏览用户 → 直接给精选内容（Email 深度）</li>
+              <li>未浏览用户 → 先 Push 唤醒再 Email 引导</li>
+              <li>差异化触达 · 避免对高意愿用户过度打扰</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <!-- J3 -->
+      <h3>J3 · 长期未活跃召回旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j3"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
+            <ul>
+              <li><span class="bold">开始</span>：属性 · 最后活跃距今超过 14 天 且 累计购买 = 0</li>
+              <li><span class="bold">再次进入</span>：14 天（与进入条件阈值对齐）</li>
+              <li><span class="bold">转化统计</span>：页面浏览事件 · 监听 5 天</li>
+              <li><span class="bold">可发送时间</span>：终端时区 09:00–21:00（每条消息前）</li>
+              <li><span class="bold">提前退出</span>：完成下单立即出旅程</li>
+            </ul>
+          </div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
+            <ul>
+              <li>拉回访问过但未下单的沉睡用户</li>
+              <li>3 段触达 · 步步升级（提醒→优惠→挽回信）</li>
+              <li>对标行业公开案例召回率 15–25%</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <!-- J4 -->
+      <h3>J4 · UTM 归因分层欢迎旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j4"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
+            <ul>
+              <li><span class="bold">开始</span>：属性 · 首次 UTM Source 不为空</li>
+              <li><span class="bold">再次进入</span>：30 天</li>
+              <li><span class="bold">条件分支</span>：按首次 UTM Source 分四路（Search / Social / Video / 其他）</li>
+              <li><span class="bold">转化统计</span>：页面浏览事件 · 监听 3 天</li>
+            </ul>
+          </div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
+            <ul>
+              <li>搜索用户 → 强化技术评测与机型对比</li>
+              <li>社交用户 → 用户作品与场景视觉</li>
+              <li>视频用户 → 深度评测与教程</li>
+              <li>让触达内容与用户来源心智一致</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <!-- J5 -->
+      <h3>J5 · 加购未下单挽回旅程 <span class="pill pill-warn" style="margin-left:8px;">阶段二 · 需接入电商事件</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j5"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
+            <ul>
+              <li><span class="bold">开始</span>：事件 · 加入购物车（需业务方上报 add_to_cart）</li>
+              <li><span class="bold">再次进入</span>：3 天</li>
+              <li><span class="bold">提前退出</span>：完成下单立即出旅程</li>
+              <li><span class="bold">转化统计</span>：购买事件 · 监听 1 天</li>
+              <li><span class="bold">分层挽回</span>：30 分钟→ 4 小时→ 12 小时三段</li>
+            </ul>
+          </div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
+            <ul>
+              <li>3D 打印机客单价高、决策周期长</li>
+              <li>加购环节漏损常在 60–70%，MA 可回收其中一部分</li>
+              <li>与自建推荐 CDP 分工：CDP 决定推什么，MA 决定何时/怎么发</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <!-- J6 -->
+      <h3>J6 · 打印机绑定首打引导旅程 <span class="pill pill-purple" style="margin-left:8px;">阶段三 · 需接入设备事件</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j6"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
+            <ul>
+              <li><span class="bold">开始</span>：事件 · 打印机绑定成功（需业务方上报 printer_bound）</li>
+              <li><span class="bold">再次进入</span>：不可（每台机器仅一次首绑）</li>
+              <li><span class="bold">转化统计</span>：首次打印成功 · 监听 7 天</li>
+              <li><span class="bold">先观察再触达</span>：等 4 小时 → 48 小时观察首打结果</li>
+            </ul>
+          </div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
+            <ul>
+              <li>首打成功率 = 长期留存与口碑的核心指标</li>
+              <li>对标拓竹 90%+ 一年留存的底层机制</li>
+              <li>为后续耗材复购 / 模型库运营打基础</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="s-roadmap" class="section">
+      <h2>七、三阶段渐进式接入路线 · 先跑起来，再看价值，再深化</h2>
+      <p>本方案的核心接入策略是"渐进式"——不要求闪铸一次性完成所有埋点。
+      <span class="bold">第一阶段仅需集成 SDK，即可跑通 4 条旅程</span>；
+      看到价值后再决定是否投入阶段二、三的业务埋点。</p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-title">阶段一 · 零埋点冷启动</div>
+            <div class="stage-sub">Week 1–4 · 4 条旅程</div>
+          </div>
+          <div class="stage-body">
+            <p class="bold" style="margin-bottom:6px;">埋点范围</p>
+            <ul>
+              <li>仅接入 MA SDK（Web + App）</li>
+              <li>使用 SDK 预置事件与属性</li>
+              <li>业务方 <span class="bold">无需新增任何埋点</span></li>
+            </ul>
+            <p class="bold" style="margin:10px 0 6px;">可运行旅程</p>
+            <ul>
+              <li>J1 通知权限开启欢迎</li>
+              <li>J2 新用户激活引导</li>
+              <li>J3 长期未活跃召回</li>
+              <li>J4 UTM 归因分层欢迎</li>
+            </ul>
+            <p class="bold" style="margin:10px 0 6px;">目标</p>
+            <ul>
+              <li>最低成本验证 MA 价值</li>
+              <li>为后续深化决策提供数据依据</li>
+            </ul>
+          </div>
+        </div>
+        <div class="stage-card stage-2">
+          <div class="stage-head">
+            <div class="stage-title">阶段二 · 核心电商事件补齐</div>
+            <div class="stage-sub">Month 2–3 · 累计 8 条旅程</div>
+          </div>
+          <div class="stage-body">
+            <p class="bold" style="margin-bottom:6px;">埋点范围</p>
+            <ul>
+              <li>4 个业务事件：view_product / add_to_cart / add_to_wishlist / purchase</li>
+              <li>可复用自研推荐 CDP 现有数据源</li>
+              <li>前端 + 后端投入约 3–5 天</li>
+            </ul>
+            <p class="bold" style="margin:10px 0 6px;">新增旅程</p>
+            <ul>
+              <li>J5 加购未下单挽回</li>
+              <li>J7 商品浏览未下单</li>
+              <li>J8 首购欢迎与耗材周期</li>
+              <li>J9 愿望单动销提醒</li>
+            </ul>
+            <p class="bold" style="margin:10px 0 6px;">目标</p>
+            <ul>
+              <li>覆盖商城全链路运营</li>
+              <li>形成完整转化归因漏斗</li>
+            </ul>
+          </div>
+        </div>
+        <div class="stage-card stage-3">
+          <div class="stage-head">
+            <div class="stage-title">阶段三 · 设备与内容深度融合</div>
+            <div class="stage-sub">Month 4–6 · 累计 11 条旅程</div>
+          </div>
+          <div class="stage-body">
+            <p class="bold" style="margin-bottom:6px;">埋点范围</p>
+            <ul>
+              <li>设备事件：printer_bound / first_print_success / filament_low</li>
+              <li>内容事件：model_downloaded / slicer_used</li>
+              <li>前端 + App + 云端投入约 5–10 天</li>
+            </ul>
+            <p class="bold" style="margin:10px 0 6px;">新增旅程</p>
+            <ul>
+              <li>J6 打印机绑定首打引导</li>
+              <li>J10 耗材余量预警补货</li>
+              <li>J11 沉睡打印机唤醒 + 模型库推荐</li>
+            </ul>
+            <p class="bold" style="margin:10px 0 6px;">目标</p>
+            <ul>
+              <li>建立"硬件→打印→耗材→模型"软硬融合运营</li>
+              <li>对标拓竹 90%+ 一年留存</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout purple">
+        <div class="callout-title">国内 App 平滑迁移</div>
+        <div class="callout-body">
+          <p>闪铸国内 App 上线时，海外 MA 上跑通的旅程模板、埋点规范、运营 SOP 可通过极光 JPush + 极光 MA（同集团产品、同产品逻辑）
+          <span class="bold">1:1 复用到国内</span>。也就是说本次投入是"跨海内外双轨"的基础设施，不是一次性支出。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benchmark -->
+    <section id="s-benchmark" class="section">
+      <h2>八、行业对标 · 消费级 3D 打印机 DTC 头部品牌运营数据</h2>
+      <div class="grid grid-2">
+        <div>
+          <div class="chart" id="chart-benchmark"></div>
+        </div>
+        <div>
+          <div class="card"><div class="card-header">3D 打印机 DTC 独立站公开案例</div><div class="card-body">
+            <ul>
+              <li>某桌面级 3D 打印机品牌独立站直接访问 54.9% + 自然搜索 30% + 付费广告仅 6%（品牌力 + 私域驱动）</li>
+              <li>同品牌用户购机一年后 90%+ 仍活跃（软硬件生态支撑）</li>
+              <li>参与社区活动的用户复购率 68%、客单价 +42%</li>
+              <li>另一品牌独立站升级后自然流量 +30%、转化率 +20%</li>
+              <li>头部品牌独立站上线 5 个月即突破 2000 万人民币成交</li>
+            </ul>
+            <p class="small muted" style="margin-top:8px;">
+              数据来源：2024–2026 年桌面级 3D 打印机行业公开报道综合整理；仅作为业务背景参考，闪铸实际效果以测试期数据为准。
+            </p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance -->
+    <section id="s-compliance" class="section">
+      <h2>九、合规与运营护栏</h2>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">数据安全</div><div class="card-body">
+          <ul>
+            <li>全链路 TLS 加密传输 · VPC 网络隔离</li>
+            <li>敏感数据脱敏处理 · 基于角色的访问控制（RBAC）</li>
+            <li>数据中心可按客户安全需求灵活扩展</li>
+            <li>消息发送记录保留 <span class="bold">60 天</span>，可导出用于合规审查</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">合规支持</div><div class="card-body">
+          <ul>
+            <li>已通过 <span class="bold">GDPR</span> 合规认证 + <span class="bold">SOC 2 Type II</span> 安全审计</li>
+            <li>可协助闪铸满足各目标市场本地数据保护法规要求（欧盟 GDPR / 美国 CCPA 等）</li>
+            <li>支持用户数据删除、导出、同意管理等合规权利</li>
+            <li>面向国内运营时，可协助满足《个人信息保护法》（PIPL）、《数据安全法》要求</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">运营护栏</div>
+        <div class="callout-body">
+          <p>· 频控策略：每用户每日最多 N 次推送，旅程内自动去重，防止同一用户被多条旅程重复触达；</p>
+          <p>· 可发送时间：基于用户本地时区自动控制发送窗口（如 09:00–21:00），避免深夜打扰；</p>
+          <p>· 内容预览：消息发送前支持完整样式预览，确认效果后再发送；</p>
+          <p>· 提前退出：用户一旦完成目标行为（如下单），立即从旅程退出，不再继续触达。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>十、4 周测试计划 · 可量化验收</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center" style="width:10%">周</th>
+          <th style="width:20%">阶段</th>
+          <th style="width:30%">工作内容</th>
+          <th style="width:20%">交付物</th>
+          <th>验收指标</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="align-center bold">Week 1</td>
+            <td>启动 &amp; SDK 接入</td>
+            <td>确定试点站点（美国站 / 欧洲站 / 全球站）· MA 测试账号开通 · 前端集成 Web + App SDK · 数据回流验证</td>
+            <td>SDK 集成完成 + 数据入库确认</td>
+            <td>预置事件入库率 ≥ 95%</td>
+          </tr>
+          <tr class="tone-info">
+            <td class="align-center bold">Week 2</td>
+            <td>首批旅程上线</td>
+            <td>J1 通知权限欢迎 + J3 长期未活跃召回 2 条旅程构建上线 · 小流量验证（5–10% 用户）· 文案 A/B 设置</td>
+            <td>2 条旅程跑通 + 触达数据回流</td>
+            <td>旅程触发成功率 ≥ 98%</td>
+          </tr>
+          <tr class="tone-info">
+            <td class="align-center bold">Week 3</td>
+            <td>扩量 &amp; 完善</td>
+            <td>2 条旅程扩全量 · 新增 J2 新用户激活 + J4 UTM 归因 · 对照组数据观测</td>
+            <td>4 条旅程全量运行 + 对照组数据</td>
+            <td>Push 点击率 ≥ 6% · 召回旅程 uplift 可测</td>
+          </tr>
+          <tr class="tone-success">
+            <td class="align-center bold">Week 4</td>
+            <td>复盘 &amp; 阶段二规划</td>
+            <td>数据复盘 · 效果结算 · 阶段二埋点方案对齐（view_product / add_to_cart / purchase / add_to_wishlist）· 下阶段扩展规划</td>
+            <td>测试结案报告 + 阶段二埋点方案</td>
+            <td>核心旅程 uplift 可量化归因</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="stat"><div class="stat-value">4 周</div><div class="stat-label">从 SDK 接入到 4 条旅程全量运行</div></div>
+        <div class="stat"><div class="stat-value success">$0</div><div class="stat-label">测试期间授权费用（免费测试 VIP）</div></div>
+        <div class="stat"><div class="stat-value">专属</div><div class="stat-label">EngageLab 交付团队 1v1 支持</div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <hr class="divider" />
+      <h3>下一步建议 · 三步启动</h3>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header"><span class="step-num">1</span>对齐试点范围</div><div class="card-body">
+          共同确定试点站点（美国 / 欧洲 / 全球）、预计覆盖 DAU、
+          确认 4 条旅程的文案基调与品牌风格；对齐现有 App Push 与新增 Web Push 的协同规则。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">2</span>SDK 集成</div><div class="card-body">
+          前端团队按 EngageLab 交付团队提供的接入指南完成 Web + App SDK 集成，
+          <span class="bold">通常 1 名前端 + 1 名移动端开发 0.5–1 天可完成</span>。业务方不需要新增任何埋点。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">3</span>旅程验证</div><div class="card-body">
+          开通测试 VIP 账号，优先搭建 <span class="bold">J1 通知权限欢迎 + J3 长期未活跃召回</span>
+          两条 ROI 最高的旅程，小流量验证后扩全量。4 周内产出可量化效果报告。
+        </div></div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      本方案中闪铸 Flashforge 品牌与业务数据（200+ 国家、近百万用户、MJP 3D 打印机全球销量第一、Adventurer 5M 亚马逊冠军）
+      仅作为业务背景引用，来源于闪铸官网、尚普咨询 2024 报告及公开报道。
+      行业对标数据来自 2024–2026 年桌面级 3D 打印机行业公开案例综合整理，非闪铸自身实测数据；
+      预期效果数据为同类场景参考区间，实际效果以双方 4 周测试期间数据为准。
+      <br />© EngageLab · Marketing Automation Solution for Flashforge
+    </footer>
+  </main>
+
+  <script>
+  (function () {
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', purple: '#7c3aed', neutral: '#94a3b8',
+      muted: '#cbd5e1', text: '#374151', textMute: '#9ca3af', grid: '#e5e7eb',
+    };
+
+    function svg(w, h) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('width', '100%');
+      s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      return s;
+    }
+    function el(tag, attrs) {
+      const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 700, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 72;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 20) * 20 || 100;
+      const groupCount = categories.length;
+      const barsPerGroup = series.length;
+      const groupW = innerW / groupCount;
+      const barW = Math.min(22, (groupW - 12) / barsPerGroup);
+      const s = svg(W, H);
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+      if (series.length > 1) {
+        const legY = H - 14;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          legX += 14 + (se.name.length * 11) + 24;
+        });
+      }
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {}; const incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1; changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const definedAnchors = withAnchor.filter(n => n.anchor !== null).map(n => n.anchor);
+        const startX = definedAnchors.length > 0
+          ? Math.max(20, definedAnchors.reduce((a, b) => a + b, 0) / definedAnchors.length - totalW / 2)
+          : (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          const x = startX + i * (NODE_W + NODE_GAP);
+          const y = 20 + r * (NODE_H + RANK_GAP);
+          pos[it.node.id] = { x, y };
+        });
+      });
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) {
+              cur.x = prev.x + NODE_W + NODE_GAP;
+            }
+          }
+        });
+      }
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // ========== Benchmark chart ==========
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['独立站直接访问', '一年后活跃', '社区用户复购', '独立站转化提升'],
+      series: [
+        { name: '桌面级 3D 打印机行业公开数据', data: [55, 90, 68, 20], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // ========== Journey DAGs ==========
+
+    // J1: 通知权限开启欢迎
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 通知权限开启' },
+        { id: 'w1',     kind: 'wait',     title: '等待',       sub: '30 分钟' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '欢迎 · 热销机型' },
+        { id: 'w2',     kind: 'wait',     title: '等待',       sub: '24 小时' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'push2',  kind: 'channel',  title: 'App Push',   sub: '选购建议 · 教程' },
+        { id: 'w3',     kind: 'wait',     title: '等待',       sub: '48 小时' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'email',  kind: 'channel',  title: 'Email',      sub: '品牌故事 · 精选机型' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start', to: 'w1' },
+        { from: 'w1',    to: 'push1' },
+        { from: 'push1', to: 'w2' },
+        { from: 'w2',    to: 'st1' },
+        { from: 'st1',   to: 'push2' },
+        { from: 'push2', to: 'w3' },
+        { from: 'w3',    to: 'st2' },
+        { from: 'st2',   to: 'email' },
+        { from: 'email', to: 'end' },
+      ]);
+
+    // J2: 新用户激活引导
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: EUID 注册成功' },
+        { id: 'w1',     kind: 'wait',     title: '等待',       sub: '1 小时' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '页面浏览 · 24h' },
+        { id: 'email1', kind: 'channel',  title: 'Email',      sub: '精选机型推荐' },
+        { id: 'ok1',    kind: 'exitOk',   title: '已浏览',      sub: '' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '选购指南' },
+        { id: 'w2',     kind: 'wait',     title: '等待',       sub: '24 小时' },
+        { id: 'email2', kind: 'channel',  title: 'Email',      sub: '品牌故事' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start',  to: 'w1' },
+        { from: 'w1',     to: 'wfe1' },
+        { from: 'wfe1',   to: 'email1', label: '已浏览' },
+        { from: 'email1', to: 'ok1' },
+        { from: 'wfe1',   to: 'st1',    label: '超时未浏览' },
+        { from: 'st1',    to: 'push1' },
+        { from: 'push1',  to: 'w2' },
+        { from: 'w2',     to: 'email2' },
+        { from: 'email2', to: 'end' },
+      ]);
+
+    // J3: 长期未活跃召回
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '未活跃 >14 天 且 未购' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'push1', kind: 'channel',  title: 'App Push',   sub: '新品 / 优惠提醒' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '页面浏览 · 3 天' },
+        { id: 'email1',kind: 'channel',  title: 'Email',      sub: '精选专区' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已回访',      sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'wpush', kind: 'channel',  title: 'Web Push',   sub: '优惠券提示' },
+        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '3 天' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'email2',kind: 'channel',  title: 'Email',      sub: '挽回信 · 客服协助' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start',  to: 'st1' },
+        { from: 'st1',    to: 'push1' },
+        { from: 'push1',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'email1', label: '已回访' },
+        { from: 'email1', to: 'ok1' },
+        { from: 'wfe1',   to: 'st2',    label: '超时未访问' },
+        { from: 'st2',    to: 'wpush' },
+        { from: 'wpush',  to: 'w1' },
+        { from: 'w1',     to: 'st3' },
+        { from: 'st3',    to: 'email2' },
+        { from: 'email2', to: 'end' },
+      ]);
+
+    // J4: UTM 归因分层欢迎
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start', kind: 'entry',   title: '开始',      sub: '首次 UTM 不为空' },
+        { id: 'br',    kind: 'branch',  title: '条件分支',   sub: '按首次 UTM 分层' },
+        { id: 'wp1',   kind: 'channel', title: 'Web Push',  sub: '搜索用户 · 技术评测' },
+        { id: 'wp2',   kind: 'channel', title: 'Web Push',  sub: '社交用户 · 用户作品' },
+        { id: 'wp3',   kind: 'channel', title: 'Web Push',  sub: '视频用户 · 深度评测' },
+        { id: 'wp4',   kind: 'channel', title: 'Web Push',  sub: '默认 · 精选机型' },
+        { id: 'end',   kind: 'exitEnd', title: '结束',      sub: '' },
+      ],
+      [
+        { from: 'start', to: 'br' },
+        { from: 'br', to: 'wp1', label: 'Google / Bing' },
+        { from: 'br', to: 'wp2', label: 'FB / IG / TikTok' },
+        { from: 'br', to: 'wp3', label: 'YouTube' },
+        { from: 'br', to: 'wp4', label: '默认' },
+        { from: 'wp1', to: 'end' },
+        { from: 'wp2', to: 'end' },
+        { from: 'wp3', to: 'end' },
+        { from: 'wp4', to: 'end' },
+      ]);
+
+    // J5: 加购未下单挽回
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 加入购物车' },
+        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '30 分钟' },
+        { id: 'wpush', kind: 'channel',  title: 'Web Push',   sub: '加购提醒' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '购买 · 2 小时' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已下单',      sub: '' },
+        { id: 'w2',    kind: 'wait',     title: '等待',       sub: '4 小时' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'push1', kind: 'channel',  title: 'App Push',   sub: '限时优惠券' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '购买 · 12 小时' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已下单',      sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'email', kind: 'channel',  title: 'Email',      sub: '对比清单 · 客服' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start', to: 'w1' },
+        { from: 'w1',    to: 'wpush' },
+        { from: 'wpush', to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1',   label: '已下单' },
+        { from: 'wfe1',  to: 'w2',    label: '超时未下单' },
+        { from: 'w2',    to: 'st1' },
+        { from: 'st1',   to: 'push1' },
+        { from: 'push1', to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2',   label: '已下单' },
+        { from: 'wfe2',  to: 'st2',   label: '超时未下单' },
+        { from: 'st2',   to: 'email' },
+        { from: 'email', to: 'end' },
+      ]);
+
+    // J6: 打印机绑定首打引导
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 打印机绑定成功' },
+        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '4 小时' },
+        { id: 'push1', kind: 'channel',  title: 'App Push',   sub: '开箱 · 切片教程' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '首打成功 · 48 小时' },
+        { id: 'email1',kind: 'channel',  title: 'Email',      sub: '恭喜 · 模型库推荐' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已首打',      sub: '' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'push2', kind: 'channel',  title: 'App Push',   sub: '视频教程 · 客服' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '首打成功 · 48 小时' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已首打',      sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'email2',kind: 'channel',  title: 'Email',      sub: '客服协助介入' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start',  to: 'w1' },
+        { from: 'w1',     to: 'push1' },
+        { from: 'push1',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'email1', label: '已完成' },
+        { from: 'email1', to: 'ok1' },
+        { from: 'wfe1',   to: 'st1',    label: '超时未完成' },
+        { from: 'st1',    to: 'push2' },
+        { from: 'push2',  to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok2',    label: '已完成' },
+        { from: 'wfe2',   to: 'st2',    label: '超时未完成' },
+        { from: 'st2',    to: 'email2' },
+        { from: 'email2', to: 'end' },
+      ]);
+
+    // Sticky nav highlight
+    const links = document.querySelectorAll('.toc-bar a');
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    function onScroll() {
+      const y = window.scrollY + 100;
+      let cur = sections[0]?.id;
+      sections.forEach(s => { if (s.offsetTop <= y) cur = s.id; });
+      links.forEach(a => a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--accent)' : '');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+  </script>
+</body>
+</html>
