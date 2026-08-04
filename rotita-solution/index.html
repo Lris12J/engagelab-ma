@@ -190,7 +190,7 @@
         <div class="card-header">用户漏斗：叠加即时通道后的目标提升空间（测试目标）</div>
         <div class="card-body">
           <div class="chart" id="chart-funnel"></div>
-          <p class="note">对比「仅邮件 / 人工运营」与「全渠道生命周期自动化」的测试目标区间；实际基线因品牌阶段不同，上线前需对齐现状数据。</p>
+          <p class="note">对比「现有成熟邮件基线」与「叠加全渠道后目标」；此处为迁移增量口径（非从 0），实际基线以品牌自身数据对齐后为准。</p>
         </div>
       </div>
     </section>
@@ -271,7 +271,7 @@
           <tr class="tone-success"><td>P0</td><td>新客欢迎 + 首购激励</td><td>品牌叙事用 Email，新客券激励用 Push</td><td>Email + App Push</td><td>注册→首单相对 +20~35%</td></tr>
           <tr class="tone-coral"><td>P1</td><td>心愿单 / 清仓限时特价提醒</td><td>Flash Sale 联动，收藏行为触发即时提醒</td><td>App Push + Web Push + Email</td><td>心愿单 7 日成交相对 +20~40%</td></tr>
           <tr><td>P1</td><td>跨品类连带复购</td><td>物流即时 + 搭配内容 + 关联品类推荐</td><td>App Push + Email</td><td>30 日复购相对 +25~40%</td></tr>
-          <tr><td>P1</td><td>沉睡分层唤醒</td><td>轻→中→深递进，末触达按市场选通道</td><td>App Push + Email + SMS / WhatsApp</td><td>触达后 14 日成交 8-15%</td></tr>
+          <tr><td>P1</td><td>沉睡分层唤醒</td><td>轻→中→深递进，末触达按市场选通道</td><td>App Push + Email + SMS / WhatsApp</td><td>触达后 14 日成交 3-12%（按沉默深度递减）</td></tr>
         </tbody>
       </table>
     </section>
@@ -459,7 +459,7 @@
             <div class="callout success">
               <div class="callout-title">预期效益</div>
               <div class="callout-body">
-                <p>触达后 14 日内成交率目标 8-15%（按沉默深度递减）</p>
+                <p>触达后 14 日内成交率目标 3-12%（按沉默深度递减：浅沉默偏高、深沉默偏低）</p>
               </div>
             </div>
           </div>
@@ -757,8 +757,8 @@
     drawBarChart(document.getElementById('chart-funnel'), {
       categories: ['注册→首单', '弃单恢复', '30日复购', '沉睡唤醒成交'],
       series: [
-        { name: '仅邮件 / 人工运营', data: [8, 2, 12, 3], tone: 'neutral' },
-        { name: '全渠道自动化目标', data: [14, 14, 20, 12], tone: 'success' },
+        { name: '现有成熟邮件基线', data: [10, 10, 12, 4], tone: 'neutral' },
+        { name: '叠加全渠道后目标', data: [13, 14, 16, 10], tone: 'success' },
       ],
       valueSuffix: '%', height: 240,
     });
