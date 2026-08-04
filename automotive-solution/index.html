@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA · 智能电动车企全生命周期用户运营方案（新能源 · 全球化）</title>
+  <style>
+    :root {
+      --bg: #ffffff; --bg-soft: #f7f8fa; --bg-elev: #ffffff;
+      --border: #e5e7eb; --border-strong: #d1d5db;
+      --text: #111827; --text-2: #374151; --text-3: #6b7280; --text-4: #9ca3af;
+      --accent: #2563eb; --accent-soft: #dbeafe;
+      --success: #16a34a; --success-soft: #dcfce7;
+      --warning: #d97706; --warning-soft: #fef3c7;
+      --info: #0369a1; --info-soft: #e0f2fe;
+      --danger: #dc2626; --danger-soft: #fee2e2;
+      --purple: #7c3aed; --purple-soft: #ede9fe;
+      --radius: 10px; --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; }
+    h4 { font-size: 14.5px; font-weight: 600; margin: 14px 0 8px; }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+    .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.9em;
+      background: #f3f4f6; padding: 1px 5px; border-radius: 4px; color: #b91c1c; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #f6f9ff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px; margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 960px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px; font-size: 12px;
+      border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-2);
+      background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+    .pill-purple { background: var(--purple-soft); border-color: var(--purple); color: var(--purple); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.25fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); }
+    .stat-value { font-size: 25px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-value.purple { color: var(--purple); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border); background: #fafbfc;
+      font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.purple { border-left-color: var(--purple); background: var(--purple-soft); }
+    .callout.purple .callout-title { color: var(--purple); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; background: var(--bg-elev);
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.045); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.045); }
+    tr.tone-warn td { background: rgba(217, 119, 6, 0.05); }
+    tr.tone-purple td { background: rgba(124, 58, 237, 0.045); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border); z-index: 10; padding: 10px 28px; margin: -32px -28px 24px; font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px; align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    .rocket { display: flex; flex-direction: column; gap: 10px; }
+    .rocket-stage { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: var(--radius);
+      border: 1px solid var(--border); }
+    .rocket-stage .rk-num { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .rocket-stage.r1 { background: var(--info-soft); } .rocket-stage.r1 .rk-num { background: var(--info); }
+    .rocket-stage.r2 { background: var(--warning-soft); } .rocket-stage.r2 .rk-num { background: var(--warning); }
+    .rocket-stage.r3 { background: var(--purple-soft); } .rocket-stage.r3 .rk-num { background: var(--purple); }
+    .rocket-stage .rk-title { font-weight: 700; font-size: 14.5px; }
+    .rocket-stage .rk-desc { font-size: 12.5px; color: var(--text-3); }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+    .spacer-sm { height: 6px; } .spacer-md { height: 12px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px;
+      border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+    @media (max-width: 820px) {
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-12-1 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA · 智能电动车企全生命周期运营方案</span>
+      <a href="#s-where">钱在哪里</a>
+      <a href="#s-status">行业现状</a>
+      <a href="#s-data">数据打通</a>
+      <a href="#s-blueprint">接入蓝图</a>
+      <a href="#s-map">场景地图</a>
+      <a href="#s-journeys">旅程编排</a>
+      <a href="#s-benchmark">预期效果</a>
+      <a href="#s-compliance">合规护栏</a>
+      <a href="#s-plan">落地计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <a class="back-home" href="../">← 返回首页</a>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-info">智能电动车企 · 通用行业方案</span>
+        <span class="pill">新能源 / 燃油皆适用 · 国内私域 + 全球化出海</span>
+        <span class="pill pill-success">全生命周期 · 从线索到复购裂变</span>
+        <span class="pill pill-warn">打通数据孤岛 · 一个用户一套旅程</span>
+      </div>
+      <h1>EngageLab MA · 智能电动车企全生命周期用户运营方案</h1>
+      <p class="hero-subtitle">
+        汽车是所有消费品里<span class="bold">决策最重、周期最长、单价最高、频次最低</span>的生意——一次交易动辄数十万，
+        平均选购周期约 2.5 个月，换车周期 3–5 年。传统打法把预算砸在"漏斗开口"买线索，但线索转化率普遍只有
+        <span class="bold">1–3%</span>，且留资后 <span class="bold">10 分钟内不跟进意向就腰斩</span>。
+        真正决定这门生意成败的，是<span class="bold">成交之后</span>——保养、续保、补能、软件订阅的高毛利复购，
+        以及<span class="bold">转介绍</span>这个最低成本的获客引擎（头部品牌订单转介绍占比可达 55–70%）。
+        而这一切都依赖：把分散在<span class="bold">官网 / 经销商 CRM / 车主 App / 车机车联网 / 售后系统</span>的数据统一到每一个用户身上，
+        再在正确的时机、通过正确的渠道自动化触达。本方案主张<span class="bold">先打通数据、再用旅程把全生命周期串起来</span>。
+      </p>
+      <div class="grid grid-4">
+        <div class="stat">
+          <div class="stat-value info">≈ 2.5 个月</div>
+          <div class="stat-label">乘用车平均选购周期（海选→下订，2025 行业数据）</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value success">55–70%</div>
+          <div class="stat-label">头部品牌订单转介绍占比（传统车企普遍 15–25%）</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value warn">42%+</div>
+          <div class="stat-label">经销商售后业务毛利率（售后是利润压舱石）</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1–3% → 28%</div>
+          <div class="stat-label">线索转化率：普遍水平 vs 标杆水平的差距</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where the money is -->
+    <section id="s-where" class="section">
+      <h2>一、先看清钱在哪里：汽车是"三段火箭"生意</h2>
+      <div class="grid grid-2-1">
+        <div>
+          <p>燃油时代的车企只做"卖车 + 4S 售后"，而新能源与智能化把汽车变成了
+          <span class="bold">"一次整车交易 + 长期车主服务 + 软件订阅 + 老带新裂变"</span>的复合生意。
+          用户运营的成败，取决于能否把用户从"买了一台车的消费者"变成
+          <span class="bold">"持续用车服务、持续续费订阅、并主动推荐的品牌拥护者"</span>。</p>
+          <div class="spacer-sm"></div>
+          <div class="rocket">
+            <div class="rocket-stage r1">
+              <div class="rk-num">1</div>
+              <div>
+                <div class="rk-title">整车销售 · 一次性大额，靠长周期线索培育拿下</div>
+                <div class="rk-desc">决策周期约 2.5 个月、进店到下订约 2.7 周；线索转化率仅 1–3%，10 分钟黄金响应窗口决定成败</div>
+              </div>
+            </div>
+            <div class="rocket-stage r2">
+              <div class="rk-num">2</div>
+              <div>
+                <div class="rk-title">车主服务 · 高毛利持续收入，决定 LTV</div>
+                <div class="rk-desc">保养 / 续保 / 补能 / 软件订阅（智驾、座舱）持续复购，售后毛利率 40%+，是穿越价格战的利润压舱石</div>
+              </div>
+            </div>
+            <div class="rocket-stage r3">
+              <div class="rk-num">3</div>
+              <div>
+                <div class="rk-title">增换购 + 转介绍 · 老用户裂变，放大生命周期价值</div>
+                <div class="rk-desc">头部品牌 55–70% 订单来自老用户推荐，是最低成本的获客引擎；换车周期到来时的置换是又一次大额复购</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="card-header">这套模式的运营含义（行业公开数据）</div>
+            <div class="card-body">
+              <div class="signal-row">
+                <div class="left"><div class="label">平均选购周期</div><div class="hint">海选 → 下订（2025）</div></div>
+                <div class="value" style="color:var(--info)">2.5 个月</div>
+              </div>
+              <div class="signal-row">
+                <div class="left"><div class="label">线索转化率</div><div class="hint">普遍 → 标杆</div></div>
+                <div class="value" style="color:var(--warning)">1–3% → 28%</div>
+              </div>
+              <div class="signal-row">
+                <div class="left"><div class="label">试驾后成交率</div><div class="hint">新能源通常更高</div></div>
+                <div class="value" style="color:var(--success)">15–30%</div>
+              </div>
+              <div class="signal-row">
+                <div class="left"><div class="label">头部品牌转介绍占比</div><div class="hint">老带新订单</div></div>
+                <div class="value" style="color:var(--success)">55–70%</div>
+              </div>
+              <div class="signal-row">
+                <div class="left"><div class="label">售后业务毛利率</div><div class="hint">经销商集团公开财报</div></div>
+                <div class="value" style="color:var(--warning)">42%+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout warn">
+        <div class="callout-title">结论：能提升 ROI 的旅程，一半在"临门一脚"、一半在"成交之后"</div>
+        <div class="callout-body">
+          <p>购前阶段的关键是<span class="bold">线索即时响应与培育、试驾转化、下订到交付的期待感运营</span>——把稀缺且昂贵的线索"榨干价值"；
+          成交之后的关键是<span class="bold">保养 / 续保 / 补能复购、软件订阅续费、转介绍裂变、增换购</span>——这是 LTV 与低成本增长的真正来源。
+          这些旅程无一例外都依赖跨系统的用户数据。因此本方案的核心，是<span class="bold">先把数据打通到同一个用户身上，再用自动化旅程承接每一个高价值节点</span>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Current status -->
+    <section id="s-status" class="section">
+      <h2>二、行业现状：新势力已跑通"用户企业"，多数车企卡在执行层</h2>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">头部新势力已验证的打法</div><div class="card-body">
+          <ul>
+            <li>把低频的汽车交易，转化为 <span class="bold">高频的 App 社区互动</span>——头部车主 App 日活可达百万级，用户日均停留 5–9 分钟以上</li>
+            <li>用积分体系、用户共创、线下空间构建情感连接，<span class="bold">订单转介绍占比做到 55–70%</span></li>
+            <li>售后从"成本中心"变成"利润与锁客中心"：管家式服务 + 私域主动触达，客户保留率极高</li>
+            <li>软件订阅（高阶智驾、智能座舱）把一次性交易变成<span class="bold">持续现金流</span>，边际成本低、毛利高</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">多数车企尚未补齐的一层</div><div class="card-body">
+          <ul>
+            <li>数据分散在<span class="bold">官网 / 经销商 CRM / 车主 App / 车机 / 售后 DMS</span> 多个系统，用户身份割裂、无法统一编排</li>
+            <li>触达停留在"单点群发"：短信轰炸、生硬 Push，缺少"何时发、发给谁、跨渠道协同、发完看归因"的能力</li>
+            <li>线索留资后跟进慢（超 30 分钟意向下降 50%+）、试驾提醒缺失（预约到店率仅 40–60%）</li>
+            <li>保养 / 续保 / 软件续订等高价值场景<span class="bold">尚未被自动化旅程承接</span>，白白流失到第三方售后</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">一句话定位</div>
+        <div class="callout-body">
+          <p>车企不缺数据、不缺渠道、不缺 App——缺的是把已有数据变成<span class="bold">跨渠道自动化营收</span>的运营执行层。
+          EngageLab MA 正是这一层：它把车企现有的线索、CRM、车联网、售后数据统一到同一个用户身上，
+          把"线索 → 试驾 → 下订 → 交付 → 用车 → 复购 → 裂变"每个阶段用旅程自动化串起来，
+          并原生支持 <span class="bold">App Push / 短信 / Email / WhatsApp / Web Push / 站内信</span> 多渠道，适配国内私域与全球化出海。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data as asset -->
+    <section id="s-data" class="section">
+      <h2>三、核心洞察：汽车的难点不是缺数据，而是数据分散在孤岛里</h2>
+      <div class="callout success">
+        <div class="callout-title">MA 不替代业务系统，而是做"统一身份 + 跨渠道编排 + 触达执行"层</div>
+        <div class="callout-body">
+          <p>与电商"埋点即资产、复用一套点位"不同，汽车的数据天生分散：
+          <span class="bold">官网 / 小程序</span>沉淀线索与配置意向、<span class="bold">经销商 / 销售 CRM</span>掌握到店 / 试驾 / 成交 / 交付、
+          <span class="bold">车主 App</span>记录用车与服务、<span class="bold">车机 / 车联网</span>产生里程 / OTA / 补能 / 故障、
+          <span class="bold">售后 DMS</span>持有保养 / 续保 / 工单。任何一个高价值旅程，都需要跨越这些系统的数据。</p>
+          <p>EngageLab MA 不去替代这些系统，而是作为它们之上的运营执行层——通过
+          <span class="bold">Web / App SDK、Server-side API、Webhook 实时反查、批量导入</span>四种方式，
+          把分散的事件与属性<span class="bold">汇聚到同一个用户身份（One ID）</span>上，再做旅程编排与多渠道触达。
+          车企只需在关键节点"多同步一份数据给 MA"，无需推翻现有 IT 架构。</p>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <h3>数据源 → MA 事件 / 属性 映射（把孤岛汇聚到一个用户）</h3>
+      <table>
+        <thead><tr>
+          <th style="width:22%">数据源</th>
+          <th style="width:34%">关键事件 / 属性</th>
+          <th style="width:22%">接入方式</th>
+          <th>支撑的旅程</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-info"><td>官网 / 小程序 / 车主 App</td><td>留资提交 · 浏览车型 · 配置器使用 · 试驾预约 · 下订 · App 登录活跃</td><td>Web SDK + App SDK</td><td>J1 线索 · J2 试驾 · J4 激活</td></tr>
+          <tr class="tone-info"><td>经销商 / 销售 CRM</td><td>到店签到 · 试驾完成 · 成交 · 交付完成 · 所属门店</td><td>Server-side API 同步</td><td>J1 · J2 · J3 · J4</td></tr>
+          <tr class="tone-warn"><td>售后 / DMS 系统</td><td>保养记录 · 保养到期 · 续保状态 · 保险到期 · 工单</td><td>Server-side API</td><td>J5 保养 · J6 续保 · J10 召回</td></tr>
+          <tr class="tone-warn"><td>车机 / 车联网</td><td>累计里程 · OTA 版本 · 故障告警 · 充电 / 补能记录</td><td>Server-side API 事件上报</td><td>J5 · J7 OTA/订阅 · J9 增换购</td></tr>
+          <tr class="tone-purple"><td>CDP / DMP / 评分系统</td><td>AI 线索评级 · 分群标签 · NPS · 续保报价 · 置换估值</td><td>批量同步 + Webhook 实时反查</td><td>J1 · J8 裂变 · 全旅程分层</td></tr>
+          <tr><td class="bold">SDK 预置</td><td>首次 UTM / 激活渠道 · 最后活跃时间 · 设备语言 / 时区</td><td>SDK 内置 · 零开发</td><td>归因 · 时区发送 · 多语言</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:8px;">
+        注：具体接法（哪些走 SDK、哪些走 Server API、哪些走 Webhook 实时反查）由 EngageLab 交付团队与车企 IT / 数据团队在需求调研时共同确认，遵循"最小侵入、复用现有埋点与接口"原则。
+      </p>
+    </section>
+
+    <!-- Blueprint -->
+    <section id="s-blueprint" class="section">
+      <h2>四、数据接入蓝图 · 按价值排优先级，一次接到位</h2>
+      <p>建议分三档推进：<span class="bold">P0 是购前线索与成交链路</span>（官网 / CRM），当期即可跑通"线索响应 + 试驾 + 交付"三条高价值旅程；
+      <span class="bold">P1 是售后与车联网数据</span>，是汽车区别于普通电商、真正拉动 LTV 的复购与订阅引擎；
+      <span class="bold">P2 是画像与裂变数据</span>，用于精细分层与转介绍。建议 P0 + P1 一次接齐。</p>
+      <div class="spacer-md"></div>
+      <table>
+        <thead><tr>
+          <th style="width:8%">优先级</th>
+          <th style="width:26%">事件 / 属性</th>
+          <th style="width:20%">来源</th>
+          <th style="width:24%">支撑的旅程</th>
+          <th>接入价值</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-info"><td class="bold">P0</td><td>留资 / 浏览车型 / 试驾预约 / 到店 / 试驾完成 / 下订 / 交付</td><td>官网·小程序·App·CRM</td><td>J1 线索响应 · J2 试驾转化 · J3 下订到交付 · J4 交付激活</td><td class="bold" style="color:var(--info)">高 · 直接影响成交</td></tr>
+          <tr class="tone-warn"><td class="bold">P1</td><td>累计里程 / 保养到期 / 保险到期 / OTA 版本 / 订阅状态 / 补能</td><td>车联网 + 售后 DMS</td><td>J5 保养 · J6 续保 · J7 OTA/订阅 · J9 增换购</td><td class="bold" style="color:var(--warning)">最高 · 决定 LTV 与复购</td></tr>
+          <tr class="tone-purple"><td class="bold">P2</td><td>AI 线索评级 / NPS / 分群标签 / 是否转介绍人 / 积分</td><td>CDP + 评分系统</td><td>J8 转介绍裂变 · J10 召回 · 全旅程分层</td><td>中 · 深化精细化运营</td></tr>
+          <tr><td class="bold">预置</td><td>首次 UTM · 激活渠道 · 最后活跃时间 · 语言 / 时区</td><td>SDK 自动</td><td>归因 · 时区发送 · 多语言文案</td><td class="bold" style="color:var(--success)">零 · SDK 内置</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <h3>建议维护的用户属性（让旅程分层更精准）</h3>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">车辆与用车相关</div><div class="card-body p-sm">
+          <ul>
+            <li><span class="bold">意向车型 / 已购车型</span>：驱动购前推荐与购后精准内容</li>
+            <li><span class="bold">车龄 / 累计里程</span>：触发保养、增换购的核心依据</li>
+            <li><span class="bold">保养到期 / 保险到期时间</span>：驱动服务复购与续保挽回</li>
+            <li><span class="bold">软件订阅状态 / 到期时间</span>：驱动订阅续费与功能激活</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">用户与身份相关</div><div class="card-body p-sm">
+          <ul>
+            <li><span class="bold">生命周期阶段</span>：线索 / 订客 / 车主 / 沉默，分层触达</li>
+            <li><span class="bold">线索评分 / NPS</span>：高意向直转销售，高 NPS 邀请转介绍</li>
+            <li><span class="bold">所属经销商 / 城市 / 语言 / 时区</span>：本地化文案与就近门店</li>
+            <li><span class="bold">是否转介绍人 / 积分等级</span>：裂变与忠诚度权益运营</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <h3>进阶：用 Webhook 实时反查车企自有系统，千人千面填充消息</h3>
+      <div class="callout purple">
+        <div class="callout-title">让车企自己的报价 / 评分 / 库存算法，直接为每条消息选内容</div>
+        <div class="callout-body">
+          <p>MA 旅程内置 <span class="bold">Webhook 组件</span>：在发送消息前的那一刻，实时向车企的
+          <span class="bold">CDP / DMS / 报价引擎</span>发起请求，传入当前用户 ID / 车型 / 里程 / 城市，
+          由车企系统返回"<span class="bold">此刻最该推给这个用户的内容</span>"——例如该车型该里程的保养套餐 + 就近可预约门店、
+          基于车型车龄的续保专属报价、置换估值、或实时线索评分。</p>
+          <p>Webhook 支持 <span class="bold">Response 变量提取</span>——把接口返回的示例 JSON 粘贴进配置面板，
+          系统自动解析字段路径（如 <span class="mono">data.package_name</span>、<span class="mono">data.price</span>、
+          <span class="mono">data.store_name</span>、<span class="mono">data.quote</span>）。这些字段随后像普通用户变量一样，
+          可在 App Push / 短信 / Email / WhatsApp 的文案、跳转链接中直接引用，也可作为条件分支的判断依据。</p>
+          <p class="bold" style="color:var(--purple);">效果：同一条旅程，每个用户收到的都是由车企自己的系统为其实时计算的报价与推荐，真正做到千人千面。</p>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout success">
+        <div class="callout-title">与 CDP / DMS 的分工</div>
+        <div class="callout-body">
+          <p>CDP / DMS 继续负责"数据存储 + 用户画像 + 评分 + 报价计算"，MA 负责"跨渠道旅程编排 + 触达执行 + 转化归因"。
+          即"<span class="bold">CDP / DMS 决定推荐什么、报价多少，MA 决定在什么时机、用什么渠道把它送到用户面前</span>"。
+          两者不重复、不冲突，车企的既有数据资产被直接复用与放大。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scenario map -->
+    <section id="s-map" class="section">
+      <h2>五、全生命周期运营场景地图</h2>
+      <p>围绕"线索 → 试驾 → 下订 → 交付 → 用车 → 复购 → 裂变 / 召回"七个阶段，共规划 11 个高价值场景，本方案详细编排其中 8 条核心旅程（J1–J8）。</p>
+      <div class="spacer-md"></div>
+      <table>
+        <thead><tr>
+          <th style="width:6%">#</th>
+          <th style="width:11%">阶段</th>
+          <th style="width:21%">场景</th>
+          <th style="width:22%">进入条件</th>
+          <th style="width:20%">主推渠道</th>
+          <th>核心价值</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-info"><td class="bold">J1</td><td>线索</td><td class="bold">线索即时响应 + 分层培育</td><td>事件：官网 / 小程序留资</td><td>SMS/WhatsApp → App Push → Email</td><td>抢 10 分钟黄金窗口，AI 评级分层，把 1–3% 转化拉高</td></tr>
+          <tr class="tone-info"><td class="bold">J2</td><td>试驾</td><td class="bold">试驾预约 → 到店 → 成交</td><td>事件：试驾预约成功</td><td>App Push / SMS → Email</td><td>降 no-show（到店率 40–60%），试驾后 24h 促成</td></tr>
+          <tr class="tone-info"><td class="bold">J3</td><td>交付</td><td class="bold">下订到交付 · 期待感运营</td><td>事件：下订 / 锁单</td><td>App Push → Email</td><td>漫长等待期防退订，交付即口碑峰值，预售保险/配件</td></tr>
+          <tr class="tone-success"><td class="bold">J4</td><td>激活</td><td class="bold">提车交付 + 首任 30 天 Onboarding</td><td>事件：交付完成</td><td>App Push → Email</td><td>峰终定律建立好感，激活 App、首保、入社区</td></tr>
+          <tr class="tone-warn"><td class="bold">J5</td><td>复购</td><td class="bold">保养 / 年检 智能提醒</td><td>属性：里程达阈值 / 保养到期</td><td>Webhook → App Push → SMS → Email</td><td>高毛利复购，一键预约就近门店，续保前置</td></tr>
+          <tr class="tone-warn"><td class="bold">J6</td><td>复购</td><td class="bold">续保挽回</td><td>属性：保险到期前 60 天</td><td>Webhook → Email → App Push → SMS</td><td>渗透率 +6pt，防止流失到第三方，专属报价</td></tr>
+          <tr class="tone-purple"><td class="bold">J7</td><td>订阅</td><td class="bold">软件订阅 / OTA 激活与续订</td><td>事件：OTA 发布 / 订阅到期</td><td>App Push → Email</td><td>软件高毛利现金流，功能感知→试用→续费</td></tr>
+          <tr class="tone-success"><td class="bold">J8</td><td>裂变</td><td class="bold">车主转介绍裂变</td><td>属性：高 NPS / 高活跃车主</td><td>App Push → Email → Webhook</td><td>最低成本获客引擎，专属邀请码 + 双向权益归因</td></tr>
+          <tr><td class="muted">J9</td><td>换购</td><td>增换购 / 以旧换新</td><td>属性：车龄 &gt; N 年 或 里程达阈值</td><td>App Push / Email</td><td>换车周期的大额复购，老用户专属置换权益</td></tr>
+          <tr><td class="muted">J10</td><td>召回</td><td>沉默车主 / 流失预警召回</td><td>属性：App 90 天未活跃 / 长期未到店</td><td>App Push / SMS / Email</td><td>防止流失到第三方售后，唤醒回厂</td></tr>
+          <tr><td class="muted">J11</td><td>留存</td><td>车主社区 / 活动 / 积分运营</td><td>属性：会员等级 / 活动报名</td><td>App Push / 站内信</td><td>把低频用车变高频互动，沉淀关系与共创</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Journeys -->
+    <section id="s-journeys" class="section">
+      <h2>六、八条核心旅程详细编排</h2>
+
+      <h3 style="margin-top:8px;">J1 · 线索即时响应 + 分层培育 <span class="pill pill-info" style="margin-left:8px;">线索 · 抢黄金 10 分钟</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j1"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm"><ul>
+            <li><span class="bold">开始</span>：事件 · 官网 / 小程序留资</li>
+            <li><span class="bold">首触达</span>：Webhook 实时取 AI 线索评级后分层</li>
+            <li><span class="bold">再次进入</span>：不可（同一线索锁定）</li>
+            <li><span class="bold">提前退出</span>：预约试驾或下订</li>
+            <li><span class="bold">转化统计</span>：预约试驾 · 监听 7 天</li>
+          </ul></div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm"><ul>
+            <li>抢占留资后 10 分钟黄金响应窗口</li>
+            <li>高意向即时转销售 + 试驾邀约，低意向长效培育</li>
+            <li>把行业普遍 1–3% 的转化，向标杆 28% 靠拢</li>
+          </ul></div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <h3>J2 · 试驾预约 → 到店 → 成交 <span class="pill pill-info" style="margin-left:8px;">试驾 · 峰值体验</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j2"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm"><ul>
+            <li><span class="bold">开始</span>：事件 · 试驾预约成功</li>
+            <li><span class="bold">到店救援</span>：未签到分支发改约提醒</li>
+            <li><span class="bold">提前退出</span>：下订</li>
+            <li><span class="bold">转化统计</span>：下订 · 监听 5 天</li>
+            <li><span class="bold">可发送时间</span>：终端时区 09:00–21:00</li>
+          </ul></div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm"><ul>
+            <li>试驾是购车旅程的体验峰值（峰终定律）</li>
+            <li>提前提醒把预约到店率从 40–60% 往上拉</li>
+            <li>试驾后 24h 感谢跟进促成，成交率 15–30%</li>
+          </ul></div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <h3>J3 · 下订到交付 · 期待感运营 <span class="pill pill-info" style="margin-left:8px;">交付 · 汽车独有</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j3"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm"><ul>
+            <li><span class="bold">开始</span>：事件 · 下订 / 锁单</li>
+            <li><span class="bold">节点</span>：排产 → 下线 → 物流 → 提车</li>
+            <li><span class="bold">提前退出</span>：退订（转专属挽留）</li>
+            <li><span class="bold">Webhook</span>：反查金融 / 保险 / 配件推荐</li>
+            <li><span class="bold">转化统计</span>：保险 / 配件加购 · 交付完成</li>
+          </ul></div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm"><ul>
+            <li>数周至数月的等待期是退订高发区，进度可视化降焦虑</li>
+            <li>提前预售保险 / 配件 / 充电桩，拉高附加收入</li>
+            <li>交付前铺垫仪式感，为口碑与转介绍埋线</li>
+          </ul></div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <h3>J4 · 提车交付 + 首任 30 天 Onboarding <span class="pill pill-success" style="margin-left:8px;">激活 · 峰终定律</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j4"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm"><ul>
+            <li><span class="bold">开始</span>：事件 · 交付完成</li>
+            <li><span class="bold">再次进入</span>：不可（首任期锁定）</li>
+            <li><span class="bold">分支</span>：App 是否激活</li>
+            <li><span class="bold">转化统计</span>：App 激活 + 首保预约 · 30 天</li>
+          </ul></div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm"><ul>
+            <li>交付是情感峰值，决定长期口碑与转介绍</li>
+            <li>车机 / 智驾功能教学，提升智能功能感知</li>
+            <li>激活 App + 入社区，把低频交易变高频互动</li>
+          </ul></div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <h3>J5 · 保养 / 年检 智能提醒 <span class="pill pill-warn" style="margin-left:8px;">复购 · 高毛利</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j5"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm"><ul>
+            <li><span class="bold">开始</span>：属性 · 里程达阈值 或 距上次保养 N 月</li>
+            <li><span class="bold">Webhook</span>：反查保养套餐 + 就近门店 + 专属价</li>
+            <li><span class="bold">再次进入</span>：按保养周期</li>
+            <li><span class="bold">转化统计</span>：预约保养 · 监听 7 天</li>
+          </ul></div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm"><ul>
+            <li>售后是毛利率 40%+ 的利润压舱石</li>
+            <li>基于真实里程 / 时间精准触发，一键预约</li>
+            <li>把用户锁在官方体系，截流第三方售后</li>
+          </ul></div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <h3>J6 · 续保挽回 <span class="pill pill-warn" style="margin-left:8px;">复购 · 防流失</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j6"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm"><ul>
+            <li><span class="bold">开始</span>：属性 · 保险到期前 60 天</li>
+            <li><span class="bold">Webhook</span>：反查基于车型车龄的续保报价</li>
+            <li><span class="bold">分段</span>：到期前 60 / 30 / 7 天升级触达</li>
+            <li><span class="bold">转化统计</span>：完成续保 · 至到期日</li>
+          </ul></div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm"><ul>
+            <li>续保渗透率每提升几个百分点即可观增收</li>
+            <li>专属报价 + 一键续保，卡住事故车入口</li>
+            <li>防止用户流失到第三方保险 / 售后渠道</li>
+          </ul></div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <h3>J7 · 软件订阅 / OTA 激活与续订 <span class="pill pill-purple" style="margin-left:8px;">订阅 · 软件现金流</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j7"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm"><ul>
+            <li><span class="bold">开始</span>：事件 · OTA 发布 或 属性 · 订阅到期临近</li>
+            <li><span class="bold">分流</span>：OTA 新版激活 / 订阅到期续订</li>
+            <li><span class="bold">再次进入</span>：每次 OTA / 续订周期</li>
+            <li><span class="bold">转化统计</span>：开通试用 / 完成续订</li>
+          </ul></div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm"><ul>
+            <li>软件订阅边际成本低、毛利高，是新增长点</li>
+            <li>OTA 新功能推送提升功能感知与付费意愿</li>
+            <li>试用 → 转付费 → 续订，把功能变持续现金流</li>
+          </ul></div></div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+
+      <h3>J8 · 车主转介绍裂变 <span class="pill pill-success" style="margin-left:8px;">裂变 · 最低成本获客</span></h3>
+      <div class="grid grid-12-1">
+        <div class="dag-wrap"><div id="dag-j8"></div></div>
+        <div>
+          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm"><ul>
+            <li><span class="bold">开始</span>：属性 · 高 NPS / 高活跃车主</li>
+            <li><span class="bold">载体</span>：专属邀请码 / 邀请链接</li>
+            <li><span class="bold">Webhook</span>：好友成交后归因 + 发放双向权益</li>
+            <li><span class="bold">转化统计</span>：好友下订 · 监听 30 天</li>
+          </ul></div></div>
+          <div class="spacer-sm"></div>
+          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm"><ul>
+            <li>头部品牌 55–70% 订单来自老带新</li>
+            <li>把高满意度车主变成低成本的获客节点</li>
+            <li>成交自动归因、权益自动到账，规模化裂变</li>
+          </ul></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benchmark -->
+    <section id="s-benchmark" class="section">
+      <h2>七、预期效果 · 智能电动车企行业对标</h2>
+      <div class="grid grid-2">
+        <div><div class="chart" id="chart-benchmark"></div></div>
+        <div>
+          <div class="card"><div class="card-header">行业公开数据参考</div><div class="card-body">
+            <ul>
+              <li>标杆车企线索转化率可达 28%，普遍水平仅 1–3%；线索预评级 + 长效培育后某厂家自建渠道转化率从 0.5% 提升到 2.5%</li>
+              <li>试驾后成交率普遍 15–30%（新能源通常更高），预约到店率 40–60%、到店试驾率 80–95%</li>
+              <li>头部新势力订单转介绍占比 55–70%，传统车企普遍 15–25%；每月约一半销量来自老用户推荐</li>
+              <li>经销商集团售后业务毛利率可达 42%+，是穿越新车价格战的利润压舱石；续保渗透率 +6pt 即显著增收</li>
+              <li>海外市场服务网络完善的车企，客户回购率高出 15 个百分点；移动服务模式可降单店成本约 40%、服务覆盖率提 3 倍</li>
+            </ul>
+            <p class="small muted" style="margin-top:8px;">
+              数据来源：2023–2026 年汽车行业公开报道、券商研报与第三方市场报告综合整理，仅作为业务背景参考；实际效果以车企测试期对照组数据为准。
+            </p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance -->
+    <section id="s-compliance" class="section">
+      <h2>八、合规与运营护栏</h2>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">数据安全与合规</div><div class="card-body"><ul>
+          <li>全链路 TLS 加密 · VPC 网络隔离 · 敏感数据脱敏 · 基于角色的访问控制（RBAC）</li>
+          <li>已通过 <span class="bold">GDPR</span> 合规认证 + <span class="bold">SOC 2 Type II</span> 安全审计</li>
+          <li>出海可协助满足各目标市场法规（欧盟 GDPR / 美国 CCPA 等）；国内运营可协助满足 PIPL、《数据安全法》《汽车数据安全管理若干规定》</li>
+          <li>车联网 / 位置等敏感数据按最小必要原则采集与使用；消息发送记录保留可导出用于合规审查</li>
+        </ul></div></div>
+        <div class="card"><div class="card-header">运营护栏</div><div class="card-body"><ul>
+          <li>频控策略：每用户每日 / 每周消息上限，旅程内自动去重，防止多条旅程（如保养 + 续保 + 活动）叠加打扰</li>
+          <li>可发送时间：基于终端用户时区控制发送窗口（如 09:00–21:00），出海多市场自动适配</li>
+          <li>提前退出与全局退订：用户完成目标行为或退订即刻退出，尊重用户选择</li>
+          <li>内容预览 + A/B：发送前完整样式预览；AI Write for Me 一键生成多语言文案，适配出海多市场</li>
+        </ul></div></div>
+      </div>
+    </section>
+
+    <!-- Plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>九、落地计划 · 一次接到位，用效果说话</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center" style="width:12%">周期</th>
+          <th style="width:22%">阶段</th>
+          <th style="width:34%">工作内容</th>
+          <th>验收指标</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="align-center bold">Week 1</td><td>共创 &amp; 数据打通</td><td>场景优先级共创 · P0 官网/CRM 事件接入 + One ID 身份统一 · MA SDK（Web/App）接入 · 属性映射</td><td>P0 关键事件入库率 ≥ 95%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 2</td><td>购前高价值旅程上线</td><td>先上 <span class="bold">J1 线索响应 + J2 试驾转化</span> 两条链路，小流量验证（5–10%）</td><td>线索首触达 &lt; 10 分钟，旅程触发成功率 ≥ 98%</td></tr>
+          <tr class="tone-warn"><td class="align-center bold">Week 3–4</td><td>售后复购接入</td><td>P1 车联网 / DMS 事件接入 · 上线 <span class="bold">J5 保养 + J6 续保</span> · Webhook 报价反查 · 文案 A/B</td><td>保养 / 续保预约 uplift 可测</td></tr>
+          <tr class="tone-success"><td class="align-center bold">Week 5–6</td><td>复盘 &amp; 深化</td><td>数据复盘与收入增量结算 · 上线 J3/J4/J7/J8 · 规划增换购与社区裂变（P2）· 出海多语言 / 多市场对齐</td><td>核心旅程收入 uplift 可量化归因</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="stat"><div class="stat-value">4–6 周</div><div class="stat-label">从数据打通到全生命周期旅程运行</div></div>
+        <div class="stat"><div class="stat-value success">$0</div><div class="stat-label">测试期授权费用（免费测试 VIP）</div></div>
+        <div class="stat"><div class="stat-value">专属</div><div class="stat-label">EngageLab 交付团队 1v1 支持</div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <hr class="divider" />
+      <h3>下一步 · 三步启动</h3>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header"><span class="step-num">1</span>对齐场景与数据源</div><div class="card-body">
+          共创确认首批高价值场景（推荐线索响应 + 保养 / 续保），梳理官网 / CRM / 车联网 / DMS 数据源，明确各市场 / 时区 / 语言。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">2</span>打通数据、统一身份</div><div class="card-body">
+          前端接入 Web/App SDK，后端通过 Server API 同步 CRM / DMS / 车联网事件，<span class="bold">把分散数据汇聚到同一个用户身份</span>，最小侵入、复用现有接口。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">3</span>用效果说话</div><div class="card-body">
+          开通测试 VIP，优先上 <span class="bold">线索响应 + 续保 / 保养</span> 旅程，对照组验证 uplift，4–6 周产出可量化 ROI 报告。
+        </div></div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      本方案为面向智能电动车企（新能源 / 燃油皆适用）的通用行业解决方案，不针对任何特定品牌。
+      文中行业事实与对标数据（选购周期、线索转化率、转介绍占比、售后毛利率、出海售后等）来自 2023–2026 年汽车行业公开报道、券商研报及第三方市场报告综合整理，
+      非任何单一车企实测数据；实际效果以双方测试期间对照组数据为准。
+      <br />© EngageLab · Marketing Automation Solution for Automotive
+    </footer>
+  </main>
+
+  <script>
+  (function () {
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', purple: '#7c3aed', neutral: '#94a3b8',
+      muted: '#cbd5e1', text: '#374151', textMute: '#9ca3af', grid: '#e5e7eb',
+    };
+    function svg(w, h) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('width', '100%');
+      s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      return s;
+    }
+    function el(tag, attrs) {
+      const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 260 } = opts;
+      const W = 700, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 78;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 20) * 20 || 100;
+      const groupW = innerW / categories.length;
+      const barW = Math.min(30, (groupW - 12) / series.length);
+      const s = svg(W, H);
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * series.length) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          s.appendChild(el('rect', { x, y, width: barW - 3, height: h, fill: COLORS[se.tone] || COLORS.neutral, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 3) / 2, y: y - 3, 'text-anchor': 'middle', 'font-size': 9, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const words = cat.split('|');
+        words.forEach((wd, wi) => {
+          const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18 + wi * 13, 'text-anchor': 'middle', 'font-size': 10.5, fill: COLORS.text });
+          t.textContent = wd;
+          s.appendChild(t);
+        });
+      });
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      webhook: { fill: '#ede9fe', stroke: '#7c3aed', text: '#5b21b6' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 180, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {}; const incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => { if (rankOf[e.to] < rankOf[e.from] + 1) { rankOf[e.to] = rankOf[e.from] + 1; changed = true; } });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const definedAnchors = withAnchor.filter(n => n.anchor !== null).map(n => n.anchor);
+        const startX = definedAnchors.length > 0
+          ? Math.max(20, definedAnchors.reduce((a, b) => a + b, 0) / definedAnchors.length - totalW / 2)
+          : (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          pos[it.node.id] = { x: startX + i * (NODE_W + NODE_GAP), y: 20 + r * (NODE_H + RANK_GAP) };
+        });
+      });
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id], cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) cur.x = prev.x + NODE_W + NODE_GAP;
+          }
+        });
+      }
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width); s.setAttribute('height', height);
+      s.style.maxWidth = '100%'; s.style.height = 'auto';
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow2', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker); s.appendChild(defs);
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow2)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 12 + 12, 30);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title; s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 10.5, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub; s.appendChild(sub);
+        }
+      });
+      mount.innerHTML = ''; mount.appendChild(s);
+    }
+
+    // Benchmark chart
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['标杆线索|转化率', '试驾后|成交率', '头部品牌|转介绍占比', '售后业务|毛利率', '移动服务|降本'],
+      series: [{ name: '行业公开数据', data: [28, 30, 70, 42, 40], tone: 'success' }],
+      valueSuffix: '%', height: 260,
+    });
+
+    // J1 线索即时响应 + 分层培育
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',        sub: '事件: 官网/小程序留资' },
+        { id: 'hook1', kind: 'webhook',  title: 'Webhook',    sub: '反查 AI 线索评级' },
+        { id: 'br1',   kind: 'branch',   title: '线索分层',    sub: '按评分/意向' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS/WhatsApp',sub: '高意向 10 分钟响应' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '终端 09:00-21:00' },
+        { id: 'push1', kind: 'channel',  title: 'App Push',   sub: '中意向 车型+试驾邀约' },
+        { id: 'email1',kind: 'channel',  title: 'Email',      sub: '低意向 测评/车主故事' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '预约试驾 · 3天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已约试驾',    sub: '' },
+        { id: 'w1',    kind: 'wait',     title: '等待',        sub: '7 天' },
+        { id: 'email2',kind: 'channel',  title: 'Email',      sub: '限时政策/权益' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '' },
+      ],
+      [
+        { from: 'start', to: 'hook1' }, { from: 'hook1', to: 'br1' },
+        { from: 'br1', to: 'sms1', label: '高' },
+        { from: 'br1', to: 'st1', label: '中' }, { from: 'st1', to: 'push1' },
+        { from: 'br1', to: 'email1', label: '低' }, { from: 'email1', to: 'w1' }, { from: 'w1', to: 'email2' },
+        { from: 'sms1', to: 'wfe1' }, { from: 'push1', to: 'wfe1' }, { from: 'email2', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已预约' }, { from: 'wfe1', to: 'end', label: '超时' },
+      ]);
+
+    // J2 试驾预约→到店→成交
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',        sub: '事件: 试驾预约成功' },
+        { id: 'w1',    kind: 'wait',     title: '等待',        sub: '预约前 1 天' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '终端 09:00-21:00' },
+        { id: 'push1', kind: 'channel',  title: 'App Push/SMS',sub: '到店提醒+路线+顾问' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '到店签到 · 24h' },
+        { id: 'push2', kind: 'channel',  title: 'SMS/WhatsApp',sub: '未到店: 改约提醒' },
+        { id: 'w2',    kind: 'wait',     title: '等待',        sub: '试驾后 2 小时' },
+        { id: 'email1',kind: 'channel',  title: 'Email',      sub: '感谢+车型资料+报价' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '下订 · 3天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已下订',      sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '终端 09:00-21:00' },
+        { id: 'push3', kind: 'channel',  title: 'App Push',   sub: '限时政策+金融方案' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '' },
+      ],
+      [
+        { from: 'start', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'push1' }, { from: 'push1', to: 'wfe1' },
+        { from: 'wfe1', to: 'w2', label: '已到店' }, { from: 'wfe1', to: 'push2', label: '未到店' }, { from: 'push2', to: 'end' },
+        { from: 'w2', to: 'email1' }, { from: 'email1', to: 'wfe2' },
+        { from: 'wfe2', to: 'ok1', label: '已下订' }, { from: 'wfe2', to: 'st2', label: '超时' },
+        { from: 'st2', to: 'push3' }, { from: 'push3', to: 'end' },
+      ]);
+
+    // J3 下订到交付 期待感运营
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',      sub: '事件: 下订/锁单' },
+        { id: 'email1',kind: 'channel',  title: 'Email',    sub: '订单确认+交付流程' },
+        { id: 'w1',    kind: 'wait',     title: '等待',      sub: '至排产' },
+        { id: 'push1', kind: 'channel',  title: 'App Push', sub: '已排产: 进度可视化' },
+        { id: 'w2',    kind: 'wait',     title: '等待',      sub: '至下线' },
+        { id: 'push2', kind: 'channel',  title: 'App Push', sub: '车辆下线+物流启运' },
+        { id: 'hook1', kind: 'webhook',  title: 'Webhook',  sub: '反查金融/保险/配件' },
+        { id: 'email2',kind: 'channel',  title: 'Email',    sub: '提车清单+保险/配件预售' },
+        { id: 'w3',    kind: 'wait',     title: '等待',      sub: '至到店' },
+        { id: 'push3', kind: 'channel',  title: 'App Push', sub: '预约提车+交付仪式' },
+        { id: 'ok1',   kind: 'exitOk',   title: '交付完成',  sub: '' },
+      ],
+      [
+        { from: 'start', to: 'email1' }, { from: 'email1', to: 'w1' }, { from: 'w1', to: 'push1' },
+        { from: 'push1', to: 'w2' }, { from: 'w2', to: 'push2' }, { from: 'push2', to: 'hook1' },
+        { from: 'hook1', to: 'email2' }, { from: 'email2', to: 'w3' }, { from: 'w3', to: 'push3' }, { from: 'push3', to: 'ok1' },
+      ]);
+
+    // J4 提车交付+首任30天
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',      sub: '事件: 交付完成' },
+        { id: 'push1', kind: 'channel',  title: 'App Push', sub: '恭喜提车+App激活' },
+        { id: 'w1',    kind: 'wait',     title: '等待',      sub: '1 天' },
+        { id: 'email1',kind: 'channel',  title: 'Email',    sub: '车机/智驾功能教学' },
+        { id: 'w2',    kind: 'wait',     title: '等待',      sub: '3 天' },
+        { id: 'push2', kind: 'channel',  title: 'App Push', sub: '首保预约+社区邀请' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',  sub: 'App激活 · 7天' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间', sub: '终端 09:00-21:00' },
+        { id: 'push3', kind: 'channel',  title: 'App Push', sub: '未激活: 功能亮点召回' },
+        { id: 'email2',kind: 'channel',  title: 'Email',    sub: '社区活动+周边商城' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',      sub: '' },
+      ],
+      [
+        { from: 'start', to: 'push1' }, { from: 'push1', to: 'w1' }, { from: 'w1', to: 'email1' },
+        { from: 'email1', to: 'w2' }, { from: 'w2', to: 'push2' }, { from: 'push2', to: 'wfe1' },
+        { from: 'wfe1', to: 'email2', label: '已激活' },
+        { from: 'wfe1', to: 'st1', label: '未激活' }, { from: 'st1', to: 'push3' }, { from: 'push3', to: 'email2' },
+        { from: 'email2', to: 'end' },
+      ]);
+
+    // J5 保养/年检 智能提醒
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',        sub: '里程达阈值/保养到期' },
+        { id: 'hook1', kind: 'webhook',  title: 'Webhook',    sub: '反查套餐+就近门店' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '终端 09:00-21:00' },
+        { id: 'push1', kind: 'channel',  title: 'App Push',   sub: '保养提醒+一键预约' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '预约保养 · 5天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已预约',      sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '终端 09:00-21:00' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS/WhatsApp',sub: '未约: 优惠+就近门店' },
+        { id: 'w1',    kind: 'wait',     title: '等待',        sub: '3 天' },
+        { id: 'email1',kind: 'channel',  title: 'Email',      sub: '保养权益+续保前置' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '' },
+      ],
+      [
+        { from: 'start', to: 'hook1' }, { from: 'hook1', to: 'st1' }, { from: 'st1', to: 'push1' }, { from: 'push1', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已预约' }, { from: 'wfe1', to: 'st2', label: '超时' },
+        { from: 'st2', to: 'sms1' }, { from: 'sms1', to: 'w1' }, { from: 'w1', to: 'email1' }, { from: 'email1', to: 'end' },
+      ]);
+
+    // J6 续保挽回
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',        sub: '保险到期前 60 天' },
+        { id: 'hook1', kind: 'webhook',  title: 'Webhook',    sub: '反查续保报价' },
+        { id: 'email1',kind: 'channel',  title: 'Email',      sub: '续保方案+专属价' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '续保 · 至前30天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已续保',      sub: '' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '终端 09:00-21:00' },
+        { id: 'push1', kind: 'channel',  title: 'App Push',   sub: '前30天: 一键续保' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '续保 · 至前7天' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已续保',      sub: '' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS/WhatsApp',sub: '前7天: 最后提醒+客服' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '' },
+      ],
+      [
+        { from: 'start', to: 'hook1' }, { from: 'hook1', to: 'email1' }, { from: 'email1', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已续保' }, { from: 'wfe1', to: 'st1', label: '超时' },
+        { from: 'st1', to: 'push1' }, { from: 'push1', to: 'wfe2' },
+        { from: 'wfe2', to: 'ok2', label: '已续保' }, { from: 'wfe2', to: 'sms1', label: '超时' }, { from: 'sms1', to: 'end' },
+      ]);
+
+    // J7 软件订阅/OTA
+    drawJourney(document.getElementById('dag-j7'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',      sub: 'OTA发布/订阅到期' },
+        { id: 'br1',   kind: 'branch',   title: '事件分流',  sub: '' },
+        { id: 'push1', kind: 'channel',  title: 'App Push', sub: 'OTA新功能+订阅试用' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',  sub: '开通试用 · 7天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已试用',    sub: '' },
+        { id: 'email1',kind: 'channel',  title: 'Email',    sub: '功能价值+限时试用' },
+        { id: 'push2', kind: 'channel',  title: 'App Push', sub: '订阅到期: 续订提醒' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',  sub: '续订 · 5天' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已续订',    sub: '' },
+        { id: 'email2',kind: 'channel',  title: 'Email',    sub: '续订优惠+客服' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',      sub: '' },
+      ],
+      [
+        { from: 'start', to: 'br1' },
+        { from: 'br1', to: 'push1', label: 'OTA新版' }, { from: 'push1', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已试用' }, { from: 'wfe1', to: 'email1', label: '超时' }, { from: 'email1', to: 'end' },
+        { from: 'br1', to: 'push2', label: '订阅到期' }, { from: 'push2', to: 'wfe2' },
+        { from: 'wfe2', to: 'ok2', label: '已续订' }, { from: 'wfe2', to: 'email2', label: '超时' }, { from: 'email2', to: 'end' },
+      ]);
+
+    // J8 车主转介绍裂变
+    drawJourney(document.getElementById('dag-j8'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',      sub: '高NPS/高活跃车主' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间', sub: '终端 09:00-21:00' },
+        { id: 'push1', kind: 'channel',  title: 'App Push', sub: '邀请有礼+专属码' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',  sub: '好友下订 · 30天' },
+        { id: 'hook1', kind: 'webhook',  title: 'Webhook',  sub: '归因+双向权益发放' },
+        { id: 'push2', kind: 'channel',  title: 'App Push', sub: '好友成交: 权益到账' },
+        { id: 'email1',kind: 'channel',  title: 'Email',    sub: '未成交: 权益+车主故事' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',      sub: '' },
+      ],
+      [
+        { from: 'start', to: 'st1' }, { from: 'st1', to: 'push1' }, { from: 'push1', to: 'wfe1' },
+        { from: 'wfe1', to: 'hook1', label: '好友成交' }, { from: 'hook1', to: 'push2' }, { from: 'push2', to: 'end' },
+        { from: 'wfe1', to: 'email1', label: '未成交' }, { from: 'email1', to: 'end' },
+      ]);
+
+    // Nav highlight
+    const links = document.querySelectorAll('.toc-bar a');
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    function onScroll() {
+      const y = window.scrollY + 100;
+      let cur = sections[0] && sections[0].id;
+      sections.forEach(s => { if (s.offsetTop <= y) cur = s.id; });
+      links.forEach(a => a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--accent)' : '');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+  </script>
+</body>
+</html>
