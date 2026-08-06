@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA × 久游网 · 拉米麻将出海增长方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --purple: #7c3aed;
+      --purple-soft: #ede9fe;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 940px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+    .pill-purple { background: var(--purple-soft); border-color: var(--purple); color: var(--purple); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-value.purple { color: var(--purple); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.purple { border-left-color: var(--purple); background: var(--purple-soft); }
+    .callout.purple .callout-title { color: var(--purple); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    tr.tone-purple td { background: rgba(124, 58, 237, 0.05); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+
+    @media (max-width: 900px) {
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-12-1 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA × 久游网 · 拉米麻将</span>
+      <a href="#s-market">客户与市场</a>
+      <a href="#s-funnel">用户漏斗</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-scenarios">六大场景</a>
+      <a href="#s-journey1">旅程示意</a>
+      <a href="#s-benchmark">数据参照</a>
+      <a href="#s-compliance">合规安全</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <a class="back-home" href="../">← 返回首页</a>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-purple">定制提案 · 久游网 (9You Group)</span>
+        <span class="pill pill-info">东南亚棋牌社交</span>
+        <span class="pill">马来西亚核心市场 · 新加坡 / 印尼 / 菲律宾</span>
+        <span class="pill">拉米麻将 · 新款 & 老款双 App</span>
+      </div>
+      <h1>EngageLab MA × 久游网 · 拉米麻将出海增长方案</h1>
+      <p class="hero-subtitle">
+        面向久游网旗下东南亚棋牌社交产品《Lami Mahjong 拉米麻将》系列——
+        老款（<span class="bold">Lami Mahjong</span>，累计下载 50 万+）与新款（<span class="bold">Lami Mahjong Pro 正宗马来拉米</span>）并行运营。
+        当前促活、召回、新用户注册转化等生命周期营销尚未系统化，正是<span class="bold">用营销自动化（MA）快速撬动增量</span>的窗口期。
+        本方案聚焦客户最关注的两件事——
+        <span class="bold">「用户进来几天后沉默、不知如何唤醒」</span> 与
+        <span class="bold">「把老款用户平滑迁移到新款 App」</span>，并给出 6 条可 4 周落地、可量化验收的自动化旅程。
+      </p>
+      <hr class="divider" />
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value">$93 亿</div><div class="stat-label">全球社交棋牌市场规模 (2025)</div></div>
+        <div class="stat"><div class="stat-value info">~9%</div><div class="stat-label">全球市场 CAGR (至 2030)</div></div>
+        <div class="stat"><div class="stat-value success">&gt;10%</div><div class="stat-label">亚太增速（全球最快区域）</div></div>
+        <div class="stat"><div class="stat-value success">3×</div><div class="stat-label">精细化触达 vs 粗放群发效果</div></div>
+      </div>
+    </section>
+
+    <!-- 1. 客户与市场 -->
+    <section id="s-market" class="section-plain">
+      <h2>一、客户现状与市场机会</h2>
+      <p>
+        久游网（2003 年成立于上海，中国第一代互联网游戏运营商）自主研发的休闲游戏已出口至东南亚、印度、台湾、香港等全球 40+ 国家和地区。
+        棋牌休闲（Board / Card）是全球留存表现<span class="bold">最强</span>的手游品类之一——玩法熟悉、习惯性回访、金币经济与社交牌桌形成稳定的长期留存曲线。
+        对久游而言，用户资产已经沉淀，缺的不是买量，而是把<span class="bold">「注册→首局→首充→回访→迁移」</span>各环节用自动化旅程接起来，让存量池持续产生增量。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3" style="margin-bottom:16px">
+        <div class="card">
+          <div class="card-header">产品矩阵（东南亚 · 主打马来西亚）</div>
+          <div class="card-body">
+            <ul>
+              <li><span class="bold">老款</span>：Lami Mahjong 拉米麻将（马来拉米 / 香港麻将 / 大佬二 / 德州 / 百人牛牛），累计下载 50 万+</li>
+              <li><span class="bold">新款</span>：Lami Mahjong Pro 正宗马来拉米（6 大玩法 + 进度成长体系 + 社交圈子）</li>
+              <li>玩法社交：组队拉米、私人房、战队、赠礼</li>
+              <li>Live Ops：每周金币锦标赛、每月赛季排行榜、名人堂</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">运营现状缺口（业务现状）</div>
+          <div class="card-body">
+            <ul>
+              <li>新用户注册后<span class="bold">缺乏激活引导</span>，首局完成与首日留存靠自然转化</li>
+              <li>用户沉默后<span class="bold">无分层召回机制</span>，一刀切或不触达</li>
+              <li>首充 / 超值礼包<span class="bold">无行为触发</span>，错过黄金窗口</li>
+              <li>老款用户迁移新款<span class="bold">无系统化引导</span>，资产与身份未打通</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">MA 可撬动的增量杠杆</div>
+          <div class="card-body">
+            <ul>
+              <li>行为触发的<span class="bold">激活 / 首充 / 召回</span>旅程，无需追加买量</li>
+              <li><span class="bold">EUID 统一用户视图</span>跨新老双 App 打通身份，支撑迁移</li>
+              <li>全渠道编排：App Push + WhatsApp + Email + SMS 覆盖东南亚</li>
+              <li>零代码旅程，运营侧即可搭建、快速试错</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">东南亚主要市场触达渠道渗透率（%）</div>
+          <div class="card-body">
+            <div class="chart" id="chart-channel-penetration"></div>
+            <p class="small muted" style="margin-top:10px">
+              WhatsApp 在马来西亚、印尼、菲律宾渗透率极高，是棋牌社交召回与高价值触达的首选补充渠道；
+              App Push 是日常触达主力；泰国以 LINE 为主（即将上线）；菲律宾 Facebook Messenger 使用率突出；SMS 全市场兜底。
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">核心业务信号（棋牌休闲品类）</div>
+          <div class="card-body p-sm">
+            <div class="signal-row"><div class="left"><div class="label">棋牌/卡牌类留存定位</div><div class="hint">长期留存最强品类之一</div></div><div class="value">高</div></div>
+            <div class="signal-row"><div class="left"><div class="label">行业平均次日留存（D1）</div><div class="hint">安装次日回访率</div></div><div class="value">25 – 40%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">7 日留存（D7）· 优质档</div><div class="hint">棋牌类显著高于均值</div></div><div class="value">10 – 22%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">30 日留存（D30）· 优质档</div><div class="hint">习惯性回访支撑</div></div><div class="value">6 – 12%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">高价值玩家收入贡献</div><div class="hint">约 1–2% 玩家</div></div><div class="value">50 – 70%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">移动端收入占比</div><div class="hint">社交棋牌全球</div></div><div class="value">~72%</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="small muted" style="margin-top:10px">
+        市场与留存数据来源：2024–2026 年社交棋牌行业报告（Grand View / Mordor / GameAnalytics 等）与全球手游留存基准综合整理；产品事实来自 Google Play / App Store 公开信息。
+      </p>
+    </section>
+
+    <!-- 2. Funnel -->
+    <section id="s-funnel" class="section-plain">
+      <h2>二、拉米麻将用户漏斗：每层都有明确的挽回空间</h2>
+      <p>
+        下图基于社交棋牌 / 卡牌品类公开留存数据综合整理。漏斗每一层衰减，都对应一个可通过
+        <span class="bold">自动化旅程定向干预</span>的运营缺口——无需追加广告预算，由生命周期运营产生增量。
+        对拉米麻将而言，<span class="bold">「注册→完成首局」</span>是激活的第一道关口；
+        <span class="bold">首局后 72 小时</span>直接决定首充与长期留存的上限；
+        而存量池中的沉默玩家与老款用户，则是<span class="bold">召回与迁移</span>两个最大的可挖掘空间。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">典型用户漏斗 · 当前转化率 vs 自动化运营后预期</div>
+        <div class="card-body">
+          <div class="chart" id="chart-funnel"></div>
+          <div class="grid grid-4" style="margin-top:14px">
+            <div class="stat"><div class="stat-value success">+8 – 15%</div><div class="stat-label">首局完成率提升</div></div>
+            <div class="stat"><div class="stat-value success">+5 – 10%</div><div class="stat-label">次日留存提升（D1）</div></div>
+            <div class="stat"><div class="stat-value success">+3 – 6%</div><div class="stat-label">7 日留存提升（D7）</div></div>
+            <div class="stat"><div class="stat-value success">+2 – 4%</div><div class="stat-label">首充转化率提升</div></div>
+          </div>
+          <p class="small muted" style="margin-top:12px">
+            基准参考：2024–2026 年社交棋牌 / 卡牌品类公开案例与留存基准综合测算；实际效果以测试数据为准。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why -->
+    <section id="s-why" class="section-plain">
+      <h2>三、为什么选择 EngageLab MA</h2>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">高可靠消息底座</div><div class="card-body">
+          <ul>
+            <li><span class="bold">100 万条/秒</span> 并发，消息平均响应 <span class="bold">&lt; 200ms</span></li>
+            <li>App Push 送达 <span class="bold">&gt; 95%</span>，邮件触达 <span class="bold">99.97%</span></li>
+            <li>全链路 TLS 加密，传输层与存储层数据分离</li>
+            <li>已在多家跨境手游、社交、内容平台生产环境规模化运行</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">全渠道 × 出海原生</div><div class="card-body">
+          <ul>
+            <li>原生集成 <span class="bold">WhatsApp Business API</span>、App Push、SMS、Email、Web Push</li>
+            <li>113 国接入、1000+ 发信 IP，契合东南亚多国触达</li>
+            <li>数据中心可根据客户安全需求灵活扩展</li>
+            <li>一条 Journey 跨渠道编排，不再拼接多套系统</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">AI × 用户旅程编排</div><div class="card-body">
+          <ul>
+            <li><span class="bold">EUID</span> 统一用户视图，跨新老双 App 行为归一</li>
+            <li>拖拽式 Journey Builder + AI 多语言文案生成</li>
+            <li>最佳发送时机、智能分群、条件分流对比</li>
+            <li><span class="bold">Webhook 组件</span> 可实时调用久游自有接口，取回玩家资产 / 等级做千人千面</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>3.1 各渠道在拉米麻将业务中的角色定位</h3>
+      <table>
+        <thead><tr>
+          <th>渠道</th><th>主要用途</th><th class="align-right">单条成本</th>
+          <th class="align-right">平均打开率</th><th class="align-center">东南亚适用度</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>App Push</td><td>首局引导、每日签到、锦标赛/赛季提醒、首充引导</td><td class="align-right">按 DAU 定价</td><td class="align-right">8–22%</td><td class="align-center">高 · 日常首选</td></tr>
+          <tr class="tone-success"><td>WhatsApp Business</td><td>高价值召回、老款→新款迁移礼包、赛季关键提醒</td><td class="align-right">按目标国家定价</td><td class="align-right">80%+ 送达 / 45%+ 打开</td><td class="align-center">马来/印尼/菲 首选</td></tr>
+          <tr><td>SMS</td><td>卸载/弱 Push 用户兜底、迁移与召回最后一触</td><td class="align-right">按目标国家定价</td><td class="align-right">95% 送达</td><td class="align-center">全市场兜底</td></tr>
+          <tr><td>Email</td><td>迁移指引与资产对照、赛季战报、活动长内容</td><td class="align-right">$0.002</td><td class="align-right">20–30%（触发类更高）</td><td class="align-center">中</td></tr>
+          <tr><td>Web Push</td><td>官网/社区页玩家唤回、未装 App 触达</td><td class="align-right">按 DAU 定价</td><td class="align-right">6–12%</td><td class="align-center">中</td></tr>
+          <tr class="tone-info"><td>LINE <span class="pill" style="font-size:11px;padding:1px 6px;vertical-align:middle">即将上线</span></td><td>泰国玩家触达（泰国核心即时通讯）</td><td class="align-right">按消息量</td><td class="align-right">92% 周活跃（泰国）</td><td class="align-center">泰国 必选</td></tr>
+          <tr class="tone-info"><td>Facebook Messenger <span class="pill" style="font-size:11px;padding:1px 6px;vertical-align:middle">即将上线</span></td><td>菲律宾玩家互动、活动/客服引导（拉米现用 FB 主页）</td><td class="align-right">按消息量</td><td class="align-right">70%+ 打开</td><td class="align-center">菲律宾 高</td></tr>
+          <tr class="tone-info"><td>Telegram <span class="pill" style="font-size:11px;padding:1px 6px;vertical-align:middle">即将上线</span></td><td>玩家社群通知、Bot 活动播报</td><td class="align-right">按消息量</td><td class="align-right">85%+ 送达</td><td class="align-center">中</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        行业数据表明，每增加一个有效渠道可使整体转化提升 8–15%；多渠道编排 vs 单渠道转化约 +31%。拉米麻将当前已在 Facebook 运营玩家社群，天然适配社交渠道叠加。
+      </p>
+    </section>
+
+    <!-- 4. Scenarios -->
+    <section id="s-scenarios" class="section-plain">
+      <h2>四、六大高 ROI 运营场景（贴合客户诉求定制）</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center">#</th><th>场景</th><th>生命周期</th>
+          <th>主渠道组合</th><th>亮点</th><th class="align-right">预期效果</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td class="align-center">1</td><td>新用户激活 · 首局 + 首日签到</td><td>新用户激活</td><td>App Push → WhatsApp</td><td>先观察再触达，注册后即引导开局与领礼</td><td class="align-right">首局完成 +8 – 15%</td></tr>
+          <tr class="tone-success"><td class="align-center">2</td><td>沉默玩家分层唤醒（3 / 7 / 14 日）</td><td>召回 <span class="pill pill-warn" style="font-size:11px;padding:1px 6px">客户重点</span></td><td>App Push → WhatsApp → SMS</td><td>按沉默天数分层，牌友在线 + 回归礼递进</td><td class="align-right">回登 +20 – 40%</td></tr>
+          <tr><td class="align-center">3</td><td>首充激活 · 新手超值礼包</td><td>首次付费</td><td>App Push + WhatsApp + SMS</td><td>首局完成后 72h 黄金期分层触达</td><td class="align-right">首充 +2 – 4%</td></tr>
+          <tr class="tone-purple"><td class="align-center">4</td><td>老款 → 新款 App 迁移</td><td>用户迁移 <span class="pill pill-purple" style="font-size:11px;padding:1px 6px">客户重点</span></td><td>App Push + WhatsApp + Email + SMS</td><td>EUID 跨 App 识别 + Webhook 继承资产做迁移礼</td><td class="align-right">迁移注册 +15 – 30%</td></tr>
+          <tr><td class="align-center">5</td><td>锦标赛 / 赛季冲刺提醒</td><td>Live Ops</td><td>App Push + WhatsApp</td><td>结算前 T-2 按排名临界度分层催促</td><td class="align-right">参与 +12 – 25%</td></tr>
+          <tr><td class="align-center">6</td><td>连续签到保持（日活抓手）</td><td>活跃习惯</td><td>App Push</td><td>连签将断时傍晚提醒，低成本高频维系</td><td class="align-right">签到率 +15 – 25%</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        六大场景覆盖玩家全生命周期。建议测试期优先上线客户最关注的 <span class="bold">场景 2（沉默唤醒）</span> 与 <span class="bold">场景 4（老款迁移新款）</span>，叠加场景 1 激活形成完整闭环。
+      </p>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain">
+      <h2>场景 1｜新用户激活 · 首局 + 首日签到</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">新用户激活</span>
+        <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j1"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              大量新注册玩家没有完成第一局对局就流失——棋牌游戏「完成首局」是形成金币经济与社交牌桌黏性的起点。
+              当前缺乏激活引导，首局完成与首日回访全靠自然转化。注册后前 24 小时是干预的最佳窗口。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「用户注册 / 首次登录」触发进入</li>
+                <li><span class="bold">提前退出</span>：事件「完成首局」→ 自动退出（进入首充旅程）</li>
+                <li><span class="bold">转化统计</span>：事件「完成首局」，监听 1 天</li>
+                <li><span class="bold">等待事件</span>：30 分钟内先观察是否自行完成首局——已完成则引导领礼，未完成再触达</li>
+                <li><span class="bold">App Push</span>：一键匹配 + 新手教学局 Deep Link</li>
+                <li><span class="bold">等待事件</span>：6 小时内等待完成首局；超时 → 可发送时间 → WhatsApp</li>
+                <li><span class="bold">App Push（领礼）</span>：完成首局后引导领新手礼包 + 首日签到</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–22:00（第 2 轮 WhatsApp 前加入）</li>
+                <li><span class="bold">再次进入</span>：不可再次进入（注册事件仅发生一次）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              同类棋牌休闲游戏通过激活旅程，首局完成率预期提升 8–15%，并为 D1 留存提供上游供给。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain">
+      <h2>场景 2｜沉默玩家分层唤醒（3 / 7 / 14 日）<span class="pill pill-warn" style="vertical-align:middle;margin-left:8px">客户重点</span></h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">留存 / 召回</span>
+        <span class="pill">再次进入：3 天后</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j2"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点（对应客户诉求：用户进来几天后沉默、不知如何营销）</div>
+            <div class="callout-body">
+              玩家沉默几天却没有任何唤醒动作，是当前最大的存量流失口。棋牌类长期留存本应很强，
+              「一刀切群发」既打扰活跃用户又召不回沉默用户。正确做法是<span class="bold">按沉默天数分层</span>、
+              用「牌友/牌桌在线 + 递进回归礼」精准触达，越早触达单位召回成本越低。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「最后登录时间距今超过 3 天」</li>
+                <li><span class="bold">提前退出</span>：事件「登录」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「登录」，监听 5 天</li>
+                <li><span class="bold">条件分支</span>：按最后登录距今天数分流（3–6 天 / 7–13 天 / ≥14 天）</li>
+                <li><span class="bold">可发送时间</span>：各路径消息前均加入，终端时区 9:00–22:00</li>
+                <li><span class="bold">触达策略</span>：轻度沉默用金币翻倍 + 牌友在线 Push；中度叠加 WhatsApp 专属回归礼 + 新赛季；深度流失加 SMS 大额回归礼兜底</li>
+                <li><span class="bold">再次进入</span>：3 天后（与进入条件阈值对齐）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              分层召回旅程可将沉睡玩家回登率提升 20–40%；轻度沉默窗口的单位召回成本显著低于深度流失。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain">
+      <h2>场景 3｜首充激活 · 新手超值礼包（3 日黄金期）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">首次付费转化</span>
+        <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j3"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              棋牌休闲玩家中仅少数会完成首次内购，而高价值玩家（约 1–2%）贡献 50–70% 收入。
+              完成首局后的 72 小时是首充黄金窗口——此时玩家刚理解金币经济，需在最恰当的时刻给出
+              超值礼包（如新手礼包 / Coin Jar / 超值卡）的清晰价值主张。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「完成首局」+ 属性：累计付费金额 = 0</li>
+                <li><span class="bold">提前退出</span>：事件「付费成功」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「付费成功」，监听 1 天</li>
+                <li><span class="bold">收入统计</span>：事件「付费成功」，金额属性 purchase_amount，监听 1 天</li>
+                <li><span class="bold">第一步</span>：完成首局即时推送新手超值礼包（玩家仍在活跃窗口，无需可发送时间）</li>
+                <li><span class="bold">等待事件</span>：24 小时内等待付费；超时 → 可发送时间 → 条件分支</li>
+                <li><span class="bold">条件分支</span>：按累计登录天数分层（≥2 天走 WhatsApp 限时超值礼，&lt;2 天继续 Push 首充引导）</li>
+                <li><span class="bold">等待事件</span>：48 小时内等待付费；超时 → SMS 提醒活动即将到期</li>
+                <li><span class="bold">再次进入</span>：不可再次进入</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              首充激活旅程可将 7 日首充转化率提升 2–4%；触发类 Push 点击率显著高于全量群发。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain">
+      <h2>场景 4｜老款 → 新款 App 迁移<span class="pill pill-purple" style="vertical-align:middle;margin-left:8px">客户重点</span></h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-purple">用户迁移</span>
+        <span class="pill">再次进入：7 天后</span>
+        <span class="pill">EUID 跨 App + Webhook 千人千面</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j4"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout purple">
+            <div class="callout-title">业务痛点（对应客户诉求：老款不再迭代，要迁移到新款 App）</div>
+            <div class="callout-body">
+              老款《Lami Mahjong》沉淀了 50 万+ 用户，新款《Lami Mahjong Pro》需要承接这批存量。
+              若无系统化引导，老款用户很难自发下载新款、更担心「金币 / VIP / 等级资产」丢失。
+              关键是<span class="bold">跨两个 App 识别「老款活跃、新款未注册」人群</span>，并让迁移礼包体现「你的资产可继承」。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「老款 App 活跃」且「新款 App 未注册」（EUID 统一视图跨 App 识别）</li>
+                <li><span class="bold">提前退出</span>：事件「新款 App 注册 / 登录」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「新款 App 注册 / 登录」，监听 3 天</li>
+                <li><span class="bold">Webhook</span>：调用久游自有接口，取回该玩家老款资产 / VIP 等级，供后续文案千人千面</li>
+                <li><span class="bold">条件分支</span>：按老款价值分层（高价值付费/VIP vs 普通）</li>
+                <li><span class="bold">可发送时间</span>：各路径消息前加入，终端时区 10:00–22:00</li>
+                <li><span class="bold">高价值路径</span>：WhatsApp 专属迁移礼（继承金币 + VIP）+ 新款商店 Deep Link</li>
+                <li><span class="bold">普通路径</span>：App Push（老款内）迁移公告 + 新款迁移礼包</li>
+                <li><span class="bold">等待事件</span>：3 天内等待新款注册；超时 → Email 迁移指引 + 资产对照</li>
+                <li><span class="bold">再次进入</span>：7 天后</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              基于「身份打通 + 资产继承 + 分层触达」的迁移旅程，迁移注册转化预期提升 15–30%，
+              高价值老款用户的迁移优先级最高、单位价值最大。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain">
+      <h2>场景 5｜锦标赛 / 赛季冲刺提醒</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">Live Ops</span>
+        <span class="pill">再次进入：7 天后</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j5"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              每周金币锦标赛、每月赛季排行榜是拉米麻将的核心活跃与变现引擎，但大量玩家因忘记进度错过结算，
+              导致参与度与活动内付费双双受损。在结算前按<span class="bold">排名临界度</span>精准催促，可显著提升冲榜参与与相关付费。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「赛季 / 锦标赛结算日提前 2 天」+「本期参赛未达标」</li>
+                <li><span class="bold">提前退出</span>：事件「奖励领取完成」或「达成目标排名」</li>
+                <li><span class="bold">转化统计</span>：事件「参与锦标赛对局」，监听 3 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 10:00–22:00（棋牌晚高峰可适当后延）</li>
+                <li><span class="bold">条件分支</span>：按排名临界度分流（接近晋级线 → 冲刺文案 / 距离较远 → 参与补强文案）</li>
+                <li><span class="bold">等待事件</span>：1 天内等待参与对局；超时 → WhatsApp 最后机会提醒</li>
+                <li><span class="bold">再次进入</span>：7 天后（匹配赛季 / 锦标赛周期）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              结算前进度提醒，可将锦标赛 / 赛季参与率提升 12–25%，并带动活动窗口内付费。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain">
+      <h2>场景 6｜连续签到保持（日活抓手）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">活跃习惯</span>
+        <span class="pill">再次进入：1 天后</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j6"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              新款内置 7 日签到与连续奖励机制，是最低成本的日活抓手。但玩家一旦某天忘记登录、连签中断，
+              养成的回访习惯就会断裂。在连签即将中断的傍晚时段轻量提醒，可用极低成本维系日活与习惯回路。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「连续签到天数 ≥ 3」且「今日未签到」</li>
+                <li><span class="bold">提前退出</span>：事件「今日签到完成」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「今日签到完成」，监听 1 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 18:00–22:00（签到与晚间牌局高峰）</li>
+                <li><span class="bold">App Push</span>：AI Write · 「你的 N 天连签即将中断，今日签到领金币」</li>
+                <li><span class="bold">等待事件</span>：当日 6 小时内等待签到完成；超时结束（不追加，避免打扰）</li>
+                <li><span class="bold">再次进入</span>：1 天后（每日可触发）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              连签保持提醒是低成本高频抓手，签到率与次日回访预期提升 15–25%，直接支撑 DAU 稳定性。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Benchmark -->
+    <section id="s-benchmark" class="section-plain">
+      <h2>五、标杆数据参照</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header">各场景可参考效果区间</div>
+          <div class="card-body">
+            <div class="chart" id="chart-benchmark"></div>
+            <p class="small muted" style="margin-top:8px">基于 2024–2026 年社交棋牌 / 卡牌品类公开案例与行业报告综合测算。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">多渠道编排带来的转化提升</div>
+          <div class="card-body">
+            <div class="chart" id="chart-channel-lift"></div>
+            <p class="small muted" style="margin-top:8px">每增加一个有效渠道，整体转化约 +8–15%。</p>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">行业公开案例对照（脱敏）</div>
+        <div class="card-body" style="padding:0">
+          <table>
+            <thead><tr>
+              <th>案例主体</th><th>场景</th><th>公开效果</th><th>对拉米麻将业务的参考价值</th>
+            </tr></thead>
+            <tbody>
+              <tr class="tone-success"><td>全球头部社交棋牌发行商</td><td>行为触发 Push</td><td>个性化触达打开率 2–3× 群发</td><td>激活 / 首充 / 签到 / 赛季提醒应行为触发而非全量群发</td></tr>
+              <tr><td>东南亚休闲卡牌产品</td><td>沉默召回</td><td>分层召回回登率 +25–40%</td><td>按 3/7/14 日分层，牌友在线 + 递进回归礼</td></tr>
+              <tr class="tone-info"><td>东南亚社交游戏</td><td>WhatsApp + Push</td><td>多渠道编排转化 +31%</td><td>马来/印尼/菲高价值玩家宜叠加 WhatsApp</td></tr>
+              <tr class="tone-purple"><td>多 App 矩阵游戏发行商</td><td>老 App → 新 App 迁移</td><td>身份打通 + 资产继承显著提升迁移率</td><td>EUID 跨 App 识别 + Webhook 继承资产做迁移礼</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Compliance -->
+    <section id="s-compliance" class="section-plain">
+      <h2>六、合规与安全</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-header">数据安全</div>
+          <div class="card-body">
+            <ul>
+              <li>全链路 TLS 传输加密</li>
+              <li>VPC 网络隔离，存储层与传输层分离</li>
+              <li>PII 字段脱敏存储与访问</li>
+              <li>基于角色的权限控制（RBAC）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">认证与合规</div>
+          <div class="card-body">
+            <ul>
+              <li>已通过 <span class="bold">GDPR</span> 与 <span class="bold">SOC 2</span> 认证</li>
+              <li>可协助客户满足各目标市场本地数据保护法规要求</li>
+              <li>数据中心可按客户安全需求灵活扩展</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">运营护栏</div>
+          <div class="card-body">
+            <ul>
+              <li><span class="bold">频控策略</span>：旅程级限制每日/每周消息数量</li>
+              <li><span class="bold">勿扰时段</span>：可发送时间组件控制本地时段</li>
+              <li><span class="bold">内容预览</span>：发送前支持样式预览</li>
+              <li><span class="bold">消息记录</span>：发送记录保留 60 天</li>
+              <li><span class="bold">提前退出</span>：完成目标行为后自动停止触达</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Test plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>七、4 周测试计划</h2>
+      <div class="grid grid-4">
+        <div class="card">
+          <div class="card-header"><span class="step-num">1</span>第 1 周 · 对齐 + 埋点</div>
+          <div class="card-body">
+            <ul>
+              <li>对齐核心北极星：D1、首局完成率、迁移注册率、回登率</li>
+              <li>确认事件清单：注册、完成首局、登录、付费成功、签到完成、新款注册、参与锦标赛</li>
+              <li>确认用户属性：累计付费、最后登录、连签天数、老款活跃、新款注册、赛季排名</li>
+              <li>双 App SDK 接入与 EUID 打通、测试环境联调</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">2</span>第 2 周 · 旅程构建</div>
+          <div class="card-body">
+            <ul>
+              <li>优先上线客户重点：沉默唤醒 + 老款迁移新款 + 新用户激活</li>
+              <li>配置进入条件、提前退出、频控与转化 / 收入统计</li>
+              <li>迁移场景 Webhook 联调（取回老款资产）；多语言文案与 Deep Link 验收</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">3</span>第 3 周 · 跑量测试</div>
+          <div class="card-body">
+            <ul>
+              <li>观察各旅程发送/点击/转化漏斗</li>
+              <li>对比测试组 vs 对照组的回登、迁移注册与首充</li>
+              <li>按渠道与市场（马来/印尼/菲）微调文案与时段</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">4</span>第 4 周 · 复盘扩面</div>
+          <div class="card-body">
+            <ul>
+              <li>复盘 3 周数据，固化高效场景</li>
+              <li>扩展：首充激活 + 赛季冲刺 + 连签保持</li>
+              <li>输出持续运营路线图</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CTA -->
+    <section class="section-plain">
+      <h2>八、下一步</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-header"><span class="step-num">1</span>对齐</div>
+          <div class="card-body">
+            <p>明确双 App 数据打通优先级，确认核心事件埋点方案与用户属性字段清单（含老款/新款标识）。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">2</span>开发对接</div>
+          <div class="card-body">
+            <p>根据 EngageLab MA 交付团队提供的埋点方案，完成双 App SDK 集成、EUID 打通与迁移 Webhook 接口对接。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">3</span>测试验证</div>
+          <div class="card-body">
+            <p>开通测试 VIP 账号，优先搭建沉默唤醒与迁移旅程上线，4 周内完成可量化验收。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      EngageLab MA × 久游网 · 拉米麻将出海增长方案 · 仅供内部及合作客户参考使用
+    </footer>
+  </main>
+
+  <script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function el(tag, attrs) {
+      const e = document.createElementNS(NS, tag);
+      if (attrs) Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+      return e;
+    }
+    function svg(w, h) {
+      const s = el('svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('xmlns', NS);
+      return s;
+    }
+
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', danger: '#dc2626', neutral: '#6b7280',
+      purple: '#7c3aed',
+      grid: '#e5e7eb', text: '#374151', textMute: '#9ca3af',
+    };
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const barsPerGroup = series.length;
+      const W = 600, H = height, PAD_L = 36, PAD_R = 10, PAD_T = 14, PAD_B = series.length > 1 ? 56 : 40;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const maxVal = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(maxVal / 10) * 10 || 100;
+      const groupW = innerW / categories.length;
+      const barW = Math.min((groupW * 0.72) / barsPerGroup, 30);
+      const s = svg(W, H);
+
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 4, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+
+      if (series.length > 1) {
+        const legY = H - 18;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          legX += 14 + (se.name.length * 8) + 16;
+        });
+      }
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    function drawLineChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 600, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 14, PAD_B = 56;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 10) * 10 || 100;
+      const n = categories.length;
+      const xStep = innerW / (n - 1);
+      const s = svg(W, H);
+
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+
+      categories.forEach((cat, i) => {
+        const x = PAD_L + xStep * i;
+        const t = el('text', { x, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.accent;
+        let d = '';
+        const points = se.data.map((v, i) => [PAD_L + xStep * i, PAD_T + innerH - (v / niceMax) * innerH]);
+        points.forEach(([x, y], i) => { d += (i === 0 ? 'M' : 'L') + x + ',' + y; });
+        const area = d + ' L' + points[points.length - 1][0] + ',' + (PAD_T + innerH)
+          + ' L' + points[0][0] + ',' + (PAD_T + innerH) + ' Z';
+        s.appendChild(el('path', { d: area, fill: color, opacity: 0.08 }));
+        s.appendChild(el('path', { d, fill: 'none', stroke: color, 'stroke-width': 2 }));
+        points.forEach(([x, y]) => {
+          s.appendChild(el('circle', { cx: x, cy: y, r: 3.5, fill: '#fff', stroke: color, 'stroke-width': 1.8 }));
+        });
+      });
+
+      const legY = H - 18;
+      let legX = PAD_L;
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.accent;
+        s.appendChild(el('circle', { cx: legX + 5, cy: legY - 4, r: 4, fill: color }));
+        const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+        t.textContent = se.name;
+        s.appendChild(t);
+        legX += 14 + (se.name.length * 8) + 18;
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      hook:    { fill: '#ede9fe', stroke: '#7c3aed', text: '#4c1d95' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {}, incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const startX = (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          pos[it.node.id] = { x: startX + i * (NODE_W + NODE_GAP), y: 20 + r * (NODE_H + RANK_GAP) };
+        });
+      });
+
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) cur.x = prev.x + NODE_W + NODE_GAP;
+          }
+        });
+      }
+
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': (n.kind === 'channel' || n.kind === 'hook') ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // Charts
+    drawBarChart(document.getElementById('chart-channel-penetration'), {
+      categories: ['马来西亚', '新加坡', '印尼', '菲律宾', '泰国', '越南'],
+      series: [
+        { name: 'WhatsApp', data: [88, 82, 87, 83, 55, 72], tone: 'success' },
+        { name: 'App Push', data: [75, 78, 72, 70, 74, 70], tone: 'info' },
+        { name: 'Facebook Messenger', data: [80, 68, 82, 88, 72, 75], tone: 'neutral' },
+        { name: 'SMS', data: [92, 90, 92, 95, 90, 93], tone: 'warning' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['安装', '注册·首局', '次日 D1', '首充', '7日 D7', '30日 D30'],
+      series: [
+        { name: '当前转化率', data: [100, 62, 34, 4, 12, 5], tone: 'neutral' },
+        { name: 'MA 自动化后预期', data: [100, 74, 42, 7, 17, 8], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['新用户激活', '沉默唤醒', '首充激活', 'App迁移', '赛季冲刺', '连签保持'],
+      series: [
+        { name: '消息点击率', data: [16, 8, 13, 14, 10, 20], tone: 'info' },
+        { name: '旅程转化率', data: [14, 28, 6, 22, 18, 25], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    drawLineChart(document.getElementById('chart-channel-lift'), {
+      categories: ['单渠道 Push', '+ Email', '+ WhatsApp', '+ SMS', 'AI 个性化'],
+      series: [
+        { name: '转化提升 (%)', data: [0, 10, 24, 31, 42], tone: 'info' },
+        { name: '打开率 (%)', data: [5.2, 7.5, 12.8, 14.2, 16.0], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 240,
+    });
+
+    // Journey 1: 新用户激活 · 首局 + 首日签到
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 用户注册' },
+        { id: 'wfe0', kind: 'branch', title: '等待事件', sub: '30min 内等待 完成首局' },
+        { id: 'pushb', kind: 'channel', title: 'App Push', sub: '领新手礼包 + 首日签到' },
+        { id: 'pusha', kind: 'channel', title: 'App Push', sub: '一键匹配 · 新手教学局' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '6h 内等待 完成首局' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–22:00' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '新手礼包 + 牌友在线' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'wfe0' },
+        { from: 'wfe0', to: 'pushb', label: '已完成首局' },
+        { from: 'wfe0', to: 'pusha', label: '超时未开局' },
+        { from: 'pusha', to: 'wfe1' },
+        { from: 'wfe1', to: 'pushb', label: '已完成首局' },
+        { from: 'wfe1', to: 'st1', label: '超时未开局' },
+        { from: 'st1', to: 'wa' },
+        { from: 'wa', to: 'end' },
+        { from: 'pushb', to: 'end' },
+      ]);
+
+    // Journey 2: 沉默分层唤醒
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 最后登录距今超过3天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 最后登录距今天数' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–22:00' },
+        { id: 'push_d3', kind: 'channel', title: 'App Push', sub: '金币翻倍 · 牌友在线' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–22:00' },
+        { id: 'wa_d7', kind: 'channel', title: 'WhatsApp', sub: '专属回归礼 + 新赛季' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–22:00' },
+        { id: 'sms_d14', kind: 'channel', title: 'SMS', sub: '最后机会 · 大额回归礼' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '2天内等待 登录' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已回登', sub: '返回活跃用户池' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '3 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'cond' },
+        { from: 'cond', to: 'st1', label: '3–6天' },
+        { from: 'cond', to: 'st2', label: '7–13天' },
+        { from: 'cond', to: 'st3', label: '≥14天' },
+        { from: 'st1', to: 'push_d3' },
+        { from: 'st2', to: 'wa_d7' },
+        { from: 'st3', to: 'sms_d14' },
+        { from: 'push_d3', to: 'wfe' },
+        { from: 'wa_d7', to: 'wfe' },
+        { from: 'sms_d14', to: 'wfe' },
+        { from: 'wfe', to: 'ok', label: '已登录' },
+        { from: 'wfe', to: 'end', label: '超时未登录' },
+      ]);
+
+    // Journey 3: 首充激活
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 完成首局 · 付费金额=0' },
+        { id: 'push0', kind: 'channel', title: 'App Push', sub: '新手超值礼包激活' },
+        { id: 'wfe0', kind: 'branch', title: '等待事件', sub: '24h 内等待 付费成功' },
+        { id: 'ok0', kind: 'exitOk', title: '结束 · 已首充', sub: '进入留存运营' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–22:00' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 累计登录天数' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '活跃玩家: 限时超值礼' },
+        { id: 'push1', kind: 'channel', title: 'App Push', sub: '新玩家: 首充引导' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '48h 内等待 付费成功' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已首充', sub: '' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–22:00' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '首充礼包即将到期' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'push0' },
+        { from: 'push0', to: 'wfe0' },
+        { from: 'wfe0', to: 'ok0', label: '已付费' },
+        { from: 'wfe0', to: 'st1', label: '超时未付费' },
+        { from: 'st1', to: 'cond' },
+        { from: 'cond', to: 'wa', label: '≥2天' },
+        { from: 'cond', to: 'push1', label: '<2天' },
+        { from: 'wa', to: 'wfe1' },
+        { from: 'push1', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已付费' },
+        { from: 'wfe1', to: 'st2', label: '超时未付费' },
+        { from: 'st2', to: 'sms' },
+        { from: 'sms', to: 'end' },
+      ]);
+
+    // Journey 4: 老款 → 新款 App 迁移
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 老款活跃·新款未注册' },
+        { id: 'hook', kind: 'hook', title: 'Webhook', sub: '取回老款资产 · VIP等级' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 老款价值分层' },
+        { id: 'st_hi', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–22:00' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '继承金币+VIP 迁移礼' },
+        { id: 'st_lo', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–22:00' },
+        { id: 'push', kind: 'channel', title: 'App Push', sub: '迁移公告 + 新款礼包' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '3天内等待 新款注册' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已迁移', sub: '进入新款激活旅程' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–22:00' },
+        { id: 'email', kind: 'channel', title: 'Email', sub: '迁移指引 + 资产对照' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '7 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'hook' },
+        { from: 'hook', to: 'cond' },
+        { from: 'cond', to: 'st_hi', label: '高价值' },
+        { from: 'cond', to: 'st_lo', label: '普通' },
+        { from: 'st_hi', to: 'wa' },
+        { from: 'st_lo', to: 'push' },
+        { from: 'wa', to: 'wfe' },
+        { from: 'push', to: 'wfe' },
+        { from: 'wfe', to: 'ok', label: '已注册新款' },
+        { from: 'wfe', to: 'st2', label: '超时未迁移' },
+        { from: 'st2', to: 'email' },
+        { from: 'email', to: 'end' },
+      ]);
+
+    // Journey 5: 锦标赛 / 赛季冲刺提醒
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 结算日 T-2 · 未达标' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–22:00' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 排名临界度' },
+        { id: 'push_hi', kind: 'channel', title: 'App Push', sub: '冲刺 · 距晋级一步之遥' },
+        { id: 'push_lo', kind: 'channel', title: 'App Push', sub: '参与补强 · 赢金币冲榜' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '1天内等待 参与对局' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已参与', sub: '' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–22:00' },
+        { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '最后机会 · 赛季即将结算' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '7 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1', to: 'cond' },
+        { from: 'cond', to: 'push_hi', label: '接近晋级线' },
+        { from: 'cond', to: 'push_lo', label: '距离较远' },
+        { from: 'push_hi', to: 'wfe' },
+        { from: 'push_lo', to: 'wfe' },
+        { from: 'wfe', to: 'ok', label: '已参与' },
+        { from: 'wfe', to: 'st2', label: '超时未参与' },
+        { from: 'st2', to: 'wa' },
+        { from: 'wa', to: 'end' },
+      ]);
+
+    // Journey 6: 连续签到保持
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 连签≥3天 · 今日未签' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 18:00–22:00' },
+        { id: 'push', kind: 'channel', title: 'App Push', sub: '连签将断 · 今日签到领金币' },
+        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '当日6h内等待 签到完成' },
+        { id: 'ok', kind: 'exitOk', title: '结束 · 已签到', sub: '连签延续' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '1 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1', to: 'push' },
+        { from: 'push', to: 'wfe' },
+        { from: 'wfe', to: 'ok', label: '已签到' },
+        { from: 'wfe', to: 'end', label: '超时未签到' },
+      ]);
+  </script>
+</body>
+</html>
