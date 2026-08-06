@@ -176,7 +176,7 @@
       <a href="#s-market">市场机会</a>
       <a href="#s-funnel">用户漏斗</a>
       <a href="#s-why">为什么 EngageLab</a>
-      <a href="#s-scenarios">六大场景</a>
+      <a href="#s-scenarios">七大场景</a>
       <a href="#s-journey1">旅程示意</a>
       <a href="#s-benchmark">数据参照</a>
       <a href="#s-compliance">合规安全</a>
@@ -334,23 +334,24 @@
 
     <!-- 4. Scenarios -->
     <section id="s-scenarios" class="section-plain">
-      <h2>四、六大高 ROI Web3 运营场景</h2>
+      <h2>四、七大高 ROI Web3 运营场景</h2>
       <table>
         <thead><tr>
           <th class="align-center">#</th><th>场景</th><th>生命周期</th>
           <th>主渠道组合</th><th>亮点</th><th class="align-right">预期效果</th>
         </tr></thead>
         <tbody>
-          <tr class="tone-success"><td class="align-center">1</td><td>KYC 完成引导</td><td>新用户激活</td><td>App Push → SMS/WhatsApp</td><td>先观察再触达，按注册地区差异化触达</td><td class="align-right">KYC 完成 +15 – 25%</td></tr>
+          <tr class="tone-success"><td class="align-center">1</td><td>KYC 完成引导 · 卡点分层</td><td>新用户激活</td><td>App Push → SMS/WhatsApp</td><td>按身份证/住址证卡点精细分层，3 条差异化文案</td><td class="align-right">KYC 完成 +15 – 25%</td></tr>
           <tr class="tone-success"><td class="align-center">2</td><td>首次入金 (FTD) · 3 日黄金期</td><td>首次付费</td><td>App Push + WhatsApp + Email</td><td>KYC 通过后即时红包 + KOL 优惠码分层</td><td class="align-right">FTD +8 – 15%</td></tr>
           <tr class="tone-success"><td class="align-center">3</td><td>FTD → 首次交易 · 个性化推荐</td><td>付费转化</td><td>App Push → Email</td><td>Webhook 实时拉取当日热门币种进消息</td><td class="align-right">首次交易 +10 – 20%</td></tr>
           <tr class="tone-success"><td class="align-center">4</td><td>价格波动 / 关注币种提醒</td><td>活跃激励</td><td>App Push（Webhook 拉行情）</td><td>关注币种价格变动即时触达 + Deep Link 到交易页</td><td class="align-right">触发用户交易频次 +30 – 50%</td></tr>
-          <tr><td class="align-center">5</td><td>沉睡用户分层召回</td><td>7 / 30 / 90 日流失</td><td>App Push → WhatsApp → SMS</td><td>按沉默天数分层，手续费返现递进</td><td class="align-right">召回率 +15 – 25%</td></tr>
+          <tr><td class="align-center">5</td><td>沉睡用户分层召回 · 响应度阶梯</td><td>7 / 30 / 90 日流失</td><td>App Push → WhatsApp → Email</td><td>按沉默天数分层 + 按响应度筛掉无效触达</td><td class="align-right">召回率 +15 – 25% / 无效发送 -30 – 50%</td></tr>
           <tr><td class="align-center">6</td><td>Staking 到期 / 空投领取提醒</td><td>忠诚度经营</td><td>App Push + Email</td><td>到期日 T-3 触发 + Webhook 拉取剩余额度</td><td class="align-right">续期率 +20 – 30% / 空投领取率 +40 – 60%</td></tr>
+          <tr><td class="align-center">7</td><td>已 KYC 但 App 未下载 · 引导装机</td><td>Web 端 → App 迁移</td><td>Email + SMS 兜底</td><td>3 封差异化 EDM 递进 + 响应度筛选</td><td class="align-right">App 首登率 +18 – 30%</td></tr>
         </tbody>
       </table>
       <p class="small muted" style="margin-top:10px">
-        六大场景覆盖 Web3 用户全生命周期——越多旅程协同运行，越能撬动全漏斗累计收益；建议测试期优先上线前 3 条。
+        七大场景覆盖 Web3 用户全生命周期——越多旅程协同运行，越能撬动全漏斗累计收益；建议测试期优先上线前 3 条（KYC 完成引导、FTD、首次交易）。
       </p>
     </section>
 
@@ -371,8 +372,10 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               交易所与合规钱包 KYC 是全漏斗最大的掉率环节——业界均值 50–65% 完成率，
-              20–40% 的注册用户永远不会进入验证状态。ID 证件问题、活体验证失败、流程过长、
-              信任顾虑是四大流失原因。注册后 24 小时是干预的最佳窗口，超时后 CPA 显著上升。
+              20–40% 的注册用户永远不会进入验证状态。KYC 通常分成 <span class="bold">身份证件上传</span> 与
+              <span class="bold">住址证明上传</span> 两个独立子步骤，用户可能只卡在其中一步。
+              笼统的"KYC 未完成"触达会打扰已经完成一半的用户，且文案不够精准；
+              <span class="bold">按具体卡点分层触达</span>是提升完成率的关键。
             </div>
           </div>
           <div class="card">
@@ -383,9 +386,14 @@
                 <li><span class="bold">提前退出</span>：事件「KYC 通过」→ 自动退出</li>
                 <li><span class="bold">转化统计</span>：事件「KYC 通过」，监听 2 天</li>
                 <li><span class="bold">等待事件</span>：30 分钟内先观察是否自主完成——已完成则结束，未完成再触达</li>
-                <li><span class="bold">App Push</span>：完成 KYC 解锁首入金红包 + Deep Link 到验证页</li>
-                <li><span class="bold">等待事件</span>：24 小时内等待完成；超时进入可发送时间 → 条件分支按地区</li>
-                <li><span class="bold">条件分支</span>：属性「注册地区」→ 拉美/南亚/中东走 WhatsApp，其他走 Email</li>
+                <li><span class="bold">条件分支（KYC 卡点分层）</span>：按属性「身份证件上传状态」+「住址证明上传状态」分 3 路：
+                  <br />&nbsp;&nbsp;· 两者都未上传 → 完整 KYC 引导文案
+                  <br />&nbsp;&nbsp;· 只缺身份证明（住址已上传）→ 针对性催「上传身份证件」
+                  <br />&nbsp;&nbsp;· 只缺住址证明（身份证已上传）→ 针对性催「上传住址证明」
+                </li>
+                <li><span class="bold">App Push（3 条差异化文案）</span>：Deep Link 到对应的验证子页面</li>
+                <li><span class="bold">等待事件</span>：24 小时内等待完成；超时进入可发送时间 → 地区分支</li>
+                <li><span class="bold">条件分支（地区）</span>：属性「注册地区」→ 拉美/南亚/中东走 WhatsApp，其他走 Email</li>
                 <li><span class="bold">再次进入</span>：不可再次进入（注册事件仅发生一次）</li>
               </ul>
             </div>
@@ -393,7 +401,8 @@
           <div class="callout success">
             <div class="callout-title">可参考指标</div>
             <div class="callout-body">
-              类似交易所通过 KYC 完成旅程，完成率预期提升 15–25%，并为 FTD 转化提供上游供给。
+              类似交易所通过 KYC 卡点分层的完成旅程，完成率预期提升 15–25%，
+              且相较笼统触达可显著降低"已完成一半用户"的打扰感。
               印度头部合规交易所通过分阶段自动化触达，将注册→首购的转化时长压缩到 14 天内。
             </div>
           </div>
@@ -566,8 +575,10 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               Web3 行业 D90 留存基线仅 22%——78% 的用户在 90 天内流失。这些用户已经完成了 KYC 与首次入金，
-              是获客成本最高、召回价值最大的资产。「一刀切群发」效果差且伤感情，
-              需按沉默天数分层、递进激励（手续费返现 → 空投预告 → 大额优惠券）。
+              是获客成本最高、召回价值最大的资产。「一刀切群发」效果差且伤感情。
+              沉睡召回还面临另一个陷阱：<span class="bold">对完全不响应的用户持续触达是预算浪费</span>——
+              需要在长链触达中间加"响应度阶梯筛选"，把已经明确"不感兴趣"的用户及时排除，
+              把资源聚焦在真正有希望被召回的用户上。
             </div>
           </div>
           <div class="card">
@@ -577,9 +588,14 @@
                 <li><span class="bold">开始组件</span>：属性「最后交易时间距今超过 7 天」且「累计入金金额 &gt; 0」</li>
                 <li><span class="bold">提前退出</span>：事件「交易成功」→ 自动退出</li>
                 <li><span class="bold">转化统计</span>：事件「交易成功」，监听 5 天</li>
-                <li><span class="bold">条件分支</span>：按最后交易距今天数分流（7–14 天 / 15–30 天 / ≥31 天）</li>
+                <li><span class="bold">条件分支（沉默天数）</span>：按最后交易距今天数分流（7–14 天 / 15–30 天 / ≥31 天）</li>
                 <li><span class="bold">可发送时间</span>：各路径消息前均加入，终端时区 9:00–21:00</li>
-                <li><span class="bold">触达策略</span>：轻度沉默 App Push 手续费返现；中度叠加 WhatsApp 客户经理触达 + 空投预告；深度流失 SMS + Email 大额限时手续费券</li>
+                <li><span class="bold">第一轮触达</span>：轻度 App Push 手续费返现 · 中度 WhatsApp 客户经理 · 深度 SMS 手续费大券</li>
+                <li><span class="bold">响应度阶梯筛选（关键）</span>：第一轮结束后判断属性「近 14 日消息打开次数」
+                  <br />&nbsp;&nbsp;· <span class="bold">= 0（从未打开）</span>→ 直接结束（避免继续浪费预算 + 降低骚扰）
+                  <br />&nbsp;&nbsp;· <span class="bold">≥ 1（有打开）</span>→ 进入第二轮加码触达（空投预告 / 深度权益）
+                </li>
+                <li><span class="bold">第二轮触达</span>：Email 深度权益 → 等待事件 3 天 → 未交易则 WhatsApp 最后机会</li>
                 <li><span class="bold">再次进入</span>：7 天后（与进入条件阈值对齐）</li>
               </ul>
             </div>
@@ -587,9 +603,9 @@
           <div class="callout success">
             <div class="callout-title">可参考指标</div>
             <div class="callout-body">
-              分层召回旅程可将沉睡用户回访/交易率提升 15–25%；轻度沉默窗口的单位召回成本
-              显著低于深度流失。Binance 通过精准分群 + 邮件规模化，公开数据显示单年触达
-              增加 3200 万邮箱，带来数百万美元级收入。
+              分层召回 + 响应度阶梯筛选可将沉睡用户回访/交易率提升 15–25%，同时
+              <span class="bold">减少 30–50% 的无效消息发送</span>（发给完全不打开的用户）——
+              这是同时提升召回效率和保护品牌信任的双赢设计。
             </div>
           </div>
         </div>
@@ -639,6 +655,61 @@
             <div class="callout-body">
               Staking 到期唤醒可将续期率提升 20–30%，直接稳定项目 TVL；
               空投领取提醒可将领取率从行业均值的 40–60% 提升到 80%+，减少运营预算浪费。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 7 -->
+    <section id="s-journey7" class="section-plain">
+      <h2>场景 7｜已完成 KYC 但 App 未下载 · 引导装机</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">Web 端 → App 迁移</span>
+        <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j7"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              许多合规交易所在 Web 端完成 KYC 认证——用户通过网页浏览器上传证件、活体验证，
+              但完成后<span class="bold">相当比例的用户并未下载 App</span>。这些用户已经付出了 KYC 的信任成本，
+              却因为"没装 App"而无法收到 Push 通知、无法进行常规交易，最终变成"活死人"。
+              这个漏斗被大多数团队忽视——它介于"注册转化"与"FTD 转化"之间，
+              需要用 Email + SMS 兜底的方式把用户拉回 App。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「KYC 通过时间距今 ≥ 3 天」且「App 首次登录时间 = 空」</li>
+                <li><span class="bold">提前退出</span>：事件「App 首次登录」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「App 首次登录」，监听 14 天</li>
+                <li><span class="bold">首步 Email · EDM 1</span>：App 下载引导 + iOS/Android 商店 Deep Link（AI 多语言）</li>
+                <li><span class="bold">等待事件</span>：3 天内等待 App 首登；已登录则退出</li>
+                <li><span class="bold">Email · EDM 2</span>：App 独家福利文案（App 专属手续费返现 / 空投优先领取）</li>
+                <li><span class="bold">等待事件</span>：4 天内等待 App 首登</li>
+                <li><span class="bold">响应度筛选</span>：判断属性「近 10 日邮件打开次数」
+                  <br />&nbsp;&nbsp;· <span class="bold">= 0（3 封都没打开）</span>→ 直接结束
+                  <br />&nbsp;&nbsp;· <span class="bold">≥ 1（有打开）</span>→ SMS 兜底最后一次
+                </li>
+                <li><span class="bold">SMS</span>：短文案 + 商店短链（针对邮件不打开但可能读短信的用户）</li>
+                <li><span class="bold">再次进入</span>：不可再次进入</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">可参考指标</div>
+            <div class="callout-body">
+              该场景通常被忽视——但业界数据显示 Web 端 KYC 通过用户中有 25–45% 从未下载 App，
+              精细触达后 App 首登率可提升 18–30%。这批用户一旦进入 App，
+              FTD 转化率显著高于普通新用户（信任门槛已过），是极高 ROI 的运营切口。
             </div>
           </div>
         </div>
@@ -1090,17 +1161,20 @@
       valueSuffix: '%', height: 240,
     });
 
-    // Journey 1: KYC 完成引导
+    // Journey 1: KYC 完成引导 · 按卡点精细分层
     drawJourney(document.getElementById('dag-j1'),
       [
         { id: 'start', kind: 'entry', title: '开始', sub: '事件: 用户注册' },
         { id: 'wfe0', kind: 'branch', title: '等待事件', sub: '30min 内等待 KYC 通过' },
         { id: 'ok0', kind: 'exitOk', title: '结束 · 已通过', sub: '进入 FTD 激活旅程' },
-        { id: 'push1', kind: 'channel', title: 'App Push', sub: 'AI Write · 完成 KYC 解锁红包' },
+        { id: 'condkyc', kind: 'branch', title: '条件分支', sub: 'KYC 卡点：身份证/住址' },
+        { id: 'push_both', kind: 'channel', title: 'App Push', sub: '两者都缺 · 完整 KYC 引导' },
+        { id: 'push_id', kind: 'channel', title: 'App Push', sub: '只缺身份证 · 针对性催' },
+        { id: 'push_addr', kind: 'channel', title: 'App Push', sub: '只缺住址证 · 针对性催' },
         { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '24h 内等待 KYC 通过' },
         { id: 'ok1', kind: 'exitOk', title: '结束 · 已通过', sub: '' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 注册地区' },
+        { id: 'condreg', kind: 'branch', title: '条件分支', sub: '属性: 注册地区' },
         { id: 'wa', kind: 'channel', title: 'WhatsApp', sub: '拉美/南亚 · 客服协助' },
         { id: 'email', kind: 'channel', title: 'Email', sub: '其他地区 · KYC 帮助文档' },
         { id: 'end', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
@@ -1108,13 +1182,18 @@
       [
         { from: 'start', to: 'wfe0' },
         { from: 'wfe0', to: 'ok0', label: '已通过' },
-        { from: 'wfe0', to: 'push1', label: '超时未通过' },
-        { from: 'push1', to: 'wfe1' },
+        { from: 'wfe0', to: 'condkyc', label: '超时未通过' },
+        { from: 'condkyc', to: 'push_both', label: '两者都缺' },
+        { from: 'condkyc', to: 'push_id', label: '只缺身份证' },
+        { from: 'condkyc', to: 'push_addr', label: '只缺住址证' },
+        { from: 'push_both', to: 'wfe1' },
+        { from: 'push_id', to: 'wfe1' },
+        { from: 'push_addr', to: 'wfe1' },
         { from: 'wfe1', to: 'ok1', label: '已通过' },
         { from: 'wfe1', to: 'st1', label: '超时未通过' },
-        { from: 'st1', to: 'cond' },
-        { from: 'cond', to: 'wa', label: '拉美/南亚/中东' },
-        { from: 'cond', to: 'email', label: '其他' },
+        { from: 'st1', to: 'condreg' },
+        { from: 'condreg', to: 'wa', label: '拉美/南亚/中东' },
+        { from: 'condreg', to: 'email', label: '其他' },
         { from: 'wa', to: 'end' },
         { from: 'email', to: 'end' },
       ]);
@@ -1202,19 +1281,26 @@
         { from: 'wfe', to: 'end', label: '超时未交易' },
       ]);
 
-    // Journey 5: 沉睡用户分层召回
+    // Journey 5: 沉睡用户分层召回 · 响应度阶梯筛选
     drawJourney(document.getElementById('dag-j5'),
       [
         { id: 'start', kind: 'entry', title: '开始', sub: '属性: 最后交易距今超过7天 · 入金>0' },
         { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 最后交易距今天数' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'push_d7', kind: 'channel', title: 'App Push', sub: '轻度沉默 · 手续费返现 20%' },
+        { id: 'push_d7', kind: 'channel', title: 'App Push', sub: '轻度 · 手续费返现 20%' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'wa_d30', kind: 'channel', title: 'WhatsApp', sub: '中度沉默 · 客户经理 + 空投预告' },
+        { id: 'wa_d30', kind: 'channel', title: 'WhatsApp', sub: '中度 · 客户经理 + 空投预告' },
         { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'sms_d90', kind: 'channel', title: 'SMS', sub: '深度沉默 · 大额限时手续费券' },
-        { id: 'wfe', kind: 'branch', title: '等待事件', sub: '5天内等待 交易成功' },
-        { id: 'ok', kind: 'exitOk', title: '结束 · 已交易', sub: '返回活跃用户池' },
+        { id: 'sms_d90', kind: 'channel', title: 'SMS', sub: '深度 · 大额限时手续费券' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '3天内等待 交易成功' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已交易', sub: '返回活跃用户池' },
+        { id: 'resp', kind: 'branch', title: '响应度筛选', sub: '属性: 近14日消息打开次数' },
+        { id: 'endcut', kind: 'exitEnd', title: '结束 · 无响应', sub: '避免预算浪费 + 降噪' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'email2', kind: 'channel', title: 'Email', sub: '空投预告 / 深度权益' },
+        { id: 'wfe2', kind: 'branch', title: '等待事件', sub: '3天内等待 交易成功' },
+        { id: 'ok2', kind: 'exitOk', title: '结束 · 已交易', sub: '' },
+        { id: 'wa2', kind: 'channel', title: 'WhatsApp', sub: '最后机会 · 客户经理' },
         { id: 'end', kind: 'exitEnd', title: '结束', sub: '7 天后可再次进入' },
       ],
       [
@@ -1225,11 +1311,18 @@
         { from: 'st1', to: 'push_d7' },
         { from: 'st2', to: 'wa_d30' },
         { from: 'st3', to: 'sms_d90' },
-        { from: 'push_d7', to: 'wfe' },
-        { from: 'wa_d30', to: 'wfe' },
-        { from: 'sms_d90', to: 'wfe' },
-        { from: 'wfe', to: 'ok', label: '已交易' },
-        { from: 'wfe', to: 'end', label: '超时未交易' },
+        { from: 'push_d7', to: 'wfe1' },
+        { from: 'wa_d30', to: 'wfe1' },
+        { from: 'sms_d90', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已交易' },
+        { from: 'wfe1', to: 'resp', label: '超时未交易' },
+        { from: 'resp', to: 'endcut', label: '= 0 · 从未打开' },
+        { from: 'resp', to: 'st4', label: '≥ 1 · 有打开' },
+        { from: 'st4', to: 'email2' },
+        { from: 'email2', to: 'wfe2' },
+        { from: 'wfe2', to: 'ok2', label: '已交易' },
+        { from: 'wfe2', to: 'wa2', label: '超时未交易' },
+        { from: 'wa2', to: 'end' },
       ]);
 
     // Journey 6: Staking 到期 / 空投领取提醒
@@ -1261,6 +1354,34 @@
         { from: 'wfe', to: 'st2', label: '超时未完成' },
         { from: 'st2', to: 'email' },
         { from: 'email', to: 'end' },
+      ]);
+
+    // Journey 7: 已完成 KYC 但 App 未下载 · 引导装机
+    drawJourney(document.getElementById('dag-j7'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: 'KYC 通过≥3天 · App 未首登' },
+        { id: 'email1', kind: 'channel', title: 'Email · EDM 1', sub: 'App 下载引导 + 商店 Deep Link' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '3 天内等待 App 首次登录' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已登录', sub: '进入 FTD 激活旅程' },
+        { id: 'email2', kind: 'channel', title: 'Email · EDM 2', sub: 'App 独家福利 · 手续费返现' },
+        { id: 'wfe2', kind: 'branch', title: '等待事件', sub: '4 天内等待 App 首次登录' },
+        { id: 'ok2', kind: 'exitOk', title: '结束 · 已登录', sub: '' },
+        { id: 'resp', kind: 'branch', title: '响应度筛选', sub: '属性: 近10日邮件打开次数' },
+        { id: 'endcut', kind: 'exitEnd', title: '结束 · 无响应', sub: '3 封 EDM 都未打开' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '短文案 + 商店短链兜底' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'email1' },
+        { from: 'email1', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已登录' },
+        { from: 'wfe1', to: 'email2', label: '超时未登录' },
+        { from: 'email2', to: 'wfe2' },
+        { from: 'wfe2', to: 'ok2', label: '已登录' },
+        { from: 'wfe2', to: 'resp', label: '超时未登录' },
+        { from: 'resp', to: 'endcut', label: '= 0 · 从未打开' },
+        { from: 'resp', to: 'sms', label: '≥ 1 · 有打开' },
+        { from: 'sms', to: 'end' },
       ]);
   </script>
 </body>
