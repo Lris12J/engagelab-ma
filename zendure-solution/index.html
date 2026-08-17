@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA · Zendure（真拓）· 欧洲家庭能源 DTC 用户增长方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+    .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.92em; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 940px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-1-2 { grid-template-columns: 1fr 2fr; }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .hero { break-before: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    .flow-arrow { text-align: center; font-size: 18px; color: var(--text-4); padding: 2px 0; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA · Zendure 增长方案</span>
+      <a href="#s-market">业务洞察</a>
+      <a href="#s-funnel">用户漏斗</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-data">数据与画像</a>
+      <a href="#s-scenarios">场景总览</a>
+      <a href="#s-journey1">核心旅程</a>
+      <a href="#s-benchmark">行业对标</a>
+      <a href="#s-compliance">合规与安全</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <a class="back-home" href="../">← 返回首页</a>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-info">Zendure（真拓）· 定制提案</span>
+        <span class="pill">阳台光储 / 家庭能源管理 · 欧洲 DTC</span>
+        <span class="pill pill-accent">德国 · 法国 · 欧洲数据节点</span>
+        <span class="pill pill-success">App 高频数据 × 商城复购一体化</span>
+      </div>
+      <h1>EngageLab MA · Zendure 欧洲家庭能源 DTC 用户增长方案</h1>
+      <p class="hero-subtitle">
+        Zendure App 有 <span class="bold">9 万 DAU、日活率超 50%</span>——用户每天打开看"今天发了多少电、省了多少钱"，
+        这是消费硬件行业罕见的高频触点。本方案做一件事：
+        把 <span class="bold">App 高频行为与设备数据</span>，同<span class="bold">官网商城的低频高客单交易</span>打通——
+        让设备数据驱动<span class="bold">扩容复购、订阅转化、口碑推荐</span>，
+        4 周完成首批旅程上线、效果可量化验收。
+      </p>
+      <hr class="divider" />
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value">9 万 DAU</div><div class="stat-label">App 日活跃用户 · 17 万注册（业务现状）</div></div>
+        <div class="stat"><div class="stat-value info">50%+</div><div class="stat-label">App 日活率——能源可视化带来的天然高频（业务现状）</div></div>
+        <div class="stat"><div class="stat-value warn">100 万+</div><div class="stat-label">德国阳台电站累计注册量（2025，同比翻倍）</div></div>
+        <div class="stat"><div class="stat-value success">+31%</div><div class="stat-label">多渠道自动化编排 vs 单渠道转化提升（行业 Benchmark）</div></div>
+      </div>
+    </section>
+
+    <!-- 1. Market & Business Insight -->
+    <section id="s-market" class="section-plain">
+      <h2>一、业务洞察：Zendure 的增长结构，与 MA 的四个切入点</h2>
+      <p>
+        Zendure 的收入是一条四级引擎：<span class="bold">主机套装（€500–1,500）获客
+        → 扩展电池（€500–1,400/块，可堆至 17kWh+）拉客单与毛利
+        → ZenWave 动态电价订阅（德国已上线）赚持续服务收入
+        → 积分与推荐降获客成本</span>。
+        当前这条链路上的每个转化节点，仍主要靠用户"自己想起来"。
+        在德法竞争白热化、获客成本上升的背景下，
+        <span class="bold">9 万 DAU 的存量用户是回报最确定的增长杠杆</span>。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">德国阳台电站市场 · MaStR 累计注册量（万台）</div>
+          <div class="card-body">
+            <div class="chart" id="chart-market"></div>
+            <p class="small muted" style="margin-top:10px">
+              注册口径数据；因允许免申报安装，实际保有量高于注册量。政策（逆变器上限提升至 800W、
+              一步注册、0% 增值税）持续利好，市场一年翻倍——但硬件同质化竞争也在加剧，
+              <span class="bold">谁能经营好存量用户的第二次、第三次购买，谁就拥有结构性优势</span>。
+              法国即插即用光伏市场同样处于放量早期，Zendure 已取得先发身位。
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Zendure 关键运营信号</div>
+          <div class="card-body p-sm">
+            <div class="signal-row"><div class="left"><div class="label">App 日活率</div><div class="hint">用户每天查看发电收益（业务现状）</div></div><div class="value">50%+</div></div>
+            <div class="signal-row"><div class="left"><div class="label">扩展电池可堆叠容量</div><div class="hint">单套系统最高扩容空间</div></div><div class="value">17 kWh+</div></div>
+            <div class="signal-row"><div class="left"><div class="label">高客单决策周期</div><div class="hint">€500+ 客单 · 比价、算回本、等促销</div></div><div class="value">2–8 周</div></div>
+            <div class="signal-row"><div class="left"><div class="label">高客单品类弃购率</div><div class="hint">决策周期长，弃购普遍偏高（行业参考）</div></div><div class="value">70%+</div></div>
+            <div class="signal-row"><div class="left"><div class="label">安装环节流失</div><div class="hint">注册登记 / 配网 / 电表问题（行业痛点）</div></div><div class="value">首要客诉源</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="grid grid-4">
+        <div class="card"><div class="card-header">切入点 1 · 高客单弃购</div><div class="card-body">
+          <ul>
+            <li>€500–1,500 客单，用户决策周期长、比价多轮</li>
+            <li>官网结账流失后<span class="bold">缺乏系统性挽回序列</span></li>
+            <li>弃购挽回是 DTC 行业验证最充分、见效最快的自动化场景</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">切入点 2 · 安装与激活</div><div class="card-body">
+          <ul>
+            <li>德国需完成入网登记，配网需 2.4GHz Wi-Fi——<span class="bold">非技术用户的最大门槛</span></li>
+            <li>安装受阻 = 差评 + 退货 + 客服压力三重损失</li>
+            <li>自动化安装引导可同时提升激活率、降低客服工单</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">切入点 3 · 数据驱动扩容</div><div class="card-body">
+          <ul>
+            <li>设备每天上报满充 / 弃电数据——<span class="bold">用户自己的数据就是最强购买理由</span></li>
+            <li>"白天充满弃电 + 夜间放空买电"→ 精准触发扩展电池推荐</li>
+            <li>扩容配件是客单与毛利贡献最大的复购品类</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">切入点 4 · 订阅与推荐</div><div class="card-body">
+          <ul>
+            <li>动态电价服务 ZenWave（德国已上线）是从硬件到<span class="bold">持续性订阅收入</span>的关键一跃</li>
+            <li>积分 + 推荐体系已具备，缺自动化触达把它们"跑起来"</li>
+            <li>满意用户 → 公开评价 → 推荐成单的口碑飞轮</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout neutral">
+        <div class="callout-title">与现有营销动作的关系：活动做得更好 + 旅程从无到有</div>
+        <div class="callout-body">
+          <p><span class="bold">第一层：现有活动直接在 MA 中开展、效果做高</span>——Newsletter、大促、新品发售改用多渠道协同（Push / Email / Web Push / WhatsApp 各接各的人群）+ 智能分群 + 最佳发送时机 + 条件分流对比 + 统一归因来投放，替代单渠道全量群发。</p>
+          <p><span class="bold">第二层：补上行为触发的旅程层</span>——活动面向人群、按日历发；旅程面向个人、在行为与设备数据变化的时刻发。两层跑在同一套用户档案上。</p>
+          <p>头部同行已先行：主要竞争品牌均已部署专业营销自动化平台，其中一家同品类品牌的公开案例显示整体收入 +60%。这套体系恰恰能把"9 万 DAU + 设备数据"这个同行不具备的资产变现。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Funnel -->
+    <section id="s-funnel" class="section-plain">
+      <h2>二、用户漏斗：从官网访客到推荐裂变，每一层都有明确的挽回空间</h2>
+      <p>
+        Zendure 用户的完整生命周期是一条"官网 → 硬件 → App → 复购 → 订阅 → 推荐"的多层漏斗。
+        以下数据为智能硬件 / 高客单 DTC 行业公开对标的参考区间，
+        实际数值以 Zendure 内部数据校准为准；
+        <span class="bold">整条漏斗的提升完全来自存量流量与存量用户，无需新增广告投放</span>。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">Zendure 用户漏斗 · 当前参考基线 vs MA 自动化后预期（行业参考区间）</div>
+        <div class="card-body">
+          <div class="chart" id="chart-funnel"></div>
+          <div class="grid grid-3" style="margin-top:14px">
+            <div class="stat"><div class="stat-value success">3–8%</div><div class="stat-label">弃购订单挽回率（高客单 DTC 行业参考）</div></div>
+            <div class="stat"><div class="stat-value success">+30-50%</div><div class="stat-label">扩展电池 / 配件复购提升（购后交叉销售对标）</div></div>
+            <div class="stat"><div class="stat-value success">+15-25%</div><div class="stat-label">设备绑定激活率提升（安装引导自动化）</div></div>
+          </div>
+          <p class="small muted" style="margin-top:12px">
+            数据参考：2024–2026 年智能硬件与高客单 DTC 行业公开案例与行业报告综合测算；图下数字为参考区间，实际以 Zendure 数据为准。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why EngageLab -->
+    <section id="s-why" class="section-plain">
+      <h2>三、EngageLab MA 为什么匹配 Zendure</h2>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">一体化数据底座 · 推送与旅程同源</div><div class="card-body">
+          <ul>
+            <li>App Push 触达数据与 MA 旅程数据<span class="bold">同平台、同用户体系</span>——不存在"推送一套数据、营销一套数据"的割裂</li>
+            <li>App SDK 埋点事件 + 官网 Web SDK 行为 + 商城订单数据，统一沉淀为<span class="bold">用户属性与事件流</span></li>
+            <li>客服（LiveDesk）与 AI 对话机器人（GPTbots）同属一个产品生态，用户服务记录与营销触达可协同——低分用户自动转人工、安装受阻用户推送客服入口</li>
+            <li>旅程转化与收入统计内置<span class="bold">末次归因</span>，每条旅程带来多少订单金额一目了然</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">欧洲市场原生支持</div><div class="card-body">
+          <ul>
+            <li>已通过 <span class="bold">GDPR</span> 合规认证与 <span class="bold">SOC 2 Type II</span> 审计</li>
+            <li>支持<span class="bold">欧洲数据节点部署</span>，满足欧洲用户数据驻留要求</li>
+            <li>按<span class="bold">终端用户时区</span>控制发送窗口，德法用户在本地合适时段收到消息</li>
+            <li>Email、WhatsApp、SMS 等渠道覆盖欧洲主流触达习惯，德国市场支持双重确认（Double Opt-in）订阅实践</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">AI × 旅程编排 · 小团队高产出</div><div class="card-body">
+          <ul>
+            <li><span class="bold">AI 多语言文案生成</span>：一条旅程覆盖德、法等多语言市场，无需为每个国家单独维护文案团队</li>
+            <li><span class="bold">最佳发送时机、智能分群、条件分流对比</span>，持续优化触达效率</li>
+            <li>零代码旅程编排：运营人员可独立配置、修改、复盘全部旅程</li>
+            <li>交付团队提供<span class="bold">智能硬件行业旅程模板与埋点方案模板</span>：按业务定制埋点方案与旅程设计，避免从零摸索</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>3.1 渠道组合：在 Zendure 场景中的分工与成本</h3>
+      <table>
+        <thead><tr>
+          <th>渠道</th><th>在 Zendure 场景中的主要用途</th><th class="align-right">成本</th>
+          <th class="align-right">效果参考</th><th class="align-center">定位</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td>App Push</td><td>发电收益报告、扩容推荐、订阅转化、固件更新通知、NPS 问卷——覆盖 9 万 DAU 的主触达渠道</td><td class="align-right">按 DAU 定价</td><td class="align-right">行为触发类点击率 5-8%（同类实测约 6%）</td><td class="align-center">主力渠道</td></tr>
+          <tr class="tone-success"><td>Email</td><td>弃购挽回、安装指南、收益月报、新品预售；可统一承接验证码等触发类邮件，营销与触发同平台归因</td><td class="align-right">按条数计费</td><td class="align-right">触发类打开率 25-45%</td><td class="align-center">深内容 · 合规主渠道</td></tr>
+          <tr><td>Web Push</td><td>官网访客召回、弃购兜底、新品发售提醒</td><td class="align-right">按 DAU 定价</td><td class="align-right">点击率 6-10%</td><td class="align-center">官网流量承接</td></tr>
+          <tr><td>WhatsApp</td><td>德法用户渗透率高；新品发售、订单物流、安装协助等高价值通知（需用户订阅授权）</td><td class="align-right">按目标国家定价</td><td class="align-right">打开率显著高于 Email</td><td class="align-center">高价值场景增强</td></tr>
+          <tr><td>SMS</td><td>物流签收、安装协助等关键节点兜底</td><td class="align-right">按目标国家定价</td><td class="align-right">阅读率 90%+</td><td class="align-center">关键节点兜底</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:8px">
+        欧洲市场营销触达需以用户同意为前提；WhatsApp 基于向 Meta 报备的模板发送。渠道具体报价按目标国家出具。
+      </p>
+    </section>
+
+    <!-- 3.5 Data & Profile -->
+    <section id="s-data" class="section-plain">
+      <h2>四、数据整合与用户画像：把"埋点"升级为"可运营的用户资产"</h2>
+      <p>
+        把用户行为数据变成<span class="bold">可分群、可触发、可归因</span>的运营资产，
+        需要一套面向旅程设计的埋点体系。我们建议按"采集 → 画像 → 编排"三层架构落地，
+        由交付团队基于智能硬件行业模板输出完整埋点方案——第 1 周完成方案确认与接入，
+        让首批旅程从一开始就跑在完整的数据地基上。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">① 数据采集层 · 多源汇入</div><div class="card-body">
+          <ul>
+            <li><span class="bold">App SDK</span>：设备绑定、发电/充放行为、固件状态、订阅状态、App 启动</li>
+            <li><span class="bold">官网 Web SDK</span>：页面浏览、加购、发起结账、Web Push 订阅（无需改造官网业务功能）</li>
+            <li><span class="bold">订单数据</span>：商城订单事件（品类、金额、SKU）通过事件上报 / API 汇入</li>
+            <li><span class="bold">生态数据</span>：App Push 触达行为同源；客服与 AI 机器人会话记录可协同（同一产品生态）</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">② 用户画像层 · 统一档案</div><div class="card-body">
+          <ul>
+            <li><span class="bold">设备资产</span>：主机型号、扩展电池数量、总容量、固件版本</li>
+            <li><span class="bold">能源行为</span>：近 30 天满充天数、弃电量、日均发电、AI 模式是否开启</li>
+            <li><span class="bold">商业价值</span>：累计订单数、累计金额、最后下单时间、订阅状态</li>
+            <li><span class="bold">生命周期</span>：未激活 / 活跃 / 沉默 / 流失；语言与国家；渠道订阅授权状态</li>
+            <li><span class="bold">多设备档案（对象数组属性）</span>：一个用户名下的多台设备，以对象结构逐台存储型号、容量、固件、满充天数，支持分设备筛选、计算、判断与消息变量下发</li>
+            <li>属性支持数值、文本、日期、布尔、列表与对象数组，支持"距今超过 N 天""每年当日"等日期运算</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">③ 旅程编排层 · 自动触达</div><div class="card-body">
+          <ul>
+            <li>事件触发（弃购、支付、绑定）+ 属性筛选（满充天数、沉默天数）双入口</li>
+            <li>等待事件 / 条件分支 / 可发送时间等组件零代码编排</li>
+            <li>智能分群圈选高价值人群，条件分流对比验证策略优劣</li>
+            <li>每条旅程独立统计发送、送达、点击、<span class="bold">转化次数与收入金额</span></li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <h3>4.1 建议的核心事件与属性字典（首批埋点范围）</h3>
+      <table>
+        <thead><tr>
+          <th style="width:22%">事件 / 属性</th><th style="width:14%">类型</th><th>关键字段</th><th>驱动的旅程</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-info"><td>发起结账 / 加入购物车</td><td>事件（Web）</td><td>商品、金额、货币</td><td>J1 弃购挽回</td></tr>
+          <tr class="tone-info"><td>订单支付成功</td><td>事件</td><td>品类（主机/配件/其他）、金额、SKU</td><td>J1/J2/J3 转化与收入归因</td></tr>
+          <tr class="tone-info"><td>设备绑定成功</td><td>事件（App）</td><td>主机型号、绑定时间</td><td>J2 安装激活 · J6 口碑推荐</td></tr>
+          <tr><td>浏览扩容 / 订阅页面</td><td>事件（App/Web）</td><td>页面类型</td><td>J3 扩容 · J4 订阅（意向识别）</td></tr>
+          <tr><td>订阅服务开通成功</td><td>事件（App）</td><td>套餐、金额</td><td>J4 订阅转化</td></tr>
+          <tr><td>提交 NPS 评分</td><td>事件（App）</td><td>分数</td><td>J6 口碑推荐分流</td></tr>
+          <tr><td>近 30 天"白天充满且夜间放空"天数 / 弃电量</td><td>属性（数值）</td><td>设备侧统计回传</td><td>J3 扩容触发（核心）</td></tr>
+          <tr><td>主机型号 / 扩展电池数量</td><td>属性（文本/数值）</td><td>设备资产</td><td>J3/J4 分支分流</td></tr>
+          <tr class="tone-info"><td>名下设备列表</td><td>属性（对象数组）</td><td>每台设备的型号 / 电池数 / 固件版本 / 近 30 天满充天数</td><td>J3 分设备扩容推荐与变量下发 · J5 设备健康 · 多设备家庭运营</td></tr>
+          <tr><td>最后打开 App 时间</td><td>属性（日期）</td><td>自动更新</td><td>J5 沉默召回</td></tr>
+          <tr><td>国家 / 语言 / 订阅状态</td><td>属性</td><td>—</td><td>全部旅程的分流与多语言</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">埋点实施建议：首期做全，让第一阶段就看到多线效果</div>
+        <div class="callout-body">
+          <p>我们建议首期<span class="bold">一次性接入支撑全部 6 条旅程的事件与属性</span>（约 8–10 个事件、10–12 个属性，1–2 名开发 3–5 天可完成）——这样第一阶段就能同时看到弃购挽回、安装激活、扩容推荐、订阅转化多条线的效果，测试结案的说服力最强。</p>
+          <p>若希望控制首期开发工作量，也可<span class="bold">分两期实施</span>：第一期先接官网与订单侧事件（场景 1 / 2 / 5 可上线），第二期补设备运行数据与订阅属性（场景 3 / 4 / 6）。交付团队提供埋点方案模板与旅程模板，并结合 AI 工具快速产出多语言文案初稿，运营团队确认后上线。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Scenarios Overview -->
+    <section id="s-scenarios" class="section-plain">
+      <h2>五、高 ROI 运营场景总览</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center">#</th><th>场景</th><th>生命周期阶段</th>
+          <th>渠道组合</th><th>核心亮点</th><th class="align-right">预期效果（行业参考）</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td class="align-center">1</td><td>高客单弃购挽回</td><td>首购转化</td><td>Email + Web Push</td><td>针对 €500+ 客单拉长挽回节奏：答疑 → 收益测算 → 限时提醒三段递进</td><td class="align-right">弃购订单挽回 3–8%</td></tr>
+          <tr class="tone-success"><td class="align-center">2</td><td>发货 → 安装 → App 激活</td><td>新客激活</td><td>Email + App Push</td><td>入网登记指引 + 配网教程前置，把"安装受阻"从差评源变为体验亮点</td><td class="align-right">激活率 +15-25% · 安装类工单下降</td></tr>
+          <tr class="tone-success"><td class="align-center">3</td><td>设备数据驱动扩容推荐</td><td>复购 / 客单提升</td><td>App Push + Email</td><td>用"白天充满弃电、夜间放空买电"的设备数据触发精准推荐，两笔账同时算给用户看</td><td class="align-right">配件复购 +30-50%</td></tr>
+          <tr class="tone-success"><td class="align-center">4</td><td>能源订阅服务转化</td><td>订阅收入</td><td>App Push + Email</td><td>把德国已激活硬件用户系统性转化为 ZenWave 动态电价服务订阅用户，开启持续性服务收入</td><td class="align-right">订阅转化率参考 5% → 10%</td></tr>
+          <tr><td class="align-center">5</td><td>沉默用户分层召回</td><td>留存挽回</td><td>App Push + Email + Web Push</td><td>已绑定（关怀+健康检查）、已购未绑定（安装补救）、未购买（科普+优惠）三层分流经营</td><td class="align-right">召回率 15-25%</td></tr>
+          <tr><td class="align-center">6</td><td>NPS → 评价 → 推荐裂变</td><td>口碑增长</td><td>App Push + Email</td><td>高分用户导流公开评价与推荐奖励，低分用户自动转客服跟进</td><td class="align-right">公开好评量与推荐成单显著提升</td></tr>
+          <tr><td class="align-center">7</td><td>新品预售与发售提醒</td><td>新品转化</td><td>Email + App Push + WhatsApp</td><td>预约名单分层触达：老用户推升级理由，新用户推首发权益，限量提醒兜底</td><td class="align-right">预约 → 下单转化提升</td></tr>
+          <tr><td class="align-center">8</td><td>固件更新前置沟通</td><td>留存 / 信任</td><td>App Push + Email</td><td>升级前预告 → 升级后回访 → 未升级补指南，把口碑重灾区变成主动服务窗口；季节大促以分群+多渠道活动承载</td><td class="align-right">升级完成率提升 · 客诉下降</td></tr>
+          <tr><td class="align-center">9</td><td>积分到期与兑换提醒</td><td>忠诚度 / 复购</td><td>App Push + Email</td><td>ZenWatts 积分可直接兑换扩展电池——到期前三段提醒，积分运营本身就是交叉销售</td><td class="align-right">积分核销与配件兑换提升</td></tr>
+          <tr><td class="align-center">10</td><td>新订阅者欢迎旅程</td><td>首购培育</td><td>Email + Web Push</td><td>订阅礼 → 政策科普 → 按浏览意向分层推荐，承接 2–8 周长决策周期的教育型转化</td><td class="align-right">订阅者首购转化提升</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        场景 1–6 为首批上线，场景 7–10 为第二批——<span class="bold">全部 10 个场景的完整旅程编排见下文</span>。
+        所有场景基于同一份用户属性与事件流协同运行，互相之间通过频控与提前退出机制避免重复打扰。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="callout warn">
+        <div class="callout-title">落地原则：服务型触达先行</div>
+        <div class="callout-body">
+          阳台光储用户社区的高频话题集中在固件更新、设备连接与售后响应上。因此建议 App Push 渠道以<span class="bold">服务型内容打头</span>（安装引导、发电报告、设备健康检查、固件更新前置通知），先让用户建立"这个品牌的推送是有用的"的信任，再逐步叠加促销型触达——这既是转化效率问题，更是保护推送订阅与品牌口碑的关键。
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain">
+      <h2>场景 1｜高客单弃购挽回（官网商城）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">见效最快</span>
+        <span class="pill pill-info">首购转化</span>
+        <span class="pill">结账事件触发 · 三段递进 · Email + Web Push</span>
+      </div>
+      <p style="margin:0 0 14px">用户走到结账最后一步却未支付时，自动开启一段约三天的挽回序列——先答疑、再算收益账、最后限时提醒，在整个决策周期内持续解决顾虑。</p>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j1"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>€500–1,500 的客单，用户不会冲动下单：反复比价、担心安装、纠结容量——高客单品类弃购率普遍在 <span class="bold">70% 以上</span>。</p>
+              <p>每一单弃购，都是已付出广告成本、走到最后一步的高意向用户；而官网当前没有系统性的挽回序列。</p>
+              <p><span class="bold">高客单弃购挽回的关键不是催促，而是持续解决顾虑</span>：先答疑、再算账、最后才是限时提醒。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"发起结账"触发（可再次进入，间隔 7 天）</li>
+                <li><span class="bold">提前退出</span>：事件"订单支付成功"→ 立即退出</li>
+                <li><span class="bold">等待事件 1 小时</span>：监听"订单支付成功"→ 已支付自然转化，全程不打扰</li>
+                <li><span class="bold">Email 1（超时未支付）</span>：购物车保留确认 + 高频顾虑答疑（安装难度、保修、退换）——刚触发 1 小时内直接发送，无需可发送时间</li>
+                <li><span class="bold">等待事件 24 小时</span>：监听"订单支付成功"</li>
+                <li><span class="bold">可发送时间 09:00–21:00（终端时区）+ Email 2</span>：按购物车内容生成收益测算（预计年发电、回本周期）+ 真实用户评价背书</li>
+                <li><span class="bold">等待事件 48 小时</span>:监听"订单支付成功"</li>
+                <li><span class="bold">可发送时间 + Web Push 兜底</span>：库存 / 限时权益提醒</li>
+                <li><span class="bold">转化 + 收入统计</span>：监听"订单支付成功"，统计时间 3 天（对齐旅程跨度）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p><span class="bold">弃购订单挽回率参考 3–8%</span>，头部品牌可达 8–12%（高客单 DTC 行业公开数据）。按客单 €800 计，每月挽回 100 单 ≈ 8 万欧元增量。</p>
+              <p>决策周期长达数周、用户惯于"等大促"——序列结束后，仍由再次进入机制与新品、促销旅程接力培育。</p>
+              <p>数据依赖最少、上线最快、ROI 最直观，<span class="bold">建议作为第一条旅程验证</span>。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain">
+      <h2>场景 2｜发货 → 安装 → App 绑定激活</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">体验与口碑地基</span>
+        <span class="pill pill-info">新客激活</span>
+        <span class="pill">支付事件触发 · 安装引导前置 · Email + App Push</span>
+      </div>
+      <p style="margin:0 0 14px">从付款那一刻起，自动护送用户走完"收货 → 安装 → 登记 → 配网"全程，把每一台卖出去的设备都变成一个绑定 App 的活跃用户。</p>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j2"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>安装是整个品类的口碑分水岭：入网登记、电表更换、2.4GHz 配网——智能电表与网络配对正是用户社区最高频的求助主题。</p>
+              <p>安装受阻 = <span class="bold">差评、退货、客服压力三重损失</span>；设备不绑定 App，后续扩容、订阅、推荐运营都无从谈起。</p>
+              <p><span class="bold">激活率是这套方案里所有后续旅程的地基。</span></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"订单支付成功"（品类 = 光储主机）触发（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">提前退出</span>：事件"设备绑定成功"→ 立即退出</li>
+                <li><span class="bold">Email 1（即时）</span>：订单确认 + 安装前准备清单（德国站附入网登记图文指引、Wi-Fi 环境自查、App 下载入口）</li>
+                <li><span class="bold">等待 5 天</span>：覆盖物流送达周期</li>
+                <li><span class="bold">可发送时间 09:00–21:00 + Email 2</span>：分步安装教程（视频）+ App 配网指南</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"设备绑定成功"</li>
+                <li><span class="bold">已绑定路径</span>：App Push 欢迎消息（绑定刚完成，直接发送）——首周发电报告预告，建立"每天打开看收益"的习惯</li>
+                <li><span class="bold">未绑定路径</span>：可发送时间 + Email 3"安装遇到问题了吗"——常见问题自查 + 在线客服入口（客服系统协同）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"设备绑定成功"→ 仍未绑定则结束并标记，转人工关怀</li>
+                <li><span class="bold">转化统计</span>：监听"设备绑定成功"，统计时间 14 天（真实激活行为集中在两周内）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p><span class="bold">设备激活率提升 15-25%</span>，安装类客服工单下降 20-30%（行业参考）——教程在用户遇到问题之前送达。</p>
+              <p>长期价值：每多一个绑定 App 的用户，就多一个进入扩容、订阅、推荐旅程的运营对象。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain">
+      <h2>场景 3｜设备数据驱动的扩容推荐（明星场景）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">智能硬件独有杠杆</span>
+        <span class="pill pill-info">复购 / 客单提升</span>
+        <span class="pill">满充+夜间放空属性触发 · 型号分流 · App Push + Email</span>
+      </div>
+      <p style="margin:0 0 14px">当设备数据显示"白天电池早早充满、晚上又提前放空"时，自动向用户算清两笔账——中午白扔的电、晚上多买的电，并推荐匹配的扩展电池。</p>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j3"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>扩展电池是客单与毛利贡献最大的复购品类（单套可堆至 17kWh+），但购买靠用户"自己意识到不够用"——社区里最典型的故事是<span class="bold">"用了一个夏天才发现白天存满、晚上不够用"</span>。</p>
+              <p>设备数据第一个月就能识别这批用户，信号是两头的：白天电池早早充满，多发的电白白送回电网（无上网补偿，即"弃电"）；当晚电池又放空，家里重新买电网电。</p>
+              <p><span class="bold">两头同时发生才是真痛点：中午在白扔免费的电，晚上在花钱买贵的电</span>——一块扩展电池同时解决两头。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"近 30 天'白天充满且夜间放空'天数 ≥ 10"且"扩展电池数量未达上限"触发（可再次进入，间隔 30 天，对齐统计窗口）</li>
+                <li><span class="bold">提前退出</span>：事件"订单支付成功（品类 = 配件）"→ 立即退出</li>
+                <li><span class="bold">条件分支</span>：按属性"主机型号"分流，匹配对应扩展电池型号与文案</li>
+                <li><span class="bold">可发送时间 18:00–21:00 + App Push</span>：晚间用户查看发电数据的高频时段触达——"本月有 12 天：电池中午就充满、多发的电白送电网，当晚又提前放空、家里只能买电——加一块扩展电池，把中午的电留到晚上用"</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"浏览扩容页面"，区分意向层级</li>
+                <li><span class="bold">已浏览未购</span>：可发送时间 + Email（扩容收益测算 + 老用户专属价）</li>
+                <li><span class="bold">未浏览</span>：可发送时间 + Email（月度弃电报告："这个月你放弃了约 X 度电 ≈ X 欧元"）</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"配件订单支付成功"→ 已购退出 / 超时结束</li>
+                <li><span class="bold">变量下发</span>：Push 与 Email 文案通过设备对象属性注入具体设备名、满充天数与弃电量——多设备家庭可精确到"哪一台该扩容"</li>
+                <li><span class="bold">转化 + 收入统计</span>：监听"配件订单支付成功"（含金额），统计时间 7 天（对齐旅程跨度）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout info">
+            <div class="callout-title">埋点要求（此旅程的关键前提）</div>
+            <div class="callout-body">
+              <p>· 属性 <span class="mono">full_and_empty_days_30d</span>：近 30 天"白天充满且夜间放空"天数（设备侧统计，App 定期回传），可辅以弃电量估算</p>
+              <p>· 属性 <span class="mono">battery_count</span> / <span class="mono">device_model</span>：扩展电池数量与主机型号</p>
+              <p>· 多设备家庭：名下设备以<span class="bold">对象数组属性</span>上报（每台设备的型号、电池数、满充天数为一个对象），旅程可分设备筛选、判断与变量下发</p>
+              <p>· 事件 <span class="bold">订单支付成功</span> 需携带品类与金额字段，用于提前退出与收入归因</p>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p><span class="bold">配件类复购提升参考 +30-50%</span>（欧洲智能家居硬件公开案例：购后交叉销售是收入贡献最高的自动化场景之一）。</p>
+              <p>Zendure 的版本更进一步——不是"买了 A 推 B"的静态推荐，而是<span class="bold">设备运行数据实时驱动</span>，转化理由无可辩驳。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain">
+      <h2>场景 4｜ZenWave 动态电价服务订阅转化（德国市场）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">软件收入曲线</span>
+        <span class="pill pill-info">订阅转化</span>
+        <span class="pill">属性筛选进入 · 意向分层 · App Push + Email</span>
+      </div>
+      <p style="margin:0 0 14px">圈选出最可能订阅的德国活跃用户，用其真实省电数据引导转签 ZenWave 动态电价服务，把一次性硬件买家变成每月付费的订阅用户。</p>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j4"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>ZenWave 是 Zendure 已在德国上线的动态电价服务：供电合同转签 + 月费制，系统在电价低谷（含负电价）充电、高峰放电，官方测算每年最多再省数百欧元。</p>
+              <p>这是从"硬件一次性成交"到"每月持续收入"的关键业务，但转化目前靠用户自己在 App 里发现入口。</p>
+              <p><span class="bold">最该被转化的人群很清晰：德国 + 已绑定 + 稳定使用两周以上</span>——只差一条把"转签后还能再省多少"讲清楚的触达。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"设备绑定时间距今超过 14 天"且"国家 = 德国"且"订阅状态 = 未订阅"触发（再次进入间隔 90 天，最多 2 次——订阅决策周期长，避免高频打扰）</li>
+                <li><span class="bold">提前退出</span>：事件"订阅服务开通成功"→ 立即退出</li>
+                <li><span class="bold">可发送时间 18:00–21:00 + App Push</span>：个人化收益报告切入——"你的系统两周省了 X 欧，接入动态电价还能再省"</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"浏览订阅页面"，区分意向</li>
+                <li><span class="bold">已浏览</span>：可发送时间 + Email：完整省钱测算、转签流程答疑、常见问题</li>
+                <li><span class="bold">未浏览</span>：可发送时间 + App Push：负电价时段科普——"昨晚电价为负，订阅用户充电还能赚钱"</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"订阅服务开通成功"</li>
+                <li><span class="bold">未订阅</span>：可发送时间 + Email 兜底：首月体验权益说明</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"订阅服务开通成功"→ 结束</li>
+                <li><span class="bold">转化统计</span>：监听"订阅服务开通成功"，统计时间 7 天（订阅决策集中在首条触达后一周内）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p><span class="bold">合格人群订阅转化率提升至基线约 2 倍</span>（参考区间 5% → 10%，订阅制行业公开数据）。</p>
+              <p>订阅用户的打开频次、扩容与推荐意愿都显著更高，是全生命周期价值最高的分层；模式验证后可扩展至更多欧洲国家。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain">
+      <h2>场景 5｜沉默用户分层召回</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-warn">留存挽回</span>
+        <span class="pill pill-info">分层经营</span>
+        <span class="pill">沉默属性触发 · 设备与订单状态三层分流 · Push + Email + Web Push</span>
+      </div>
+      <p style="margin:0 0 14px">对 30 天未打开 App 的用户按"已绑定设备 / 已购未绑定 / 未购买"三层分流——分别收到发电报告与健康检查、安装协助补救、政策科普与入门优惠。</p>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j5"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>17 万注册与 9 万 DAU 之间是一个持续流动的沉默池，由三类人构成：</p>
+              <p>① <span class="bold">绑定了设备却不再打开</span>——设备离线、故障或新鲜感消退，流失与差评的前兆；</p>
+              <p>② <span class="bold">下单了却没完成绑定</span>——安装卡住后放弃，最该补救的一群；</p>
+              <p>③ <span class="bold">注册了却未购买</span>——研究型下载的潜在买家与退货用户。</p>
+              <p>三类人分别需要服务关怀、安装补救、教育转化——同一套文案只会三头不讨好。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"最后打开 App 距今超过 30 天"触发（可再次进入，间隔 30 天，对齐进入阈值）</li>
+                <li><span class="bold">条件分支</span>：按属性"是否已绑定设备 + 是否有订单"三层分流</li>
+                <li><span class="bold">已绑定设备路径</span>：可发送时间 18:00–21:00 + App Push——月度发电报告（"你的系统上月发电 X 度 ≈ 省 X 欧"），唤回价值感 → 等待事件 5 天（监听"App 启动"）→ 已回归退出 / 仍沉默 → 可发送时间 + Email：设备健康检查 + 固件更新提示（顺带排查设备离线）</li>
+                <li><span class="bold">已购未绑定路径</span>：可发送时间 + Email——安装协助（"设备还没装好？"分步教程 + 在线客服入口，与场景 2 的激活引导衔接）→ 等待事件 5 天（监听"设备绑定成功"）→ 补绑成功退出 / 仍未绑定结束并保留人工关怀标记</li>
+                <li><span class="bold">未购买路径</span>：可发送时间 + Email——本地政策与收益科普 + 入门套装推荐 → 等待事件 5 天（监听"App 启动"）→ 已回归退出 / 仍沉默 → Web Push 限时入门优惠兜底</li>
+                <li><span class="bold">提前退出</span>：事件"设备绑定成功"→ 立即退出（补绑完成即达成最高目标）</li>
+                <li><span class="bold">转化统计</span>：监听"App 启动"，统计时间 5 天（对齐旅程跨度）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p><span class="bold">召回回归率 15-25%</span>（行业参考），显著高于无差别群发。</p>
+              <p>隐性价值：<span class="bold">主动发现离线与故障设备</span>——在用户带着怨气找上门（或直接差评）之前完成服务闭环。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain">
+      <h2>场景 6｜NPS → 公开评价 → 推荐裂变</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">低成本获客飞轮</span>
+        <span class="pill pill-info">口碑增长</span>
+        <span class="pill">绑定 30 天触发 · 评分分流 · App Push + Email + 客服协同</span>
+      </div>
+      <p style="margin:0 0 14px">设备用满一个月时自动发起满意度调查——高分用户被引导去公开评价并推荐好友，低分用户在写下差评之前先转给客服解决问题。</p>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j6"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>该品类的转化高度依赖公开评价分数，而现状往往是：<span class="bold">不满的用户主动去写，满意的用户保持沉默</span>。</p>
+              <p>NPS 是 App 内的私密满意度问卷（0–10 分"你有多愿意推荐"），分数不对外公开——先私下识别满意度，再分流：满意者受邀去公开平台<span class="bold">以自己的账号亲自写评价</span>，不满者先转客服。</p>
+              <p>品牌已有 ZenWatts 积分体系，缺的是在"最满意的时刻"自动完成三件事：识别满意度、导流评价与推荐、<span class="bold">在公开发声之前</span>拦截不满。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"设备绑定时间距今超过 30 天"触发（不可再次进入——一次性满意度里程碑）</li>
+                <li><span class="bold">可发送时间 18:00–21:00 + App Push</span>：NPS 问卷邀请（1 分钟评分，完成得积分）</li>
+                <li><span class="bold">等待事件 3 天（多分支）</span>：分支一 = 事件"提交 NPS 评分"且分数 ≥ 9；分支二 = 事件"提交 NPS 评分"且分数 ≤ 8；默认 = 超时未提交</li>
+                <li><span class="bold">高分路径</span>：可发送时间 + Email——邀请前往公开评价平台亲自撰写评价 + 推荐好友双向奖励（积分 / 优惠券）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"推荐链接注册"→ 推荐成功发放双向奖励 / 超时结束</li>
+                <li><span class="bold">低分路径</span>：Email 致歉与主动服务——同步客服团队人工跟进（客服系统协同），先解决问题，不做任何营销；问题解决后同样开放评价入口，避免"只邀好评"的选择性邀评合规风险</li>
+                <li><span class="bold">未提交路径</span>：可发送时间 + App Push 提醒一次（积分激励），不再追发</li>
+                <li><span class="bold">转化统计</span>：监听"推荐链接注册"，统计时间 7 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout info">
+            <div class="callout-title">埋点要求（此旅程的关键前提）</div>
+            <div class="callout-body">
+              <p>· NPS 问卷需在 App 内或自有 H5 页面实现，提交时上报事件<span class="bold">"提交 NPS 评分"</span>（携带分数属性）——旅程监听的是应用上报的自定义事件，使用第三方问卷工具且无埋点对接时无法监听；</p>
+              <p>· 事件<span class="bold">"推荐链接注册"</span>需在被推荐人完成注册时上报（携带推荐人标识），用于转化统计与奖励发放；</p>
+              <p>· 交付团队提供问卷与推荐事件的埋点规范。</p>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p><span class="bold">公开好评量与推荐注册量提升 2-3 倍</span>（行业参考）；推荐获客成本仅为付费广告的几分之一，且信任起点更高。</p>
+              <p>低分拦截路径每月在公开差评发生前挽回一批服务问题——<span class="bold">防御价值不亚于增长价值</span>。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 7 -->
+    <section id="s-journey7" class="section-plain">
+      <h2>场景 7｜新品预售与发售提醒</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-warn">第二批</span>
+        <span class="pill pill-info">新品转化</span>
+        <span class="pill">预约事件触发 · 老用户分层 · Email + App Push + WhatsApp</span>
+      </div>
+      <p style="margin:0 0 14px">用户预约新品后先收到确认与预热，发售时按"是否老用户"分层触达——老用户看兼容升级的理由，新用户看首发权益，限量提醒兜底。</p>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j7"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>新品节奏快、预售 / 早鸟是惯用打法——预约名单是意向最高的人群资产，但"预约了没下单"的流失缺乏系统性挽回。</p>
+              <p><span class="bold">老用户与新用户需要完全不同的转化理由</span>：老用户看兼容与升级差异，新用户看首发权益与回本周期。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"新品预约登记"触发（可再次进入，间隔 30 天，覆盖多次新品发布）</li>
+                <li><span class="bold">提前退出</span>：事件"订单支付成功"→ 立即退出</li>
+                <li><span class="bold">Email 1（即时）</span>：预约确认 + 产品亮点与发售时间预告</li>
+                <li><span class="bold">等待 N 天</span>：至发售日（时长按发布日历配置）</li>
+                <li><span class="bold">条件分支</span>：属性"是否已绑定设备"</li>
+                <li><span class="bold">老用户路径</span>：可发送时间 09:00–21:00 + App Push——首发开抢 + 老用户专属权益（与已有系统的兼容升级理由）</li>
+                <li><span class="bold">新用户路径</span>：可发送时间 + Email——首发权益 + 回本测算</li>
+                <li><span class="bold">等待事件 48 小时</span>：监听"订单支付成功"→ 已购退出 / 未购继续</li>
+                <li><span class="bold">可发送时间 + WhatsApp</span>：首发限量 / 权益截止提醒（需用户订阅授权，未授权用户回落 Email）</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"订单支付成功"→ 已购退出 / 结束</li>
+                <li><span class="bold">转化 + 收入统计</span>：监听"订单支付成功"，统计时间 5 天（对齐发售期跨度）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p><span class="bold">预约转化提升 20–40%</span>（行业参考）——预约 → 下单是新品发布 ROI 最高的转化段。</p>
+              <p>发布节奏越密复用价值越高：一次搭建，每次发布只换内容。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 8 -->
+    <section id="s-journey8" class="section-plain">
+      <h2>场景 8｜固件更新前置沟通（服务型触达样板）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-warn">第二批</span>
+        <span class="pill pill-info">留存 · 信任</span>
+        <span class="pill">固件版本属性触发 · App Push + Email + 客服协同</span>
+      </div>
+      <p style="margin:0 0 14px">每次固件发布时，自动完成"升级前预告 → 升级后回访 → 未升级补指南"三步——把口碑波动最大的环节变成主动服务的展示窗。</p>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j8"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>固件升级是该品类口碑波动最大的环节：不知情被推送更新、升级中断后无处求助，是公开差评的高频主题。</p>
+              <p>前置沟通把"被动挨骂"变成"提前打招呼"——这也是<span class="bold">"服务型触达先行"的样板旅程</span>：用户先觉得推送有用，营销触达才有信任基础。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"设备固件版本 低于 目标版本"触发（支持版本号比较；旅程随固件发布上线，可再次进入，间隔 30 天）</li>
+                <li><span class="bold">可发送时间 18:00–21:00 + App Push</span>：升级预告——新版本改进点、预计耗时、注意事项（设备保持在线、电量充足）</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"固件升级完成"</li>
+                <li><span class="bold">已升级路径</span>：等待 2 天 → 可发送时间 + App Push 升级回访（"新版本用得如何？遇到问题一键反馈"）——反馈异常自动同步客服跟进（客服系统协同）</li>
+                <li><span class="bold">未升级路径</span>：可发送时间 + Email——图文升级指南 + 升级失败自查（常见错误码处理）</li>
+                <li><span class="bold">转化统计</span>：监听"固件升级完成"，统计时间 7 天（对齐旅程跨度）</li>
+                <li><span class="bold">埋点要求</span>：设备对象数组属性中的固件版本字段（分设备判断）；事件"固件升级完成"</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout info">
+            <div class="callout-title">季节性大促的承载方式</div>
+            <div class="callout-body">
+              春季光伏季、黑五等大促属于"活动级"运营——在 MA 中用分群圈选（如"拥有设备且未扩容""浏览过新品"）+ 多渠道活动投放承载，与旅程共用同一套用户档案与频控，不必重复建旅程。
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p><span class="bold">固件升级完成率提升、升级类工单下降</span>——预告与自查指南在问题发生之前送达。</p>
+              <p>持续积累"推送 = 有用"的用户心智，为全部旅程保护点击与订阅率；对口碑集中于固件话题的现状，防御价值最直接。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 9 -->
+    <section id="s-journey9" class="section-plain">
+      <h2>场景 9｜ZenWatts 积分到期与兑换提醒</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-warn">第二批 · 快赢</span>
+        <span class="pill pill-info">忠诚度 · 复购</span>
+        <span class="pill">到期日属性触发 · 三段提醒 · App Push + Email</span>
+      </div>
+      <p style="margin:0 0 14px">积分到期前 30 天开始三段提醒，把"快过期的积分"变成扩展电池与配件的兑换动力——积分运营本身就是交叉销售。</p>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j9"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>ZenWatts 积分可直接兑换扩展电池等产品、有效期 12 个月——但兑换全靠用户自己想起来打开积分商城。</p>
+              <p>快到期的积分是一笔<span class="bold">"沉睡的兑换动力"</span>：不提醒，静默清零、被感知为损失；提醒到位，就是客单最高的兑换与复购触发器。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"积分批次到期日 T-30 触发"且"积分余额 ≥ 最低兑换门槛"（可再次进入，间隔 30 天，覆盖多批次积分）</li>
+                <li><span class="bold">提前退出</span>：事件"积分兑换"→ 立即退出</li>
+                <li><span class="bold">可发送时间 18:00–21:00 + App Push（T-30）</span>：到期预告——变量下发积分余额与可兑清单（"你的积分 30 天后到期，已够抵扣一块扩展电池"）</li>
+                <li><span class="bold">等待事件 14 天</span>：监听"积分兑换"→ 已兑换退出 / 未兑换继续</li>
+                <li><span class="bold">可发送时间 + Email（约 T-16）</span>：兑换指南 + 完整可兑清单</li>
+                <li><span class="bold">等待事件 9 天</span>：监听"积分兑换"→ 已兑换退出 / 未兑换继续</li>
+                <li><span class="bold">可发送时间 + App Push（约 T-7）</span>：最后提醒（"积分 7 天后清零"）</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"积分兑换"→ 结束</li>
+                <li><span class="bold">转化统计</span>：监听"积分兑换"，统计时间 7 天（兑换行为集中在提醒后一周内）</li>
+                <li><span class="bold">埋点要求</span>：属性"积分余额""最近批次到期日"（日期偏移触发）；事件"积分兑换"（携带兑换品类与积分数）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p><span class="bold">积分核销率提升至 1.5–2 倍</span>（行业参考）；这是数据依赖最小的快赢旅程——两个属性 + 一个事件即可上线。</p>
+              <p>兑换品以扩展电池等高价值配件为主时，直接带动配件出货与复购习惯。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 10 -->
+    <section id="s-journey10" class="section-plain">
+      <h2>场景 10｜新订阅者欢迎旅程</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-warn">第二批</span>
+        <span class="pill pill-info">首购培育</span>
+        <span class="pill">订阅事件触发 · 意向分层 · Email + Web Push</span>
+      </div>
+      <p style="margin:0 0 14px">新订阅者在 10 天内收到"欢迎礼 → 政策与收益科普 → 按浏览意向分层推荐"的三步序列，把长决策周期的观望者稳步推向首单。</p>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j10"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>该品类从"想买"到"下单"普遍要 <span class="bold">2–8 周</span>：算回本、看测评、等促销。</p>
+              <p>订阅者是主动留下联系方式的高意向人群，若只收到不定期群发，前两周的热度就白白冷却——同品类头部案例中，<span class="bold">欢迎序列正是自动化体系的第一块基石</span>。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"订阅 Newsletter / 注册账号"触发（一次性事件，不可再次进入）</li>
+                <li><span class="bold">提前退出</span>：事件"订单支付成功"→ 立即退出</li>
+                <li><span class="bold">Email 1（即时）</span>：欢迎 + 订阅礼（首单权益、本地仓与质保介绍）</li>
+                <li><span class="bold">等待 2 天 → 可发送时间 09:00–21:00 + Email 2</span>：本地政策与收益科普（回本测算、容量选购指南）</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"浏览商品页 / 加入购物车"，区分意向</li>
+                <li><span class="bold">有意向路径</span>：可发送时间 + Email——容量选购对比 + 真实用户评价</li>
+                <li><span class="bold">未浏览路径</span>：可发送时间 + Email——真实用户案例故事（安装前后电费对比）</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"订单支付成功"→ 已购退出 / 结束（转入常规活动人群，长决策周期由新品与大促活动接力）</li>
+                <li><span class="bold">转化 + 收入统计</span>：监听"订单支付成功"，统计时间 7 天（对齐旅程跨度约 10 天）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p><span class="bold">订阅者首购转化提升 20–30%</span>；欢迎序列打开率约为普通群发的 2–3 倍（行业参考，同品类头部案例将其列为基础旅程）。</p>
+              <p>一旦加购或发起结账，由场景 1 的弃购旅程无缝接力。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benchmark -->
+    <section id="s-benchmark" class="section-plain">
+      <h2>六、行业对标 · 智能硬件品牌的 MA 自动化实践</h2>
+      <p>
+        以下数据来自智能硬件、高客单 DTC 行业接入 MA 自动化运营后的公开案例与行业报告，
+        用于参考本方案预期效果；实际数据以 Zendure 测试为准。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">智能硬件 / DTC 场景自动化效果对比 · 行业 Benchmark</div>
+        <div class="card-body">
+          <div class="chart" id="chart-benchmark"></div>
+          <p class="small muted" style="margin-top:10px">
+            数据来源：2024–2026 年智能硬件、高客单 DTC 行业 MA 公开案例与行业报告综合整理（参考区间）。
+          </p>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">全球化智能安防硬件品牌（EngageLab 客户）</div><div class="card-body">
+          <ul>
+            <li><span class="bold">13 条旅程</span>并行稳定运行，覆盖美 / 英 / 加 / 日 / 欧多区域</li>
+            <li>全球多区域 App Push 送达率 <span class="bold">95–99.85%</span></li>
+            <li>订阅续费提醒 Push 点击率 <span class="bold">6.82%</span>，支付挽留旅程点击率 6.26%</li>
+            <li>新客首月订阅收入 <span class="bold">+11.5%</span></li>
+            <li>新客活动按美 / 英 / 欧 / 日等 7 个区域自动分流，每区域独立内容与数据追踪</li>
+          </ul>
+          <p class="small muted">同为"硬件 + App"出海模式，多区域多币种旅程架构可直接参考</p>
+        </div></div>
+        <div class="card"><div class="card-header">全球头部家庭能源品牌（同品类）</div><div class="card-body">
+          <ul>
+            <li>从"基础邮件群发"升级为覆盖 Email / SMS / Web Push 等 <span class="bold">5 渠道的自动化旅程体系</span>（欢迎、弃购、积分提醒、售后培育、赢回）</li>
+            <li>整体收入 <span class="bold">+60%</span>，活跃客户 <span class="bold">+48%</span></li>
+            <li>邮件打开率 +58%，单次赢回活动同比 <span class="bold">+142%</span></li>
+          </ul>
+          <p class="small muted">与 Zendure 同品类、同市场的公开案例——该品类的自动化红利已被验证，且先做者正在拉开差距</p>
+        </div></div>
+        <div class="card"><div class="card-header">欧洲智能家居硬件 DTC 品牌</div><div class="card-body">
+          <ul>
+            <li>购后自动化流按"已购设备 → 匹配配件"精准推荐</li>
+            <li>该交叉销售流成为<span class="bold">收入贡献最高的自动化场景之一</span></li>
+            <li>自动化邮件收入提升 <span class="bold">+242%</span></li>
+          </ul>
+          <p class="small muted">与 Zendure"主机 → 扩展电池"的扩容逻辑同构，且同处欧洲合规环境</p>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- Compliance -->
+    <section id="s-compliance" class="section-plain">
+      <h2>七、欧洲合规与数据安全</h2>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">数据安全</div><div class="card-body">
+          <ul>
+            <li>全链路 <span class="bold">TLS</span> 加密传输，VPC 网络隔离，多活灾备</li>
+            <li>支持<span class="bold">欧洲数据节点部署</span>，满足欧洲用户数据驻留要求（具体节点配置按合同约定）</li>
+            <li>PII 字段脱敏、日志审计、数据访问全链路可追溯</li>
+            <li>基于角色的访问控制（RBAC），运营人员不可裸查原始用户数据</li>
+            <li>消息发送记录保留 <span class="bold">60 天</span>，可导出用于合规审查</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">合规支持</div><div class="card-body">
+          <ul>
+            <li>已通过 <span class="bold">GDPR</span> 合规认证 + <span class="bold">SOC 2 Type II</span> 安全审计</li>
+            <li>支持用户数据删除、导出、同意管理等合规权利响应</li>
+            <li>德国等市场建议采用<span class="bold">双重确认（Double Opt-in）</span>邮件订阅实践，所有营销邮件保留一键退订入口</li>
+            <li>WhatsApp 消息基于预先向 Meta 报备的模板发送，符合平台规则</li>
+            <li>可协助 Zendure 满足各目标市场本地数据保护法规要求</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">运营护栏</div>
+        <div class="callout-body">
+          <p>· <span class="bold">频控策略</span>：按用户设置每日 / 每周消息上限，跨旅程自动协调，防止同一用户被弃购、扩容、订阅多条旅程同时打扰；</p>
+          <p>· <span class="bold">可发送时间</span>：基于终端用户时区控制发送窗口，德法用户在本地 09:00–21:00（营销类）内收到消息，避免深夜打扰；</p>
+          <p>· <span class="bold">提前退出</span>：用户一旦完成目标行为（支付、绑定、订阅），立即退出对应旅程，不再继续触达；</p>
+          <p>· <span class="bold">内容预览</span>：多语言版本发送前支持完整样式预览，逐一确认后再上线。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>八、4 周测试计划 · 可量化验收</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center" style="width:10%">周</th><th style="width:16%">阶段</th><th style="width:34%">工作内容</th>
+          <th style="width:20%">交付物</th><th>验收指标</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="align-center bold">Week 1</td><td>启动 &amp; 数据打通</td><td>埋点方案设计与确认（行业模板定制）· 核心事件与属性字典对齐 · App SDK 与官网 Web SDK 接入 · 订单数据汇入 · 欧洲节点环境开通</td><td>埋点方案文档 + 数据入库验证</td><td>核心事件入库率 ≥ 95%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 2</td><td>首批旅程上线</td><td>弃购挽回（场景 1）+ 安装激活（场景 2）构建上线 · 多语言文案生成与确认 · 小流量验证（5-10% 用户）</td><td>2 条旅程跑通 + 触达数据回流</td><td>旅程触发成功率 ≥ 98%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 3</td><td>扩量 &amp; 完善</td><td>2 条旅程扩全量 · 新增扩容推荐（场景 3）+ 沉默召回（场景 5）· 条件分流对比测试文案</td><td>4 条旅程全量运行 + 对比数据</td><td>行为触发 Push 点击率 ≥ 5% · 弃购挽回可测</td></tr>
+          <tr class="tone-success"><td class="align-center bold">Week 4</td><td>复盘 &amp; 扩面</td><td>数据复盘与收入归因结算 · 新增订阅转化（场景 4）+ 口碑推荐（场景 6）· 场景 7–10 第二批排期</td><td>测试结案报告 + 完整旅程体系</td><td>旅程收入增量可量化</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="stat"><div class="stat-value">4 周</div><div class="stat-label">从数据打通到首批旅程全量运行</div></div>
+        <div class="stat"><div class="stat-value success">$0</div><div class="stat-label">测试期间授权费用</div></div>
+        <div class="stat"><div class="stat-value">专属</div><div class="stat-label">EngageLab 交付团队 1v1 支持</div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <hr class="divider" />
+      <h3>下一步建议</h3>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header"><span class="step-num">1</span>对齐数据现状</div><div class="card-body">
+          共同确认业务目标与数据接入方式（核心事件与属性口径、订单数据接入路径），确认欧洲数据节点部署要求与合规基线；
+          明确首批 6 条旅程的埋点范围与实施节奏（一次到位或分两期）。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">2</span>开发对接</div><div class="card-body">
+          根据 EngageLab 交付团队提供的埋点方案完成 App SDK 集成与增量埋点、官网 Web SDK 加载与订单事件上报。
+          通常 1-2 名开发 3-5 天可完成首批范围。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">3</span>测试验证</div><div class="card-body">
+          开通测试 VIP 账号，优先搭建<span class="bold">弃购挽回 + 安装激活</span>两条旅程小流量验证，
+          再以真实数据驱动扩容、订阅、召回、推荐四条旅程的迭代扩展。
+        </div></div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      本方案中 Zendure 品牌与业务数据（17 万用户 / 9 万 DAU、市场地位表述）仅作为业务现状背景引用，
+      来源于品牌公开口径与双方沟通信息；德国阳台电站市场数据来源于公开注册数据与行业报道。
+      行业对标与预期效果数据来自 2024–2026 年智能硬件、高客单 DTC 行业公开案例及行业报告综合整理，
+      为同类场景参考区间，实际效果以双方测试数据为准。
+      <br />© EngageLab · Marketing Automation Solution for Zendure
+    </footer>
+  </main>
+
+  <script>
+  (function () {
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', neutral: '#94a3b8', muted: '#cbd5e1',
+      text: '#374151', textMute: '#9ca3af', grid: '#e5e7eb',
+    };
+
+    function svg(w, h) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('width', '100%');
+      s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      return s;
+    }
+    function el(tag, attrs) {
+      const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 700, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 72;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 20) * 20 || 100;
+      const groupCount = categories.length;
+      const barsPerGroup = series.length;
+      const groupW = innerW / groupCount;
+      const barW = Math.min(22, (groupW - 12) / barsPerGroup);
+      const s = svg(W, H);
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+      if (series.length > 1) {
+        const legY = H - 14;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          // 中文字符实际渲染宽度约 11px，用 11 估算后加 24px 项间距
+          legX += 14 + (se.name.length * 11) + 24;
+        });
+      }
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {};
+      const incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const definedAnchors = withAnchor.filter(n => n.anchor !== null).map(n => n.anchor);
+        const startX = definedAnchors.length > 0
+          ? Math.max(20, definedAnchors.reduce((a, b) => a + b, 0) / definedAnchors.length - totalW / 2)
+          : (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          const x = startX + i * (NODE_W + NODE_GAP);
+          const y = 20 + r * (NODE_H + RANK_GAP);
+          pos[it.node.id] = { x, y };
+        });
+      });
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) {
+              cur.x = prev.x + NODE_W + NODE_GAP;
+            }
+          }
+        });
+      }
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // ========== Charts ==========
+
+    // 德国阳台电站市场累计注册量
+    drawBarChart(document.getElementById('chart-market'), {
+      categories: ['2023 年末', '2024 年末', '2025 年'],
+      series: [
+        { name: '累计注册量（万台）', data: [44, 87, 120], tone: 'info' },
+      ],
+      valueSuffix: '', height: 240,
+    });
+
+    // 用户漏斗
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['访客→下单', '下单→App激活', '激活→90天配件复购', '德国激活→订阅', '老用户→推荐成单'],
+      series: [
+        { name: '当前参考基线', data: [1.5, 70, 8, 5, 2], tone: 'neutral' },
+        { name: 'MA 自动化后预期', data: [2.2, 85, 14, 10, 5], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // 行业 Benchmark
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['弃购订单挽回率', '行为触发Push点击率', '90天配件复购率', '沉默用户召回率'],
+      series: [
+        { name: '无自动化（参考）', data: [1, 1.5, 8, 5], tone: 'neutral' },
+        { name: 'MA 自动化后（行业参考）', data: [5, 6, 14, 18], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // ========== Journey DAGs ==========
+
+    // J1: 高客单弃购挽回
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 发起结账' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 1小时' },
+        { id: 'ok1',    kind: 'exitOk',   title: '已支付',      sub: '自然转化·不打扰' },
+        { id: 'email1', kind: 'channel',  title: 'Email',      sub: '购物车保留·顾虑答疑' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 24h' },
+        { id: 'ok2',    kind: 'exitOk',   title: '已支付',      sub: '' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email2', kind: 'channel',  title: 'Email',      sub: '收益测算·回本周期' },
+        { id: 'wfe3',   kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 48h' },
+        { id: 'ok3',    kind: 'exitOk',   title: '已支付',      sub: '' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'wp',     kind: 'channel',  title: 'Web Push',   sub: '库存与限时提醒' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',       sub: '归档·7天后可再进入' },
+      ],
+      [
+        { from: 'start',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'ok1',    label: '已支付' },
+        { from: 'wfe1',   to: 'email1', label: '超时未支付' },
+        { from: 'email1', to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok2',    label: '已支付' },
+        { from: 'wfe2',   to: 'st1',    label: '未支付' },
+        { from: 'st1',    to: 'email2' },
+        { from: 'email2', to: 'wfe3' },
+        { from: 'wfe3',   to: 'ok3',    label: '已支付' },
+        { from: 'wfe3',   to: 'st2',    label: '未支付' },
+        { from: 'st2',    to: 'wp' },
+        { from: 'wp',     to: 'end' },
+      ]);
+
+    // J2: 发货→安装→App 绑定激活
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start',   kind: 'entry',    title: '开始',       sub: '事件: 订单支付成功(主机)' },
+        { id: 'email1',  kind: 'channel',  title: 'Email',      sub: '订单确认·安装准备清单' },
+        { id: 'wait1',   kind: 'wait',     title: '等待',        sub: '5 天 · 物流送达期' },
+        { id: 'st1',     kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email2',  kind: 'channel',  title: 'Email',      sub: '安装教程·App配网指南' },
+        { id: 'wfe1',    kind: 'branch',   title: '等待事件',    sub: '设备绑定成功 · 7 天' },
+        { id: 'push_ok', kind: 'channel',  title: 'App Push',   sub: '欢迎·首周发电报告预告' },
+        { id: 'ok1',     kind: 'exitOk',   title: '激活成功',    sub: '转入日常运营' },
+        { id: 'st2',     kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email3',  kind: 'channel',  title: 'Email',      sub: '安装遇阻·客服协助' },
+        { id: 'wfe2',    kind: 'branch',   title: '等待事件',    sub: '设备绑定成功 · 7 天' },
+        { id: 'ok2',     kind: 'exitOk',   title: '激活成功',    sub: '' },
+        { id: 'end',     kind: 'exitEnd',  title: '结束',       sub: '标记未激活·转人工关怀' },
+      ],
+      [
+        { from: 'start',   to: 'email1' },
+        { from: 'email1',  to: 'wait1' },
+        { from: 'wait1',   to: 'st1' },
+        { from: 'st1',     to: 'email2' },
+        { from: 'email2',  to: 'wfe1' },
+        { from: 'wfe1',    to: 'push_ok', label: '已绑定' },
+        { from: 'push_ok', to: 'ok1' },
+        { from: 'wfe1',    to: 'st2',     label: '超时未绑定' },
+        { from: 'st2',     to: 'email3' },
+        { from: 'email3',  to: 'wfe2' },
+        { from: 'wfe2',    to: 'ok2',     label: '已绑定' },
+        { from: 'wfe2',    to: 'end',     label: '仍未绑定' },
+      ]);
+
+    // J3: 设备数据驱动扩容推荐
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start',      kind: 'entry',    title: '开始',       sub: '属性: 满充且夜放空≥10天' },
+        { id: 'cond',       kind: 'branch',   title: '条件分支',    sub: '属性: 主机型号' },
+        { id: 'st_a',       kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push_a',     kind: 'channel',  title: 'App Push',   sub: 'Hyper/Hub系·弃电提醒' },
+        { id: 'st_b',       kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push_b',     kind: 'channel',  title: 'App Push',   sub: 'AIO/800系·扩容建议' },
+        { id: 'wfe1',       kind: 'branch',   title: '等待事件',    sub: '浏览扩容页 · 3 天' },
+        { id: 'st_hot',     kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email_hot',  kind: 'channel',  title: 'Email',      sub: '已浏览·测算+老用户价' },
+        { id: 'st_cold',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email_cold', kind: 'channel',  title: 'Email',      sub: '未浏览·月度弃电报告' },
+        { id: 'wfe2',       kind: 'branch',   title: '等待事件',    sub: '配件支付成功 · 5 天' },
+        { id: 'ok',         kind: 'exitOk',   title: '扩容成功',    sub: '收入归因' },
+        { id: 'end',        kind: 'exitEnd',  title: '结束',       sub: '30 天后可再进入' },
+      ],
+      [
+        { from: 'start',      to: 'cond' },
+        { from: 'cond',       to: 'st_a',       label: 'Hyper/Hub 系' },
+        { from: 'cond',       to: 'st_b',       label: 'AIO/800 系' },
+        { from: 'st_a',       to: 'push_a' },
+        { from: 'st_b',       to: 'push_b' },
+        { from: 'push_a',     to: 'wfe1' },
+        { from: 'push_b',     to: 'wfe1' },
+        { from: 'wfe1',       to: 'st_hot',     label: '已浏览未购' },
+        { from: 'wfe1',       to: 'st_cold',    label: '未浏览(超时)' },
+        { from: 'st_hot',     to: 'email_hot' },
+        { from: 'st_cold',    to: 'email_cold' },
+        { from: 'email_hot',  to: 'wfe2' },
+        { from: 'email_cold', to: 'wfe2' },
+        { from: 'wfe2',       to: 'ok',         label: '已购' },
+        { from: 'wfe2',       to: 'end',        label: '超时未购' },
+      ]);
+
+    // J4: 能源订阅服务转化
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start',     kind: 'entry',    title: '开始',       sub: '绑定超14天·德国·未订阅' },
+        { id: 'st1',       kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push1',     kind: 'channel',  title: 'App Push',   sub: '收益报告·还能再省' },
+        { id: 'wfe1',      kind: 'branch',   title: '等待事件',    sub: '浏览订阅页 · 3 天' },
+        { id: 'st2',       kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email_hot', kind: 'channel',  title: 'Email',      sub: '已浏览·测算+转签答疑' },
+        { id: 'st3',       kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push2',     kind: 'channel',  title: 'App Push',   sub: '未浏览·负电价科普' },
+        { id: 'wfe2',      kind: 'branch',   title: '等待事件',    sub: '订阅开通成功 · 5 天' },
+        { id: 'ok1',       kind: 'exitOk',   title: '订阅成功',    sub: '' },
+        { id: 'st4',       kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email2',    kind: 'channel',  title: 'Email',      sub: '首月权益·常见问题兜底' },
+        { id: 'wfe3',      kind: 'branch',   title: '等待事件',    sub: '订阅开通成功 · 5 天' },
+        { id: 'ok2',       kind: 'exitOk',   title: '订阅成功',    sub: '' },
+        { id: 'end',       kind: 'exitEnd',  title: '结束',       sub: '90 天后可再进入' },
+      ],
+      [
+        { from: 'start',     to: 'st1' },
+        { from: 'st1',       to: 'push1' },
+        { from: 'push1',     to: 'wfe1' },
+        { from: 'wfe1',      to: 'st2',   label: '已浏览' },
+        { from: 'wfe1',      to: 'st3',   label: '未浏览(超时)' },
+        { from: 'st2',       to: 'email_hot' },
+        { from: 'st3',       to: 'push2' },
+        { from: 'email_hot', to: 'wfe2' },
+        { from: 'push2',     to: 'wfe2' },
+        { from: 'wfe2',      to: 'ok1',   label: '已订阅' },
+        { from: 'wfe2',      to: 'st4',   label: '未订阅' },
+        { from: 'st4',       to: 'email2' },
+        { from: 'email2',    to: 'wfe3' },
+        { from: 'wfe3',      to: 'ok2',   label: '已订阅' },
+        { from: 'wfe3',      to: 'end',   label: '仍未订阅' },
+      ]);
+
+    // J5: 沉默用户分层召回（三层：已绑定 / 已购未绑定 / 未购买）
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start',   kind: 'entry',    title: '开始',       sub: '属性: 最后打开App超30天' },
+        { id: 'cond',    kind: 'branch',   title: '条件分支',    sub: '属性: 设备与订单状态' },
+        { id: 'st_a',    kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push_a',  kind: 'channel',  title: 'App Push',   sub: '已绑定·月度发电报告' },
+        { id: 'wfe_a',   kind: 'branch',   title: '等待事件',    sub: 'App 启动 · 5 天' },
+        { id: 'ok_a',    kind: 'exitOk',   title: '召回成功',    sub: '' },
+        { id: 'st_a2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email_a', kind: 'channel',  title: 'Email',      sub: '健康检查·固件提示' },
+        { id: 'st_c',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email_c', kind: 'channel',  title: 'Email',      sub: '安装协助·教程+客服' },
+        { id: 'wfe_c',   kind: 'branch',   title: '等待事件',    sub: '设备绑定成功 · 5 天' },
+        { id: 'ok_c',    kind: 'exitOk',   title: '补绑成功',    sub: '转入日常运营' },
+        { id: 'st_b',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email_b', kind: 'channel',  title: 'Email',      sub: '未购买·政策与入门套装' },
+        { id: 'wfe_b',   kind: 'branch',   title: '等待事件',    sub: 'App 启动 · 5 天' },
+        { id: 'ok_b',    kind: 'exitOk',   title: '召回成功',    sub: '' },
+        { id: 'wp_b',    kind: 'channel',  title: 'Web Push',   sub: '限时入门优惠兜底' },
+        { id: 'end',     kind: 'exitEnd',  title: '结束',       sub: '归档·30天后可再进入' },
+      ],
+      [
+        { from: 'start',   to: 'cond' },
+        { from: 'cond',    to: 'st_a',    label: '已绑定设备' },
+        { from: 'cond',    to: 'st_c',    label: '已购未绑定' },
+        { from: 'cond',    to: 'st_b',    label: '未购买' },
+        { from: 'st_a',    to: 'push_a' },
+        { from: 'push_a',  to: 'wfe_a' },
+        { from: 'wfe_a',   to: 'ok_a',    label: '已回归' },
+        { from: 'wfe_a',   to: 'st_a2',   label: '仍沉默' },
+        { from: 'st_a2',   to: 'email_a' },
+        { from: 'email_a', to: 'end' },
+        { from: 'st_c',    to: 'email_c' },
+        { from: 'email_c', to: 'wfe_c' },
+        { from: 'wfe_c',   to: 'ok_c',    label: '已绑定' },
+        { from: 'wfe_c',   to: 'end',     label: '仍未绑定' },
+        { from: 'st_b',    to: 'email_b' },
+        { from: 'email_b', to: 'wfe_b' },
+        { from: 'wfe_b',   to: 'ok_b',    label: '已回归' },
+        { from: 'wfe_b',   to: 'wp_b',    label: '仍沉默' },
+        { from: 'wp_b',    to: 'end' },
+      ]);
+
+    // J6: NPS → 评价 → 推荐裂变
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start',    kind: 'entry',    title: '开始',       sub: '属性: 绑定距今超过30天' },
+        { id: 'st1',      kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push1',    kind: 'channel',  title: 'App Push',   sub: 'NPS问卷·答完得积分' },
+        { id: 'wfe1',     kind: 'branch',   title: '等待事件',    sub: '提交NPS评分 · 3 天' },
+        { id: 'st2',      kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email_hi', kind: 'channel',  title: 'Email',      sub: '高分·邀评价+推荐有礼' },
+        { id: 'email_lo', kind: 'channel',  title: 'Email',      sub: '低分·致歉+客服跟进' },
+        { id: 'st3',      kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push2',    kind: 'channel',  title: 'App Push',   sub: '未提交·积分提醒一次' },
+        { id: 'wfe2',     kind: 'branch',   title: '等待事件',    sub: '推荐链接注册 · 7 天' },
+        { id: 'ok',       kind: 'exitOk',   title: '推荐成功',    sub: '双向奖励发放' },
+        { id: 'end',      kind: 'exitEnd',  title: '结束',       sub: '低分同步客服·归档' },
+      ],
+      [
+        { from: 'start',    to: 'st1' },
+        { from: 'st1',      to: 'push1' },
+        { from: 'push1',    to: 'wfe1' },
+        { from: 'wfe1',     to: 'st2',      label: '评分 9-10' },
+        { from: 'wfe1',     to: 'email_lo', label: '评分 ≤ 8' },
+        { from: 'wfe1',     to: 'st3',      label: '未提交(超时)' },
+        { from: 'st2',      to: 'email_hi' },
+        { from: 'email_hi', to: 'wfe2' },
+        { from: 'wfe2',     to: 'ok',       label: '已推荐' },
+        { from: 'wfe2',     to: 'end',      label: '未推荐' },
+        { from: 'email_lo', to: 'end' },
+        { from: 'st3',      to: 'push2' },
+        { from: 'push2',    to: 'end' },
+      ]);
+
+    // J7: 新品预售与发售提醒
+    drawJourney(document.getElementById('dag-j7'),
+      [
+        { id: 'start',   kind: 'entry',    title: '开始',       sub: '事件: 新品预约登记' },
+        { id: 'email1',  kind: 'channel',  title: 'Email',      sub: '预约确认·亮点预告' },
+        { id: 'waitN',   kind: 'wait',     title: '等待',        sub: '至发售日·按日历配置' },
+        { id: 'cond',    kind: 'branch',   title: '条件分支',    sub: '属性: 是否已绑定设备' },
+        { id: 'st_o',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push_o',  kind: 'channel',  title: 'App Push',   sub: '老用户·首发+升级理由' },
+        { id: 'st_n',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email_n', kind: 'channel',  title: 'Email',      sub: '新用户·首发权益+测算' },
+        { id: 'wfe1',    kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 48h' },
+        { id: 'ok1',     kind: 'exitOk',   title: '已购买',      sub: '' },
+        { id: 'st2',     kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'wa',      kind: 'channel',  title: 'WhatsApp',   sub: '限量与截止提醒' },
+        { id: 'wfe2',    kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 3 天' },
+        { id: 'ok2',     kind: 'exitOk',   title: '已购买',      sub: '' },
+        { id: 'end',     kind: 'exitEnd',  title: '结束',       sub: '转入常规运营' },
+      ],
+      [
+        { from: 'start',   to: 'email1' },
+        { from: 'email1',  to: 'waitN' },
+        { from: 'waitN',   to: 'cond' },
+        { from: 'cond',    to: 'st_o',    label: '已绑定(老用户)' },
+        { from: 'cond',    to: 'st_n',    label: '新用户' },
+        { from: 'st_o',    to: 'push_o' },
+        { from: 'st_n',    to: 'email_n' },
+        { from: 'push_o',  to: 'wfe1' },
+        { from: 'email_n', to: 'wfe1' },
+        { from: 'wfe1',    to: 'ok1',     label: '已购' },
+        { from: 'wfe1',    to: 'st2',     label: '未购' },
+        { from: 'st2',     to: 'wa' },
+        { from: 'wa',      to: 'wfe2' },
+        { from: 'wfe2',    to: 'ok2',     label: '已购' },
+        { from: 'wfe2',    to: 'end',     label: '超时未购' },
+      ]);
+
+    // J8: 固件更新前置沟通
+    drawJourney(document.getElementById('dag-j8'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '属性: 固件版本低于目标版' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '升级预告·改进与注意项' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '固件升级完成 · 5 天' },
+        { id: 'wait2',  kind: 'wait',     title: '等待',        sub: '2 天' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push2',  kind: 'channel',  title: 'App Push',   sub: '升级回访·一键反馈' },
+        { id: 'ok',     kind: 'exitOk',   title: '升级完成',    sub: '异常反馈转客服跟进' },
+        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email1', kind: 'channel',  title: 'Email',      sub: '未升级·图文指南+FAQ' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',       sub: '30 天后可再进入' },
+      ],
+      [
+        { from: 'start',  to: 'st1' },
+        { from: 'st1',    to: 'push1' },
+        { from: 'push1',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'wait2',  label: '已升级' },
+        { from: 'wait2',  to: 'st2' },
+        { from: 'st2',    to: 'push2' },
+        { from: 'push2',  to: 'ok' },
+        { from: 'wfe1',   to: 'st3',    label: '超时未升级' },
+        { from: 'st3',    to: 'email1' },
+        { from: 'email1', to: 'end' },
+      ]);
+
+    // J9: 积分到期与兑换提醒（T-30 / T-16 / T-7 三段）
+    drawJourney(document.getElementById('dag-j9'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '属性: 积分到期 T-30' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: 'T-30·余额与可兑清单' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '积分兑换 · 14 天' },
+        { id: 'ok1',    kind: 'exitOk',   title: '已兑换',      sub: '' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email1', kind: 'channel',  title: 'Email',      sub: 'T-16·兑换指南+清单' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: '积分兑换 · 9 天' },
+        { id: 'ok2',    kind: 'exitOk',   title: '已兑换',      sub: '' },
+        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
+        { id: 'push2',  kind: 'channel',  title: 'App Push',   sub: 'T-7·清零最后提醒' },
+        { id: 'wfe3',   kind: 'branch',   title: '等待事件',    sub: '积分兑换 · 5 天' },
+        { id: 'ok3',    kind: 'exitOk',   title: '已兑换',      sub: '' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',       sub: '下一批次可再进入' },
+      ],
+      [
+        { from: 'start',  to: 'st1' },
+        { from: 'st1',    to: 'push1' },
+        { from: 'push1',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'ok1',    label: '已兑换' },
+        { from: 'wfe1',   to: 'st2',    label: '未兑换' },
+        { from: 'st2',    to: 'email1' },
+        { from: 'email1', to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok2',    label: '已兑换' },
+        { from: 'wfe2',   to: 'st3',    label: '未兑换' },
+        { from: 'st3',    to: 'push2' },
+        { from: 'push2',  to: 'wfe3' },
+        { from: 'wfe3',   to: 'ok3',    label: '已兑换' },
+        { from: 'wfe3',   to: 'end',    label: '仍未兑换' },
+      ]);
+
+    // J10: 新订阅者欢迎旅程
+    drawJourney(document.getElementById('dag-j10'),
+      [
+        { id: 'start',   kind: 'entry',    title: '开始',       sub: '事件: 订阅/注册账号' },
+        { id: 'email1',  kind: 'channel',  title: 'Email',      sub: '欢迎+订阅礼' },
+        { id: 'wait1',   kind: 'wait',     title: '等待',        sub: '2 天' },
+        { id: 'st1',     kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email2',  kind: 'channel',  title: 'Email',      sub: '政策科普+回本测算' },
+        { id: 'wfe1',    kind: 'branch',   title: '等待事件',    sub: '浏览商品/加购 · 3 天' },
+        { id: 'st_hot',  kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email3a', kind: 'channel',  title: 'Email',      sub: '有意向·选购对比+评价' },
+        { id: 'st_cold', kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email3b', kind: 'channel',  title: 'Email',      sub: '未浏览·用户案例故事' },
+        { id: 'wfe2',    kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 5 天' },
+        { id: 'ok',      kind: 'exitOk',   title: '首单达成',    sub: '收入归因' },
+        { id: 'end',     kind: 'exitEnd',  title: '结束',       sub: '转入常规活动人群' },
+      ],
+      [
+        { from: 'start',   to: 'email1' },
+        { from: 'email1',  to: 'wait1' },
+        { from: 'wait1',   to: 'st1' },
+        { from: 'st1',     to: 'email2' },
+        { from: 'email2',  to: 'wfe1' },
+        { from: 'wfe1',    to: 'st_hot',  label: '已浏览/加购' },
+        { from: 'wfe1',    to: 'st_cold', label: '未浏览(超时)' },
+        { from: 'st_hot',  to: 'email3a' },
+        { from: 'st_cold', to: 'email3b' },
+        { from: 'email3a', to: 'wfe2' },
+        { from: 'email3b', to: 'wfe2' },
+        { from: 'wfe2',    to: 'ok',      label: '已购' },
+        { from: 'wfe2',    to: 'end',     label: '超时未购' },
+      ]);
+
+  })();
+  </script>
+</body>
+</html>
