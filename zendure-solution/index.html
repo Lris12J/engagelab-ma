@@ -429,6 +429,9 @@
           <tr><td>国家 / 语言 / 订阅状态</td><td>属性</td><td>—</td><td>全部旅程的分流与多语言</td></tr>
         </tbody>
       </table>
+      <p class="small muted" style="margin-top:8px">
+        上表为首批（场景 1–6）埋点范围；第二批场景（7–10）的增量埋点——新品预约事件、固件版本与升级完成事件、积分余额与到期日属性、订阅注册事件——已在对应场景的组件配置中列明。
+      </p>
       <div class="spacer-md"></div>
       <div class="callout info">
         <div class="callout-title">埋点实施建议：首期做全，让第一阶段就看到多线效果</div>
@@ -508,7 +511,7 @@
                 <li><span class="bold">Email 1（超时未支付）</span>：购物车保留确认 + 高频顾虑答疑（安装难度、保修、退换）——刚触发 1 小时内直接发送，无需可发送时间</li>
                 <li><span class="bold">等待事件 24 小时</span>：监听"订单支付成功"</li>
                 <li><span class="bold">可发送时间 09:00–21:00（终端时区）+ Email 2</span>：按购物车内容生成收益测算（预计年发电、回本周期）+ 真实用户评价背书</li>
-                <li><span class="bold">等待事件 48 小时</span>:监听"订单支付成功"</li>
+                <li><span class="bold">等待事件 48 小时</span>：监听"订单支付成功"</li>
                 <li><span class="bold">可发送时间 + Web Push 兜底</span>：库存 / 限时权益提醒</li>
                 <li><span class="bold">转化 + 收入统计</span>：监听"订单支付成功"，统计时间 3 天（对齐旅程跨度）</li>
               </ul>
@@ -670,7 +673,7 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：属性"设备绑定时间距今超过 14 天"且"国家 = 德国"且"订阅状态 = 未订阅"触发（再次进入间隔 90 天，最多 2 次——订阅决策周期长，避免高频打扰）</li>
+                <li><span class="bold">开始组件</span>：属性"设备绑定时间距今超过 14 天"且"国家 = 德国"且"订阅状态 = 未订阅"触发（再次进入间隔 90 天，最多 2 次——订阅决策周期长，避免高频打扰；上线首日为存量用户集中进入，建议分批放量）</li>
                 <li><span class="bold">提前退出</span>：事件"订阅服务开通成功"→ 立即退出</li>
                 <li><span class="bold">可发送时间 18:00–21:00 + App Push</span>：个人化收益报告切入——"你的系统两周省了 X 欧，接入动态电价还能再省"</li>
                 <li><span class="bold">等待事件 3 天</span>：监听"浏览订阅页面"，区分意向</li>
@@ -775,7 +778,7 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：属性"设备绑定时间距今超过 30 天"触发（不可再次进入——一次性满意度里程碑）</li>
+                <li><span class="bold">开始组件</span>：属性"设备绑定时间距今超过 30 天 且 不超过 45 天"触发（不可再次进入——一次性满意度里程碑；窗口上限避免旅程上线时绑定已久的老用户集中涌入）</li>
                 <li><span class="bold">可发送时间 18:00–21:00 + App Push</span>：NPS 问卷邀请（1 分钟评分，完成得积分）</li>
                 <li><span class="bold">等待事件 3 天（多分支）</span>：分支一 = 事件"提交 NPS 评分"且分数 ≥ 9；分支二 = 事件"提交 NPS 评分"且分数 ≤ 8；默认 = 超时未提交</li>
                 <li><span class="bold">高分路径</span>：可发送时间 + Email——邀请前往公开评价平台亲自撰写评价 + 推荐好友双向奖励（积分 / 优惠券）</li>
@@ -813,7 +816,7 @@
         <span class="pill pill-info">新品转化</span>
         <span class="pill">预约事件触发 · 老用户分层 · Email + App Push + WhatsApp</span>
       </div>
-      <p style="margin:0 0 14px">用户预约新品后先收到确认与预热，发售时按"是否老用户"分层触达——老用户看兼容升级的理由，新用户看首发权益，限量提醒兜底。</p>
+      <p style="margin:0 0 14px">预约当刻由一条独立的即时确认旅程回执；发售日本旅程上线，把预约名单按"是否老用户"分层转化——老用户看兼容升级的理由，新用户看首发权益，限量提醒兜底。</p>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -833,10 +836,9 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：事件"新品预约登记"触发（可再次进入，间隔 30 天，覆盖多次新品发布）</li>
+                <li><span class="bold">开始组件</span>：属性"已预约本次新品 = 是"触发（本旅程于<span class="bold">发售日上线</span>，每次发布仅进入 1 次）</li>
+                <li><span class="bold">预约确认（独立旅程）</span>：用户提交预约时由一条极简的即时确认旅程承接（开始 → Email 确认+亮点预告 → 结束）——与本旅程解耦，避免"按预约时间等待固定天数"无法对齐发售日的问题</li>
                 <li><span class="bold">提前退出</span>：事件"订单支付成功"→ 立即退出</li>
-                <li><span class="bold">Email 1（即时）</span>：预约确认 + 产品亮点与发售时间预告</li>
-                <li><span class="bold">等待 N 天</span>：至发售日（时长按发布日历配置）</li>
                 <li><span class="bold">条件分支</span>：属性"是否已绑定设备"</li>
                 <li><span class="bold">老用户路径</span>：可发送时间 09:00–21:00 + App Push——首发开抢 + 老用户专属权益（与已有系统的兼容升级理由）</li>
                 <li><span class="bold">新用户路径</span>：可发送时间 + Email——首发权益 + 回本测算</li>
@@ -1557,7 +1559,7 @@
     // J6: NPS → 评价 → 推荐裂变
     drawJourney(document.getElementById('dag-j6'),
       [
-        { id: 'start',    kind: 'entry',    title: '开始',       sub: '属性: 绑定距今超过30天' },
+        { id: 'start',    kind: 'entry',    title: '开始',       sub: '属性: 绑定满30–45天' },
         { id: 'st1',      kind: 'sendtime', title: '可发送时间',   sub: '18:00 – 21:00' },
         { id: 'push1',    kind: 'channel',  title: 'App Push',   sub: 'NPS问卷·答完得积分' },
         { id: 'wfe1',     kind: 'branch',   title: '等待事件',    sub: '提交NPS评分 · 3 天' },
@@ -1589,9 +1591,7 @@
     // J7: 新品预售与发售提醒
     drawJourney(document.getElementById('dag-j7'),
       [
-        { id: 'start',   kind: 'entry',    title: '开始',       sub: '事件: 新品预约登记' },
-        { id: 'email1',  kind: 'channel',  title: 'Email',      sub: '预约确认·亮点预告' },
-        { id: 'waitN',   kind: 'wait',     title: '等待',        sub: '至发售日·按日历配置' },
+        { id: 'start',   kind: 'entry',    title: '开始',       sub: '属性: 已预约·发售日上线' },
         { id: 'cond',    kind: 'branch',   title: '条件分支',    sub: '属性: 是否已绑定设备' },
         { id: 'st_o',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
         { id: 'push_o',  kind: 'channel',  title: 'App Push',   sub: '老用户·首发+升级理由' },
@@ -1606,9 +1606,7 @@
         { id: 'end',     kind: 'exitEnd',  title: '结束',       sub: '转入常规运营' },
       ],
       [
-        { from: 'start',   to: 'email1' },
-        { from: 'email1',  to: 'waitN' },
-        { from: 'waitN',   to: 'cond' },
+        { from: 'start',   to: 'cond' },
         { from: 'cond',    to: 'st_o',    label: '已绑定(老用户)' },
         { from: 'cond',    to: 'st_n',    label: '新用户' },
         { from: 'st_o',    to: 'push_o' },
