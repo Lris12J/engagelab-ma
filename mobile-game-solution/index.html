@@ -356,6 +356,13 @@
         <span class="pill pill-info">新用户激活</span>
         <span class="pill">再次进入：不可再次进入</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>用户注册后先观察 30 分钟——自行完成新手引导则不打扰；未完成 → <span class="bold">App Push 直达中断的引导节点</span>（Deep Link）；12 小时仍未完成 → WhatsApp 本地语再引导。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp　｜　<span class="bold">触发方式</span>：事件「用户注册」+ 逐级等待　｜　<span class="bold">退出条件</span>：新手引导完成即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -402,6 +409,13 @@
         <span class="pill pill-info">首次付费转化</span>
         <span class="pill">再次进入：不可再次进入</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>新手引导完成且从未付费 → <span class="bold">立即推送首充礼包</span>（活跃窗口内直发）；24 小时未付费 → 按累计登录天数分层：≥2 天 WhatsApp 限时礼、&lt;2 天继续 Push 催促。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp　｜　<span class="bold">触发方式</span>：事件「新手引导完成」+ 属性「累计付费金额 = 0」　｜　<span class="bold">退出条件</span>：付费成功即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -447,6 +461,13 @@
         <span class="pill pill-info">付费转化</span>
         <span class="pill">再次进入：1 天后，不限次数</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>玩家打开商城或点击购买但未支付 → 先等 15 分钟看是否自行完成；未完成 → <span class="bold">App Push 商品提醒直达商城</span>；2 小时仍未付费 → WhatsApp 限时礼包提醒。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp　｜　<span class="bold">触发方式</span>：事件「打开商城 / 点击购买」，1 天后可重入（不限次数）　｜　<span class="bold">退出条件</span>：付费成功即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -490,6 +511,13 @@
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">留存 / 召回</span>
         <span class="pill">再次进入：3 天后</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>超过 3 天未登录 → 按沉默天数分三层（3–6 / 7–13 / ≥14 天）：<span class="bold">轻度回归礼包 Push、中度叠加 WhatsApp、深度加 SMS 兜底</span>。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · SMS　｜　<span class="bold">触发方式</span>：属性「最后登录距今超过 3 天」，3 天后可重入　｜　<span class="bold">退出条件</span>：登录即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -535,6 +563,13 @@
         <span class="pill pill-info">Live Ops</span>
         <span class="pill">再次进入：7 天后</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>版本落后且近 30 天活跃过的玩家 → <span class="bold">App Push 新版本卖点 + 商店 Deep Link</span>；2 天未更新 → Email 更新说明。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「版本号低于目标版本 + 近 30 天活跃」，7 天后可重入　｜　<span class="bold">退出条件</span>：更新完成或新版登录即退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -578,6 +613,13 @@
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">活跃激励</span>
         <span class="pill">再次进入：7 天后</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>活动结束前 2 天且通行证未满 → <span class="bold">按进度分流</span>（≥80% 冲刺文案、&lt;80% 进度补强）Push 提醒；1 天未登录 → WhatsApp 最后机会。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp　｜　<span class="bold">触发方式</span>：属性「活动结束日 T-2 + 通行证进度 &lt; 100%」，7 天后可重入　｜　<span class="bold">退出条件</span>：通行证完成或奖励领取即退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">

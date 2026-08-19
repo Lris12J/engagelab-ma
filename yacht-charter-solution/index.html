@@ -166,7 +166,7 @@
 
     footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
       font-size: 12px; color: var(--text-4); text-align: center; }
-  
+ 
   .back-home {
     display: inline-flex;
     align-items: center;
@@ -354,8 +354,8 @@
             <tr><td>WhatsApp</td><td>按目标国家定价</td><td>询价即时回复、航程确认、行程提醒、出海后回访</td><td>新加坡 / 东南亚 / 中东</td></tr>
             <tr><td>Email</td><td>$0.002</td><td>报价方案发送、企业客户培育、航程回顾、季节性营销</td><td>全球 / 欧美市场</td></tr>
             <tr><td>SMS</td><td>按目标国家定价</td><td>预订确认、出发提醒、紧急通知、无 WhatsApp 兜底</td><td>全球</td></tr>
-            <tr><td>App Push</td><td>≈ 0</td><td>新航线通知、促销推送、预订状态更新</td><td>有自有 App 的运营商</td></tr>
-            <tr><td>Web Push</td><td>≈ 0</td><td>网站访客留存、新船型上架通知、促销提醒</td><td>全球</td></tr>
+            <tr><td>App Push</td><td>按 DAU 定价</td><td>新航线通知、促销推送、预订状态更新</td><td>有自有 App 的运营商</td></tr>
+            <tr><td>Web Push</td><td>按 DAU 定价</td><td>网站访客留存、新船型上架通知、促销提醒</td><td>全球</td></tr>
             <tr class="tone-info"><td>LINE（即将上线）</td><td>—</td><td>泰国核心触达渠道，92% 互联网用户覆盖</td><td>泰国 / 日本</td></tr>
             <tr class="tone-info"><td>Telegram（即将上线）</td><td>—</td><td>客户群组互动、行程实时通知</td><td>中东 / 印度 / 俄罗斯</td></tr>
           </tbody>
@@ -388,6 +388,13 @@
       <!-- Journey 1 -->
       <div class="section" style="margin-top:16px;">
         <h3>旅程 1：询价转化跟进</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>客户提交询价后 → <span class="bold">即时确认 + 顾问跟进提醒</span>，未确认预订则按节奏逐级跟进（24h+ 触达进入可发送时间控制）。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · Email　｜　<span class="bold">触发方式</span>：事件「提交询价表单」，7 天后可重入　｜　<span class="bold">退出条件</span>：确认预订即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j1"></div>
           <div>
@@ -422,6 +429,13 @@
       <!-- Journey 2 -->
       <div class="section">
         <h3>旅程 2：浏览未询价挽回</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>浏览游艇详情超 2 分钟未询价 → 先等 30 分钟；未提交 → <span class="bold">Push 提醒该艇亮点 + 直达询价表单</span>。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「浏览详情页超 2 分钟」，3 天后可重入　｜　<span class="bold">退出条件</span>：提交询价即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j2"></div>
           <div>
@@ -455,6 +469,13 @@
       <!-- Journey 3 -->
       <div class="section">
         <h3>旅程 3：出海后复购激活</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>航程结束后 → <span class="bold">回访关怀 + 晒图引导，再推下一次航线推荐</span>，14 天监听复购。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · Email　｜　<span class="bold">触发方式</span>：事件「航程结束」，30 天后可重入　｜　<span class="bold">退出条件</span>：再次预订即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j3"></div>
           <div>
@@ -489,6 +510,13 @@
       <!-- Journey 4 -->
       <div class="section">
         <h3>旅程 4：季节性/假日营销推送</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>节假日 / 旺季前 → 圈选 30 天以上未出海的历史客户，<span class="bold">按历史预订类型分流</span>（帆船/派对/钓鱼/日落巡航），AI 生成本地语文案。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · Email　｜　<span class="bold">触发方式</span>：属性「历史客户 + 最后出海超过 30 天」　｜　<span class="bold">退出条件</span>：预订成功即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j4"></div>
           <div>
@@ -523,6 +551,13 @@
       <!-- Journey 5 -->
       <div class="section">
         <h3>旅程 5：企业客户专属培育</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>企业询价客户 → <span class="bold">工作日工作时间内的专属培育序列</span>（方案资料 → 案例 → 报价跟进），直到合同签署。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · WhatsApp　｜　<span class="bold">触发方式</span>：事件「提交企业询价」或属性「客户类型 = 企业」　｜　<span class="bold">退出条件</span>：企业合同签署即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j5"></div>
           <div>
@@ -557,6 +592,13 @@
       <!-- Journey 6 -->
       <div class="section">
         <h3>旅程 6：生日/纪念日特别航程</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>生日 / 纪念日当天自动触发 → <span class="bold">特别航程推荐 + 专属礼遇</span>，7 天监听预订；每年仅触发一次。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · Email　｜　<span class="bold">触发方式</span>：属性「生日 / 纪念日 · 每年当日」，30 天后可重入　｜　<span class="bold">退出条件</span>：预订成功即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j6"></div>
           <div>

@@ -356,6 +356,13 @@
         <span class="pill pill-info">新用户激活</span>
         <span class="pill">再次进入：不可再次进入</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>用户注册后先观察 30 分钟——自行开始观看则不打扰；未观看 → <span class="bold">App Push 热剧首集钩子 + Deep Link 直达剧集</span>；12 小时仍未看 → WhatsApp 再触达。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp　｜　<span class="bold">触发方式</span>：事件「用户注册」+ 逐级等待　｜　<span class="bold">退出条件</span>：首集观看完成即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -401,6 +408,13 @@
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">首次付费转化</span>
         <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>免费集数耗尽的未付费用户 → <span class="bold">观剧窗口内即时推送首充礼包</span>；60 分钟未付费 → Push 二次提醒；再超时 → 按追剧深度分层（≥5 集 WhatsApp 剧情钩子、&lt;5 集 Email 剧集推荐）。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · Email　｜　<span class="bold">触发方式</span>：事件「免费剧集耗尽」+ 属性「累计付费 = 0」　｜　<span class="bold">退出条件</span>：付费成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -448,6 +462,13 @@
         <span class="pill pill-info">留存 / 追剧</span>
         <span class="pill">再次进入：3 天后</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>追剧中断超过 24 小时且剧未完结 → <span class="bold">AI 生成下一集剧情钩子文案 Push 续看</span>；2 天仍未续看 → WhatsApp 限时观看礼包。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp　｜　<span class="bold">触发方式</span>：属性「上次观看距今超过 24 小时 + 剧未完结」，3 天后可重入　｜　<span class="bold">退出条件</span>：续看当前剧即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -492,6 +513,13 @@
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">付费复购</span>
         <span class="pill">再次进入：1 天后</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>剧币不够解锁下一集 → 先等 15 分钟看是否自行充值；未充值 → <span class="bold">Push 补币优惠（首充赠 20%）</span>；2 小时仍未充 → 高价值用户走 WhatsApp 尊享礼包、其他继续 Push 兜底。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp　｜　<span class="bold">触发方式</span>：事件「剧币扣除」+ 属性「余额不足下一集」，1 天后可重入　｜　<span class="bold">退出条件</span>：剧币充值成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -539,6 +567,13 @@
         <span class="pill pill-info">订阅续费</span>
         <span class="pill">再次进入：30 天后</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>会员到期前 3 天开始梯度提醒：<span class="bold">T-3 Push + 新剧预告、T-1 Email 账单 + 高价值会员 WhatsApp</span>；到期后 2 天监听续订失败 → SMS 兜底。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email · WhatsApp · SMS　｜　<span class="bold">触发方式</span>：属性「会员到期日 T-3 + 会员有效」，30 天后可重入　｜　<span class="bold">退出条件</span>：续订成功即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -584,6 +619,13 @@
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">留存 / 召回</span>
         <span class="pill">再次进入：3 天后</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>超过 3 天未打开 App → 按沉默天数分三层：<span class="bold">轻度推品类偏好新剧、中度叠加 WhatsApp 剧情钩子、深度加 SMS 兜底</span>。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · SMS　｜　<span class="bold">触发方式</span>：属性「最后打开距今超过 3 天」，3 天后可重入　｜　<span class="bold">退出条件</span>：打开 App 即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">

@@ -363,6 +363,13 @@
         <span class="pill pill-info">新用户激活</span>
         <span class="pill">再次进入：不可再次进入</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>注册后先观察 30 分钟——自主完成 KYC 则不打扰；未完成 → <span class="bold">按卡点分 3 路差异化 Push</span>（身份证 / 住址证明 / 其他，Deep Link 直达对应验证子页）；24 小时仍未完成 → 按注册地区分流 SMS / Email 再触达。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS · Email　｜　<span class="bold">触发方式</span>：事件「用户注册」+ 逐级等待　｜　<span class="bold">退出条件</span>：KYC 通过即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -418,6 +425,13 @@
         <span class="pill pill-info">首次付费转化</span>
         <span class="pill">再次进入：不可再次进入</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>KYC 通过且从未入金 → <span class="bold">即时推送首充红包 + 支付方式说明</span>；24 小时未入金 → 有 KOL 优惠码走 SMS 双倍激励、无码继续 App Push。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS　｜　<span class="bold">触发方式</span>：事件「KYC 通过」+ 属性「累计入金 = 0」　｜　<span class="bold">退出条件</span>：入金成功即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -465,6 +479,13 @@
         <span class="pill pill-info">首次交易转化</span>
         <span class="pill">Webhook 场景亮点</span>
         <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>入金成功但从未交易 → <span class="bold">立即 Push 恭喜 + 新手教程</span>；12 小时未交易 → Webhook 拉取当日热门币种 Top3 做个性化推荐（含涨跌幅与最低起投额）。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「入金成功」+ 属性「交易次数 = 0」　｜　<span class="bold">退出条件</span>：交易成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -517,6 +538,13 @@
         <span class="pill">Webhook 场景亮点</span>
         <span class="pill">再次进入：1 天后</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>用户关注的币种价格变动 ≥5% → <span class="bold">Webhook 实时取行情后即时 Push</span>（币种 + 涨跌幅 + Deep Link 直达交易对），2 小时未交易则自然结束。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push　｜　<span class="bold">触发方式</span>：事件「关注币种价格变动 ≥5%」（行情引擎推送）　｜　<span class="bold">退出条件</span>：同币种交易成功即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -565,6 +593,13 @@
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">留存 / 召回</span>
         <span class="pill">再次进入：7 天后</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>入过金但超过 7 天未交易 → 按沉默天数分三层首触（<span class="bold">轻度手续费返现 Push、中度 SMS 客户经理直连、深度 SMS 大额券</span>）；第一轮后按「近 14 日消息打开次数」筛掉无响应用户，有响应的才进第二轮加码。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS · Email　｜　<span class="bold">触发方式</span>：属性「最后交易距今超过 7 天 + 累计入金 &gt; 0」　｜　<span class="bold">退出条件</span>：交易成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -620,6 +655,13 @@
         <span class="pill pill-info">忠诚度经营</span>
         <span class="pill">再次进入：30 天后</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>Staking 到期前 3 天或空投可领取 → <span class="bold">按触发类型分开走</span>，Webhook 取回当前年化率 / 空投额度 / 截止日后个性化提醒。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「Staking 到期 T-3」或「空投可领取」　｜　<span class="bold">退出条件</span>：续期或领取完成即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -668,6 +710,13 @@
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">Web 端 → App 迁移</span>
         <span class="pill">再次进入：不可再次进入</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>完成 KYC 超过 3 天但从未登录 App → <span class="bold">Email 序列引导装机</span>（EDM1 商店链接 → 3 天未登 → EDM2 App 独家福利），配合 SMS 兜底。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · SMS　｜　<span class="bold">触发方式</span>：属性「KYC 通过 ≥ 3 天 + App 未登录」　｜　<span class="bold">退出条件</span>：App 首次登录即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">

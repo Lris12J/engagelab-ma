@@ -165,7 +165,7 @@
 
     footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
       font-size: 12px; color: var(--text-4); text-align: center; }
-  
+ 
   .back-home {
     display: inline-flex;
     align-items: center;
@@ -341,11 +341,11 @@
           <th class="align-right">效果参考</th><th class="align-center">适用场景</th>
         </tr></thead>
         <tbody>
-          <tr class="tone-success"><td>App Push 通知</td><td>弃单提醒、补货提醒、新品上架、限时活动</td><td class="align-right">≈ 0</td><td class="align-right">行为触发类点击率 5-12%</td><td class="align-center">全场景首选</td></tr>
-          <tr class="tone-success"><td>App Push 自定义</td><td>商城首页 Banner、大促运营位、跨品类推荐卡片</td><td class="align-right">≈ 0</td><td class="align-right">App 内展示率 25-40%</td><td class="align-center">商城运营位驱动</td></tr>
+          <tr class="tone-success"><td>App Push 通知</td><td>弃单提醒、补货提醒、新品上架、限时活动</td><td class="align-right">按 DAU 定价</td><td class="align-right">行为触发类点击率 5-12%</td><td class="align-center">全场景首选</td></tr>
+          <tr class="tone-success"><td>App Push 自定义</td><td>商城首页 Banner、大促运营位、跨品类推荐卡片</td><td class="align-right">按 DAU 定价</td><td class="align-right">App 内展示率 25-40%</td><td class="align-center">商城运营位驱动</td></tr>
           <tr><td>SMS</td><td>首购专属优惠码、弃单兜底触达、重要服务通知</td><td class="align-right">按量计费</td><td class="align-right">阅读率 98%，30分钟内</td><td class="align-center">高优先级兜底</td></tr>
           <tr><td>Email</td><td>订单确认、发货通知、月度消费账单、促销活动</td><td class="align-right">$0.002</td><td class="align-right">触发类打开率 25-35%</td><td class="align-center">正式通知 · 长内容</td></tr>
-          <tr><td>Web Push</td><td>官网访客召回、PC 端活动通知</td><td class="align-right">≈ 0</td><td class="align-right">点击率 6-10%</td><td class="align-center">Web 端用户补充</td></tr>
+          <tr><td>Web Push</td><td>官网访客召回、PC 端活动通知</td><td class="align-right">按 DAU 定价</td><td class="align-right">点击率 6-10%</td><td class="align-center">Web 端用户补充</td></tr>
         </tbody>
       </table>
     </section>
@@ -379,6 +379,13 @@
         <span class="pill pill-success">优先级最高</span>
         <span class="pill pill-info">新客转化</span>
         <span class="pill">激活事件触发 · 先观察再触达 · App Push + SMS</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>设备绑定成功后 1 小时内看用户是否自行逛商城：<span class="bold">没逛的发商城发现引导、逛了没买的发下单动机强化</span>；24 小时未购 → 首购折扣码 Push；48 小时仍未购 → SMS 限时专属券兜底。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS　｜　<span class="bold">触发方式</span>：事件「设备绑定成功」　｜　<span class="bold">退出条件</span>：支付成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -432,6 +439,13 @@
         <span class="pill pill-info">购买转化</span>
         <span class="pill">30min 触发 · 三步递进 · 弃单率 60-70% 待挽回</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>加入购物车后先等 30 分钟——自行下单则不打扰；未下单 → <span class="bold">Push 深链直达购物车</span>；2 小时、24 小时逐级确认；最后 SMS 专属优惠码（24h 有效）收尾。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS　｜　<span class="bold">触发方式</span>：事件「加入购物车」，7 天后可重入　｜　<span class="bold">退出条件</span>：支付成功即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -482,6 +496,13 @@
         <span class="pill pill-success">宠物硬件独有场景</span>
         <span class="pill pill-info">留存复购</span>
         <span class="pill">按购买周期自动触发 · 猫粮 · 滤芯 · 耗材</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>购买耗材后按商品自带的「预计耗尽时间」<span class="bold">提前 7 天自动触发</span>，按品类发专属文案（猫粮/滤芯/通用）；7 天未补购 → SMS 最终提醒。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS　｜　<span class="bold">触发方式</span>：事件「支付成功（耗材类）」，重入间隔 = 消耗周期　｜　<span class="bold">退出条件</span>：同品类补购成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -544,6 +565,13 @@
         <span class="pill pill-info">流失挽回</span>
         <span class="pill">三级分层 · 优惠递进 · Push + SMS</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>超过 30 天未购买 → 按沉默深度分三层：<span class="bold">30 天温和 Push、60 天 88 折券 + SMS 兜底、90 天+ SMS 终极礼包</span>，三条路径互不干扰。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS　｜　<span class="bold">触发方式</span>：属性「最后购买距今超过 30 天」，30 天后可重入　｜　<span class="bold">退出条件</span>：支付成功即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -593,6 +621,13 @@
         <span class="pill pill-info">新品转化</span>
         <span class="pill">条件分支 · 按设备属性精准匹配 · 替代群发海报</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>新品上架 → <span class="bold">按已购设备类型分流推送</span>（摄像头配件 / 滤芯 + 猫粮套餐 / 品牌精选）；3 天内加购则自动衔接弃单挽回旅程。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push　｜　<span class="bold">触发方式</span>：事件「新品上架」，7 天后可重入　｜　<span class="bold">退出条件</span>：加入购物车即转入弃单旅程</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -641,6 +676,13 @@
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">客单价提升</span>
         <span class="pill">购买事件触发 · 7 天后推荐互补品 · 场景化文案</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>购买智能设备 7 天后（先让用户建立使用场景）→ <span class="bold">按设备类型推关联品类</span>（摄像头→饮水机、饮水机→宠物粮、喂食器→摄像头）；3 天未加购 → 套装组合优惠追击。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push　｜　<span class="bold">触发方式</span>：事件「购买智能设备」+ 等待 7 天，按品类分开触发　｜　<span class="bold">退出条件</span>：加入购物车即转入弃单旅程</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">

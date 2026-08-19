@@ -400,6 +400,13 @@
         <span class="pill">全球新兴市场通用</span>
         <span class="pill">对标：Kredivo</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>用户注册后先观察 1 小时——自行完成 KYC 则全程不打扰；<span class="bold">1 小时未完成 → App Push 直达证件上传页</span>（Deep Link）；24 小时未完成 → WhatsApp 本地语引导；48 小时未完成 → SMS + Email 兜底。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · SMS · Email　｜　<span class="bold">触发方式</span>：事件「用户注册」+ 逐级等待　｜　<span class="bold">退出条件</span>：KYC 完成即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -444,6 +451,13 @@
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">首次借款转化</span>
         <span class="pill">对标：海外 Fintech 行业基准</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>授信通过但从未借款的用户 → <span class="bold">立即 App Push 告知可用额度</span>；24 小时未借款 → 按授信额度分流：高额度 WhatsApp 限时费率优惠、低额度 Email 用途场景引导；3 天仍未借款 → SMS 最后提醒。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · Email · SMS　｜　<span class="bold">触发方式</span>：事件「授信通过」+ 属性「借款金额 = 0」　｜　<span class="bold">退出条件</span>：首借成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -490,6 +504,13 @@
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">留存/复借</span>
         <span class="pill">对标：CASHe（印度）</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>最后借款超过 30 天 → 按历史借款次数分层后 <span class="bold">App Push 首触</span>；30 天仍未复借 → WhatsApp 专属优惠券；再过 30 天 → Email + SMS 深度权益收尾。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · Email · SMS　｜　<span class="bold">触发方式</span>：属性「最后借款时间距今超过 30 天」，30 天后可重入（最多 3 次）　｜　<span class="bold">退出条件</span>：借款成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -540,6 +561,13 @@
         <span class="pill">直接降本</span>
         <span class="pill">对标：海外消金贷后触达实践</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>还款日前 3 天 <span class="bold">App Push 温和提醒（一键还款）</span>；T-1 未还 → SMS 金额 + 截止日；到期日未还 → WhatsApp 账单详情 + 支付链接；逾期 1 天仍未还 → Email 协商入口并转人工。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS · WhatsApp · Email（成本从低到高递进）　｜　<span class="bold">触发方式</span>：属性「还款日 T-3」　｜　<span class="bold">退出条件</span>：还款成功即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图（T-3 → T+1）</div>
@@ -586,6 +614,13 @@
         <span class="pill pill-info">复借增长</span>
         <span class="pill">属性分层触达</span>
         <span class="pill">对标：全球支付平台复购 +23%</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>借款 ≥2 次且无逾期的优质用户 → <span class="bold">App Push 告知额度已提升</span>；3 天未借款 → 按提升幅度分流：大额 WhatsApp 专属费率、小额 Email；7 天仍未动 → SMS 提醒优惠到期。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · Email · SMS　｜　<span class="bold">触发方式</span>：属性「历史借款 ≥ 2 且无逾期」，90 天后可重入（最多 2 次）　｜　<span class="bold">退出条件</span>：借款成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -635,6 +670,13 @@
         <span class="pill">条件分支 × 3 层分群</span>
         <span class="pill">对标：个性化打开率 16.3% vs 4.7%</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>超过 60 天未打开 App → 按历史借款次数分三层（高/中/低价值），<span class="bold">差异化内容首触（App Push / Email）</span>；未回访 → WhatsApp 最后挽回 + 专属优惠券；仍无响应 → SMS 兜底。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email · WhatsApp · SMS　｜　<span class="bold">触发方式</span>：属性「最后活跃距今超过 60 天」，60 天后可重入（最多 2 次）　｜　<span class="bold">退出条件</span>：打开 App 即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -682,6 +724,13 @@
         <span class="pill">每年注册日自动匹配</span>
         <span class="pill">提升品牌好感度 + 复借</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>每年注册周年日自动触发 → 活跃用户（借款 ≥3 次）<span class="bold">WhatsApp 周年感谢 + 专属费率</span>、普通用户 App Push 额度提升通知；3 天未借款 → Email 提醒优惠即将到期。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：WhatsApp · App Push · Email　｜　<span class="bold">触发方式</span>：属性「注册时间 = 每年当日」自动匹配　｜　<span class="bold">退出条件</span>：借款成功走完成分支结束</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -728,6 +777,13 @@
         <span class="pill pill-info">贷后管理</span>
         <span class="pill">还款日后自动触发</span>
         <span class="pill">条件分支 × 金额分层</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>逾期第 1 天自动触发 → 按逾期金额分层：<span class="bold">小额 App Push 温和提醒、大额 SMS 正式通知</span>；3 天未还 → SMS 协商方案 + 分期选项；再过 4 天 → Email 说明逾期影响并转人工催收。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS · Email（逾期后触达不使用 WhatsApp）　｜　<span class="bold">触发方式</span>：属性「还款日后 1 天」　｜　<span class="bold">退出条件</span>：还款成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">

@@ -166,7 +166,7 @@
 
     footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
       font-size: 12px; color: var(--text-4); text-align: center; }
-  
+ 
   .back-home {
     display: inline-flex;
     align-items: center;
@@ -349,11 +349,11 @@
         <table>
           <thead><tr><th>渠道</th><th>成本</th><th>茶饮行业核心用途</th><th>重点市场</th></tr></thead>
           <tbody>
-            <tr><td>App Push</td><td>≈ 0</td><td>高频复购提醒、新品通知、积分到期、门店动态</td><td>全球</td></tr>
+            <tr><td>App Push</td><td>按 DAU 定价</td><td>高频复购提醒、新品通知、积分到期、门店动态</td><td>全球</td></tr>
             <tr><td>WhatsApp</td><td>按目标国家定价</td><td>弃单挽回、互动式菜单推荐、新店开业通知、客服</td><td>马来西亚 / 印尼 / 新加坡</td></tr>
             <tr><td>SMS</td><td>按目标国家定价</td><td>验证码 + 营销兜底（无 App 用户触达）</td><td>韩国 / 日本 / 美国</td></tr>
             <tr><td>Email</td><td>$0.002</td><td>会员月报、生日礼、储值续充提醒</td><td>欧美市场</td></tr>
-            <tr><td>Web Push</td><td>≈ 0</td><td>官网访客引导下载 App / 新品预告</td><td>全球</td></tr>
+            <tr><td>Web Push</td><td>按 DAU 定价</td><td>官网访客引导下载 App / 新品预告</td><td>全球</td></tr>
             <tr class="tone-info"><td>LINE（即将上线）</td><td>—</td><td>泰国核心触达渠道，92% 互联网用户覆盖</td><td>泰国 / 日本</td></tr>
             <tr class="tone-info"><td>Telegram（即将上线）</td><td>—</td><td>Bot 互动式点单、社群通知</td><td>中东 / 印度</td></tr>
           </tbody>
@@ -386,6 +386,13 @@
       <!-- Journey 1 -->
       <div class="section" style="margin-top:16px;">
         <h3>旅程 1：新客首单激活</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>用户注册后先观察是否自行下单——未下单 → <span class="bold">App Push 首单优惠引导</span>，24 小时后的触达进入可发送时间控制，逐级跟进到完成首单。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · SMS　｜　<span class="bold">触发方式</span>：事件「用户注册成功」　｜　<span class="bold">退出条件</span>：完成首次下单即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j1"></div>
           <div>
@@ -419,6 +426,13 @@
       <!-- Journey 2 -->
       <div class="section">
         <h3>旅程 2：沉睡会员分层唤醒</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>超过 15 天没下单 → <span class="bold">按沉默天数（15 / 30 / 60 天）分层唤醒</span>，轻度提醒、中度优惠券、深度大额召回逐级加码。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · Email　｜　<span class="bold">触发方式</span>：属性「最后下单距今超过 15 天」，15 天后可重入　｜　<span class="bold">退出条件</span>：下单成功即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j2"></div>
           <div>
@@ -452,6 +466,13 @@
       <!-- Journey 3 -->
       <div class="section">
         <h3>旅程 3：弃单 / 浏览未下单挽回</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>加购或浏览菜单超 3 分钟未下单 → 先等 30 分钟看是否自行下单；未下单 → <span class="bold">Push 提醒直达购物车</span>，逐级跟进收尾。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp　｜　<span class="bold">触发方式</span>：事件「加入购物车 / 浏览菜单超 3 分钟」，1 天后可重入　｜　<span class="bold">退出条件</span>：下单成功即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j3"></div>
           <div>
@@ -485,6 +506,13 @@
       <!-- Journey 4 -->
       <div class="section">
         <h3>旅程 4：新品上市精准推送</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>新品上市 → 面向 60 天内活跃会员，<span class="bold">按历史口味偏好分流</span>（奶茶/果茶/纯茶/咖啡），AI 自动生成本地语推送文案。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp　｜　<span class="bold">触发方式</span>：属性「最后下单距今不超过 60 天」+ 口味分支　｜　<span class="bold">退出条件</span>：购买新品即完成转化</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j4"></div>
           <div>
@@ -518,6 +546,13 @@
       <!-- Journey 5 -->
       <div class="section">
         <h3>旅程 5：新店开业周边引流</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>新店开业 → 圈选<span class="bold">所在城市 = 新店城市</span>的会员，App Push + WhatsApp + SMS 分层降级触达，引流到店。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp · SMS　｜　<span class="bold">触发方式</span>：属性「所在城市 = 新店城市」　｜　<span class="bold">退出条件</span>：在新店完成消费即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j5"></div>
           <div>
@@ -551,6 +586,13 @@
       <!-- Journey 6 -->
       <div class="section">
         <h3>旅程 6：生日 / 注册周年日关怀</h3>
+        <div class="callout info" style="margin-bottom:14px">
+          <div class="callout-title">一句话版本</div>
+          <div class="callout-body">
+            <p>生日当天自动触发 → <span class="bold">生日券关怀推送</span>，3 天监听用券下单；每年仅触发一次（进入条件按年匹配）。</p>
+            <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · WhatsApp　｜　<span class="bold">触发方式</span>：属性「生日日期 · 每年当日」，30 天后可重入　｜　<span class="bold">退出条件</span>：使用生日券下单即自动退出</p>
+          </div>
+        </div>
         <div class="grid grid-2-1">
           <div class="dag-wrap" id="dag-j6"></div>
           <div>

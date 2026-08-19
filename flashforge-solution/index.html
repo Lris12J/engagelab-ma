@@ -557,6 +557,13 @@
 
       <!-- J1 -->
       <h3 style="margin-top:8px;">J1 · 通知权限开启欢迎旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>用户开启通知权限 → <span class="bold">SDK 预置事件即触发欢迎旅程</span>（零业务埋点），引导浏览核心内容，旅程内频控 ≤ 3 条。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push　｜　<span class="bold">触发方式</span>：事件「通知权限开启」（SDK 预置）　｜　<span class="bold">退出条件</span>：完成下单即提前退出</p>
+        </div>
+      </div>
       <div class="grid grid-12-1">
         <div class="dag-wrap"><div id="dag-j1"></div></div>
         <div>
@@ -584,6 +591,13 @@
 
       <!-- J2 -->
       <h3>J2 · 新用户激活引导旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>EUID 注册成功后先观察 1 小时——自主浏览则不打扰；未浏览 → <span class="bold">Push 新手引导内容</span>逐级跟进。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push　｜　<span class="bold">触发方式</span>：事件「EUID 注册成功」（SDK 预置）　｜　<span class="bold">退出条件</span>：完成下单即提前退出</p>
+        </div>
+      </div>
       <div class="grid grid-12-1">
         <div class="dag-wrap"><div id="dag-j2"></div></div>
         <div>
@@ -609,6 +623,13 @@
 
       <!-- J3 -->
       <h3>J3 · 长期未活跃召回旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>超过 14 天未活跃且从未购买 → <span class="bold">召回 Push 逐级触达</span>（每条消息前有可发送时间控制）。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「最后活跃超 14 天 + 累计购买 = 0」，14 天后可重入　｜　<span class="bold">退出条件</span>：完成下单即提前退出</p>
+        </div>
+      </div>
       <div class="grid grid-12-1">
         <div class="dag-wrap"><div id="dag-j3"></div></div>
         <div>
@@ -635,6 +656,13 @@
 
       <!-- J4 -->
       <h3>J4 · UTM 归因分层欢迎旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>首次来源渠道（UTM Source）不为空 → <span class="bold">按 Search / Social / Video / 其他四路差异化欢迎内容</span>，让广告来源与承接内容一致。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「首次 UTM Source 不为空」，30 天后可重入　｜　<span class="bold">退出条件</span>：按分支发送后结束</p>
+        </div>
+      </div>
       <div class="grid grid-12-1">
         <div class="dag-wrap"><div id="dag-j4"></div></div>
         <div>
@@ -661,6 +689,13 @@
 
       <!-- J5 -->
       <h3>J5 · 加购未下单挽回旅程 <span class="pill pill-warn" style="margin-left:8px;">阶段二 · 需接入电商事件</span></h3>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>加入购物车未下单 → <span class="bold">30 分钟 → 4 小时 → 12 小时三段挽回</span>，逐级加强动机。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「加入购物车」，3 天后可重入　｜　<span class="bold">退出条件</span>：完成下单即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-12-1">
         <div class="dag-wrap"><div id="dag-j5"></div></div>
         <div>
@@ -687,6 +722,13 @@
 
       <!-- J6 -->
       <h3>J6 · 打印机绑定首打引导旅程 <span class="pill pill-purple" style="margin-left:8px;">阶段三 · 需接入设备事件</span></h3>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>打印机绑定成功后先观察首打（4 小时 → 48 小时）——<span class="bold">未开打的引导首打、失败的给排障内容</span>。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「打印机绑定成功」（每台仅一次）　｜　<span class="bold">退出条件</span>：首次打印成功即完成转化</p>
+        </div>
+      </div>
       <div class="grid grid-12-1">
         <div class="dag-wrap"><div id="dag-j6"></div></div>
         <div>

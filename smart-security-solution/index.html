@@ -165,7 +165,7 @@
 
     footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
       font-size: 12px; color: var(--text-4); text-align: center; }
-  
+ 
   .back-home {
     display: inline-flex;
     align-items: center;
@@ -231,8 +231,8 @@
       </p>
       <hr class="divider" />
       <div class="grid grid-4">
-        <div class="stat"><div class="stat-value">$275M+</div><div class="stat-label">Arlo 年度订阅收入 ARR (2025)</div></div>
-        <div class="stat"><div class="stat-value info">500 万+</div><div class="stat-label">Arlo 全球付费订阅用户</div></div>
+        <div class="stat"><div class="stat-value">$357M</div><div class="stat-label">Arlo 订阅 ARR（Q1 2026）</div></div>
+        <div class="stat"><div class="stat-value info">600 万+</div><div class="stat-label">Arlo 全球付费账户（Q1 2026）</div></div>
         <div class="stat"><div class="stat-value success">+11.5%</div><div class="stat-label">行业实测 · 新客收入首月提升</div></div>
         <div class="stat"><div class="stat-value success">+4.71%</div><div class="stat-label">行业实测 · DAU 周均涨幅</div></div>
       </div>
@@ -243,7 +243,7 @@
       <h2>一、为什么智能安防硬件必须升级用户运营</h2>
       <p>
         全球智能家居安防市场已进入"硬件普及 + 订阅争夺"阶段。
-        Arlo 2025 年订阅收入超 $275M、付费用户超 500 万；萤石 EZVIZ 月活 2600 万、全球出货量第一；
+        Arlo 截至 Q1 2026 累计付费账户超 600 万、ARR 达 $3.57 亿；萤石 EZVIZ 2024 年月活 6553 万、全球出货量第一；
         中国出海品牌在北美、欧洲、日本快速渗透。
         硬件销售增长趋缓，<span class="bold">订阅转化率和续费率</span>已成为决定盈利能力的核心杠杆。
         然而，多数品牌仍靠全量推送和手动运营——在这个环节，
@@ -254,21 +254,38 @@
         <div class="card">
           <div class="card-header">全球主要市场 · 智能安防品牌竞争格局</div>
           <div class="card-body">
-            <div class="chart" id="chart-market-share"></div>
-            <p class="small muted" style="margin-top:10px">
-              中国品牌在北美、欧洲和日本市场均有显著份额，但订阅运营能力参差不齐——
-              头部品牌（Arlo/Ring）月流失率仅 ~1%，而多数中国出海品牌的订阅续费率远未到达行业天花板。
-            </p>
+            <p class="small muted" style="margin:0 0 8px 0">每品牌两根柱：<span style="color:#0369a1"><strong>■ 用户规模</strong></span>（优先取月活 MAU，无月活时取累计注册） + <span style="color:#16a34a"><strong>■ 付费用户</strong></span>。纵轴<strong>对数刻度</strong>（万）。缺数据显示 —。</p>
+            <div class="chart" id="chart-market-3metric" style="min-height:280px"></div>
+            <div class="market-metric-legend" style="margin-top:10px;font-size:11px;line-height:1.5;color:var(--muted);border-top:1px solid var(--border);padding-top:8px">
+              <table style="width:100%;border-collapse:collapse;font-size:11px;line-height:1.45">
+                <thead>
+                  <tr style="border-bottom:1px solid var(--border)">
+                    <th style="text-align:left;padding:5px 8px;font-weight:600;color:var(--text)">品牌</th>
+                    <th style="text-align:left;padding:5px 8px;font-weight:600;color:#0369a1">用户规模（万）</th>
+                    <th style="text-align:left;padding:5px 8px;font-weight:600;color:#16a34a">付费用户（万）</th>
+                    <th style="text-align:left;padding:5px 8px;font-weight:600;color:var(--text)">数据来源</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid var(--border)"><td style="padding:4px 8px;font-weight:600">Arlo</td><td style="padding:4px 8px">1310 — 累计注册（MAU 未披露）</td><td style="padding:4px 8px">600 — 累计付费账户</td><td style="padding:4px 8px">Q1 2026 SEC 10-Q</td></tr>
+                  <tr style="border-bottom:1px solid var(--border)"><td style="padding:4px 8px;font-weight:600">Ring</td><td style="padding:4px 8px">670 — iOS MAU<em>（仅 iOS，不含 Android）</em></td><td style="padding:4px 8px">— 未公开</td><td style="padding:4px 8px">AppGoblin 第三方估算</td></tr>
+                  <tr style="border-bottom:1px solid var(--border)"><td style="padding:4px 8px;font-weight:600">EZVIZ 萤石</td><td style="padding:4px 8px">6553 — 平台 MAU</td><td style="padding:4px 8px">306 — C 端年度累计付费</td><td style="padding:4px 8px">2024 年报 (688475.SH)</td></tr>
+                  <tr style="border-bottom:1px solid var(--border)"><td style="padding:4px 8px;font-weight:600">IMOU 乐橙</td><td style="padding:4px 8px">2000 — 累计注册下限<em>（公开资料 2000–4500 万）</em></td><td style="padding:4px 8px">— 未公开</td><td style="padding:4px 8px">品牌官网 / 百度百科</td></tr>
+                  <tr style="border-bottom:1px solid var(--border)"><td style="padding:4px 8px;font-weight:600">Wyze</td><td style="padding:4px 8px">450 — 累计注册下限<em>（官网「500 万+」）</em></td><td style="padding:4px 8px">175 — Cam Plus 活跃订阅</td><td style="padding:4px 8px">Wyze 官网</td></tr>
+                  <tr><td style="padding:4px 8px;font-weight:600">Reolink</td><td style="padding:4px 8px">200 — 服务家庭/企业数</td><td style="padding:4px 8px">8 — 估算<em>（≈200 万×5.7% 云付费率）</em></td><td style="padding:4px 8px">Reolink 官网 / 用户调查</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <div class="card">
           <div class="card-header">核心业务信号</div>
           <div class="card-body p-sm">
-            <div class="signal-row"><div class="left"><div class="label">Arlo 月流失率</div><div class="hint">行业标杆，用户生命周期 7-8 年</div></div><div class="value">~1%</div></div>
-            <div class="signal-row"><div class="left"><div class="label">行业平均月订阅流失率</div><div class="hint">多数品牌远高于标杆</div></div><div class="value">5 – 10%</div></div>
-            <div class="signal-row"><div class="left"><div class="label">试用转付费率（Opt-in）</div><div class="hint">无信用卡试用的行业基准</div></div><div class="value">8 – 25%</div></div>
-            <div class="signal-row"><div class="left"><div class="label">个性化推送打开率</div><div class="hint">vs 通用推送 4-8%</div></div><div class="value">18 – 25%</div></div>
-            <div class="signal-row"><div class="left"><div class="label">暂停订阅挽留效果</div><div class="hint">可替代直接取消</div></div><div class="value">挽回 30-40%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">Arlo 月流失率</div><div class="hint">Q4 2025 财报，用户生命周期 7-8 年</div></div><div class="value">~1%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">消费订阅行业月流失率</div><div class="hint">多数品牌远高于标杆水平</div></div><div class="value">5 – 10%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">Opt-in 试用转付费率</div><div class="hint">SaaS 行业中位数（无信用卡试用）</div></div><div class="value">8 – 18%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">分层推送打开率</div><div class="hint">vs 全量推送均值 ~4%（Pushwoosh 2025）</div></div><div class="value">12 – 20%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">暂停订阅挽留效果</div><div class="hint">Top performers（Churnkey 2025）</div></div><div class="value">挽回 30-40%</div></div>
           </div>
         </div>
       </div>
@@ -292,7 +309,7 @@
             <div class="stat"><div class="stat-value success">+4.71%</div><div class="stat-label">DAU 周均涨幅（行业实测）</div></div>
           </div>
           <p class="small muted" style="margin-top:12px">
-            基准参考：2024–2026 年智能安防硬件行业公开报告 + 已验证客户真实运营数据。
+            基准参考：Arlo Q1 2026 SEC Filing、萤石 2024 年报 (688475.SH)、Pushwoosh Push Benchmarks 2025、ChartMogul SaaS Conversion Report、行业客户运营实测数据。
           </p>
         </div>
       </div>
@@ -336,12 +353,12 @@
           <th class="align-right">效果参考</th><th class="align-center">适用场景</th>
         </tr></thead>
         <tbody>
-          <tr class="tone-success"><td>App Push 通知</td><td>试用到期提醒、续费提醒、设备事件通知</td><td class="align-right">≈ 0</td><td class="align-right">分层触达点击率 6-7%</td><td class="align-center">全场景首选</td></tr>
-          <tr class="tone-success"><td>App Push 自定义</td><td>JSON 驱动 App 运营位、广告投放、促销 Banner</td><td class="align-right">≈ 0</td><td class="align-right">送达率 99.85%</td><td class="align-center">DAU 提升 · 广告变现</td></tr>
-          <tr><td>App 应用内消息</td><td>试用引导、功能教育、套餐对比、升级弹窗</td><td class="align-right">≈ 0</td><td class="align-right">查看率 25-40%</td><td class="align-center">Onboarding · 转化关键时刻</td></tr>
+          <tr class="tone-success"><td>App Push 通知</td><td>试用到期提醒、续费提醒、设备事件通知</td><td class="align-right">按 DAU 定价</td><td class="align-right">分层触达点击率 6-7%</td><td class="align-center">全场景首选</td></tr>
+          <tr class="tone-success"><td>App Push 自定义</td><td>JSON 驱动 App 运营位、广告投放、促销 Banner</td><td class="align-right">按 DAU 定价</td><td class="align-right">送达率 99.85%</td><td class="align-center">DAU 提升 · 广告变现</td></tr>
+          <tr><td>App 应用内消息</td><td>试用引导、功能教育、套餐对比、升级弹窗</td><td class="align-right">按 DAU 定价</td><td class="align-right">查看率 25-40%</td><td class="align-center">Onboarding · 转化关键时刻</td></tr>
           <tr class="tone-info"><td>Email</td><td>续费提醒（北美/欧洲首选）、账单通知、过期召回、功能教育</td><td class="align-right">$0.002</td><td class="align-right">触发类打开率 30%+</td><td class="align-center">续费核心渠道 · 长内容</td></tr>
           <tr><td>SMS</td><td>支付失败提醒、卡过期更新提醒、兜底触达</td><td class="align-right">按目标国家定价</td><td class="align-right">送达率 95%</td><td class="align-center">高优先级兜底</td></tr>
-          <tr><td>Web Push</td><td>App 内嵌 H5 页面推送、活动落地页唤回</td><td class="align-right">≈ 0</td><td class="align-right">点击率 8-12%</td><td class="align-center">H5 场景补充</td></tr>
+          <tr><td>Web Push</td><td>App 内嵌 H5 页面推送、活动落地页唤回</td><td class="align-right">按 DAU 定价</td><td class="align-right">点击率 8-12%</td><td class="align-center">H5 场景补充</td></tr>
         </tbody>
       </table>
     </section>
@@ -433,6 +450,13 @@
         <span class="pill pill-info">新客转化</span>
         <span class="pill">推送点击率 6%+ · 首月收入 +10%+</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>设备绑定开启试用后，<span class="bold">按到期时间点驱动多轮触达</span>（通知栏 Push + App 运营位 Banner + 应用内弹窗三种消息类型并用），并按区域/币种分流本地化文案与定价。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · 自定义消息 · 应用内消息　｜　<span class="bold">触发方式</span>：事件「试用开始 + 设备绑定成功」　｜　<span class="bold">退出条件</span>：首次付费成功即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -495,6 +519,13 @@
         <span class="pill pill-info">留存</span>
         <span class="pill">推送点击率 6.82%</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>订阅到期前 7 天进入，<span class="bold">先按「自动续费 vs 手动续费」分流</span>，再按 7 天 → 3 天 → 1 天 → 到期当天逐级升级紧迫感。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「订阅到期前 7 天」　｜　<span class="bold">退出条件</span>：续费成功即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -525,7 +556,7 @@
           <div class="callout success">
             <div class="callout-title">预期效果</div>
             <div class="callout-body">
-              续费提醒推送点击率可达 6-7%（行业通用推送仅 4-8%）。
+              续费提醒推送点击率可达 6-7%（全量推送通常仅 1-3%）。
               建议北美/欧洲市场增加 Email 渠道（到期前 7 天 Email + 到期前 1 天 Push），以覆盖更多用户触点。
             </div>
           </div>
@@ -540,6 +571,13 @@
         <span class="pill pill-success">推荐配置</span>
         <span class="pill pill-info">流失挽回</span>
         <span class="pill">行为触发 × 5 分支 × 多级递进</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>订阅已过期 → <span class="bold">按设备是否仍在上报事件分流</span>：仍在用发「正在使用但没有录像」、设备离线发安全感召回；3 → 7 → 15 → 30 天逐级递进到数据风险警告。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「订阅过期」+ 设备行为分支　｜　<span class="bold">退出条件</span>：重新订阅即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -585,6 +623,13 @@
         <span class="pill pill-success">推荐配置</span>
         <span class="pill pill-info">Dunning 恢复率 40-70%</span>
         <span class="pill">行业非自愿流失占比 20-40%</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>支付失败 → 先确认本月是否已补付；未补付则<span class="bold">按失败类型分流</span>：卡过期 Push + Email 引导更新支付方式、余额不足等 3 天再提醒；另建议独立 Pre-Dunning 旅程在卡过期前 7 天预防。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「支付失败」（Pre-Dunning：属性「卡到期前 7 天」）　｜　<span class="bold">退出条件</span>：支付恢复成功即自动退出</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -633,6 +678,13 @@
         <span class="pill pill-info">促活</span>
         <span class="pill">RFM 分层 × 设备状态感知</span>
       </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>按 3 / 7 / 14 天未打开 App 三级分层，<span class="bold">结合设备状态差异化话术</span>：设备在线走功能引导、设备离线走安全感召回，逐级加重。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push　｜　<span class="bold">触发方式</span>：属性「未打开 App 天数」三级分层　｜　<span class="bold">退出条件</span>：打开 App 即自动退出</p>
+        </div>
+      </div>
       <div class="grid grid-2-1">
         <div class="card">
           <div class="card-header">旅程编排示意图</div>
@@ -676,6 +728,13 @@
         <span class="pill pill-success">推荐配置</span>
         <span class="pill pill-info">变现</span>
         <span class="pill">DAU 当日 +9.34% · 周均 +4.71%</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-title">一句话版本</div>
+        <div class="callout-body">
+          <p>活跃 ≥ 35 天的重点用户 → <span class="bold">AppPush 自定义消息驱动广告 Reward / Discover / Banner 内容</span>，广告展示与点击事件全程归因；已在 250–340 万用户级旅程稳定运行。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：AppPush 自定义消息　｜　<span class="bold">触发方式</span>：属性「活跃天数 ≥ 35」+ 人群筛选　｜　<span class="bold">退出条件</span>：按投放周期结束</p>
+        </div>
       </div>
       <div class="grid grid-2-1">
         <div class="card">
@@ -722,7 +781,7 @@
           <div class="card-header">核心指标对比 · EngageLab 实测 vs 行业基准</div>
           <div class="card-body">
             <div class="chart" id="chart-benchmark"></div>
-            <p class="small muted" style="margin-top:8px">数据来源：客户生产环境真实数据 + 行业公开报告（2024–2026）。</p>
+            <p class="small muted" style="margin-top:8px">数据来源：行业客户生产环境实测数据 + Arlo SEC Filing (Q1 2026) + Pushwoosh Push Benchmarks 2025。全量推送基线为行业均值约 1-3%。</p>
           </div>
         </div>
         <div class="card">
@@ -746,7 +805,7 @@
             <tbody>
               <tr class="tone-success"><td class="bold">EngageLab 行业实测</td><td class="align-center">全球</td><td>智能摄像头 + 云订阅</td><td>推送点击率 6.82%，新客收入 +11.5%，DAU +4.71%</td><td>同行业、同模式的直接验证</td></tr>
               <tr><td class="bold">Wyze（美国智能摄像头）</td><td class="align-center">美国</td><td>智能摄像头 + Cam Plus 订阅</td><td>跨渠道分群使订阅转化率提升 56%（最佳实践上限）</td><td>智能安防行业公开 MA 深度案例</td></tr>
-              <tr><td class="bold">Arlo</td><td class="align-center">全球</td><td>智能安防 + 订阅</td><td>500 万+付费用户，月流失率 ~1%，LTV/CAC = 4.0</td><td>订阅业务天花板标杆</td></tr>
+              <tr><td class="bold">Arlo</td><td class="align-center">全球</td><td>智能安防 + 订阅</td><td>600 万+付费账户（Q1 2026），月流失率 ~1%，ARR $3.57 亿</td><td>订阅业务天花板标杆</td></tr>
               <tr><td class="bold">Magenta SmartHome</td><td class="align-center">欧洲</td><td>智能家居 + 设备促销</td><td>双周活动 Push 促进设备订单转化</td><td>欧洲智能家居 MA 落地案例</td></tr>
             </tbody>
           </table>
@@ -970,6 +1029,102 @@
       mount.appendChild(s);
     }
 
+    /** 三维：累计 / 月活 / 付费（万）。支持 null 留空、{ range:[lo,hi] } 区间柱、对数纵轴。 */
+    function drawThreeMetricMarketChart(mount, opts) {
+      const { categories, series, height = 300 } = opts;
+      const W = 780, H = height, PAD_L = 52, PAD_R = 14, PAD_T = 8, PAD_B = 28;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const baseY = PAD_T + innerH;
+
+      function cellMax(cell) {
+        if (cell == null) return 0;
+        if (typeof cell === 'object' && cell !== null && Array.isArray(cell.range) && cell.range.length === 2) {
+          return Math.max(cell.range[0], cell.range[1]);
+        }
+        if (typeof cell === 'number') return cell;
+        return 0;
+      }
+
+      const nums = series.flatMap((s) => s.data.map(cellMax)).filter((v) => v > 0);
+      const max = Math.max(...nums, 100);
+      const logMax = Math.log10(max);
+      const logMin = 0;
+      function valToY(v) {
+        const lv = Math.log10(Math.max(Number(v), 1));
+        return baseY - innerH * ((lv - logMin) / (logMax - logMin));
+      }
+
+      const s = svg(W, H);
+      s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: baseY, y2: baseY, stroke: COLORS.textMute, 'stroke-width': 1.2, opacity: 0.45 }));
+      for (let p = 0; p <= 12; p++) {
+        const tv = Math.pow(10, p);
+        if (tv < 1) continue;
+        if (tv > max * 1.3) break;
+        const y = valToY(tv);
+        if (y < PAD_T - 1) continue;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = tv >= 10000 ? tv / 10000 + '亿' : tv + '万';
+        s.appendChild(t);
+      }
+
+      const groupCount = categories.length;
+      const barsPerGroup = series.length;
+      const groupW = innerW / groupCount;
+      const barW = Math.min(18, (groupW - 10) / barsPerGroup);
+
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const raw = se.data[ci];
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const color = COLORS[se.tone] || COLORS.neutral;
+
+          if (raw == null) {
+            const dash = el('text', { x: x + (barW - 2) / 2, y: baseY - 6, 'text-anchor': 'middle', 'font-size': 10, fill: COLORS.textMute });
+            dash.textContent = '—';
+            s.appendChild(dash);
+            return;
+          }
+
+          if (raw && typeof raw === 'object' && Array.isArray(raw.range) && raw.range.length === 2) {
+            const lo = Math.max(raw.range[0], 1);
+            const hi = Math.max(raw.range[1], lo);
+            const yHi = valToY(hi);
+            const yLo = valToY(lo);
+            const bw = barW - 2;
+            const trunkH = Math.max(baseY - yLo, 0);
+            if (trunkH > 0) {
+              s.appendChild(el('rect', { x, y: yLo, width: bw, height: trunkH, fill: color, rx: 2, opacity: 0.28 }));
+            }
+            const bandH = Math.max(yLo - yHi, 2);
+            s.appendChild(el('rect', { x, y: yHi, width: bw, height: bandH, fill: color, rx: 2, opacity: 1 }));
+            const cap = el('text', { x: x + bw / 2, y: yHi - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            cap.textContent = lo + '–' + hi;
+            s.appendChild(cap);
+            return;
+          }
+
+          if (typeof raw === 'number') {
+            const v = raw;
+            const yTop = valToY(v);
+            const h = baseY - yTop;
+            s.appendChild(el('rect', { x, y: yTop, width: barW - 2, height: Math.max(h, 2), fill: color, rx: 2 }));
+            const label = el('text', { x: x + (barW - 2) / 2, y: yTop - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + '';
+            s.appendChild(label);
+          }
+        });
+
+        const t = el('text', { x: gx + groupW / 2, y: H - 10, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
     function drawLineChart(mount, opts) {
       const { categories, series, valueSuffix = '', height = 240 } = opts;
       const W = 600, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 14, PAD_B = 56;
@@ -1136,14 +1291,21 @@
 
     // ========== Charts ==========
 
-    // Market share chart
-    drawBarChart(document.getElementById('chart-market-share'), {
+    drawThreeMetricMarketChart(document.getElementById('chart-market-3metric'), {
       categories: ['Arlo', 'Ring', 'EZVIZ', 'IMOU', 'Wyze', 'Reolink'],
+      height: 280,
       series: [
-        { name: '付费订阅用户 (万)', data: [500, 800, 260, 100, 150, 30], tone: 'info' },
-        { name: 'App 月活 (万)', data: [600, 1000, 2600, 500, 400, 80], tone: 'success' },
+        {
+          name: '用户规模（MAU 优先，否则累计注册）',
+          tone: 'info',
+          data: [1310, 670, 6553, 2000, 450, 200],
+        },
+        {
+          name: '付费用户',
+          tone: 'success',
+          data: [600, null, 306, null, 175, 8],
+        },
       ],
-      valueSuffix: '', height: 260,
     });
 
     // Subscription funnel
@@ -1161,7 +1323,7 @@
       categories: ['推送点击率', '新客收入提升', 'DAU 涨幅', '订阅转化提升'],
       series: [
         { name: 'EngageLab 实测', data: [6.82, 11.5, 4.71, 11.5], tone: 'success' },
-        { name: '行业通用推送', data: [4, 0, 0, 0], tone: 'neutral' },
+        { name: '全量推送基线', data: [2, 0, 0, 0], tone: 'neutral' },
         { name: 'Wyze 最佳实践', data: [0, 0, 0, 56], tone: 'info' },
       ],
       valueSuffix: '%', height: 260,
