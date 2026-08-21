@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QIDI Tech 全球用户增长方案 · EngageLab MA</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+    .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.92em; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 900px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-1-2 { grid-template-columns: 1fr 2fr; }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    tr.tone-muted td { color: var(--text-3); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: 0 0 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .hero { break-before: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA · QIDI Tech 增长方案</span>
+      <a href="#s-market">行业机会</a>
+      <a href="#s-funnel">漏斗与对标</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-scenarios">八大场景</a>
+      <a href="#s-journey1">旅程编排</a>
+      <a href="#s-compliance">合规安全</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <a class="back-home" href="../">← 返回首页</a>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-info">QIDI Tech · 定制提案</span>
+        <span class="pill">消费级 3D 打印机 · 高温工程打印</span>
+        <span class="pill">DTC 多区域独立站 + Amazon 双轮</span>
+        <span class="pill pill-warn">Q4 黑五前完成体系搭建</span>
+        <span class="pill pill-success">4 周 $0 测试</span>
+      </div>
+      <h1>QIDI Tech 全球用户增长方案</h1>
+      <p class="hero-subtitle">
+        QIDI 以「高温工程材料 + CoreXY」在北美、欧洲站稳差异化，多区域独立站与 Amazon / Walmart 官方店双轮并进。
+        3D 打印机的用户旅程分两段：<span class="bold">购前是重研究的高客单决策，购后是长达数年的设备使用期</span>。
+        本方案用 EngageLab MA 同时承接这两段——官网高意向买家的转化挽回，与绑定 App 后的设备生命周期运营。
+      </p>
+      <hr class="divider" />
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value warn">≈70%</div><div class="stat-label">电商平均弃单率（均值 70.19%，移动端约 86%——QIDI 客单高，单笔挽回价值大）</div></div>
+        <div class="stat"><div class="stat-value info">90%+</div><div class="stat-label">头部 3D 打印机品牌购机一年后仍活跃的用户占比——购后运营的行业标杆</div></div>
+        <div class="stat"><div class="stat-value success">37–41%</div><div class="stat-label">自动化旅程贡献的邮件渠道收入占比——仅用约 5% 的发送量（行业基准）</div></div>
+        <div class="stat"><div class="stat-value">$0 · 4 周</div><div class="stat-label">测试期费用 · 首批旅程上线周期</div></div>
+      </div>
+    </section>
+
+    <!-- 1. Market -->
+    <section id="s-market" class="section-plain">
+      <h2>一、QIDI 用户的真实旅程 · 每个阶段都有清晰的运营缺口</h2>
+      <p>
+        3D 打印机不是"逛着买"的商品——下单前数周研究对比，下单后数年持续使用，各阶段与缺口见下表。
+        关键在购后：<span class="bold">Amazon 分走出货大头、买家数据留在平台，但买家装机后多数会绑定 App</span>——
+        设备绑定是把平台买家变成自有用户的入口，购后运营因此覆盖全渠道买家，而不只是官网订单。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">从种草到换代 · 用户在做什么，缺口在哪里（行业通用观察，Week 1 以数据盘点校准）</div>
+          <div class="card-body">
+            <table style="border:none">
+              <thead><tr><th style="width:16%">阶段</th><th style="width:44%">用户在做什么</th><th>运营缺口</th></tr></thead>
+              <tbody>
+                <tr><td class="bold">认知与对比</td><td>看评测、视频、社区讨论，反复对比参数与材料能力</td><td>评测流量到站后未留资即失联</td></tr>
+                <tr><td class="bold">下单决策</td><td>官网与平台之间比价、等促销；客单 $349–$1,049，决策周期数周</td><td>加购流失无人挽回；官网购买的独有权益没被讲透</td></tr>
+                <tr><td class="bold">装机与首打</td><td>拆箱装机、连网、安装切片软件、打首个测试件</td><td>卡点靠用户自查与客服工单；首打失败易变成退货与差评</td></tr>
+                <tr><td class="bold">日常打印</td><td>持续消耗耗材，更换喷嘴、打印板等备件</td><td>官方耗材无复购触达，用户流向第三方</td></tr>
+                <tr><td class="bold">进阶与换代</td><td>加装多色套件、购入第二台，2–3 年后换代</td><td>换代时机与老客专享价靠用户自己发现</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">QIDI 用户结构信号</div>
+          <div class="card-body p-sm">
+            <div class="signal-row"><div class="left"><div class="label">整机客单价区间</div><div class="hint">官网公开定价</div></div><div class="value">$349–$1,049</div></div>
+            <div class="signal-row"><div class="left"><div class="label">购前决策周期</div><div class="hint">评测对比型买家 · 电子品类转化率仅约 1.2–3.6%</div></div><div class="value">数周</div></div>
+            <div class="signal-row"><div class="left"><div class="label">设备持有使用期</div><div class="hint">持续消耗耗材与备件</div></div><div class="value">3 年+</div></div>
+            <div class="signal-row"><div class="left"><div class="label">硬件换代周期</div><div class="hint">高频用户更短 · 新品发售触发</div></div><div class="value">2–3 年</div></div>
+            <div class="signal-row"><div class="left"><div class="label">获取新客成本 vs 维护老客</div><div class="hint">经典商业研究（HBR / Bain）</div></div><div class="value">5–25×</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">QIDI 的窗口期：会员定价起步 + 黑五在前 + App 刚上线</div>
+        <div class="callout-body">
+          <p>· <span class="bold">会员分层定价刚引入</span>：要让"会员价"产生复购与换代收入，需要自动化引擎持续识别与触达每一层用户；</p>
+          <p>· <span class="bold">Q4 大促在前</span>：黑五 / 网一是年度促销主战场，预热体系须在 9 月就位；</p>
+          <p>· <span class="bold">QIDI Maker App 刚上线</span>：App 用户即购机人群，购后旅程的精准通道从第一天就能运营化。</p>
+          <p>一套 MA 体系、一份埋点方案，覆盖全部区域站点与 App。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Funnel + Benchmark -->
+    <section id="s-funnel" class="section-plain">
+      <h2>二、双段漏斗与行业对标：每一层的提升都有出处</h2>
+      <p>
+        QIDI 的漏斗分两段：<span class="bold">购前漏斗</span>（独立站：访客 → 留资 → 下单，漏损集中在弃单），由场景 1 / 2 / 3 / 8 承接；
+        <span class="bold">购后漏斗</span>（全渠道购机用户：绑定 → 首打 → 复购 → 换代），由场景 4 / 5 / 6 / 7 承接。
+        两段的提升都作用于既有流量与存量用户，<span class="bold">不需要新增广告投放</span>。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">购后设备漏斗 · 当前典型转化 vs MA 自动化后预期（以绑定 App 的用户为 100% 基准，示意）</div>
+        <div class="card-body">
+          <div class="chart" id="chart-funnel"></div>
+          <p class="small muted" style="margin-top:12px">
+            隐含口径（均为示意，Week 1 以真实数据校准）：绑定后 3 天内首打成功 55%→75%（场景 4）、
+            90 天内官方耗材 / 配件首购 15%→30%（场景 5）、24 个月内换代或加购 8%→12%（场景 6）。购前漏斗基准见下表。
+          </p>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <h3>2.1 高客单 DTC 公开市场基准 · 本方案测算依据</h3>
+      <table>
+        <thead><tr>
+          <th>指标</th><th>公开基准（2023–2026）</th><th>对 QIDI 的参考意义</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>邮件订阅留资率</td><td>弹窗订阅率主流区间 3–5%（Wisepops 统计均值 4.8%）</td><td>场景 2 的承接入口，决定自有名单规模</td></tr>
+          <tr class="tone-info"><td>购物车弃单率</td><td>全行业平均约 70%（48 项研究均值 70.19%），移动端约 86%</td><td>弃单挽回（场景 1）是客单价越高、收益越大的旅程</td></tr>
+          <tr class="tone-info"><td>弃单挽回旅程</td><td>每收件人收入 $3.65，为全部旅程类型中最高；平均挽回 3.3%，优秀水平（Top 10%）8–12%</td><td>QIDI 客单 $349–$1,049，单封邮件杠杆最大</td></tr>
+          <tr><td>欢迎序列</td><td>转化 8–12%（优秀水平 12–18%），首封打开率 45–60%</td><td>承接现有"新订阅送券"留资动作（场景 2）</td></tr>
+          <tr><td>自动化流收入贡献</td><td>自动化旅程以 2–5% 的发送量贡献邮件渠道收入 37–41%（优秀水平 45%+）</td><td>大促期是集中兑现点（场景 3）</td></tr>
+          <tr><td>购后旅程</td><td>打开率 58–62%，为全部旅程类型中最高</td><td>首打引导与交叉销售挂在最高打开率的窗口上（场景 4 / 5）</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">桌面级 3D 打印机头部品牌</div><div class="card-body">
+          <ul>
+            <li>独立站直接访问占比 <span class="bold">54.9%</span>、自然搜索 30%、付费广告仅 6%</li>
+            <li>购机一年后 <span class="bold">90%+ 用户仍活跃</span>（软硬件生态支撑）</li>
+            <li>参与社区活动的用户复购率 <span class="bold">68%</span>、客单价 +42%</li>
+          </ul>
+          <p class="small muted">生命周期运营做成护城河的行业标杆——这是 QIDI 的追平窗口而非终局</p>
+        </div></div>
+        <div class="card"><div class="card-header">桌面级 3D 打印机 DTC 品牌</div><div class="card-body">
+          <ul>
+            <li>独立站体系升级后自然流量 <span class="bold">+30%</span>、转化率 <span class="bold">+20%</span></li>
+            <li>独立站上线 5 个月即突破 <span class="bold">2000 万人民币成交</span></li>
+          </ul>
+          <p class="small muted">同为"平台 + 独立站"双轮的出海打印机品牌，路径可直接参考</p>
+        </div></div>
+        <div class="card"><div class="card-header">多渠道自动化 · 跨行业公开数据</div><div class="card-body">
+          <ul>
+            <li>使用 3 个以上渠道的营销活动，购买率较单渠道高 <span class="bold">287%</span>（13.5 万组活动统计）</li>
+            <li>WhatsApp 互动消息响应约为单向推送的 <span class="bold">3 倍</span></li>
+          </ul>
+          <p class="small muted">渠道协同的通用规律，适用于 Email + Push 的组合编排</p>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout success">
+        <div class="callout-title">收入增量测算（示意 · 全部为假设值，Week 1 以真实数据校准）</div>
+        <div class="callout-body">
+          <p>以独立站<span class="bold">月访问 15 万、客单价 500 美元</span>假设：</p>
+          <p>· <span class="bold">弃单挽回</span>：按行业平均加购与弃单率、弃单邮件每收件人收入 $3.65（行业基准）估算，约 <span class="bold">1.5–2 万美元/月，年化 $18–24 万美元</span>；</p>
+          <p>· <span class="bold">新订阅承接</span>：月新订阅约 5,000 人 × 首单转化提升 3%（绝对值）≈ 150 单量级的额外首单。</p>
+          <p>耗材交叉销售、大促预热与老客换代为额外增量。访客规模变动时测算按比例缩放，非承诺值。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why EngageLab -->
+    <section id="s-why" class="section-plain">
+      <h2>三、EngageLab MA 为什么匹配 QIDI 的出海阶段</h2>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">全球触达底座 · 出海原生</div><div class="card-body">
+          <ul>
+            <li>覆盖 <span class="bold">220+ 国家和地区</span>的消息云底座，美国、欧洲、日本多区域站同一平台管理</li>
+            <li>Email / App Push / Web Push / SMS / WhatsApp 统一编排，<span class="bold">按市场自由组合渠道</span></li>
+            <li>智能时区推送：按终端用户本地时间触达，多市场并行不出现深夜打扰</li>
+            <li>数据中心就近接入，可按数据合规需求灵活扩展</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">硬件品牌全生命周期自动化</div><div class="card-body">
+          <ul>
+            <li>购前转化到购后换代的八大场景<span class="bold">全链路自动运行，无人工介入</span></li>
+            <li><span class="bold">设备事件旅程（绑定 / 首打 / 打印任务）是纯邮件工具做不到的</span>——硬件品牌与普通 DTC 的差别</li>
+            <li>按<span class="bold">购买次数、耗材类型偏好、购机时间</span>等属性自动分层触达</li>
+            <li>先观察再触达 + 提前退出：只唤醒需要的用户，完成下单立即停止触达</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">AI × 效果可验收</div><div class="card-body">
+          <ul>
+            <li>AI Write for Me 自动生成<span class="bold">多语言推送文案</span>，一条旅程多区域站复用</li>
+            <li>最佳发送时机、智能分群、<span class="bold">条件分流对比</span>——每条旅程可跑双版本择优</li>
+            <li>旅程级转化与收入统计：订单数、收入、<span class="bold">每收件人收入（RPR）</span>归因清晰</li>
+            <li>旅程级频控 + 可发送时间窗口，避免过度打扰</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>3.1 EngageLab 渠道能力在 QIDI 场景中的角色</h3>
+      <table>
+        <thead><tr>
+          <th>渠道</th><th>在 QIDI 用户运营中的主要用途</th><th class="align-right">成本</th>
+          <th class="align-right">效果参考</th><th class="align-center">适用场景</th><th class="align-center">适用市场</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td>Email</td><td>弃单挽回、欢迎序列、大促编排、耗材复购、换代激励</td><td class="align-right">按条收费</td><td class="align-right">触发类打开率 25-35%</td><td class="align-center">购前 + 购后主力</td><td class="align-center">北美 / 欧洲</td></tr>
+          <tr class="tone-success"><td>App Push</td><td>购机人群精准通道：首打引导、配件推荐、换代倒计时</td><td class="align-right">按 DAU 定价</td><td class="align-right">行为触发类点击率 6-12%</td><td class="align-center">购后设备旅程</td><td class="align-center">全球 App 用户</td></tr>
+          <tr><td>Web Push</td><td>无邮箱弃单访客即时召回、大促提醒</td><td class="align-right">按 DAU 定价</td><td class="align-right">点击率 6-10%</td><td class="align-center">购前辅助</td><td class="align-center">全球站点</td></tr>
+          <tr><td>SMS</td><td>大促最后提醒兜底</td><td class="align-right">按目标国家定价</td><td class="align-right">阅读率 98%，30 分钟内</td><td class="align-center">大促兜底</td><td class="align-center">北美为主</td></tr>
+          <tr><td>WhatsApp Business</td><td>对话式触达与售后互动</td><td class="align-right">按目标国家定价</td><td class="align-right">互动响应约为推送 3 倍</td><td class="align-center">可选扩展</td><td class="align-center">欧洲部分 / 拉美</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:8px">
+        备注：已有 Email / 短信平台可经 SMTP / SMPP 对接；LINE · Telegram · Messenger 即将上线（<strong>LINE 匹配日本站</strong>）。
+        会员体系与 Discord / Facebook 社区等运营资产由 MA 承接执行：自动识别老客触发专享价、首打成功自动邀请入社区。
+      </p>
+    </section>
+
+    <!-- 4. Scenarios Overview -->
+    <section id="s-scenarios" class="section-plain">
+      <h2>四、八大高 ROI 运营场景：购前转化线 + 购后设备线并行</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center">#</th><th>场景</th><th>生命周期阶段</th>
+          <th>触达策略</th><th>核心亮点</th><th class="align-right">预期效果</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td class="align-center">1</td><td>弃单挽回 · 内容先行</td><td>转化挽回</td><td>加购事件触发 · 按邮箱有无分流 · Email + Web Push</td><td>挽回主打官网权益与机型对比，直击"去平台比价、等折扣"的流失原因</td><td class="align-right">挽回弃单 8-12%（优秀水平）</td></tr>
+          <tr class="tone-success"><td class="align-center">2</td><td>新订阅欢迎 · 首单转化</td><td>漏斗入口</td><td>注册/订阅事件触发 · 先观察再触达 · Email 三段</td><td>承接现有"新订阅送券"，沉淀 Amazon 拿不到的自有名单</td><td class="align-right">订阅者首单转化 +25-40%</td></tr>
+          <tr class="tone-success"><td class="align-center">3</td><td>大促预热三段式（黑五）</td><td>大促节奏</td><td>属性圈选 · 老客/新客分流 · 预热 → 开卖 → 倒计时</td><td>老客推耗材配件、新客推整机——同一场大促，两套钱包；9 月启动预热</td><td class="align-right">早鸟锁价 · 蓄水转化可测</td></tr>
+          <tr class="tone-info"><td class="align-center">4</td><td>首打激活引导与评价</td><td>购后激活</td><td>打印机绑定事件触发 · 4h/24h/48h 递进 · App Push + Email</td><td>排障前置到工单发生之前；首打成功自动请求评价，补齐 review 增长飞轮</td><td class="align-right">工单量与差评率可测下降</td></tr>
+          <tr class="tone-info"><td class="align-center">5</td><td>耗材配件交叉销售</td><td>复购提升</td><td>首打成功触发 · 首购礼遇 · Email + App Push</td><td>用首购礼遇建立官方耗材习惯，修复附着缺口</td><td class="align-right">官方耗材首购转化可测</td></tr>
+          <tr class="tone-info"><td class="align-center">6</td><td>老客换代激励</td><td>忠诚与客单</td><td>属性「老客 · 购机超 18 个月」· 新品发售期上线 · Email + App Push</td><td>会员专享价已验证，MA 让它自动找到每个符合条件的老客</td><td class="align-right">换代转化 · $700+ 高客单</td></tr>
+          <tr class="tone-info"><td class="align-center">7</td><td>固件 / 新功能发布唤醒</td><td>购后激活</td><td>固件发布时上线 · 按活跃度分流 · App Push + Email</td><td>固件发布即设备唤醒脉冲——设备醒了，耗材消耗才会重启</td><td class="align-right">沉睡设备恢复打印可测</td></tr>
+          <tr class="tone-success"><td class="align-center">8</td><td>心愿单 · 降价与大促提醒</td><td>意向捕捉</td><td>心愿单 / 降价订阅触发 · 监听降价事件 · Email + Web Push</td><td>把"等降价"的观望流量从比价社区收编回自有触达——用户主动订阅，意向最高</td><td class="align-right">观望流量转化可测</td></tr>
+          <tr class="tone-muted"><td class="align-center">—</td><td>耗材周期补货</td><td>复购提升</td><td>属性「最后耗材购买超 45 天」· Email</td><td>待场景 5 建立官方耗材习惯后启动；App 侧打印时长数据可做补货预测</td><td class="align-right">二期上线</td></tr>
+          <tr class="tone-muted"><td class="align-center">—</td><td>保修注册与延保到期</td><td>购后服务</td><td>发货后引导注册 · 到期前 60 / 30 天推延保</td><td>行业已把延保商品化并打包进促销，纯增量收入</td><td class="align-right">二期上线</td></tr>
+          <tr class="tone-muted"><td class="align-center">—</td><td>晒单 / 评测激励</td><td>社区与口碑</td><td>首打成功后邀请晒单 · 审核通过发耗材券</td><td>行业头部以"内容贡献换耗材"驱动社区与复购（已被多家验证的品类杠杆）</td><td class="align-right">二期 · 随会员体系</td></tr>
+          <tr class="tone-muted"><td class="align-center">—</td><td>多台购买者 B 端培育</td><td>客单与 LTV</td><td>同账户 ≥ 2 台或批量询价触发 · 转入 B2B 序列</td><td>高温工程定位天然偏小微 B 端，批量报价与教育方案单独承接，不进普通促销流</td><td class="align-right">二期上线</td></tr>
+          <tr class="tone-muted"><td class="align-center">—</td><td>沉睡召回</td><td>流失挽回</td><td>属性「长期未活跃」· Email</td><td>行业转化率最低的旅程类型，主要用于名单清洗</td><td class="align-right">二期 · 低频维护</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:8px">
+        场景 1–3、8 为<strong>购前转化线</strong>（1 / 2 / 3 首月上线，弃单挽回上线当周即产生可归因订单；8 埋点轻量，可随首月）；
+        4–7 为<strong>购后设备线</strong>（依赖 App 设备事件与订单属性，随接入节奏上线）。末五条为延伸场景，建议二期再上。
+      </p>
+      <div class="spacer-sm"></div>
+      <div class="callout neutral">
+        <div class="callout-title">旅程协同护栏（多条旅程并行运行的全局约定）</div>
+        <div class="callout-body">
+          <p>· 全局频控：每用户每周营销消息建议 ≤ 3 条（弃单、首打引导等生命周期节点按旅程节奏豁免）；营销触达默认包裹可发送时间 09:00–21:00（终端用户时区）；</p>
+          <p>· 意向类互斥：用户加购后由弃单旅程（场景 1）接管，暂停其心愿单降价提醒（场景 8），不重复触达；</p>
+          <p>· 购后错峰：场景 4 评价请求（首打后 3 天）与场景 5 首购礼遇（首打后 7 天）错峰 4 天，不叠加打扰；</p>
+          <p>· 提前退出：完成下单 / 购买即从对应旅程立即退出；</p>
+          <p>· <strong>Week 1 前置确认项</strong>：独立站建站平台事件上报能力、现有邮件工具共存方式与名单导出、心愿单 / 降价订阅功能与商品降价事件可得性、App 设备事件（绑定 / 首打 / 打印任务）可得性、固件发布节奏、订单品类字段与老客属性同步、Email 发送域名与短信签名配置。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain">
+      <h2>场景 1｜弃单挽回 · 内容先行</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">GMV 直接产出 · 首月见效</span>
+        <span class="pill pill-info">转化挽回</span>
+        <span class="pill">加购事件触发 · 按邮箱有无分流 · Email + Web Push</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>用户加购后先等 1 小时看是否自然成交。未下单则按是否留有邮箱分流：<span class="bold">有邮箱走三段 Email——先讲官网购买的独有权益（延保、赠耗材、官方直发），再给机型对比与真实打印案例，最后才是限时优惠</span>；未留邮箱用 Web Push 两段兜底。首触不放券、先内容后优惠。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · Web Push　｜　<span class="bold">触发方式</span>：事件「加入购物车」，7 天后可重入　｜　<span class="bold">退出条件</span>：完成下单即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j1"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              高客单买家加购后转去 Amazon 比价、看评测、等折扣，<span class="bold">约 70% 一去不回（移动端更高）</span>——
+              这是漏斗中损失金额最大的环节，而"官网买有什么不一样"从未被讲给犹豫中的买家听。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"加入购物车"触发（可再次进入，间隔 7 天）</li>
+                <li><span class="bold">等待 1 小时</span>：给自然成交留窗口，已下单经提前退出直接出旅程</li>
+                <li><span class="bold">条件分支</span>：按属性"是否留有邮箱"分流</li>
+                <li><span class="bold">有邮箱 · Email 1</span>：用户刚活跃过 → 直接发购物车提醒 + 官网购买权益（延保 / 赠耗材 / 官方直发）</li>
+                <li><span class="bold">等待事件 24 小时</span>：监听"完成购买"→ 已下单退出 / 超时继续</li>
+                <li><span class="bold">可发送时间 09:00–21:00 + Email 2</span>：机型对比（按用途选型）+ 真实打印案例与评测合集</li>
+                <li><span class="bold">等待事件 48 小时</span>：监听"完成购买"→ 已下单退出 / 超时继续</li>
+                <li><span class="bold">可发送时间 + Email 3</span>：限时优惠 + 客服入口，内附"降价提醒"一键订阅（观望者转入场景 8 承接）</li>
+                <li><span class="bold">未留邮箱 · Web Push</span>：购物车提醒 → 等待事件 24 小时 → 可发送时间 + Web Push 限时优惠</li>
+                <li><span class="bold">提前退出</span>：事件"完成购买"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"完成购买"事件，统计时间 3 天</li>
+                <li><span class="bold">埋点</span>：加购 / 购买两个事件由前端上报，与 SDK 集成同批完成（含品类字段合计约 3–5 天）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              弃单邮件每收件人收入 <span class="bold">$3.65</span>（行业基准），为全部旅程类型中最高；
+              平均挽回 3.3%，多段递进的优秀水平（Top 10%）可达 <span class="bold">8–12%</span>。按 QIDI 客单价，这条旅程上线当周即产生可归因订单，是 4 周测试的主验收旅程。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain">
+      <h2>场景 2｜新订阅欢迎 · 首单转化</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">漏斗入口 · 首月见效</span>
+        <span class="pill pill-info">留资承接</span>
+        <span class="pill">注册/订阅事件触发 · 先观察再触达 · Email 三段</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>用户注册 / 订阅后先观察 1 小时——<span class="bold">已在浏览的直接发按用途选型指南（工程材料 / 大尺寸 / 入门）+ 会员券；未浏览的先提醒券到账，48 小时后补机型对比与评测集</span>。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email　｜　<span class="bold">触发方式</span>：事件「注册 / 订阅成功」（SDK 自带埋点）　｜　<span class="bold">退出条件</span>：完成下单即提前退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j2"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              订阅送券后没有承接序列，<span class="bold">券"躺"在邮箱里过期</span>；
+              留资后只收到批量促销邮件，首单转化靠自然发生——而订阅后 72 小时正是首单决策黄金窗口。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"注册 / 订阅成功"触发（一次性事件，不可再次进入；SDK 自带埋点，零开发）</li>
+                <li><span class="bold">等待 1 小时</span>：先观察用户是否自主浏览</li>
+                <li><span class="bold">等待事件 24 小时</span>：监听"页面浏览"（SDK 自带）→ 已浏览 / 超时未浏览分流</li>
+                <li><span class="bold">已浏览 · Email</span>：用户活跃中 → 直接发按用途选型指南（工程材料 / 大尺寸 / 入门）+ 会员券</li>
+                <li><span class="bold">超时未浏览 · 可发送时间 09:00–21:00 + Email</span>：会员券到账提醒 + 选型入口</li>
+                <li><span class="bold">等待 48 小时 → 可发送时间 + Email</span>：机型对比 + 评测集</li>
+                <li><span class="bold">提前退出</span>：事件"完成购买"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"完成购买"事件，统计时间 3 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              欢迎序列转化参考 <span class="bold">8–12%</span>（优秀水平 12–18%），首封打开率 45–60%——约为常规营销邮件的 2–3 倍。
+              欢迎内容绑定会员分层定价（<span class="bold">"入会即享会员价"比一次性折扣码更能沉淀长期关系</span>），
+              每一个留下的邮箱都是 Amazon 渠道拿不到的自有用户资产。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain">
+      <h2>场景 3｜大促预热三段式（黑五 / 网一）</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">Q4 主战场</span>
+        <span class="pill pill-info">大促节奏</span>
+        <span class="pill">属性圈选 · 老客/新客分流 · 预热 → 开卖 → 倒计时</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>大促前 7 天上线：<span class="bold">老客收耗材配件专享预告、新客收整机大促预告</span>；开卖日发开卖通知，3 天未购的在收官前收最后 24 小时提醒。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · Web Push　｜　<span class="bold">触发方式</span>：属性「邮箱不为空」（旅程于大促前 7 天发布），30 天后可重入　｜　<span class="bold">退出条件</span>：完成下单即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j3"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              大促依赖开卖日自然流量，<span class="bold">缺预热蓄水</span>——高客单硬件决策周期数周，来不及被说服的买家直接流向平台比价；
+              老客与新客收到同一套群发内容，会员专享价触达不到位。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"邮箱不为空"触发（旅程于大促前 7 天发布上线；可再次进入，间隔 30 天）</li>
+                <li><span class="bold">条件分支</span>：按属性"累计购买次数"分流（已购机老客 / 未购机新客）</li>
+                <li><span class="bold">老客路径</span>：可发送时间 09:00–21:00 + Email 耗材配件专享预告</li>
+                <li><span class="bold">新客路径</span>：可发送时间 + Email 整机大促预告</li>
+                <li><span class="bold">等待 7 天（至开卖日）→ 可发送时间 + Email</span>：开卖通知 + 限时价</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"完成购买"→ 已下单退出 / 超时继续</li>
+                <li><span class="bold">可发送时间 + Web Push</span>：最后 24 小时提醒</li>
+                <li><span class="bold">提前退出</span>：事件"完成购买"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"完成购买"事件，统计时间 5 天</li>
+                <li><span class="bold">埋点</span>：购买事件与场景 1 同批接入</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              高客单买家决策数周，开卖日才触达等于放弃了大部分预算——<span class="bold">预热蓄水决定大促成绩</span>。
+              本品类买家强锚定"史低价"，预热主打史低与早鸟锁价；场景 8 的心愿单人群是天然蓄水池。今年建好，明年复用。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain">
+      <h2>场景 4｜首打激活引导与评价</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">降工单 · 保口碑</span>
+        <span class="pill pill-info">购后激活</span>
+        <span class="pill">打印机绑定事件触发 · 4h/24h/48h 递进 · App Push + Email</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>打印机绑定后 4 小时推装机连网、切片软件设置与首打测试件教程；24 小时未开打推视频教程 + 网络排障，再 48 小时未打转客服邮件介入（内含工单入口）。<span class="bold">首打成功的恭喜、邀入社区，3 天后请求评价</span>。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「打印机绑定成功」（每台仅一次）　｜　<span class="bold">退出条件</span>：首次打印成功即完成转化</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j4"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              网络配置、切片软件、材料适配问题集中在首打阶段，<span class="bold">全靠人工客服逐单解答</span>；
+              首打失败直接转化为退货与差评——而评测与评分正是这个品类的转化命脉。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"打印机绑定成功"触发（每台仅一次首绑，不可再次进入）</li>
+                <li><span class="bold">等待 4 小时 → App Push</span>：开箱装机、连网与切片软件设置 + 首打测试件教程（刚绑定，用户在活跃窗口）</li>
+                <li><span class="bold">等待事件 24 小时</span>：监听"首次打印成功"→ 已首打走恭喜路径 / 超时继续</li>
+                <li><span class="bold">可发送时间 09:00–21:00 + App Push</span>：视频教程 + 网络连接排障</li>
+                <li><span class="bold">等待事件 48 小时</span>：监听"首次打印成功"→ 已首打走恭喜路径 / 超时继续</li>
+                <li><span class="bold">可发送时间 + Email</span>：客服协助介入（内含工单入口链接）</li>
+                <li><span class="bold">恭喜路径 · Email</span>：首打成功恭喜 + 社区邀请 → 等待 3 天 → 可发送时间 + Email 请求评价（可附耗材券激励）</li>
+                <li><span class="bold">转化统计</span>：监听"首次打印成功"事件，统计时间 7 天</li>
+                <li><span class="bold">埋点</span>：绑定 / 首打成功两个事件由 App 上报，按 App 迭代节奏排期</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              购后旅程打开率 <span class="bold">58–62%</span>，为全部旅程类型中最高——是排障与评价内容触达效率最高的窗口。
+              这条旅程的考核指标是<span class="bold">工单量、退货率与评价数</span>，而非订单归因。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain">
+      <h2>场景 5｜耗材配件交叉销售</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">建立官方耗材附着</span>
+        <span class="pill pill-info">复购提升</span>
+        <span class="pill">首打成功触发 · 首购礼遇 · Email + App Push</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>首打成功 7 天后推<span class="bold">官方耗材首购礼遇</span>；5 天内下单的追加补货周期提示，未下单的用 App Push 推配件与多色套件。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · App Push　｜　<span class="bold">触发方式</span>：事件「首次打印成功」　｜　<span class="bold">退出条件</span>：完成购买即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j5"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              用户默认流向价格更低的第三方耗材，<span class="bold">官方耗材附着率低</span>；
+              首打之后没有任何复购引导，配件与多色套件的加购机会白白流失。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"首次打印成功"触发（不可再次进入；与场景 4 评价请求错峰 4 天）</li>
+                <li><span class="bold">等待 7 天</span>：让触达发生在用户已开始日常打印之后</li>
+                <li><span class="bold">可发送时间 09:00–21:00 + Email</span>：官方耗材首购礼遇——按购机型号推荐适配材料（高温机型配工程材料与烘干建议），多卷组合阶梯价拉升客单</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"完成购买"→ 已购买 / 超时分流</li>
+                <li><span class="bold">已购买 · Email</span>：补货周期提示（"到点自动提醒"预告）→ 结束</li>
+                <li><span class="bold">超时未购 · 可发送时间 + App Push</span>：多色套件与备件推荐（喷嘴 / 打印板等易耗备件）</li>
+                <li><span class="bold">提前退出</span>：事件"完成购买"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"完成购买"事件（品类 = 耗材 / 配件），统计时间 7 天</li>
+                <li><span class="bold">埋点</span>：购买事件需携带品类字段（与场景 1 同批设计）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              交叉销售挂在购后最高打开率的窗口上；<span class="bold">首购礼遇建立官方耗材使用习惯后，二期的周期补货旅程才有名单可跑</span>——
+              这是把"硬件一次性生意"变成"耗材长期生意"的第一步。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain">
+      <h2>场景 6｜老客换代激励</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">会员价自动化</span>
+        <span class="pill pill-info">忠诚与客单</span>
+        <span class="pill">属性「老客 · 购机超 18 个月」· 新品发售期上线 · Email + App Push</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>新品发售时，向<span class="bold">购机超 18 个月的老客推会员专享价</span>；7 天未购补一封升级对比，再 7 天后 App Push 倒计时收尾。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · App Push　｜　<span class="bold">触发方式</span>：属性「累计购买 ≥ 1 且 最后整机购买超 18 个月」（新品发售期上线），365 天后可重入　｜　<span class="bold">退出条件</span>：完成购买即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j6"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              换代周期 2–3 年，但<span class="bold">何时换、换什么全靠用户自己想起来</span>；
+              老客专享价目前靠公告页曝光，覆盖不到每一个符合条件的老客。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"累计购买 ≥ 1 且 最后整机购买距今超过 540 天"触发（新品发售期上线；可再次进入，间隔 365 天）</li>
+                <li><span class="bold">可发送时间 09:00–21:00 + Email</span>：新品发布 + 老客专享价（属性触发进入，用户未必活跃）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"完成购买"→ 已购买退出 / 超时继续</li>
+                <li><span class="bold">可发送时间 + Email</span>：升级对比 + 以旧焕新（新旧机型参数对照）</li>
+                <li><span class="bold">等待 7 天 → 可发送时间 + App Push</span>：老客价倒计时收尾</li>
+                <li><span class="bold">提前退出</span>：事件"完成购买"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"完成购买"事件（品类 = 整机），统计时间 7 天</li>
+                <li><span class="bold">埋点</span>：老客属性由订单数据同步</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              换代是 <span class="bold">$700–$1,050</span> 的高客单交易，维护老客的成本远低于获取新客（经典商业研究给出 5–25 倍差距）。
+              QIDI 已用"老客专享价"验证了这条路径；行业头部品牌至今无官方以旧换新且用户呼声高——
+              <span class="bold">若配合回收抵扣，这条旅程还能成为可传播的差异点</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 7 -->
+    <section id="s-journey7" class="section-plain">
+      <h2>场景 7｜固件 / 新功能发布唤醒</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">沉睡设备唤醒</span>
+        <span class="pill pill-info">购后激活</span>
+        <span class="pill">固件发布时上线 · 按活跃度分流 · App Push + Email</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>新固件发布时按设备活跃度分流：<span class="bold">活跃用户 App Push 新功能与一键更新；超过 30 天未打印的用户收 Email"你的打印机免费变强了"</span>，附一个适配新功能的打印项目，7 天仍未恢复打印再补一条 App Push。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「绑定机型支持新固件」（固件发布时上线），90 天后可重入　｜　<span class="bold">退出条件</span>：恢复打印即完成转化</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j7"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              沉睡的设备 = 停止的耗材消耗。固件持续给老机型加新能力是免费的唤醒弹药，
+              但<span class="bold">更新提示只出现在设备屏幕与切片软件里——不开机打印的用户永远看不到</span>。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"绑定机型 ∈ 新固件支持列表"触发（每次固件发布时上线；可再次进入，间隔 90 天，随固件节奏）</li>
+                <li><span class="bold">条件分支</span>：按属性"最后打印时间距今"分流（不超过 30 天 / 超过 30 天）</li>
+                <li><span class="bold">活跃路径</span>：可发送时间 09:00–21:00 + App Push 新功能上线与一键更新</li>
+                <li><span class="bold">沉睡路径</span>：可发送时间 + Email "你的打印机免费变强了" + 一个适配新功能的打印项目</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"打印任务启动"→ 已恢复打印退出 / 超时继续</li>
+                <li><span class="bold">可发送时间 + App Push</span>：更新提醒 + 打印项目再触达</li>
+                <li><span class="bold">转化统计</span>：监听"打印任务启动"事件，统计时间 7 天</li>
+                <li><span class="bold">埋点</span>：属性"最后打印时间"与事件"打印任务启动"由 App 上报，"绑定机型"随设备绑定获得</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              行业头部品牌以固件持续为老机型增加新能力，<span class="bold">每次发布都形成一次全量设备活跃脉冲</span>（公开观察）。
+              设备被唤醒，耗材与配件消耗才会重启——这条旅程直接为场景 5 的复购供给名单。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 8 -->
+    <section id="s-journey8" class="section-plain">
+      <h2>场景 8｜心愿单 · 降价与大促提醒</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">观望流量收编 · 埋点轻量</span>
+        <span class="pill pill-info">意向捕捉</span>
+        <span class="pill">心愿单 / 降价订阅触发 · 监听降价事件 · Email + Web Push</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>用户在商详页加入心愿单或订阅降价提醒后，旅程持续监听：<span class="bold">关注的商品降价即时发 Email 通知（带商品与现价），大促开始发早鸟专享码</span>；48 小时未下单再补一条史低与库存提示。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · Web Push　｜　<span class="bold">触发方式</span>：事件「加入心愿单 / 订阅降价提醒」，30 天后可重入（不同商品可重复）　｜　<span class="bold">退出条件</span>：完成下单即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j8"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              本品类买家强锚定历史低价——"等到目标价再买"是真实的决策方式。
+              这批<span class="bold">离下单最近的观望者现在守在第三方比价社区里，降价时品牌反而是最后触达他们的</span>。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"加入心愿单 / 订阅降价提醒"触发（可再次进入，间隔 30 天，不同商品可重复触发）</li>
+                <li><span class="bold">监听事件</span>：分支监听"关注商品降价"或"大促开始"（永久等待，触发即向下流转）</li>
+                <li><span class="bold">降价路径</span>：可发送时间 09:00–21:00 + Email 降价即时通知（插入变量带入商品名与现价）</li>
+                <li><span class="bold">大促路径</span>：可发送时间 + Email 大促早鸟专享码（与场景 3 联动，心愿单人群提前锁价）</li>
+                <li><span class="bold">等待事件 48 小时</span>：监听"完成购买"→ 已下单退出 / 超时继续</li>
+                <li><span class="bold">可发送时间 + Web Push</span>：史低与库存提示</li>
+                <li><span class="bold">提前退出</span>：事件"完成购买"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"完成购买"事件，统计时间 3 天</li>
+                <li><span class="bold">埋点</span>：心愿单 / 降价订阅事件由前端上报，商品降价事件由商城价格系统上报</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              降价 / 大促通知是<span class="bold">用户主动订阅的消息</span>——零打扰感、意向最高：
+              同类意向型通知（如到货提醒）行业基准转化约 <span class="bold">6.7%</span>、每收件人收入 $9+，为全部自动化消息中最高。
+              把"等降价"流量从比价社区收编回自有渠道，黑五前对心愿单人群定向早鸟码，是大促蓄水池的直接来源。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Compliance -->
+    <section id="s-compliance" class="section-plain">
+      <h2>五、数据安全与合规</h2>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">数据安全</div><div class="card-body">
+          <ul>
+            <li>全链路 <span class="bold">TLS</span> 加密传输，传输层与存储层数据分离</li>
+            <li>VPC 网络隔离，数据中心多活灾备，可按客户安全需求灵活扩展</li>
+            <li><span class="bold">海外用户数据存储于海外数据中心</span>，可按目标市场合规要求选择数据区域，支持签署数据处理协议（DPA）</li>
+            <li>PII 字段脱敏、基于角色的访问控制（RBAC），SDK 接入不改变现有账号与推送链路</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">合规支持</div><div class="card-body">
+          <ul>
+            <li>已通过 <span class="bold">GDPR</span> 合规认证 + <span class="bold">SOC 2 Type II</span> 安全审计——覆盖欧美市场核心合规要求</li>
+            <li>可协助满足各目标市场本地数据保护法规要求（美国 CCPA / CAN-SPAM 等）</li>
+            <li>支持用户数据删除、导出、退订与同意管理等合规权利；Email 退订与 Push 权限状态自动同步</li>
+            <li>消息发送记录保留 <span class="bold">60 天</span>，可随时导出用于合规审查</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">运营护栏</div>
+        <div class="callout-body">
+          <p>· 频控策略：旅程级频控，限制每用户每日 / 每周 / 每小时的消息数量上限，多旅程自动去重；</p>
+          <p>· 可发送时间：基于终端用户本地时区自动控制发送窗口，多市场并行不出现深夜打扰；</p>
+          <p>· 内容预览：消息发送前支持完整样式预览；</p>
+          <p>· 提前退出：用户完成目标行为（如下单）立即从旅程退出。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>六、4 周测试计划 · 以 GMV 口径验收</h2>
+      <div class="callout warn" style="margin-bottom:14px">
+        <div class="callout-title">时间窗口：距 2026 黑五（11 月 27 日）约 14 周</div>
+        <div class="callout-body">
+          8 月底启动 4 周测试 → 10 月初完成核心旅程验证与扩量 → 11 月中旬上线大促三段式旅程（场景 3），
+          正好赶在 Q4 旺季前完成体系搭建。错过这个窗口，下一个自然验证节点要等到明年新品发售季。
+        </div>
+      </div>
+      <table>
+        <thead><tr>
+          <th class="align-center">周</th><th>阶段</th><th>工作内容</th>
+          <th>交付物</th><th>验收指标</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="align-center bold">Week 1</td><td>启动 &amp; 数据打通</td><td>确定试点站点（美国站 / 欧洲站）· SDK 集成（0.5–1 天）+ 电商事件上报（3–5 天，并行）· 订阅 / 退订名单导入 · Email 发送域名配置 · 现有邮件工具共存方式确认</td><td>埋点方案 + 数据入库验证 + 通道开通完成</td><td>核心事件入库率 ≥ 95%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 2</td><td>首批旅程上线</td><td>场景 1 弃单挽回 + 场景 2 新订阅欢迎（当前就有真实流量的 2 条）上线 · 小流量验证（5–10%）· AI 多语言文案初稿 + 运营审校</td><td>场景 1 / 2 跑通 + 各渠道送达确认</td><td>旅程触发成功率 ≥ 98%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 3</td><td>扩量 &amp; 补齐购前线</td><td>场景 1 / 2 扩全量并开启<span class="bold">条件分流对比</span>（文案双版本择优）· 场景 8 心愿单降价提醒上线（埋点轻量）· 场景 3 大促预热搭建，9 月启动预热 · 对照组观测</td><td>场景 1 / 2 全量 + 场景 8 上线 + 场景 3 就绪</td><td>触发类 Email 打开率 ≥ 25%，弃单挽回产生可归因订单（GMV 口径）</td></tr>
+          <tr class="tone-success"><td class="align-center bold">Week 4</td><td>复盘 &amp; 排期购后线</td><td>数据复盘 · 按旅程结算挽回订单、收入增量与<span class="bold">每收件人收入（RPR）</span>（与 GA4 归因口径对照说明）· 场景 4–7 所需设备事件（绑定 / 首打 / 打印任务）与老客属性排期</td><td>测试结案报告 + 购后线上线计划</td><td>各旅程 RPR 与增量 GMV 可量化</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="stat"><div class="stat-value">4 周</div><div class="stat-label">从数据打通到首批旅程全量运行、GMV 可归因</div></div>
+        <div class="stat"><div class="stat-value success">$0</div><div class="stat-label">测试期间授权费用（商务报价在对齐会提供）</div></div>
+        <div class="stat"><div class="stat-value">专属</div><div class="stat-label">EngageLab 交付团队 1v1 支持</div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <h3>双方投入 · 一张表说清</h3>
+      <table>
+        <thead><tr>
+          <th style="width:24%">事项</th><th style="width:38%">EngageLab 交付团队</th><th>QIDI 侧投入</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="bold">SDK 与事件接入</td><td>接入指南 + 1v1 技术支持</td><td>前端 0.5–1 天；后端电商事件 3–5 天（可并行）</td></tr>
+          <tr><td class="bold">旅程搭建</td><td>全部旅程由交付团队 1v1 搭建</td><td>运营确认规则与节奏（约 0.5 天）</td></tr>
+          <tr><td class="bold">文案与多语言</td><td>AI 生成多语言初稿 + 模板</td><td>运营审校，每周约 2–3 小时</td></tr>
+          <tr><td class="bold">数据与复盘</td><td>归因报表 + 周度数据解读 + 结案报告</td><td>参加周会（每周 0.5 小时）</td></tr>
+        </tbody>
+      </table>
+
+      <div class="spacer-md"></div>
+      <hr class="divider" />
+      <h3>下一步建议</h3>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header"><span class="step-num">1</span>对齐数据打通优先级</div><div class="card-body">
+          确认独立站建站平台的事件上报能力、现有邮件工具的共存方式与名单导出、
+          App 设备事件可得性、订单品类字段，以及 Email 发送域名配置。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">2</span>开发对接</div><div class="card-body">
+          按 EngageLab 交付团队提供的埋点方案完成事件与属性上报，
+          <span class="bold">合计约 1 周开发量，可并行推进</span>。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">3</span>测试验证</div><div class="card-body">
+          开通测试 VIP 账号，优先搭建<span class="bold">弃单挽回 + 新订阅欢迎</span> 2 条当前就有真实流量的旅程，
+          小流量验证后扩全量，4 周内以 GMV 口径产出效果报告。
+        </div></div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      本方案中 QIDI 品牌与业务信息（多区域独立站、Amazon / Walmart 官方店、QIDI Maker App、
+      会员分层定价、新订阅优惠等）仅作为业务背景引用，来源于 QIDI 官网及公开报道（2024–2026）。
+      行业基准与对标数据来自电商自动化行业报告及桌面级 3D 打印机行业公开案例综合整理，非 QIDI 自身实测数据；
+      测算示意基于公开假设值，实际效果以双方 4 周测试期数据为准。
+      <br />© EngageLab · Marketing Automation Solution for QIDI Tech
+    </footer>
+  </main>
+
+  <script>
+  (function () {
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', neutral: '#94a3b8', muted: '#cbd5e1',
+      text: '#374151', textMute: '#9ca3af', grid: '#e5e7eb',
+    };
+
+    function svg(w, h) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('width', '100%');
+      s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      return s;
+    }
+    function el(tag, attrs) {
+      const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 700, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 72;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 20) * 20 || 100;
+      const groupCount = categories.length;
+      const barsPerGroup = series.length;
+      const groupW = innerW / groupCount;
+      const barW = Math.min(22, (groupW - 12) / barsPerGroup);
+      const s = svg(W, H);
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+      if (series.length > 1) {
+        const legY = H - 14;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          legX += 14 + (se.name.length * 11) + 24;
+        });
+      }
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {}; const incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1; changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const definedAnchors = withAnchor.filter(n => n.anchor !== null).map(n => n.anchor);
+        const startX = definedAnchors.length > 0
+          ? Math.max(20, definedAnchors.reduce((a, b) => a + b, 0) / definedAnchors.length - totalW / 2)
+          : (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          const x = startX + i * (NODE_W + NODE_GAP);
+          const y = 20 + r * (NODE_H + RANK_GAP);
+          pos[it.node.id] = { x, y };
+        });
+      });
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) {
+              cur.x = prev.x + NODE_W + NODE_GAP;
+            }
+          }
+        });
+      }
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // ========== Charts ==========
+
+    // 购后设备漏斗（以绑定 App 用户为 100% 基准，示意）
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['绑定 App', '3 天内首打成功', '90 天内官方耗材配件首购', '24 个月内换代/加购'],
+      series: [
+        { name: '典型现状（示意）', data: [100, 55, 15, 8], tone: 'neutral' },
+        { name: 'MA 自动化后预期（示意）', data: [100, 75, 30, 12], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // ========== Journey DAGs ==========
+
+    // 场景 1: 弃单挽回
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 加入购物车' },
+        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '1 小时' },
+        { id: 'br',    kind: 'branch',   title: '条件分支',    sub: '属性: 是否留有邮箱' },
+        { id: 'e1',    kind: 'channel',  title: 'Email',      sub: '购物车提醒 · 官网权益' },
+        { id: 'wf1',   kind: 'branch',   title: '等待事件',    sub: '购买 · 24 小时' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已下单',      sub: '' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e2',    kind: 'channel',  title: 'Email',      sub: '机型对比 · 打印案例' },
+        { id: 'wf2',   kind: 'branch',   title: '等待事件',    sub: '购买 · 48 小时' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已下单',      sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e3',    kind: 'channel',  title: 'Email',      sub: '限时优惠 · 客服入口' },
+        { id: 'wp1',   kind: 'channel',  title: 'Web Push',   sub: '购物车提醒' },
+        { id: 'wf3',   kind: 'branch',   title: '等待事件',    sub: '购买 · 24 小时' },
+        { id: 'ok3',   kind: 'exitOk',   title: '已下单',      sub: '' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'wp2',   kind: 'channel',  title: 'Web Push',   sub: '限时优惠' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start', to: 'w1' },
+        { from: 'w1',    to: 'br' },
+        { from: 'br',    to: 'e1',  label: '有邮箱' },
+        { from: 'e1',    to: 'wf1' },
+        { from: 'wf1',   to: 'ok1', label: '已下单' },
+        { from: 'wf1',   to: 'st1', label: '超时未下单' },
+        { from: 'st1',   to: 'e2' },
+        { from: 'e2',    to: 'wf2' },
+        { from: 'wf2',   to: 'ok2', label: '已下单' },
+        { from: 'wf2',   to: 'st2', label: '超时未下单' },
+        { from: 'st2',   to: 'e3' },
+        { from: 'e3',    to: 'end' },
+        { from: 'br',    to: 'wp1', label: '未留邮箱' },
+        { from: 'wp1',   to: 'wf3' },
+        { from: 'wf3',   to: 'ok3', label: '已下单' },
+        { from: 'wf3',   to: 'st3', label: '超时未下单' },
+        { from: 'st3',   to: 'wp2' },
+        { from: 'wp2',   to: 'end' },
+      ]);
+
+    // 场景 2: 新订阅欢迎
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 注册/订阅成功' },
+        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '1 小时' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '页面浏览 · 24 小时' },
+        { id: 'e1',    kind: 'channel',  title: 'Email',      sub: '选型指南 + 会员券' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e2',    kind: 'channel',  title: 'Email',      sub: '会员券到账 · 选型' },
+        { id: 'w2',    kind: 'wait',     title: '等待',       sub: '48 小时' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e3',    kind: 'channel',  title: 'Email',      sub: '机型对比 · 评测集' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start', to: 'w1' },
+        { from: 'w1',    to: 'wfe1' },
+        { from: 'wfe1',  to: 'e1', label: '已浏览' },
+        { from: 'e1',    to: 'end' },
+        { from: 'wfe1',  to: 'st1', label: '超时未浏览' },
+        { from: 'st1',   to: 'e2' },
+        { from: 'e2',    to: 'w2' },
+        { from: 'w2',    to: 'st2' },
+        { from: 'st2',   to: 'e3' },
+        { from: 'e3',    to: 'end' },
+      ]);
+
+    // 场景 3: 大促预热
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '属性: 邮箱不为空' },
+        { id: 'br',    kind: 'branch',   title: '条件分支',    sub: '属性: 累计购买次数' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e1',    kind: 'channel',  title: 'Email',      sub: '老客预告 · 耗材配件' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e2',    kind: 'channel',  title: 'Email',      sub: '新客预告 · 整机大促' },
+        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '7 天 · 至开卖日' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e3',    kind: 'channel',  title: 'Email',      sub: '开卖通知 · 限时价' },
+        { id: 'wf1',   kind: 'branch',   title: '等待事件',    sub: '购买 · 3 天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已下单',      sub: '' },
+        { id: 'st4',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'wp1',   kind: 'channel',  title: 'Web Push',   sub: '最后 24 小时提醒' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start', to: 'br' },
+        { from: 'br',    to: 'st1', label: '已购机' },
+        { from: 'st1',   to: 'e1' },
+        { from: 'br',    to: 'st2', label: '未购机' },
+        { from: 'st2',   to: 'e2' },
+        { from: 'e1',    to: 'w1' },
+        { from: 'e2',    to: 'w1' },
+        { from: 'w1',    to: 'st3' },
+        { from: 'st3',   to: 'e3' },
+        { from: 'e3',    to: 'wf1' },
+        { from: 'wf1',   to: 'ok1', label: '已下单' },
+        { from: 'wf1',   to: 'st4', label: '超时未下单' },
+        { from: 'st4',   to: 'wp1' },
+        { from: 'wp1',   to: 'end' },
+      ]);
+
+    // 场景 4: 首打激活引导与评价
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 打印机绑定成功' },
+        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '4 小时' },
+        { id: 'p1',    kind: 'channel',  title: 'App Push',   sub: '开箱 · 首打教程' },
+        { id: 'wf1',   kind: 'branch',   title: '等待事件',    sub: '首打成功 · 24 小时' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'p2',    kind: 'channel',  title: 'App Push',   sub: '视频教程 · 网络排障' },
+        { id: 'wf2',   kind: 'branch',   title: '等待事件',    sub: '首打成功 · 48 小时' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'ecs',   kind: 'channel',  title: 'Email',      sub: '客服协助 · 工单入口' },
+        { id: 'ecg',   kind: 'channel',  title: 'Email',      sub: '恭喜 · 社区邀请' },
+        { id: 'w2',    kind: 'wait',     title: '等待',       sub: '3 天' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'erv',   kind: 'channel',  title: 'Email',      sub: '请求评价' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start', to: 'w1' },
+        { from: 'w1',    to: 'p1' },
+        { from: 'p1',    to: 'wf1' },
+        { from: 'wf1',   to: 'ecg', label: '已首打' },
+        { from: 'wf1',   to: 'st1', label: '超时未打' },
+        { from: 'st1',   to: 'p2' },
+        { from: 'p2',    to: 'wf2' },
+        { from: 'wf2',   to: 'ecg', label: '已首打' },
+        { from: 'wf2',   to: 'st2', label: '超时未打' },
+        { from: 'st2',   to: 'ecs' },
+        { from: 'ecs',   to: 'end' },
+        { from: 'ecg',   to: 'w2' },
+        { from: 'w2',    to: 'st3' },
+        { from: 'st3',   to: 'erv' },
+        { from: 'erv',   to: 'end' },
+      ]);
+
+    // 场景 5: 耗材配件交叉销售
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 首次打印成功' },
+        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '7 天' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e1',    kind: 'channel',  title: 'Email',      sub: '官方耗材首购礼遇' },
+        { id: 'wf1',   kind: 'branch',   title: '等待事件',    sub: '购买 · 5 天' },
+        { id: 'e2',    kind: 'channel',  title: 'Email',      sub: '补货周期提示' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已购买',      sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'p1',    kind: 'channel',  title: 'App Push',   sub: '配件 · 多色套件推荐' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start', to: 'w1' },
+        { from: 'w1',    to: 'st1' },
+        { from: 'st1',   to: 'e1' },
+        { from: 'e1',    to: 'wf1' },
+        { from: 'wf1',   to: 'e2', label: '已购买' },
+        { from: 'e2',    to: 'ok1' },
+        { from: 'wf1',   to: 'st2', label: '超时未购' },
+        { from: 'st2',   to: 'p1' },
+        { from: 'p1',    to: 'end' },
+      ]);
+
+    // 场景 6: 老客换代激励
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '老客 · 购机超 18 个月' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e1',    kind: 'channel',  title: 'Email',      sub: '新品发布 · 老客专享价' },
+        { id: 'wf1',   kind: 'branch',   title: '等待事件',    sub: '购买 · 7 天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已购买',      sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e2',    kind: 'channel',  title: 'Email',      sub: '升级对比 · 以旧焕新' },
+        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '7 天' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'p1',    kind: 'channel',  title: 'App Push',   sub: '老客价倒计时' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1',   to: 'e1' },
+        { from: 'e1',    to: 'wf1' },
+        { from: 'wf1',   to: 'ok1', label: '已购买' },
+        { from: 'wf1',   to: 'st2', label: '超时未购' },
+        { from: 'st2',   to: 'e2' },
+        { from: 'e2',    to: 'w1' },
+        { from: 'w1',    to: 'st3' },
+        { from: 'st3',   to: 'p1' },
+        { from: 'p1',    to: 'end' },
+      ]);
+
+    // 场景 7: 固件/新功能发布唤醒
+    drawJourney(document.getElementById('dag-j7'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '属性: 机型支持新固件' },
+        { id: 'br',    kind: 'branch',   title: '条件分支',    sub: '属性: 最后打印距今' },
+        { id: 'st0',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'p1',    kind: 'channel',  title: 'App Push',   sub: '新功能 · 一键更新' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e1',    kind: 'channel',  title: 'Email',      sub: '设备焕新 · 打印项目' },
+        { id: 'wf1',   kind: 'branch',   title: '等待事件',    sub: '打印任务启动 · 7 天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已恢复打印',  sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'p2',    kind: 'channel',  title: 'App Push',   sub: '更新提醒 · 打印项目' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start', to: 'br' },
+        { from: 'br',    to: 'st0', label: '≤30 天 · 活跃' },
+        { from: 'st0',   to: 'p1' },
+        { from: 'p1',    to: 'end' },
+        { from: 'br',    to: 'st1', label: '>30 天 · 沉睡' },
+        { from: 'st1',   to: 'e1' },
+        { from: 'e1',    to: 'wf1' },
+        { from: 'wf1',   to: 'ok1', label: '已打印' },
+        { from: 'wf1',   to: 'st2', label: '超时未打印' },
+        { from: 'st2',   to: 'p2' },
+        { from: 'p2',    to: 'end' },
+      ]);
+
+    // 场景 8: 心愿单降价与大促提醒
+    drawJourney(document.getElementById('dag-j8'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 心愿单/降价订阅' },
+        { id: 'lis',   kind: 'branch',   title: '监听事件',    sub: '降价 / 大促 · 永久等待' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e1',    kind: 'channel',  title: 'Email',      sub: '降价即时通知' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'e2',    kind: 'channel',  title: 'Email',      sub: '大促早鸟专享码' },
+        { id: 'wf1',   kind: 'branch',   title: '等待事件',    sub: '购买 · 48 小时' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已下单',      sub: '' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
+        { id: 'wp1',   kind: 'channel',  title: 'Web Push',   sub: '史低与库存提示' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+      ],
+      [
+        { from: 'start', to: 'lis' },
+        { from: 'lis',   to: 'st1', label: '商品降价' },
+        { from: 'st1',   to: 'e1' },
+        { from: 'lis',   to: 'st2', label: '大促开始' },
+        { from: 'st2',   to: 'e2' },
+        { from: 'e1',    to: 'wf1' },
+        { from: 'e2',    to: 'wf1' },
+        { from: 'wf1',   to: 'ok1', label: '已下单' },
+        { from: 'wf1',   to: 'st3', label: '超时未下单' },
+        { from: 'st3',   to: 'wp1' },
+        { from: 'wp1',   to: 'end' },
+      ]);
+
+    // Sticky nav highlight
+    const links = document.querySelectorAll('.toc-bar a');
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    function onScroll() {
+      const y = window.scrollY + 100;
+      let cur = sections[0]?.id;
+      sections.forEach(s => { if (s.offsetTop <= y) cur = s.id; });
+      links.forEach(a => a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--accent)' : '');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+  </script>
+</body>
+</html>
