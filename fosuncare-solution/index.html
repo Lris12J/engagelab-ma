@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>复星康养 客户全生命周期自动化方案 · EngageLab MA</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+    .warn-num { color: var(--warning); font-weight: 700; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 920px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: 0 0 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .hero { break-before: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA · 复星康养方案</span>
+      <a href="#s-market">行业机会</a>
+      <a href="#s-funnel">漏斗与对标</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-scenarios">十二场景</a>
+      <a href="#s-journey1">旅程编排</a>
+      <a href="#s-compliance">合规安全</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <a class="back-home" href="../">← 返回首页</a>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pills">
+        <span class="pill pill-info">复星康养 · 定制提案</span>
+        <span class="pill">星堡 · 星健 · 蜂邻 三条业务线</span>
+        <span class="pill">机构养老 · 康复护理 · 社区居家 · 康养旅居</span>
+        <span class="pill pill-warn">秋冬旅居与重阳敬老季前完成体系搭建</span>
+        <span class="pill pill-success">4 周 0 元测试 · 接入轻量</span>
+      </div>
+      <h1>复星康养 · 客户全生命周期自动化方案</h1>
+      <p class="hero-subtitle">
+        康养行业的每一位客户，都要走过<span class="bold">咨询 → 到访 → 试住 → 签约 → 长期在住 → 口碑转介</span>这条长达数月甚至数年的路径，
+        而这条路径今天几乎完全依赖销售顾问与管家的个人跟进。顾问能覆盖的是最热的那一批线索，
+        <span class="bold">剩下的意向客户在沉默中流失，且流失得毫无痕迹</span>。
+        本方案用 EngageLab MA 把这条路径上每一个"该说话的时刻"变成自动运行的旅程——
+        接入轻量，4 周 0 元测试，先从当前就有真实流量的两条旅程验证起。
+      </p>
+      <hr class="divider" />
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value info">3.23 亿</div><div class="stat-label">中国 60 岁及以上人口，占比 23.0%（国家统计局，2025 年末）</div></div>
+        <div class="stat"><div class="stat-value warn">不足 50%</div><div class="stat-label">全国养老机构平均入住率（民政部公开数据，2024）</div></div>
+        <div class="stat"><div class="stat-value success">60–90%</div><div class="stat-label">中高端养老社区客户来源中口碑转介的占比（行业调研）</div></div>
+        <div class="stat"><div class="stat-value">0 元 · 4 周</div><div class="stat-label">测试期授权费用 · 首批旅程上线周期</div></div>
+      </div>
+    </section>
+
+    <!-- 1. Market -->
+    <section id="s-market" class="section-plain">
+      <h2>一、康养行业的增长瓶颈，不在需求侧，在承接侧</h2>
+      <p>
+        银发经济的总量毫无悬念：2025 年规模约 8–9 万亿元，2035 年预计达 30 万亿元量级。
+        但行业的现实是<span class="bold">全国养老机构平均入住率长期不足 50%，部分地区床位空置率超过 60%</span>——
+        需求旺盛与床位空置同时存在，缺口不在获客总量，而在<span class="bold">线索到签约之间那段长达数月的承接过程</span>。
+      </p>
+      <p>
+        复星康养自 2012 年星堡起步，已形成<span class="bold">星堡（机构养老）+ 星健（康复护理）+ 蜂邻（社区居家）</span>三条产品线，
+        覆盖上海、宁波、苏州、天津、成都等城市，累计床位超 1.1 万张、管理面积超 53 万平方米、覆盖客流近 4 万人次
+        （截至 2023 年 11 月公开披露口径，作为业务规模背景引用）。
+        <span class="bold">这个规模意味着线索池、在住家庭、社区服务用户三类可运营资产已经存在</span>——
+        方案要解决的不是"从哪找人"，而是"已经进来的人，怎么被系统性地接住"。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">意向客户池结构 · 自动化运营前后（占累计线索比例，四层合计 100%，示意）</div>
+          <div class="card-body">
+            <div class="chart" id="chart-market"></div>
+            <p class="small muted" style="margin-top:10px">
+              本图为<strong>占比结构</strong>：线索总量不变，MA 把更多停在"了解一下"的线索推进到下一环节
+              （到访预约、试住体验、签约入住），沉默层的占比因此下降、下三层相应变厚。
+              注：本图为存量累计口径，与下节漏斗图的单期转化率口径不同；实际基线以复星康养自有数据盘点为准。
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">康养客户运营的关键信号</div>
+          <div class="card-body p-sm">
+            <div class="signal-row"><div class="left"><div class="label">全国养老机构平均入住率</div><div class="hint">民政部公开数据 · 2024</div></div><div class="value">&lt; 50%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">中高端社区口碑转介占客户来源</div><div class="hint">行业研究机构对新一线 CCRC 项目的调研</div></div><div class="value">60 – 90%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">跨省旅居客流的主力年龄段</div><div class="hint">60–75 岁低龄健康长者 · 行业研究报告</div></div><div class="value">60 – 75 岁</div></div>
+            <div class="signal-row"><div class="left"><div class="label">长三角/珠三角/京津冀贡献的旅居客流</div><div class="hint">跨省旅居养老流向研究</div></div><div class="value">60%+</div></div>
+            <div class="signal-row"><div class="left"><div class="label">旅宿类订单提交后放弃支付比例</div><div class="hint">旅宿行业公开基准（与旅居短住同构）</div></div><div class="value">75 – 90%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">事务类消息打开率 vs 促销类</div><div class="hint">行前提醒、确认单 vs 推广内容</div></div><div class="value">50-70% vs 20-28%</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">康养客户运营的三个特殊性——决定了旅程要怎么设计</div>
+        <div class="callout-body">
+          <p>· <span class="bold">决策单元是家庭，不是个人</span>：付费与决策方多为 40–60 岁子女，服务体验方是长者。触达要分端——家属端走 App / 邮件承接信息密度，长者端以短信与线下管家为主、控频次；</p>
+          <p>· <span class="bold">两类客群的决策节奏截然不同</span>：刚需照护型（失能失智、术后康复）决策常在两周内完成，慢一步就被别家接走；活力自理型（CCRC、旅居）决策周期以月甚至年计，需要长期低频培育。同一套旅程体系必须同时容纳这两种节奏；</p>
+          <p>· <span class="bold">口碑是主渠道，而口碑要被触发</span>：中高端社区的客户来源中口碑转介占 60–90%，但绝大多数机构没有系统化的转介触发机制——满意的家属不会主动想起推荐这件事，需要在正确的时点被提醒一次。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Funnel + Benchmark -->
+    <section id="s-funnel" class="section-plain">
+      <h2>二、客户漏斗与行业对标：每一层的漏损都有明确出处</h2>
+      <p>
+        从一条咨询留资到一位长期在住的长者，中间要跨过四道明确的坎。
+        <span class="bold">这条漏斗的提升作用于已经进来的线索与已经在住的家庭，不需要新增广告投放</span>。
+        以下为行业典型形态（示意），实际基线在 Week 1 用复星康养自有数据校准。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">机构养老销售漏斗 · 当前典型转化 vs MA 自动化后预期（单期转化率口径，以当期咨询留资为 100%，示意）</div>
+        <div class="card-body">
+          <div class="chart" id="chart-funnel"></div>
+          <p class="small muted" style="margin-top:12px">
+            隐含口径：留资→到访 35%→46%（场景 1）、到访→试住 34%→43%（场景 2）、试住→签约 42%→50%（场景 3）、
+            签约→12 个月续住 80%→86%（场景 7）。各环节提升幅度与第四节对应场景的预期效果一致。
+          </p>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <h3>2.1 每个环节的当前漏损</h3>
+      <table>
+        <thead><tr><th>环节</th><th class="align-right">当前典型漏损</th><th>漏损发生的真实原因</th></tr></thead>
+        <tbody>
+          <tr><td>咨询留资 → 首次到访</td><td class="align-right"><span class="warn-num">约 65%</span></td><td>顾问优先跟进最热线索，其余线索在名单里沉默；没有第二次、第三次自动触达</td></tr>
+          <tr><td>首次到访 → 试住体验</td><td class="align-right"><span class="warn-num">约 66%</span></td><td>参观完"回去和家人商量"，之后无人再给一次决策所需的信息</td></tr>
+          <tr><td>试住体验 → 签约入住</td><td class="align-right"><span class="warn-num">约 58%</span></td><td>试住 7–30 天是转化黄金窗口，但家属焦虑点（费用、照护等级、长者适应）无人按节奏回应</td></tr>
+          <tr><td>签约入住 → 12 个月续住</td><td class="align-right"><span class="warn-num">约 20%</span></td><td>家属对社区内日常无感知，满意度下滑到退住时才被发现</td></tr>
+          <tr><td>旅居订单提交 → 完成支付</td><td class="align-right"><span class="warn-num">75 – 90%</span></td><td>与旅宿行业同构：提交后犹豫、比价、被打断，无自动挽回序列</td></tr>
+          <tr><td>社区服务卡到期 → 续卡</td><td class="align-right"><span class="warn-num">依赖门店提醒</span></td><td>到期日分散在每一天，人工无法逐户提醒，续卡完全看用户自己记不记得</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:8px">
+        漏损比例为行业典型形态示意（对应上方漏斗图口径）；旅居与旅宿类基准来自旅宿行业公开研究。
+      </p>
+      <div class="spacer-md"></div>
+      <h3>2.2 可参考的公开基准 · 本方案测算依据</h3>
+      <table>
+        <thead><tr>
+          <th>指标</th><th>公开基准（2023–2026）</th><th>对复星康养的参考意义</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-info"><td>多渠道 vs 单渠道</td><td>使用 3 个及以上渠道的营销活动，购买率较单渠道高 287%（13.5 万组活动统计）</td><td>家属端 App + 短信 + 邮件组合编排，是转化差距最大的单一变量</td></tr>
+          <tr class="tone-info"><td>旅宿类订单放弃率</td><td>酒店直销站 75–90%，显著高于电商平均的约 70%</td><td>旅居 / 短住的弃订挽回（场景 5）是见效最快的一条旅程</td></tr>
+          <tr><td>个性化挽回序列</td><td>旅宿行业挽回序列打开率 45%+，转化 6–12%</td><td>弃订挽回的效果区间可直接对标</td></tr>
+          <tr><td>事务类 vs 促销类消息</td><td>确认单、行前提醒等事务类打开率 50–70%，促销类 20–28%</td><td>本方案的行前、在住、报告类触达全部属事务类，天然高打开</td></tr>
+          <tr><td>口碑转介占客户来源</td><td>某新一线中高端 CCRC 项目口碑转介占比约 90%；标杆项目"老带新"比例达 60%</td><td>场景 10 把口碑从"自然发生"变成"被系统触发"</td></tr>
+          <tr><td>推送通道优化</td><td>南亚头部住宿平台通过推送通道能力优化，特定安卓机型送达率提升 44%</td><td>家属端 App Push 的送达是所有旅程效果的地基</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">南亚头部住宿平台（公开案例）</div><div class="card-body">
+          <ul>
+            <li>推送通道能力优化后，特定安卓机型送达率 <span class="bold">+44%</span></li>
+            <li>基于搜索与预订历史的动态内容消息，唤醒沉睡用户</li>
+            <li>把活跃与沉睡用户拆成不同旅程，而非统一群发</li>
+          </ul>
+          <p class="small muted">"预订 → 入住 → 离店 → 复购"的编排结构与旅居短住完全同构</p>
+        </div></div>
+        <div class="card"><div class="card-header">国际度假集团会员运营（公开基准）</div><div class="card-body">
+          <ul>
+            <li>行前提醒、确认单等事务类消息打开率 <span class="bold">50–70%</span></li>
+            <li>订单放弃挽回序列转化 <span class="bold">6–12%</span></li>
+            <li>离店后满意度回访是复购与转介的关键触发点</li>
+          </ul>
+          <p class="small muted">康养旅居与度假住宿的客户旅程可直接平移（场景 5、6）</p>
+        </div></div>
+        <div class="card"><div class="card-header">中高端养老社区（行业调研）</div><div class="card-body">
+          <ul>
+            <li>口碑转介占客户来源 <span class="bold">60–90%</span></li>
+            <li>某项目未设物质激励，口碑传播依然成立——推荐动机源于满意度而非奖励</li>
+            <li>刚需客群决策周期常在 <span class="bold">两周内</span>完成</li>
+          </ul>
+          <p class="small muted">决定了场景 10 的触发条件是"满意度"而不是"发券"</p>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout success">
+        <div class="callout-title">增量测算（示意 · 全部为假设值，Week 1 以真实数据校准）</div>
+        <div class="callout-body">
+          <p>以<span class="bold">单个 400 床位社区、月均咨询留资 200 条、月费 1.2 万元、平均在住 30 个月</span>假设：</p>
+          <p>· <span class="bold">留资到签约</span>：转化率 5% → 8%（取本方案漏斗预期的保守端），每月多 6 位长者签约，对应合同期总价值约 <span class="bold">216 万元</span>；</p>
+          <p>· <span class="bold">旅居弃订挽回</span>：月旅居订单 300 单 × 80% 弃订 × 挽回 8%（取区间下限）≈ 19 单，客单 6,000 元 ≈ <span class="bold">11 万元/月</span>；</p>
+          <p>· <span class="bold">服务卡续卡</span>：蜂邻服务卡续卡率每提升 10%，直接体现为社区业务的存量续费收入。</p>
+          <p>以上仅为方法示意，真实基线（线索量、月费、旅居客单、服务卡规模）在 Week 1 由双方共同确认后重算。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why EngageLab -->
+    <section id="s-why" class="section-plain">
+      <h2>三、EngageLab MA 为什么匹配复星康养的业务形态</h2>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">面向"家庭决策单元"的分端触达</div><div class="card-body">
+          <ul>
+            <li>App Push / 短信 / 邮件 / Web Push 在<span class="bold">同一条旅程画布</span>中编排，家属端与长者端走不同渠道与频次</li>
+            <li>消息支持<span class="bold">插入变量</span>，变量值可来自事件上报或 WebHook 请求返回——续卡提醒直接带上本期已用服务次数，旅居提醒直接带上线路与出发日期</li>
+            <li>「可发送时间」按终端用户时区控制发送窗口，<span class="bold">不出现夜间打扰长者与家属</span>的情况</li>
+            <li>无论触点是 App、小程序 H5 还是官网，同一份事件与属性上报方案统一覆盖</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">为长周期决策而生的编排能力</div><div class="card-body">
+          <ul>
+            <li>属性<span class="bold">日期偏移</span>触发：服务卡到期前 15 天、旅居入住日前 7 天、入住周年当日，全部自动到点触发</li>
+            <li>属性<span class="bold">距今天数</span>触发：最后一次到访距今超过 60 天的意向客户，自动进入分层召回</li>
+            <li><span class="bold">先观察再触达</span>：事件触发后先用「等待事件」看用户是否已自行完成目标，已完成直接结束，不打扰</li>
+            <li><span class="bold">提前退出</span>：一旦预约到访 / 完成签约 / 完成续卡，立即从当前旅程退出</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">顾问做人的事，MA 做系统的事</div><div class="card-body">
+          <ul>
+            <li>旅程级<span class="bold">转化与收入统计</span>：每条旅程带来多少到访预约、试住预约、签约与旅居订单，归因清晰</li>
+            <li><span class="bold">条件分流对比</span>：同一条旅程跑两版文案与礼遇，用数据择优</li>
+            <li>旅程级<span class="bold">频控</span>：限制每用户每日 / 每周 / 每小时消息量，守住康养品牌的沟通分寸</li>
+            <li>AI Write for Me 生成差异化文案；最佳发送时机与智能分群减少无差别打扰</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <div class="callout neutral">
+        <div class="callout-title">复星康养已有的运营资产，MA 作为执行引擎承接</div>
+        <div class="callout-body">
+          <p>销售顾问与管家团队、社区开放日与体验中心、老年大学与社群活动、保险合作渠道导入的客户——
+          这些是复星康养已经建成的运营资产，<span class="bold">不是触达渠道，也不需要被替代</span>。
+          MA 的定位是它们的执行引擎：把"顾问记不住、也顾不过来"的长尾跟进、到点提醒、分层培育、口碑触发交给系统自动完成，
+          让顾问的时间集中在真正需要人来沟通的高价值环节——试住期陪伴、费用与照护方案沟通、低满意度回访。</p>
+        </div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>3.1 EngageLab 渠道能力在复星康养场景中的角色</h3>
+      <table>
+        <thead><tr>
+          <th>渠道</th><th>在康养客户运营中的主要用途</th><th class="align-right">成本</th>
+          <th class="align-right">效果参考</th><th class="align-center">适用场景</th><th class="align-center">适用市场</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td>App Push 通知</td><td>家属端月度关怀报告提醒、试住期陪伴、旅居行前与在住提醒、服务卡续卡、活动报名</td><td class="align-right">按 DAU 定价</td><td class="align-right">行为触发类点击率 6-12%</td><td class="align-center">家属端主渠道</td><td class="align-center">国内 + 海外</td></tr>
+          <tr class="tone-success"><td>App Push 自定义 / 应用内消息</td><td>会员中心服务卡续费入口、旅居线路推荐位、开放日报名卡片、推荐有礼入口</td><td class="align-right">按 DAU 定价</td><td class="align-right">App 内展示率 25-40%</td><td class="align-center">会员运营位驱动</td><td class="align-center">国内 + 海外</td></tr>
+          <tr class="tone-success"><td>SMS</td><td>线索承接首触、到访与试住邀约、复诊提醒、续卡兜底，以及长者本人的低频关键触达</td><td class="align-right">按目标国家定价</td><td class="align-right">阅读率 98%，30 分钟内</td><td class="align-center">关键节点兜底 · 长者可达</td><td class="align-center">国内 + 海外</td></tr>
+          <tr><td>Email</td><td>参观回访包、户型与收费清单、医养照护方案、旅居行程单、账单与合作机构批量触达</td><td class="align-right">按条收费</td><td class="align-right">事务类打开率 50-70%</td><td class="align-center">正式通知 · 长内容</td><td class="align-center">国内 + 海外</td></tr>
+          <tr><td>Web Push</td><td>官网与旅居预订页访客召回、开放日与新线路上线提醒</td><td class="align-right">按 DAU 定价</td><td class="align-right">点击率 6-10%</td><td class="align-center">Web 端补充</td><td class="align-center">国内 + 海外</td></tr>
+          <tr><td>WhatsApp Business</td><td>境外家属触达、跨境康养旅居客群的行前与在住服务互动</td><td class="align-right">按目标国家定价</td><td class="align-right">打开率 90%+（Meta 公开数据）</td><td class="align-center">跨境客群</td><td class="align-center">海外</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:8px">
+        备注：下一节展开的十条核心旅程以 App Push / SMS / Email 三个渠道为主；
+        Web Push 承接的是官网与旅居预订页的访客召回类场景，建议在核心旅程跑通后作为扩展期补充。
+        如已有邮件 / 短信发送平台，触达通道侧也支持通过 SMTP / SMPP 对接已有通道；
+        若 App 已在使用极光推送，触达通道侧可直接添加 JPush 通道下发。
+        LINE · Telegram · Facebook Messenger 即将上线。全部渠道在同一旅程画布中编排。
+      </p>
+    </section>
+
+    <!-- 4. Scenarios Overview -->
+    <section id="s-scenarios" class="section-plain">
+      <h2>四、十二大高 ROI 运营场景：获客承接 · 在住经营 · 旅居复购 · 口碑裂变四线并行</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center">#</th><th>场景</th><th>承接漏斗环节</th>
+          <th>触达策略</th><th>核心亮点</th><th class="align-right">预期效果</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-success"><td class="align-center">1</td><td>星堡 ｜ 咨询线索承接 → 首次到访预约</td><td>咨询留资 → 首次到访</td><td>留资事件触发 · 短信 + 邮件 + Push 三段培育</td><td>顾问先跟最热的线索，剩下的由系统按节奏跟满三轮，不再靠人记</td><td class="align-right">到访预约率 +25-35%</td></tr>
+          <tr class="tone-success"><td class="align-center">2</td><td>星堡 ｜ 到访后跟进 → 试住体验转化</td><td>首次到访 → 试住体验</td><td>到访事件触发 · 回访包 + 短住邀约 + 在住家属分享</td><td>"回去商量"之后的那次决策，把家人需要的材料按顺序送到</td><td class="align-right">试住预约率 +20-30%</td></tr>
+          <tr class="tone-success"><td class="align-center">3</td><td>星堡 ｜ 试住期陪伴 → 签约转化</td><td>试住体验 → 签约入住</td><td>试住入住事件触发 · 按照护等级分层收尾</td><td>试住期是全漏斗价值密度最高的一段，每一天都该有动作</td><td class="align-right">试住转签约 +15-25%</td></tr>
+          <tr><td class="align-center">4</td><td>星堡 ｜ 意向客户沉睡 · 分层召回</td><td>咨询留资 / 首次到访</td><td>属性「距今超过 60 天」触发 · 到访过与仅咨询两层分开</td><td>到访过的人和只问过一句的人，需要的不是同一条消息</td><td class="align-right">沉睡意向召回 5-12%</td></tr>
+          <tr class="tone-success"><td class="align-center">5</td><td>旅居 ｜ 短住预订弃订挽回</td><td>旅居订单 → 完成支付</td><td>提交订单事件触发 · 三段递进 · 按订单金额分层</td><td>与酒店直销同构的高频高确定性场景，测试期内即可算清 ROI</td><td class="align-right">挽回 6-12% 弃订订单</td></tr>
+          <tr class="tone-success"><td class="align-center">6</td><td>旅居 ｜ 行前 · 在住 · 离店后全程编排</td><td>旅居入住 → 复购 / 转长住</td><td>属性「入住日 T-7」触发 · 行前 · 在住 · 离店三阶段 · 按满意度分流</td><td>事务类消息天然高打开，离店后回访是复购与转长住的唯一触发点</td><td class="align-right">复购与转长住线索可量化</td></tr>
+          <tr class="tone-success"><td class="align-center">7</td><td>星堡 ｜ 家属月度关怀报告 → 续住与满意度</td><td>签约入住 → 12 个月续住</td><td>属性「入住满 30 天」周期触发 · 低满意度自动转人工</td><td>家属的安心感来自"看得见"，满意度下滑要在退住之前被发现</td><td class="align-right">续住率 +5-8%</td></tr>
+          <tr class="tone-success"><td class="align-center">8</td><td>蜂邻 ｜ 服务卡到期 → 续卡自动化</td><td>服务卡到期 → 续卡</td><td>属性「到期日 T-15」触发 · T-15 / T-7 / T-1 / T+7 四段</td><td>到期日分散在每一天，这是人工绝对做不了、系统做起来最省力的一条</td><td class="align-right">续卡率 +10-20%</td></tr>
+          <tr><td class="align-center">9</td><td>星健 ｜ 出院随访 → 居家与长期照护转化</td><td>康复出院 → 长期照护</td><td>出院事件触发 · D3 / D14 / D30 三段 · 按照护等级分层</td><td>出院后 30 天是照护需求最明确的窗口，也是最容易被完全放掉的窗口</td><td class="align-right">复诊预约与照护转化提升</td></tr>
+          <tr class="tone-success"><td class="align-center">10</td><td>全线 ｜ 口碑转介绍 · 老带新激活</td><td>在住家庭 → 新线索</td><td>属性「入住满 90 天 + 满意度 ≥ 4」触发 · 可转发邀请</td><td>口碑本来就占客户来源的大头，缺的只是一次正确时点的提醒</td><td class="align-right">转介线索量结构性增长</td></tr>
+          <tr><td class="align-center">11</td><td>全线 ｜ 长者生日 / 入住周年礼遇</td><td>在住经营</td><td>属性「每年当日」触发 · 一次配置每年运行</td><td>康养品牌的仪式感时刻，家属感知最强的一条低成本触达</td><td class="align-right">家属互动与口碑加成</td></tr>
+          <tr><td class="align-center">12</td><td>全线 ｜ 合作渠道客户权益激活</td><td>外部导入 → 咨询留资</td><td>属性「客户来源 = 合作渠道」圈选 · 权益认知与到访邀约</td><td>保险与企业合作导入的客户，权益知晓率决定了这条渠道的真实产能</td><td class="align-right">合作渠道线索激活率提升</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:8px">
+        场景 1-4 为<strong>获客承接线</strong>，5-6 为<strong>旅居复购线</strong>，7-9 为<strong>在住与服务经营线</strong>，10-12 为<strong>口碑与渠道线</strong>。
+        场景 1-10 为核心旅程，本节后逐一展开；11 / 12 于扩展期上线。
+        见效节奏上，<strong>场景 5 与场景 8 最快</strong>（旅居订单与服务卡到期日每天都在发生，测试期内即有样本量）；
+        场景 1 / 3 承接的是价值最高的机构养老签约，但决策周期长、验收周期相应更长。
+      </p>
+      <div class="spacer-sm"></div>
+      <div class="callout neutral">
+        <div class="callout-title">旅程协同护栏（多条旅程并行运行的全局约定）</div>
+        <div class="callout-body">
+          <p>· 全局频控：每个家属账号每周营销类消息建议 ≤ 3 条；行为触发与到点提醒类旅程（线索承接、弃订挽回、试住陪伴、旅居行前、续卡到期、出院随访）按各自旅程节奏运行、不计入该上限——它们的每一条都对应用户刚发生的一个具体动作或一个明确的时间节点；营销触达默认包裹可发送时间 09:00–20:00（终端用户时区）；</p>
+          <p>· 长者端单独控频：直接发给长者本人的短信每月建议 ≤ 2 条，且不含营销促销内容；</p>
+          <p>· 人群互斥：场景 4 沉睡召回限定"最后咨询或到访距今超过 60 天"，而场景 1 / 2 的旅程跨度分别为 5 天与 12 天，两者天然不重叠；</p>
+          <p>· 前序旅程自动让位：客户一旦推进到预约到访 / 预约试住 / 完成签约，即由场景 1 / 2 / 4 的提前退出与等待事件分支自动移出，不会再收到前序培育消息；</p>
+          <p>· 提前退出（每条旅程各配置一个）：场景 1「预约到访」、场景 2 / 3 / 4「完成签约」、场景 5「完成支付」、场景 6「订单取消」、场景 7「办理退住」、场景 8「完成续卡」、场景 9「购买居家照护服务」、场景 10「发起有效推荐」；</p>
+          <p>· <strong>Week 1 前置确认项</strong>：家属端触点形态（App / 小程序 / H5）与事件上报能力、CRM 中线索与到访记录的可同步性、服务卡到期日与照护等级字段可得性、满意度评价数据来源、短信签名与邮件发送域名配置、老年人个人信息与健康信息的营销触达授权范围。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain">
+      <h2>场景 1｜星堡 · 咨询线索承接 → 首次到访预约</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">优先级最高</span>
+        <span class="pill pill-info">咨询留资 → 首次到访</span>
+        <span class="pill">留资事件触发 · 短信 + 邮件 + Push 三段培育</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>客户在官网、小程序或开放日留下咨询后，先<span class="bold">等 2 小时看顾问是否已约到访</span>；未预约则发短信送上社区介绍与本周开放日时间；2 天后仍未预约，邮件发"长者在社区的一天"实拍与户型收费清单；再过 3 天，App Push 定向邀约本周开放日名额。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：SMS · Email · App Push　｜　<span class="bold">触发方式</span>：事件「提交咨询留资」，30 天后可再进入　｜　<span class="bold">退出条件</span>：完成「预约到访」即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j1"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              咨询线索是全漏斗意向最明确的人群，但顾问的时间是有限的——
+              <span class="bold">先跟最热的那 20%，剩下 80% 停在名单里，没有第二次触达就永远沉默</span>。
+              这些线索的获取成本已经付过了，流失的是纯损失。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"提交咨询留资"触发（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">等待事件 2 小时</span>：监听"预约到访"→ 已预约直接退出（顾问已接手，不重复打扰）/ 未预约继续</li>
+                <li><span class="bold">可发送时间 09:00–20:00 + SMS</span>：社区介绍 + 本周开放日时间。留资可能发生在深夜，长者与家属对夜间短信高度敏感，首触即需时段守护</li>
+                <li><span class="bold">等待事件 2 天</span>：监听"预约到访"→ 已预约退出 / 未预约继续</li>
+                <li><span class="bold">可发送时间 + Email</span>："长者在社区的一天"实拍 + 户型图与收费清单</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"预约到访"→ 已预约退出 / 未预约继续</li>
+                <li><span class="bold">可发送时间 + App Push</span>：本周开放日名额邀约（最后一次触达）</li>
+                <li><span class="bold">提前退出</span>：事件"预约到访"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"预约到访"事件，统计时间 5 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              行为触发类消息打开率显著高于群发；系统化三段培育对到访预约率的提升参考
+              <span class="bold">+25-35%</span>。这条旅程作用于已付费获取的存量线索，是全方案中最先见效、最容易验收的一条。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain">
+      <h2>场景 2｜星堡 · 到访后跟进 → 试住体验转化</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">决策关键期</span>
+        <span class="pill pill-info">首次到访 → 试住体验</span>
+        <span class="pill">到访事件触发 · 回访包 + 短住邀约 + 家属分享</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>长者与家属完成首次参观后，先<span class="bold">留 3 天给家庭内部商量</span>；未预约试住则邮件发参观回访包（户型图、收费清单、照护等级说明、常见问题）；再过 4 天，短信邀约"7 天短住体验"并给出可选日期；仍无动作，App Push 推同社区在住家属的真实分享。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · SMS · App Push　｜　<span class="bold">触发方式</span>：事件「完成到访参观」，60 天后可再进入　｜　<span class="bold">退出条件</span>：预约试住或完成签约即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j2"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点 · "回去和家人商量"之后</div>
+            <div class="callout-body">
+              养老决策要过全家人这一关。参观时讲得再好，回家复述给其他子女、老人配偶时都会失真。
+              <span class="bold">真正的决策会议发生在参观之后的一到两周，而那时机构手上没有任何触点</span>——
+              家属需要的是一份能直接转发给全家看的材料，以及一个低承诺的下一步（短住体验）。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"完成到访参观"触发（可再次进入，间隔 60 天）</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"预约试住"→ 已预约直接退出并转入场景 3 / 未预约继续（留出家庭内部商议时间）</li>
+                <li><span class="bold">可发送时间 09:00–20:00 + Email</span>：参观回访包——户型图、收费清单、照护等级说明、常见问题，一封可直接转发给全家</li>
+                <li><span class="bold">等待事件 4 天</span>：监听"预约试住"→ 已预约退出 / 未预约继续</li>
+                <li><span class="bold">可发送时间 + SMS</span>："7 天短住体验"邀约，附可选入住日期</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"预约试住"→ 已预约退出 / 未预约继续</li>
+                <li><span class="bold">可发送时间 + App Push</span>：同社区在住家属的真实分享（第三方视角比机构自述更有效）</li>
+                <li><span class="bold">提前退出</span>：事件"完成签约"→ 自动退出旅程（预约试住的用户由上述三个等待事件节点分流退出，两条退出路径互补）</li>
+                <li><span class="bold">转化统计</span>：监听"预约试住"事件，统计时间 7 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              把"参观完就断线"改为三段有节奏的信息补充，试住预约率提升参考 <span class="bold">+20-30%</span>。
+              试住是全漏斗转化率最高的下一步动作，推进一位客户到试住，价值远高于多获取十条冷线索。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain">
+      <h2>场景 3｜星堡 · 试住期陪伴 → 签约转化</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">价值密度最高</span>
+        <span class="pill pill-info">试住体验 → 签约入住</span>
+        <span class="pill">试住入住事件触发 · 按照护等级分层收尾</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>长者开始试住当天，向家属发欢迎信息与专属管家联系方式；<span class="bold">第 3 天推送长者适应情况小结</span>，回答家属最焦虑的那个问题；未签约则第 5 天由顾问一对一沟通；仍未签约，按试住期间评估的照护等级分层收尾——自理活力长者推长期居住礼遇与户型清单，需照护长者推医养照护方案与费用测算。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS · Email　｜　<span class="bold">触发方式</span>：事件「试住入住」，90 天后可再进入　｜　<span class="bold">退出条件</span>：完成签约即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j3"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点 · 家属焦虑没有出口</div>
+            <div class="callout-body">
+              试住期间，长者住在社区里，<span class="bold">家属却在社区外焦虑</span>——爸妈吃得惯吗、睡得好吗、有没有人说话、是不是在勉强自己。
+              这些问题没人主动回答，家属只能靠电话里长者一句"还行"来判断，
+              而长者出于不给子女添麻烦的心理，往往报喜不报忧。<span class="bold">试住期陪伴的本质是替家属看见</span>。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"试住入住"触发（可再次进入，间隔 90 天）</li>
+                <li><span class="bold">App Push · 入住欢迎</span>：入住办理当天白天完成，用户处于活跃状态 → 立即发送，附专属管家姓名与联系方式</li>
+                <li><span class="bold">等待 3 天</span>：固定等待，覆盖长者的初期适应期</li>
+                <li><span class="bold">可发送时间 09:00–20:00 + App Push</span>：家属端"长者适应情况小结"（饮食、作息、活动参与），内容在 App 内查看</li>
+                <li><span class="bold">等待事件 2 天</span>：监听"完成签约"→ 已签约退出 / 未签约继续</li>
+                <li><span class="bold">可发送时间 + SMS</span>：顾问一对一沟通预约（费用、照护等级、入住时间三个高频问题）</li>
+                <li><span class="bold">等待事件 2 天</span>：监听"完成签约"→ 已签约退出 / 未签约继续</li>
+                <li><span class="bold">条件分支</span>：按属性"照护等级"分层（自理活力 / 需照护）</li>
+                <li><span class="bold">收尾 · 自理活力</span>：可发送时间 + Email 长期居住礼遇、户型与费用清单</li>
+                <li><span class="bold">收尾 · 需照护</span>：可发送时间 + Email 医养照护方案与费用测算</li>
+                <li><span class="bold">提前退出</span>：事件"完成签约"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"完成签约"事件，统计时间 7 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              试住是全漏斗价值密度最高的一段——每一位试住客户都已完成认知、到访、家庭沟通三道门槛。
+              系统化陪伴对试住转签约的提升参考 <span class="bold">+15-25%</span>，
+              按单份签约的合同期价值计算，这条旅程的单客产出是全方案最高的。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain">
+      <h2>场景 4｜星堡 · 意向客户沉睡 · 分层召回</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">咨询留资 / 首次到访</span>
+        <span class="pill">属性「距今超过 60 天」触发 · 两层分开召回</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>距上次咨询或到访已超过 60 天、仍未签约的意向客户，<span class="bold">按"到访过"与"仅咨询过"两层分开召回</span>：到访过的人已建立现场认知，直接推社区新动态与限时体验价；仅咨询过的人还缺基本判断依据，先补"如何为父母选养老社区"这类认知内容。两轮无响应则结束旅程，60 天后可再进入。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：SMS · Email · App Push　｜　<span class="bold">触发方式</span>：属性「最后一次咨询或到访距今超过 60 天」且未签约，60 天后可再进入　｜　<span class="bold">退出条件</span>：预约到访 / 预约试住 / 完成签约即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j4"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点 · 沉睡不等于没意向</div>
+            <div class="callout-body">
+              养老决策常常是"事件驱动"的：老人一次跌倒、一次住院、子女一次出差安排不开，
+              沉睡半年的意向客户会突然变成本周就要定的刚需。
+              <span class="bold">机构无法预知这个时点，但可以确保在那之前还留在客户的视野里</span>。
+              问题在于，用同一条群发消息对待"来看过社区的人"和"只在网上问过一句的人"，两边都无效。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"最后一次咨询或到访距今超过 60 天"且"未签约"（可再次进入，间隔 60 天，与进入条件阈值一致）</li>
+                <li><span class="bold">条件分支</span>：按属性"是否到访过"分层</li>
+                <li><span class="bold">到访过 · 第一触</span>：可发送时间 09:00–20:00 + SMS 社区新动态与限时体验价</li>
+                <li><span class="bold">到访过 · 等待事件 5 天</span>：设两个事件分支（"预约到访" / "预约试住"）+ 默认分支 → 任一行动即退出 / 无动作走默认分支继续</li>
+                <li><span class="bold">到访过 · 第二触</span>：可发送时间 + App Push 开放日名额</li>
+                <li><span class="bold">仅咨询 · 第一触</span>：可发送时间 + Email"如何为父母选养老社区"认知内容（不推销，先建立判断框架）</li>
+                <li><span class="bold">仅咨询 · 等待事件 7 天</span>：监听"预约到访"→ 已行动退出 / 无动作继续</li>
+                <li><span class="bold">仅咨询 · 第二触</span>：可发送时间 + SMS 顾问一对一咨询入口</li>
+                <li><span class="bold">提前退出</span>：事件"完成签约"→ 自动退出旅程（预约到访 / 预约试住由上述等待事件节点分流退出）</li>
+                <li><span class="bold">转化统计</span>：监听"预约到访"事件，统计时间 5 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              沉睡意向客户的召回率参考 <span class="bold">5-12%</span>。
+              这条旅程处理的是历史积累的全部线索存量——首次运行时覆盖人群规模通常远超日常新增线索，
+              是<span class="bold">上线首月绝对增量最大的一条</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain">
+      <h2>场景 5｜旅居 · 短住预订弃订挽回</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">见效最快</span>
+        <span class="pill pill-info">旅居订单 → 完成支付</span>
+        <span class="pill">提交订单事件触发 · 三段递进 · 按金额分层</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>用户在旅居线路页提交订单但未支付，先<span class="bold">等 30 分钟看是否自然完成</span>；未支付则 App Push 轻提醒，消息中直接带上线路名称与出发日期（变量带入）；4 小时后短信提示同期房量；24 小时仍未支付，按订单金额分层——高价线路由顾问一对一确认行程，普通线路发名额保留提醒。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS · Email　｜　<span class="bold">触发方式</span>：事件「提交旅居订单」，7 天后可再进入　｜　<span class="bold">退出条件</span>：完成支付即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j5"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点 · 旅居订单与酒店订单同构</div>
+            <div class="callout-body">
+              旅宿类订单的放弃率是 <span class="bold">75-90%</span>，远高于电商平均的约 70%——
+              因为出行决策涉及同行人、时间协调、比价三重变量。
+              康养旅居更甚：还要加上长者的身体状况评估与子女的同意。
+              <span class="bold">这类订单不是"不想买"，是"当下没法立刻拍板"</span>，
+              需要的是几个小时后的一次提醒，而不是折扣。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"提交旅居订单"触发（可再次进入，间隔 7 天）</li>
+                <li><span class="bold">等待事件 30 分钟</span>：监听"完成支付"→ 已支付直接退出（自然成交不打扰）/ 未支付继续</li>
+                <li><span class="bold">第一触 · App Push</span>：用户 30 分钟前刚活跃 → 直接发送，不加可发送时间。插入变量带入线路名称与出发日期（值来自下单事件上报）</li>
+                <li><span class="bold">等待事件 4 小时</span>：监听"完成支付"→ 已支付退出 / 未支付继续</li>
+                <li><span class="bold">第二触</span>：可发送时间 09:00–20:00 + SMS 同期房量提示（4 小时后可能已入夜，需时段守护）</li>
+                <li><span class="bold">等待事件 24 小时</span>：监听"完成支付"→ 已支付退出 / 未支付继续</li>
+                <li><span class="bold">条件分支</span>：按属性"订单金额"分层（≥ 1 万元 / &lt; 1 万元）</li>
+                <li><span class="bold">第三触 · 高价线路</span>：可发送时间 + Email 顾问一对一行程与健康评估确认</li>
+                <li><span class="bold">第三触 · 普通线路</span>：可发送时间 + App Push 名额保留提醒</li>
+                <li><span class="bold">提前退出</span>：事件"完成支付"→ 自动退出旅程</li>
+                <li><span class="bold">收入统计</span>：监听"旅居订单支付成功"事件 + 订单金额属性，统计时间 2 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              旅宿行业的挽回序列转化区间为 <span class="bold">6-12%</span>。
+              旅居订单每天都在产生，样本量足够，<span class="bold">这是全方案中最快能算清 ROI 的一条旅程</span>——
+              也因此建议作为 4 周测试的首批上线旅程之一。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain">
+      <h2>场景 6｜旅居 · 行前 · 在住 · 离店后全程编排</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">复购与转长住入口</span>
+        <span class="pill pill-info">旅居入住 → 复购 / 转长住</span>
+        <span class="pill">属性「入住日 T-7」触发 · 行前 · 在住 · 离店三阶段 · 按满意度分流</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>出发前 7 天邮件发行前准备清单（携带药品、健康告知、接站信息）；出发前 1 天短信发接站与天气提醒；入住当天 App Push 发欢迎与管家联系方式；在住第 3 天推本周活动与康复理疗预约；<span class="bold">离店后第 2 天做满意度回访</span>，按评分分流——高满意度邀约转长住并附推荐亲友入口，评分偏低或未评价的转顾问一对一回访。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · SMS · App Push　｜　<span class="bold">触发方式</span>：属性「旅居入住日 T-7」，30 天后可再进入　｜　<span class="bold">退出条件</span>：订单取消即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j6"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点 · 旅居的真正价值在离店之后</div>
+            <div class="callout-body">
+              一次旅居短住的单笔收入有限，真正的价值是<span class="bold">它是机构养老最低门槛的体验入口</span>——
+              住过一次的长者，对社区的认知从"广告"变成"住过"。
+              但大多数旅居业务在长者离店那一刻就结束了：没有满意度回访、没有转长住邀约、没有推荐入口，
+              一次已经完成的高质量体验，就此归零。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"旅居入住日 T-7"触发（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">行前 T-7</span>：可发送时间 09:00–20:00 + Email 行前准备清单（携带药品、健康告知书、接站信息、气候提示）</li>
+                <li><span class="bold">等待 6 天</span></li>
+                <li><span class="bold">行前 T-1</span>：可发送时间 + SMS 接站信息与目的地天气提醒</li>
+                <li><span class="bold">等待 1 天</span></li>
+                <li><span class="bold">入住当天 · App Push</span>：入住办理在白天完成、用户处于活跃状态 → 立即发送欢迎与管家联系方式</li>
+                <li><span class="bold">等待 3 天</span>：覆盖长者在住适应期</li>
+                <li><span class="bold">在住 D3</span>：可发送时间 + App Push 本周活动安排与康复理疗预约入口</li>
+                <li><span class="bold">监听事件"办理离店"</span>：永久等待，长者实际离店后继续流转（旅居时长从 7 天到 3 个月不等，不设超时）</li>
+                <li><span class="bold">等待 2 天</span>：离店后留出缓冲，回到家再问感受更真实</li>
+                <li><span class="bold">离店 T+2</span>：可发送时间 + App Push 满意度回访邀请</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"提交满意度评价"→ 已评价走条件分支 / 未评价走默认分支</li>
+                <li><span class="bold">条件分支</span>：按属性"最近一次满意度评分"分层（≥ 4 分 / &lt; 4 分）</li>
+                <li><span class="bold">高满意度</span>：可发送时间 + Email 转长住礼遇 + 推荐亲友入口</li>
+                <li><span class="bold">低满意度 / 未评价</span>：可发送时间 + SMS 顾问一对一回访（问题闭环优先于二次销售）</li>
+                <li><span class="bold">提前退出</span>：事件"订单取消"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"提交旅居订单"事件（复购口径），统计时间 14 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              行前提醒、接站信息、满意度回访均属<span class="bold">事务类消息，打开率 50-70%</span>，
+              远高于促销类的 20-28%——这是一条几乎不消耗用户耐心的高频触达。
+              离店后的满意度分流同时承接了两件事：<span class="bold">高分家庭进入转长住与转介绍，低分家庭在负面口碑扩散前被人工接住</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 7 -->
+    <section id="s-journey7" class="section-plain">
+      <h2>场景 7｜星堡 · 家属月度关怀报告 → 续住与满意度</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">续住率直接相关</span>
+        <span class="pill pill-info">签约入住 → 12 个月续住</span>
+        <span class="pill">属性「入住满 30 天」周期触发 · 低满意度转人工</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>长者入住满 30 天起，每月向家属推送一次<span class="bold">月度关怀报告已生成的提醒</span>（报告内容在 App 内查看，消息本身不携带任何健康数据）；3 天内未查看则短信补提醒并附管家电话；已查看的家属随即收到满意度评价邀请，<span class="bold">评分偏低自动转管家一对一回访</span>，高分家庭进入口碑转介绍旅程。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS　｜　<span class="bold">触发方式</span>：属性「入住日距今超过 30 天」，30 天后可再进入　｜　<span class="bold">退出条件</span>：办理退住即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j7"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点 · 退住是最贵的流失</div>
+            <div class="callout-body">
+              一位长者退住，机构损失的不只是剩余合同价值，还有<span class="bold">重新填满这张床所需的完整获客成本</span>——
+              而按本方案的漏斗，那意味着约 20 条新线索。
+              退住的决定几乎从不是突然作出的，它是几个月里若干次小失望的累积；
+              问题在于<span class="bold">机构通常在家属提出退住那一刻才第一次知道</span>。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"入住日距今超过 30 天"触发（可再次进入，间隔 30 天，形成月度节奏）</li>
+                <li><span class="bold">可发送时间 09:00–20:00 + App Push</span>："本月关怀报告已生成"，引导至 App 内查看。<span class="bold">消息正文不携带健康、用药、体征等任何具体数据</span></li>
+                <li><span class="bold">等待事件 3 天</span>：监听"查看关怀报告"→ 已查看走满意度路径 / 未查看走补提醒路径</li>
+                <li><span class="bold">已查看 → 可发送时间 + App Push</span>：满意度评价邀请</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"提交满意度评价"→ 已评价走条件分支 / 未评价结束本月</li>
+                <li><span class="bold">条件分支</span>：按属性"最近一次满意度评分"分层（≥ 4 分 / &lt; 4 分）</li>
+                <li><span class="bold">≥ 4 分</span>：结束并标记为口碑转介绍旅程（场景 10）的候选人群</li>
+                <li><span class="bold">&lt; 4 分</span>：可发送时间 + SMS 管家一对一回访，问题进入人工闭环</li>
+                <li><span class="bold">未查看 → 可发送时间 + SMS</span>：报告提醒 + 管家联系电话（部分家属不装 App，短信是唯一稳定触点）</li>
+                <li><span class="bold">提前退出</span>：事件"办理退住"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"提交满意度评价"事件，统计时间 5 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              月度关怀报告把家属对社区的感知从"每月一次探视"变成"每月一次可见的交代"，
+              续住率提升参考 <span class="bold">+5-8%</span>。
+              更关键的是这条旅程<span class="bold">把满意度变成了可运营的数据字段</span>——
+              它同时是场景 10（口碑转介）的进入条件与场景 7 自身的分流依据。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 8 -->
+    <section id="s-journey8" class="section-plain">
+      <h2>场景 8｜蜂邻 · 服务卡到期 → 续卡自动化</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">见效快 · 全自动</span>
+        <span class="pill pill-info">服务卡到期 → 续卡</span>
+        <span class="pill">属性「到期日 T-15」触发 · 四段递进 · 按使用频次分层</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>社区服务卡到期前 15 天，App Push 提醒续卡并带上<span class="bold">本期已使用的服务次数</span>（变量带入，让价值可见）；到期前 7 天未续，短信发续卡礼遇；到期前 1 天最后提醒；到期后第 7 天仍未续，按上期使用频次分层——高频用户推升级套餐，低频用户先发单次服务体验券重新唤醒。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS　｜　<span class="bold">触发方式</span>：属性「服务卡到期日 T-15」，30 天后可再进入　｜　<span class="bold">退出条件</span>：完成续卡即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j8"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点 · 到期日分散在每一天</div>
+            <div class="callout-body">
+              社区服务卡的到期日随购卡时间分布在全年每一天。
+              <span class="bold">人工无法逐户在正确的日子提醒，门店只能在客户恰好到店时顺口一提</span>——
+              没到店的人就自然流失。这类"到点触发"的场景，是自动化相对人工优势最大、
+              也最容易被验证的一类：续卡与否是明确的二元结果，归因干净。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"服务卡到期日 T-15"触发（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">T-15</span>：可发送时间 09:00–20:00 + App Push 续卡提醒，插入变量带入本期已使用服务次数（值来自服务核销事件上报）</li>
+                <li><span class="bold">等待事件 8 天</span>：监听"完成续卡"→ 已续卡退出 / 未续卡继续</li>
+                <li><span class="bold">T-7</span>：可发送时间 + SMS 续卡礼遇（老客专属价或赠次）</li>
+                <li><span class="bold">等待事件 6 天</span>：监听"完成续卡"→ 已续卡退出 / 未续卡继续</li>
+                <li><span class="bold">T-1</span>：可发送时间 + App Push 明日到期最后提醒</li>
+                <li><span class="bold">等待事件 8 天</span>：监听"完成续卡"→ 已续卡退出 / 未续卡继续</li>
+                <li><span class="bold">条件分支</span>：按属性"上期服务使用次数"分层（≥ 8 次 / &lt; 8 次）</li>
+                <li><span class="bold">高频用户 · T+7</span>：可发送时间 + SMS 升级套餐礼遇（用得多的人该买更大的卡）</li>
+                <li><span class="bold">低频用户 · T+7</span>：可发送时间 + App Push 单次服务体验券（先把人拉回来用一次，再谈续卡）</li>
+                <li><span class="bold">提前退出</span>：事件"完成续卡"→ 自动退出旅程</li>
+                <li><span class="bold">收入统计</span>：监听"服务卡支付成功"事件 + 订单金额属性，统计时间 10 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              到期提醒类自动化旅程的续费率提升参考 <span class="bold">+10-20%</span>。
+              这条旅程的特点是<span class="bold">一次配置、长期运行、零人工投入</span>，
+              且服务卡到期事件每天都在发生，测试期内即可积累足够样本完成验收。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 9 -->
+    <section id="s-journey9" class="section-plain">
+      <h2>场景 9｜星健 · 出院随访 → 居家与长期照护转化</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-info">康复出院 → 长期照护</span>
+        <span class="pill">出院事件触发 · D3 / D14 / D30 三段 · 按照护等级分层</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>长者从康复护理机构办理出院后第 3 天，向家属推送居家康复要点与随访提醒；第 14 天短信提醒预约复诊；第 30 天按出院时评估的照护等级分层——<span class="bold">高照护需求推居家上门照护与长期照护床位方案，低照护需求推康复门诊与辅具租赁</span>。全程消息只做提醒与入口，不携带任何诊疗与健康数据。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS · Email　｜　<span class="bold">触发方式</span>：事件「办理出院」，180 天后可再进入　｜　<span class="bold">退出条件</span>：完成复诊预约或购买居家照护服务即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j9"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点 · 需求最明确的 30 天，触点最空白</div>
+            <div class="callout-body">
+              出院后的一个月，是照护需求最明确、家庭最愿意为此付费的窗口——
+              长者行动能力尚未恢复，子女刚刚经历过一轮陪护压力。
+              <span class="bold">但这恰恰也是机构触点最空白的一段</span>：人出了院，关系就断了，
+              等到三个月后需求真正爆发时，家属已经在别处找了服务。
+              星健的康复与护理能力、蜂邻的居家上门服务、星堡的长期照护床位，本可以在这个窗口里自然衔接。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"办理出院"触发（可再次进入，间隔 180 天）</li>
+                <li><span class="bold">等待 3 天</span>：出院当天家庭事务繁多，留出缓冲</li>
+                <li><span class="bold">D3</span>：可发送时间 09:00–20:00 + App Push 居家康复要点与随访提醒（内容在 App 内查看）</li>
+                <li><span class="bold">等待 11 天</span></li>
+                <li><span class="bold">D14</span>：可发送时间 + SMS 复诊预约提醒（短信是家属最不会漏看的渠道）</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"完成复诊预约"→ 已预约退出 / 未预约继续</li>
+                <li><span class="bold">等待 11 天</span>：拉开到 D30，避开出院初期的密集打扰</li>
+                <li><span class="bold">条件分支</span>：按属性"出院时照护等级"分层（高照护需求 / 低照护需求）</li>
+                <li><span class="bold">高照护需求</span>：可发送时间 + Email 居家上门照护服务与长期照护床位方案（附费用测算）</li>
+                <li><span class="bold">低照护需求</span>：可发送时间 + App Push 康复门诊复查与辅具租赁</li>
+                <li><span class="bold">合规约束</span>：全程消息仅做提醒与入口引导，<span class="bold">不在消息正文携带诊疗记录、用药、体征等健康信息</span></li>
+                <li><span class="bold">提前退出</span>：事件"购买居家照护服务"→ 自动退出旅程（完成复诊预约的用户由 D14 后的等待事件节点分流退出）</li>
+                <li><span class="bold">转化统计</span>：监听"购买居家照护服务"事件，统计时间 14 天；复诊预约率由 D14 等待事件节点的分流数据单独查看</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              这条旅程的价值不在单次转化率，而在<span class="bold">它把星健的存量出院客户变成星堡与蜂邻的线索来源</span>——
+              三条业务线之间原本各自独立的客户资产，通过一条旅程完成内部导流，
+              获客成本接近于零。复诊预约率与居家照护转化率均可按旅程独立归因。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey 10 -->
+    <section id="s-journey10" class="section-plain">
+      <h2>场景 10｜全线 · 口碑转介绍 · 老带新激活</h2>
+      <div class="row" style="margin-bottom:14px">
+        <span class="pill pill-success">获客成本最低</span>
+        <span class="pill pill-info">在住家庭 → 新线索</span>
+        <span class="pill">属性「入住满 90 天 + 满意度 ≥ 4」触发 · 可转发邀请</span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>入住满 90 天、且最近一次满意度评分不低于 4 分的家庭，App Push 推送<span class="bold">推荐有礼与家属开放日邀约</span>；7 天内未发起推荐，短信补发一次可直接转发给亲友的邀请链接；成功发起推荐后自动确认礼遇发放。<span class="bold">只对满意的家庭发起，不满意的家庭永远不进入这条旅程</span>。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · SMS　｜　<span class="bold">触发方式</span>：属性「入住日距今超过 90 天」且「最近一次满意度评分 ≥ 4」，90 天后可再进入　｜　<span class="bold">退出条件</span>：发起有效推荐即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body">
+            <div class="dag-wrap" id="dag-j10"></div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点 · 最大的获客渠道，却唯一没有系统</div>
+            <div class="callout-body">
+              中高端养老社区的客户来源中，口碑转介占 <span class="bold">60-90%</span>——
+              这是行业里投入产出比最高的渠道，也是<span class="bold">唯一完全没有系统支撑的渠道</span>。
+              行业调研还显示，即便不给物质激励，满意的家属依然会自发传播；
+              也就是说，缺的从来不是奖励，<span class="bold">而是在正确的时点被提醒一次"你可以推荐"</span>。
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"入住日距今超过 90 天"且"最近一次满意度评分 ≥ 4"（可再次进入，间隔 90 天）</li>
+                <li><span class="bold">进入条件的关键设计</span>：满意度评分来自场景 7 的月度评价，<span class="bold">两条旅程通过这个属性形成闭环</span>——只有被验证满意的家庭才会收到推荐邀请</li>
+                <li><span class="bold">第一触</span>：可发送时间 09:00–20:00 + App Push 推荐有礼 + 家属开放日邀约（带朋友一起来看）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"发起推荐"→ 已推荐走确认路径 / 未推荐继续</li>
+                <li><span class="bold">已推荐 → 可发送时间 + App Push</span>：礼遇发放确认（即时反馈是二次推荐的前提）</li>
+                <li><span class="bold">未推荐 · 第二触</span>：可发送时间 + SMS 可直接转发给亲友的邀请链接（降低推荐动作的门槛）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"发起推荐"→ 已推荐退出 / 未推荐结束</li>
+                <li><span class="bold">提前退出</span>：事件"发起有效推荐"→ 自动退出旅程</li>
+                <li><span class="bold">转化统计</span>：监听"发起推荐"事件，统计时间 10 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              这条旅程的产出直接进入场景 1 的线索池，形成<span class="bold">"在住满意 → 转介新线索 → 咨询承接 → 到访试住签约 → 在住满意"的完整闭环</span>。
+              由于转介线索的获取成本接近于零、且到访与签约转化率显著高于冷线索，
+              它的实际 ROI 通常是全方案最高的一条——只是见效需要先跑通场景 7 的满意度数据。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance -->
+    <section id="s-compliance" class="section-plain">
+      <h2>五、数据安全与合规</h2>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">数据安全</div><div class="card-body">
+          <ul>
+            <li>全链路 <span class="bold">TLS</span> 加密传输，传输层与存储层数据分离</li>
+            <li>VPC 网络隔离，数据中心多活灾备，可按客户安全需求灵活扩展</li>
+            <li>PII 字段脱敏、日志审计、数据访问全链路可追溯</li>
+            <li>基于角色的访问控制（RBAC），运营人员不可裸查原始用户数据</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">合规支持</div><div class="card-body">
+          <ul>
+            <li>已通过 <span class="bold">GDPR</span> 合规认证 + <span class="bold">SOC 2 Type II</span> 安全审计</li>
+            <li>可协助客户满足各目标市场本地数据保护法规要求（含国内《个人信息保护法》）</li>
+            <li>支持用户数据删除、导出、退订与同意管理等合规权利</li>
+            <li>消息发送记录保留 <span class="bold">60 天</span>，可随时导出用于合规审查</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout warn">
+        <div class="callout-title">康养行业的特殊约束——本方案的自我限制</div>
+        <div class="callout-body">
+          <p>· <span class="bold">健康信息不进消息正文</span>：长者的健康状况、诊疗记录、用药与体征属敏感个人信息。本方案中所有涉及健康的触达（场景 7 月度关怀报告、场景 9 出院随访）<span class="bold">一律只发"报告已生成 / 请预约复诊"这类提醒与入口，具体内容在客户自有 App 内经身份验证后查看</span>；</p>
+          <p>· <span class="bold">长者端与家属端分开设计</span>：营销性质的触达只发家属端；直接发给长者本人的仅限提醒类短信，建议每月 ≤ 2 条；</p>
+          <p>· <span class="bold">时段守护更严</span>：可发送时间统一收窄至 09:00–20:00（终端用户时区），比通用行业方案的 21:00 更保守；</p>
+          <p>· <span class="bold">授权范围前置确认</span>：Week 1 需与复星康养法务共同确认线索、在住家庭、社区服务用户三类人群各自的营销触达授权范围。</p>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">运营护栏</div>
+        <div class="callout-body">
+          <p>· 频控策略：旅程级频控，限制每用户每日 / 每周 / 每小时的消息数量上限；</p>
+          <p>· 可发送时间：基于终端用户本地时区自动控制发送窗口，不出现夜间打扰；</p>
+          <p>· 内容预览：消息发送前支持完整样式预览；</p>
+          <p>· 提前退出：用户完成目标行为（预约到访 / 完成签约 / 完成支付 / 完成续卡）立即从旅程退出。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plan -->
+    <section id="s-plan" class="section-plain">
+      <h2>六、4 周测试计划 · 可量化验收</h2>
+      <div class="callout warn" style="margin-bottom:14px">
+        <div class="callout-title">时间窗口：秋冬旅居报名季与重阳敬老季在即</div>
+        <div class="callout-body">
+          9–10 月是康养行业开放日与重阳敬老季的密集期，也是秋冬候鸟旅居的集中报名窗口。
+          现在启动 4 周测试，正好在旅居报名高峰到来前完成弃订挽回与行前编排的验证，
+          用一个自然旺季拿到真实数据；同期积累的线索承接与试住陪伴数据，则支撑明年一季度的扩面决策。
+        </div>
+      </div>
+      <table>
+        <thead><tr>
+          <th class="align-center">周</th><th>阶段</th><th>工作内容</th>
+          <th>交付物</th><th>验收指标</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="align-center bold">Week 1</td><td>启动 &amp; 数据打通</td><td>场景优先级共创 · 核心事件（咨询留资 / 预约到访 / 完成到访 / 预约试住 / 试住入住 / 完成签约 / 提交旅居订单 / 支付成功 / 办理离店 / 完成续卡 / 办理出院 / 提交满意度评价）与属性（照护等级 / 服务卡到期日 / 入住日 / 旅居入住日 / 满意度评分 / 客户来源）埋点方案确认 · 短信与邮件通道开通 · 营销触达授权范围法务确认</td><td>埋点方案 + 数据入库验证 + 通道开通完成</td><td>核心事件入库率 ≥ 95%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 2</td><td>首批旅程上线</td><td>旅居弃订挽回（场景 5）+ 服务卡续卡（场景 8）两条"每天都有真实样本"的旅程上线，小流量验证</td><td>2 条旅程跑通 + 各渠道送达确认</td><td>旅程触发成功率 ≥ 98%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 3</td><td>扩量 &amp; 版本对比</td><td>2 条旅程扩全量并开启<span class="bold">条件分流对比</span>（文案与礼遇双版本择优）· 新增咨询线索承接（场景 1）+ 意向沉睡召回（场景 4），后者一次性覆盖历史线索存量</td><td>4 条旅程全量运行 + 对比数据</td><td>弃订挽回率与续卡率可测；到访预约增量可归因</td></tr>
+          <tr class="tone-success"><td class="align-center bold">Week 4</td><td>复盘 &amp; 扩面</td><td>数据复盘 · 按旅程结算挽回订单、续卡收入与新增到访预约量 · 制定场景 2 / 3 / 6 / 7 / 9 / 10 上线计划（第 5-10 周执行，其中场景 7 的满意度数据是场景 10 的前置依赖）</td><td>测试结案报告 + 扩展计划</td><td>各旅程转化与收入增量可量化</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:8px">
+        首批旅程选择逻辑：场景 5 与场景 8 的触发事件<strong>每天都在发生</strong>，4 周内即可积累统计显著的样本；
+        而机构养老签约周期以月计，场景 1 / 3 的最终价值需要更长的观察期，因此放在 Week 3 起步、以过程指标（到访预约量、试住预约量）验收。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="stat"><div class="stat-value">4 周</div><div class="stat-label">从数据打通到首批旅程全量运行</div></div>
+        <div class="stat"><div class="stat-value success">0 元</div><div class="stat-label">测试期间授权费用</div></div>
+        <div class="stat"><div class="stat-value">专属</div><div class="stat-label">EngageLab 交付团队 1v1 支持</div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <hr class="divider" />
+      <h3>下一步建议</h3>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header"><span class="step-num">1</span>对齐数据打通优先级</div><div class="card-body">
+          确认家属端触点形态（App / 小程序 / H5）与事件上报能力、CRM 中线索与到访记录的同步方式、
+          服务卡到期日与照护等级等关键属性的可得性，以及营销触达的授权范围。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">2</span>开发对接</div><div class="card-body">
+          按 EngageLab 交付团队提供的埋点方案完成事件与用户属性上报，
+          通常 1-2 名开发 3-5 天完成；触达通道由 EngageLab 一体提供，
+          若 App 已在使用极光推送，推送通道可直接沿用。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">3</span>测试验证</div><div class="card-body">
+          开通测试 VIP 账号，优先搭建<span class="bold">旅居弃订挽回 + 服务卡续卡</span>两条当前就有真实样本的旅程，
+          小流量验证后扩全量，再推进获客承接线。
+        </div></div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      本方案中复星康养的业务信息（星堡 / 星健 / 蜂邻三条产品线、成立时间、覆盖城市、累计床位与管理面积规模）
+      仅作为业务背景引用，来源于复星康养官网与公开报道（2023–2026）。
+      行业数据来自民政部公开数据、银发经济与旅居养老行业公开研究报告、养老行业研究机构的公开调研，
+      以及旅宿行业公开营销基准与 Meta 公开数据综合整理；
+      预期效果数据为同类场景的行业参考区间，实际效果以双方测试数据为准。
+      <br />© EngageLab · Marketing Automation Solution for 复星康养
+    </footer>
+  </main>
+
+  <script>
+  (function () {
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', neutral: '#94a3b8', muted: '#cbd5e1',
+      text: '#374151', textMute: '#9ca3af', grid: '#e5e7eb',
+    };
+
+    function svg(w, h) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('width', '100%');
+      s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      return s;
+    }
+    function el(tag, attrs) {
+      const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 700, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 72;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 20) * 20 || 100;
+      const groupCount = categories.length;
+      const barsPerGroup = series.length;
+      const groupW = innerW / groupCount;
+      const barW = Math.min(22, (groupW - 12) / barsPerGroup);
+      const s = svg(W, H);
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const equalPrev = si > 0 && series[si - 1].data[ci] === v;
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2 - (equalPrev ? 10 : 0), 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+      if (series.length > 1) {
+        const legY = H - 14;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          legX += 14 + (se.name.length * 11) + 24;
+        });
+      }
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {};
+      const incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const definedAnchors = withAnchor.filter(n => n.anchor !== null).map(n => n.anchor);
+        const startX = definedAnchors.length > 0
+          ? Math.max(20, definedAnchors.reduce((a, b) => a + b, 0) / definedAnchors.length - totalW / 2)
+          : (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          const x = startX + i * (NODE_W + NODE_GAP);
+          const y = 20 + r * (NODE_H + RANK_GAP);
+          pos[it.node.id] = { x, y };
+        });
+      });
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) {
+              cur.x = prev.x + NODE_W + NODE_GAP;
+            }
+          }
+        });
+      }
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // ========== Charts ==========
+
+    // 意向客户池结构（示意）
+    drawBarChart(document.getElementById('chart-market'), {
+      categories: ['沉默未跟进线索', '已到访未试住', '试住体验中', '签约入住'],
+      series: [
+        { name: '典型现状（示意）', data: [72, 18, 6, 4], tone: 'neutral' },
+        { name: 'MA 自动化后预期（示意）', data: [62, 22, 9, 7], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 240,
+    });
+
+    // 机构养老销售漏斗（以咨询留资为 100% 基准，示意）
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['咨询留资', '首次到访', '试住体验', '签约入住', '12 个月续住'],
+      series: [
+        { name: '行业典型漏斗（示意）', data: [100, 35, 12, 5, 4], tone: 'neutral' },
+        { name: 'MA 自动化后预期（示意）', data: [100, 46, 20, 10, 8.6], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 260,
+    });
+
+    // ========== Journey DAGs ==========
+
+    // J1: 咨询线索承接 → 首次到访预约
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 提交咨询留资' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '预约到访 · 2 小时' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已预约到访',  sub: '顾问已接手' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS',        sub: '社区介绍·开放日时间' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '预约到访 · 2 天' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已预约到访',  sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'em1',   kind: 'channel',  title: 'Email',      sub: '长者的一天·户型收费' },
+        { id: 'wfe3',  kind: 'branch',   title: '等待事件',    sub: '预约到访 · 3 天' },
+        { id: 'ok3',   kind: 'exitOk',   title: '已预约到访',  sub: '' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap1',   kind: 'channel',  title: 'App Push',   sub: '本周开放日名额邀约' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '30 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1',  label: '已预约' },
+        { from: 'wfe1',  to: 'st1',  label: '未预约(超时)' },
+        { from: 'st1',   to: 'sms1' },
+        { from: 'sms1',  to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2',  label: '已预约' },
+        { from: 'wfe2',  to: 'st2',  label: '未预约(超时)' },
+        { from: 'st2',   to: 'em1' },
+        { from: 'em1',   to: 'wfe3' },
+        { from: 'wfe3',  to: 'ok3',  label: '已预约' },
+        { from: 'wfe3',  to: 'st3',  label: '未预约(超时)' },
+        { from: 'st3',   to: 'ap1' },
+        { from: 'ap1',   to: 'end' },
+      ]);
+
+    // J2: 到访后跟进 → 试住体验转化
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 完成到访参观' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '预约试住 · 3 天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已预约试住',  sub: '转入试住陪伴旅程' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'em1',   kind: 'channel',  title: 'Email',      sub: '参观回访包·可转发' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '预约试住 · 4 天' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已预约试住',  sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS',        sub: '7 天短住体验邀约' },
+        { id: 'wfe3',  kind: 'branch',   title: '等待事件',    sub: '预约试住 · 5 天' },
+        { id: 'ok3',   kind: 'exitOk',   title: '已预约试住',  sub: '' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap1',   kind: 'channel',  title: 'App Push',   sub: '在住家属真实分享' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '60 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1',  label: '已预约' },
+        { from: 'wfe1',  to: 'st1',  label: '未预约(超时)' },
+        { from: 'st1',   to: 'em1' },
+        { from: 'em1',   to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2',  label: '已预约' },
+        { from: 'wfe2',  to: 'st2',  label: '未预约(超时)' },
+        { from: 'st2',   to: 'sms1' },
+        { from: 'sms1',  to: 'wfe3' },
+        { from: 'wfe3',  to: 'ok3',  label: '已预约' },
+        { from: 'wfe3',  to: 'st3',  label: '未预约(超时)' },
+        { from: 'st3',   to: 'ap1' },
+        { from: 'ap1',   to: 'end' },
+      ]);
+
+    // J3: 试住期陪伴 → 签约转化
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 试住入住' },
+        { id: 'ap1',   kind: 'channel',  title: 'App Push',   sub: '入住欢迎·管家联系方式' },
+        { id: 'w1',    kind: 'wait',     title: '等待',        sub: '3 天 · 初期适应期' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap2',   kind: 'channel',  title: 'App Push',   sub: '家属端·适应情况小结' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '完成签约 · 2 天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已签约',      sub: '转入在住经营旅程' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS',        sub: '顾问一对一沟通预约' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '完成签约 · 2 天' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已签约',      sub: '' },
+        { id: 'cond',  kind: 'branch',   title: '条件分支',    sub: '属性: 照护等级' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'em1',   kind: 'channel',  title: 'Email',      sub: '长期居住礼遇·户型费用' },
+        { id: 'st4',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'em2',   kind: 'channel',  title: 'Email',      sub: '医养照护方案·费用测算' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '转入意向培育旅程' },
+      ],
+      [
+        { from: 'start', to: 'ap1' },
+        { from: 'ap1',   to: 'w1' },
+        { from: 'w1',    to: 'st1' },
+        { from: 'st1',   to: 'ap2' },
+        { from: 'ap2',   to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1',  label: '已签约' },
+        { from: 'wfe1',  to: 'st2',  label: '未签约(超时)' },
+        { from: 'st2',   to: 'sms1' },
+        { from: 'sms1',  to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2',  label: '已签约' },
+        { from: 'wfe2',  to: 'cond', label: '未签约(超时)' },
+        { from: 'cond',  to: 'st3',  label: '自理活力' },
+        { from: 'cond',  to: 'st4',  label: '需照护' },
+        { from: 'st3',   to: 'em1' },
+        { from: 'st4',   to: 'em2' },
+        { from: 'em1',   to: 'end' },
+        { from: 'em2',   to: 'end' },
+      ]);
+
+    // J4: 意向客户沉睡 · 分层召回
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '属性: 距今超过60天未签约' },
+        { id: 'cond',  kind: 'branch',   title: '条件分支',    sub: '属性: 是否到访过' },
+        { id: 'stA1',  kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'smsA',  kind: 'channel',  title: 'SMS',        sub: '社区新动态·限时体验价' },
+        { id: 'wfeA',  kind: 'branch',   title: '等待事件',    sub: '预约到访或试住 · 5 天' },
+        { id: 'okA',   kind: 'exitOk',   title: '已预约',      sub: '转顾问跟进' },
+        { id: 'stA2',  kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'apA',   kind: 'channel',  title: 'App Push',   sub: '开放日名额' },
+        { id: 'stB1',  kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'emB',   kind: 'channel',  title: 'Email',      sub: '如何为父母选养老社区' },
+        { id: 'wfeB',  kind: 'branch',   title: '等待事件',    sub: '预约到访 · 7 天' },
+        { id: 'okB',   kind: 'exitOk',   title: '已预约',      sub: '转顾问跟进' },
+        { id: 'stB2',  kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'smsB',  kind: 'channel',  title: 'SMS',        sub: '顾问一对一咨询入口' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '60 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'cond' },
+        { from: 'cond',  to: 'stA1', label: '到访过' },
+        { from: 'cond',  to: 'stB1', label: '仅咨询' },
+        { from: 'stA1',  to: 'smsA' },
+        { from: 'smsA',  to: 'wfeA' },
+        { from: 'wfeA',  to: 'okA',  label: '已行动' },
+        { from: 'wfeA',  to: 'stA2', label: '无动作(超时)' },
+        { from: 'stA2',  to: 'apA' },
+        { from: 'apA',   to: 'end' },
+        { from: 'stB1',  to: 'emB' },
+        { from: 'emB',   to: 'wfeB' },
+        { from: 'wfeB',  to: 'okB',  label: '已行动' },
+        { from: 'wfeB',  to: 'stB2', label: '无动作(超时)' },
+        { from: 'stB2',  to: 'smsB' },
+        { from: 'smsB',  to: 'end' },
+      ]);
+
+    // J5: 旅居短住预订弃订挽回
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 提交旅居订单' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '完成支付 · 30 分钟' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已支付',      sub: '自然成交·不打扰' },
+        { id: 'ap1',   kind: 'channel',  title: 'App Push',   sub: '线路与出发日变量带入' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '完成支付 · 4 小时' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已支付',      sub: '' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS',        sub: '同期房量提示' },
+        { id: 'wfe3',  kind: 'branch',   title: '等待事件',    sub: '完成支付 · 24 小时' },
+        { id: 'ok3',   kind: 'exitOk',   title: '已支付',      sub: '' },
+        { id: 'cond',  kind: 'branch',   title: '条件分支',    sub: '属性: 订单金额' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'em1',   kind: 'channel',  title: 'Email',      sub: '顾问一对一行程确认' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap2',   kind: 'channel',  title: 'App Push',   sub: '名额保留提醒' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '7 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1',  label: '已支付' },
+        { from: 'wfe1',  to: 'ap1',  label: '未支付(超时)' },
+        { from: 'ap1',   to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2',  label: '已支付' },
+        { from: 'wfe2',  to: 'st1',  label: '未支付' },
+        { from: 'st1',   to: 'sms1' },
+        { from: 'sms1',  to: 'wfe3' },
+        { from: 'wfe3',  to: 'ok3',  label: '已支付' },
+        { from: 'wfe3',  to: 'cond', label: '未支付' },
+        { from: 'cond',  to: 'st2',  label: '≥1万元' },
+        { from: 'cond',  to: 'st3',  label: '<1万元' },
+        { from: 'st2',   to: 'em1' },
+        { from: 'st3',   to: 'ap2' },
+        { from: 'em1',   to: 'end' },
+        { from: 'ap2',   to: 'end' },
+      ]);
+
+    // J6: 旅居行前 · 在住 · 离店后全程编排
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '属性: 旅居入住日 T-7' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'em1',   kind: 'channel',  title: 'Email',      sub: '行前准备清单' },
+        { id: 'w1',    kind: 'wait',     title: '等待',        sub: '6 天' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS',        sub: 'T-1 接站与天气提醒' },
+        { id: 'w2',    kind: 'wait',     title: '等待',        sub: '1 天' },
+        { id: 'ap1',   kind: 'channel',  title: 'App Push',   sub: '入住欢迎·管家联系' },
+        { id: 'w3',    kind: 'wait',     title: '等待',        sub: '3 天 · 在住适应期' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap2',   kind: 'channel',  title: 'App Push',   sub: '本周活动·理疗预约' },
+        { id: 'lis1',  kind: 'branch',   title: '监听事件',    sub: '办理离店 · 永久等待' },
+        { id: 'w4',    kind: 'wait',     title: '等待',        sub: '2 天 · 离店缓冲' },
+        { id: 'st4',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap3',   kind: 'channel',  title: 'App Push',   sub: '满意度回访邀请' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '提交满意度评价 · 3 天' },
+        { id: 'cond',  kind: 'branch',   title: '条件分支',    sub: '属性: 满意度评分' },
+        { id: 'st5',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'em2',   kind: 'channel',  title: 'Email',      sub: '转长住礼遇·推荐亲友' },
+        { id: 'st6',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms2',  kind: 'channel',  title: 'SMS',        sub: '顾问一对一回访' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '30 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1',   to: 'em1' },
+        { from: 'em1',   to: 'w1' },
+        { from: 'w1',    to: 'st2' },
+        { from: 'st2',   to: 'sms1' },
+        { from: 'sms1',  to: 'w2' },
+        { from: 'w2',    to: 'ap1' },
+        { from: 'ap1',   to: 'w3' },
+        { from: 'w3',    to: 'st3' },
+        { from: 'st3',   to: 'ap2' },
+        { from: 'ap2',   to: 'lis1' },
+        { from: 'lis1',  to: 'w4',   label: '已离店' },
+        { from: 'w4',    to: 'st4' },
+        { from: 'st4',   to: 'ap3' },
+        { from: 'ap3',   to: 'wfe1' },
+        { from: 'wfe1',  to: 'cond', label: '已评价' },
+        { from: 'wfe1',  to: 'st6',  label: '未评价(超时)' },
+        { from: 'cond',  to: 'st5',  label: '≥4分' },
+        { from: 'cond',  to: 'st6',  label: '<4分' },
+        { from: 'st5',   to: 'em2' },
+        { from: 'st6',   to: 'sms2' },
+        { from: 'em2',   to: 'end' },
+        { from: 'sms2',  to: 'end' },
+      ]);
+
+    // J7: 家属月度关怀报告 → 续住与满意度
+    drawJourney(document.getElementById('dag-j7'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '属性: 入住距今超过30天' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap1',   kind: 'channel',  title: 'App Push',   sub: '月度关怀报告已生成' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '查看关怀报告 · 3 天' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap2',   kind: 'channel',  title: 'App Push',   sub: '满意度评价邀请' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS',        sub: '报告提醒·管家电话' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '提交满意度评价 · 3 天' },
+        { id: 'cond',  kind: 'branch',   title: '条件分支',    sub: '属性: 满意度评分' },
+        { id: 'okH',   kind: 'exitOk',   title: '高满意度',    sub: '进入口碑转介人群' },
+        { id: 'st4',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms2',  kind: 'channel',  title: 'SMS',        sub: '管家一对一回访' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '30 天后再进入·下月循环' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1',   to: 'ap1' },
+        { from: 'ap1',   to: 'wfe1' },
+        { from: 'wfe1',  to: 'st2',  label: '已查看' },
+        { from: 'wfe1',  to: 'st3',  label: '未查看(超时)' },
+        { from: 'st2',   to: 'ap2' },
+        { from: 'st3',   to: 'sms1' },
+        { from: 'ap2',   to: 'wfe2' },
+        { from: 'wfe2',  to: 'cond', label: '已评价' },
+        { from: 'wfe2',  to: 'end',  label: '未评价(超时)' },
+        { from: 'cond',  to: 'okH',  label: '≥4分' },
+        { from: 'cond',  to: 'st4',  label: '<4分' },
+        { from: 'st4',   to: 'sms2' },
+        { from: 'sms1',  to: 'end' },
+        { from: 'sms2',  to: 'end' },
+        { from: 'okH',   to: 'end' },
+      ]);
+
+    // J8: 蜂邻服务卡到期 → 续卡自动化
+    drawJourney(document.getElementById('dag-j8'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '属性: 服务卡到期日 T-15' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap1',   kind: 'channel',  title: 'App Push',   sub: '续卡提醒·已用次数变量' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '完成续卡 · 8 天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已续卡',      sub: '' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS',        sub: 'T-7 续卡礼遇' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '完成续卡 · 6 天' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已续卡',      sub: '' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap2',   kind: 'channel',  title: 'App Push',   sub: 'T-1 明日到期提醒' },
+        { id: 'wfe3',  kind: 'branch',   title: '等待事件',    sub: '完成续卡 · 8 天' },
+        { id: 'ok3',   kind: 'exitOk',   title: '已续卡',      sub: '' },
+        { id: 'cond',  kind: 'branch',   title: '条件分支',    sub: '属性: 上期服务使用次数' },
+        { id: 'st4',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms2',  kind: 'channel',  title: 'SMS',        sub: 'T+7 升级套餐礼遇' },
+        { id: 'st5',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap3',   kind: 'channel',  title: 'App Push',   sub: 'T+7 单次服务体验券' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '30 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1',   to: 'ap1' },
+        { from: 'ap1',   to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1',  label: '已续卡' },
+        { from: 'wfe1',  to: 'st2',  label: '未续卡(超时)' },
+        { from: 'st2',   to: 'sms1' },
+        { from: 'sms1',  to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2',  label: '已续卡' },
+        { from: 'wfe2',  to: 'st3',  label: '未续卡(超时)' },
+        { from: 'st3',   to: 'ap2' },
+        { from: 'ap2',   to: 'wfe3' },
+        { from: 'wfe3',  to: 'ok3',  label: '已续卡' },
+        { from: 'wfe3',  to: 'cond', label: '未续卡(超时)' },
+        { from: 'cond',  to: 'st4',  label: '≥8次' },
+        { from: 'cond',  to: 'st5',  label: '<8次' },
+        { from: 'st4',   to: 'sms2' },
+        { from: 'st5',   to: 'ap3' },
+        { from: 'sms2',  to: 'end' },
+        { from: 'ap3',   to: 'end' },
+      ]);
+
+    // J9: 星健出院随访 → 居家与长期照护转化
+    drawJourney(document.getElementById('dag-j9'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 办理出院' },
+        { id: 'w1',    kind: 'wait',     title: '等待',        sub: '3 天 · 出院缓冲' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap1',   kind: 'channel',  title: 'App Push',   sub: 'D3 居家康复要点' },
+        { id: 'w2',    kind: 'wait',     title: '等待',        sub: '11 天' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS',        sub: 'D14 复诊预约提醒' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '完成复诊预约 · 5 天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已预约复诊',  sub: '转入门诊随访' },
+        { id: 'w3',    kind: 'wait',     title: '等待',        sub: '11 天' },
+        { id: 'cond',  kind: 'branch',   title: '条件分支',    sub: '属性: 出院时照护等级' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'em1',   kind: 'channel',  title: 'Email',      sub: 'D30 居家照护·长照床位' },
+        { id: 'st4',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap2',   kind: 'channel',  title: 'App Push',   sub: 'D30 康复门诊·辅具租赁' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '180 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'w1' },
+        { from: 'w1',    to: 'st1' },
+        { from: 'st1',   to: 'ap1' },
+        { from: 'ap1',   to: 'w2' },
+        { from: 'w2',    to: 'st2' },
+        { from: 'st2',   to: 'sms1' },
+        { from: 'sms1',  to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1',  label: '已预约' },
+        { from: 'wfe1',  to: 'w3',   label: '未预约(超时)' },
+        { from: 'w3',    to: 'cond' },
+        { from: 'cond',  to: 'st3',  label: '高照护需求' },
+        { from: 'cond',  to: 'st4',  label: '低照护需求' },
+        { from: 'st3',   to: 'em1' },
+        { from: 'st4',   to: 'ap2' },
+        { from: 'em1',   to: 'end' },
+        { from: 'ap2',   to: 'end' },
+      ]);
+
+    // J10: 口碑转介绍 · 老带新激活
+    drawJourney(document.getElementById('dag-j10'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '属性: 入住90天·满意度≥4' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap1',   kind: 'channel',  title: 'App Push',   sub: '推荐有礼·家属开放日' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '发起推荐 · 7 天' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'ap2',   kind: 'channel',  title: 'App Push',   sub: '礼遇发放确认' },
+        { id: 'st3',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 20:00' },
+        { id: 'sms1',  kind: 'channel',  title: 'SMS',        sub: '可转发亲友邀请链接' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '发起推荐 · 7 天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已发起推荐',  sub: '线索进入承接旅程' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '90 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1',   to: 'ap1' },
+        { from: 'ap1',   to: 'wfe1' },
+        { from: 'wfe1',  to: 'st2',  label: '已推荐' },
+        { from: 'wfe1',  to: 'st3',  label: '未推荐(超时)' },
+        { from: 'st2',   to: 'ap2' },
+        { from: 'st3',   to: 'sms1' },
+        { from: 'sms1',  to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok1',  label: '已推荐' },
+        { from: 'wfe2',  to: 'end',  label: '未推荐(超时)' },
+        { from: 'ap2',   to: 'end' },
+        { from: 'ok1',   to: 'end' },
+      ]);
+  })();
+  </script>
+</body>
+</html>
