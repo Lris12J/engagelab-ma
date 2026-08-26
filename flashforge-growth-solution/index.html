@@ -457,7 +457,6 @@
 
       <h3 style="margin-top:8px;">J1 · 商品浏览未加购唤起 <span class="pill pill-info" style="margin-left:8px;">转化 · 复用 Web 埋点</span></h3>
       <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-title">一句话版本</div>
         <div class="callout-body">
           <p>浏览商品（含机型/品类/价格）未加购 → <span class="bold">Push 唤起 + CDP 同类机型推荐</span>。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「浏览商品」，3 天后可重入　｜　<span class="bold">退出条件</span>：加购或购买即自动退出</p>
@@ -485,7 +484,6 @@
 
       <h3>J2 · 加购未结账挽回（弃购） <span class="pill pill-info" style="margin-left:8px;">转化 · 复用 Web 埋点</span></h3>
       <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-title">一句话版本</div>
         <div class="callout-body">
           <p>加购未结账 → <span class="bold">30 分钟 → 4 小时 → 12 小时三段弃购挽回</span>。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「加入购物车」，3 天后可重入　｜　<span class="bold">退出条件</span>：购买即自动退出</p>
@@ -513,7 +511,6 @@
 
       <h3>J3 · 结账未支付救援 <span class="pill pill-info" style="margin-left:8px;">转化 · 复用 Web 埋点</span></h3>
       <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-title">一句话版本</div>
         <div class="callout-body">
           <p>开始结账但未支付 → <span class="bold">即时救援触达</span>，把最高意图用户从支付环节捞回来。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「开始结账」，3 天后可重入　｜　<span class="bold">退出条件</span>：购买即自动退出</p>
@@ -540,7 +537,6 @@
 
       <h3>J4 · 首单欢迎 + 开箱 + 配套追加 <span class="pill pill-info" style="margin-left:8px;">激活 · 复用 Web 埋点</span></h3>
       <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-title">一句话版本</div>
         <div class="callout-body">
           <p>首单用户 → <span class="bold">欢迎 + 开箱引导，等首次打印成功后再分流推配套耗材/配件</span>，7 天监听追加购买。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「购买 + 累计购买次数 = 1」　｜　<span class="bold">退出条件</span>：按分支完成后结束</p>
@@ -567,7 +563,6 @@
 
       <h3>J5 · 开箱首打成功保障 <span class="pill pill-warn" style="margin-left:8px;">激活 · 需接入设备事件</span></h3>
       <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-title">一句话版本</div>
         <div class="callout-body">
           <p>打印机绑定后保障首打成功——<span class="bold">打印失败分支直接转客服</span>，不让新用户卡在第一次体验。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「打印机绑定成功」（每台仅一次）　｜　<span class="bold">退出条件</span>：首次打印成功即完成转化</p>
@@ -594,7 +589,6 @@
 
       <h3>J6 · 耗材见底智能补货 <span class="pill pill-warn" style="margin-left:8px;">复购 · 需接入设备事件</span></h3>
       <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-title">一句话版本</div>
         <div class="callout-body">
           <p>耗材见底（设备事件）或超过复购周期 → <span class="bold">智能补货提醒</span>，5 天监听耗材购买。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「耗材见底」或属性「超复购周期」，30 天后可重入　｜　<span class="bold">退出条件</span>：耗材购买即自动退出</p>
@@ -621,7 +615,6 @@
 
       <h3>J7 · 模型/内容激活开机率 <span class="pill pill-purple" style="margin-left:8px;">留存 · 需接入内容事件</span></h3>
       <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-title">一句话版本</div>
         <div class="callout-body">
           <p>有机器但超过 14 天未活跃 → <span class="bold">推新模型 / 打印内容拉开机率</span>，5 天监听模型下载或打印完成。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「拥有机型 + 最后活跃超 14 天」，14 天后可重入　｜　<span class="bold">退出条件</span>：模型下载或打印完成即转化</p>
@@ -648,7 +641,6 @@
 
       <h3>J8 · 沉睡打印机唤醒 + 升级 <span class="pill pill-purple" style="margin-left:8px;">召回 · 需接入设备事件</span></h3>
       <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-title">一句话版本</div>
         <div class="callout-body">
           <p>超过 60 天未打印 → <span class="bold">沉睡唤醒 + 以旧换新 / 升级机型引导</span>，14 天监听打印或购买。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「最后打印超 60 天」，60 天后可重入　｜　<span class="bold">退出条件</span>：打印完成或购买即自动退出</p>
