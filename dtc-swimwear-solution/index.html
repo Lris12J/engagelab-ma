@@ -110,6 +110,7 @@
 
 
 
+
   <style>
     /* ===================================================================
        视觉升级层 · 对齐 Urtopia 方案设计系统 (20260828)
@@ -154,7 +155,9 @@
     /* ===== 通栏色带布局：main 放开宽度，section 内部收敛 ===== */
     main { max-width: none; margin: 0; padding: 0; }
     main > section { padding: 62px 28px; margin: 0; }
-    main > section > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
+    /* 宽度靠 .wrap 层约束，不依赖子元素的 auto 外边距——
+       否则任何使用 margin 简写的规则都会把居中打破（如 hero-subtitle / divider）*/
+    main > section > .wrap { max-width: 1180px; margin: 0 auto; }
     main > section.section-plain { border: 0; border-radius: 0; background: transparent; }
     main > section.section-plain:nth-of-type(even) { background: var(--bg-soft); }
     main > section.section { border: 0; border-radius: 0; background: var(--bg-soft); }
@@ -197,21 +200,15 @@
     .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
       font-weight: 500; transition: color .15s ease; }
     .toc-bar a:hover { color: var(--accent); }
-    /* 品牌名即返回首页入口（点击回到方案总览） */
+    /* 品牌名即返回首页入口：整块（图标 + 文字）一起高亮 */
     .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
       align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
-    .toc-bar .brand::before { content: ""; width: 11px; height: 11px; border-radius: 3.5px; flex: none;
-      background: linear-gradient(135deg, var(--accent), var(--mint));
-      transition: transform .18s ease, box-shadow .18s ease; }
-    .toc-bar a.brand { text-decoration: none; cursor: pointer; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer;
+      transition: color .16s ease; }
+    .toc-bar a.brand .brand-home { width: 17px; height: 17px; flex: none;
+      color: var(--accent); transition: color .16s ease, transform .16s ease; }
     .toc-bar a.brand:hover { color: var(--accent); }
-    .toc-bar a.brand:hover::before { transform: scale(1.18);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
-    /* 悬停时在品牌名后浮出提示，不占常态空间 */
-    .toc-bar a.brand::after { content: "返回首页"; font-size: 11.5px; font-weight: 600;
-      color: var(--text-4); opacity: 0; max-width: 0; overflow: hidden;
-      white-space: nowrap; transition: opacity .18s ease, max-width .18s ease; }
-    .toc-bar a.brand:hover::after { opacity: 1; max-width: 90px; }
+    .toc-bar a.brand:hover .brand-home { color: var(--accent); transform: translateY(-1px); }
     a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
       margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
       font-size: 13px; font-weight: 500; }
@@ -226,7 +223,7 @@
       background:
         radial-gradient(900px 420px at 88% -8%, rgba(0,212,160,.16), transparent 62%),
         radial-gradient(760px 380px at 6% 108%, rgba(79,125,255,.20), transparent 60%); }
-    main > section.hero > * { position: relative; z-index: 1; }
+    main > section.hero > .wrap { position: relative; z-index: 1; }
     .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
     .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
       -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -363,7 +360,7 @@
 <body>
   <nav class="toc-bar">
     <div class="toc-inner">
-      <a class="brand" href="../">EngageLab MA · 跨境 DTC 女装 / 泳装方案</a>
+      <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA 解决方案</a>
       <a href="#s-market">行业机会</a>
       <a href="#s-upgrade">升级增量</a>
       <a href="#s-why">为什么 EngageLab</a>
@@ -377,6 +374,7 @@
 
   <main>
     <section class="hero">
+      <div class="wrap">
       <div class="hero-pills">
         <span class="pill pill-accent">跨境 DTC 女装 · 泳装出海</span>
         <span class="pill">欧美主市场 · 全球扩展</span>
@@ -398,9 +396,11 @@
         <div class="stat"><div class="stat-value coral">99%+</div><div class="stat-label">Cupshe 公开案例：邮件送达率</div></div>
       </div>
       <p class="note">Cupshe 效果数据来自其公开的生命周期营销案例披露，用作行业标杆参考；EngageLab 增量以「在成熟 Email 基线上的百分点提升」表述，待并行测试验证。</p>
+      </div>
     </section>
 
     <section id="s-market" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">1</span>行业已经证明：生命周期自动化有效；下一步是全渠道增量</h2>
       <p>
         跨境 DTC 女装 / 泳装赛道的头部品牌，多数已完成「欢迎序列、弃单挽回、售后关怀、生日 / 周年」等
@@ -435,9 +435,11 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <section id="s-upgrade" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">2</span>从「Email 做对了」到「全渠道还能再挖」：切换的真实增量空间</h2>
       <p class="muted small">以下对比的不是「有没有 MA」，而是「已有以 Email 为核心的生命周期平台」之后，EngageLab 还能带来什么。</p>
       <div class="spacer-md"></div>
@@ -467,9 +469,11 @@
           <div class="callout-body"><p>并行跑量而非「大爆炸切换」；中文交付支持埋点与旅程共建；4 周可验证弃单增量是否成立。</p></div>
         </div>
       </div>
+      </div>
     </section>
 
     <section id="s-why" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">3</span>为什么选择 EngageLab MA</h2>
       <div class="grid grid-3">
         <div class="card">
@@ -523,9 +527,11 @@
           </tbody>
         </table>
       </div>
+      </div>
     </section>
 
     <section id="s-scenarios" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">4</span>高 ROI 场景总览（按「切换增量」优先级）</h2>
       <p>优先上线对已有 Email 体系<strong>增量最明显</strong>的场景；欢迎 / 售后等可后置迁移或并行。</p>
       <div class="spacer-md"></div>
@@ -540,9 +546,11 @@
           <tr><td>P2</td><td>新客欢迎序列</td><td>可后置迁移；已有欢迎邮件则可并行优化</td><td>Email + App Push</td><td>注册→首单相对 +15~25%</td></tr>
         </tbody>
       </table>
+      </div>
     </section>
 
     <section id="s-journey1" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">5</span>核心旅程详细编排（升级型设计）</h2>
 
       <div class="section" style="margin-top:16px;">
@@ -696,9 +704,11 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <section id="s-benchmark" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">6</span>行业标杆与公开案例</h2>
       <div class="card" style="margin-bottom:16px;">
         <div class="card-header">公开案例：Cupshe（跨境 DTC 泳装标杆）的生命周期自动化实践</div>
@@ -735,9 +745,11 @@
           <p class="note">左柱：成熟 Email 弃单恢复基线；右柱：叠加即时通道后的目标区间。中间差值（约 3–5pp）才是切换 / 并行测试应承诺与验收的核心。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <section id="s-migrate" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">7</span>平滑切换路径：并行验证，而不是「大爆炸替换」</h2>
       <div class="grid grid-3">
         <div class="card">
@@ -781,9 +793,11 @@
           <p>业界以 Email 为核心的企业级生命周期平台，通常提供预置零售战术与可选专业服务，但<strong>日常旅程搭建与优化仍由品牌运营团队主导</strong>。EngageLab 同样是「平台 + 交付协助上线」，不是外包代运营。切换说服点应落在：通道增量、编排效率、本地支持速度与总拥有成本，而非「谁替你写邮件」。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <section id="s-compliance" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">8</span>合规与安全</h2>
       <div class="grid grid-2">
         <div class="card">
@@ -807,9 +821,11 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <section id="s-plan" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">9</span>测试计划（4 周，切换验证型）</h2>
       <div class="grid grid-4">
         <div class="card">
@@ -857,9 +873,11 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <section class="section">
+      <div class="wrap">
       <h2><span class="secnum">10</span>下一步</h2>
       <div class="grid grid-3">
         <div style="display:flex;align-items:flex-start;gap:10px;">
@@ -874,6 +892,7 @@
           <span class="step-num">3</span>
           <div><strong>决策</strong><p class="small muted">用 +3pp 弃单增量与成本对比决定是否扩面切换</p></div>
         </div>
+      </div>
       </div>
     </section>
 

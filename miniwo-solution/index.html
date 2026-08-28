@@ -176,6 +176,7 @@
 
 
 
+
   <style>
     /* ===================================================================
        视觉升级层 · 对齐 Urtopia 方案设计系统 (20260828)
@@ -220,7 +221,9 @@
     /* ===== 通栏色带布局：main 放开宽度，section 内部收敛 ===== */
     main { max-width: none; margin: 0; padding: 0; }
     main > section { padding: 62px 28px; margin: 0; }
-    main > section > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
+    /* 宽度靠 .wrap 层约束，不依赖子元素的 auto 外边距——
+       否则任何使用 margin 简写的规则都会把居中打破（如 hero-subtitle / divider）*/
+    main > section > .wrap { max-width: 1180px; margin: 0 auto; }
     main > section.section-plain { border: 0; border-radius: 0; background: transparent; }
     main > section.section-plain:nth-of-type(even) { background: var(--bg-soft); }
     main > section.section { border: 0; border-radius: 0; background: var(--bg-soft); }
@@ -263,21 +266,15 @@
     .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
       font-weight: 500; transition: color .15s ease; }
     .toc-bar a:hover { color: var(--accent); }
-    /* 品牌名即返回首页入口（点击回到方案总览） */
+    /* 品牌名即返回首页入口：整块（图标 + 文字）一起高亮 */
     .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
       align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
-    .toc-bar .brand::before { content: ""; width: 11px; height: 11px; border-radius: 3.5px; flex: none;
-      background: linear-gradient(135deg, var(--accent), var(--mint));
-      transition: transform .18s ease, box-shadow .18s ease; }
-    .toc-bar a.brand { text-decoration: none; cursor: pointer; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer;
+      transition: color .16s ease; }
+    .toc-bar a.brand .brand-home { width: 17px; height: 17px; flex: none;
+      color: var(--accent); transition: color .16s ease, transform .16s ease; }
     .toc-bar a.brand:hover { color: var(--accent); }
-    .toc-bar a.brand:hover::before { transform: scale(1.18);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
-    /* 悬停时在品牌名后浮出提示，不占常态空间 */
-    .toc-bar a.brand::after { content: "返回首页"; font-size: 11.5px; font-weight: 600;
-      color: var(--text-4); opacity: 0; max-width: 0; overflow: hidden;
-      white-space: nowrap; transition: opacity .18s ease, max-width .18s ease; }
-    .toc-bar a.brand:hover::after { opacity: 1; max-width: 90px; }
+    .toc-bar a.brand:hover .brand-home { color: var(--accent); transform: translateY(-1px); }
     a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
       margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
       font-size: 13px; font-weight: 500; }
@@ -292,7 +289,7 @@
       background:
         radial-gradient(900px 420px at 88% -8%, rgba(0,212,160,.16), transparent 62%),
         radial-gradient(760px 380px at 6% 108%, rgba(79,125,255,.20), transparent 60%); }
-    main > section.hero > * { position: relative; z-index: 1; }
+    main > section.hero > .wrap { position: relative; z-index: 1; }
     .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
     .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
       -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -429,7 +426,7 @@
 <body>
   <nav class="toc-bar">
     <div class="toc-inner">
-      <a class="brand" href="../">EngageLab MA · Miniwo 增长方案</a>
+      <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA 解决方案</a>
       <a href="#s-product">产品洞察</a>
       <a href="#s-funnel">用户漏斗</a>
       <a href="#s-why">为什么 EngageLab</a>
@@ -444,6 +441,7 @@
   <main>
 <!-- Hero -->
     <section class="hero">
+      <div class="wrap">
       <div class="hero-pills">
         <span class="pill pill-accent">Miniwo · Cuboid.AI</span>
         <span class="pill">Creative Life Simulation · UGC × AI</span>
@@ -467,10 +465,12 @@
         <div class="stat"><div class="stat-value success">+35%</div><div class="stat-label">Story Card 分享后 K 因子提升</div></div>
         <div class="stat"><div class="stat-value accent">+22%</div><div class="stat-label">AI 额度耗尽 → 订阅转化提升</div></div>
       </div>
+      </div>
     </section>
 
     <!-- 1. Product Insight -->
     <section id="s-product" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">1</span>Miniwo 是什么？为什么它需要一套「叙事型」MA</h2>
       <p>
         Miniwo（由 Cuboid.AI 打造）是一个 AI 驱动的<span class="bold">创意生活模拟</span>产品：
@@ -540,10 +540,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 2. Funnel -->
     <section id="s-funnel" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">2</span>Miniwo 独有的九层用户漏斗：每层都有明确挽回空间</h2>
       <p>
         Miniwo 的漏斗与传统 App 差异极大——<span class="bold">「Waitlist」和「照片上传」两个前置门槛</span>会显著过滤用户，
@@ -569,10 +571,12 @@
           </p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 3. Why -->
     <section id="s-why" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">3</span>为什么 Miniwo 应该选择 EngageLab MA</h2>
       <div class="grid grid-3">
         <div class="card"><div class="card-header">全球触达 · 多语言原生</div><div class="card-body">
@@ -626,10 +630,12 @@
         注：表格中打开率、送达率均为对应渠道的<span class="bold">全球或目标市场行业公开基准</span>（来源：Meta / WhatsApp Business API 官方报告、Data.ai / Sensor Tower 2024–2025、Statista），
         <span class="bold">非 Miniwo 自身运营数据</span>——Miniwo 目前处于 Waitlist 阶段，实际效果以上线后测试数据为准。
       </p>
+      </div>
     </section>
 
     <!-- 4. Scenarios -->
     <section id="s-scenarios" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">4</span>八大高 ROI 自动化增长场景</h2>
       <table>
         <thead><tr>
@@ -658,10 +664,12 @@
           <p style="margin-top:4px"><span class="bold">Phase 2（后续规划）：日本 + 中国</span>——待客户 app 完成拉美 & 北美验证后进入，届时叠加 <span class="bold">LINE（日本）· 微信生态（中国）</span>渠道；本方案中 LINE / 日本 APPI / JP 数据驻留能力均为「就绪待启用」，不属于 Phase 1 交付范围。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 1 -->
     <section id="s-journey1" class="section-plain">
+      <div class="wrap">
       <h2>场景 1｜Waitlist 分层预热 · 邀请码激活</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-accent">获客 → 激活</span>
@@ -713,10 +721,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 2 -->
     <section id="s-journey2" class="section-plain">
+      <div class="wrap">
       <h2>场景 2｜首次登录 · 首角上传引导</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-accent">新用户激活</span>
@@ -768,10 +778,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 3 -->
     <section id="s-journey3" class="section-plain">
+      <div class="wrap">
       <h2>场景 3｜首张 Story Card · Aha 时刻催化</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-accent">Aha 转化 · 分享传播</span>
@@ -823,10 +835,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 4 -->
     <section id="s-journey4" class="section-plain">
+      <div class="wrap">
       <h2>场景 4｜AI 生成额度耗尽 · 订阅转化</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-accent">付费转化</span>
@@ -878,10 +892,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 5 -->
     <section id="s-journey5" class="section-plain">
+      <div class="wrap">
       <h2>场景 5｜好友世界互访 · 社交召回</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-accent">社交 / 留存</span>
@@ -933,10 +949,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 6 -->
     <section id="s-journey6" class="section-plain">
+      <div class="wrap">
       <h2>场景 6｜沉睡召回 · 你的世界仍在生长</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-accent">D7 / D30 分层召回</span>
@@ -987,10 +1005,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 5. Benchmark -->
     <section id="s-benchmark" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">5</span>标杆数据参照</h2>
       <div class="grid grid-2">
         <div class="card">
@@ -1027,10 +1047,12 @@
           </table>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 6. Compliance -->
     <section id="s-compliance" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">6</span>合规与信任 · Miniwo 独有的三重护栏</h2>
       <div class="grid grid-3">
         <div class="card">
@@ -1088,10 +1110,12 @@
           </ul>
         </div></div>
       </div>
+      </div>
     </section>
 
     <!-- 7. Rollout Plan -->
     <section id="s-plan" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">7</span>6 周分阶段落地计划</h2>
       <div class="grid grid-3">
         <div class="card">
@@ -1128,10 +1152,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 8. Next -->
     <section class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">8</span>下一步</h2>
       <div class="grid grid-3">
         <div class="card">
@@ -1152,6 +1178,7 @@
             <p>开通测试环境与影子账号，搭建八大旅程中的核心 3 条上线，并配置 A/B 对照组，<span class="bold">6 周内完成可量化验收</span>，输出下阶段扩展路线。</p>
           </div>
         </div>
+      </div>
       </div>
     </section>
 

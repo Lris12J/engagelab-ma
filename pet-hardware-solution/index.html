@@ -170,6 +170,7 @@
 
 
 
+
   <style>
     /* ===================================================================
        视觉升级层 · 对齐 Urtopia 方案设计系统 (20260828)
@@ -214,7 +215,9 @@
     /* ===== 通栏色带布局：main 放开宽度，section 内部收敛 ===== */
     main { max-width: none; margin: 0; padding: 0; }
     main > section { padding: 62px 28px; margin: 0; }
-    main > section > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
+    /* 宽度靠 .wrap 层约束，不依赖子元素的 auto 外边距——
+       否则任何使用 margin 简写的规则都会把居中打破（如 hero-subtitle / divider）*/
+    main > section > .wrap { max-width: 1180px; margin: 0 auto; }
     main > section.section-plain { border: 0; border-radius: 0; background: transparent; }
     main > section.section-plain:nth-of-type(even) { background: var(--bg-soft); }
     main > section.section { border: 0; border-radius: 0; background: var(--bg-soft); }
@@ -257,21 +260,15 @@
     .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
       font-weight: 500; transition: color .15s ease; }
     .toc-bar a:hover { color: var(--accent); }
-    /* 品牌名即返回首页入口（点击回到方案总览） */
+    /* 品牌名即返回首页入口：整块（图标 + 文字）一起高亮 */
     .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
       align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
-    .toc-bar .brand::before { content: ""; width: 11px; height: 11px; border-radius: 3.5px; flex: none;
-      background: linear-gradient(135deg, var(--accent), var(--mint));
-      transition: transform .18s ease, box-shadow .18s ease; }
-    .toc-bar a.brand { text-decoration: none; cursor: pointer; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer;
+      transition: color .16s ease; }
+    .toc-bar a.brand .brand-home { width: 17px; height: 17px; flex: none;
+      color: var(--accent); transition: color .16s ease, transform .16s ease; }
     .toc-bar a.brand:hover { color: var(--accent); }
-    .toc-bar a.brand:hover::before { transform: scale(1.18);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
-    /* 悬停时在品牌名后浮出提示，不占常态空间 */
-    .toc-bar a.brand::after { content: "返回首页"; font-size: 11.5px; font-weight: 600;
-      color: var(--text-4); opacity: 0; max-width: 0; overflow: hidden;
-      white-space: nowrap; transition: opacity .18s ease, max-width .18s ease; }
-    .toc-bar a.brand:hover::after { opacity: 1; max-width: 90px; }
+    .toc-bar a.brand:hover .brand-home { color: var(--accent); transform: translateY(-1px); }
     a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
       margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
       font-size: 13px; font-weight: 500; }
@@ -286,7 +283,7 @@
       background:
         radial-gradient(900px 420px at 88% -8%, rgba(0,212,160,.16), transparent 62%),
         radial-gradient(760px 380px at 6% 108%, rgba(79,125,255,.20), transparent 60%); }
-    main > section.hero > * { position: relative; z-index: 1; }
+    main > section.hero > .wrap { position: relative; z-index: 1; }
     .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
     .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
       -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -423,7 +420,7 @@
 <body>
   <nav class="toc-bar">
     <div class="toc-inner">
-      <a class="brand" href="../">EngageLab MA · 宠物智能硬件方案</a>
+      <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA 解决方案</a>
       <a href="#s-market">行业机会</a>
       <a href="#s-funnel">商城漏斗</a>
       <a href="#s-why">为什么 EngageLab</a>
@@ -438,6 +435,7 @@
   <main>
     <!-- Hero -->
     <section class="hero">
+      <div class="wrap">
       <div class="hero-pills">
         <span class="pill pill-info">宠物智能硬件 · APP 商城</span>
         <span class="pill">软硬件一体化品牌</span>
@@ -458,10 +456,12 @@
         <div class="stat"><div class="stat-value warn">60%+</div><div class="stat-label">App 商城用户从未复购（最大增量空间）</div></div>
         <div class="stat"><div class="stat-value success">+35%</div><div class="stat-label">自动化运营后复购率提升幅度（行业对标）</div></div>
       </div>
+      </div>
     </section>
 
     <!-- 1. Market -->
     <section id="s-market" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">1</span>为什么宠物智能硬件品牌的 App 商城必须做用户运营</h2>
       <p>
         中国宠物行业已进入"精养化 · 数字化"深水区：养宠家庭数量超 1.5 亿，
@@ -497,10 +497,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 2. Funnel -->
     <section id="s-funnel" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">2</span>App 商城用户漏斗：每一层都是可通过 MA 系统性提升的增量</h2>
       <p>
         宠物智能硬件 App 的用户路径清晰——从购机激活到成为活跃商城消费者，
@@ -522,10 +524,12 @@
           </p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 3. Why EngageLab -->
     <section id="s-why" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">3</span>EngageLab MA 为什么适合宠物智能硬件品牌</h2>
       <div class="grid grid-3">
         <div class="card"><div class="card-header">小团队，大运营</div><div class="card-body">
@@ -569,10 +573,12 @@
           <tr><td>Web Push</td><td>官网访客召回、PC 端活动通知</td><td class="align-right">按 DAU 定价</td><td class="align-right">点击率 6-10%</td><td class="align-center">Web 端用户补充</td></tr>
         </tbody>
       </table>
+      </div>
     </section>
 
     <!-- 4. Scenarios Overview -->
     <section id="s-scenarios" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">4</span>六大高 ROI 运营场景</h2>
       <table>
         <thead><tr>
@@ -591,10 +597,12 @@
       <p class="small muted" style="margin-top:10px">
         六个场景覆盖从新设备激活到老用户深度运营的完整生命周期——旅程数量越多、协同度越高，撬动的累计 GMV 增量越大。
       </p>
+      </div>
     </section>
 
     <!-- Journey 1 -->
     <section id="s-journey1" class="section-plain">
+      <div class="wrap">
       <h2>场景 1｜设备激活 → 商城首购激活</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">优先级最高</span>
@@ -649,10 +657,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 2 -->
     <section id="s-journey2" class="section-plain">
+      <div class="wrap">
       <h2>场景 2｜加购未下单弃单挽回</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">高 ROI 首选</span>
@@ -706,10 +716,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 3 -->
     <section id="s-journey3" class="section-plain">
+      <div class="wrap">
       <h2>场景 3｜耗材智能补货提醒</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">宠物硬件独有场景</span>
@@ -773,10 +785,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 4 -->
     <section id="s-journey4" class="section-plain">
+      <div class="wrap">
       <h2>场景 4｜商城沉默用户分层召回（30 / 60 / 90 天）</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-warn">沉默用户存量大</span>
@@ -829,10 +843,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 5 -->
     <section id="s-journey5" class="section-plain">
+      <div class="wrap">
       <h2>场景 5｜新品上架精准推送（按已购设备分类）</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">新品转化</span>
@@ -884,10 +900,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 6 -->
     <section id="s-journey6" class="section-plain">
+      <div class="wrap">
       <h2>场景 6｜关联品类交叉销售（设备购买后 7 天）</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">客单价提升</span>
@@ -939,10 +957,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Small Team Ops Guide -->
     <section id="s-ops" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">5</span>小团队运营落地建议：1 人管 6 条旅程</h2>
       <p>
         针对团队规模小、运营人员兼职的情况，EngageLab MA 提供了完整的"轻运营"模式——
@@ -1000,10 +1020,12 @@
           <p>用户属性需上报：<span class="bold">owned_device_types</span>（已购设备类型列表）、<span class="bold">last_order_time</span>（最近商城下单时间）</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Benchmark -->
     <section id="s-benchmark" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">6</span>行业对标 · 自动化运营的可参考效果</h2>
       <p>
         以下数据来自同类消费品（宠物 / 快消电商 / 智能硬件）App 接入 MA 自动化运营后的公开案例及行业报告。
@@ -1048,10 +1070,12 @@
           <p class="small muted">同为智能硬件 + App 模式，技术架构和场景设计直接可参考</p>
         </div></div>
       </div>
+      </div>
     </section>
 
     <!-- Compliance -->
     <section class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">7</span>数据安全与合规</h2>
       <div class="grid grid-2">
         <div class="card"><div class="card-header">数据安全</div><div class="card-body">
@@ -1081,10 +1105,12 @@
           <p>· 提前退出：用户一旦完成目标行为（如下单），立即从旅程退出，不再继续触达。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Plan -->
     <section id="s-plan" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">8</span>4 周测试计划 · 可量化验收</h2>
       <table>
         <thead><tr>
@@ -1119,6 +1145,7 @@
           开通测试 VIP 账号，优先搭建弃单挽回 + 耗材补货 2 条旅程，小流量验证后扩全量；
           基于真实数据效果驱动后续旅程的扩展和迭代。
         </div></div>
+      </div>
       </div>
     </section>
 

@@ -162,6 +162,7 @@
 
 
 
+
   <style>
     /* ===================================================================
        视觉升级层 · 对齐 Urtopia 方案设计系统 (20260828)
@@ -206,7 +207,9 @@
     /* ===== 通栏色带布局：main 放开宽度，section 内部收敛 ===== */
     main { max-width: none; margin: 0; padding: 0; }
     main > section { padding: 62px 28px; margin: 0; }
-    main > section > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
+    /* 宽度靠 .wrap 层约束，不依赖子元素的 auto 外边距——
+       否则任何使用 margin 简写的规则都会把居中打破（如 hero-subtitle / divider）*/
+    main > section > .wrap { max-width: 1180px; margin: 0 auto; }
     main > section.section-plain { border: 0; border-radius: 0; background: transparent; }
     main > section.section-plain:nth-of-type(even) { background: var(--bg-soft); }
     main > section.section { border: 0; border-radius: 0; background: var(--bg-soft); }
@@ -249,21 +252,15 @@
     .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
       font-weight: 500; transition: color .15s ease; }
     .toc-bar a:hover { color: var(--accent); }
-    /* 品牌名即返回首页入口（点击回到方案总览） */
+    /* 品牌名即返回首页入口：整块（图标 + 文字）一起高亮 */
     .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
       align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
-    .toc-bar .brand::before { content: ""; width: 11px; height: 11px; border-radius: 3.5px; flex: none;
-      background: linear-gradient(135deg, var(--accent), var(--mint));
-      transition: transform .18s ease, box-shadow .18s ease; }
-    .toc-bar a.brand { text-decoration: none; cursor: pointer; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer;
+      transition: color .16s ease; }
+    .toc-bar a.brand .brand-home { width: 17px; height: 17px; flex: none;
+      color: var(--accent); transition: color .16s ease, transform .16s ease; }
     .toc-bar a.brand:hover { color: var(--accent); }
-    .toc-bar a.brand:hover::before { transform: scale(1.18);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
-    /* 悬停时在品牌名后浮出提示，不占常态空间 */
-    .toc-bar a.brand::after { content: "返回首页"; font-size: 11.5px; font-weight: 600;
-      color: var(--text-4); opacity: 0; max-width: 0; overflow: hidden;
-      white-space: nowrap; transition: opacity .18s ease, max-width .18s ease; }
-    .toc-bar a.brand:hover::after { opacity: 1; max-width: 90px; }
+    .toc-bar a.brand:hover .brand-home { color: var(--accent); transform: translateY(-1px); }
     a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
       margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
       font-size: 13px; font-weight: 500; }
@@ -278,7 +275,7 @@
       background:
         radial-gradient(900px 420px at 88% -8%, rgba(0,212,160,.16), transparent 62%),
         radial-gradient(760px 380px at 6% 108%, rgba(79,125,255,.20), transparent 60%); }
-    main > section.hero > * { position: relative; z-index: 1; }
+    main > section.hero > .wrap { position: relative; z-index: 1; }
     .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
     .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
       -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -415,7 +412,7 @@
 <body>
   <nav class="toc-bar">
     <div class="toc-inner">
-      <a class="brand" href="../">EngageLab MA · 智能电动车企全生命周期运营方案</a>
+      <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA 解决方案</a>
       <a href="#s-where">钱在哪里</a>
       <a href="#s-status">行业现状</a>
       <a href="#s-data">数据打通</a>
@@ -431,6 +428,7 @@
   <main>
 <!-- Hero -->
     <section class="hero">
+      <div class="wrap">
       <div class="hero-pills">
         <span class="pill pill-info">智能电动车企 · 通用行业方案</span>
         <span class="pill">新能源 / 燃油皆适用 · 国内私域 + 全球化出海</span>
@@ -465,10 +463,12 @@
           <div class="stat-label">线索转化率：普遍水平 vs 标杆水平的差距</div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Where the money is -->
     <section id="s-where" class="section">
+      <div class="wrap">
       <h2><span class="secnum">1</span>先看清钱在哪里：汽车是"三段火箭"生意</h2>
       <div class="grid grid-2-1">
         <div>
@@ -538,10 +538,12 @@
           这些旅程无一例外都依赖跨系统的用户数据。因此本方案的核心，是<span class="bold">先把数据打通到同一个用户身上，再用自动化旅程承接每一个高价值节点</span>。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Current status -->
     <section id="s-status" class="section">
+      <div class="wrap">
       <h2><span class="secnum">2</span>行业现状：新势力已跑通"用户企业"，多数车企卡在执行层</h2>
       <div class="grid grid-2">
         <div class="card"><div class="card-header">头部新势力已验证的打法</div><div class="card-body">
@@ -571,10 +573,12 @@
           并原生支持 <span class="bold">App Push / 短信 / Email / WhatsApp / Web Push / 站内信</span> 多渠道，适配国内私域与全球化出海。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Data as asset -->
     <section id="s-data" class="section">
+      <div class="wrap">
       <h2><span class="secnum">3</span>核心洞察：汽车的难点不是缺数据，而是数据分散在孤岛里</h2>
       <div class="callout success">
         <div class="callout-title">MA 不替代业务系统，而是做"统一身份 + 跨渠道编排 + 触达执行"层</div>
@@ -610,10 +614,12 @@
       <p class="small muted" style="margin-top:8px;">
         注：具体接法（哪些走 SDK、哪些走 Server API、哪些走 Webhook 实时反查）由 EngageLab 交付团队与车企 IT / 数据团队在需求调研时共同确认，遵循"最小侵入、复用现有埋点与接口"原则。
       </p>
+      </div>
     </section>
 
     <!-- Blueprint -->
     <section id="s-blueprint" class="section">
+      <div class="wrap">
       <h2><span class="secnum">4</span>数据接入蓝图 · 按价值排优先级，一次接到位</h2>
       <p>建议分三档推进：<span class="bold">P0 是购前线索与成交链路</span>（官网 / CRM），当期即可跑通"线索响应 + 试驾 + 交付"三条高价值旅程；
       <span class="bold">P1 是售后与车联网数据</span>，是汽车区别于普通电商、真正拉动 LTV 的复购与订阅引擎；
@@ -679,10 +685,12 @@
           两者不重复、不冲突，车企的既有数据资产被直接复用与放大。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Scenario map -->
     <section id="s-map" class="section">
+      <div class="wrap">
       <h2><span class="secnum">5</span>全生命周期运营场景地图</h2>
       <p>围绕"线索 → 试驾 → 下订 → 交付 → 用车 → 复购 → 裂变 / 召回"七个阶段，共规划 11 个高价值场景，本方案详细编排其中 8 条核心旅程（J1–J8）。</p>
       <div class="spacer-md"></div>
@@ -709,10 +717,12 @@
           <tr><td class="muted">J11</td><td>留存</td><td>车主社区 / 活动 / 积分运营</td><td>属性：会员等级 / 活动报名</td><td>App Push / 站内信</td><td>把低频用车变高频互动，沉淀关系与共创</td></tr>
         </tbody>
       </table>
+      </div>
     </section>
 
     <!-- Journeys -->
     <section id="s-journeys" class="section">
+      <div class="wrap">
       <h2><span class="secnum">6</span>八条核心旅程详细编排</h2>
 
       <h3 style="margin-top:8px;">J1 · 线索即时响应 + 分层培育 <span class="pill pill-info" style="margin-left:8px;">线索 · 抢黄金 10 分钟</span></h3>
@@ -876,10 +886,12 @@
           </ul></div></div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Benchmark -->
     <section id="s-benchmark" class="section">
+      <div class="wrap">
       <h2><span class="secnum">7</span>预期效果 · 智能电动车企行业对标</h2>
       <div class="grid grid-2">
         <div><div class="chart" id="chart-benchmark"></div></div>
@@ -898,10 +910,12 @@
           </div></div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Compliance -->
     <section id="s-compliance" class="section">
+      <div class="wrap">
       <h2><span class="secnum">8</span>合规与运营护栏</h2>
       <div class="grid grid-2">
         <div class="card"><div class="card-header">数据安全与合规</div><div class="card-body"><ul>
@@ -917,10 +931,12 @@
           <li>内容预览 + A/B：发送前完整样式预览；AI Write for Me 一键生成多语言文案，适配出海多市场</li>
         </ul></div></div>
       </div>
+      </div>
     </section>
 
     <!-- Plan -->
     <section id="s-plan" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">9</span>落地计划 · 一次接到位，用效果说话</h2>
       <table>
         <thead><tr>
@@ -955,6 +971,7 @@
         <div class="card"><div class="card-header"><span class="step-num">3</span>用效果说话</div><div class="card-body">
           开通测试 VIP，优先上 <span class="bold">线索响应 + 续保 / 保养</span> 旅程，对照组验证 uplift，4–6 周产出可量化 ROI 报告。
         </div></div>
+      </div>
       </div>
     </section>
 

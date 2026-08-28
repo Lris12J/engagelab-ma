@@ -175,6 +175,7 @@
 
 
 
+
   <style>
     /* ===================================================================
        视觉升级层 · 对齐 Urtopia 方案设计系统 (20260828)
@@ -219,7 +220,9 @@
     /* ===== 通栏色带布局：main 放开宽度，section 内部收敛 ===== */
     main { max-width: none; margin: 0; padding: 0; }
     main > section { padding: 62px 28px; margin: 0; }
-    main > section > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
+    /* 宽度靠 .wrap 层约束，不依赖子元素的 auto 外边距——
+       否则任何使用 margin 简写的规则都会把居中打破（如 hero-subtitle / divider）*/
+    main > section > .wrap { max-width: 1180px; margin: 0 auto; }
     main > section.section-plain { border: 0; border-radius: 0; background: transparent; }
     main > section.section-plain:nth-of-type(even) { background: var(--bg-soft); }
     main > section.section { border: 0; border-radius: 0; background: var(--bg-soft); }
@@ -262,21 +265,15 @@
     .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
       font-weight: 500; transition: color .15s ease; }
     .toc-bar a:hover { color: var(--accent); }
-    /* 品牌名即返回首页入口（点击回到方案总览） */
+    /* 品牌名即返回首页入口：整块（图标 + 文字）一起高亮 */
     .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
       align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
-    .toc-bar .brand::before { content: ""; width: 11px; height: 11px; border-radius: 3.5px; flex: none;
-      background: linear-gradient(135deg, var(--accent), var(--mint));
-      transition: transform .18s ease, box-shadow .18s ease; }
-    .toc-bar a.brand { text-decoration: none; cursor: pointer; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer;
+      transition: color .16s ease; }
+    .toc-bar a.brand .brand-home { width: 17px; height: 17px; flex: none;
+      color: var(--accent); transition: color .16s ease, transform .16s ease; }
     .toc-bar a.brand:hover { color: var(--accent); }
-    .toc-bar a.brand:hover::before { transform: scale(1.18);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
-    /* 悬停时在品牌名后浮出提示，不占常态空间 */
-    .toc-bar a.brand::after { content: "返回首页"; font-size: 11.5px; font-weight: 600;
-      color: var(--text-4); opacity: 0; max-width: 0; overflow: hidden;
-      white-space: nowrap; transition: opacity .18s ease, max-width .18s ease; }
-    .toc-bar a.brand:hover::after { opacity: 1; max-width: 90px; }
+    .toc-bar a.brand:hover .brand-home { color: var(--accent); transform: translateY(-1px); }
     a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
       margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
       font-size: 13px; font-weight: 500; }
@@ -291,7 +288,7 @@
       background:
         radial-gradient(900px 420px at 88% -8%, rgba(0,212,160,.16), transparent 62%),
         radial-gradient(760px 380px at 6% 108%, rgba(79,125,255,.20), transparent 60%); }
-    main > section.hero > * { position: relative; z-index: 1; }
+    main > section.hero > .wrap { position: relative; z-index: 1; }
     .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
     .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
       -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -428,7 +425,7 @@
 <body>
   <nav class="toc-bar">
     <div class="toc-inner">
-      <a class="brand" href="../">EngageLab MA · Zendure 增长方案</a>
+      <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA 解决方案</a>
       <a href="#s-market">业务洞察</a>
       <a href="#s-funnel">用户漏斗</a>
       <a href="#s-why">为什么 EngageLab</a>
@@ -444,6 +441,7 @@
   <main>
 <!-- Hero -->
     <section class="hero">
+      <div class="wrap">
       <div class="hero-pills">
         <span class="pill pill-info">Zendure（真拓）· 定制提案</span>
         <span class="pill">阳台光储 / 家庭能源管理 · 欧洲 DTC</span>
@@ -465,10 +463,12 @@
         <div class="stat"><div class="stat-value warn">100 万+</div><div class="stat-label">德国阳台电站累计注册量（2025，同比翻倍）</div></div>
         <div class="stat"><div class="stat-value success">+31%</div><div class="stat-label">多渠道自动化编排 vs 单渠道转化提升（行业 Benchmark）</div></div>
       </div>
+      </div>
     </section>
 
     <!-- 1. Market & Business Insight -->
     <section id="s-market" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">1</span>业务洞察：Zendure 的增长结构，与 MA 的四个切入点</h2>
       <p>
         Zendure 的收入是一条四级引擎：<span class="bold">主机套装（€500–1,500）获客
@@ -544,10 +544,12 @@
           <p>头部同行已先行：主要竞争品牌均已部署专业营销自动化平台，其中一家同品类品牌的公开案例显示整体收入 +60%。这套体系恰恰能把"9 万 DAU + 设备数据"这个同行不具备的资产变现。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 2. Funnel -->
     <section id="s-funnel" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">2</span>用户漏斗：从官网访客到推荐裂变，每一层都有明确的挽回空间</h2>
       <p>
         Zendure 用户的完整生命周期是一条"官网 → 硬件 → App → 复购 → 订阅 → 推荐"的多层漏斗。
@@ -570,10 +572,12 @@
           </p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 3. Why EngageLab -->
     <section id="s-why" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">3</span>EngageLab MA 为什么匹配 Zendure</h2>
       <div class="grid grid-3">
         <div class="card"><div class="card-header">一体化数据底座 · 推送与旅程同源</div><div class="card-body">
@@ -620,10 +624,12 @@
       <p class="small muted" style="margin-top:8px">
         欧洲市场营销触达需以用户同意为前提；WhatsApp 基于向 Meta 报备的模板发送。渠道具体报价按目标国家出具。
       </p>
+      </div>
     </section>
 
     <!-- 3.5 Data & Profile -->
     <section id="s-data" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">4</span>数据整合与用户画像：把"埋点"升级为"可运营的用户资产"</h2>
       <p>
         把用户行为数据变成<span class="bold">可分群、可触发、可归因</span>的运营资产，
@@ -691,10 +697,12 @@
           <p>若希望控制首期开发工作量，也可<span class="bold">分两期实施</span>：第一期先接官网与订单侧事件（场景 1 / 2 / 5 可上线），第二期补设备运行数据与订阅属性（场景 3 / 4 / 6）。交付团队提供埋点方案模板与旅程模板，并结合 AI 工具快速产出多语言文案初稿，运营团队确认后上线。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 5. Scenarios Overview -->
     <section id="s-scenarios" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">5</span>高 ROI 运营场景总览</h2>
       <table>
         <thead><tr>
@@ -725,10 +733,12 @@
           阳台光储用户社区的高频话题集中在固件更新、设备连接与售后响应上。因此建议 App Push 渠道以<span class="bold">服务型内容打头</span>（安装引导、发电报告、设备健康检查、固件更新前置通知），先让用户建立"这个品牌的推送是有用的"的信任，再逐步叠加促销型触达——这既是转化效率问题，更是保护推送订阅与品牌口碑的关键。
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 1 -->
     <section id="s-journey1" class="section-plain">
+      <div class="wrap">
       <h2>场景 1｜高客单弃购挽回（官网商城）</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">见效最快</span>
@@ -784,10 +794,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 2 -->
     <section id="s-journey2" class="section-plain">
+      <div class="wrap">
       <h2>场景 2｜发货 → 安装 → App 绑定激活</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">体验与口碑地基</span>
@@ -843,10 +855,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 3 -->
     <section id="s-journey3" class="section-plain">
+      <div class="wrap">
       <h2>场景 3｜设备数据驱动的扩容推荐（明星场景）</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">智能硬件独有杠杆</span>
@@ -911,10 +925,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 4 -->
     <section id="s-journey4" class="section-plain">
+      <div class="wrap">
       <h2>场景 4｜ZenWave 动态电价服务订阅转化（德国市场）</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">软件收入曲线</span>
@@ -970,10 +986,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 5 -->
     <section id="s-journey5" class="section-plain">
+      <div class="wrap">
       <h2>场景 5｜沉默用户分层召回</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-warn">留存挽回</span>
@@ -1028,10 +1046,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 6 -->
     <section id="s-journey6" class="section-plain">
+      <div class="wrap">
       <h2>场景 6｜NPS → 公开评价 → 推荐裂变</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">低成本获客飞轮</span>
@@ -1093,10 +1113,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 7 -->
     <section id="s-journey7" class="section-plain">
+      <div class="wrap">
       <h2>场景 7｜新品预售与发售提醒</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-warn">第二批</span>
@@ -1151,10 +1173,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 8 -->
     <section id="s-journey8" class="section-plain">
+      <div class="wrap">
       <h2>场景 8｜固件更新前置沟通（服务型触达样板）</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-warn">第二批</span>
@@ -1212,10 +1236,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 9 -->
     <section id="s-journey9" class="section-plain">
+      <div class="wrap">
       <h2>场景 9｜ZenWatts 积分到期与兑换提醒</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-warn">第二批 · 快赢</span>
@@ -1270,10 +1296,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 10 -->
     <section id="s-journey10" class="section-plain">
+      <div class="wrap">
       <h2>场景 10｜新订阅者欢迎旅程</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-warn">第二批</span>
@@ -1327,10 +1355,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Benchmark -->
     <section id="s-benchmark" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">6</span>行业对标 · 智能硬件品牌的 MA 自动化实践</h2>
       <p>
         以下数据来自智能硬件、高客单 DTC 行业接入 MA 自动化运营后的公开案例与行业报告，
@@ -1375,10 +1405,12 @@
           <p class="small muted">与 Zendure"主机 → 扩展电池"的扩容逻辑同构，且同处欧洲合规环境</p>
         </div></div>
       </div>
+      </div>
     </section>
 
     <!-- Compliance -->
     <section id="s-compliance" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">7</span>欧洲合规与数据安全</h2>
       <div class="grid grid-2">
         <div class="card"><div class="card-header">数据安全</div><div class="card-body">
@@ -1410,10 +1442,12 @@
           <p>· <span class="bold">内容预览</span>：多语言版本发送前支持完整样式预览，逐一确认后再上线。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Plan -->
     <section id="s-plan" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">8</span>4 周测试计划 · 可量化验收</h2>
       <table>
         <thead><tr>
@@ -1450,6 +1484,7 @@
           开通测试 VIP 账号，优先搭建<span class="bold">弃购挽回 + 安装激活</span>两条旅程小流量验证，
           再以真实数据驱动扩容、订阅、召回、推荐四条旅程的迭代扩展。
         </div></div>
+      </div>
       </div>
     </section>
 

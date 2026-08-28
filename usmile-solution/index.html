@@ -174,6 +174,7 @@
 
 
 
+
   <style>
     /* ===================================================================
        视觉升级层 · 对齐 Urtopia 方案设计系统 (20260828)
@@ -218,7 +219,9 @@
     /* ===== 通栏色带布局：main 放开宽度，section 内部收敛 ===== */
     main { max-width: none; margin: 0; padding: 0; }
     main > section { padding: 62px 28px; margin: 0; }
-    main > section > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
+    /* 宽度靠 .wrap 层约束，不依赖子元素的 auto 外边距——
+       否则任何使用 margin 简写的规则都会把居中打破（如 hero-subtitle / divider）*/
+    main > section > .wrap { max-width: 1180px; margin: 0 auto; }
     main > section.section-plain { border: 0; border-radius: 0; background: transparent; }
     main > section.section-plain:nth-of-type(even) { background: var(--bg-soft); }
     main > section.section { border: 0; border-radius: 0; background: var(--bg-soft); }
@@ -261,21 +264,15 @@
     .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
       font-weight: 500; transition: color .15s ease; }
     .toc-bar a:hover { color: var(--accent); }
-    /* 品牌名即返回首页入口（点击回到方案总览） */
+    /* 品牌名即返回首页入口：整块（图标 + 文字）一起高亮 */
     .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
       align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
-    .toc-bar .brand::before { content: ""; width: 11px; height: 11px; border-radius: 3.5px; flex: none;
-      background: linear-gradient(135deg, var(--accent), var(--mint));
-      transition: transform .18s ease, box-shadow .18s ease; }
-    .toc-bar a.brand { text-decoration: none; cursor: pointer; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer;
+      transition: color .16s ease; }
+    .toc-bar a.brand .brand-home { width: 17px; height: 17px; flex: none;
+      color: var(--accent); transition: color .16s ease, transform .16s ease; }
     .toc-bar a.brand:hover { color: var(--accent); }
-    .toc-bar a.brand:hover::before { transform: scale(1.18);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
-    /* 悬停时在品牌名后浮出提示，不占常态空间 */
-    .toc-bar a.brand::after { content: "返回首页"; font-size: 11.5px; font-weight: 600;
-      color: var(--text-4); opacity: 0; max-width: 0; overflow: hidden;
-      white-space: nowrap; transition: opacity .18s ease, max-width .18s ease; }
-    .toc-bar a.brand:hover::after { opacity: 1; max-width: 90px; }
+    .toc-bar a.brand:hover .brand-home { color: var(--accent); transform: translateY(-1px); }
     a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
       margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
       font-size: 13px; font-weight: 500; }
@@ -290,7 +287,7 @@
       background:
         radial-gradient(900px 420px at 88% -8%, rgba(0,212,160,.16), transparent 62%),
         radial-gradient(760px 380px at 6% 108%, rgba(79,125,255,.20), transparent 60%); }
-    main > section.hero > * { position: relative; z-index: 1; }
+    main > section.hero > .wrap { position: relative; z-index: 1; }
     .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
     .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
       -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -427,7 +424,7 @@
 <body>
   <nav class="toc-bar">
     <div class="toc-inner">
-      <a class="brand" href="../">EngageLab MA · usmile App 营收方案</a>
+      <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA 解决方案</a>
       <a href="#s-market">行业机会</a>
       <a href="#s-funnel">订阅漏斗</a>
       <a href="#s-why">为什么 EngageLab</a>
@@ -444,6 +441,7 @@
   <main>
 <!-- Hero -->
     <section class="hero">
+      <div class="wrap">
       <div class="hero-pills">
         <span class="pill pill-info">usmile 笑容加 · 定制提案</span>
         <span class="pill">智能电动牙刷 · 全场景口腔护理</span>
@@ -464,10 +462,12 @@
         <div class="stat"><div class="stat-value success">+25-40%</div><div class="stat-label">试用转付费提升（行业对标区间）</div></div>
         <div class="stat"><div class="stat-value warn">~10%</div><div class="stat-label">智能硬件付费渗透率稳态对标（萤石财报，非首年目标）</div></div>
       </div>
+      </div>
     </section>
 
     <!-- 1. Market -->
     <section id="s-market" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">1</span>为什么现在做 App 营收</h2>
       <p>
         usmile 靠"主机 + 刷头"双轮增长十年，但 <span class="bold">54.65% 的用户把刷头价格列为首要痛点</span>，
@@ -504,10 +504,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 2. Funnel -->
     <section id="s-funnel" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">2</span>订阅漏斗：每一层都是可提升的付费增量</h2>
       <p>
         笑容加 App 用户从"硬件绑定"到"长期付费订阅"是一条清晰的多层漏斗——
@@ -545,10 +547,12 @@
           测试期费用 $0、接入开发 3-5 天（推送通道零迁移），正式期按 DAU 定价——投入产出在 4 周测试结案时以旅程归因数据核算。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- 3. Why EngageLab -->
     <section id="s-why" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">3</span>EngageLab MA 为什么匹配 usmile 的订阅营收需求</h2>
       <div class="callout success" style="margin-bottom:14px">
         <div class="callout-title">接入成本极低：现有 JPush 推送体系直接复用</div>
@@ -605,10 +609,12 @@
         App Push 国内经现有 JPush 通道下发，海外走 FCM / APNs 及海外厂商通道；
         LINE · Telegram · Messenger 即将上线（海外市场）。全部渠道在同一旅程画布中编排。
       </p>
+      </div>
     </section>
 
     <!-- 4. Products -->
     <section id="s-products" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">4</span>面向 usmile 建议的 App 订阅产品体系</h2>
       <p>
         usmile 已在 App 内上线<span class="bold">「刷牙搭子订阅」「开心刷牙订阅」「笑容加健康省心卡」</span>三类订阅内购与多个单点付费。
@@ -698,10 +704,12 @@
           </ul>
         </div></div>
       </div>
+      </div>
     </section>
 
     <!-- 5. Scenarios Overview -->
     <section id="s-scenarios" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">5</span>十大高 ROI 营收场景：订阅 · 复购 · 活跃三线并行</h2>
       <table>
         <thead><tr>
@@ -738,10 +746,12 @@
         十个场景基于同一份用户属性和事件流协同运行：4 周测试期上线 4 条（场景 1 / 7 / 2 / 8——先跑"当前就有真实流量"的旅程），
         其余（场景 3 / 4 / 5 / 6 / 9 / 10）于第 6-8 周补齐——其中场景 4 / 6 需等付费用户池积累后上线才有流量。
       </p>
+      </div>
     </section>
 
     <!-- Journey 1 -->
     <section id="s-journey1" class="section-plain">
+      <div class="wrap">
       <h2>场景 1｜牙刷绑定 → 免费试用会员激活</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">优先级最高</span>
@@ -795,10 +805,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 2 -->
     <section id="s-journey2" class="section-plain">
+      <div class="wrap">
       <h2>场景 2｜试用到期 → 付费订阅转化</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">最高杠杆窗口</span>
@@ -855,10 +867,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 3 -->
     <section id="s-journey3" class="section-plain">
+      <div class="wrap">
       <h2>场景 3｜AI 搭子 / 语音克隆 · 单点付费引导</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">已验证付费点</span>
@@ -921,10 +935,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 4 -->
     <section id="s-journey4" class="section-plain">
+      <div class="wrap">
       <h2>场景 4｜订阅到期 → 续费自动化（T-7 / T-3 / T-1 / T+7）</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">LTV 决定项</span>
@@ -994,10 +1010,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 5 -->
     <section id="s-journey5" class="section-plain">
+      <div class="wrap">
       <h2>场景 5｜Q20 / Q30 儿童牙刷 → 家庭订阅升级</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-info">客单价提升</span>
@@ -1055,10 +1073,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 6 -->
     <section id="s-journey6" class="section-plain">
+      <div class="wrap">
       <h2>场景 6｜付费会员流失 → 分层召回（30 / 60 / 90 天）</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-warn">高价值召回</span>
@@ -1111,10 +1131,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 7 -->
     <section id="s-journey7" class="section-plain">
+      <div class="wrap">
       <h2>场景 7｜刷头寿命到期 → App 复购 · 定期送订阅</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">见效最快 · 复购主路径立即可跑</span>
@@ -1182,10 +1204,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 8 -->
     <section id="s-journey8" class="section-plain">
+      <div class="wrap">
       <h2>场景 8｜App 商城弃购 → 限时挽回</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">电商验证最充分</span>
@@ -1239,10 +1263,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 9 -->
     <section id="s-journey9" class="section-plain">
+      <div class="wrap">
       <h2>场景 9｜绑定用户沉默 → 活跃召回</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-warn">全漏斗最大流失</span>
@@ -1297,10 +1323,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Journey 10 -->
     <section id="s-journey10" class="section-plain">
+      <div class="wrap">
       <h2>场景 10｜多设备识别 → 交叉销售 · 新品换新</h2>
       <div class="row" style="margin-bottom:14px">
         <span class="pill pill-success">ARPU 最高人群</span>
@@ -1358,10 +1386,12 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Ops Guide -->
     <section id="s-ops" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">6</span>运营落地建议：从 2 条旅程起步，8 周内跑完 10 条</h2>
       <p>
         单条旅程效果有限，10 条协同才能覆盖用户生命周期的每个付费节点。建议按以下优先级分三批上线。
@@ -1427,10 +1457,12 @@
           <p>· <span class="mono">app_last_active_at</span>（最后活跃时间，场景 9 触发）</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Benchmark -->
     <section id="s-benchmark" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">7</span>行业对标 · 订阅制自动化的可参考效果</h2>
       <p>
         以下数据来自智能硬件、订阅制服务、健康 App 等行业接入 MA 自动化运营后的公开案例与行业报告，
@@ -1498,10 +1530,12 @@
           谁先把订阅运营体系化，谁就拿走这个品类的先发位置。
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Compliance -->
     <section class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">8</span>数据安全与合规</h2>
       <div class="grid grid-2">
         <div class="card"><div class="card-header">数据安全</div><div class="card-body">
@@ -1531,10 +1565,12 @@
           <p>· 提前退出：用户一旦完成目标行为（如下单），立即从旅程退出，不再继续触达。</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Plan -->
     <section id="s-plan" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">9</span>4 周测试计划 · 可量化验收</h2>
       <table>
         <thead><tr>
@@ -1572,10 +1608,12 @@
           基于真实数据驱动其余旅程的扩展与迭代。
         </div></div>
       </div>
+      </div>
     </section>
 
     <!-- Global readiness -->
     <section id="s-global" class="section-plain">
+      <div class="wrap">
       <h2><span class="secnum">10</span>海外预留：国内跑通后直接复制出海</h2>
       <p>
         usmile 海外版 App 上线不久、用户规模尚在起步期，本方案建议<span class="bold">先聚焦国内订阅营收</span>；
@@ -1616,6 +1654,7 @@
           东南亚以 WhatsApp + Push 为主，日本预留 LINE（上线后），欧美以 Email + Push 为主——
           届时只需切换渠道组合与文案语言，旅程逻辑与埋点体系全部复用。
         </div>
+      </div>
       </div>
     </section>
 
