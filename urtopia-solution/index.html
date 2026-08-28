@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA · Urtopia · 智能电助力车全生命周期用户运营方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f6f8fb;
+      --bg-elev: #ffffff;
+      --border: #e8ecf2;
+      --border-strong: #d5dbe5;
+      --text: #0f172a;
+      --text-2: #3d4a5c;
+      --text-3: #6b7789;
+      --text-4: #97a1b0;
+      --accent: #2563eb;
+      --accent-2: #4f7dff;
+      --accent-soft: #e7efff;
+      --success: #0f9d63;
+      --success-soft: #e2f7ee;
+      --warning: #c2700a;
+      --warning-soft: #fdf1dc;
+      --info: #0369a1;
+      --info-soft: #e2f2fb;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --ink-dark: #0e1116;
+      --ink-dark-2: #1a1f2b;
+      --mint: #00d4a0;
+      --sky: #7cb0ff;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,.05);
+      --shadow: 0 1px 3px rgba(15,23,42,.05), 0 10px 28px -12px rgba(15,23,42,.10);
+      --shadow-lg: 0 2px 6px rgba(15,23,42,.06), 0 22px 48px -20px rgba(15,23,42,.18);
+      --mono-stack: "SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.65; -webkit-font-smoothing: antialiased; font-size: 15.5px; }
+
+    main { max-width: none; margin: 0; padding: 0; }
+
+    /* ===== 通栏色带 ===== */
+    .band { padding: 68px 28px; }
+    .band > .wrap { max-width: 1180px; margin: 0 auto; }
+    .band-soft { background: var(--bg-soft); }
+    .band-light { background: #fff; }
+    .band-tint { background: linear-gradient(180deg, #f4f8ff 0%, #eef4ff 100%); }
+    .band-slim { padding: 16px 28px 0; }
+
+    /* ===== 字号层级 ===== */
+    h1 { font-size: 40px; font-weight: 800; margin: 0 0 12px; letter-spacing: -0.025em; line-height: 1.18; }
+    h2 { font-size: 30px; font-weight: 750; margin: 0 0 14px; letter-spacing: -0.022em;
+      line-height: 1.28; color: var(--text); }
+    h3 { font-size: 17.5px; font-weight: 650; margin: 0 0 10px; letter-spacing: -0.008em; }
+    p { margin: 0 0 10px; color: var(--text-2); }
+    .lede { font-size: 16.5px; color: var(--text-2); max-width: 900px; line-height: 1.72; margin-bottom: 4px; }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 650; color: var(--text); }
+    .mono { font-family: var(--mono-stack); font-size: 0.92em; }
+
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px;
+      font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px; }
+    .eyebrow::before { content: ""; width: 20px; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--mint)); }
+
+    h2 .secnum { display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: #fff;
+      font-family: var(--mono-stack); font-size: 15px; font-weight: 700;
+      margin-right: 12px; vertical-align: 3px; }
+
+    .section-plain { padding: 0; margin: 0; }
+    .divider { height: 1px; background: var(--border); margin: 28px 0; border: none; }
+    .spacer-sm { height: 10px; }
+    .spacer-md { height: 20px; }
+
+    /* ===== 顶部导航 ===== */
+    .toc-bar { position: sticky; top: 0; z-index: 30; padding: 0 28px;
+      background: rgba(255,255,255,.86); backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid var(--border); font-size: 13px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 20px;
+      align-items: center; height: 58px; overflow-x: auto; scrollbar-width: none; }
+    .toc-bar .toc-inner::-webkit-scrollbar { display: none; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
+      font-weight: 500; transition: color .15s ease; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
+      align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
+    .toc-bar .brand::before { content: ""; width: 11px; height: 11px; border-radius: 3.5px; flex: none;
+      background: linear-gradient(135deg, var(--accent), var(--mint)); }
+    .toc-bar .toc-tag { margin-left: auto; flex: none; font-size: 12px; font-weight: 600;
+      color: var(--success); background: var(--success-soft);
+      border-radius: 999px; padding: 4px 12px; white-space: nowrap; }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px;
+      color: var(--text-3); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { color: var(--accent); }
+
+    /* ===== Hero ===== */
+    .hero { position: relative; overflow: hidden; color: #fff; padding: 46px 28px 44px;
+      background:
+        radial-gradient(1000px 420px at 84% -16%, rgba(0,212,160,.20), transparent 62%),
+        radial-gradient(900px 500px at -6% 0%, rgba(37,99,235,.32), transparent 56%),
+        linear-gradient(180deg, #0e1116 0%, #1a1f2b 100%); }
+    .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 20%, transparent 76%);
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 20%, transparent 76%); }
+    .hero > .wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; }
+    .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
+    .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
+      -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero .hero-subtitle { color: rgba(255,255,255,.74); font-size: 16px; line-height: 1.7;
+      max-width: 900px; margin: 10px 0 26px; }
+    .hero .hero-subtitle .bold { color: #fff; }
+    .hero-pills { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 18px; }
+    .hero .pill { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18);
+      color: rgba(255,255,255,.82); }
+    .hero .pill-accent { background: rgba(0,212,160,.12); border-color: rgba(0,212,160,.4); color: var(--mint); }
+    .hero .pill-info { background: rgba(124,176,255,.12); border-color: rgba(124,176,255,.38); color: var(--sky); }
+    .hero .stat { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.11);
+      border-radius: 12px; padding: 15px 16px 14px; box-shadow: none; }
+    .hero .stat-value { font-family: var(--mono-stack); font-size: 23px; font-weight: 700;
+      letter-spacing: -0.02em; color: var(--sky); }
+    .hero .stat-value.info { color: #a5c8ff; }
+    .hero .stat-value.success { color: var(--mint); }
+    .hero .stat-value.warn { color: #ffd166; }
+    .hero .stat-value .u { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 14px; font-weight: 600;
+      letter-spacing: 0; opacity: .7; margin-left: 6px; }
+    .hero .stat-label { color: rgba(255,255,255,.6); font-size: 12px; margin-top: 6px; line-height: 1.45; }
+    .hero .muted { color: rgba(255,255,255,.4) !important; }
+
+    /* ===== 基础组件 ===== */
+    .pill { display: inline-flex; align-items: center; padding: 4px 12px; font-size: 12.5px;
+      border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-2);
+      background: #fff; font-weight: 550; }
+    .pill-accent { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: transparent; color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: transparent; color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: transparent; color: var(--warning); }
+
+    .grid { display: grid; gap: 18px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-1-2 { grid-template-columns: 1fr 2fr; }
+    .grid-2-1 { grid-template-columns: 1.42fr 1fr; align-items: start; }
+    .grid-2-1 > .grid { align-content: start; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 20px 20px 18px; background: var(--bg-elev);
+      border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+    .stat-value { font-size: 28px; font-weight: 750; letter-spacing: -0.025em; color: var(--text); line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12.5px; color: var(--text-3); margin-top: 7px; line-height: 1.5; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+      transition: box-shadow .18s ease, transform .18s ease; }
+    .band-light .card, .band-tint .card { box-shadow: var(--shadow-sm); }
+    .card:hover { box-shadow: var(--shadow-lg); }
+    .card-header { padding: 13px 18px; border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #fcfdff, #f8fafc);
+      font-size: 13px; font-weight: 650; color: var(--text-2); letter-spacing: -0.005em; }
+    .card-body { padding: 18px; }
+    .card-body.p-sm { padding: 13px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 6px; font-size: 13.5px; color: var(--text-2); line-height: 1.65; }
+    .card-body p { font-size: 14px; }
+    .card-body p.small { font-size: 13.2px; }
+
+    .callout { padding: 15px 17px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 700; margin-bottom: 5px; font-size: 14px; letter-spacing: -0.008em; }
+    .callout-body { font-size: 13.4px; color: var(--text-2); }
+    .callout-body p { font-size: 13.4px; color: var(--text-2); margin: 0 0 5px; line-height: 1.7; }
+    .callout-body p:last-child { margin-bottom: 0; }
+    .callout.info { border-left-color: var(--accent); background: var(--accent-soft); border-color: #d3e2ff; }
+    .callout.info .callout-title { color: var(--accent); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); border-color: #c9eeddff; }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); border-color: #f6e2c0; }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-4); background: #fff; }
+
+    /* ===== 表格 ===== */
+    table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.6px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow); }
+    th, td { padding: 13px 15px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #f8fafc; font-weight: 700; font-size: 11.5px; color: var(--text-3);
+      letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    tbody tr { transition: background .14s ease; }
+    tbody tr:hover td { background: #f9fbff; }
+    tr.tone-success td { background: rgba(15, 157, 99, .045); }
+    tr.tone-info td { background: rgba(37, 99, 235, .04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13.5px; font-weight: 650; color: var(--text); }
+    .signal-row .hint { font-size: 12.3px; color: var(--text-3); line-height: 1.5; }
+    .signal-row .value { font-weight: 750; color: var(--danger); font-size: 15px;
+      font-family: var(--mono-stack); white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 10px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%; background: var(--accent);
+      color: #fff; font-weight: 700; font-size: 12px; margin-right: 9px; }
+
+    /* ===== 旅程标题行 ===== */
+    .jtitle { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 0 0 16px; }
+    .jtitle h2 { margin: 0; flex: 0 1 auto; }
+    .jtitle .jstage { font-size: 12px; font-weight: 700; color: var(--accent);
+      background: var(--accent-soft); border-radius: 6px; padding: 4px 10px; flex: none; }
+    .jtitle .chs { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; align-self: center; }
+    .ch { font-size: 11.5px; font-weight: 650; padding: 4px 9px; border-radius: 6px;
+      border: 1px solid; white-space: nowrap; }
+    .ch-em { background: #e4f7f0; color: #00755a; border-color: #bbebdc; }
+    .ch-ap { background: #dbeafe; color: #1e3a8a; border-color: #bfd6ff; }
+    .ch-wp { background: #eceefe; color: #3730a3; border-color: #d7dbfb; }
+    .ch-sm { background: #fdefe2; color: #a85417; border-color: #f8d9bd; }
+
+    /* ===== 节奏时间轴 ===== */
+    .tl { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin: 0 0 18px;
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px 20px 18px; box-shadow: var(--shadow); }
+    .tl .tli { position: relative; padding-top: 24px; }
+    .tl .tli::before { content: ""; position: absolute; left: 0; top: 3px; width: 12px; height: 12px;
+      border-radius: 50%; background: #fff; border: 3px solid var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12); z-index: 1; }
+    .tl .tli::after { content: ""; position: absolute; left: 13px; right: -16px; top: 8.5px;
+      height: 2px; background: var(--border-strong); }
+    .tl .tli:last-child::after { display: none; }
+    .tl .tli:nth-child(n+4)::before { border-color: var(--success); box-shadow: 0 0 0 3px rgba(15,157,99,.12); }
+    .tl .tld { font-family: var(--mono-stack); font-size: 11.5px; font-weight: 700; color: var(--accent); }
+    .tl .tli:nth-child(n+4) .tld { color: var(--success); }
+    .tl .tlt { font-size: 13.5px; font-weight: 650; margin: 3px 0 3px; color: var(--text); }
+    .tl .tlx { font-size: 12.3px; color: var(--text-3); line-height: 1.55; }
+
+    /* ===== 收尾 CTA ===== */
+    .cta { border-radius: 18px; padding: 44px 32px; text-align: center; color: #fff;
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(700px 240px at 50% -30%, rgba(0,212,160,.24), transparent 70%),
+        linear-gradient(135deg, #0e1116, #1a1f2b); }
+    .cta h3 { color: #fff; font-size: 24px; margin: 0 0 8px; letter-spacing: -0.02em; }
+    .cta p { color: rgba(255,255,255,.66); margin: 0 0 24px; font-size: 15px; }
+    .cta .pills { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .cta .cpill { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15);
+      padding: 11px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; color: #fff; }
+    .cta .cpill .v { font-family: var(--mono-stack); color: var(--mint); margin-right: 8px; font-weight: 700; }
+
+    footer.site-footer { background: var(--bg-soft); border-top: 1px solid var(--border);
+      padding: 30px 28px 44px; font-size: 12.3px; color: var(--text-4); text-align: center;
+      line-height: 1.7; }
+    footer.site-footer .wrap { max-width: 900px; margin: 0 auto; }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 980px) {
+      .band { padding: 48px 20px; }
+      .hero { padding: 36px 20px 32px; }
+      h1 { font-size: 27px; }
+      h2 { font-size: 24px; }
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-12-1, .grid-1-2 { grid-template-columns: 1fr; }
+      .tl { grid-template-columns: repeat(2, 1fr); }
+      .tl .tli::after { display: none; }
+      .toc-bar .toc-inner { height: 52px; }
+    }
+
+    @page { size: A4; margin: 12mm; }
+    @media print {
+      body { background: #fff; font-size: 12px; }
+      .toc-bar, a.back-home { display: none; }
+      .band { padding: 22px 0; }
+      .band-soft, .band-tint { background: #fff !important; }
+      .hero, .cta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .hero { padding: 26px 18px; }
+      .hero::before { display: none; }
+      .card, .table, .tl, .callout { box-shadow: none; break-inside: avoid; }
+      .card:hover { box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <span class="brand">EngageLab MA · Urtopia 用户运营方案</span>
+      <a href="#s-biz">业务洞察</a>
+      <a href="#s-funnel">用户漏斗</a>
+      <a href="#s-data">数据与身份</a>
+      <a href="#s-scenarios">场景总览</a>
+      <a href="#s-journey1">核心旅程</a>
+      <a href="#s-benchmark">行业对标</a>
+      <a href="#s-compliance">合规与安全</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-plan">测试计划</a>
+      <span class="toc-tag">$0 · 4 周测试期</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="band band-slim band-light"><div class="wrap"><a class="back-home" href="../">← 返回首页</a></div></div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap">
+      <div class="hero-pills">
+        <span class="pill pill-accent">碳纤维智能电助力车</span>
+        <span class="pill">DTC 独立站 + 经销商双轨</span>
+        <span class="pill">北美 · 欧洲</span>
+        <span class="pill pill-info">6–8 周长决策 · 硬件 + App + 年费订阅</span>
+      </div>
+      <h1>EngageLab MA · Urtopia <span class="grad">全生命周期用户运营方案</span></h1>
+      <p class="hero-subtitle">
+        <span class="bold">购前 6–8 周研究期</span>需要按行为分层的持续触达，
+        <span class="bold">购后还有绑定激活、配件复购、年费续费、保养与口碑推荐五段长尾收入</span>——
+        本方案把这两段编排成 10 条可量化的自动化旅程。
+      </p>
+      <div class="grid grid-4">
+        <div class="stat">
+          <div class="stat-value">6–8<span class="u">周</span></div>
+          <div class="stat-label">客户平均决策周期，购前需要 5–8 次有效触达</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value info">$1,599–2,499</div>
+          <div class="stat-label">整车客单价区间，官网在售 14 款车型</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value success">$39<span class="u">/ 年</span></div>
+          <div class="stat-label">Connect 服务续费，首年随车激活赠送，仅可在 App 内续</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value warn">1,250+</div>
+          <div class="stat-label">全球服务网点：美国 1,000+ 授权经销商 / 欧洲 250+ 门店</div>
+        </div>
+      </div>
+      <p class="small muted" style="margin-top:10px;font-size:12px">
+        以上为 Urtopia 公开经营现状，非 MA 实施成果。
+      </p>
+      </div>
+    </section>
+
+    <!-- 一、业务洞察 -->
+    <section id="s-biz" class="band band-light">
+      <div class="wrap">      <div class="eyebrow">业务洞察</div>
+      <h2><span class="secnum">1</span>业务洞察：三段收入结构，决定了三段运营重心</h2>
+      <p class="lede">
+        $2,000 级碳纤维电助力车不是冲动消费品，而下单也只是收入的第一段。
+        车把内的 eSIM、App、年费服务、34 款按车型适配的配件与遍布美欧的服务网点，
+        共同构成购车之后持续数年的第二、第三段收入——三段各自需要不同的运营重心。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">① 整车销售 · 一次性大额</div><div class="card-body">
+          <p class="small">官网在售 14 款：Carbon 1 Pro / Carbon 1 ST（$2,099）、Fusion GT（$2,499）、Carbon Atom 750W（$2,499）、
+          Carbon Classic（$1,999）、Carbon Joy / Joy Ultra（$1,899–1,999）、Fold 1（$1,799）、Fold 2（$1,899）、Fold ST（$1,599）等。</p>
+          <p class="small">官网同时标示 Klarna 月付（售价 ÷ 24），把高客单门槛拆成月度支出——
+          <span class="bold">这是购前旅程里最有效的一张牌，且不需要动价格</span>。</p>
+        </div></div>
+        <div class="card"><div class="card-header">② App + Connect 服务 · 年度续费</div><div class="card-body">
+          <p class="small">车把内置 eSIM 提供 4G 连接：GPS 定位与防盗告警、电子围栏、骑行数据、OTA 固件升级、Carbon Credits 积分。</p>
+          <p class="small"><span class="bold">首年随车辆激活自动赠送，次年起 $39/年，且只能在 Urtopia App 内（Urshopia）购买续期</span>。
+          这意味着续费收入的前提是用户装了 App 并完成绑定——绑定率直接决定这段现金流的天花板。</p>
+        </div></div>
+        <div class="card"><div class="card-header">③ 配件与服务 · 高毛利复购</div><div class="card-body">
+          <p class="small">34 款配件，且<span class="bold">按车型建目录</span>：Battery - Carbon 1 Pro / Rear Rack - Fold 1 / MIK Rear Rack - Fusion，
+          每款都标注适配车型。价格带从 $39 水壶架到 $449 备用电池、$459 ZENITH HUD 眼镜、$549 拖挂车架、$599 e-Wagon。</p>
+          <p class="small">叠加 2 年质保、14 天试骑、就近门店免费组装与售后——服务本身就是一类高打开率的触达内容。</p>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <div class="callout neutral">
+        <div class="callout-title">Urtopia 与普通 DTC 电商的关键差异</div>
+        <div class="callout-body">
+          <p>普通独立站的用户旅程终点是「下单付款」。Urtopia 的旅程从下单才刚开始：
+          预组装发货 → 首骑组装 → App 绑定 → Connect 服务生效 → OTA 升级 → 配件加装 → 保养进店 → 年度续费 → 老带新。</p>
+          <p>这条链路上的关键动作大多<span class="bold">发生在 App 和车辆里，而不是在网页上</span>——
+          续费只能在 App 内完成、绑定状态只有设备侧知道、保养时机取决于累计里程。</p>
+          <p>因此运营系统要做的是：接住独立站、App 与车联网三侧事件，在同一个用户身份下
+          <span class="bold">按用户所处位置决定发什么、走哪个渠道，而不是按日历统一群发</span>。</p>
+        </div>
+      </div>
+
+      </div>
+    </section>
+
+    <!-- 二、用户漏斗 -->
+    <section id="s-funnel" class="band band-soft">
+      <div class="wrap">      <div class="eyebrow">用户漏斗</div>
+      <h2><span class="secnum">2</span>用户漏斗：漏损集中在两个位置</h2>
+      <p class="lede">
+        把 Urtopia 的完整链路拆成六个环节后，漏损并不是均匀分布的：
+        <span class="bold">购前的 6–8 周决策期</span>和<span class="bold">购后的绑定与续费窗口</span>是两个最深的坑，
+        前者决定当期收入，后者决定 LTV。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">各环节转化：常见水平 vs 行业优秀水平（高客单硬件 DTC 参考区间）</div>
+          <div class="card-body">
+            <div class="chart" id="chart-funnel"></div>
+            <p class="small muted" style="margin-top:8px">
+              区间取自 2024–2026 年高客单 DTC 与智能硬件行业公开案例与报告，用于说明改善空间，非 Urtopia 实际数据。
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">六个环节的典型漏损</div>
+          <div class="card-body">
+            <div class="signal-row"><div class="left"><div class="label">访客 → 留资 / 授权</div>
+              <div class="hint">绝大多数访客不留邮箱，6–8 周里再也触达不到</div></div><div class="value">~97%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">留资 → 首购</div>
+              <div class="hint">只有欢迎邮件与大促群发，兴趣在第 2 周冷却</div></div><div class="value">~97%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">结账 → 支付</div>
+              <div class="hint">高客单弃购率普遍 70% 以上，且不是"等打折"这一个原因</div></div><div class="value">~70%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">交付 → App 绑定</div>
+              <div class="hint">组装或配对卡住即流失，未绑定 = 后续所有旅程都断</div></div><div class="value">~40%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">首年 → 次年续费</div>
+              <div class="hint">无提醒时大量用户让服务静默过期，失去防盗能力才发现</div></div><div class="value">~55%</div></div>
+            <div class="signal-row"><div class="left"><div class="label">购车 → 90 天配件复购</div>
+              <div class="hint">按车型适配的配件目录已经建好，缺的是推荐时机</div></div><div class="value">~92%</div></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 三、数据与身份 -->
+    <section id="s-data" class="band band-light">
+      <div class="wrap">      <div class="eyebrow">数据整合</div>
+      <h2><span class="secnum">3</span>数据整合：把独立站、App、车联网收敛到同一个用户身份</h2>
+      <p class="lede">
+        MA 不替代 Urtopia 现有的独立站、App 和车联网系统，而是在它们之上做<span class="bold">统一身份 + 跨渠道编排 + 触达执行</span>。
+        四类数据源汇入后，同一个人在网页上看过什么、在 App 里绑了哪台车、这台车跑了多少英里、Connect 什么时候到期，
+        会挂在同一个 One ID 下，旅程才能按真实状态分流。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-4">
+        <div class="card"><div class="card-header">独立站（Shopify）</div><div class="card-body">
+          <ul>
+            <li><span class="bold">订单侧</span>：下单、支付、发货、送达、退款、退货申请 —— 通过 Shopify Webhook 接入</li>
+            <li><span class="bold">行为侧</span>：车型页浏览与停留、配置器使用、加购、发起结账 —— 通过 Web SDK 接入（Webhook 不提供页面行为）</li>
+            <li>Newsletter 订阅、表单留资、Web Push 授权</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">Urtopia App</div><div class="card-body">
+          <ul>
+            <li>注册、登录、绑定车辆（购后旅程的关键分流依据）</li>
+            <li>骑行记录：里程、频次、路线、碳减排</li>
+            <li>Connect 服务状态与到期日、Carbon Credits 余额</li>
+            <li>App 内商城浏览与下单（配件与续费均在此完成）</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">4G 车联网 / 设备</div><div class="card-body">
+          <ul>
+            <li>eSIM 激活、Connect 功能使用频次</li>
+            <li>GPS 定位、防盗告警、电子围栏触发</li>
+            <li>电池健康、充电记录、故障码</li>
+            <li>固件版本与 OTA 升级结果 —— 通过 Server API 同步</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">门店 / 客服 / 履约</div><div class="card-body">
+          <ul>
+            <li>试驾预约、到店签到、试驾完成、门店归属</li>
+            <li>保养预约与服务完成、保修申请</li>
+            <li>客服工单、NPS 与评价</li>
+            <li>库存与价格变更（供弃购与降价旅程实时取值）</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <div class="grid grid-2">
+        <div class="callout success">
+          <div class="callout-title">接入工作量</div>
+          <div class="callout-body">
+            <p>本方案 10 条旅程所需的全部事件与属性上报，<span class="bold">通常 1–2 名开发 3–5 人日可完成</span>：
+            独立站侧加载 Web SDK 并上报行为事件，App 侧集成 SDK 并补齐绑定/骑行/订阅事件，设备与门店侧通过 Server API 同步。
+            EngageLab 交付团队提供完整埋点方案与联调支持。</p>
+          </div>
+        </div>
+        <div class="callout info">
+          <div class="callout-title">发送前实时取值（WebHook）</div>
+          <div class="callout-body">
+            <p>消息内容支持插入变量，变量值除了来自事件上报，还可以<span class="bold">在消息发出前实时向 Urtopia 系统请求</span>。
+            这解决了三个具体问题：弃购提醒里的库存数字是真实的、保养提醒里的门店是就近的、
+            续费提醒里的年度里程与碳减排是这台车的真实数据。</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 四、场景总览 -->
+    <section id="s-scenarios" class="band band-soft">
+      <div class="wrap">      <div class="eyebrow">场景总览</div>
+      <h2><span class="secnum">4</span>高 ROI 场景总览</h2>
+      <p class="lede">
+        场景 1–4 承接购前 6–8 周决策期，场景 5–8 承接购后激活、复购与续费，场景 9–10 承接口碑与召回。
+        建议首批上线场景 1、3、5——它们依赖的数据最少、当前就有真实流量、ROI 最直观。
+      </p>
+      <div class="spacer-md"></div>
+      <table>
+        <thead><tr>
+          <th style="width:4%">#</th><th style="width:19%">场景</th><th style="width:9%">阶段</th>
+          <th style="width:16%">承接漏斗环节</th><th style="width:20%">触发方式</th>
+          <th style="width:17%">主推渠道</th><th>见效节奏</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-info"><td class="bold">1</td><td class="bold">6–8 周长决策培育</td><td>购前</td><td>留资 → 首购</td><td>事件「订阅 / 注册」</td><td>Email · Web Push</td><td>4–8 周</td></tr>
+          <tr><td class="bold">2</td><td>试驾预约 → 到店 → 48h 跟进</td><td>购前</td><td>留资 → 首购</td><td>事件「试驾预约提交」</td><td>Email · App Push · SMS</td><td>2–4 周</td></tr>
+          <tr class="tone-info"><td class="bold">3</td><td>高客单弃购挽回</td><td>购前</td><td>结账 → 支付</td><td>事件「发起结账」</td><td>Email · SMS · Web Push</td><td>1–2 周（最快）</td></tr>
+          <tr><td class="bold">4</td><td>降价与促销回归提醒</td><td>购前</td><td>访客 → 首购</td><td>事件「车型价格下调」</td><td>App Push · Email</td><td>随促销节奏</td></tr>
+          <tr class="tone-info"><td class="bold">5</td><td>交付 → 组装 → 绑定 → 试骑期关怀</td><td>交付</td><td>交付 → App 绑定</td><td>事件「订单支付成功（整车）」</td><td>Email · App Push</td><td>2–4 周</td></tr>
+          <tr><td class="bold">6</td><td>配件交叉销售（按车型适配）</td><td>复购</td><td>购车 → 配件复购</td><td>属性「购车满 7 天且已绑定」</td><td>Email · App Push</td><td>4–8 周</td></tr>
+          <tr><td class="bold">7</td><td>Connect 服务续费</td><td>订阅</td><td>首年 → 次年续费</td><td>属性「Connect 到期日 T-30」</td><td>App Push · Email · SMS</td><td>按到期批次</td></tr>
+          <tr><td class="bold">8</td><td>保养提醒与固件升级</td><td>服务</td><td>留存与门店引流</td><td>属性「累计里程达阈值」</td><td>App Push · Email</td><td>持续</td></tr>
+          <tr><td class="bold">9</td><td>NPS → 公开评价 → 推荐裂变</td><td>口碑</td><td>满意用户 → 公开评价</td><td>属性「购车满 35 天且已绑定」</td><td>App Push · Email</td><td>6–12 周</td></tr>
+          <tr><td class="bold">10</td><td>沉默用户分层召回</td><td>召回</td><td>全链路兜底</td><td>属性「最后打开 App 距今超 30 天」</td><td>App Push · Email · Web Push</td><td>持续</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:8px">
+        见效节奏 = 从旅程上线到能读出稳定转化数据所需的时间，由旅程自身跨度决定。
+      </p>
+      </div>
+    </section>
+
+    <!-- 场景 1 -->
+    <section id="s-journey1" class="band band-light">
+      <div class="wrap">      <div class="eyebrow">核心旅程编排</div>
+      <div class="jtitle">
+        <h2>场景 1｜6–8 周长决策培育（旗舰旅程）</h2>
+        <span class="jstage">旗舰场景</span>
+        <span class="chs"><span class="ch ch-em">Email</span><span class="ch ch-wp">Web Push</span></span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>订阅或注册后立即发欢迎与首单权益 → <span class="bold">3 天内按行为分流</span>：
+          浏览多车型的发对比指南，看过分期页的发月付算账，发起结账的转入弃购挽回，无行为的发价值教育；
+          此后按下方节奏推进至第 52 天。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · Web Push　｜　<span class="bold">触发方式</span>：事件「Newsletter 订阅 / 账号注册」，一次性事件不可重入　｜　<span class="bold">退出条件</span>：订单支付成功即自动退出</p>
+        </div>
+      </div>
+      <div class="tl">
+        <div class="tli"><div class="tld">DAY 0</div><div class="tlt">欢迎</div>
+          <div class="tlx">品牌与设计故事 + 首单权益</div></div>
+        <div class="tli"><div class="tld">DAY 3</div><div class="tlt">行为分流</div>
+          <div class="tlx">对比指南 / 月付算账 / 价值教育 三选一</div></div>
+        <div class="tli"><div class="tld">DAY 10</div><div class="tlt">社交证明</div>
+          <div class="tlx">车主故事与第三方评测，按浏览车型分流</div></div>
+        <div class="tli"><div class="tld">DAY 24</div><div class="tlt">试驾推动</div>
+          <div class="tlx">Web Push 就近门店免费试驾</div></div>
+        <div class="tli"><div class="tld">DAY 38</div><div class="tlt">总答疑</div>
+          <div class="tlx">尺寸、续航、质保、退换一次讲清</div></div>
+        <div class="tli"><div class="tld">DAY 52</div><div class="tlt">收尾</div>
+          <div class="tlx">偏好中心自选频率，未转化转场景 10</div></div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j1"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>留资用户在 6–8 周决策期内通常只收到欢迎邮件与大促群发，兴趣在第 2 周冷却。</p>
+              <p>而他们卡在决策链的不同位置——碳纤维值不值这个价、Fold 1 还是 Carbon 1 Pro、要不要再等一次降价——
+              <span class="bold">单一内容无法同时回答这三种顾虑</span>。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"Newsletter 订阅"触发（一次性事件，不可再次进入）</li>
+                <li><span class="bold">提前退出</span>：事件"订单支付成功"→ 立即退出（"预约试驾"的用户由下方等待事件分支退出，两条退出路径互补）</li>
+                <li><span class="bold">Email 1（即时）</span>：品牌与设计故事 + 首单权益——刚触发无需可发送时间</li>
+                <li><span class="bold">等待事件 3 天（多分支）</span>：分支 1 "浏览车型页≥2 款"、分支 2 "浏览分期页"、分支 3 "发起结账"、默认分支超时</li>
+                <li><span class="bold">分支 1</span>：可发送时间 09:00–21:00 + Email 车型对比指南（按浏览过的车型变量填充）</li>
+                <li><span class="bold">分支 2</span>：可发送时间 + Email 月付算账（官网标示的 Klarna 月付方案 + 14 天试骑 + 2 年质保）</li>
+                <li><span class="bold">分支 3</span>：直接退出，转入场景 3 弃购挽回，避免两条旅程同时触达</li>
+                <li><span class="bold">默认分支</span>：可发送时间 + Email 碳纤维为什么值这个价（材质、整车重量、传动寿命、续航实测）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"试驾预约提交"→ 已预约则退出并转入场景 2</li>
+                <li><span class="bold">可发送时间 + Email</span>：真实车主故事与第三方评测合集（按已浏览车型分流内容）</li>
+                <li><span class="bold">等待 14 天 → 可发送时间 + Web Push</span>：就近门店免费试驾（发送前 WebHook 取就近门店）</li>
+                <li><span class="bold">等待事件 14 天</span>：监听"加入购物车"→ 已加购则退出并转入场景 3</li>
+                <li><span class="bold">可发送时间 + Email</span>：常见顾虑总答疑（车架尺寸、真实续航、质保范围、退换流程）</li>
+                <li><span class="bold">等待 14 天 → 可发送时间 + Email</span>：偏好中心——让用户自选内容主题与接收频率，降低退订流失</li>
+                <li><span class="bold">结束</span>：第 52 天结束，未转化用户转入场景 10 沉默召回</li>
+                <li><span class="bold">转化 + 收入统计</span>：监听"订单支付成功"，统计时间 21 天（避免把 8 周内的自然转化全部归因到消息）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p>高客单 DTC 的欢迎与培育序列，订阅者首购转化参考 <span class="bold">8–12%</span>，优秀水平 12–18%；
+              行为触发邮件的打开与点击通常是批量群发的 2–3 倍。</p>
+              <p>它同时是购前场景的调度中枢：试驾、弃购、降价三条旅程的用户都从这里分流出去。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 场景 2 -->
+    <section id="s-journey2" class="band band-soft">
+      <div class="wrap">      <div class="jtitle">
+        <h2>场景 2｜试驾预约 → 到店 → 试驾后 48 小时跟进</h2>
+        <span class="jstage">购前转化</span>
+        <span class="chs"><span class="ch ch-em">Email</span><span class="ch ch-ap">App Push</span><span class="ch ch-sm">SMS</span></span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>预约后立即发确认与门店信息 → <span class="bold">7 天内监听是否到店签到</span>：
+          到店的离店 2 小时后发感谢与专属权益，48 小时未下单再补一封答疑；no-show 的自动收到改约入口。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · App Push · SMS　｜　<span class="bold">触发方式</span>：事件「试驾预约提交」，7 天后可重入　｜　<span class="bold">退出条件</span>：订单支付成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j2"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>试驾环节有两个高频漏损：<span class="bold">no-show 无人提醒改约</span>，
+              <span class="bold">试驾后 48 小时无人跟进</span>——而这 48 小时是好感最强、也衰减最快的窗口。</p>
+              <p>两者都发生在门店系统与营销系统之间：门店知道谁没来，营销侧不知道。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"试驾预约提交"触发（可再次进入，间隔 7 天——改约后需能立即重新进入）</li>
+                <li><span class="bold">提前退出</span>：事件"订单支付成功"→ 立即退出</li>
+                <li><span class="bold">Email 1（即时）</span>：预约确认 + 门店地址与营业时间 + 到店准备（发送前 WebHook 取门店信息）</li>
+                <li><span class="bold">等待事件 7 天（多分支）</span>：分支 1 "到店签到"、默认分支超时未到店</li>
+                <li><span class="bold">已到店路径 · 等待 2 小时</span>：覆盖试驾与离店时间，不打断体验</li>
+                <li><span class="bold">可发送时间 + Email 2</span>：试驾感谢 + 试骑车型的专属权益 + 门店顾问联系方式</li>
+                <li><span class="bold">等待事件 48 小时</span>：监听"订单支付成功"→ 已购则退出</li>
+                <li><span class="bold">可发送时间 + Email 3</span>：试驾后答疑（尺寸建议、配置选择）+ 月付算账 + 限时随车权益</li>
+                <li><span class="bold">未到店路径 · 可发送时间 + App Push</span>：一键改约入口；未安装 App 的用户走 SMS（含 STOP 退订）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"试驾预约提交"→ 已改约则退出并重新进入本旅程</li>
+                <li><span class="bold">结束</span>：仍未改约则退回场景 1 培育序列</li>
+                <li><span class="bold">转化 + 收入统计</span>：监听"订单支付成功"，统计时间 7 天（对齐试驾后的决策窗口）</li>
+              </ul>
+              <p class="small muted" style="margin-top:6px">若门店系统回传预约日期，可另配一条属性触发（预约日 T-1）的到店提醒旅程，与本旅程互补。</p>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p>试驾对高客单车型的说服力最强，而<span class="bold">到店率与试驾后 48 小时的跟进率，是其中仅有的两个可被自动化拉升的变量</span>；
+              no-show 自动改约能把一部分已流失的预约直接救回。</p>
+              <p>门店归属数据回流后，后续保养、保修、组装类触达都能带上"离你最近的门店"。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 场景 3 -->
+    <section id="s-journey3" class="band band-light">
+      <div class="wrap">      <div class="jtitle">
+        <h2>场景 3｜高客单弃购挽回（不靠折扣）</h2>
+        <span class="jstage">购前转化</span>
+        <span class="chs"><span class="ch ch-em">Email</span><span class="ch ch-sm">SMS</span><span class="ch ch-wp">Web Push</span></span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>发起结账 1 小时未支付（先观察自然转化）→ Email 购物车保留 + <span class="bold">真实库存</span>；
+          24 小时未付 → 拆门槛组合；再过 48 小时按购物车内容分流，含整车的走 SMS 兜底。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · SMS · Web Push　｜　<span class="bold">触发方式</span>：事件「发起结账」，7 天后可重入　｜　<span class="bold">退出条件</span>：订单支付成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j3"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>高客单弃购率普遍 <span class="bold">70% 以上</span>，且这批人已付出广告成本、走到最后一步。</p>
+              <p>官网长期带划线价，促销本身并不稀缺——<span class="bold">折扣是最后一张牌，不是第一张</span>。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"发起结账"触发（可再次进入，间隔 7 天）</li>
+                <li><span class="bold">提前退出</span>：事件"订单支付成功"→ 立即退出</li>
+                <li><span class="bold">等待事件 1 小时</span>：监听"订单支付成功"→ 自然转化的用户全程不打扰</li>
+                <li><span class="bold">Email 1（超时未支付）</span>：购物车保留 + 车型图与配置 + 真实库存（发送前 WebHook 取库存，只在确有紧张时展示）——刚触发 1 小时内直接发送，无需可发送时间</li>
+                <li><span class="bold">等待事件 24 小时</span>：监听"订单支付成功"</li>
+                <li><span class="bold">可发送时间 09:00–21:00 + Email 2</span>：拆门槛组合，按弃购车型自动匹配文案</li>
+                <li><span class="bold">等待事件 48 小时</span>：监听"订单支付成功"</li>
+                <li><span class="bold">条件分支</span>：属性"购物车是否含整车"</li>
+                <li><span class="bold">含整车路径</span>：可发送时间 + SMS 兜底（顾问协助约就近门店试骑，含 STOP 退订；美国号码需完成 10DLC 登记与事前书面同意）</li>
+                <li><span class="bold">仅配件路径</span>：可发送时间 + Web Push 车主评价与随车权益</li>
+                <li><span class="bold">结束</span>：7 天后可再进入；未转化用户回流场景 1 以新内容再次培育</li>
+                <li><span class="bold">转化 + 收入统计</span>：监听"订单支付成功"，统计时间 3 天（对齐旅程跨度）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p>高客单 DTC 的弃购挽回率参考 <span class="bold">3–8%</span>，头部品牌可达 8–12%。</p>
+              <p>以每月 400 个整车弃购购物车、挽回率 5% 计，约为 20 单 / <span class="bold">4.2 万美元</span>月增量（基数以实际数据校准）。</p>
+              <p>数据依赖最少、上线最快、归因最清晰，建议作为第一条验证旅程。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 场景 4 -->
+    <section id="s-journey4" class="band band-soft">
+      <div class="wrap">      <div class="jtitle">
+        <h2>场景 4｜降价与促销回归提醒（唤醒等价格的观望者）</h2>
+        <span class="jstage">购前转化</span>
+        <span class="chs"><span class="ch ch-ap">App Push</span><span class="ch ch-em">Email</span></span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>车型价格下调时自动触发 → <span class="bold">按对该车型的互动深度分流</span>：
+          曾加购的走 App Push 带真实差额，浏览过的走 Email 降价通知与对比；3 天未结账再补一封促销倒计时。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「车型价格下调」（由独立站价格变更经 Server API 上报），30 天后可重入　｜　<span class="bold">退出条件</span>：订单支付成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j4"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>观望者的兴趣有保质期：浏览过、加购过、甚至进过结账页的用户，
+              两三周内等不到一个明确信号，就会被其他品牌的促销接走。</p>
+              <p><span class="bold">价格变动是最强的行动信号，前提是即时送达。</span></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"车型价格下调"触发（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">提前退出</span>：事件"订单支付成功"→ 立即退出</li>
+                <li><span class="bold">条件分支</span>：属性"该车型互动深度"</li>
+                <li><span class="bold">曾加购未支付路径</span>：可发送时间 09:00–21:00 + App Push（发送前 WebHook 取当前价格与原价，文案带真实差额）；未安装 App 则走 Email</li>
+                <li><span class="bold">浏览≥2 次路径</span>：可发送时间 + Email 降价通知 + 同价位车型对比（帮助最后决策）</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"发起结账"→ 已发起则退出并转入场景 3</li>
+                <li><span class="bold">可发送时间 + Email</span>：促销倒计时 + 车主评价（仅在促销确有结束日期时使用）</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"订单支付成功"</li>
+                <li><span class="bold">结束</span>：30 天后可再进入，与全局频控协同避免促销期重复触达</li>
+                <li><span class="bold">转化 + 收入统计</span>：监听"订单支付成功"，统计时间 7 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p>降价提醒对用户是<span class="bold">明确有用的信息而非推销</span>，打开率通常高于常规营销消息。</p>
+              <p>它把本来就要做的促销从"全量群发"变成"只发给正在看这款车的人"：折扣成本不变，触达精度提高。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 场景 5 -->
+    <section id="s-journey5" class="band band-light">
+      <div class="wrap">      <div class="jtitle">
+        <h2>场景 5｜交付 → 组装 → App 绑定 → 试骑期关怀</h2>
+        <span class="jstage">新客激活</span>
+        <span class="chs"><span class="ch ch-em">Email</span><span class="ch ch-ap">App Push</span></span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>付款后发订单确认与到货准备 → 送达当天推组装指引与绑定入口 →
+          <span class="bold">3 天内监听 App 绑定</span>，已绑定推首骑设置，未绑定发配对排查与视频客服；
+          第 7 天做一次试骑期关怀，把退货意向拦在申请之前。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · App Push　｜　<span class="bold">触发方式</span>：事件「订单支付成功（整车）」，90 天后可重入　｜　<span class="bold">退出条件</span>：提交退货申请即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j5"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>交付后 14 天同时是<span class="bold">口碑形成期、App 绑定期与退货窗口期</span>，
+              三件事共享同一批用户，却常由三个团队各自处理。</p>
+              <p>按 $2,099 客单计，<span class="bold">少一单退货等于多一单挽回</span>，且退货还要承担往返物流与二次销售折损。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件"订单支付成功"（品类 = 整车）触发（可再次进入，间隔 90 天）</li>
+                <li><span class="bold">提前退出</span>：事件"提交退货申请"→ 立即退出，停止一切营销触达（"App 绑定成功"由下方等待事件分支承接，两条路径互补）</li>
+                <li><span class="bold">Email 1（即时）</span>：订单确认 + 物流追踪 + 到货准备清单（所需工具、App 下载、绑定流程预览）</li>
+                <li><span class="bold">等待事件 14 天</span>：监听"订单已送达"（覆盖跨境物流周期）</li>
+                <li><span class="bold">已送达路径</span>：可发送时间 09:00–21:00 + App Push 分步组装指引 + 绑定入口；未安装 App 走 Email</li>
+                <li><span class="bold">超时路径</span>：可发送时间 + Email 物流查询入口，并标记为物流异常转人工跟进——车未送达前不进入绑定监听</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"App 绑定车辆"</li>
+                <li><span class="bold">已绑定</span>：App Push 首骑设置（坐垫高度、助力档位、灯光）+ Connect 服务已生效说明——绑定刚完成，直接发送</li>
+                <li><span class="bold">未绑定</span>：可发送时间 + Email 组装与配对排查 + 视频客服入口；再等 3 天仍未绑定则标记并转人工</li>
+                <li><span class="bold">等待 7 天 → 可发送时间 + Email</span>：试骑期关怀——骑行设置调整、车架尺寸适应、常见"不习惯"问题解答 + 门店免费调校入口</li>
+                <li><span class="bold">结束</span>：第 14 天未提交退货则转入场景 6 配件推荐</li>
+                <li><span class="bold">转化统计</span>：监听"App 绑定车辆"，统计时间 14 天（真实绑定行为集中在两周内）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p>硬件品牌的交付激活自动化，通常带来<span class="bold">激活率提升 15–25%、安装类客服工单下降 20–30%</span>——教程在用户遇到问题之前送达。</p>
+              <p>试骑期关怀不产生直接收入，但减少的每一次退货都等价于一次成功的弃购挽回。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 场景 6 -->
+    <section id="s-journey6" class="band band-soft">
+      <div class="wrap">      <div class="jtitle">
+        <h2>场景 6｜配件交叉销售（按车型适配自动匹配）</h2>
+        <span class="jstage">复购与 AOV</span>
+        <span class="chs"><span class="ch ch-em">Email</span><span class="ch ch-ap">App Push</span></span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>购车满 7 天且已绑定的用户自动进入 → <span class="bold">按车型推适配配件</span>：
+          Fold 系便携套装、Carbon 系通勤安全套装、Fusion/Atom 系长途套装；
+          7 天未下单补一条按浏览 SKU 的 App Push，14 天后推续航与舒适升级。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · App Push　｜　<span class="bold">触发方式</span>：属性「购车满 7 天且已绑定车辆」，30 天后可重入　｜　<span class="bold">退出条件</span>：提交退货申请即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j6"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>买了车的人接下来需要头盔、车锁、货架、气筒，骑得多的还会买备用电池。
+              但<span class="bold">推错配件比不推更伤</span>——给 Fold 1 用户推 Fusion 的扩展电池，
+              等于告诉他"我们不知道你买了什么"。</p>
+              <p>配件客单也被低估：目录里有 $459 的 HUD 眼镜、$549 的拖挂车架、$599 的 e-Wagon。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"购车时间距今超过 7 天"且"已绑定车辆"触发（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">提前退出</span>：事件"提交退货申请"→ 立即退出</li>
+                <li><span class="bold">条件分支</span>：属性"购车车型"</li>
+                <li><span class="bold">Fold 系路径</span>：可发送时间 09:00–21:00 + Email 便携套装（Fold 专用后货架、便携气筒、AirTag 防丢套件）</li>
+                <li><span class="bold">Carbon 1 / Classic 系路径</span>：可发送时间 + Email 通勤安全套装（头盔、ABUS 折叠锁、ARES 灯、专用后货架）</li>
+                <li><span class="bold">Fusion / Atom 系路径</span>：可发送时间 + Email 长途套装（MIK 货架、扩展电池、避震座管）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"配件订单支付成功"</li>
+                <li><span class="bold">未购路径</span>：可发送时间 + App Push（发送前 WebHook 取该用户浏览过的具体配件 SKU 与库存，文案精确到商品）</li>
+                <li><span class="bold">等待 14 天 → 可发送时间 + Email</span>：续航与舒适升级（备用电池、扩展电池、避震座管、舒适坐垫），已购商品自动排除</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"配件订单支付成功"</li>
+                <li><span class="bold">结束</span>：30 天后可再进入，配合全局频控避免与场景 7、8 叠加打扰</li>
+                <li><span class="bold">转化 + 收入统计</span>：监听"配件订单支付成功"（按订单金额累计），统计时间 14 天</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p>智能硬件 DTC 品牌中，按设备适配推荐的购后配件流是<span class="bold">收入贡献最高的自动化场景之一</span>；
+              某欧洲智能家居 DTC 品牌的同类流带动其自动化邮件收入 +242%。</p>
+              <p>90 天配件复购率若从约 8% 提升到 15–20%，按存量车主基数即为可观的高毛利增量。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 场景 7 -->
+    <section id="s-journey7" class="band band-light">
+      <div class="wrap">      <div class="jtitle">
+        <h2>场景 7｜Connect 服务续费（首年免费 → 次年付费的关键转化）</h2>
+        <span class="jstage">订阅续费</span>
+        <span class="chs"><span class="ch ch-ap">App Push</span><span class="ch ch-em">Email</span><span class="ch ch-sm">SMS</span></span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>Connect 到期前 30 天进入 → <span class="bold">按近 30 天骑行频次分流</span>：高频发年度骑行报告，低频先发未用过的功能；
+          T-7 用 App Push 直达 App 内续费页，T-0 用 SMS 提醒防盗中断，T+7 再给一次恢复入口。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email · SMS　｜　<span class="bold">触发方式</span>：属性「Connect 到期日 T-30」，30 天后可重入　｜　<span class="bold">退出条件</span>：Connect 续费成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j7"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>$39/年不贵，但无人提醒时用户会让它静默过期，
+              往往在<span class="bold">车真的被偷的那天才发现 GPS 追踪已断</span>——对品牌的伤害远大于 $39。</p>
+              <p>续费理由还取决于用过没有：高频用户在意数据连续性与防盗，低频用户不知道自己错过了什么。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"Connect 到期日 T-30"触发（可再次进入，间隔 30 天）</li>
+                <li><span class="bold">提前退出</span>：事件"Connect 续费成功"→ 立即退出</li>
+                <li><span class="bold">条件分支</span>：属性"近 30 天骑行次数"</li>
+                <li><span class="bold">高频路径（≥12 次）</span>：可发送时间 09:00–21:00 + Email 年度骑行报告（发送前 WebHook 取总里程、碳减排、常走路线）+ 防盗与数据连续性说明</li>
+                <li><span class="bold">低频路径（&lt;12 次）</span>：可发送时间 + Email"你可能还没用过的 4 个功能"（电子围栏、路线回放、OTA、Carbon Credits）+ 续费入口</li>
+                <li><span class="bold">等待事件 23 天</span>：监听"Connect 续费成功"</li>
+                <li><span class="bold">可发送时间 + App Push（T-7）</span>：一键跳转 App 内续费页（深度链接直达 Urshopia）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"Connect 续费成功"</li>
+                <li><span class="bold">可发送时间 + SMS（到期日）</span>：GPS 防盗与追踪即将中断提醒，仅对已开启防盗功能的用户发送（含 STOP 退订）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"Connect 续费成功"</li>
+                <li><span class="bold">可发送时间 + Email（T+7）</span>：数据保留说明 + 恢复入口（骑行记录仍在，续费即恢复全部功能）</li>
+                <li><span class="bold">结束</span>：标记未续费，降频后转入场景 10</li>
+                <li><span class="bold">转化 + 收入统计</span>：监听"Connect 续费成功"，统计时间 30 天（覆盖到期后的补续窗口）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p>硬件类 App 订阅在无提醒时续费率参考 <span class="bold">40–55%</span>，加入分段提醒与使用报告后可达 60–75%。</p>
+              <p>这是全套方案里<span class="bold">边际成本最低的一段收入</span>：用户已存在、产品已交付、服务已在运行。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 场景 8 -->
+    <section id="s-journey8" class="band band-soft">
+      <div class="wrap">      <div class="jtitle">
+        <h2>场景 8｜保养提醒与固件升级（服务型触达样板）</h2>
+        <span class="jstage">服务留存</span>
+        <span class="chs"><span class="ch ch-ap">App Push</span><span class="ch ch-em">Email</span></span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>累计里程达阈值或距上次保养满 6 个月时进入 → <span class="bold">App Push 保养提醒 + 就近门店一键预约</span>（门店信息发送前实时取值）；
+          7 天未预约补一封图文自检清单，再 7 天仍未约则结束并降频。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「累计里程达阈值 或 距上次保养满 6 个月」，90 天后可重入　｜　<span class="bold">退出条件</span>：到店服务完成即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j8"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>保养需求真实且有周期：传动寿命、刹车皮磨损、胎压、电池健康度衰减。
+              <span class="bold">用户不会记里程，车联网一直在记。</span></p>
+              <p>固件升级同理——不知情被推送、升级中断无处求助，是智能硬件差评里的高频主题。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"累计里程 ≥ 保养阈值"或"距上次保养超过 180 天"触发（可再次进入，间隔 90 天）</li>
+                <li><span class="bold">提前退出</span>：事件"到店服务完成"→ 立即退出</li>
+                <li><span class="bold">可发送时间 09:00–21:00 + App Push</span>：保养提醒 + 就近门店一键预约（发送前 WebHook 取门店名称、地址、可约时段）</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"服务预约提交"</li>
+                <li><span class="bold">未预约路径</span>：可发送时间 + Email 图文自检清单（胎压、刹车、传动、电池健康）+ 门店预约入口 + 保修范围说明</li>
+                <li><span class="bold">等待事件 7 天</span>：监听"服务预约提交"→ 已预约则退出</li>
+                <li><span class="bold">结束</span>：90 天后可再进入，避免对同一用户反复提醒</li>
+                <li><span class="bold">转化统计</span>：监听"服务预约提交"，统计时间 14 天（对齐旅程跨度）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p>服务型触达的打开率通常高于营销类消息，它保护的是<span class="bold">推送权限与长期打开率</span>——后续所有营销旅程的效果都建立在这个基础上。</p>
+              <p>同时把本会流向第三方车店的保养需求导回自有网络，为门店带来可归因的到店量。</p>
+            </div>
+          </div>
+          <div class="callout neutral">
+            <div class="callout-title">固件升级旅程（同构复用）</div>
+            <div class="callout-body">
+              <p>把进入条件换成<span class="bold">属性"固件版本低于目标版本"</span>（字符串按版本号比较模式），
+              消息换成升级预告（改进点、耗时、注意事项）→ 等待事件 5 天监听"升级完成" →
+              已升级走体验回访、未升级走图文指南与失败自查，即可复用同一套编排。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 场景 9 -->
+    <section id="s-journey9" class="band band-light">
+      <div class="wrap">      <div class="jtitle">
+        <h2>场景 9｜NPS → 公开评价 → 推荐裂变</h2>
+        <span class="jstage">口碑与获客</span>
+        <span class="chs"><span class="ch ch-ap">App Push</span><span class="ch ch-em">Email</span></span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>购车满 35 天且已绑定时发起 NPS → <span class="bold">按分值三档分流</span>：
+          9–10 分邀请公开评价并发推荐码，7–8 分问改进点并给调校建议，6 分及以下不做营销、直接转客服。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「购车满 35 天且已绑定车辆」，365 天后可重入　｜　<span class="bold">退出条件</span>：提交退货申请即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j9"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>公开评价对高客单转化影响极大，却完全依赖用户自发，
+              而<span class="bold">自发写评价的动机高度偏向负面</span>。</p>
+              <p>推荐裂变的资产也已存在——Carbon Credits 支持骑行与推荐赚积分兑换，缺的是递到用户面前的时机。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"购车时间距今超过 35 天"且"已绑定车辆"触发（可再次进入，间隔 365 天）</li>
+                <li><span class="bold">提前退出</span>：事件"提交退货申请"→ 立即退出</li>
+                <li><span class="bold">可发送时间 09:00–21:00 + App Push</span>：NPS 问卷（1 分钟，完成得 Carbon Credits）</li>
+                <li><span class="bold">等待事件 3 天</span>：监听"NPS 提交"</li>
+                <li><span class="bold">条件分支</span>：属性"NPS 分值"</li>
+                <li><span class="bold">9–10 分（推荐者）</span>：可发送时间 + Email 邀请公开评价 + 专属推荐码（好友下单双方获 Carbon Credits）</li>
+                <li><span class="bold">等待事件 14 天</span>：监听"推荐好友注册"→ 已推荐则发放权益并退出</li>
+                <li><span class="bold">7–8 分（被动者）</span>：可发送时间 + Email"哪一点还能更好"+ 骑行设置与调校建议 + 门店免费检修入口（不含促销内容）</li>
+                <li><span class="bold">6 分及以下（贬损者）</span>：可发送时间 + Email 客服主动跟进 + 工单入口，<span class="bold">全程不含任何营销信息</span>，直接转人工</li>
+                <li><span class="bold">未提交路径</span>：可发送时间 + App Push 提醒一次后结束，不重复打扰</li>
+                <li><span class="bold">转化统计</span>：监听"公开评价提交"，统计时间 14 天（推荐注册数由等待事件分支单独查看）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p>在正向情绪窗口内主动邀请，公开评价的数量与平均分通常显著高于被动等待；
+              而<span class="bold">低分用户在公开发声前被接住</span>，是成本极低的差评预防。</p>
+              <p>推荐带来的获客成本远低于付费广告，且高客单决策本就依赖熟人背书。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 场景 10 -->
+    <section id="s-journey10" class="band band-soft">
+      <div class="wrap">      <div class="jtitle">
+        <h2>场景 10｜沉默用户分层召回</h2>
+        <span class="jstage">全链路兜底</span>
+        <span class="chs"><span class="ch ch-ap">App Push</span><span class="ch ch-em">Email</span><span class="ch ch-wp">Web Push</span></span>
+      </div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>最后打开 App 超过 30 天的用户进入 → <span class="bold">按三种状态分流</span>：
+          已绑车推月度骑行报告，已购未绑推组装协助，注册未购推新车型与门店试驾；5 天未回流则换渠道兜底一次。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email · Web Push　｜　<span class="bold">触发方式</span>：属性「最后打开 App 距今超过 30 天」，30 天后可重入　｜　<span class="bold">退出条件</span>：App 启动即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j10"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <p>智能硬件 App 绑定后一个月内的沉默率，行业参考 <span class="bold">40–55%</span>。</p>
+              <p>对 Urtopia 这不只是活跃度下降——<span class="bold">App 沉默会同时切断配件复购与年度续费两条购后收入</span>，
+              而三类沉默用户的成因完全不同。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性"最后打开 App 距今超过 30 天"触发（可再次进入，间隔 30 天——与进入条件阈值一致）</li>
+                <li><span class="bold">提前退出</span>：事件"App 启动"→ 立即退出</li>
+                <li><span class="bold">条件分支</span>：属性"用户状态"</li>
+                <li><span class="bold">已绑车路径</span>：可发送时间 09:00–21:00 + App Push 月度骑行报告（WebHook 取本月里程与碳减排）+ 新功能提示</li>
+                <li><span class="bold">已购未绑路径</span>：可发送时间 + Email 组装与配对协助 + 视频客服入口 + 门店免费组装</li>
+                <li><span class="bold">注册未购路径</span>：可发送时间 + Email 新车型、车主故事、就近门店免费试驾</li>
+                <li><span class="bold">等待事件 5 天（多分支）</span>：分支 1 "App 启动"、分支 2 "订单支付成功"、默认分支超时</li>
+                <li><span class="bold">超时路径</span>：可发送时间 + Web Push（已购未绑与注册未购）或 Email（已绑车）兜底一次</li>
+                <li><span class="bold">等待事件 5 天</span>：监听"App 启动"</li>
+                <li><span class="bold">结束</span>：标记为沉默用户并降频，30 天后可再进入</li>
+                <li><span class="bold">转化统计</span>：监听"App 启动"，统计时间 7 天（补绑率与下单数由分支数据单独查看）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p>无分层的统一召回率参考 <span class="bold">3–5%</span>；按状态分层并配合跨渠道兜底后可达 10–18%。</p>
+              <p>其中"已购未绑定"这一层价值最高——每救回一个，就同时救回配件复购与年度续费两段收入。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 五、行业对标 -->
+    <section id="s-benchmark" class="band band-light">
+      <div class="wrap">      <div class="eyebrow">行业对标</div>
+      <h2><span class="secnum">5</span>行业对标 · 高客单硬件 DTC 的自动化实践</h2>
+      <p class="lede">
+        以下数据来自智能硬件与高客单 DTC 行业接入 MA 自动化后的公开案例与行业报告，用于说明本方案的预期区间；
+        实际效果以 Urtopia 测试期的对照组数据为准。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="card">
+        <div class="card-header">关键指标：无自动化 vs MA 自动化后（行业参考区间中位值）</div>
+        <div class="card-body">
+          <div class="chart" id="chart-benchmark"></div>
+          <p class="small muted" style="margin-top:10px">
+            数据来源：2024–2026 年智能硬件、高客单 DTC 行业 MA 公开案例与行业报告综合整理。图中取各区间中位值以便同轴对比。
+          </p>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">全球化智能安防硬件品牌（EngageLab 客户）</div><div class="card-body">
+          <ul>
+            <li><span class="bold">13 条旅程</span>并行稳定运行，覆盖美 / 英 / 加 / 日 / 欧多区域</li>
+            <li>全球多区域 App Push 送达率 <span class="bold">95–99.85%</span></li>
+            <li>订阅续费提醒 Push 点击率 <span class="bold">6.82%</span>，支付挽留旅程点击率 6.26%</li>
+            <li>新客首月订阅收入 <span class="bold">+11.5%</span></li>
+          </ul>
+          <p class="small muted">同为「硬件 + App + 年费订阅」模式，多区域旅程架构与续费提醒逻辑可直接参考</p>
+        </div></div>
+        <div class="card"><div class="card-header">欧洲智能家居硬件 DTC 品牌</div><div class="card-body">
+          <ul>
+            <li>购后自动化流按"已购设备 → 匹配配件"精准推荐</li>
+            <li>该交叉销售流成为<span class="bold">收入贡献最高的自动化场景之一</span></li>
+            <li>自动化邮件收入提升 <span class="bold">+242%</span></li>
+          </ul>
+          <p class="small muted">与 Urtopia「车型 → 适配配件」的目录结构同构，且同处欧洲合规环境</p>
+        </div></div>
+        <div class="card"><div class="card-header">高客单 DTC 弃购挽回（行业基准）</div><div class="card-body">
+          <ul>
+            <li>高客单品类弃购率普遍 <span class="bold">70% 以上</span>（移动端更高）</li>
+            <li>三段式挽回（服务提醒 → 拆门槛 → 社交证明）挽回率 <span class="bold">3–8%</span>，头部 8–12%</li>
+            <li>行为触发邮件的打开与点击约为批量群发的 <span class="bold">2–3 倍</span></li>
+          </ul>
+          <p class="small muted">按 $2,099 客单计，每月多挽回 20 单约合 4.2 万美元增量</p>
+        </div></div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 六、合规与安全 -->
+    <section id="s-compliance" class="band band-soft">
+      <div class="wrap">      <div class="eyebrow">合规与安全</div>
+      <h2><span class="secnum">6</span>合规与数据安全（美国 + 欧洲双市场）</h2>
+      <p class="lede">
+        Urtopia 同时经营北美与欧洲市场，两地的营销触达规则差异很大：
+        欧洲侧的重点是同意取得与数据驻留，美国侧的重点是短信渠道的号码登记与事前同意。
+        本方案在编排层面已把这两套要求写进旅程配置，而不是留给运营在发送时自行判断。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-2">
+        <div class="card"><div class="card-header">数据安全</div><div class="card-body">
+          <ul>
+            <li>全链路 <span class="bold">TLS</span> 加密传输，VPC 网络隔离，多活灾备</li>
+            <li>支持<span class="bold">美国数据节点与欧洲数据节点分节点部署</span>，两地用户数据可分别驻留在对应节点（具体配置按合同约定）</li>
+            <li>PII 字段脱敏、日志审计、数据访问全链路可追溯</li>
+            <li>基于角色的访问控制（RBAC），运营人员不可裸查原始用户数据</li>
+            <li>消息发送记录保留 <span class="bold">60 天</span>，可导出用于合规审查</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">合规支持</div><div class="card-body">
+          <ul>
+            <li>已通过 <span class="bold">GDPR</span> 合规认证 + <span class="bold">SOC 2 Type II</span> 安全审计</li>
+            <li>支持用户数据删除、导出、同意管理等合规权利响应</li>
+            <li>德国等市场建议采用<span class="bold">双重确认（Double Opt-in）</span>订阅实践：订阅后先发确认邮件，用户点击确认才计为有效订阅——该流程可直接用旅程编排实现</li>
+            <li><span class="bold">一键退订</span>由 Email 通道原生支持（正文退订入口 + List-Unsubscribe 邮件头），所有营销邮件默认保留</li>
+            <li>美国 SMS 触达需完成 <span class="bold">10DLC 号码登记</span>并取得事前书面同意，所有短信模板含 STOP / HELP 关键词回复</li>
+            <li>可协助 Urtopia 满足各目标市场本地数据保护法规要求</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">运营护栏</div>
+        <div class="callout-body">
+          <p>· <span class="bold">全局频控</span>：按用户设置每日 / 每周消息上限，<span class="bold">跨旅程统一生效并自动协调</span>，
+          防止同一用户被培育、弃购、配件、续费多条旅程同时打扰；交付、保养、订阅到期等生命周期类通知单独归类，不与营销频次混算；</p>
+          <p>· <span class="bold">可发送时间</span>：基于终端用户时区控制发送窗口，美欧多时区自动适配，营销类消息在本地 09:00–21:00 内送达；
+          刚触发行为的即时消息（如弃购首封）不加窗口，避免错过最佳时机；</p>
+          <p>· <span class="bold">提前退出</span>：用户完成目标行为（支付、绑定、续费、启动 App）即刻退出对应旅程，不再继续触达；</p>
+          <p>· <span class="bold">内容真实性</span>：库存、价格、门店、里程等文案中的数字均为发送前实时取值，不使用不可核实的紧迫感表述——
+          这既是品牌立场，也是欧盟不公平商业行为规则下的硬性要求；</p>
+          <p>· <span class="bold">内容预览与对比测试</span>：多语言版本发送前支持完整样式预览；标题与文案可用条件分流做对比测试，数据驱动迭代。</p>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 七、为什么是 EngageLab -->
+    <section id="s-why" class="band band-tint">
+      <div class="wrap">      <div class="eyebrow">为什么是我们</div>
+      <h2><span class="secnum">7</span>为什么是 EngageLab</h2>
+      <p class="lede">
+        前面六节讲的是 Urtopia 该怎么做。这一节回答另一个问题：
+        <span class="bold">这套编排为什么需要一个能同时接住独立站、App 和车联网的平台</span>，而不是一个邮件工具加几个插件。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">① 设备事件驱动的跨渠道编排</div><div class="card-body">
+          <p class="small">本方案 10 条旅程里，有 6 条的分流依据来自 App 或车辆——绑定状态、骑行频次、累计里程、固件版本、Connect 到期日。
+          这些数据进不来，旅程就只能退化成按日历发送。</p>
+          <p class="small">EngageLab MA 把独立站行为、App 事件、车联网事件收敛到同一个用户身份下，
+          <span class="bold">条件分支与等待事件可以直接读取设备侧状态</span>，并在同一条旅程里跨 Email / App Push / Web Push / SMS 切换渠道。</p>
+        </div></div>
+        <div class="card"><div class="card-header">② 高可靠的全球消息底座</div><div class="card-body">
+          <p class="small">母公司在推送领域深耕多年，服务过大量出海硬件品牌；
+          同类客户的<span class="bold">全球多区域 App Push 送达率为 95–99.85%</span>。</p>
+          <p class="small">对 Urtopia 的现实意义很直接：<span class="bold">Connect 续费只能在 App 内完成</span>，
+          能不能把用户准确送进 App 的付款页，取决于推送本身的到达率与深度链接能力，而不是文案。</p>
+        </div></div>
+        <div class="card"><div class="card-header">③ 出海原生的合规与多语言</div><div class="card-body">
+          <p class="small">美国与欧洲数据节点分节点部署、GDPR 与 SOC 2 Type II、终端时区发送窗口、
+          全局频控与一键退订——这些不是加分项，而是美欧 DTC 品牌采购营销系统时的准入线。</p>
+          <p class="small">多语言文案可由 AI 直接生成并在发送前完整预览，
+          <span class="bold">同一条旅程可按用户语言属性分流到不同语种版本</span>，无需为每个市场重建旅程。</p>
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <h3>各渠道在 Urtopia 场景中的角色</h3>
+      <table>
+        <thead><tr>
+          <th style="width:14%">渠道</th><th style="width:52%">在本方案中的角色</th>
+          <th style="width:20%">主要承载场景</th><th>适用市场</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="bold">Email</td><td>购前长决策培育与交付说明的主渠道，承载对比指南、月付算账、组装教程等长内容</td><td>场景 1 / 3 / 5 / 6 / 7</td><td>全球</td></tr>
+          <tr class="tone-info"><td class="bold">App Push</td><td>已绑车用户的主渠道，深度链接可直达 App 内商城（配件下单与续费均在此完成）</td><td>场景 5 / 6 / 7 / 8 / 9 / 10</td><td>全球</td></tr>
+          <tr><td class="bold">Web Push</td><td>未留下邮箱的访客的唯一自有触点，站内授权后即可承接培育与降价提醒</td><td>场景 1 / 3 / 10</td><td>全球</td></tr>
+          <tr><td class="bold">SMS</td><td>高客单弃购与订阅到期的兜底渠道，仅对高意向用户使用；美国需完成 10DLC 登记与事前同意</td><td>场景 2 / 3 / 7</td><td>全球</td></tr>
+          <tr><td class="bold">WhatsApp</td><td>欧洲部分市场的门店预约与售后沟通补充，基于向平台报备的模板发送</td><td>场景 2 / 8（可选）</td><td>欧洲</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:8px">
+        如已有 Email / 短信发送平台，触达通道侧也支持通过 SMTP / SMPP 对接已有通道。
+      </p>
+      </div>
+    </section>
+
+    <!-- 八、测试计划 -->
+    <section id="s-plan" class="band band-light">
+      <div class="wrap">      <div class="eyebrow">落地计划</div>
+      <h2><span class="secnum">8</span>4 周测试计划 · 可量化验收</h2>
+      <table>
+        <thead><tr>
+          <th class="align-center" style="width:9%">周</th><th style="width:16%">阶段</th><th style="width:34%">工作内容</th>
+          <th style="width:20%">交付物</th><th>验收指标</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="align-center bold">Week 1</td><td>启动 &amp; 数据打通</td>
+            <td>场景优先级共创 · 埋点方案设计与确认 · 独立站 Web SDK 与订单 Webhook 接入 · App SDK 集成与绑定/骑行/订阅事件补齐 · One ID 身份统一 · 美欧节点环境开通</td>
+            <td>埋点方案文档 + 数据入库验证</td><td>核心事件入库率 ≥ 95%</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 2</td><td>首批旅程上线</td>
+            <td>上线 <span class="bold">场景 3 弃购挽回</span> + <span class="bold">场景 1 长决策培育</span> · 多语言文案生成与预览确认 · 小流量验证（5–10%）</td>
+            <td>2 条旅程跑通 + 触达数据回流</td><td>旅程触发成功率 ≥ 98%；弃购挽回率可读出</td></tr>
+          <tr class="tone-info"><td class="align-center bold">Week 3</td><td>购后旅程接入 &amp; 扩量</td>
+            <td>设备与门店事件经 Server API 同步 · 上线 <span class="bold">场景 5 交付激活</span> + <span class="bold">场景 2 试驾跟进</span> · 前两条旅程扩全量 · 文案条件分流对比</td>
+            <td>4 条旅程全量运行 + 对比数据</td><td>App 绑定率、试驾到店率可量化；行为触发 Push 点击率 ≥ 5%</td></tr>
+          <tr class="tone-success"><td class="align-center bold">Week 4</td><td>复盘 &amp; 扩面</td>
+            <td>数据复盘与收入归因结算 · 上线 <span class="bold">场景 6 配件交叉销售</span> + <span class="bold">场景 7 Connect 续费</span> · 场景 4 / 8 / 9 / 10 排期</td>
+            <td>测试结案报告 + 完整旅程体系</td><td>核心旅程收入增量可归因；ROI 报告交付</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-md"></div>
+      <hr class="divider" />
+      <h3>下一步建议</h3>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header"><span class="step-num">1</span>对齐数据现状</div><div class="card-body">
+          共同确认业务目标与数据接入路径（独立站行为与订单、App 绑定与骑行、Connect 到期日、门店预约），
+          确认美欧数据节点部署要求与合规基线，明确首批 6 条旅程的埋点范围。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">2</span>开发对接</div><div class="card-body">
+          按 EngageLab 交付团队提供的埋点方案完成独立站 Web SDK 加载、App SDK 集成与增量事件上报、
+          设备与门店事件的 Server API 同步。
+        </div></div>
+        <div class="card"><div class="card-header"><span class="step-num">3</span>测试验证</div><div class="card-body">
+          开通测试账号，优先搭建<span class="bold">弃购挽回 + 长决策培育</span>两条旅程小流量验证，
+          再以真实数据驱动交付激活、试驾跟进、配件复购、Connect 续费四条旅程的扩展。
+        </div></div>
+      </div>
+
+      <div class="spacer-md"></div>
+      <div class="spacer-md"></div>
+      <div class="cta">
+        <h3>三步启动</h3>
+        <p>对齐场景与数据源　→　打通事件上报　→　4 周用真实数据说话</p>
+        <div class="pills">
+          <span class="cpill"><span class="v">$0</span>测试期授权费</span>
+          <span class="cpill"><span class="v">3–5</span>人日完成接入</span>
+          <span class="cpill"><span class="v">4 周</span>6 条核心旅程全量运行</span>
+          <span class="cpill"><span class="v">1v1</span>EngageLab 交付团队支持</span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="wrap">
+      本方案中 Urtopia 的车型与价格、配件目录、Connect 服务规则、服务网点规模等信息，
+      来源于 Urtopia 官网公开信息与公开报道，仅作为业务现状背景引用，非 MA 实施成果。
+      行业对标与预期效果数据来自 2024–2026 年智能硬件、高客单 DTC 行业公开案例及行业报告综合整理，
+      为同类场景参考区间，实际效果以双方测试数据为准。
+      <br />© EngageLab · Marketing Automation Solution for Urtopia
+      </div>
+    </footer>
+  </main>
+  <script>
+  (function () {
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', neutral: '#94a3b8', muted: '#cbd5e1',
+      text: '#374151', textMute: '#9ca3af', grid: '#e5e7eb',
+    };
+
+    function svg(w, h) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('width', '100%');
+      s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      return s;
+    }
+    function el(tag, attrs) {
+      const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 700, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 72;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 20) * 20 || 100;
+      const groupCount = categories.length;
+      const barsPerGroup = series.length;
+      const groupW = innerW / groupCount;
+      const barW = Math.min(22, (groupW - 12) / barsPerGroup);
+      const s = svg(W, H);
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+      if (series.length > 1) {
+        const legY = H - 14;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          // 中文字符实际渲染宽度约 11px，用 11 估算后加 24px 项间距
+          legX += 14 + (se.name.length * 11) + 24;
+        });
+      }
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {};
+      const incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const definedAnchors = withAnchor.filter(n => n.anchor !== null).map(n => n.anchor);
+        const startX = definedAnchors.length > 0
+          ? Math.max(20, definedAnchors.reduce((a, b) => a + b, 0) / definedAnchors.length - totalW / 2)
+          : (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          const x = startX + i * (NODE_W + NODE_GAP);
+          const y = 20 + r * (NODE_H + RANK_GAP);
+          pos[it.node.id] = { x, y };
+        });
+      });
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) {
+              cur.x = prev.x + NODE_W + NODE_GAP;
+            }
+          }
+        });
+      }
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    // ========== Charts ==========
+
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['访客→留资', '留资→首购', '结账→支付', '交付→绑定', '首年→续费', '90天配件复购'],
+      series: [
+        { name: '常见水平', data: [3, 3, 30, 60, 45, 8], tone: 'neutral' },
+        { name: '行业优秀水平', data: [8, 10, 42, 85, 70, 20], tone: 'info' },
+      ],
+      valueSuffix: '%', height: 250,
+    });
+
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['弃购挽回率', '行为触发Push点击率', '90天配件复购率', '沉默召回率', 'Connect续费率'],
+      series: [
+        { name: '无自动化', data: [2, 2.2, 8, 4, 45], tone: 'neutral' },
+        { name: 'MA 自动化后', data: [8, 8.5, 20, 14, 67], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 250,
+    });
+
+    // ========== Journeys ==========
+
+    // J1: 6–8 周长决策培育
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start',   kind: 'entry',    title: '开始',        sub: '事件: Newsletter 订阅' },
+        { id: 'email1',  kind: 'channel',  title: 'Email',       sub: '品牌故事·首单权益' },
+        { id: 'wfe1',    kind: 'branch',   title: '等待事件',     sub: '行为分流 · 3 天' },
+        { id: 'st_a',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'em_a',    kind: 'channel',  title: 'Email',       sub: '车型对比指南' },
+        { id: 'st_b',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'em_b',    kind: 'channel',  title: 'Email',       sub: '月付算账·拆门槛' },
+        { id: 'exit_c',  kind: 'exitOk',   title: '转场景 3',     sub: '发起结账·弃购挽回' },
+        { id: 'st_d',    kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'em_d',    kind: 'channel',  title: 'Email',       sub: '碳纤维为什么值这个价' },
+        { id: 'wfe2',    kind: 'branch',   title: '等待事件',     sub: '试驾预约提交 · 7 天' },
+        { id: 'exit_t',  kind: 'exitOk',   title: '转场景 2',     sub: '试驾跟进旅程' },
+        { id: 'st2',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'em2',     kind: 'channel',  title: 'Email',       sub: '车主故事·第三方评测' },
+        { id: 'wait1',   kind: 'wait',     title: '等待',         sub: '14 天' },
+        { id: 'st3',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'wp1',     kind: 'channel',  title: 'Web Push',    sub: '就近门店免费试驾' },
+        { id: 'wfe3',    kind: 'branch',   title: '等待事件',     sub: '加入购物车 · 14 天' },
+        { id: 'exit_k',  kind: 'exitOk',   title: '转场景 3',     sub: '弃购挽回' },
+        { id: 'st4',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'em3',     kind: 'channel',  title: 'Email',       sub: '常见顾虑总答疑' },
+        { id: 'wait2',   kind: 'wait',     title: '等待',         sub: '14 天' },
+        { id: 'st5',     kind: 'sendtime', title: '可发送时间',    sub: '09:00 – 21:00' },
+        { id: 'em4',     kind: 'channel',  title: 'Email',       sub: '偏好中心·自选频率' },
+        { id: 'end',     kind: 'exitEnd',  title: '结束',         sub: '第 52 天·转场景 10' },
+      ],
+      [
+        { from: 'start',  to: 'email1' },
+        { from: 'email1', to: 'wfe1' },
+        { from: 'wfe1',   to: 'st_a',   label: '浏览≥2车型' },
+        { from: 'wfe1',   to: 'st_b',   label: '浏览分期页' },
+        { from: 'wfe1',   to: 'exit_c', label: '发起结账' },
+        { from: 'wfe1',   to: 'st_d',   label: '超时无行为' },
+        { from: 'st_a',   to: 'em_a' },
+        { from: 'st_b',   to: 'em_b' },
+        { from: 'st_d',   to: 'em_d' },
+        { from: 'em_a',   to: 'wfe2' },
+        { from: 'em_b',   to: 'wfe2' },
+        { from: 'em_d',   to: 'wfe2' },
+        { from: 'wfe2',   to: 'exit_t', label: '已预约试驾' },
+        { from: 'wfe2',   to: 'st2',    label: '超时未预约' },
+        { from: 'st2',    to: 'em2' },
+        { from: 'em2',    to: 'wait1' },
+        { from: 'wait1',  to: 'st3' },
+        { from: 'st3',    to: 'wp1' },
+        { from: 'wp1',    to: 'wfe3' },
+        { from: 'wfe3',   to: 'exit_k', label: '已加购' },
+        { from: 'wfe3',   to: 'st4',    label: '超时未加购' },
+        { from: 'st4',    to: 'em3' },
+        { from: 'em3',    to: 'wait2' },
+        { from: 'wait2',  to: 'st5' },
+        { from: 'st5',    to: 'em4' },
+        { from: 'em4',    to: 'end' },
+      ]);
+
+    // J2: 试驾预约 → 到店 → 48h 跟进
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 试驾预约提交' },
+        { id: 'email1', kind: 'channel',  title: 'Email',      sub: '预约确认·门店与准备' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '到店签到 · 7 天' },
+        { id: 'wait1',  kind: 'wait',     title: '等待',        sub: '2 小时 · 离店后' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em2',    kind: 'channel',  title: 'Email',      sub: '试驾感谢·专属权益' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 48h' },
+        { id: 'ok1',    kind: 'exitOk',   title: '已下单',      sub: '转场景 5 交付' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em3',    kind: 'channel',  title: 'Email',      sub: '试驾答疑·月付算账' },
+        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: 'no-show·一键改约' },
+        { id: 'wfe3',   kind: 'branch',   title: '等待事件',    sub: '试驾预约提交 · 7 天' },
+        { id: 'ok2',    kind: 'exitOk',   title: '已改约',      sub: '重新进入本旅程' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '退回场景 1 培育' },
+      ],
+      [
+        { from: 'start',  to: 'email1' },
+        { from: 'email1', to: 'wfe1' },
+        { from: 'wfe1',   to: 'wait1', label: '已到店' },
+        { from: 'wfe1',   to: 'st3',   label: '超时未到店' },
+        { from: 'wait1',  to: 'st1' },
+        { from: 'st1',    to: 'em2' },
+        { from: 'em2',    to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok1',   label: '已下单' },
+        { from: 'wfe2',   to: 'st2',   label: '超时未购' },
+        { from: 'st2',    to: 'em3' },
+        { from: 'em3',    to: 'end' },
+        { from: 'st3',    to: 'push1' },
+        { from: 'push1',  to: 'wfe3' },
+        { from: 'wfe3',   to: 'ok2',   label: '已改约' },
+        { from: 'wfe3',   to: 'end',   label: '仍未改约' },
+      ]);
+
+    // J3: 高客单弃购挽回
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 发起结账' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 1 小时' },
+        { id: 'ok1',    kind: 'exitOk',   title: '已支付',      sub: '自然转化·不打扰' },
+        { id: 'email1', kind: 'channel',  title: 'Email',      sub: '购物车保留·真实库存' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 24h' },
+        { id: 'ok2',    kind: 'exitOk',   title: '已支付',      sub: '' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'email2', kind: 'channel',  title: 'Email',      sub: '月付·试骑·质保·门店' },
+        { id: 'wfe3',   kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 48h' },
+        { id: 'ok3',    kind: 'exitOk',   title: '已支付',      sub: '' },
+        { id: 'cond',   kind: 'branch',   title: '条件分支',    sub: '属性: 购物车是否含整车' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'sms',    kind: 'channel',  title: 'SMS',        sub: '高意向兜底·顾问协助' },
+        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'wp',     kind: 'channel',  title: 'Web Push',   sub: '车主评价·随车权益' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '7 天后可再进入' },
+      ],
+      [
+        { from: 'start',  to: 'wfe1' },
+        { from: 'wfe1',   to: 'ok1',    label: '已支付' },
+        { from: 'wfe1',   to: 'email1', label: '超时未支付' },
+        { from: 'email1', to: 'wfe2' },
+        { from: 'wfe2',   to: 'ok2',    label: '已支付' },
+        { from: 'wfe2',   to: 'st1',    label: '未支付' },
+        { from: 'st1',    to: 'email2' },
+        { from: 'email2', to: 'wfe3' },
+        { from: 'wfe3',   to: 'ok3',    label: '已支付' },
+        { from: 'wfe3',   to: 'cond',   label: '未支付' },
+        { from: 'cond',   to: 'st2',    label: '含整车' },
+        { from: 'cond',   to: 'st3',    label: '仅配件' },
+        { from: 'st2',    to: 'sms' },
+        { from: 'st3',    to: 'wp' },
+        { from: 'sms',    to: 'end' },
+        { from: 'wp',     to: 'end' },
+      ]);
+
+    // J4: 降价与促销回归提醒
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 车型价格下调' },
+        { id: 'cond',   kind: 'branch',   title: '条件分支',    sub: '属性: 该车型互动深度' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '加购车型降价·真实差额' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em1',    kind: 'channel',  title: 'Email',      sub: '降价通知·同价位对比' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '发起结账 · 3 天' },
+        { id: 'ok1',    kind: 'exitOk',   title: '转场景 3',    sub: '弃购挽回接力' },
+        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em2',    kind: 'channel',  title: 'Email',      sub: '促销倒计时·车主评价' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: '订单支付成功 · 3 天' },
+        { id: 'ok2',    kind: 'exitOk',   title: '已下单',      sub: '收入归因' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '30 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'cond' },
+        { from: 'cond',  to: 'st1',  label: '曾加购未支付' },
+        { from: 'cond',  to: 'st2',  label: '浏览≥2次' },
+        { from: 'st1',   to: 'push1' },
+        { from: 'st2',   to: 'em1' },
+        { from: 'push1', to: 'wfe1' },
+        { from: 'em1',   to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1', label: '已发起结账' },
+        { from: 'wfe1',  to: 'st3', label: '超时未结账' },
+        { from: 'st3',   to: 'em2' },
+        { from: 'em2',   to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2', label: '已支付' },
+        { from: 'wfe2',  to: 'end', label: '超时未购' },
+      ]);
+
+    // J5: 交付 → 组装 → 绑定 → 试骑期关怀
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start',   kind: 'entry',    title: '开始',       sub: '事件: 订单支付成功(整车)' },
+        { id: 'email1',  kind: 'channel',  title: 'Email',      sub: '订单确认·到货准备' },
+        { id: 'wfe1',    kind: 'branch',   title: '等待事件',    sub: '订单已送达 · 14 天' },
+        { id: 'st1',     kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push1',   kind: 'channel',  title: 'App Push',   sub: '分步组装·绑定入口' },
+        { id: 'st2',     kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em2',     kind: 'channel',  title: 'Email',      sub: '物流查询入口' },
+        { id: 'logi',    kind: 'exitEnd',  title: '转人工',      sub: '物流异常·客服跟进' },
+        { id: 'wfe2',    kind: 'branch',   title: '等待事件',    sub: 'App 绑定车辆 · 3 天' },
+        { id: 'push2',   kind: 'channel',  title: 'App Push',   sub: '首骑设置·Connect 生效' },
+        { id: 'st3',     kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em3',     kind: 'channel',  title: 'Email',      sub: '组装配对排查·视频客服' },
+        { id: 'wfe3',    kind: 'branch',   title: '等待事件',    sub: 'App 绑定车辆 · 3 天' },
+        { id: 'human',   kind: 'exitEnd',  title: '转人工',      sub: '标记未激活·客服跟进' },
+        { id: 'wait1',   kind: 'wait',     title: '等待',        sub: '7 天 · 试骑期' },
+        { id: 'st4',     kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em4',     kind: 'channel',  title: 'Email',      sub: '骑行设置·尺寸调整关怀' },
+        { id: 'end',     kind: 'exitOk',   title: '结束',        sub: '第 14 天·转场景 6' },
+      ],
+      [
+        { from: 'start',  to: 'email1' },
+        { from: 'email1', to: 'wfe1' },
+        { from: 'wfe1',   to: 'st1',  label: '已送达' },
+        { from: 'wfe1',   to: 'st2',  label: '超时未达' },
+        { from: 'st1',    to: 'push1' },
+        { from: 'st2',    to: 'em2' },
+        { from: 'push1',  to: 'wfe2' },
+        { from: 'em2',    to: 'logi' },
+        { from: 'wfe2',   to: 'push2', label: '已绑定' },
+        { from: 'wfe2',   to: 'st3',   label: '超时未绑定' },
+        { from: 'st3',    to: 'em3' },
+        { from: 'em3',    to: 'wfe3' },
+        { from: 'wfe3',   to: 'push2', label: '已绑定' },
+        { from: 'wfe3',   to: 'human', label: '仍未绑定' },
+        { from: 'push2',  to: 'wait1' },
+        { from: 'wait1',  to: 'st4' },
+        { from: 'st4',    to: 'em4' },
+        { from: 'em4',    to: 'end' },
+      ]);
+
+    // J6: 配件交叉销售
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '属性: 购车满7天且已绑定' },
+        { id: 'cond',   kind: 'branch',   title: '条件分支',    sub: '属性: 购车车型' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em_f',   kind: 'channel',  title: 'Email',      sub: 'Fold 系·便携套装' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em_c',   kind: 'channel',  title: 'Email',      sub: 'Carbon 系·通勤安全套装' },
+        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em_g',   kind: 'channel',  title: 'Email',      sub: 'Fusion/Atom·长途套装' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '配件订单支付 · 7 天' },
+        { id: 'ok1',    kind: 'exitOk',   title: '已购配件',    sub: '收入归因' },
+        { id: 'st4',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '浏览过的具体 SKU' },
+        { id: 'wait1',  kind: 'wait',     title: '等待',        sub: '14 天' },
+        { id: 'st5',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em4',    kind: 'channel',  title: 'Email',      sub: '续航与舒适升级' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: '配件订单支付 · 7 天' },
+        { id: 'ok2',    kind: 'exitOk',   title: '已购配件',    sub: '收入归因' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '30 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'cond' },
+        { from: 'cond',  to: 'st1', label: 'Fold 系' },
+        { from: 'cond',  to: 'st2', label: 'Carbon/Classic' },
+        { from: 'cond',  to: 'st3', label: 'Fusion/Atom' },
+        { from: 'st1',   to: 'em_f' },
+        { from: 'st2',   to: 'em_c' },
+        { from: 'st3',   to: 'em_g' },
+        { from: 'em_f',  to: 'wfe1' },
+        { from: 'em_c',  to: 'wfe1' },
+        { from: 'em_g',  to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1', label: '已购' },
+        { from: 'wfe1',  to: 'st4', label: '超时未购' },
+        { from: 'st4',   to: 'push1' },
+        { from: 'push1', to: 'wait1' },
+        { from: 'wait1', to: 'st5' },
+        { from: 'st5',   to: 'em4' },
+        { from: 'em4',   to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2', label: '已购' },
+        { from: 'wfe2',  to: 'end', label: '超时未购' },
+      ]);
+
+    // J7: Connect 服务续费
+    drawJourney(document.getElementById('dag-j7'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '属性: Connect 到期 T-30' },
+        { id: 'cond',   kind: 'branch',   title: '条件分支',    sub: '属性: 近30天骑行次数' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em_h',   kind: 'channel',  title: 'Email',      sub: '年度骑行报告·防盗连续' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em_l',   kind: 'channel',  title: 'Email',      sub: '还没用过的4个功能' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: 'Connect 续费 · 23 天' },
+        { id: 'ok1',    kind: 'exitOk',   title: '已续费',      sub: '收入归因' },
+        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: 'T-7·直达 App 续费页' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: 'Connect 续费 · 7 天' },
+        { id: 'ok2',    kind: 'exitOk',   title: '已续费',      sub: '' },
+        { id: 'st4',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'sms1',   kind: 'channel',  title: 'SMS',        sub: 'T-0·防盗即将中断' },
+        { id: 'wfe3',   kind: 'branch',   title: '等待事件',    sub: 'Connect 续费 · 7 天' },
+        { id: 'ok3',    kind: 'exitOk',   title: '已续费',      sub: '' },
+        { id: 'st5',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em2',    kind: 'channel',  title: 'Email',      sub: 'T+7·数据保留·恢复入口' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '标记未续·转场景 10' },
+      ],
+      [
+        { from: 'start', to: 'cond' },
+        { from: 'cond',  to: 'st1', label: '高频 ≥12次' },
+        { from: 'cond',  to: 'st2', label: '低频 <12次' },
+        { from: 'st1',   to: 'em_h' },
+        { from: 'st2',   to: 'em_l' },
+        { from: 'em_h',  to: 'wfe1' },
+        { from: 'em_l',  to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1', label: '已续费' },
+        { from: 'wfe1',  to: 'st3', label: '未续费' },
+        { from: 'st3',   to: 'push1' },
+        { from: 'push1', to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2', label: '已续费' },
+        { from: 'wfe2',  to: 'st4', label: '未续费' },
+        { from: 'st4',   to: 'sms1' },
+        { from: 'sms1',  to: 'wfe3' },
+        { from: 'wfe3',  to: 'ok3', label: '已续费' },
+        { from: 'wfe3',  to: 'st5', label: '未续费' },
+        { from: 'st5',   to: 'em2' },
+        { from: 'em2',   to: 'end' },
+      ]);
+
+    // J8: 保养提醒
+    drawJourney(document.getElementById('dag-j8'),
+      [
+        { id: 'start', kind: 'entry',    title: '开始',       sub: '属性: 累计里程达阈值' },
+        { id: 'st1',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push1', kind: 'channel',  title: 'App Push',   sub: '保养提醒·就近门店预约' },
+        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '服务预约提交 · 7 天' },
+        { id: 'ok1',   kind: 'exitOk',   title: '已预约',      sub: '转门店履约' },
+        { id: 'st2',   kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em1',   kind: 'channel',  title: 'Email',      sub: '自检清单·保修范围' },
+        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '服务预约提交 · 7 天' },
+        { id: 'ok2',   kind: 'exitOk',   title: '已预约',      sub: '' },
+        { id: 'end',   kind: 'exitEnd',  title: '结束',        sub: '90 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1',   to: 'push1' },
+        { from: 'push1', to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1', label: '已预约' },
+        { from: 'wfe1',  to: 'st2', label: '超时未约' },
+        { from: 'st2',   to: 'em1' },
+        { from: 'em1',   to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2', label: '已预约' },
+        { from: 'wfe2',  to: 'end', label: '仍未预约' },
+      ]);
+
+    // J9: NPS → 评价 → 推荐
+    drawJourney(document.getElementById('dag-j9'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '属性: 购车满35天且已绑定' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: 'NPS 问卷·完成得积分' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: 'NPS 提交 · 3 天' },
+        { id: 'cond',   kind: 'branch',   title: '条件分支',    sub: '属性: NPS 分值' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em_p',   kind: 'channel',  title: 'Email',      sub: '邀公开评价·推荐码' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: '推荐好友注册 · 14 天' },
+        { id: 'ok1',    kind: 'exitOk',   title: '推荐成功',    sub: '双向权益发放' },
+        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em_n',   kind: 'channel',  title: 'Email',      sub: '哪点还能更好·调校建议' },
+        { id: 'st4',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em_d',   kind: 'channel',  title: 'Email',      sub: '客服跟进·不含营销' },
+        { id: 'st5',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push2',  kind: 'channel',  title: 'App Push',   sub: '未提交·提醒一次' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '365 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'st1' },
+        { from: 'st1',   to: 'push1' },
+        { from: 'push1', to: 'wfe1' },
+        { from: 'wfe1',  to: 'cond', label: '已提交' },
+        { from: 'wfe1',  to: 'st5',  label: '超时未提交' },
+        { from: 'cond',  to: 'st2',  label: '9–10 分' },
+        { from: 'cond',  to: 'st3',  label: '7–8 分' },
+        { from: 'cond',  to: 'st4',  label: '≤6 分' },
+        { from: 'st2',   to: 'em_p' },
+        { from: 'em_p',  to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok1',  label: '已推荐' },
+        { from: 'wfe2',  to: 'end',  label: '超时' },
+        { from: 'st3',   to: 'em_n' },
+        { from: 'em_n',  to: 'end' },
+        { from: 'st4',   to: 'em_d' },
+        { from: 'em_d',  to: 'end' },
+        { from: 'st5',   to: 'push2' },
+        { from: 'push2', to: 'end' },
+      ]);
+
+    // J10: 沉默用户分层召回
+    drawJourney(document.getElementById('dag-j10'),
+      [
+        { id: 'start',  kind: 'entry',    title: '开始',       sub: '属性: 最后打开App超30天' },
+        { id: 'cond',   kind: 'branch',   title: '条件分支',    sub: '属性: 用户状态' },
+        { id: 'st1',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '已绑车·月度骑行报告' },
+        { id: 'st2',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em1',    kind: 'channel',  title: 'Email',      sub: '已购未绑·组装协助' },
+        { id: 'st3',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'em2',    kind: 'channel',  title: 'Email',      sub: '未购车·新品与试驾' },
+        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: 'App启动/下单 · 5 天' },
+        { id: 'ok1',    kind: 'exitOk',   title: '已回流',      sub: '退出并归档' },
+        { id: 'st4',    kind: 'sendtime', title: '可发送时间',   sub: '09:00 – 21:00' },
+        { id: 'wp1',    kind: 'channel',  title: 'Web Push',   sub: '换渠道兜底一次' },
+        { id: 'wfe2',   kind: 'branch',   title: '等待事件',    sub: 'App 启动 · 5 天' },
+        { id: 'ok2',    kind: 'exitOk',   title: '已回流',      sub: '' },
+        { id: 'end',    kind: 'exitEnd',  title: '结束',        sub: '标记沉默·30天后重入' },
+      ],
+      [
+        { from: 'start', to: 'cond' },
+        { from: 'cond',  to: 'st1', label: '已绑车' },
+        { from: 'cond',  to: 'st2', label: '已购未绑' },
+        { from: 'cond',  to: 'st3', label: '注册未购' },
+        { from: 'st1',   to: 'push1' },
+        { from: 'st2',   to: 'em1' },
+        { from: 'st3',   to: 'em2' },
+        { from: 'push1', to: 'wfe1' },
+        { from: 'em1',   to: 'wfe1' },
+        { from: 'em2',   to: 'wfe1' },
+        { from: 'wfe1',  to: 'ok1', label: '已回流' },
+        { from: 'wfe1',  to: 'st4', label: '超时无响应' },
+        { from: 'st4',   to: 'wp1' },
+        { from: 'wp1',   to: 'wfe2' },
+        { from: 'wfe2',  to: 'ok2', label: '已回流' },
+        { from: 'wfe2',  to: 'end', label: '仍无响应' },
+      ]);
+
+  })();
+  </script>
+</body>
+</html>
