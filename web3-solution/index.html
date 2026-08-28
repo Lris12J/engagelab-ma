@@ -171,6 +171,7 @@
 
 
 
+
   <style>
     /* ===================================================================
        视觉升级层 · 对齐 Urtopia 方案设计系统 (20260828)
@@ -258,10 +259,21 @@
     .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
       font-weight: 500; transition: color .15s ease; }
     .toc-bar a:hover { color: var(--accent); }
+    /* 品牌名即返回首页入口（点击回到方案总览） */
     .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
       align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
     .toc-bar .brand::before { content: ""; width: 11px; height: 11px; border-radius: 3.5px; flex: none;
-      background: linear-gradient(135deg, var(--accent), var(--mint)); }
+      background: linear-gradient(135deg, var(--accent), var(--mint));
+      transition: transform .18s ease, box-shadow .18s ease; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer; }
+    .toc-bar a.brand:hover { color: var(--accent); }
+    .toc-bar a.brand:hover::before { transform: scale(1.18);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
+    /* 悬停时在品牌名后浮出提示，不占常态空间 */
+    .toc-bar a.brand::after { content: "返回首页"; font-size: 11.5px; font-weight: 600;
+      color: var(--text-4); opacity: 0; max-width: 0; overflow: hidden;
+      white-space: nowrap; transition: opacity .18s ease, max-width .18s ease; }
+    .toc-bar a.brand:hover::after { opacity: 1; max-width: 90px; }
     a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
       margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
       font-size: 13px; font-weight: 500; }
@@ -413,7 +425,7 @@
 <body>
   <nav class="toc-bar">
     <div class="toc-inner">
-      <span class="brand">EngageLab MA · Web3 加密行业方案</span>
+      <a class="brand" href="../">EngageLab MA · Web3 加密行业方案</a>
       <a href="#s-market">市场机会</a>
       <a href="#s-funnel">用户漏斗</a>
       <a href="#s-why">为什么 EngageLab</a>
@@ -426,9 +438,7 @@
   </nav>
 
   <main>
-    <a class="back-home" href="../">← 返回首页</a>
-
-    <!-- Hero -->
+<!-- Hero -->
     <section class="hero">
       <div class="hero-pills">
         <span class="pill pill-info">Web3 · 加密交易所 / 钱包 / GameFi</span>
