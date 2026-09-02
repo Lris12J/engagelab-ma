@@ -1,0 +1,2781 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>EngageLab MA · 龙祁（UNice）跨境 DTC 发制品全生命周期用户运营方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 920px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+
+    @media (max-width: 900px) {
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-12-1 { grid-template-columns: 1fr; }
+    }
+  </style>
+
+
+
+
+
+  <style>
+    /* ===================================================================
+       视觉升级层 (20260828)
+       追加在原有样式之后，靠层叠顺序覆盖，不改动原有规则
+       =================================================================== */
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f6f8fb;
+      --bg-elev: #ffffff;
+      --border: #e8ecf2;
+      --border-strong: #d5dbe5;
+      --text: #0f172a;
+      --text-2: #3d4a5c;
+      --text-3: #6b7789;
+      --text-4: #97a1b0;
+      --accent: #2563eb;
+      --accent-2: #4f7dff;
+      --accent-soft: #e7efff;
+      --success: #0f9d63;
+      --success-soft: #e2f7ee;
+      --warning: #c2700a;
+      --warning-soft: #fdf1dc;
+      --info: #0369a1;
+      --info-soft: #e2f2fb;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --ink-dark: #0e1116;
+      --ink-dark-2: #1a1f2b;
+      --mint: #00d4a0;
+      --sky: #7cb0ff;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,.05);
+      --shadow: 0 1px 3px rgba(15,23,42,.05), 0 10px 28px -12px rgba(15,23,42,.10);
+      --shadow-lg: 0 2px 6px rgba(15,23,42,.06), 0 22px 48px -20px rgba(15,23,42,.18);
+      --mono-stack: "SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15.5px; }
+
+    /* ===== 通栏色带布局：main 放开宽度，section 内部收敛 ===== */
+    main { max-width: none; margin: 0; padding: 0; }
+    main > section { padding: 62px 28px; margin: 0; }
+    /* 宽度靠 .wrap 层约束，不依赖子元素的 auto 外边距——
+       否则任何使用 margin 简写的规则都会把居中打破（如 hero-subtitle / divider）*/
+    main > section > .wrap { max-width: 1180px; margin: 0 auto; }
+    main > section.section-plain { border: 0; border-radius: 0; background: transparent; }
+    main > section.section-plain:nth-of-type(even) { background: var(--bg-soft); }
+    main > section.section { border: 0; border-radius: 0; background: var(--bg-soft); }
+
+    /* ===== 字号层级 ===== */
+    h1 { font-size: 38px; font-weight: 750; letter-spacing: -0.022em; line-height: 1.18; margin: 0 0 10px; }
+    h2 { font-size: 27px; font-weight: 720; letter-spacing: -0.018em; line-height: 1.28;
+      margin: 0 0 16px; color: var(--text); }
+    h3 { font-size: 17.5px; font-weight: 650; margin: 0 0 10px; letter-spacing: -0.008em; color: var(--text); }
+    p { margin: 0 0 10px; color: var(--text-2); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 650; color: var(--text); }
+    .muted { color: var(--text-3); }
+    .mono { font-family: var(--mono-stack); font-size: 0.92em; }
+    .divider { height: 1px; background: var(--border); margin: 26px 0; border: none; }
+    .spacer-md { height: 20px; }
+
+    /* ===== 章节序号徽标 + eyebrow ===== */
+    h2 .secnum { display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: #fff;
+      font-family: var(--mono-stack); font-size: 15px; font-weight: 700;
+      margin-right: 12px; vertical-align: 3px; flex: none; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px;
+      font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px; }
+    .eyebrow::before { content: ""; width: 20px; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--mint)); }
+
+    /* ===== 顶部导航 ===== */
+    /* 注意：旧版 .toc-bar 带 margin:-32px -28px（用于抵消 main 内边距），
+       升级后 main 已全宽，必须重置，否则导航会横向溢出 56px */
+    .toc-bar { margin: 0; width: 100%; max-width: 100%; }
+    .toc-bar { position: sticky; top: 0; z-index: 30; padding: 0 28px;
+      background: rgba(255,255,255,.86); backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid var(--border); font-size: 13px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 20px;
+      align-items: center; height: 58px; overflow-x: auto; scrollbar-width: none; }
+    .toc-bar .toc-inner::-webkit-scrollbar { display: none; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
+      font-weight: 500; transition: color .15s ease; }
+    .toc-bar a:hover { color: var(--accent); }
+    /* 品牌名即返回首页入口：整块（图标 + 文字）一起高亮 */
+    .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
+      align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer;
+      transition: color .16s ease; }
+    .toc-bar a.brand .brand-home { width: 17px; height: 17px; flex: none;
+      color: var(--accent); transition: color .16s ease, transform .16s ease; }
+    .toc-bar a.brand:hover { color: var(--accent); }
+    .toc-bar a.brand:hover .brand-home { color: var(--accent); transform: translateY(-1px); }
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
+      margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
+      font-size: 13px; font-weight: 500; }
+    a.back-home:hover { color: var(--accent); background: none; }
+    a.back-home svg { width: 14px; height: 14px; opacity: .8; }
+
+    /* ===== Hero · 深色 ===== */
+    main > section.hero { position: relative; overflow: hidden; color: #fff;
+      border: 0; border-radius: 0; margin: 0; padding: 58px 28px 54px;
+      background: linear-gradient(150deg, var(--ink-dark) 0%, var(--ink-dark-2) 55%, #232b3d 100%); }
+    main > section.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(900px 420px at 88% -8%, rgba(0,212,160,.16), transparent 62%),
+        radial-gradient(760px 380px at 6% 108%, rgba(79,125,255,.20), transparent 60%); }
+    main > section.hero > .wrap { position: relative; z-index: 1; }
+    .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
+    .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
+      -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero .hero-subtitle { color: rgba(255,255,255,.74); font-size: 16px; line-height: 1.72;
+      max-width: 940px; margin: 10px 0 20px; }
+    .hero .hero-subtitle .bold { color: #fff; }
+    .hero-pills { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 18px; }
+    .hero .pill { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18);
+      color: rgba(255,255,255,.86); }
+    .hero .pill-accent { background: rgba(0,212,160,.12); border-color: rgba(0,212,160,.4); color: var(--mint); }
+    .hero .pill-info { background: rgba(124,176,255,.12); border-color: rgba(124,176,255,.38); color: var(--sky); }
+    .hero .pill-success { background: rgba(0,212,160,.12); border-color: rgba(0,212,160,.4); color: var(--mint); }
+    .hero .pill-warn { background: rgba(255,209,102,.12); border-color: rgba(255,209,102,.4); color: #ffd166; }
+    .hero .divider { background: rgba(255,255,255,.12); }
+    .hero .stat { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius); box-shadow: none; padding: 18px 18px 16px; }
+    .hero .stat-value { font-family: var(--mono-stack); font-size: 24px; font-weight: 700;
+      color: #fff; letter-spacing: -0.02em; }
+    .hero .stat-value.info { color: #a5c8ff; }
+    .hero .stat-value.success { color: var(--mint); }
+    .hero .stat-value.warn { color: #ffd166; }
+    .hero .stat-label { color: rgba(255,255,255,.6); font-size: 12px; margin-top: 6px; line-height: 1.45; }
+    .hero .muted { color: rgba(255,255,255,.45) !important; }
+    .hero p { color: rgba(255,255,255,.74); }
+
+    /* ===== 基础组件 ===== */
+    .pill { display: inline-flex; align-items: center; padding: 4px 12px; font-size: 12.5px;
+      border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-2);
+      background: #fff; font-weight: 550; }
+    .pill-accent { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: transparent; color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: transparent; color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: transparent; color: var(--warning); }
+
+    .grid { gap: 18px; }
+    .row { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 20px 20px 18px; background: var(--bg-elev);
+      border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+    .stat-value { font-size: 28px; font-weight: 750; letter-spacing: -0.025em;
+      color: var(--text); line-height: 1.15; }
+    .stat-label { font-size: 12.5px; color: var(--text-3); margin-top: 7px; line-height: 1.5; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+      transition: box-shadow .18s ease; }
+    .card:hover { box-shadow: var(--shadow-lg); }
+    .card-header { padding: 13px 18px; border-bottom: 1px solid var(--border);
+      font-weight: 700; font-size: 13.6px; color: var(--text); background: #fcfdff;
+      letter-spacing: -0.006em; }
+    .card-body { padding: 18px; }
+    .card-body.p-sm { padding: 13px; }
+    .card-body li { margin-bottom: 6px; font-size: 13.5px; color: var(--text-2); line-height: 1.65; }
+    .card-body p { font-size: 14px; }
+
+    .callout { padding: 15px 17px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; }
+    .callout-title { font-weight: 700; margin-bottom: 5px; font-size: 14px; letter-spacing: -0.008em; }
+    .callout-body { font-size: 13.4px; color: var(--text-2); }
+    .callout-body p { font-size: 13.4px; color: var(--text-2); margin: 0 0 5px; line-height: 1.7; }
+    .callout-body p:last-child { margin-bottom: 0; }
+    .callout.info { border-left-color: var(--accent); background: var(--accent-soft); border-color: #d3e2ff; }
+    .callout.info .callout-title { color: var(--accent); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); border-color: #c9eedd; }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); border-color: #f6e2c0; }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-4); background: #fff; }
+
+    /* ===== 表格 ===== */
+    table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.6px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow); }
+    th, td { padding: 13px 15px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #f8fafc; font-weight: 700; font-size: 11.5px; color: var(--text-3);
+      letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    tbody tr { transition: background .14s ease; }
+    tbody tr:hover td { background: #f9fbff; }
+    tr.tone-success td { background: rgba(15, 157, 99, .045); }
+    tr.tone-info td { background: rgba(37, 99, 235, .04); }
+
+    .signal-row { display: flex; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .label { font-size: 13.5px; font-weight: 650; color: var(--text); }
+    .signal-row .hint { font-size: 12.3px; color: var(--text-3); line-height: 1.5; }
+    .signal-row .value { font-weight: 750; color: var(--danger); font-size: 15px;
+      font-family: var(--mono-stack); white-space: nowrap; }
+
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 10px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%; background: var(--accent);
+      color: #fff; font-weight: 700; font-size: 12px; margin-right: 9px; }
+
+    /* ===== 响应式（旧版方案原本缺失，后补齐）===== */
+    @media (max-width: 980px) {
+      main > section { padding: 44px 18px; }
+      main > section.hero { padding: 38px 18px 34px; }
+      h1, .hero h1 { font-size: 26px; }
+      h2 { font-size: 21px; }
+      h2 .secnum { width: 26px; height: 26px; font-size: 13px; margin-right: 9px; vertical-align: 2px; }
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-1-2, .grid-12-1, .grid-5 { grid-template-columns: 1fr !important; }
+      .grid { gap: 14px; }
+      /* 表格在窄屏可横向滚动，避免整页溢出 */
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+      .toc-bar .toc-inner { height: 52px; }
+      .card-body, .callout { padding: 14px; }
+    }
+
+    /* ===== 打印 / PDF 导出 ===== */
+    @page { size: A4; margin: 12mm; }
+    @media print {
+      html, body { background: #fff; font-size: 12px; }
+      .toc-bar, a.back-home { display: none !important; }
+      main > section { padding: 20px 0 !important; background: #fff !important; }
+      main > section.section-plain:nth-of-type(even) { background: #fff !important; }
+      main > section.hero { padding: 22px 18px !important;
+        background: linear-gradient(150deg, #0e1116 0%, #1a1f2b 100%) !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main > section.hero::before { display: none; }
+      .card, table, .stat { box-shadow: none !important; page-break-inside: avoid; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; height: auto; }
+      table { display: table; white-space: normal; }
+    }
+  </style>
+
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA 解决方案</a>
+      <a href="#s-market">业务洞察</a>
+      <a href="#s-funnel">用户漏斗</a>
+      <a href="#s-data">数据整合</a>
+      <div class="toc-drop">
+        <button type="button" class="toc-drop-btn" aria-expanded="false" aria-controls="toc-scenes">十条旅程<span class="caret" aria-hidden="true">▾</span></button>
+        <div class="toc-drop-panel" id="toc-scenes" hidden>
+          <a href="#s-scenarios" class="sd-all">场景总览表</a>
+          <a href="#s-journey1"><span class="sd-n">1</span>访客培育与首单转化</a>
+          <a href="#s-journey2"><span class="sd-n">2</span>AI 试戴未转化召回</a>
+          <a href="#s-journey3"><span class="sd-n">3</span>高客单弃购挽回</a>
+          <a href="#s-journey4"><span class="sd-n">4</span>平台买家的身份转化</a>
+          <a href="#s-journey5"><span class="sd-n">5</span>首次成功佩戴引导</a>
+          <a href="#s-journey6"><span class="sd-n">6</span>护理品与配件复购</a>
+          <a href="#s-journey7"><span class="sd-n">7</span>换新周期唤醒</a>
+          <a href="#s-journey8"><span class="sd-n">8</span>会员到期续订</a>
+          <a href="#s-journey9"><span class="sd-n">9</span>评价与社区内容</a>
+          <a href="#s-journey10"><span class="sd-n">10</span>大促分层预热</a>
+        </div>
+      </div>
+      <a href="#s-benchmark">行业对标</a>
+      <a href="#s-compliance">合规与安全</a>
+      <a href="#s-why">为什么 EngageLab</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap">
+      <div class="hero-pills">
+        <span class="pill pill-info">跨境 DTC 发制品</span>
+        <span class="pill">北美核心 · 欧洲 / 非洲 / 拉美</span>
+        <span class="pill">独立站 + 平台 + 美国门店</span>
+        <span class="pill">App Push · Web Push · Email 三渠道编排</span>
+      </div>
+      <h1>龙祁（UNice）<span class="grad">全生命周期用户运营方案</span></h1>
+      <p class="hero-subtitle">
+        发制品有三条天然的重复消费曲线：<span class="bold">护理品按月消耗、假发 6–12 个月更换、Plus 会员 180 天续订</span>。
+        本方案把购前、开箱与长期复购编排为 <span class="bold">10 条自动化旅程</span>，三条渠道在同一条旅程内互补。
+      </p>
+      <hr class="divider" />
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value">6–12 个月</div><div class="stat-label">日常佩戴人发假发的更换周期——本品类最确定、也最容易被漏掉的一次复购机会</div></div>
+        <div class="stat"><div class="stat-value success">287%</div><div class="stat-label">使用 3 个及以上渠道的营销活动，购买率较单渠道高出的幅度（跨渠道营销公开研究，13.5 万组活动样本）</div></div>
+        <div class="stat"><div class="stat-value warn">约 70%</div><div class="stat-label">电商平均弃购率（Baymard，50 项研究汇总），移动端 85.65%</div></div>
+        <div class="stat"><div class="stat-value info">4 周</div><div class="stat-label">测试周期 · 10 条旅程分三批上线 · 可量化验收</div></div>
+      </div>
+      <p class="small" style="margin:14px 0 0;color:rgba(255,255,255,.5)">
+        以上四项均为第三方公开研究的行业参考值与本方案自身规格，<span style="color:rgba(255,255,255,.72)">非承诺值</span>，出处见第 5 节。
+        方案中引用的贵司事实仅限官网与应用商店可直接核验、且在旅程配置中被真正用到的部分（见第 1 节），
+        <span style="color:rgba(255,255,255,.72)">不对贵司现有的营销自动化建设情况作任何评价或推断</span>。
+      </p>
+      </div>
+    </section>
+
+    <!-- 1. 业务洞察 -->
+    <section id="s-market" class="section-plain">
+      <div class="wrap">
+      <div class="eyebrow">业务洞察</div>
+      <h2><span class="secnum">1</span>龙祁的收入结构，与全渠道自动化的四个切入点</h2>
+      <p>
+        发制品的单用户价值不是一次性的：一顶假发之后，跟着的是按使用量消耗的护理品、可计算的换新窗口与固定周期的付费会员，
+        <span class="bold">每一段的时间点都能按人算出来</span>。品牌自身的产品迭代主线指向同一点：<span class="bold">让用户自己能把假发戴好</span>。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">产品线在用户生命周期中的角色</div>
+          <div class="card-body" style="padding:0">
+            <table style="box-shadow:none;border:0;border-radius:0">
+              <thead><tr><th style="width:26%">品类</th><th style="width:16%">价格带</th><th style="width:34%">复购节奏</th><th>承接旅程</th></tr></thead>
+              <tbody>
+                <tr class="tone-info"><td class="bold">人发假发<br /><span class="small muted">免胶款 / 蕾丝前置</span></td><td>100–400 美元</td><td>日常佩戴 <span class="bold">6–12 个月</span>更换，蕾丝构造款 10–15 个月</td><td>1 · 2 · 3 · 5 · 7</td></tr>
+                <tr><td class="bold">发帘与闭合片</td><td>中低价位</td><td>随造型更换，需缝合与打理指导</td><td>1 · 5</td></tr>
+                <tr class="tone-info"><td class="bold">护理品与配件<br /><span class="small muted">蕾丝胶 / 定型喷雾 / 洗护 / 发膜</span></td><td>低客单</td><td>按使用量消耗，补货窗口 <span class="bold">30–45 天</span></td><td>6</td></tr>
+                <tr class="tone-success"><td class="bold">UNice Plus 付费会员</td><td>19.90 美元</td><td><span class="bold">180 天</span>固定周期，有明确到期日</td><td>8</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">本方案依据的客户事实与各自用途</div>
+          <div class="card-body" style="padding:0">
+            <table style="box-shadow:none;border:0;border-radius:0">
+              <thead><tr><th style="width:44%">事实</th><th>在本方案中的用途</th></tr></thead>
+              <tbody>
+                <tr><td>独立站 + 亚马逊 / 速卖通 + 美国线下门店</td><td>决定旅程 4 的入口数量与唯一合规路径</td></tr>
+                <tr><td>App 内已有 AI 试戴</td><td>旅程 2 的进入事件与召回内容</td></tr>
+                <tr><td>App 内已有 How-To 教程与真人演示</td><td>旅程 5 的深链落点与退出事件</td></tr>
+                <tr><td>App 内已有社区发帖与积分签到</td><td>旅程 9 的分流依据与激励设计</td></tr>
+                <tr><td>官网已有邮箱订阅与账号注册入口</td><td>旅程 1 的进入事件</td></tr>
+                <tr><td>结账页已支持分期付款</td><td>旅程 3 用分期而非折扣消除价格顾虑</td></tr>
+                <tr><td>主要市场北美，兼有欧洲 / 非洲 / 拉美</td><td>决定合规口径、终端时区与 WhatsApp 适用范围</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <p class="small muted" style="margin-top:10px">
+        上表两项原则：只保留能从官网与应用商店直接核验的事实，且每一条都在本方案中被真正用到。
+        价格带与更换周期为行业公开资料区间，测试期第 1 周用贵司真实的复购与换新间隔中位数替换。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-4">
+        <div class="card"><div class="card-header">切入点 1 · 购前长决策与 AI 试戴</div><div class="card-body">
+          <ul>
+            <li>一顶假发要同时定下发长、密度、蕾丝类型与蕾丝色、发色、头围与卷度，<span class="bold">决策维度多于多数服饰品类</span></li>
+            <li>App 与移动端网页已有 AI 试戴，这是购前链路上<span class="bold">意向强度最高的行为信号</span></li>
+            <li>试戴之后的黄金窗口只有几十分钟到一小时，<span class="bold">承接它需要的是分钟级的 Push 类渠道</span>，而不是等下一次批量投放</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">切入点 2 · 平台与线下买家的身份</div><div class="card-body">
+          <ul>
+            <li>亚马逊、速卖通与 6 家美国门店的买家<span class="bold">不在自有用户池里</span></li>
+            <li>亚马逊卖家政策明确禁止为营销目的联系买家，平台订单信息无法进入 MA</li>
+            <li>唯一合规路径是用户主动扫描包装内二维码完成注册并勾选接收同意——<span class="bold">这是全案的枢纽环节</span></li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">切入点 3 · 第一次能不能戴好</div><div class="card-body">
+          <ul>
+            <li>蕾丝修剪、贴合定型、发际线处理是真实的操作门槛，<span class="bold">也是购后头两天最集中的流失点</span></li>
+            <li>美国服饰类目电商退货率约 24–25%，退货主因以尺寸合身与款式 / 颜色不符预期为主</li>
+            <li>App 内已有 How-To 教程与真人演示内容，<span class="bold">按购买款式在正确时点将用户引导至对应内容</span>，靠的是事件触发 + 条件分支 + 深度链接这套编排</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">切入点 4 · 三条重复消费曲线</div><div class="card-body">
+          <ul>
+            <li>三段周期长短相差一个数量级，触发阈值与再次进入间隔必须<span class="bold">各设各的</span></li>
+            <li>护理品与换新用「距今天数」属性触发，会员用「到期日偏移」触发</li>
+            <li>三者可能同一天命中同一用户，靠<span class="bold">账号级全局频控</span>协调发送量</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="callout info">
+        <div class="callout-title">四个切入点共同的要求：三条渠道在同一条旅程内协同，而不是各自为战</div>
+        <div class="callout-body">
+          <ul>
+            <li>刚做完 AI 试戴的访客：可能尚未留邮箱、也未安装 App</li>
+            <li>刚收货的平台买家：手上只有一个扫码注册来的邮箱</li>
+            <li>用了半年的老客：可能已卸载 App，但仍会直接访问官网</li>
+          </ul>
+          <p style="margin-top:8px"><span class="bold">单一渠道的覆盖上限是结构性的，靠运营优化提不上去。</span>
+          因此三条渠道放进同一条旅程、按条件分支互补——不是同一条消息发三遍，而是在同一节点按用户当下可被触达的方式选渠道（见第 2.1 节）。</p>
+          <p style="margin-top:6px" class="muted">落地时的取舍是开放的：既可以把已有流程整体迁入 MA 统一编排，
+          也可以先只把 App Push 与 Web Push 接进旅程、Email 环节维持现状，等跑通后再决定是否合并。
+          这一项建议放在第 1 周对齐时确定。</p>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 2. 用户漏斗 -->
+    <section id="s-funnel" class="section-plain">
+      <div class="wrap">
+      <div class="eyebrow">用户漏斗</div>
+      <h2><span class="secnum">2</span>用户漏斗：折损集中在「看过」与「戴好」两个环节</h2>
+      <p>
+        发制品的漏斗有两处与普通服饰电商不同：<span class="bold">购前段多出 AI 试戴环节</span>，且多数试戴者尚未留下邮箱；
+        <span class="bold">购后段多出「第一次佩戴」环节</span>，它决定退货率与评价质量。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-12-1">
+        <div class="card">
+          <div class="card-header">各环节现状与行业参考折损</div>
+          <div class="card-body" style="padding:0">
+            <table style="box-shadow:none;border:0;border-radius:0">
+              <thead><tr><th style="width:30%">环节</th><th>当前折损（行业参考）</th></tr></thead>
+              <tbody>
+                <tr><td>独立站访客 → 留下邮箱或注册</td><td>弹窗订阅率行业区间 <span class="bold" style="color:var(--danger)">3–5%</span>——仅靠邮箱采集，其余 95% 以上的访客离站后不可再触达；<span class="bold">网页通知授权是同一批访客身上的第二次机会</span></td></tr>
+                <tr class="tone-info"><td>AI 试戴完成 → 加入购物车</td><td><span class="bold" style="color:var(--danger)">无公开基准</span>——试戴的意向强度接近加购，但这批人多数尚未留下邮箱，<span class="bold">窗口期内能承接的只有 Push 类渠道</span></td></tr>
+                <tr class="tone-info"><td>加购 → 完成支付</td><td>弃购率 <span class="bold" style="color:var(--danger)">约 70%</span>（Baymard 均值 70.19%），移动端 <span class="bold" style="color:var(--danger)">85.65%</span>；服饰与美妆类目普遍位于均值以上</td></tr>
+                <tr class="tone-success"><td>平台与门店买家 → 自有身份</td><td>亚马逊政策禁止用订单信息做营销，<span class="bold" style="color:var(--danger)">只能靠主动扫码注册</span>——这一环决定后续九条旅程能覆盖多少人</td></tr>
+                <tr class="tone-success"><td>收货 → 第一次成功佩戴</td><td>无可引用的公开基准；美国服饰类目退货率 <span class="bold" style="color:var(--danger)">24–25%</span>，主因为尺寸合身与款式 / 颜色不符预期</td></tr>
+                <tr><td>首购 → 护理品复购</td><td>无公开基准；补货窗口在 <span class="bold">30–45 天</span>，按购买日期群发会打扰大量当下无补货需求的用户</td></tr>
+                <tr><td>换新窗口 → 复购</td><td>无公开基准；日常佩戴款的换新窗口在 <span class="bold">6–12 个月</span>，是本品类金额最高的一次复购机会</td></tr>
+                <tr><td>满意用户 → 公开评价 / 社区内容</td><td>电商自动索评的评价提交转化区间 <span class="bold" style="color:var(--danger)">1–3%</span>，而评价与真人上身内容正是本品类的核心转化素材</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">购前与购后关键环节 · 行业平均 vs 优秀水平</div>
+          <div class="card-body">
+            <div class="chart" id="chart-funnel"></div>
+            <p class="small muted" style="margin-top:10px">
+              订阅率、弃购挽回率与公开评价率有公开基准（见第 5 节）；
+              <span class="bold">「试戴转加购」「首次成功佩戴」两格无可引用的公开基准，图中为结构示意</span>，
+              用于说明折损分布形态，不作为效果承诺依据——接入后第 1 周即可用贵司真实数据替换每一格。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header">自有渠道可触达比例测算 · 以全部买家为分母</div>
+          <div class="card-body">
+            <div class="chart" id="chart-reach"></div>
+            <p class="small muted" style="margin-top:10px">
+              各渠道分母不同：App Push 只算已安装且已授权通知的用户，Email 算注册与订阅的并集，
+              Web Push 只算在官网授权过的访客，SMS 只算已明示同意的用户。
+              <br><span class="bold">图中各项均为结构示意，第 1 周用真实字段填充率校准。</span>
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">覆盖上限是结构性的</div>
+          <div class="card-body">
+            <p>每加一条渠道，可触达买家的占比就上一个台阶。但每一级台阶的高度，
+            不取决于内容做得好不好，而取决于<span class="bold">有多少人处在这条渠道能覆盖的状态里</span>——
+            装没装 App、授没授权通知、留没留邮箱、留没留手机号。</p>
+            <p>由此有两个结论：<span class="bold">单渠道运营做得再好，能覆盖的也只是那一条渠道的分母</span>；
+            而扩渠道拿到的不是线性叠加的增量，是补上了原本完全触达不到的那部分人——
+            这也是公开研究里「3 个及以上渠道的营销活动购买率较单渠道高 287%」背后的机制。</p>
+            <p class="small muted" style="margin-top:8px">十条旅程并行时，由平台<span class="bold">全局频控</span>按用户跨旅程统一协调发送量，
+            这是多条渠道能同时运行而不叠加打扰的前提。</p>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-md"></div>
+      <h3>2.1 三条渠道各自不可替代的地方</h3>
+      <p class="small muted" style="margin:0 0 12px">
+        App Push、Web Push、Email 不是同一条消息的三种发送方式。下表按「只有它能做到的事」与「结构性上限」两栏对照——
+        本方案十条旅程的渠道选择全部由这张表推导而来。
+      </p>
+      <table>
+        <thead><tr>
+          <th style="width:12%">渠道</th><th style="width:52%">只有它能做到的事</th>
+          <th>结构性上限（决定了必须再补一条渠道）</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-info"><td class="bold">App Push</td>
+            <td>分钟级触达，且<span class="bold">深度链接可直达 App 内的具体页面</span>——试戴结果页、对应款式的 How-To 教程、社区发帖页。这种「将用户直达某个具体界面」的动作，另两条渠道只能落到网页，做不到同等的路径长度。自动化推送的打开率 <span class="bold">58.7%</span>，是活动型推送（34.3%）的 1.7 倍</td>
+            <td>覆盖 = App 安装率 × 通知授权率，两者都不随内容变化；用户卸载 App 后通道即失效</td></tr>
+          <tr class="tone-info"><td class="bold">Web Push</td>
+            <td><span class="bold">不需要邮箱、不需要装 App、也不随 App 卸载而失效。</span>它是网页访客在留下任何身份信息之前就能建立的自有触点，也是卸载了 App、又不打开邮件的老客身上仅存的那一条。授权动作发生在浏览器侧，与账号体系解耦</td>
+            <td>只覆盖在该浏览器上授权过的访客；内容长度与富媒体能力受限，承载不了凭证类信息</td></tr>
+          <tr class="tone-info"><td class="bold">Email</td>
+            <td><span class="bold">唯一能承载长内容与凭证的渠道</span>：发色与蕾丝色对照、佩戴教程全文、护理品适配清单、会员权益对照表、退换说明。不依赖设备状态，身份一旦建立就长期有效</td>
+            <td>打开有延迟，承接不了分钟级的行为触发；收件箱分类结果不可控</td></tr>
+          <tr><td class="bold">SMS</td>
+            <td>不依赖任何应用与授权状态，到达即可见</td>
+            <td>合规约束最强，仅适合极少数高价值节点</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        左栏是选择该渠道的依据，右栏是必须再补一条渠道的原因。
+        各渠道分别承载哪几条旅程、适用哪些市场，见第 7.1 节。
+      </p>
+
+      <div class="spacer-md"></div>
+      <div class="grid grid-4">
+        <div class="stat"><div class="stat-value success">+8 – 12%</div><div class="stat-label">弃购挽回率（自动化流优秀水平区间）</div></div>
+        <div class="stat"><div class="stat-value success">+15 – 25%</div><div class="stat-label">平台与门店买家转为自有用户的比例提升</div></div>
+        <div class="stat"><div class="stat-value success">+10 – 20%</div><div class="stat-label">护理品与配件复购率提升</div></div>
+        <div class="stat"><div class="stat-value success">+1 – 2%</div><div class="stat-label">公开评价提交率提升（绝对值）</div></div>
+      </div>
+      <p class="small muted" style="margin-top:12px">
+        以上为跨境 DTC 时尚与美妆类目同类场景公开案例的参考提升区间，<span class="bold">非承诺值</span>；
+        实际提升幅度以测试期分组对照数据核算。
+      </p>
+      </div>
+    </section>
+
+    <!-- 3. 数据整合 -->
+    <section id="s-data" class="section-plain">
+      <div class="wrap">
+      <div class="eyebrow">数据整合</div>
+      <h2><span class="secnum">3</span>数据整合：把独立站、App、平台订单与门店收敛到同一个用户身份</h2>
+      <p>
+        MA 不替代现有的独立站、App 与订单系统，而是在其上做<span class="bold">统一身份、跨渠道编排与触达执行</span>。
+        四类数据源汇入后挂在同一个用户身份下，旅程才能按真实状态分流，而不是按下单日期群发。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-4">
+        <div class="card"><div class="card-header">独立站 unice.com</div><div class="card-body">
+          <ul>
+            <li><span class="bold">订单侧</span>：下单、支付、发货、送达、退款、退货申请 —— 通过订单系统 Webhook 接入</li>
+            <li><span class="bold">行为侧</span>：款式页浏览与停留、AI 试戴完成、加购、发起结账 —— 通过 Web SDK 接入</li>
+            <li>邮箱订阅、账号注册、<span class="bold">Web Push 授权状态</span></li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">UNice App（iOS / Android）</div><div class="card-body">
+          <ul>
+            <li>注册、登录、<span class="bold">App 首次启动</span>（购后全部旅程的关键分流依据）</li>
+            <li>AI 试戴、How-To 佩戴教程播放与完成、社区发帖与直播观看</li>
+            <li>积分签到、积分余额、App 专区商品浏览与下单</li>
+            <li class="muted">注册、登录、启动、页面浏览属 SDK 接入后即可上报的基础事件</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">平台订单与线下门店</div><div class="card-body">
+          <ul>
+            <li><span class="bold">包装内二维码注册</span>：款式、订单号凭证、购买渠道与接收同意 —— 平台买家进入 MA 的唯一合规入口</li>
+            <li>门店消费小票绑定会员账号（需门店侧配合采集同意）</li>
+            <li class="muted">不涉及任何平台订单联系方式的导出、匹配或反查，详见第 6 节</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">会员、客服与履约</div><div class="card-body">
+          <ul>
+            <li><span class="bold">Plus 会员到期日</span>、积分余额与等级 —— 旅程 8 的日期偏移触发依据</li>
+            <li>客服工单、退换货申请与处理状态</li>
+            <li>公开评价提交状态、社区内容审核状态</li>
+            <li>护理品与配件的适配表与库存（供复购旅程发送前实时取值）</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="spacer-md"></div>
+      <div class="grid grid-2">
+        <div class="callout success">
+          <div class="callout-title">接入工作量</div>
+          <div class="callout-body">
+            <p>共 <span class="bold">18 个事件、14 个用户属性</span>，通常 <span class="bold">1–2 名开发 3–5 人日</span>：
+            独立站加载 Web SDK，App 集成 SDK 并补齐试戴与教程事件，订单与会员系统通过 Server API 同步。
+            交付团队提供完整埋点方案与联调支持。</p>
+          </div>
+        </div>
+        <div class="callout info">
+          <div class="callout-title">发送前实时取值（WebHook）</div>
+          <div class="callout-body">
+            <p>消息变量除来自事件上报外，还可<span class="bold">在发送前实时向龙祁系统请求</span>，本方案用在三处：</p>
+            <ul>
+              <li>试戴召回：款式名、发色与效果图</li>
+              <li>护理品推荐：适配清单与当前库存</li>
+              <li>会员续订：到期天数、积分余额与已省运费</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 4. 场景总览 -->
+    <section id="s-scenarios" class="section-plain">
+      <div class="wrap">
+      <div class="eyebrow">场景总览</div>
+      <h2><span class="secnum">4</span>十条高 ROI 运营旅程</h2>
+      <p>
+        旅程 1–3 承接独立站的购前决策，旅程 4–5 承接从收货到第一次成功佩戴的激活段，
+        旅程 6–8 承接三条重复消费曲线，旅程 9–10 承接口碑与节令拉动。
+        <span class="bold">建议首批上线旅程 4、5、3</span>——前两条是全案枢纽，第三条见效最快、最容易独立核算投入产出。
+      </p>
+      <div class="spacer-md"></div>
+      <table>
+        <thead><tr>
+          <th class="align-center" style="width:4%">#</th><th style="width:18%">旅程</th><th style="width:7%">阶段</th>
+          <th style="width:16%">承接漏斗环节</th><th style="width:21%">触发方式</th>
+          <th style="width:19%">主推渠道</th><th>见效节奏</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="align-center">1</td><td class="bold">独立站访客培育与首单转化</td><td>购前</td><td>访客 → 留资 → 首单</td><td>事件「邮箱订阅」或「账号注册」</td><td>Email · Web Push</td><td>3–6 周</td></tr>
+          <tr><td class="align-center">2</td><td class="bold">AI 试戴未转化召回</td><td>购前</td><td>试戴 → 加购</td><td>事件「AI 试戴完成」</td><td>App Push · Web Push · Email</td><td>2–3 周</td></tr>
+          <tr class="tone-info"><td class="align-center">3</td><td class="bold">高客单弃购挽回</td><td>购前</td><td>加购 → 完成支付</td><td>事件「发起结账」</td><td>App Push · Web Push · Email · SMS</td><td>1–2 周（最快）</td></tr>
+          <tr class="tone-success"><td class="align-center">4</td><td class="bold">平台与门店买家转为自有用户</td><td>激活</td><td>平台买家 → 自有身份</td><td>事件「订单送达」或「账号注册」</td><td>Email · Web Push</td><td>2–4 周</td></tr>
+          <tr class="tone-success"><td class="align-center">5</td><td class="bold">首次成功佩戴引导</td><td>激活</td><td>收货 → 戴好第一顶</td><td>事件「订单送达」</td><td>App Push · Email</td><td>2–3 周</td></tr>
+          <tr><td class="align-center">6</td><td class="bold">护理品与配件复购</td><td>复购</td><td>首购 → 护理品复购</td><td>属性「上次购买护理品距今超过 45 天」</td><td>App Push · Email · Web Push</td><td>4–8 周</td></tr>
+          <tr><td class="align-center">7</td><td class="bold">换新周期唤醒与沉默召回</td><td>留存</td><td>6–12 个月 → 换新</td><td>属性「最后一次假发订单距今超过 150 天」</td><td>App Push · Web Push · Email</td><td>8–12 周</td></tr>
+          <tr><td class="align-center">8</td><td class="bold">Plus 会员到期续订</td><td>复购</td><td>会员到期 → 续订</td><td>属性「会员到期日 T-14 触发」</td><td>App Push · Email · Web Push</td><td>4–6 周</td></tr>
+          <tr><td class="align-center">9</td><td class="bold">评价、晒单与社区内容</td><td>口碑</td><td>满意用户 → 公开内容</td><td>事件「订单送达」+ 等待 14 天</td><td>App Push · Email · Web Push</td><td>6–12 周</td></tr>
+          <tr><td class="align-center">10</td><td class="bold">大促与闪购分层预热</td><td>活动</td><td>全链路拉动</td><td>属性「大促日 T-7 触发」</td><td>App Push · Web Push · Email</td><td>按大促批次</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        「见效节奏」= 从上线到能读出稳定转化数据所需的时间，由旅程自身跨度决定，与优先级无关。
+        <br><span class="muted">效果区间统一放在第 5 节并标注出处，均为行业公开参考值、非承诺值。</span>
+        <br><span class="muted">未纳入本期的可扩展旅程：非会员 Plus 首次转化、生日与首购周年、批发与沙龙客户分层、新品预售、退货挽回。</span>
+      </p>
+
+      </div>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain" data-stage="acquire" data-scene="1">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">01</div><div class="scene-head-main"><h2>旅程 1｜独立站访客培育与首单转化</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-info">购前</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>留资之后按站内看过的品类分流，而不是等大促统一群发一封。留资时同步拿到的网页通知授权，让这条旅程对不打开邮件的那部分人也能继续。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · Web Push　｜　<span class="bold">触发方式</span>：事件「邮箱订阅」或「账号注册」　｜　<span class="bold">退出条件</span>：订单支付成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j1"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>100–400 美元、参数多，访客首次到站很少直接下单</li>
+                <li>决策期数天到数周，是能影响决策的主要窗口</li>
+                <li>只靠邮箱采集，95% 以上访客离站即失联</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「邮箱订阅」或「账号注册」触发进入</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」→ 全程任意时点下单即退出</li>
+                <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听 7 天（旅程实际跨度 7 天）</li>
+                <li><span class="bold">收入统计</span>：事件「订单支付成功」+ 订单金额属性，监听 7 天</li>
+                <li><span class="bold">等待</span>：1 天后发出第一封内容邮件，不在留资当下打扰</li>
+                <li><span class="bold">条件分支</span>：属性「最近浏览品类」四分支——免胶款 / 蕾丝前置 / 发帘与闭合片 / 未浏览</li>
+                <li><span class="bold">Email</span>：模板支持插入变量，看过的具体款式名、发色与价格可在发送前实时取值</li>
+                <li><span class="bold">Web Push</span>：仅对已在站内授权通知的访客有效，用于承接未表达明确品类偏好的一支</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每一条跨天后发出的消息之前</li>
+                <li><span class="bold">再次进入</span>：不可再次进入（订阅与注册对同一用户仅发生一次）</li>
+                <li class="muted">埋点说明：邮箱订阅、账号注册、页面浏览、订单支付成功均由 Web SDK 与订单 Webhook 上报</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              留资用户的首单转化提升 <span class="bold">2–5%</span>（绝对值）。
+              <span class="muted">同时把访客转化为有身份的名单，后续购后旅程才有可触达的人群。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain" data-stage="acquire" data-scene="2">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">02</div><div class="scene-head-main"><h2>旅程 2｜AI 试戴未转化召回</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-info">购前</span><span class="pill pill-warn">品类专属</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>AI 试戴的意向强度接近加购，但窗口只有一小时，且多数试戴者尚未留下邮箱——只有 Push 类渠道能在窗口内触达。召回内容按用户真正试过的那几顶生成，不是通投素材。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Web Push · Email　｜　<span class="bold">触发方式</span>：事件「AI 试戴完成」　｜　<span class="bold">退出条件</span>：订单支付成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j2"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>试戴是购前链路上最强的行为信号</li>
+                <li>黄金窗口只有几十分钟到一小时</li>
+                <li>Email 打开有延迟，无法覆盖这一窗口</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「AI 试戴完成」触发进入</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」→ 自动退出（图中等待事件节点承担「已加购」的分流退出，两条退出路径互补）</li>
+                <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听 3 天（旅程实际跨度 3 天）</li>
+                <li><span class="bold">收入统计</span>：事件「订单支付成功」+ 订单金额属性，监听 3 天</li>
+                <li><span class="bold">等待事件</span>：1 小时内先观察是否自行加购，已加购则结束本实例；其后若发起结账，由旅程 3 按自身进入条件承接</li>
+                <li><span class="bold">条件分支</span>：属性「App 安装状态」决定走 App Push 还是 Web Push</li>
+                <li><span class="bold">App Push / Web Push</span>：<span class="bold">这一段不加可发送时间</span>——距试戴仅 1 小时，用户大概率仍在活跃窗口内</li>
+                <li><span class="bold">Email</span>：试戴过的款式名、发色、效果图 URL 通过变量插入，取值来自试戴事件上报或发送前 WebHook 实时请求</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，仅加在跨过 24 小时之后的两条消息之前</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例），并发上限 1，达到上限时替换最早进入的实例</li>
+                <li class="muted">埋点说明：AI 试戴完成事件需上报款式编号、发色与效果图地址，是本旅程个性化内容的唯一来源</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              试戴用户的加购率提升 <span class="bold">5–10%</span>（绝对值）。
+              <span class="muted">AI 试戴在同行中已趋于普及，试戴之后的自动化承接目前少有品牌在做。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain" data-stage="acquire" data-scene="3">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">03</div><div class="scene-head-main"><h2>旅程 3｜高客单弃购挽回</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-info">购前</span><span class="pill pill-success">见效最快</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>高客单弃购多源于结账页临时产生的疑虑，而非遗忘。因此全程不加折扣，改用分期与免运费门槛消除顾虑，避免把本可原价成交的用户教育成等折扣。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Web Push · Email · SMS　｜　<span class="bold">触发方式</span>：事件「发起结账」　｜　<span class="bold">退出条件</span>：订单支付成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j3"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>电商平均弃购率约 70%，移动端 85.65%</li>
+                <li>结账页的临时疑虑集中在真伪、退换与运费三项</li>
+                <li>这三项疑虑在商品页往往没有被正面回答</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「发起结账」触发进入</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」→ 旅程内任意位置支付即退出</li>
+                <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听 1 天（旅程实际跨度约 24 小时）</li>
+                <li><span class="bold">收入统计</span>：事件「订单支付成功」+ 订单金额属性，监听 1 天</li>
+                <li><span class="bold">等待</span>：30 分钟——用户此时大概率仍在活跃窗口内，<span class="bold">这一段不加可发送时间</span></li>
+                <li><span class="bold">条件分支（第一处）</span>：属性「App 安装状态」决定首条走 App Push 还是 Web Push</li>
+                <li><span class="bold">等待</span>：2 小时、22 小时两段固定计时，期间支付的用户不再继续流转</li>
+                <li><span class="bold">Email</span>：款式名、发色、价格、图片、库存均通过变量插入，取值来自结账事件上报或发送前 WebHook 实时请求</li>
+                <li><span class="bold">条件分支（第二处）</span>：属性「手机号不为空 且 短信接收同意为真」决定走 SMS 还是 Email</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00；SMS 一支收窄至 9:00–20:00</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例），并发上限 1，达到上限时替换最早进入的实例；新实例取最新购物车内容</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              弃购挽回率 <span class="bold">8–12%</span>（自动化流优秀水平区间）。
+              <span class="muted">见效最快、最容易独立核算投入产出，建议放在第一批上线。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain" data-stage="activate" data-scene="4">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">04</div><div class="scene-head-main"><h2>旅程 4｜平台与门店买家转为自有用户</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-info">激活</span><span class="pill pill-warn">全案枢纽</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>平台订单信息不能用于营销，扫码注册是平台买家进入 MA 的唯一合规路径。本旅程全程不用 App Push——面向的正是尚未打开过 App 的用户。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email · Web Push　｜　<span class="bold">触发方式</span>：事件「订单送达」或「账号注册」　｜　<span class="bold">退出条件</span>：订单退款完成即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j4"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>平台与门店买家不在自有用户池中，收货后即与品牌失联</li>
+                <li>亚马逊政策禁止为营销目的联系买家</li>
+                <li>这一环决定其余九条旅程能覆盖多少人</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「订单送达」或「账号注册」触发进入</li>
+                <li><span class="bold">提前退出</span>：事件「订单退款完成」→ 已退货的用户不再被触达</li>
+                <li><span class="bold">转化统计</span>：事件「App 首次启动」，监听 7 天（消息段跨度 7 天）</li>
+                <li><span class="bold">等待事件</span>：24 小时内先观察用户是否自行打开 App，已打开则不再触达</li>
+                <li><span class="bold">条件分支</span>：属性「Web Push 授权状态」决定第二轮走 Web Push 还是 Email</li>
+                <li><span class="bold">监听事件</span>：末端永久监听两个分支——「App 首次启动」与「Web Push 授权」，任一发生即到达对应终点；其后无消息节点</li>
+                <li><span class="bold">本旅程不使用 App Push</span>——面向的正是尚未打开过 App 的用户，该渠道要到 App 启动后才可用</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每一条跨天后发出的消息之前</li>
+                <li><span class="bold">再次进入</span>：间隔 30 天、最多 3 次（同一用户可能先后从不同渠道下单）</li>
+                <li class="muted">埋点说明：注册来源渠道与接收同意状态由扫码注册页回传；订单送达由物流状态回写</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              平台与门店买家转为自有用户的比例提升 <span class="bold">15–25%</span>。
+              <span class="muted">价值不在自身收入，而在于把后续九条旅程能覆盖的人数同步放大。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain" data-stage="activate" data-scene="5">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">05</div><div class="scene-head-main"><h2>旅程 5｜首次成功佩戴引导</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-info">激活</span><span class="pill pill-warn">全案枢纽</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>发制品的隐性流失发生在拆开包装后的头两天。教程按购买款式分流，且先按是否已安装 App 决定走 Push 还是 Email——否则这条旅程会在最需要它的人身上失效。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「订单送达」　｜　<span class="bold">退出条件</span>：佩戴教程完成即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j5"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>蕾丝修剪、贴合定型、发际线处理是真实的操作门槛</li>
+                <li>美国服饰类目退货率 24–25%，主因尺寸与颜色不符预期</li>
+                <li>产品迭代已解决佩戴设计，运营侧需承接使用引导</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「订单送达」触发进入</li>
+                <li><span class="bold">提前退出</span>：事件「佩戴教程完成」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「佩戴教程完成」，监听 7 天（旅程实际跨度 7 天）。退货率的变化在报表侧与对照组比较，不作为本旅程的转化事件</li>
+                <li><span class="bold">等待</span>：固定 48 小时观察期</li>
+                <li><span class="bold">条件分支（第一处）</span>：属性「本单款式类型」与「App 安装状态」组合三分支——假发类 · 已装 App / 假发类 · 未装 App / 仅护理配件（末支直接结束）</li>
+                <li><span class="bold">条件分支（第二处）</span>：已装 App 一支再按款式三分支，各自深度链接到对应教程</li>
+                <li><span class="bold">App Push</span>：深度链接直达 App 内对应款式的 How-To 教程页，不落在首页</li>
+                <li><span class="bold">Email</span>：真人演示视频、常见问题与 30 天退换说明放在同一封，避免用户为了找退换入口而直接联系平台客服</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每一条消息之前（本旅程首条消息距送货已过 48 小时）</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例），并发上限 5；「佩戴教程完成」用实例变量匹配订单号，仅退出对应实例</li>
+                <li class="muted">埋点说明：How-To 教程播放完成事件由 App SDK 上报；款式类型取自订单商品属性</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              教程完成率提升 <span class="bold">20–35%</span>。
+              <span class="muted">收益落在退货率、评价质量与第二顶转化三处，需用测试期分组对照核算。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain" data-stage="repeat" data-scene="6">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">06</div><div class="scene-head-main"><h2>旅程 6｜护理品与配件复购</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-info">复购</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>护理品按使用量真实消耗，补货窗口落在 30–45 天。按每个人上次购买的距今天数逐个触发，而不是按下单日期做批量促销。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email · Web Push　｜　<span class="bold">触发方式</span>：属性「上次购买护理品距今超过 45 天」　｜　<span class="bold">退出条件</span>：订单支付成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j6"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>周期短、金额小、复购确定性高</li>
+                <li>按下单日期群发会打扰大量当下无补货需求的用户</li>
+                <li>从未购买护理品的老客构成最大增量人群</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「上次购买护理品距今超过 45 天」<span class="bold">或</span>「从未购买过护理品 且 上次假发订单距今超过 30 天」触发进入</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听 5 天（旅程实际跨度 5 天）</li>
+                <li><span class="bold">收入统计</span>：事件「订单支付成功」+ 订单金额属性，监听 5 天</li>
+                <li><span class="bold">条件分支</span>：属性「App 安装状态」与「历史购买款式」组合三分支——已装 App · 免胶蕾丝款 / 已装 App · 发帘接发 / 未装 App</li>
+                <li><span class="bold">等待</span>：固定 2 天。目标事件「订单支付成功」已配在提前退出上，下游不重复监听</li>
+                <li><span class="bold">Email</span>：适配型号、库存与到货时间通过 WebHook 在发送前实时取值，避免推荐断货或不适配的商品</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每一条消息之前</li>
+                <li><span class="bold">再次进入</span>：间隔 45 天（与进入条件的距今天数阈值一致，45 天后该用户可能再次满足条件）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              护理品与配件复购率提升 <span class="bold">10–20%</span>。
+              <span class="muted">客单价低但频次高、退订风险低，是自有渠道活跃度的稳定来源。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 7 -->
+    <section id="s-journey7" class="section-plain" data-stage="retain" data-scene="7">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">07</div><div class="scene-head-main"><h2>旅程 7｜换新周期唤醒与沉默召回</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-info">留存</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>每位老客的换新窗口可按天计算，无需等待大促统一覆盖。四条消息分散在三个渠道，因为沉默用户往往正是已卸载 App、又不打开邮件的那部分人。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Web Push · Email　｜　<span class="bold">触发方式</span>：属性「最后一次假发订单距今超过 150 天」　｜　<span class="bold">退出条件</span>：订单支付成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j7"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>日常佩戴款寿命 6–12 个月，换新窗口可计算</li>
+                <li>等大促统一覆盖时，竞争最激烈、折扣最深</li>
+                <li>沉默用户的可达渠道不确定，单渠道容易整条失效</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「最后一次假发订单距今超过 150 天」触发进入</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听 9 天（旅程实际跨度 9 天）</li>
+                <li><span class="bold">收入统计</span>：事件「订单支付成功」+ 订单金额属性，监听 9 天</li>
+                <li><span class="bold">条件分支</span>：属性「历史订单数」两分支——3 单及以上 / 1–2 单</li>
+                <li><span class="bold">等待事件</span>：3 天内等待商品浏览；已回站的在本旅程结束，其后若发起结账，由旅程 3 按自身进入条件承接</li>
+                <li><span class="bold">渠道分布</span>：四条消息依次落在 App Push、Email、Web Push、App Push</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每一条消息之前——沉默用户的活跃时段无法预设</li>
+                <li><span class="bold">再次进入</span>：间隔 150 天（与进入条件的距今天数阈值一致）</li>
+                <li class="muted">若贵司实际换新周期数据显示中位数短于 5 个月，进入条件的天数阈值与再次进入间隔同步下调即可，无需改动旅程结构</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              沉默用户召回率 <span class="bold">3–8%</span>。
+              <span class="muted">召回单客单价接近首购，且这批人已经知道怎么戴，无需重新做佩戴教育。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 8 -->
+    <section id="s-journey8" class="section-plain" data-stage="repeat" data-scene="8">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">08</div><div class="scene-head-main"><h2>旅程 8｜Plus 会员到期续订</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-info">复购</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>Plus 有明确到期日，是全案最容易自动化的一条。按近 180 天的下单次数分三支给出不同内容，已省运费与积分余额在发送前向会员系统实时取值。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email · Web Push　｜　<span class="bold">触发方式</span>：属性「会员到期日 T-14 触发」　｜　<span class="bold">退出条件</span>：会员订阅成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j8"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>19.90 美元 / 180 天，到期日明确且可计算</li>
+                <li>续订的影响是复利式的：更高频次持续半年</li>
+                <li>没有按到期日逐个提醒，就只能靠用户自己记得</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「Plus 会员到期日 T-14 触发」（日期提前 14 天匹配今天）进入</li>
+                <li><span class="bold">提前退出</span>：事件「会员订阅成功」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「会员订阅成功」，监听 14 天（旅程实际跨度 14 天）</li>
+                <li><span class="bold">收入统计</span>：事件「会员订阅成功」+ 订阅金额属性，监听 14 天</li>
+                <li><span class="bold">条件分支</span>：属性「近 180 天订单数」三分支——3 单及以上 / 1–2 单 / 0 单</li>
+                <li><span class="bold">等待</span>：固定 7 天。目标事件「会员订阅成功」已配在提前退出上，下游不重复监听</li>
+                <li><span class="bold">WebHook 实时取值</span>：已省运费金额、积分余额与到期天数在消息发出前向会员系统请求，保证数字与账号真实状态一致</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每一条消息之前</li>
+                <li><span class="bold">再次进入</span>：间隔 30 天，实际频率由进入条件的到期日偏移控制</li>
+                <li class="muted">埋点说明：会员到期日、等级与积分余额由会员系统通过 Server API 同步为用户属性</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              会员续订率提升 <span class="bold">10–20%</span>。
+              <span class="muted">Plus 享 5 倍积分与免运费，续订率提升会同时抬高第 6、7、10 条旅程的基数。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 9 -->
+    <section id="s-journey9" class="section-plain" data-stage="advocacy" data-scene="9">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">09</div><div class="scene-head-main"><h2>旅程 9｜评价、晒单与社区内容</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-info">口碑</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>订单送达后先等 14 天，让用户已实际佩戴数次，评价才有内容。每笔订单独立索评；未提交评价的用户中有一部分是遇到了问题，因此客服入口与索评放在同一封。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email · Web Push　｜　<span class="bold">触发方式</span>：事件「订单送达」　｜　<span class="bold">退出条件</span>：提交评价即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j9"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>本品类靠真人上身内容转化，评价就是素材</li>
+                <li>自动索评的提交转化区间只有 1–3%</li>
+                <li>社区内容只靠用户自发，产出节奏无法预期</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「订单送达」触发进入，随后固定等待 14 天</li>
+                <li><span class="bold">提前退出</span>：事件「提交评价」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「提交评价」，监听 7 天（前置的 14 天等待不计入）</li>
+                <li><span class="bold">条件分支</span>：属性「App 安装状态」决定走 App Push 还是 Email</li>
+                <li><span class="bold">等待事件</span>：3 天内等待「社区发帖」+ 一个超时默认分支</li>
+                <li><span class="bold">App Push</span>：深度链接直达社区发帖页与积分页，不落在首页</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每一条消息之前</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例），并发上限 5；「提交评价」用实例变量匹配订单号，仅退出对应实例</li>
+                <li class="muted">合规提示：激励不得与评价内容的正负面挂钩，详见第 6 节</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              公开评价提交率提升 <span class="bold">1–2%</span>（绝对值）。
+              <span class="muted">产出同时供给商品页的转化素材与社区内容。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 10 -->
+    <section id="s-journey10" class="section-plain" data-stage="campaign" data-scene="10">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">10</div><div class="scene-head-main"><h2>旅程 10｜大促与闪购分层预热</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-info">活动</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>一条旅程复用于黑五、网一与周末闪购，按会员状态与历史订单分三层给出不同内容。大促期十条旅程同时运行，靠账号级全局频控协调，这是控制退订率的前提。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Web Push · Email　｜　<span class="bold">触发方式</span>：属性「大促日 T-7 触发」　｜　<span class="bold">退出条件</span>：订单支付成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j10"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>发制品大促集中度极高，两周销量可抵平时数月</li>
+                <li>全量群发让会员与从未购买者收到同一套内容</li>
+                <li>高价值用户的提前购权益未被使用，低意向用户因频繁推送退订</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「大促日 T-7 触发」（日期提前 7 天匹配今天）进入，同一条旅程按活动日期复用</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」→ 自动退出</li>
+                <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听 7 天（旅程实际跨度 7 天）</li>
+                <li><span class="bold">收入统计</span>：事件「订单支付成功」+ 订单金额属性，监听 7 天</li>
+                <li><span class="bold">条件分支（第一处）</span>：属性「Plus 会员状态」与「历史订单数」组合三分支——会员 / 非会员有购买 / 非会员无购买</li>
+                <li><span class="bold">条件分支（第二处）</span>：属性「App 安装状态」决定临门一条走 App Push 还是 Web Push</li>
+                <li><span class="bold">等待</span>：开抢当天固定 1 天。已下单的用户不再继续流转，不会收到收尾邮件</li>
+                <li><span class="bold">Email</span>：收藏与加购商品的剩余库存通过 WebHook 在发送前实时取值</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每一条消息之前</li>
+                <li><span class="bold">全局频控</span>：按用户设置的每日消息上限跨旅程统一协调</li>
+                <li><span class="bold">再次进入</span>：间隔 30 天（对应下一场大促）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              大促期自有渠道贡献的订单占比提升 <span class="bold">5–15%</span>。
+              <span class="muted">收益来自两端：高价值用户的提前购转化，与低意向用户的打扰减少。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 5. 行业对标 -->
+    <section id="s-benchmark" class="section-plain">
+      <div class="wrap">
+      <div class="eyebrow">行业对标</div>
+      <h2><span class="secnum">5</span>行业对标与数据参照</h2>
+      <div class="grid grid-2" style="grid-template-columns:1fr 1.35fr">
+        <div class="card">
+          <div class="card-header">十条旅程的可参考效果区间</div>
+          <div class="card-body">
+            <div class="chart" id="chart-benchmark"></div>
+            <p class="small muted" style="margin-top:8px">
+              基于 2024–2026 年跨境 DTC 时尚与美妆类目的公开案例与行业基准报告测算，<span class="bold">非承诺值</span>。
+              「旅程转化率」= 监听窗口内完成目标事件的用户占比，含未点击消息但直接完成动作的用户。
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">公开研究与政策依据</div>
+          <div class="card-body" style="padding:0">
+            <table style="box-shadow:none;border:0;border-radius:0">
+              <thead><tr><th style="width:32%">来源与口径</th><th>公开结论</th></tr></thead>
+              <tbody>
+                <tr class="tone-info"><td><span class="bold">2026 年电商营销基准报告</span><br /><span class="small muted">15 万个品牌 · 270 亿封邮件 · 3.21 亿条短信 · 4.58 亿条推送（2025 年发送数据）</span></td><td>自动化邮件以约 <span class="bold">2%</span> 的发送量贡献<span class="bold">邮件渠道</span>约 <span class="bold">37%</span> 的销售额；弃购、欢迎、浏览未购三条流合计贡献 <span class="bold">87%</span> 的自动化订单；<span class="bold">自动化推送打开率 58.7%</span>，活动型推送为 34.3%；自动化短信点击率 9.4%、转化率 0.28%</td></tr>
+                <tr><td><span class="bold">Baymard Institute</span><br /><span class="small muted">50 项弃购研究汇总</span></td><td>电商平均弃购率 <span class="bold">70.19%</span>，移动端 <span class="bold">85.65%</span>；首要弃购原因为结账时的额外费用（运费、税费与手续费）</td></tr>
+                <tr class="tone-success"><td><span class="bold">跨渠道营销公开研究</span>（2020）<br /><span class="small muted">13.5 万组营销活动样本</span></td><td>使用 <span class="bold">3 个及以上渠道</span>的营销活动，购买率较单渠道高 <span class="bold">287%</span></td></tr>
+                <tr><td><span class="bold">美国零售联合会</span>（2025 年退货报告）<br /><span class="small muted">经多家第三方汇总</span></td><td>美国电商整体退货率 <span class="bold">19.3%</span>（2024 年为 17.6%）；服饰类目 <span class="bold">24–25%</span>，为主要消费品类中最高的一档，退货主因集中在尺寸合身与款式 / 颜色不符预期</td></tr>
+                <tr class="tone-success"><td><span class="bold">Fortune Business Insights</span><br /><span class="small muted">美国接发市场报告，2025</span></td><td>黑人消费者在美国接发市场的份额达 <span class="bold">53.83%</span>，是本品类最核心的消费人群，且以保护性造型为主要使用场景——对应的是<span class="bold">高频更换与高护理需求</span></td></tr>
+                <tr><td><span class="bold">Grand View Research</span><br /><span class="small muted">全球假发与接发市场</span></td><td>2025 年市场规模约 <span class="bold">152 亿美元</span>，预计 2033 年达 <span class="bold">311 亿美元</span>，年复合增长率 <span class="bold">9.6%</span>（不同研究机构对本品类的口径与数值差异较大，此处仅用于说明增速方向）</td></tr>
+                <tr><td><span class="bold">发制品行业公开资料汇总</span><br /><span class="small muted">多家品牌与零售商的护理指引</span></td><td>日常佩戴的人发假发寿命 <span class="bold">6–12 个月</span>，蕾丝构造款约 <span class="bold">10–15 个月</span>；非日常佩戴可达 2–3 年——这是旅程 7 换新窗口的设定依据</td></tr>
+                <tr><td><span class="bold">电商营销自动化公开基准汇总</span><br /><span class="small muted">多家邮件与自动化服务商的年度基准</span></td><td>站内弹窗订阅率常见区间 <span class="bold">3–5%</span>；弃购挽回自动化流平均挽回 <span class="bold">约 3.3%</span>、优秀水平 <span class="bold">8–12%</span>；电商自动索评的评价提交转化区间 <span class="bold">1–3%</span>——这三项是第 2 节漏斗表中订阅、弃购挽回与评价三行的基准出处</td></tr>
+                <tr class="tone-info"><td><span class="bold">Amazon 卖家政策</span><br /><span class="small muted">Selling Policies and Seller Code of Conduct</span></td><td>卖家<span class="bold">不得为营销或推广目的联系买家</span>；为履约获得的买家信息仅可用于履约并在处理后删除，不得用于建立买家名单</td></tr>
+                <tr class="tone-info"><td><span class="bold">美国联邦贸易委员会</span><br /><span class="small muted">《消费者评价与推荐规则》，2024 年 10 月 21 日生效</span></td><td>禁止以「撰写正面评价或表达特定倾向」为条件提供报酬或其他激励；禁止购买、出售虚假评价与虚假社媒影响力指标——直接约束旅程 9 的激励设计</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <p class="small muted" style="margin-top:12px">
+        上述数据均来自第三方公开研究或平台公开政策，<span class="bold">不构成对贵司业务效果的承诺</span>。
+        <br>方案引用的贵司事实仅限官网与应用商店可核验、且在旅程配置中被用到的部分（第 1 节右表），不含经营数据。
+        <br><span class="bold">「AI 试戴转加购」与「首次成功佩戴」无公开基准</span>，相关图示仅说明结构。
+        <br>本方案不对贵司现有的营销自动化建设情况作任何评价或推断。
+      </p>
+      </div>
+    </section>
+
+    <!-- 6. 合规与安全 -->
+    <section id="s-compliance" class="section-plain">
+      <div class="wrap">
+      <div class="eyebrow">合规与安全</div>
+      <h2><span class="secnum">6</span>合规与数据安全</h2>
+      <p>
+        业务覆盖北美、欧洲、非洲与拉美，各法域的同意口径不同，叠加平台卖家规则与美国对评价激励的专门监管。
+        本节把<span class="bold">平台侧提供的能力</span>与<span class="bold">业务方需落实的动作</span>分开列出。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-2" style="margin-bottom:18px">
+        <div class="callout warn">
+          <div class="callout-title">第一条红线：平台买家信息不进入 MA</div>
+          <div class="callout-body">
+            <ul>
+              <li>亚马逊政策：卖家不得为营销或推广目的联系买家</li>
+              <li>履约获得的地址与电话仅可用于履约，处理后需删除，不得用于建立买家名单</li>
+              <li><span class="bold">唯一合规路径</span>：用户扫描包装内二维码，在自有注册页主动提交身份并勾选接收同意</li>
+              <li>进入 MA 的是这份自有身份与同意记录，<span class="bold">不涉及平台订单联系方式的导出、匹配或反查</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout warn">
+          <div class="callout-title">第二条红线：评价激励不得与评价内容挂钩</div>
+          <div class="callout-body">
+            <ul>
+              <li>FTC《消费者评价与推荐规则》2024 年 10 月 21 日生效，<span class="bold">禁止以「撰写正面评价」为条件提供激励</span></li>
+              <li>积分、优惠券可以给，但发放条件必须是「提交了评价 / 发布了内容」这一行为本身</li>
+              <li>文案不得出现要求或暗示正面评价的表述，激励关系需按规则披露</li>
+              <li>旅程 9 的文案已按此口径撰写，上线前建议由贵司法务复核</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-header">各市场合规要点（业务方落实）</div>
+          <div class="card-body">
+            <ul>
+              <li><span class="bold">美国 · 邮件 / CAN-SPAM</span>：真实发件人与主题、可识别的实体地址、一键退订且 10 日内生效</li>
+              <li><span class="bold">美国 · 短信 / TCPA</span>：营销短信需明示书面同意；每条含退订说明；遵守收件人本地 8:00–21:00 时段；需完成 10DLC 登记</li>
+              <li><span class="bold">美国 · 州级隐私法</span>：加州等州要求提供「不出售 / 不共享个人信息」的选择权，该状态需作为用户属性进入 MA 并在分群时生效</li>
+              <li><span class="bold">欧盟与英国</span>：GDPR 与 ePrivacy / PECR 要求营销邮件与网页通知事前同意；已购客户同类商品的软性同意各国口径不同，需按国别配置</li>
+              <li><span class="bold">非洲与拉美市场</span>：以尼日利亚、南非、巴西为代表的市场已有本地数据保护法规，同意与退订机制需按国别核对</li>
+              <li class="muted">以上为业务方需落实的合规动作，MA 提供对应的执行与校验工具，不替代法务意见</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">平台数据安全与认证</div>
+          <div class="card-body">
+            <ul>
+              <li>已通过 <span class="bold">GDPR</span> 与 <span class="bold">SOC 2</span> 认证</li>
+              <li>全链路 TLS 传输加密，VPC 网络隔离，存储层与传输层分离</li>
+              <li>个人身份信息字段脱敏存储与访问，基于角色的权限控制</li>
+              <li>可协助客户满足各目标市场本地数据保护法规要求；数据中心可按客户安全需求灵活扩展</li>
+              <li class="muted">进入 MA 的是试戴款式编号、款式类型、教程完成状态等行为与状态数据，不涉及用户在 AI 试戴或社区中上传的人像照片</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">运营护栏</div>
+          <div class="card-body">
+            <ul>
+              <li><span class="bold">全局频控</span>：按用户设置每日 / 每周 / 每小时消息上限，跨旅程统一生效——十条旅程并行时自动协调，不会叠加打扰；大促期尤为关键</li>
+              <li><span class="bold">可发送时间</span>：按终端用户时区限制时段，直接承接美国短信的时段要求，也解决多法域的时差问题</li>
+              <li><span class="bold">提前退出</span>：完成目标行为后立即停止后续触达</li>
+              <li><span class="bold">内容预览</span>：发送前支持样式预览</li>
+              <li><span class="bold">消息记录</span>：发送记录保留 60 天，可追溯</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 7. 为什么 EngageLab -->
+    <section id="s-why" class="section-plain">
+      <div class="wrap">
+      <div class="eyebrow">为什么是我们</div>
+      <h2><span class="secnum">7</span>为什么是 EngageLab</h2>
+      <p>
+        十条旅程横跨四类数据源、多个法域、四到五条渠道。难点不在单条旅程的逻辑，
+        而在于<span class="bold">让它们共用一份用户档案、一套全局频控与一个转化归因口径</span>。
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-3">
+        <div class="card"><div class="card-header">高可靠消息底座</div><div class="card-body">
+          <ul>
+            <li><span class="bold">100 万条/秒</span> 并发，消息平均响应 <span class="bold">&lt; 200ms</span></li>
+            <li>App Push 送达 <span class="bold">&gt; 95%</span>（实测可达 99.85%），邮件触达 <span class="bold">99.97%</span></li>
+            <li>全链路 TLS 加密，传输层与存储层数据分离</li>
+            <li>已在多家出海电商、硬件与内容平台的生产环境规模化运行</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">全渠道 × 出海原生</div><div class="card-body">
+          <ul>
+            <li>App Push、Web Push、Email、SMS、WhatsApp 同平台编排，无需拼接多套系统</li>
+            <li>EngageLab 自有通道覆盖 <span class="bold">113 个国家与地区</span>、<span class="bold">1000+ 发信 IP</span></li>
+            <li>可发送时间支持终端用户时区，一套旅程同时服务北美、欧洲与非洲市场</li>
+            <li>数据中心可根据客户安全需求灵活扩展</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-header">AI × 用户旅程编排</div><div class="card-body">
+          <ul>
+            <li><span class="bold">EUID</span> 统一用户视图，把独立站访客、App 用户与扫码注册的平台买家归一到同一身份</li>
+            <li><span class="bold">多实例旅程</span>：同一用户的多笔订单、多次试戴各跑一个独立实例，事件按实例变量精确路由</li>
+            <li>拖拽式旅程编排 + AI 多语言文案生成</li>
+            <li>最佳发送时机、智能分群、条件分流对比</li>
+            <li>消息内容支持插入变量，取值可来自事件上报或 WebHook 实时返回（如试戴过的款式、护理品适配清单、会员到期天数与已省运费）</li>
+          </ul>
+        </div></div>
+      </div>
+      <p class="small muted" style="margin-top:12px">
+        指标口径：<span class="bold">送达率</span>指投递至终端厂商推送通道；<span class="bold">邮件触达 99.97%</span> 指投递至接收方邮件服务器，不含收件箱 / 垃圾箱分类；
+        <span class="bold">113 个国家与地区、1000+ 发信 IP</span> 的主体是 EngageLab 自有通道。以上均为平台自身能力指标。
+      </p>
+
+      <div class="spacer-md"></div>
+      <h3>7.1 各渠道在龙祁场景中的角色</h3>
+      <table>
+        <thead><tr>
+          <th style="width:12%">渠道</th><th style="width:46%">在本方案中的角色</th>
+          <th style="width:24%">主要承载旅程</th><th>适用市场</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tone-info"><td class="bold">App Push</td><td>激活段与复购段的主渠道，承载全部需要落到 App 内具体页面的触达</td><td>旅程 2 / 3 / 5 / 6 / 7 / 8 / 9 / 10</td><td>全球</td></tr>
+          <tr class="tone-info"><td class="bold">Web Push</td><td>承接未留资访客、未安装 App 的买家，以及卸载 App 后仍会回站的沉默用户</td><td>旅程 1 / 2 / 3 / 4 / 6 / 7 / 8 / 9 / 10</td><td>全球</td></tr>
+          <tr class="tone-info"><td class="bold">Email</td><td>覆盖面最广，承载全部长内容与凭证类信息；是尚未安装 App 的买家最稳定的自有触点</td><td>全部 10 条</td><td>全球</td></tr>
+          <tr><td class="bold">SMS</td><td>高客单弃购的兜底渠道，仅对已明示同意的用户使用；美国需完成 10DLC 登记并遵守时段限制</td><td>旅程 3</td><td>全球</td></tr>
+          <tr><td class="bold">WhatsApp</td><td>欧洲、非洲与拉美市场的物流与售后沟通补充，基于向平台报备的模板发送；在这些市场的用户渗透率远高于美国，因此不作为北美渠道</td><td>旅程 3 / 5（非美市场可选）</td><td>欧洲 / 非洲 / 拉美</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">
+        Email / SMS 主推 EngageLab 自有通道随 MA 一体开通；如已有发送平台，也支持通过 SMTP / SMPP 对接。
+        <br>App Push 侧，如国内已使用极光推送，触达通道侧支持直接添加 JPush 通道。
+        <br><span class="bold">各渠道计费方式以商务报价为准，本表不含定价信息。</span>
+      </p>
+      </div>
+    </section>
+
+    <!-- 8. 测试计划 -->
+    <section id="s-plan" class="section-plain">
+      <div class="wrap">
+      <div class="eyebrow">落地计划</div>
+      <h2><span class="secnum">8</span>4 周测试计划 · 十条旅程分三批上线</h2>
+      <p>
+        埋点共 <span class="bold">18 个事件、14 个用户属性，1–2 名开发 3–5 人日</span>，第 1 周一次性完成。
+        <span class="bold">分批的是旅程上线顺序，不是埋点范围。</span>
+      </p>
+      <div class="spacer-md"></div>
+      <div class="grid grid-4">
+        <div class="card">
+          <div class="card-header"><span class="step-num">1</span>第 1 周 · 对齐 + 接入</div>
+          <div class="card-body">
+            <ul>
+              <li>对齐北极星指标：<span class="bold">自有渠道可触达买家占比、首次佩戴教程完成率、护理品复购率、会员续订率</span></li>
+              <li>核对存量池的邮箱有效率、网页通知授权率、App 安装与通知授权率、短信同意率，用真实数字替换方案第 2 节的触达测算</li>
+              <li>核对真实的客单价、护理品复购间隔与假发换新间隔中位数，替换第 1 节引用的行业区间</li>
+              <li>对齐埋点范围：18 个事件、14 个用户属性，完整字段清单随交付团队的埋点方案提供</li>
+              <li>确认旅程 2、3、5、9 的多实例配置（并发上限、达上限策略、实例变量匹配的业务标识字段）——<span class="bold">旅程发布后单实例与多实例之间不可切换</span></li>
+              <li>开通 Email / SMS 通道，完成发信域名与短信 10DLC 登记</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">2</span>第 2 周 · 第一批上线</div>
+          <div class="card-body">
+            <ul>
+              <li><span class="bold">枢纽与速效三条</span>：旅程 4（平台买家转自有）、5（首次佩戴）、3（弃购挽回）</li>
+              <li>前两条决定后续所有旅程能覆盖多少人，第三条见效最快、最容易独立核算投入产出</li>
+              <li>配置进入条件、提前退出、转化与收入统计、全局频控上限</li>
+              <li>Email / SMS / Web Push 模板搭建，各法域的必备合规要素逐条核验</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">3</span>第 3 周 · 第二批上线</div>
+          <div class="card-body">
+            <ul>
+              <li><span class="bold">购前与复购四条</span>：旅程 1、2、6、8</li>
+              <li>存量用户与新增用户全量进入已运行的旅程，核对各条件分支的实际人数分布</li>
+              <li>观察各旅程的发送 / 送达 / 点击 / 转化漏斗与退订率</li>
+              <li>对比进入旅程组与对照组的自有触点建立率、教程完成率与护理品复购率</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">4</span>第 4 周 · 第三批 + 复盘</div>
+          <div class="card-body">
+            <ul>
+              <li><span class="bold">召回、口碑与活动三条</span>：旅程 7、9、10</li>
+              <li>旅程 7 依赖存量用户的历史订单时间，第 1 周核对完数据分布后即可先行灰度，不必等到第 4 周才建</li>
+              <li>按最近一场大促排期旅程 10 的首轮投放，并压测大促期的全局频控设置</li>
+              <li>复盘三周数据，固化高效旅程、下线低效分支</li>
+              <li>输出下一季度的持续运营路线图，含未纳入本期的扩展旅程</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="small muted" style="margin-top:12px">
+        分批顺序按「当前折损 × 落地难度」排定，可根据贵司第 1 周核对出的真实数据调整。
+        若平台与门店买家在总盘中的占比低于预期，第一批可将旅程 4 与旅程 2 对调，优先做 AI 试戴召回。
+      </p>
+      </div>
+    </section>
+
+    <!-- 9. CTA -->
+    <section class="section-plain">
+      <div class="wrap">
+      <div class="eyebrow">下一步</div>
+      <h2><span class="secnum">9</span>三步启动</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-header"><span class="step-num">1</span>对齐</div>
+          <div class="card-body">
+            <p>确认十条旅程的分批上线顺序，核对邮箱有效率、网页通知授权率、App 安装与通知授权率的真实水平，明确埋点方案与用户属性字段清单。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">2</span>开发对接</div>
+          <div class="card-body">
+            <p>独立站加载 Web SDK、UNice App 集成 SDK 并补齐 AI 试戴与教程完成事件、订单与会员系统通过 Server API 同步；同步开通 Email / SMS 通道并完成发信域名与 10DLC 登记。</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="step-num">3</span>测试验证</div>
+          <div class="card-body">
+            <p>开通测试 VIP 账号，按三批节奏上线旅程并验证转化效果，4 周内完成可量化验收，并明确常态化运营的承接方式。</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      EngageLab MA · 龙祁（UNice）跨境 DTC 发制品全生命周期用户运营方案 · 文中效果区间均为行业公开参考值，非承诺值 · 实际效果以测试期数据为准
+    </footer>
+  </main>
+  <script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function el(tag, attrs) {
+      const e = document.createElementNS(NS, tag);
+      if (attrs) Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+      return e;
+    }
+    function svg(w, h) {
+      const s = el('svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('xmlns', NS);
+      return s;
+    }
+
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', danger: '#dc2626', neutral: '#6b7280',
+      grid: '#e5e7eb', text: '#374151', textMute: '#9ca3af',
+    };
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const barsPerGroup = series.length;
+      const W = 600, H = height, PAD_L = 36, PAD_R = 10, PAD_T = 14, PAD_B = series.length > 1 ? 56 : 40;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const maxVal = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(maxVal / 10) * 10 || 100;
+      const groupW = innerW / categories.length;
+      const barW = Math.min((groupW * 0.72) / barsPerGroup, 30);
+      const s = svg(W, H);
+
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 4, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', {
+            x, y, width: barW - 2, height: h, fill: color, rx: 2,
+            'data-tip': '<b>' + cat + '</b>' + (se.name ? ' · ' + se.name : '') + '：' + v + valueSuffix
+          }));
+          if (v > 0) {
+            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
+            label.textContent = v + valueSuffix;
+            s.appendChild(label);
+          }
+        });
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+
+      if (series.length > 1) {
+        const legY = H - 18;
+        let legX = PAD_L;
+        series.forEach((se) => {
+          const color = COLORS[se.tone] || COLORS.neutral;
+          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+          t.textContent = se.name;
+          s.appendChild(t);
+          legX += 14 + (se.name.length * 12) + 16;
+        });
+      }
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    function drawLineChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const W = 600, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 14, PAD_B = 56;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const max = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(max / 10) * 10 || 100;
+      const n = categories.length;
+      const xStep = innerW / (n - 1);
+      const s = svg(W, H);
+
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+
+      categories.forEach((cat, i) => {
+        const x = PAD_L + xStep * i;
+        const t = el('text', { x, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = cat;
+        s.appendChild(t);
+      });
+
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.accent;
+        let d = '';
+        const points = se.data.map((v, i) => [PAD_L + xStep * i, PAD_T + innerH - (v / niceMax) * innerH]);
+        points.forEach(([x, y], i) => { d += (i === 0 ? 'M' : 'L') + x + ',' + y; });
+        const area = d + ' L' + points[points.length - 1][0] + ',' + (PAD_T + innerH)
+          + ' L' + points[0][0] + ',' + (PAD_T + innerH) + ' Z';
+        s.appendChild(el('path', { d: area, fill: color, opacity: 0.08 }));
+        s.appendChild(el('path', { d, fill: 'none', stroke: color, 'stroke-width': 2 }));
+        points.forEach(([x, y]) => {
+          s.appendChild(el('circle', { cx: x, cy: y, r: 3.5, fill: '#fff', stroke: color, 'stroke-width': 1.8 }));
+        });
+      });
+
+      const legY = H - 18;
+      let legX = PAD_L;
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.accent;
+        s.appendChild(el('circle', { cx: legX + 5, cy: legY - 4, r: 4, fill: color }));
+        const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+        t.textContent = se.name;
+        s.appendChild(t);
+        legX += 14 + (se.name.length * 12) + 18;
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {}, incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const startX = (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          pos[it.node.id] = { x: startX + i * (NODE_W + NODE_GAP), y: 20 + r * (NODE_H + RANK_GAP) };
+        });
+      });
+
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) cur.x = prev.x + NODE_W + NODE_GAP;
+          }
+        });
+      }
+
+      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) {
+          const mx = (x1 + x2) / 2, my = cy;
+          const w = Math.max(e.label.length * 9 + 10, 28);
+          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+          t.textContent = e.label;
+          s.appendChild(t);
+        }
+      });
+
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+
+
+    // ── Charts ──────────────────────────────────────────────────────────
+
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['访客留资', '试戴转加购', '弃购挽回', '首次佩戴', '护理品复购', '公开评价'],
+      series: [
+        { name: '行业平均', data: [4, 25, 3, 45, 12, 2], tone: 'neutral' },
+        { name: '优秀水平', data: [8, 45, 10, 75, 25, 4] , tone: 'success' },
+      ],
+      valueSuffix: '%', height: 265,
+    });
+
+    drawBarChart(document.getElementById('chart-reach'), {
+      categories: ['仅 App Push', '＋ Web Push', '＋ Email', '＋ SMS'],
+      series: [
+        { name: '可触达买家占比', data: [22, 38, 68, 72], tone: 'info' },
+      ],
+      valueSuffix: '%', height: 265,
+    });
+
+    drawBarChart(document.getElementById('chart-benchmark'), {
+      categories: ['访客培育', '试戴召回', '弃购挽回', '自有身份', '首次佩戴', '护理复购', '换新唤醒', '会员续订', '评价晒单', '大促预热'],
+      series: [
+        { name: '消息点击率', data: [5, 11, 9, 8, 13, 7, 6, 12, 10, 9], tone: 'info' },
+        { name: '旅程转化率', data: [7, 14, 10, 20, 30, 12, 5, 22, 4, 18], tone: 'success' },
+      ],
+      valueSuffix: '%', height: 265,
+    });
+
+    // ── 旅程编排 ────────────────────────────────────────────────────────
+    // Journey 1: 独立站访客培育与首单转化
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 邮箱订阅 / 注册' },
+        { id: 'ee', kind: 'exitOk', title: '提前退出', sub: '支付成功即退出' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '1 天' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em1', kind: 'channel', title: 'Email', sub: '第一顶假发怎么选' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 最近浏览品类' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em2', kind: 'channel', title: 'Email', sub: '免胶佩戴指南' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em3', kind: 'channel', title: 'Email', sub: '蕾丝修剪与定型' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em4', kind: 'channel', title: 'Email', sub: '发帘缝合入门' },
+        { id: 'st5', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '回站看本周热销' },
+        { id: 'w3', kind: 'wait', title: '等待', sub: '4 天' },
+        { id: 'st6', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em5', kind: 'channel', title: 'Email', sub: '新客权益与入门款' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'ee', label: '支付成功' },
+        { from: 'start', to: 'w1' },
+        { from: 'w1', to: 'st1' },
+        { from: 'st1', to: 'em1' },
+        { from: 'em1', to: 'w2' },
+        { from: 'w2', to: 'cond' },
+        { from: 'cond', to: 'st2', label: '免胶款' },
+        { from: 'cond', to: 'st3', label: '蕾丝前置' },
+        { from: 'cond', to: 'st4', label: '发帘闭合片' },
+        { from: 'cond', to: 'st5', label: '未浏览' },
+        { from: 'st2', to: 'em2' },
+        { from: 'st3', to: 'em3' },
+        { from: 'st4', to: 'em4' },
+        { from: 'st5', to: 'wp1' },
+        { from: 'em2', to: 'w3' },
+        { from: 'em3', to: 'w3' },
+        { from: 'em4', to: 'w3' },
+        { from: 'wp1', to: 'w3' },
+        { from: 'w3', to: 'st6' },
+        { from: 'st6', to: 'em5' },
+        { from: 'em5', to: 'end' },
+      ]);
+
+    // Journey 2: AI 试戴未转化召回
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: AI 试戴完成' },
+        { id: 'ee', kind: 'exitOk', title: '提前退出', sub: '支付成功即退出' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '1h 内等待 加入购物车' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已加购', sub: '其后由旅程 3 承接' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
+        { id: 'ap1', kind: 'channel', title: 'App Push', sub: '你试戴的这顶还在' },
+        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '你试戴的这顶还在' },
+        { id: 'wfe2', kind: 'branch', title: '等待事件', sub: '24h 内等待 加入购物车' },
+        { id: 'ok2', kind: 'exitOk', title: '结束 · 已加购', sub: '' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em1', kind: 'channel', title: 'Email', sub: '试戴回顾 + 相似款' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em2', kind: 'channel', title: 'Email', sub: '发色与蕾丝色对照' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '多实例 · 新试戴替换旧实例' },
+      ],
+      [
+        { from: 'start', to: 'ee', label: '支付成功' },
+        { from: 'start', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已加购' },
+        { from: 'wfe1', to: 'cond', label: '超时' },
+        { from: 'cond', to: 'ap1', label: '已装 App' },
+        { from: 'cond', to: 'wp1', label: '未装 App' },
+        { from: 'ap1', to: 'wfe2' },
+        { from: 'wp1', to: 'wfe2' },
+        { from: 'wfe2', to: 'ok2', label: '已加购' },
+        { from: 'wfe2', to: 'st1', label: '超时' },
+        { from: 'st1', to: 'em1' },
+        { from: 'em1', to: 'w1' },
+        { from: 'w1', to: 'st2' },
+        { from: 'st2', to: 'em2' },
+        { from: 'em2', to: 'end' },
+      ]);
+
+    // Journey 3: 高客单弃购挽回
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 发起结账' },
+        { id: 'ee', kind: 'exitOk', title: '提前退出', sub: '支付成功即退出' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '30 分钟' },
+        { id: 'cond0', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
+        { id: 'ap0', kind: 'channel', title: 'App Push', sub: '购物车已为你保留' },
+        { id: 'wp0', kind: 'channel', title: 'Web Push', sub: '购物车已为你保留' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '2 小时' },
+        { id: 'em1', kind: 'channel', title: 'Email', sub: '款式价格 + 真伪退换' },
+        { id: 'w3', kind: 'wait', title: '等待', sub: '22 小时' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 短信同意状态' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–20:00' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '结账链接 + 退订说明' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em2', kind: 'channel', title: 'Email', sub: '最后提醒 + 常见疑问' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '多实例 · 新结账替换旧实例' },
+      ],
+      [
+        { from: 'start', to: 'ee', label: '支付成功' },
+        { from: 'start', to: 'w1' },
+        { from: 'w1', to: 'cond0' },
+        { from: 'cond0', to: 'ap0', label: '已装 App' },
+        { from: 'cond0', to: 'wp0', label: '未装 App' },
+        { from: 'ap0', to: 'w2' },
+        { from: 'wp0', to: 'w2' },
+        { from: 'w2', to: 'em1' },
+        { from: 'em1', to: 'w3' },
+        { from: 'w3', to: 'cond' },
+        { from: 'cond', to: 'st2', label: '已同意' },
+        { from: 'cond', to: 'st3', label: '未同意' },
+        { from: 'st2', to: 'sms' },
+        { from: 'st3', to: 'em2' },
+        { from: 'sms', to: 'end' },
+        { from: 'em2', to: 'end' },
+      ]);
+
+    // Journey 4: 平台与门店买家转为自有用户
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 订单送达 / 注册' },
+        { id: 'ee', kind: 'exitOk', title: '提前退出', sub: '订单退款即退出' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '24h 内等待 App 启动' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已启动', sub: '其后由旅程 5 承接' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em1', kind: 'channel', title: 'Email', sub: '装 App 能拿到什么' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '3 天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 网页通知授权' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: 'App 专区本周价' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em2', kind: 'channel', title: 'Email', sub: '订单可在 App 内追踪' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '3 天' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em3', kind: 'channel', title: 'Email', sub: '新人积分即将到期' },
+        { id: 'lis', kind: 'branch', title: '监听事件', sub: '永久等待 · 两个分支' },
+        { id: 'okA', kind: 'exitOk', title: '结束 · 已启动 App', sub: '已建立自有触点' },
+        { id: 'okB', kind: 'exitOk', title: '结束 · 已授权通知', sub: '已建立自有触点' },
+      ],
+      [
+        { from: 'start', to: 'ee', label: '订单退款完成' },
+        { from: 'start', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已启动' },
+        { from: 'wfe1', to: 'st1', label: '超时' },
+        { from: 'st1', to: 'em1' },
+        { from: 'em1', to: 'w1' },
+        { from: 'w1', to: 'cond' },
+        { from: 'cond', to: 'st2', label: '已授权' },
+        { from: 'cond', to: 'st3', label: '未授权' },
+        { from: 'st2', to: 'wp1' },
+        { from: 'st3', to: 'em2' },
+        { from: 'wp1', to: 'w2' },
+        { from: 'em2', to: 'w2' },
+        { from: 'w2', to: 'st4' },
+        { from: 'st4', to: 'em3' },
+        { from: 'em3', to: 'lis' },
+        { from: 'lis', to: 'okA', label: 'App 启动' },
+        { from: 'lis', to: 'okB', label: '授权通知' },
+      ]);
+
+    // Journey 5: 首次成功佩戴引导
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 订单送达' },
+        { id: 'ee', kind: 'exitOk', title: '提前退出', sub: '教程完成即退出' },
+        { id: 'w0', kind: 'wait', title: '等待', sub: '48 小时' },
+        { id: 'cond0', kind: 'branch', title: '条件分支', sub: '属性: 款式类型 + App 安装' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: 本单款式类型' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap1', kind: 'channel', title: 'App Push', sub: '三步戴好免胶款' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap2', kind: 'channel', title: 'App Push', sub: '蕾丝修剪与定型' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap3', kind: 'channel', title: 'App Push', sub: '发帘缝合与打理' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em0', kind: 'channel', title: 'Email', sub: '按款式的图文教程' },
+        { id: 'endX', kind: 'exitEnd', title: '结束 · 仅配件订单', sub: '不进入消息路径' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'st5', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em2', kind: 'channel', title: 'Email', sub: '真人演示 + 造型顾问' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '3 天' },
+        { id: 'st6', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em3', kind: 'channel', title: 'Email', sub: '护理与收纳要点' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '多实例 · 每笔订单一个实例' },
+      ],
+      [
+        { from: 'start', to: 'ee', label: '教程完成' },
+        { from: 'start', to: 'w0' },
+        { from: 'w0', to: 'cond0' },
+        { from: 'cond0', to: 'cond1', label: '假发类 · 已装 App' },
+        { from: 'cond0', to: 'st4', label: '假发类 · 未装 App' },
+        { from: 'cond0', to: 'endX', label: '仅护理配件' },
+        { from: 'cond1', to: 'st1', label: '免胶款' },
+        { from: 'cond1', to: 'st2', label: '蕾丝前置' },
+        { from: 'cond1', to: 'st3', label: '发帘闭合片' },
+        { from: 'st1', to: 'ap1' },
+        { from: 'st2', to: 'ap2' },
+        { from: 'st3', to: 'ap3' },
+        { from: 'st4', to: 'em0' },
+        { from: 'ap1', to: 'w1' },
+        { from: 'ap2', to: 'w1' },
+        { from: 'ap3', to: 'w1' },
+        { from: 'em0', to: 'w1' },
+        { from: 'w1', to: 'st5' },
+        { from: 'st5', to: 'em2' },
+        { from: 'em2', to: 'w2' },
+        { from: 'w2', to: 'st6' },
+        { from: 'st6', to: 'em3' },
+        { from: 'em3', to: 'end' },
+      ]);
+
+    // Journey 6: 护理品与配件复购
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 距上次护理品订单 45 天' },
+        { id: 'ee', kind: 'exitOk', title: '提前退出', sub: '下单即退出' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: App 安装 + 款式' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap1', kind: 'channel', title: 'App Push', sub: '蕾丝胶与定型喷雾' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap2', kind: 'channel', title: 'App Push', sub: '发膜与顺滑精油' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em0', kind: 'channel', title: 'Email', sub: '护理三件套推荐' },
+        { id: 'w0', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em1', kind: 'channel', title: 'Email', sub: '按款式的适配清单' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '3 天' },
+        { id: 'st5', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '护理套装组合价' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '45 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'ee', label: '订单支付成功' },
+        { from: 'start', to: 'cond' },
+        { from: 'cond', to: 'st1', label: '免胶蕾丝款' },
+        { from: 'cond', to: 'st2', label: '发帘接发' },
+        { from: 'cond', to: 'st3', label: '未装 App' },
+        { from: 'st1', to: 'ap1' },
+        { from: 'st2', to: 'ap2' },
+        { from: 'st3', to: 'em0' },
+        { from: 'ap1', to: 'w0' },
+        { from: 'ap2', to: 'w0' },
+        { from: 'em0', to: 'w0' },
+        { from: 'w0', to: 'st4' },
+        { from: 'st4', to: 'em1' },
+        { from: 'em1', to: 'w1' },
+        { from: 'w1', to: 'st5' },
+        { from: 'st5', to: 'wp1' },
+        { from: 'wp1', to: 'end' },
+      ]);
+
+    // Journey 7: 换新周期唤醒与沉默召回
+    drawJourney(document.getElementById('dag-j7'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 距上次假发订单 150 天' },
+        { id: 'ee', kind: 'exitOk', title: '提前退出', sub: '支付成功即退出' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 历史订单数' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap1', kind: 'channel', title: 'App Push', sub: '常戴款新色 + 老客价' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em1', kind: 'channel', title: 'Email', sub: '什么时候该换新' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '3 天内等待 商品浏览' },
+        { id: 'ok1', kind: 'exitOk', title: '结束 · 已回站', sub: '其后由旅程 3 承接' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em2', kind: 'channel', title: 'Email', sub: '换新指南 + 旧款保养' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '3 天' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '老客券有效期提醒' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '3 天' },
+        { id: 'st5', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap2', kind: 'channel', title: 'App Push', sub: '老客券今日到期' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '150 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'ee', label: '订单支付成功' },
+        { from: 'start', to: 'cond' },
+        { from: 'cond', to: 'st1', label: '3 单及以上' },
+        { from: 'cond', to: 'st2', label: '1–2 单' },
+        { from: 'st1', to: 'ap1' },
+        { from: 'st2', to: 'em1' },
+        { from: 'ap1', to: 'wfe1' },
+        { from: 'em1', to: 'wfe1' },
+        { from: 'wfe1', to: 'ok1', label: '已浏览' },
+        { from: 'wfe1', to: 'st3', label: '超时' },
+        { from: 'st3', to: 'em2' },
+        { from: 'em2', to: 'w1' },
+        { from: 'w1', to: 'st4' },
+        { from: 'st4', to: 'wp1' },
+        { from: 'wp1', to: 'w2' },
+        { from: 'w2', to: 'st5' },
+        { from: 'st5', to: 'ap2' },
+        { from: 'ap2', to: 'end' },
+      ]);
+
+    // Journey 8: Plus 会员到期续订
+    drawJourney(document.getElementById('dag-j8'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 会员到期日 T-14 触发' },
+        { id: 'ee', kind: 'exitOk', title: '提前退出', sub: '续订成功即退出' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 近 180 天订单数' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap1', kind: 'channel', title: 'App Push', sub: '这半年 Plus 省了多少' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em1', kind: 'channel', title: 'Email', sub: '续订前先领老客券' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em2', kind: 'channel', title: 'Email', sub: '权益还没用上' },
+        { id: 'w0', kind: 'wait', title: '等待', sub: '7 天' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '还有 7 天到期' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '4 天' },
+        { id: 'st5', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em3', kind: 'channel', title: 'Email', sub: '到期前 3 天权益对照' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '3 天' },
+        { id: 'st6', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap2', kind: 'channel', title: 'App Push', sub: '今日到期 · 积分等级' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '30 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'ee', label: '会员订阅成功' },
+        { from: 'start', to: 'cond' },
+        { from: 'cond', to: 'st1', label: '3 单及以上' },
+        { from: 'cond', to: 'st2', label: '1–2 单' },
+        { from: 'cond', to: 'st3', label: '0 单' },
+        { from: 'st1', to: 'ap1' },
+        { from: 'st2', to: 'em1' },
+        { from: 'st3', to: 'em2' },
+        { from: 'ap1', to: 'w0' },
+        { from: 'em1', to: 'w0' },
+        { from: 'em2', to: 'w0' },
+        { from: 'w0', to: 'st4' },
+        { from: 'st4', to: 'wp1' },
+        { from: 'wp1', to: 'w1' },
+        { from: 'w1', to: 'st5' },
+        { from: 'st5', to: 'em3' },
+        { from: 'em3', to: 'w2' },
+        { from: 'w2', to: 'st6' },
+        { from: 'st6', to: 'ap2' },
+        { from: 'ap2', to: 'end' },
+      ]);
+
+    // Journey 9: 评价、晒单与社区内容
+    drawJourney(document.getElementById('dag-j9'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 订单送达' },
+        { id: 'ee', kind: 'exitOk', title: '提前退出', sub: '提交评价即退出' },
+        { id: 'w0', kind: 'wait', title: '等待', sub: '14 天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap1', kind: 'channel', title: 'App Push', sub: '晒出你的造型' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em1', kind: 'channel', title: 'Email', sub: '写评价可得积分' },
+        { id: 'wfe1', kind: 'branch', title: '等待事件', sub: '3 天内等待 社区发帖' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap2', kind: 'channel', title: 'App Push', sub: '帖子上榜 + 邀请好友' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em2', kind: 'channel', title: 'Email', sub: '一句话评价也可以' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '4 天' },
+        { id: 'st5', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '积分进度提醒' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '多实例 · 每笔订单一个实例' },
+      ],
+      [
+        { from: 'start', to: 'ee', label: '提交评价' },
+        { from: 'start', to: 'w0' },
+        { from: 'w0', to: 'cond' },
+        { from: 'cond', to: 'st1', label: '已装 App' },
+        { from: 'cond', to: 'st2', label: '未装 App' },
+        { from: 'st1', to: 'ap1' },
+        { from: 'st2', to: 'em1' },
+        { from: 'ap1', to: 'wfe1' },
+        { from: 'em1', to: 'wfe1' },
+        { from: 'wfe1', to: 'st3', label: '已发帖' },
+        { from: 'wfe1', to: 'st4', label: '超时' },
+        { from: 'st3', to: 'ap2' },
+        { from: 'ap2', to: 'end' },
+        { from: 'st4', to: 'em2' },
+        { from: 'em2', to: 'w1' },
+        { from: 'w1', to: 'st5' },
+        { from: 'st5', to: 'wp1' },
+        { from: 'wp1', to: 'end' },
+      ]);
+
+    // Journey 10: 大促与闪购分层预热
+    drawJourney(document.getElementById('dag-j10'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 大促日 T-7 触发' },
+        { id: 'ee', kind: 'exitOk', title: '提前退出', sub: '下单即退出' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: 会员 + 历史订单' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap1', kind: 'channel', title: 'App Push', sub: 'Plus 专属提前开抢' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em1', kind: 'channel', title: 'Email', sub: '预热清单与加购提醒' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '本次最低价清单' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '6 天' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ap2', kind: 'channel', title: 'App Push', sub: '明早开抢 · 购物车已保留' },
+        { id: 'st5', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wp2', kind: 'channel', title: 'Web Push', sub: '明早 9 点开抢' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '1 天' },
+        { id: 'st6', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em2', kind: 'channel', title: 'Email', sub: '今晚结束 · 剩余库存' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '30 天后可再次进入' },
+      ],
+      [
+        { from: 'start', to: 'ee', label: '订单支付成功' },
+        { from: 'start', to: 'cond1' },
+        { from: 'cond1', to: 'st1', label: 'Plus 会员' },
+        { from: 'cond1', to: 'st2', label: '非会员有购买' },
+        { from: 'cond1', to: 'st3', label: '非会员无购买' },
+        { from: 'st1', to: 'ap1' },
+        { from: 'st2', to: 'em1' },
+        { from: 'st3', to: 'wp1' },
+        { from: 'ap1', to: 'w1' },
+        { from: 'em1', to: 'w1' },
+        { from: 'wp1', to: 'w1' },
+        { from: 'w1', to: 'cond2' },
+        { from: 'cond2', to: 'st4', label: '已装 App' },
+        { from: 'cond2', to: 'st5', label: '未装 App' },
+        { from: 'st4', to: 'ap2' },
+        { from: 'st5', to: 'wp2' },
+        { from: 'ap2', to: 'w2' },
+        { from: 'wp2', to: 'w2' },
+        { from: 'w2', to: 'st6' },
+        { from: 'st6', to: 'em2' },
+        { from: 'em2', to: 'end' },
+      ]);
+  </script>
+
+<style>
+  /* ═══ 阅读增强层 · 20260831 ═══
+     设计原则：默认状态全部可见。JS 只负责「收起」与「加动效」，
+     因此无 JS、打印、PDF 导出时内容永远完整。 */
+
+  /* 吸顶导航高 58px——所有锚点目标留出偏移，否则标题会被盖住 */
+  main > section { scroll-margin-top: 70px; }
+
+  /* ── TOC 场景下拉 ── */
+  .toc-drop { position: relative; display: inline-flex; align-items: center; }
+  .toc-drop-btn {
+    font: inherit; color: var(--text-3); background: none; border: 0; padding: 0;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+    white-space: nowrap; font-weight: 500; transition: color .15s ease;
+  }
+  .toc-drop-btn:hover, .toc-drop[data-open="1"] .toc-drop-btn { color: var(--accent); }
+  .toc-drop-btn .caret { font-size: 9px; transition: transform .18s ease; }
+  .toc-drop[data-open="1"] .caret { transform: rotate(180deg); }
+  /* 用 fixed 定位：TOC 容器有 overflow-x:auto，absolute 面板会被裁掉 */
+  .toc-drop-panel {
+    position: fixed; top: 0; left: 0;
+    min-width: 236px; background: var(--bg-elev);
+    border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: var(--shadow-lg); padding: 7px; z-index: 60;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .toc-drop-panel[hidden] { display: none; }
+  .toc-drop-panel a {
+    display: flex; align-items: center; gap: 9px; padding: 7px 10px;
+    border-radius: 7px; font-size: 13px; color: var(--text-2); white-space: nowrap;
+  }
+  .toc-drop-panel a:hover { background: var(--accent-soft); color: var(--accent); }
+  .toc-drop-panel .sd-n {
+    flex: none; width: 19px; height: 19px; border-radius: 6px;
+    background: var(--bg-soft); color: var(--text-3);
+    font-family: var(--mono-stack); font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .toc-drop-panel a:hover .sd-n { background: var(--accent); color: #fff; }
+  .toc-drop-panel .sd-all {
+    font-weight: 650; color: var(--text);
+    border-bottom: 1px solid var(--border); border-radius: 7px 7px 0 0; margin-bottom: 4px;
+  }
+
+
+
+  /* ── 场景视觉锚点：大号序号 + 生命周期阶段色带 ── */
+  main > section[data-scene] {
+    border-top: 3px solid var(--stage, var(--border-strong));
+    padding-top: 44px;
+  }
+  main > section[data-stage="acquire"]  { --stage: #2563eb; --stage-soft: #e7efff; }
+  main > section[data-stage="activate"] { --stage: #0e7490; --stage-soft: #ddf1f8; }
+  main > section[data-stage="retain"]   { --stage: #c2700a; --stage-soft: #fdf1dc; }
+  main > section[data-stage="repeat"]   { --stage: #0f9d63; --stage-soft: #e2f7ee; }
+  main > section[data-stage="campaign"] { --stage: #6d28d9; --stage-soft: #efe9fe; }
+  main > section[data-stage="advocacy"] { --stage: #be123c; --stage-soft: #ffe4ea; }
+
+  .scene-head { display: flex; align-items: center; gap: 20px; margin-bottom: 14px; }
+  .scene-num {
+    flex: none; font-family: var(--mono-stack);
+    font-size: 44px; font-weight: 700; line-height: 1;
+    letter-spacing: -0.03em; color: var(--stage);
+    font-variant-numeric: tabular-nums;
+  }
+  .scene-head-main { min-width: 0; }
+  .scene-head h2 { margin: 0; }
+  /* 阶段 pill 染成该场景的阶段色，让 6 个场景一眼可区分 */
+  main > section[data-scene] .row .pill.pill-info {
+    background: var(--stage-soft); border-color: var(--stage); color: var(--stage);
+  }
+
+  /* ── 场景区粘性子导航（滚进场景区才出现）── */
+  .scene-rail {
+    position: fixed; top: 58px; left: 0; right: 0; z-index: 28;
+    background: rgba(255,255,255,.9);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-102%); opacity: 0;
+    transition: transform .28s cubic-bezier(.22,.61,.36,1), opacity .2s ease;
+    pointer-events: none;
+  }
+  .scene-rail.is-on { transform: none; opacity: 1; pointer-events: auto; }
+  .scene-rail-inner {
+    max-width: 1180px; margin: 0 auto; padding: 0 28px;
+    height: 46px; display: flex; align-items: center; gap: 4px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .scene-rail-inner::-webkit-scrollbar { display: none; }
+  .scene-rail .sr-label {
+    flex: none; font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--text-4); margin-right: 12px; white-space: nowrap;
+  }
+  .scene-rail a {
+    flex: none; display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 11px; border-radius: 100px; font-size: 12.5px; font-weight: 500;
+    color: var(--text-3); text-decoration: none; white-space: nowrap;
+    transition: background .16s ease, color .16s ease;
+  }
+  .scene-rail a .sr-n {
+    font-family: var(--mono-stack); font-size: 11px; font-weight: 700;
+    color: var(--text-4); transition: color .16s ease;
+  }
+  .scene-rail a:hover { background: var(--bg-soft); color: var(--text); }
+  .scene-rail a.is-active { background: var(--sr-stage-soft, var(--accent-soft)); color: var(--sr-stage, var(--accent)); font-weight: 650; }
+  .scene-rail a.is-active .sr-n { color: var(--sr-stage, var(--accent)); }
+  @media (max-width: 720px) { .scene-rail .sr-label { display: none; } }
+
+  /* 有子导航时，锚点偏移要加上它的高度 */
+  main > section[data-scene] { scroll-margin-top: 112px; }
+
+  /* ── 整块浮起：场景块作为一个整体进入 ── */
+  .anim-ready main > section[data-scene] > .wrap { opacity: 0; transform: translateY(18px); }
+  .anim-ready main > section[data-scene].is-in > .wrap {
+    opacity: 1; transform: none;
+    transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);
+  }
+
+  /* ── 右侧圆点导航 ── */
+  .rail {
+    position: fixed; right: 22px; top: 50%; transform: translateY(-50%);
+    z-index: 25; display: flex; flex-direction: column; gap: 13px;
+  }
+  .rail a {
+    position: relative; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--border-strong); transition: background .18s ease, transform .18s ease;
+  }
+  .rail a::after {
+    content: attr(data-label); position: absolute; right: 20px; top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: var(--ink-dark); color: #fff; font-size: 11.5px; font-weight: 500;
+    padding: 4px 9px; border-radius: 6px; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity .16s ease, transform .16s ease;
+  }
+  .rail a:hover { background: var(--accent); transform: scale(1.25); }
+  .rail a:hover::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+  .rail a.is-active { background: var(--accent); transform: scale(1.35); }
+  .rail a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (max-width: 1320px) { .rail { display: none; } }
+
+  /* ── 图表 hover 高亮 ── */
+  .chart svg .bar { transition: opacity .15s ease; cursor: default; }
+  .chart svg:hover .bar { opacity: .38; }
+  .chart svg .bar:hover { opacity: 1; }
+  .chart-tip {
+    position: fixed; z-index: 80; pointer-events: none; opacity: 0;
+    background: var(--ink-dark); color: #fff; font-size: 12px; line-height: 1.5;
+    padding: 6px 10px; border-radius: 7px; white-space: nowrap;
+    transition: opacity .12s ease; box-shadow: var(--shadow);
+  }
+  .chart-tip.is-on { opacity: 1; }
+  .chart-tip b { font-weight: 650; }
+
+  /* ── 滚动入场动效（仅在 JS 判定可用时启用）── */
+  .anim-ready .reveal { opacity: 0; transform: translateY(14px); }
+  .anim-ready .reveal.is-in {
+    opacity: 1; transform: none;
+    transition: opacity .5s cubic-bezier(.22,.61,.36,1), transform .5s cubic-bezier(.22,.61,.36,1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-ready .reveal,
+    .anim-ready main > section[data-scene] > .wrap {
+      opacity: 1 !important; transform: none !important; transition: none !important;
+    }
+    .scene-rail { transition: none !important; }
+    .toc-drop-btn .caret, .rail a { transition: none !important; }
+  }
+
+  /* ── 打印 / PDF：强制全部展开、去掉一切装饰 ── */
+  @media print {
+    .anim-ready .reveal,
+    .anim-ready main > section[data-scene] > .wrap { opacity: 1 !important; transform: none !important; }
+    .rail, .toc-drop, .scene-rail, .chart-tip { display: none !important; }
+    main > section[data-scene] { break-before: page; }
+    .chart svg .bar { opacity: 1 !important; }
+  }
+</style>
+
+<script>
+(function () {
+  "use strict";
+  /* ── 1. TOC 场景下拉 ── */
+  (function () {
+    var drop = document.querySelector(".toc-drop");
+    if (!drop) return;
+    var btn = drop.querySelector(".toc-drop-btn");
+    var panel = drop.querySelector(".toc-drop-panel");
+    function place() {
+      var b = btn.getBoundingClientRect();
+      var w = panel.offsetWidth || 236;
+      var left = Math.min(
+        Math.max(8, b.left + b.width / 2 - w / 2),
+        document.documentElement.clientWidth - w - 8
+      );
+      panel.style.left = left + "px";
+      panel.style.top = (b.bottom + 8) + "px";
+    }
+    function setOpen(on) {
+      drop.dataset.open = on ? "1" : "0";
+      btn.setAttribute("aria-expanded", on ? "true" : "false");
+      panel.hidden = !on;
+      if (on) place();
+    }
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setOpen(panel.hidden);
+    });
+    window.addEventListener("resize", function () { if (!panel.hidden) place(); });
+    window.addEventListener("scroll", function () { if (!panel.hidden) place(); }, { passive: true });
+    // 自己接管跳转：先展开目标场景再滚动，否则展开引起的布局变化会打断平滑滚动
+    panel.addEventListener("click", function (e) {
+      var a = e.target.closest("a");
+      if (!a) return;
+      e.preventDefault();
+      setOpen(false);
+      var id = a.getAttribute("href").slice(1);
+      var sec = document.getElementById(id);
+      if (!sec) return;
+      if (history.replaceState) history.replaceState(null, "", "#" + id);
+      requestAnimationFrame(function () {
+        sec.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+    document.addEventListener("click", function (e) {
+      if (!drop.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+  })();
+
+
+
+  /* ── 2. 场景区粘性子导航（零隐藏，只提供位置感与跳转）── */
+  (function () {
+    var STAGE_COLOR = {
+      acquire: ["#2563eb", "#e7efff"], activate: ["#0e7490", "#ddf1f8"],
+      retain: ["#c2700a", "#fdf1dc"], repeat: ["#0f9d63", "#e2f7ee"],
+      campaign: ["#6d28d9", "#efe9fe"], advocacy: ["#be123c", "#ffe4ea"]
+    };
+    var items = [
+      ["s-journey1", "1", "访客培育", "acquire"],
+      ["s-journey2", "2", "试戴召回", "acquire"],
+      ["s-journey3", "3", "弃购挽回", "acquire"],
+      ["s-journey4", "4", "身份转化", "activate"],
+      ["s-journey5", "5", "首次佩戴", "activate"],
+      ["s-journey6", "6", "护理品复购", "repeat"],
+      ["s-journey7", "7", "换新唤醒", "retain"],
+      ["s-journey8", "8", "会员续订", "repeat"],
+      ["s-journey9", "9", "评价与社区", "advocacy"],
+      ["s-journey10", "10", "大促预热", "campaign"]
+    ].filter(function (it) { return document.getElementById(it[0]); });
+    if (items.length < 2) return;
+
+    var rail = document.createElement("nav");
+    rail.className = "scene-rail";
+    rail.setAttribute("aria-label", "场景导航");
+    var inner = document.createElement("div");
+    inner.className = "scene-rail-inner";
+    var lab = document.createElement("span");
+    lab.className = "sr-label";
+    lab.textContent = "十条旅程";
+    inner.appendChild(lab);
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it[0];
+      a.innerHTML = '<span class="sr-n">' + it[1] + '</span>' + it[2];
+      inner.appendChild(a);
+    });
+    rail.appendChild(inner);
+    document.body.appendChild(rail);
+    var links = inner.querySelectorAll("a");
+
+    // 覆盖范围：从场景总览表开始，到最后一个场景结束
+    var zoneStart = document.getElementById("s-scenarios") || document.getElementById(items[0][0]);
+    var zoneEnd = document.getElementById(items[items.length - 1][0]);
+
+    function onScroll() {
+      var top = zoneStart.getBoundingClientRect().top;
+      var bottom = zoneEnd.getBoundingClientRect().bottom;
+      rail.classList.toggle("is-on", top <= 90 && bottom > 140);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+
+    // 当前场景高亮 + 用该场景的阶段色
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute("href") === "#" + en.target.id;
+          a.classList.toggle("is-active", on);
+          if (on) {
+            var st = STAGE_COLOR[en.target.dataset.stage] || STAGE_COLOR.acquire;
+            a.style.setProperty("--sr-stage", st[0]);
+            a.style.setProperty("--sr-stage-soft", st[1]);
+          }
+        });
+      });
+    }, { rootMargin: "-30% 0px -55% 0px" });
+    items.forEach(function (it) { spy.observe(document.getElementById(it[0])); });
+  })();
+
+  /* ── 3. 右侧圆点导航 ── */
+  (function () {
+    var items = [
+      ["s-market", "业务洞察"], ["s-funnel", "用户漏斗"],
+      ["s-data", "数据整合"],
+      ["s-scenarios", "十条旅程"], ["s-benchmark", "行业对标"],
+      ["s-compliance", "合规安全"], ["s-why", "为什么 EngageLab"],
+      ["s-plan", "测试计划"]
+    ].filter(function (it) { return document.getElementById(it[0]); });
+    if (items.length < 3) return;
+
+    var rail = document.createElement("nav");
+    rail.className = "rail";
+    rail.setAttribute("aria-label", "章节导航");
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it[0];
+      a.dataset.label = it[1];
+      a.setAttribute("aria-label", it[1]);
+      rail.appendChild(a);
+    });
+    document.body.appendChild(rail);
+
+    var links = rail.querySelectorAll("a");
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    items.forEach(function (it) { spy.observe(document.getElementById(it[0])); });
+  })();
+
+  /* ── 4. 柱状图 hover tooltip ── */
+  (function () {
+    var charts = document.querySelectorAll(".chart svg");
+    if (!charts.length) return;
+    var tip = document.createElement("div");
+    tip.className = "chart-tip";
+    document.body.appendChild(tip);
+
+    charts.forEach(function (svg) {
+      svg.querySelectorAll("rect").forEach(function (r) {
+        var h = parseFloat(r.getAttribute("height") || "0");
+        if (!h || h < 1) return;               // 跳过网格/背景矩形
+        r.classList.add("bar");
+        r.addEventListener("mouseenter", function () {
+          var label = r.dataset.tip;
+          if (!label) return;
+          tip.innerHTML = label;
+          tip.classList.add("is-on");
+        });
+        r.addEventListener("mousemove", function (e) {
+          tip.style.left = (e.clientX + 14) + "px";
+          tip.style.top = (e.clientY - 34) + "px";
+        });
+        r.addEventListener("mouseleave", function () { tip.classList.remove("is-on"); });
+      });
+    });
+  })();
+
+  /* ── 5. 滚动入场动效（默认不启用，判定通过才加）── */
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var targets = [];
+    document.querySelectorAll("main > section:not([data-scene])").forEach(function (sec) {
+      sec.querySelectorAll(":scope > .wrap > .card, :scope > .wrap > table, " +
+        ":scope > .wrap > .grid > *, :scope > .wrap > .callout").forEach(function (el) {
+          el.classList.add("reveal");
+          targets.push(el);
+        });
+    });
+    if (!targets.length) return;
+
+    document.documentElement.classList.add("anim-ready");
+
+    // 场景块整体浮起（比逐元素更有「一段开始了」的信号）
+    var sceneIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("is-in");
+        sceneIO.unobserve(en.target);
+      });
+    }, { threshold: 0.04, rootMargin: "0px 0px -4% 0px" });
+    var scenes = document.querySelectorAll("main > section[data-scene]");
+    scenes.forEach(function (sc) { sceneIO.observe(sc); });
+    setTimeout(function () { scenes.forEach(function (sc) { sc.classList.add("is-in"); }); }, 3000);
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var sibs = Array.prototype.slice.call(en.target.parentNode.children);
+        var i = Math.min(sibs.indexOf(en.target), 5);
+        setTimeout(function () { en.target.classList.add("is-in"); }, i * 70);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+    targets.forEach(function (t) { io.observe(t); });
+
+    // 兜底：3 秒后无论如何全部显示，杜绝「动效没触发就永远看不见」
+    setTimeout(function () {
+      targets.forEach(function (t) { t.classList.add("is-in"); });
+    }, 3000);
+  })();
+})();
+</script>
+
+</body>
+</html>
