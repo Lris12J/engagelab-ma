@@ -52,16 +52,29 @@
 body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;font-size:15.5px;line-height:1.85;-webkit-font-smoothing:antialiased;margin:0}
 .wrap{max-width:1120px;margin:0 auto;padding:56px 24px 96px}
 .doc{display:grid;grid-template-columns:1fr}
-@media(min-width:1000px){
-  .doc{grid-template-columns:78px minmax(0,760px);column-gap:36px;justify-content:center}
-  .gut{grid-column:1;text-align:right;padding-top:6px}
-  .col{grid-column:2}
-}
-.gut{display:none}
-@media(min-width:1000px){.gut{display:block}}
-.gut b{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;letter-spacing:.06em;color:var(--ink-3);display:block}
-.gut span{display:block;font-size:11.5px;color:var(--ink-3);line-height:1.5;margin-top:4px}
 .col{min-width:0}
+[id]{scroll-margin-top:28px}
+@media(min-width:1000px){
+  .doc{grid-template-columns:214px minmax(0,760px);column-gap:40px;justify-content:center}
+  .col{grid-column:2}
+  .toc{display:block;grid-column:1;grid-row:1 / -1;position:sticky;top:40px;align-self:start}
+}
+
+/* ---------- 目录 ---------- */
+.toc{display:none}
+.toc-h{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px;padding-left:13px}
+.toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--rule)}
+.toc a{display:grid;grid-template-columns:26px minmax(0,1fr);column-gap:8px;align-items:baseline;
+  padding:7px 0 7px 12px;margin-left:-1px;border-left:2px solid transparent;
+  text-decoration:none;color:var(--ink-3);line-height:1.5}
+.toc a b{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
+.toc a span{font-size:13px}
+.toc a:hover{color:var(--ink-2)}
+.toc a:hover b{color:var(--ink-2)}
+.toc a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+.toc a[aria-current="true"]{color:var(--ink);border-left-color:var(--accent)}
+.toc a[aria-current="true"] b{color:var(--accent)}
+.toc a[aria-current="true"] span{font-weight:700}
 
 header.mast{border-bottom:2px solid var(--ink);padding-bottom:26px}
 .eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 16px}
@@ -136,8 +149,19 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
 <body>
 <div class="wrap">
 <div class="doc">
+  <nav class="toc" aria-label="目录">
+    <p class="toc-h">目录</p>
+    <ol>
+      <li><a href="#s0"><b>—</b><span>评估结论</span></a></li>
+      <li><a href="#s1"><b>01</b><span>授权环节的成因</span></a></li>
+      <li><a href="#s2"><b>02</b><span>数据接收方的法律分类</span></a></li>
+      <li><a href="#s3"><b>03</b><span>自建与第三方平台选型</span></a></li>
+      <li><a href="#s4"><b>04</b><span>数据类型分级处置</span></a></li>
+      <li><a href="#s5"><b>05</b><span>事项汇总</span></a></li>
+    </ol>
+  </nav>
 
-  <div class="gut"></div>
+
   <div class="col">
     <header class="mast">
       <p class="eyebrow">合规评估报告</p>
@@ -152,8 +176,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
     </header>
   </div>
 
-  <div class="gut"></div>
-  <div class="col">
+  <div class="col" id="s0">
     <div class="verdict">
       <p class="lbl">评估结论</p>
       <ol>
@@ -164,9 +187,8 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
     </div>
   </div>
 
-  <div class="gut"><b>§ 1</b><span>成因</span></div>
   <div class="col">
-    <section>
+    <section id="s1">
       <h2>一、授权环节的成因</h2>
       <p class="sub">该环节并非依据外部法律规定设立,而是隐私政策自设条款在内部执行中适用范围外溢的结果。</p>
 
@@ -203,9 +225,8 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
     </section>
   </div>
 
-  <div class="gut"><b>§ 2</b><span>法律定性</span></div>
   <div class="col">
-    <section>
+    <section id="s2">
       <h2>二、数据接收方的法律分类</h2>
       <p class="sub">美国各州隐私法与欧盟 GDPR 均对数据接收方作三分处理,义务差异显著。以下分类口径可直接用于 Section 4.3 的措辞修订。</p>
       <div class="tw">
@@ -234,9 +255,8 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
     </section>
   </div>
 
-  <div class="gut"><b>§ 3</b><span>选型影响</span></div>
   <div class="col">
-    <section>
+    <section id="s3">
       <h2>三、对自建与第三方平台选型的影响</h2>
       <p class="sub">现行授权环节是两种方案在数据完整性上产生差异的唯一来源。</p>
       <p>授权环节存续时,第三方平台仅能接收取得授权的用户,自建方案则不受影响。但该差异以「MA 平台属于第三方」为前提。依第二节的分类口径,签署数据处理协议后的 MA 平台属受托处理者,与云服务商、订单系统同类,不触发 Section 4.3 的授权承诺。<strong>前提不成立时,两种方案可获取的数据范围一致。</strong></p>
@@ -245,9 +265,8 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
     </section>
   </div>
 
-  <div class="gut"><b>§ 4</b><span>分级处置</span></div>
   <div class="col">
-    <section>
+    <section id="s4">
       <h2>四、数据类型分级处置</h2>
       <p class="sub">按进入 MA 所需的授权强度分为四级。每一类数据同时列出美国与欧盟的要求——两地同意模式相反,美国以退出制为主,欧盟对营销触达与非必要追踪一律要求事前同意。现状标注基于站点实测;具体同步范围由 Cupshe 自主确定,本表同等适用于自建与第三方平台。</p>
 
@@ -301,9 +320,8 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
     </section>
   </div>
 
-  <div class="gut"><b>§ 5</b><span>事项汇总</span></div>
   <div class="col">
-    <section>
+    <section id="s5">
       <h2>五、事项汇总</h2>
       <p class="sub">各项处置要点已在相应章节展开,本节仅作索引与优先级排序。前四项为解除现行授权环节所需,其余为实测中发现的独立事项。</p>
       <div class="tw">
@@ -324,7 +342,6 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
     </section>
   </div>
 
-  <div class="gut"></div>
   <div class="col">
     <footer>
       本文为合规分析,不构成法律意见。文中所附现状基于 2026 年 9 月 4 日对 www.cupshe.com 的前端抓取与隐私政策文本比对,CMP 的规则集与地域分流状况建议以美国 IP 复核确认。其中欧盟代表指定与美国州法专章补齐涉及较高执法风险,建议于正式落地前由外部律师事务所出具书面结论。各州立法进展较快,落地前应复核当期法规文本。
@@ -333,5 +350,38 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
 
 </div>
 </div>
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  if(!links.length || !('IntersectionObserver' in window)) return;
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var visible = {};
+  function mark(){
+    var current = -1;
+    for(var i=0;i<targets.length;i++){ if(visible[i]){ current = i; break; } }
+    if(current === -1){
+      for(var j=targets.length-1;j>=0;j--){
+        if(targets[j] && targets[j].getBoundingClientRect().top < window.innerHeight*0.4){ current = j; break; }
+      }
+    }
+    links.forEach(function(a,i){
+      if(i===current){ a.setAttribute('aria-current','true'); }
+      else { a.removeAttribute('aria-current'); }
+    });
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var i = targets.indexOf(e.target);
+      if(i>-1) visible[i] = e.isIntersecting;
+    });
+    mark();
+  }, {rootMargin:'-20% 0px -60% 0px'});
+  targets.forEach(function(t){ if(t) io.observe(t); });
+  mark();
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.documentElement.style.scrollBehavior = 'smooth';
+  }
+})();
+</script>
 </body>
 </html>
