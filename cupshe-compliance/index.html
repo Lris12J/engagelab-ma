@@ -131,18 +131,6 @@ td .fine{font-weight:400;font-size:12.5px;color:var(--ink-3);display:block;margi
 .item .state{font-size:13px;color:var(--ink-3);line-height:1.7;border-left:2px solid var(--rule);padding-left:11px;margin-top:3px}
 .item .state b{color:var(--ink-2);font-weight:500}
 
-.steps{list-style:none;counter-reset:s;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:16px}
-.steps li{counter-increment:s;display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:16px;align-items:start}
-.steps li::before{content:counter(s,decimal-leading-zero);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;font-weight:500;color:var(--accent);padding-top:4px}
-.steps .st{font-weight:700;font-size:15px;margin-bottom:3px}
-.steps p{margin:0;font-size:14.5px;color:var(--ink-2);max-width:62ch}
-
-.reasons{display:grid;gap:12px;margin-top:22px}
-@media(min-width:720px){.reasons{grid-template-columns:repeat(3,1fr)}}
-.reason{border-top:2px solid var(--rule);padding-top:14px}
-.reason h4{margin:0 0 6px;font-size:14.5px;font-weight:700}
-.reason p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.75}
-
 .note{margin-top:28px;padding:20px 22px;background:var(--surface-2);border-radius:2px;font-size:13.5px;color:var(--ink-2);line-height:1.8}
 .note b{color:var(--ink)}
 .note p{max-width:none;margin:0 0 10px}
@@ -212,7 +200,10 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
       <p style="margin-top:20px">Cupshe 已对其余各类供应商适用受托处理者模型,仅对 MA 平台适用第三方模型。该差异源于 Section 4.3 措辞外溢,而非法律要求的区分。</p>
 
       <div class="note">
-        <p><b>成因的性质:</b>问题位于政策文本层面,调整方式为修订 Section 4.3 的措辞并在 Section 6 中明确 MA 平台的归类,属内部文本一致性问题,不涉及对外部法律风险的判断。</p>
+        <p><b>成因的性质与处置方式:</b>问题位于政策文本层面,属内部文本一致性问题,不涉及对外部法律风险的判断。修订涉及两处——</p>
+        <p><b>其一,收窄 Section 4.3 的适用范围。</b>将「any third party for marketing purposes」限定为「会为自身目的使用数据的第三方,例如广告平台与联合营销伙伴」,并明确排除按控制者指令处理数据的受托服务商。</p>
+        <p><b>其二,在 Section 6 增列供应商类目。</b>于现有「IT 服务商」之外单列「营销与客户沟通平台(邮件、短信、推送、站内消息)」,载明其仅按 Cupshe 指令处理数据、不得为自身目的使用。</p>
+        <p>两处改动合计约一段文字,可在一次法务评审内完成。披露到位后,该授权环节即失去存在依据。</p>
       </div>
     </section>
   </div>
@@ -375,21 +366,26 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
     </section>
   </div>
 
-  <div class="gut"><b>§ 6</b><span>建议事项</span></div>
+  <div class="gut"><b>§ 6</b><span>事项汇总</span></div>
   <div class="col">
     <section>
-      <h2>六、建议事项</h2>
-      <p class="sub">前三项针对本次核查的授权环节,可在一次法务评审内完成;后五项为实测中发现的其他事项,可按优先级另行安排。</p>
-      <ol class="steps">
-        <li><div><div class="st">修订 Section 4.3 措辞</div><p>将「any third party for marketing purposes」限定为「会为自身目的使用数据的第三方,例如广告平台与联合营销伙伴」,并明确排除按控制者指令处理数据的受托服务商。</p></div></li>
-        <li><div><div class="st">于 Section 6 增列供应商类目</div><p>在现有「IT 服务商」之外单列「营销与客户沟通平台(邮件、短信、推送、站内消息)」类目,并载明其仅按 Cupshe 指令处理数据、不得为自身目的使用。披露到位后,授权环节即失去存在依据。</p></div></li>
-        <li><div><div class="st">与 MA 服务商签署数据处理协议</div><p>包含 GDPR 第 28 条条款、CCPA 服务商条款附录与子处理者清单。该组合构成受托处理者定性的合同基础,较单一用户勾选框更具可核查性与可审计性。</p></div></li>
-        <li><div><div class="st">将授权环节迁移至广告平台受众回传场景</div><p>建议方案为迁移而非取消:保留针对 Meta、TikTok、Snapchat 及 Google Ads 受众回传的独立开关,同时于页脚补充 Do Not Sell or Share 入口与 GPC 响应声明。该方案维持 Section 4.3 的原意,并同时补齐 CPRA 的形式要求。</p></div></li>
-        <li><div><div class="st">补齐美国州法专章</div><p>增设 CCPA/CPRA 章节与 Notice at Collection 类别表,列明加州及其他已生效州的数据主体权利与行使方式。以美国为主力市场,此项为当前最具实质性的合规缺口。</p></div></li>
-        <li><div><div class="st">指定并公示 GDPR 第 27 条代表</div><p>分别指定欧盟代表与英国代表,并在隐私政策中公示联系方式,属低成本、高暴露度的形式义务。</p></div></li>
-        <li><div><div class="st">复核短信与 WhatsApp 的同意采集链条</div><p>确认入口侧同意声明是否独立、未与其他条款捆绑,以及同意时间戳、IP 与页面版本快照是否完整留存。该环节为现行链路中实际存在 TCPA 风险敞口之处。</p></div></li>
-        <li><div><div class="st">复核 CMP 的地域分流配置</div><p>以美国 IP 复核规则集适用情况。如美国访客现适用 GDPR 规则集,可评估改为按地域分流,避免在法律未作要求的法域额外增设同意环节。</p></div></li>
-      </ol>
+      <h2>六、事项汇总</h2>
+      <p class="sub">各项处置要点已在相应章节展开,本节仅作索引与优先级排序。前四项为解除现行授权环节所需,其余为实测中发现的独立事项。</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>事项</th><th>处置要点</th><th>参见</th></tr></thead>
+          <tbody>
+            <tr><td class="k">收窄 Section 4.3 适用范围</td><td class="n">限定为会为自身目的使用数据的第三方,排除受托服务商</td><td class="n">第一节</td></tr>
+            <tr><td class="k">Section 6 增列供应商类目</td><td class="n">单列「营销与客户沟通平台」,载明仅按指令处理</td><td class="n">第一节</td></tr>
+            <tr><td class="k">签署数据处理协议</td><td class="n">GDPR 第 28 条条款、CCPA 服务商条款附录与子处理者清单,构成受托处理者定性的合同基础</td><td class="n">第二节</td></tr>
+            <tr><td class="k">授权环节迁移至广告平台受众回传</td><td class="n">保留针对该场景的独立开关,并于页脚补充 Do Not Sell or Share 入口与 GPC 响应声明</td><td class="n">第三节 · 第五节</td></tr>
+            <tr><td class="k">补齐隐私政策的美国州法专章</td><td class="n">增设 CCPA/CPRA 章节与 Notice at Collection 类别表,列明各州数据主体权利与行使方式。以美国为主力市场,此项为当前最具实质性的合规缺口</td><td class="n">—</td></tr>
+            <tr><td class="k">指定并公示 GDPR 第 27 条代表</td><td class="n">分别指定欧盟代表与英国代表并公示联系方式,属低成本、高暴露度的形式义务</td><td class="n">第三节</td></tr>
+            <tr><td class="k">复核短信与 WhatsApp 同意链条</td><td class="n">确认同意声明的独立性,以及时间戳、IP 与页面版本快照的留存完整性</td><td class="n">第三节 · 第五节</td></tr>
+            <tr><td class="k">复核 CMP 地域分流配置</td><td class="n">以美国 IP 复核规则集适用情况,避免在法律未作要求的法域额外增设同意环节</td><td class="n">第三节</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   </div>
 
