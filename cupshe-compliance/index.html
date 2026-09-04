@@ -99,17 +99,6 @@ td.k{font-weight:700}
 td.n{color:var(--ink-2)}
 td .fine{font-weight:400;font-size:12.5px;color:var(--ink-3);display:block;margin-top:2px}
 
-.obl{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:2px}
-.obl li{background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:20px 22px 20px 24px;position:relative}
-.obl li::before{content:"";position:absolute;left:0;top:-1px;bottom:-1px;width:3px;background:var(--req)}
-.obl.b li::before{background:var(--rec)}
-.obl.b .why b{color:var(--rec)}
-.obl .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:8px}
-.obl .nm{font-weight:700;font-size:15.5px}
-.obl p{margin:0;font-size:14.5px;color:var(--ink-2);max-width:64ch}
-.obl .why{margin-top:10px;padding-top:10px;border-top:1px dashed var(--rule);font-size:13.5px;color:var(--ink)}
-.obl .why b{color:var(--req);font-weight:700}
-
 .tiers{display:flex;flex-direction:column;gap:14px;margin-top:26px}
 .tier{background:var(--surface);border:1px solid var(--rule);border-radius:2px;overflow:hidden;box-shadow:var(--shadow)}
 .tier > .th{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px solid var(--rule);background:var(--tsoft)}
@@ -239,67 +228,66 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
     </section>
   </div>
 
-  <div class="gut"><b>§ 3</b><span>法定要求</span></div>
+  <div class="gut"><b>§ 3</b><span>法域对照</span></div>
   <div class="col">
     <section>
-      <h2>三、各法域的同意与退出要求</h2>
-      <p class="sub">Cupshe 主力覆盖美国与欧盟两个市场,两地同意模式相反。以下按同意强度分列,判断依据均为数据类型、使用用途与适用法域。各项所附现状基于站点实测。</p>
+      <h2>三、美国与欧盟的要求对照</h2>
+      <p class="sub">两地同意模式相反:美国以退出制为主,仅特定数据与渠道要求事前同意;欧盟对营销触达与非必要追踪一律要求事前同意。判断依据均为数据类型、使用用途与适用法域。</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>事项</th><th>美国</th><th>欧盟</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="k">邮件营销</td>
+              <td class="n"><b style="color:var(--rec)">退出制。</b>无须事前同意,但每封须含真实发件人身份、有效实体地址与可用退订链接,10 个工作日内处理退订<span class="fine">CAN-SPAM Act</span></td>
+              <td class="n"><b style="color:var(--req)">须事前同意。</b>仅已购客户就同类商品可适用软性豁免<span class="fine">ePrivacy 第 13 条</span></td>
+            </tr>
+            <tr>
+              <td class="k">短信与 WhatsApp</td>
+              <td class="n"><b style="color:var(--req)">须事前明示书面同意。</b>声明应清晰独立、不与其他条款捆绑并留存证据;附私人诉权,每条法定赔偿 500 至 1500 美元;10 日内处理经任意渠道提出的撤回<span class="fine">TCPA · 47 U.S.C. §227</span></td>
+              <td class="n"><b style="color:var(--req)">须事前同意。</b>WhatsApp 另受 Meta 平台政策约束,要求可验证的渠道级 opt-in<span class="fine">ePrivacy 第 13 条</span></td>
+            </tr>
+            <tr>
+              <td class="k">广告平台受众回传</td>
+              <td class="n"><b style="color:var(--rec)">无须事前同意。</b>构成加州法下的「共享」,须提供 Do Not Sell or Share 入口并自动响应 GPC 信号<span class="fine">CPRA §1798.140(ah)</span></td>
+              <td class="n"><b style="color:var(--req)">须事前同意,且分两层。</b>浏览器端像素属非必要脚本,受 ePrivacy 第 5(3) 条约束;<b>服务端回传(CAPI、客户匹配)不经终端设备,属 GDPR 项下的独立处理行为</b>,而欧盟法院已否定以正当利益作为行为广告的合法性依据,实践中同样只能依赖同意<span class="fine">ePrivacy 第 5(3) 条 · GDPR</span></td>
+            </tr>
+            <tr>
+              <td class="k">网页追踪像素与会话回放</td>
+              <td class="n"><b style="color:var(--rec)">无专门立法</b>,但加州《隐私侵权法》近三年被大量援引起诉营销像素、会话回放与在线客服工具,跨境 DTC 独立站为高频被告类型。属诉讼风险而非法定同意义务<span class="fine">CA CIPA §631 / §638.51</span></td>
+              <td class="n"><b style="color:var(--req)">须事前同意。</b>拒绝与接受须同等便利,支持随时撤回<span class="fine">ePrivacy 第 5(3) 条</span></td>
+            </tr>
+            <tr>
+              <td class="k">身体测量与体型数据</td>
+              <td class="n"><b style="color:var(--req)">须事前同意。</b>华盛顿州将身体测量与生理指标纳入「消费者健康数据」,收集与共享分别取得同意,附私人诉权;马里兰州禁止出售敏感数据<span class="fine">WA MHMDA · MD MODPA</span></td>
+              <td class="n"><b style="color:var(--req)">属特殊类别数据</b>,须明示同意<span class="fine">GDPR 第 9 条</span></td>
+            </tr>
+            <tr>
+              <td class="k">精准地理位置</td>
+              <td class="n"><b style="color:var(--req)">须事前同意。</b>多州列为敏感个人信息,并限制其用于推断消费者特征<span class="fine">CPRA 敏感个人信息 · 各州 SPI 定义</span></td>
+              <td class="n"><b style="color:var(--req)">须事前同意</b><span class="fine">GDPR</span></td>
+            </tr>
+            <tr>
+              <td class="k">生物识别信息</td>
+              <td class="n"><b style="color:var(--req)">须事前书面同意</b>与留存期限政策。附私人诉权,过失每次 1000 美元、故意每次 5000 美元<span class="fine">IL BIPA</span></td>
+              <td class="n"><b style="color:var(--req)">属特殊类别数据</b>,须明示同意<span class="fine">GDPR 第 9 条</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      <h3>美国之一:须事前取得明示同意(四项)</h3>
-      <ul class="obl">
-        <li>
-          <div class="hd"><span class="nm">营销短信与 WhatsApp 消息</span><span class="law">TCPA · 47 U.S.C. §227</span></div>
-          <p>须取得事前明示书面同意,同意声明应清晰独立、不与其他条款捆绑并留存证据。该法附私人诉权,每条法定赔偿 500 至 1500 美元。2025 年 4 月生效的新规要求 10 日内处理经任意渠道提出的撤回请求。WhatsApp 渠道除法律要求外,Meta 平台政策亦要求可验证的渠道级 opt-in。</p>
-          <div class="why"><b>现状:</b>站点已开展短信营销并设 WhatsApp 入口,支持回复 STOP 退出,退出侧合规。<b>建议复核入口侧的同意采集与留证链条</b>——跨境品牌在 TCPA 诉讼中的败诉成因多为举证链不完整,而非未设同意。</div>
-        </li>
-        <li>
-          <div class="hd"><span class="nm">身体测量与体型数据</span><span class="law">WA MHMDA · MD MODPA</span></div>
-          <p>华盛顿州将身体测量与生理指标纳入「消费者健康数据」,要求收集与共享分别取得同意,并附私人诉权。马里兰州 MODPA 自 2025 年 10 月起适用严格数据最小化原则并禁止出售敏感数据。</p>
-          <div class="why"><b>现状:</b>实测站点未见尺码问卷或体型采集表单,Swimwear Fit Guide 为图文说明页,当前无风险敞口。<b>若后续上线尺码推荐或体型问卷功能,须同步复核政策 2.1 中关于不收集特殊类别数据的声明。</b></div>
-        </li>
-        <li>
-          <div class="hd"><span class="nm">精准地理位置</span><span class="law">CPRA 敏感个人信息 · 各州 SPI 定义</span></div>
-          <p>多州将精准地理位置列为敏感个人信息,须事前取得同意,并限制其用于推断消费者特征。</p>
-          <div class="why"><b>现状:</b>政策 2.1(e) 载明收集 IP 地址与时区设置,未见 GPS 级采集,当前无风险敞口。</div>
-        </li>
-        <li>
-          <div class="hd"><span class="nm">生物识别信息</span><span class="law">IL BIPA · GDPR Art.9</span></div>
-          <p>如对用户上传图像进行人脸检测、虚拟试穿或自动识别,即触发伊利诺伊州 BIPA 的事前书面同意与留存期限政策要求。该法附私人诉权,过失每次 1000 美元,故意每次 5000 美元。</p>
-          <div class="why"><b>现状:</b>站点设有 #CupsheCrew 与用户评价图像板块,内容含清晰人物形象,但未见人脸识别或虚拟试穿功能,风险敞口尚未形成。</div>
-        </li>
-      </ul>
-
-      <h3>美国之二:无须事前同意,但须提供退出通道(三项)</h3>
-      <p class="sub" style="margin-bottom:0">本组三项<strong>仅在美国适用退出制</strong>。同样三项在欧盟均须事前同意,不存在以退出通道替代的空间。</p>
-      <ul class="obl b">
-        <li>
-          <div class="hd"><span class="nm">邮件营销</span><span class="law">CAN-SPAM Act</span></div>
-          <p>美国采退出制,无须事前同意即可发送商业邮件,但每封须含真实发件人身份、有效实体地址与可用退订链接,并在 10 个工作日内处理退订请求。</p>
-          <div class="why"><b>现状:</b>已设退订表单,该项合规。欧盟侧要求相反,详见下表。</div>
-        </li>
-        <li>
-          <div class="hd"><span class="nm">广告平台受众回传</span><span class="law">CPRA §1798.140(ah)</span></div>
-          <p>向广告平台回传用户标识用于跨情境行为广告,在加州构成「共享」。无须事前同意,但须提供 Do Not Sell or Share 入口并自动响应 GPC 全球隐私控制信号。欧盟访客则须于取得同意后加载:依 ePrivacy 第 5(3) 条,广告像素属非必要脚本;且欧盟法院已否定以正当利益作为行为广告的合法性依据,实践中只能依赖同意。</p>
-          <div class="why"><b>现状:</b>已部署 Meta、TikTok、Snapchat 像素及 Google Ads 增强型转化(回传哈希后的邮箱与手机号)。同意管理平台(CMP)已就 Cookie 层面作管理,<b>但页脚尚未提供 Do Not Sell or Share 入口</b>。Section 4.3 的 opt-in 承诺原本即为此类场景而设,但其落地方式按法域区分:美国以退出通道满足法定要求,欧盟须事前同意。</div>
-        </li>
-        <li>
-          <div class="hd"><span class="nm">网页追踪像素与会话回放</span><span class="law">CA CIPA §631 / §638.51</span></div>
-          <p>美国无 Cookie 同意专门立法。但加州《隐私侵权法》近三年被大量援引,用于起诉营销像素、会话回放与在线客服工具,跨境 DTC 独立站为高频被告类型。该项属诉讼风险而非法定同意义务。</p>
-          <div class="why"><b>现状:</b>实测在未取得同意的状态下,追踪类 Cookie 均未写入,脚本阻断机制有效运行,该项风险敞口已得到控制。</div>
-        </li>
-      </ul>
-
-      <h3>欧盟:三项强制义务,均与 MA 平台无关</h3>
+      <h3>两项与数据类型无关的欧盟义务</h3>
+      <p>以下两项不随数据类型变化,亦无法通过任何形式的用户授权满足,须以主体资格与文本披露的方式落地:</p>
       <div class="tw">
         <table>
           <thead><tr><th>义务</th><th>要求</th><th>现状</th></tr></thead>
           <tbody>
-            <tr><td class="k">Cookie 与追踪同意<span class="fine">ePrivacy 第 5(3) 条</span></td><td class="n">非必要脚本须事前同意,拒绝与接受同等便利,支持随时撤回</td><td class="n"><b style="color:var(--ok)">已达标</b>,CMP 按严格必要、性能、功能、定向四类划分,阻断机制运行正常</td></tr>
-            <tr><td class="k">邮件营销 opt-in<span class="fine">ePrivacy 第 13 条</span></td><td class="n">与美国相反,欧盟营销邮件须事前同意;仅已购客户就同类商品可适用软性豁免</td><td class="n">政策已载明依赖 opt-in,<b>待核实注册流程是否按访客地域分流</b></td></tr>
-            <tr><td class="k">欧盟与英国代表<span class="fine">GDPR 第 27 条</span></td><td class="n">向欧盟居民供货但境内无实体者,须书面指定代表并公示联系方式</td><td class="n"><b style="color:var(--req)">未见公示</b>,建议补齐</td></tr>
+            <tr><td class="k">欧盟与英国代表<span class="fine">GDPR 第 27 条</span></td><td class="n">向欧盟居民供货但境内无实体者,须书面指定代表并公示联系方式;英国另需 UK 代表</td><td class="n"><b style="color:var(--req)">未见公示</b>,建议补齐</td></tr>
+            <tr><td class="k">同意的地域适配<span class="fine">ePrivacy · 各州法</span></td><td class="n">同意与退出规则须按访客所属法域分别适用,以支持上表两栏并行执行</td><td class="n">CMP 已按四类目划分且阻断机制运行正常,<b>待核实规则集是否按地域分流</b></td></tr>
           </tbody>
         </table>
       </div>
+      <div class="note"><p>上表各项的<b>现状与处置办法</b>见第五节数据类型分级处置。本节仅说明两地的法律要求差异。</p></div>
     </section>
   </div>
 
@@ -336,7 +324,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
         <div class="tier y">
           <div class="th"><span class="badge">级别 B</span><span class="tname">可同步,须提供退出通道</span><span class="trule">美国默认开启并支持退出;欧盟须改为事前同意</span></div>
           <div class="tb">
-            <div class="item"><div class="dt">邮件营销</div><div class="do">美国无须事前同意,但每封须含可用退订链接、真实实体地址与准确发件人身份。<strong>欧盟差异:须事前 opt-in</strong>,仅已购客户就同类商品可适用软性豁免。</div><div class="state"><b>现状</b>已设退订表单;<b>待确认</b>注册流程是否按访客地域分流</div></div>
+            <div class="item"><div class="dt">邮件营销</div><div class="do">美国须含可用退订链接、真实实体地址与准确发件人身份;<strong>欧盟须事前 opt-in</strong>,详见第三节对照表。</div><div class="state"><b>现状</b>已设退订表单;<b>待确认</b>注册流程是否按访客地域分流</div></div>
             <div class="item"><div class="dt">广告平台受众回传</div><div class="do">构成 CPRA 项下的「共享」。<strong>美国:提供 Do Not Sell or Share 入口并响应 GPC;欧盟:须事前同意后加载。</strong>Section 4.3 的承诺范围应限定至此类场景。</div><div class="state"><b>现状</b>相关像素与增强型转化均已部署,CMP 已作 Cookie 层管理;<b>待补</b>页脚 Do Not Sell or Share 入口与 GPC 响应声明</div></div>
             <div class="item"><div class="dt">追踪像素与会话回放</div><div class="do">由 CMP 定向类目统一管理,维持现状即可。建议补充加州访客的默认关闭策略。</div><div class="state"><b>现状</b>脚本阻断机制实测有效,该项已达标</div></div>
           </div>
