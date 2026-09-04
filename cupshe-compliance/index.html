@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="向 MA 平台提供数据是否需要用户前置授权 —— 合规评估报告" />
+<style>html{color-scheme:light dark}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>卡佩希跨境数据合规评估</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap">
+
+<style>
+:root{
+  --paper:#F1F4F3;--surface:#FFFFFF;--surface-2:#E7ECEB;
+  --ink:#14201F;--ink-2:#52615F;--ink-3:#798785;
+  --rule:#D3DAD9;--rule-soft:#E2E8E7;
+  --accent:#0D5B57;--accent-soft:#DAEAE8;
+  --req:#A0392A;--req-soft:#F6E3DE;
+  --rec:#93691C;--rec-soft:#F5EBD7;
+  --ok:#3D6A5B;--ok-soft:#DEEDE6;
+  --stop:#78223A;--stop-soft:#F1DDE3;
+  --shadow:0 1px 2px rgba(20,32,31,.05),0 8px 24px -16px rgba(20,32,31,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1414;--surface:#151E1D;--surface-2:#1C2726;
+    --ink:#E6EDEC;--ink-2:#9CACAA;--ink-3:#7B8B89;
+    --rule:#293635;--rule-soft:#202B2A;
+    --accent:#5FC3BC;--accent-soft:#153030;
+    --req:#E38878;--req-soft:#331C18;
+    --rec:#D5A851;--rec-soft:#2D2415;
+    --ok:#7DBDA5;--ok-soft:#162920;
+    --stop:#DC819A;--stop-soft:#2D181E;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1414;--surface:#151E1D;--surface-2:#1C2726;
+  --ink:#E6EDEC;--ink-2:#9CACAA;--ink-3:#7B8B89;
+  --rule:#293635;--rule-soft:#202B2A;
+  --accent:#5FC3BC;--accent-soft:#153030;
+  --req:#E38878;--req-soft:#331C18;
+  --rec:#D5A851;--rec-soft:#2D2415;
+  --ok:#7DBDA5;--ok-soft:#162920;
+  --stop:#DC819A;--stop-soft:#2D181E;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;font-size:15.5px;line-height:1.85;-webkit-font-smoothing:antialiased;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:56px 24px 96px}
+.doc{display:grid;grid-template-columns:1fr}
+@media(min-width:1000px){
+  .doc{grid-template-columns:78px minmax(0,760px);column-gap:36px;justify-content:center}
+  .gut{grid-column:1;text-align:right;padding-top:6px}
+  .col{grid-column:2}
+}
+.gut{display:none}
+@media(min-width:1000px){.gut{display:block}}
+.gut b{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;letter-spacing:.06em;color:var(--ink-3);display:block}
+.gut span{display:block;font-size:11.5px;color:var(--ink-3);line-height:1.5;margin-top:4px}
+.col{min-width:0}
+
+header.mast{border-bottom:2px solid var(--ink);padding-bottom:26px}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 16px}
+h1{font-family:"Noto Serif SC",Georgia,"Songti SC",serif;font-weight:700;font-size:clamp(28px,4.6vw,39px);line-height:1.32;letter-spacing:-.01em;margin:0 0 14px;text-wrap:balance}
+.dek{font-size:16.5px;color:var(--ink-2);margin:0;max-width:62ch;line-height:1.8}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:22px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;color:var(--ink-3);letter-spacing:.03em}
+.meta i{font-style:normal;color:var(--ink-2)}
+
+.verdict{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:2px;padding:26px 28px;margin:34px 0 8px;box-shadow:var(--shadow)}
+.verdict .lbl{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+.verdict ol{margin:0;padding-left:1.35em}
+.verdict li{margin:0 0 12px;font-size:16px;line-height:1.82}
+.verdict li:last-child{margin-bottom:0}
+
+section{padding-top:52px}
+h2{font-family:"Noto Serif SC",Georgia,serif;font-weight:700;font-size:23px;line-height:1.45;margin:0 0 6px;letter-spacing:-.005em;text-wrap:balance}
+.sub{color:var(--ink-2);font-size:14.5px;margin:0 0 24px;max-width:60ch}
+h3{font-size:15px;font-weight:700;margin:32px 0 10px}
+p{margin:0 0 14px;max-width:66ch}
+em{font-style:normal;border-bottom:1px solid var(--accent);padding-bottom:1px}
+
+.law{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;color:var(--accent);background:var(--accent-soft);padding:1px 6px;border-radius:2px;white-space:nowrap}
+
+blockquote{margin:18px 0;padding:16px 20px;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--req);border-radius:2px}
+blockquote p{margin:0;font-size:14.5px;line-height:1.8;max-width:none}
+blockquote .src{display:block;margin-top:9px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;color:var(--ink-3)}
+blockquote .en{font-style:italic;color:var(--ink)}
+
+.tw{overflow-x:auto;margin:20px 0 8px;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
+th{text-align:left;font-weight:700;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-family:"IBM Plex Mono",ui-monospace,monospace;padding:12px 16px;border-bottom:1px solid var(--rule);background:var(--surface-2);white-space:nowrap}
+td{padding:14px 16px;border-bottom:1px solid var(--rule-soft);vertical-align:top;line-height:1.7}
+tr:last-child td{border-bottom:none}
+td.k{font-weight:700}
+td.n{color:var(--ink-2)}
+td .fine{font-weight:400;font-size:12.5px;color:var(--ink-3);display:block;margin-top:2px}
+
+.obl{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:2px}
+.obl li{background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:20px 22px 20px 24px;position:relative}
+.obl li::before{content:"";position:absolute;left:0;top:-1px;bottom:-1px;width:3px;background:var(--req)}
+.obl.b li::before{background:var(--rec)}
+.obl.b .why b{color:var(--rec)}
+.obl .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:8px}
+.obl .nm{font-weight:700;font-size:15.5px}
+.obl p{margin:0;font-size:14.5px;color:var(--ink-2);max-width:64ch}
+.obl .why{margin-top:10px;padding-top:10px;border-top:1px dashed var(--rule);font-size:13.5px;color:var(--ink)}
+.obl .why b{color:var(--req);font-weight:700}
+
+.tiers{display:flex;flex-direction:column;gap:14px;margin-top:26px}
+.tier{background:var(--surface);border:1px solid var(--rule);border-radius:2px;overflow:hidden;box-shadow:var(--shadow)}
+.tier > .th{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px solid var(--rule);background:var(--tsoft)}
+.tier .badge{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tc);border:1px solid currentColor;border-radius:2px;padding:3px 9px;white-space:nowrap}
+.tier .tname{font-weight:700;font-size:16px;color:var(--tc)}
+.tier .trule{font-size:13.5px;color:var(--ink-2);flex:1 1 240px;min-width:0}
+.tier.g{--tc:var(--ok);--tsoft:var(--ok-soft)}
+.tier.y{--tc:var(--rec);--tsoft:var(--rec-soft)}
+.tier.o{--tc:var(--req);--tsoft:var(--req-soft)}
+.tier.r{--tc:var(--stop);--tsoft:var(--stop-soft)}
+.item{padding:16px 22px;border-bottom:1px solid var(--rule-soft);display:grid;gap:5px}
+.item:last-child{border-bottom:none}
+@media(min-width:680px){
+  .item{grid-template-columns:180px minmax(0,1fr);column-gap:24px;align-items:baseline}
+  .item .do,.item .state{grid-column:2}
+}
+.item .dt{font-weight:700;font-size:14.5px}
+.item .do{font-size:14px;color:var(--ink-2);line-height:1.75}
+.item .state{font-size:13px;color:var(--ink-3);line-height:1.7;border-left:2px solid var(--rule);padding-left:11px;margin-top:3px}
+.item .state b{color:var(--ink-2);font-weight:500}
+
+.steps{list-style:none;counter-reset:s;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:16px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:16px;align-items:start}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;font-weight:500;color:var(--accent);padding-top:4px}
+.steps .st{font-weight:700;font-size:15px;margin-bottom:3px}
+.steps p{margin:0;font-size:14.5px;color:var(--ink-2);max-width:62ch}
+
+.reasons{display:grid;gap:12px;margin-top:22px}
+@media(min-width:720px){.reasons{grid-template-columns:repeat(3,1fr)}}
+.reason{border-top:2px solid var(--rule);padding-top:14px}
+.reason h4{margin:0 0 6px;font-size:14.5px;font-weight:700}
+.reason p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.75}
+
+.note{margin-top:28px;padding:20px 22px;background:var(--surface-2);border-radius:2px;font-size:13.5px;color:var(--ink-2);line-height:1.8}
+.note b{color:var(--ink)}
+.note p{max-width:none;margin:0 0 10px}
+.note p:last-child{margin:0}
+footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-3);line-height:1.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="doc">
+
+  <div class="gut"></div>
+  <div class="col">
+    <header class="mast">
+      <p class="eyebrow">合规评估报告</p>
+      <h1>向 MA 平台提供数据是否需要用户前置授权</h1>
+      <p class="dek">Cupshe 现行流程在向 MA 平台提供数据前设置用户授权环节。本报告基于对 cupshe.com 前端实现与隐私政策文本的实测比对,核查该环节的法律依据与实际成因,并就数据类型的分级处置提出建议。</p>
+      <div class="meta">
+        <span>评估日 <i>2026-09-04</i></span>
+        <span>受测站点 <i>www.cupshe.com</i></span>
+        <span>政策版本 <i>Updated July 14, 2026</i></span>
+        <span>文件性质 <i>合规分析,非法律意见</i></span>
+      </div>
+    </header>
+  </div>
+
+  <div class="gut"></div>
+  <div class="col">
+    <div class="verdict">
+      <p class="lbl">评估结论</p>
+      <ol>
+        <li>该授权环节不具备法律强制依据。美国联邦法与各州隐私法、欧盟 GDPR 均未要求在向营销服务商提供数据前取得用户同意。</li>
+        <li>其实际约束来源为隐私政策 Section 4.3 的自设承诺:向任何第三方共享个人数据用于营销前须取得明示同意。MA 平台被归入「第三方」范畴,构成定性偏差。同一政策 Section 6 已将分析、支付、客服、物流及 IT 服务商统一按受托处理者处理,均未设置授权环节。</li>
+        <li>自建方案与第三方平台适用同一套数据处理要求。决定同意义务的是数据类型、使用用途与适用法域,而非承载数据的系统归属;采用第三方平台不会因此产生额外的用户授权义务,自建方案亦不豁免任何一项法定义务。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gut"><b>§ 1</b><span>成因</span></div>
+  <div class="col">
+    <section>
+      <h2>一、授权环节的成因</h2>
+      <p class="sub">该环节并非依据外部法律规定设立,而是隐私政策自设条款在内部执行中适用范围外溢的结果。</p>
+
+      <blockquote>
+        <p class="en">"We will get your express opt-in consent before we share your personal data with any third party for marketing purposes."</p>
+        <span class="src">Cupshe Privacy Policy · Section 4.3 Marketing</span>
+      </blockquote>
+
+      <p>该条款本身并无不当。其对应场景为向<strong>会为自身目的使用数据的接收方</strong>披露个人信息,典型如广告平台受众回传与联合营销伙伴——这一场景在站点上确实存在。问题在于「any third party for marketing purposes」措辞过宽,内部执行时被解读为「任何用于营销用途的外部系统」,致使 MA 平台一并纳入。</p>
+
+      <h3>政策内部的处置标准不一致</h3>
+      <p>同一政策 Section 6 列明了实际数据接收方类别。MA 平台在法律定性上完全落入其中第一项,但现行处置与其余各类存在差异:</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Section 6 列明的接收方</th><th>实际对应</th><th>是否设授权环节</th></tr></thead>
+          <tbody>
+            <tr><td class="k">IT 服务商<span class="fine">系统管理、托管与支持</span></td><td class="n">云服务、订单系统、<b>MA 平台</b></td><td class="n"><b style="color:var(--req)">仅 MA 平台单独设置</b></td></tr>
+            <tr><td class="k">第三方分析公司</td><td class="n">Google Analytics</td><td class="n">否,由 Cookie 偏好中心统一管理</td></tr>
+            <tr><td class="k">支付服务商</td><td class="n">PayPal</td><td class="n">否</td></tr>
+            <tr><td class="k">客服服务商</td><td class="n">在线客服与工单系统</td><td class="n">否</td></tr>
+            <tr><td class="k">物流伙伴</td><td class="n">承运商与尾程服务商</td><td class="n">否</td></tr>
+            <tr><td class="k">集团关联公司</td><td class="n">Cupshe group companies</td><td class="n">否</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:20px">Cupshe 已对其余各类供应商适用受托处理者模型,仅对 MA 平台适用第三方模型。该差异源于 Section 4.3 措辞外溢,而非法律要求的区分。</p>
+
+      <div class="note">
+        <p><b>成因的性质:</b>问题位于政策文本层面,调整方式为修订 Section 4.3 的措辞并在 Section 6 中明确 MA 平台的归类,属内部文本一致性问题,不涉及对外部法律风险的判断。</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="gut"><b>§ 2</b><span>法律定性</span></div>
+  <div class="col">
+    <section>
+      <h2>二、数据接收方的法律分类</h2>
+      <p class="sub">美国各州隐私法与欧盟 GDPR 均对数据接收方作三分处理,义务差异显著。以下分类口径可直接用于 Section 4.3 的措辞修订。</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>身份</th><th>成立条件</th><th>是否需取得同意</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="k">受托处理者<span class="fine">Service Provider / Processor</span></td>
+              <td class="n">仅按控制者书面指令处理;不得为自身目的使用;不得转售;合同含法定条款</td>
+              <td class="n"><b style="color:var(--ok)">不需要</b>,收集时告知即可</td>
+            </tr>
+            <tr>
+              <td class="k">第三方<span class="fine">Third Party</span></td>
+              <td class="n">可为自身商业目的使用数据,例如充实其自有画像或用于建模</td>
+              <td class="n">触发退出权;个别场景需事前同意</td>
+            </tr>
+            <tr>
+              <td class="k">出售 / 共享<span class="fine">Sale / Share</span></td>
+              <td class="n">换取对价,或为跨情境行为广告目的披露</td>
+              <td class="n">须提供退出通道并自动响应 GPC 信号</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:20px">签署合规数据处理协议后,MA 平台归入第一类。依 <span class="law">CCPA §1798.140(ad)(2)(C)</span>,向受托处理者披露个人信息不构成「出售」;依 GDPR,仅需第 28 条数据处理协议,无须另行取得同意。该定性为营销自动化平台在全球范围的通行部署基础,行业实践中未见在数据采集环节就 MA 平台单独设置授权。</p>
+    </section>
+  </div>
+
+  <div class="gut"><b>§ 3</b><span>法定要求</span></div>
+  <div class="col">
+    <section>
+      <h2>三、法律实际要求取得同意的情形</h2>
+      <p class="sub">Cupshe 主力覆盖美国与欧盟两个市场,两地同意模式相反。以下按同意强度分列,判断依据均为数据类型、使用用途与适用法域。各项所附现状基于站点实测。</p>
+
+      <h3>美国之一:须事前取得明示同意(四项)</h3>
+      <ul class="obl">
+        <li>
+          <div class="hd"><span class="nm">营销短信与 WhatsApp 消息</span><span class="law">TCPA · 47 U.S.C. §227</span></div>
+          <p>须取得事前明示书面同意,同意声明应清晰独立、不与其他条款捆绑并留存证据。该法附私人诉权,每条法定赔偿 500 至 1500 美元。2025 年 4 月生效的新规要求 10 日内处理经任意渠道提出的撤回请求。WhatsApp 渠道除法律要求外,Meta 平台政策亦要求可验证的渠道级 opt-in。</p>
+          <div class="why"><b>现状:</b>站点已开展短信营销并设 WhatsApp 入口,支持回复 STOP 退出,退出侧合规。<b>建议复核入口侧的同意采集与留证链条</b>——跨境品牌在 TCPA 诉讼中的败诉成因多为举证链不完整,而非未设同意。</div>
+        </li>
+        <li>
+          <div class="hd"><span class="nm">身体测量与体型数据</span><span class="law">WA MHMDA · MD MODPA</span></div>
+          <p>华盛顿州将身体测量与生理指标纳入「消费者健康数据」,要求收集与共享分别取得同意,并附私人诉权。马里兰州 MODPA 自 2025 年 10 月起适用严格数据最小化原则并禁止出售敏感数据。</p>
+          <div class="why"><b>现状:</b>实测站点未见尺码问卷或体型采集表单,Swimwear Fit Guide 为图文说明页,当前无风险敞口。<b>若后续上线尺码推荐或体型问卷功能,须同步复核政策 2.1 中关于不收集特殊类别数据的声明。</b></div>
+        </li>
+        <li>
+          <div class="hd"><span class="nm">精准地理位置</span><span class="law">CPRA 敏感个人信息 · 各州 SPI 定义</span></div>
+          <p>多州将精准地理位置列为敏感个人信息,须事前取得同意,并限制其用于推断消费者特征。</p>
+          <div class="why"><b>现状:</b>政策 2.1(e) 载明收集 IP 地址与时区设置,未见 GPS 级采集,当前无风险敞口。</div>
+        </li>
+        <li>
+          <div class="hd"><span class="nm">生物识别信息</span><span class="law">IL BIPA · GDPR Art.9</span></div>
+          <p>如对用户上传图像进行人脸检测、虚拟试穿或自动识别,即触发伊利诺伊州 BIPA 的事前书面同意与留存期限政策要求。该法附私人诉权,过失每次 1000 美元,故意每次 5000 美元。</p>
+          <div class="why"><b>现状:</b>站点设有 #CupsheCrew 与用户评价图像板块,内容含清晰人物形象,但未见人脸识别或虚拟试穿功能,风险敞口尚未形成。</div>
+        </li>
+      </ul>
+
+      <h3>美国之二:无须事前同意,但须提供退出通道(三项)</h3>
+      <ul class="obl b">
+        <li>
+          <div class="hd"><span class="nm">邮件营销</span><span class="law">CAN-SPAM Act</span></div>
+          <p>美国采退出制,无须事前同意即可发送商业邮件,但每封须含真实发件人身份、有效实体地址与可用退订链接,并在 10 个工作日内处理退订请求。</p>
+          <div class="why"><b>现状:</b>已设退订表单,该项合规。欧盟侧要求相反,详见下表。</div>
+        </li>
+        <li>
+          <div class="hd"><span class="nm">广告平台受众回传</span><span class="law">CPRA §1798.140(ah)</span></div>
+          <p>向广告平台回传用户标识用于跨情境行为广告,在加州构成「共享」。无须事前同意,但须提供 Do Not Sell or Share 入口并自动响应 GPC 全球隐私控制信号。欧盟访客则须于取得同意后加载。</p>
+          <div class="why"><b>现状:</b>已部署 Meta、TikTok、Snapchat 像素及 Google Ads 增强型转化(回传哈希后的邮箱与手机号)。同意管理平台(CMP)已就 Cookie 层面作管理,<b>但页脚尚未提供 Do Not Sell or Share 入口</b>。此项为 Section 4.3 承诺的原本适用对象。</div>
+        </li>
+        <li>
+          <div class="hd"><span class="nm">网页追踪像素与会话回放</span><span class="law">CA CIPA §631 / §638.51</span></div>
+          <p>美国无 Cookie 同意专门立法。但加州《隐私侵权法》近三年被大量援引,用于起诉营销像素、会话回放与在线客服工具,跨境 DTC 独立站为高频被告类型。该项属诉讼风险而非法定同意义务。</p>
+          <div class="why"><b>现状:</b>实测在未取得同意的状态下,追踪类 Cookie 均未写入,脚本阻断机制有效运行,该项风险敞口已得到控制。</div>
+        </li>
+      </ul>
+
+      <h3>欧盟:三项强制义务,均与 MA 平台无关</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>义务</th><th>要求</th><th>现状</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Cookie 与追踪同意<span class="fine">ePrivacy 第 5(3) 条</span></td><td class="n">非必要脚本须事前同意,拒绝与接受同等便利,支持随时撤回</td><td class="n"><b style="color:var(--ok)">已达标</b>,CMP 按严格必要、性能、功能、定向四类划分,阻断机制运行正常</td></tr>
+            <tr><td class="k">邮件营销 opt-in<span class="fine">ePrivacy 第 13 条</span></td><td class="n">与美国相反,欧盟营销邮件须事前同意;仅已购客户就同类商品可适用软性豁免</td><td class="n">政策已载明依赖 opt-in,<b>待核实注册流程是否按访客地域分流</b></td></tr>
+            <tr><td class="k">欧盟与英国代表<span class="fine">GDPR 第 27 条</span></td><td class="n">向欧盟居民供货但境内无实体者,须书面指定代表并公示联系方式</td><td class="n"><b style="color:var(--req)">未见公示</b>,建议补齐</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="gut"><b>§ 4</b><span>选型影响</span></div>
+  <div class="col">
+    <section>
+      <h2>四、对自建与第三方平台选型的影响</h2>
+      <p class="sub">现行授权环节是两种方案在数据完整性上产生差异的唯一来源。</p>
+
+      <p>授权环节存续时,第三方平台仅能接收取得授权的用户,自建方案则不受影响。但该差异以「MA 平台属于第三方」为前提。依第二节的分类口径,签署数据处理协议后的 MA 平台属受托处理者,与云服务商、订单系统同类,不触发 Section 4.3 的授权承诺。<strong>前提不成立时,两种方案可获取的数据范围一致。</strong></p>
+      <p>第三节列明的义务在两种方案下完全相同,均取决于数据类型与使用用途:自建平台发送营销短信,同样须取得并留存明示书面同意。<strong>采用第三方平台不会使数据处理要求变得更严格,自建方案亦不豁免任何一项</strong>;区别在于,自建方案下原可由服务商通过数据处理协议与安全认证分担的合规责任,将全部由 Cupshe 自行承担。</p>
+      <p>此外,将受托处理者主动认定为第三方,等同于自愿适用更高的义务标准,并在后续执法或诉讼中形成对己不利的事实陈述。</p>
+    </section>
+  </div>
+
+  <div class="gut"><b>§ 5</b><span>分级处置</span></div>
+  <div class="col">
+    <section>
+      <h2>五、数据类型分级处置</h2>
+      <p class="sub">按进入 MA 所需的授权强度分为四级,现状标注基于站点实测。具体同步范围由 Cupshe 自主确定,本表仅提供合规边界参考,并同等适用于自建与第三方平台。</p>
+
+      <div class="tiers">
+
+        <div class="tier g">
+          <div class="th"><span class="badge">级别 A</span><span class="tname">可直接同步</span><span class="trule">仅需于隐私政策与采集页告知,无须设置勾选;共同前提为已签署数据处理协议与 CCPA 服务商条款附录</span></div>
+          <div class="tb">
+            <div class="item"><div class="dt">基础身份与联系方式</div><div class="do">姓名、邮箱、手机号、收货地址。以受托处理者身份接收。手机号入库本身不需授权,用于发送短信方需授权,详见级别 C。</div><div class="state"><b>现状</b>政策 Section 6 已披露 IT 服务商类目</div></div>
+            <div class="item"><div class="dt">交易与订单数据</div><div class="do">订单、SKU、金额、退换货、物流状态。基于履行合同的必要处理,可用于发货、退款、补货等事务性通知。</div><div class="state"><b>现状</b>政策 4.1 已载明履约用途</div></div>
+            <div class="item"><div class="dt">第一方站内行为</div><div class="do">浏览路径、加购、搜索词、停留时长。限自有域名采集、不回传广告平台。<strong>欧盟差异:</strong>如依赖 Cookie,须先经 CMP 取得同意。</div><div class="state"><b>现状</b>CMP 已按性能与功能类目管理,现有 MA 行为采集脚本在该框架内运行</div></div>
+            <div class="item"><div class="dt">App 推送 Token</div><div class="do">推送权限经 iOS/Android 系统级弹窗取得,该系统授权即构成合法基础,无须另行取得法律同意。</div><div class="state"><b>现状</b>App 已上线,由平台机制管理</div></div>
+          </div>
+        </div>
+
+        <div class="tier y">
+          <div class="th"><span class="badge">级别 B</span><span class="tname">可同步,须提供退出通道</span><span class="trule">美国默认开启并支持退出;欧盟须改为事前同意</span></div>
+          <div class="tb">
+            <div class="item"><div class="dt">邮件营销</div><div class="do">美国无须事前同意,但每封须含可用退订链接、真实实体地址与准确发件人身份。<strong>欧盟差异:须事前 opt-in</strong>,仅已购客户就同类商品可适用软性豁免。</div><div class="state"><b>现状</b>已设退订表单;<b>待确认</b>注册流程是否按访客地域分流</div></div>
+            <div class="item"><div class="dt">广告平台受众回传</div><div class="do">构成 CPRA 项下的「共享」,<strong>应设独立开关,亦即 Section 4.3 承诺的原本适用对象。</strong></div><div class="state"><b>现状</b>相关像素与增强型转化均已部署,CMP 已作 Cookie 层管理;<b>待补</b>页脚 Do Not Sell or Share 入口与 GPC 响应声明</div></div>
+            <div class="item"><div class="dt">追踪像素与会话回放</div><div class="do">由 CMP 定向类目统一管理,维持现状即可。建议补充加州访客的默认关闭策略。</div><div class="state"><b>现状</b>脚本阻断机制实测有效,该项已达标</div></div>
+          </div>
+        </div>
+
+        <div class="tier o">
+          <div class="th"><span class="badge">级别 C</span><span class="tname">须事前取得同意</span><span class="trule">未取得同意前不得用于该用途;同意须独立、可留证、可撤回</span></div>
+          <div class="tb">
+            <div class="item"><div class="dt">手机号用于短信与 WhatsApp</div><div class="do">两个渠道各设独立勾选框,默认不勾选,不与邮件订阅捆绑,亦不互相捆绑。留存同意时间戳、IP 与页面版本快照。平台须支持渠道级同意状态字段,并于 10 日内同步撤回指令。</div><div class="state"><b>现状</b>两渠道均已开展,短信退出机制已具备;<b>待复核</b>入口侧同意采集与留证链条的完整性</div></div>
+            <div class="item"><div class="dt">尺码问卷与体型分类</div><div class="do">胸围罩杯、腰臀围、体型标签、身高体重。如上线相关功能,须单独取得同意并明确说明用途,且不得用于广告平台受众构建。</div><div class="state"><b>现状</b>实测未见该类采集表单,当前无风险敞口</div></div>
+            <div class="item"><div class="dt">精准地理位置</div><div class="do">多州列为敏感个人信息,须事前同意。建议仅保留城市或邮编级粗粒度,不同步 GPS 坐标。</div><div class="state"><b>现状</b>政策 2.1(e) 载明收集 IP 与时区,未见 GPS 级采集</div></div>
+          </div>
+        </div>
+
+        <div class="tier r">
+          <div class="th"><span class="badge">级别 D</span><span class="tname">建议不同步至 MA</span><span class="trule">取得同意亦不建议同步,同意无法降低此类数据的风险敞口</span></div>
+          <div class="tb">
+            <div class="item"><div class="dt">支付卡与银行信息</div><div class="do">该类数据宜留存于支付网关与 PCI 环境内,MA 仅接收订单金额与交易状态即可满足营销场景需求。</div><div class="state"><b>现状</b>政策 2.1(c) 载明会收集支付方式与卡片信息 · <b>依据</b>PCI DSS 范围隔离原则</div></div>
+            <div class="item"><div class="dt">用户上传的原始图像</div><div class="do">泳装场景 UGC 含清晰人物形象,属高敏感内容。建议仅保留「是否有 UGC 贡献」布尔标签用于分层。</div><div class="state"><b>现状</b>#CupsheCrew 与评价图像板块已上线 · <b>依据</b>IL BIPA 与 GDPR Art.9</div></div>
+            <div class="item"><div class="dt">健康与孕产信息</div><div class="do">孕期尺码、产后体型、皮肤敏感等。华盛顿州附私人诉权,马里兰州禁止出售,GDPR 项下属特殊类别数据。</div><div class="state"><b>现状</b>政策已声明不收集特殊类别数据,与实测一致</div></div>
+            <div class="item"><div class="dt">客服通话与语音记录</div><div class="do">多州属双方同意录音州,且内容常含订单外的个人信息,不宜用于营销分层。</div><div class="state"><b>现状</b>政策 3(i)(f) 已声明会录制客服通话与在线聊天 · <b>依据</b>各州录音同意法</div></div>
+            <div class="item"><div class="dt">政府身份标识</div><div class="do">清关所需身份证号或税号宜于履约系统内隔离处理,营销场景无正当使用目的。</div><div class="state"><b>现状</b>视目的国清关要求而定 · <b>依据</b>各州敏感个人信息定义与数据最小化原则</div></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="note"><b>适用说明:</b>级别 A 与 B 已覆盖 MA 平台的主要业务场景,均不需要前置授权环节。</div>
+    </section>
+  </div>
+
+  <div class="gut"><b>§ 6</b><span>建议事项</span></div>
+  <div class="col">
+    <section>
+      <h2>六、建议事项</h2>
+      <p class="sub">前三项针对本次核查的授权环节,可在一次法务评审内完成;后五项为实测中发现的其他事项,可按优先级另行安排。</p>
+      <ol class="steps">
+        <li><div><div class="st">修订 Section 4.3 措辞</div><p>将「any third party for marketing purposes」限定为「会为自身目的使用数据的第三方,例如广告平台与联合营销伙伴」,并明确排除按控制者指令处理数据的受托服务商。</p></div></li>
+        <li><div><div class="st">于 Section 6 增列供应商类目</div><p>在现有「IT 服务商」之外单列「营销与客户沟通平台(邮件、短信、推送、站内消息)」类目,并载明其仅按 Cupshe 指令处理数据、不得为自身目的使用。披露到位后,授权环节即失去存在依据。</p></div></li>
+        <li><div><div class="st">与 MA 服务商签署数据处理协议</div><p>包含 GDPR 第 28 条条款、CCPA 服务商条款附录与子处理者清单。该组合构成受托处理者定性的合同基础,较单一用户勾选框更具可核查性与可审计性。</p></div></li>
+        <li><div><div class="st">将授权环节迁移至广告平台受众回传场景</div><p>建议方案为迁移而非取消:保留针对 Meta、TikTok、Snapchat 及 Google Ads 受众回传的独立开关,同时于页脚补充 Do Not Sell or Share 入口与 GPC 响应声明。该方案维持 Section 4.3 的原意,并同时补齐 CPRA 的形式要求。</p></div></li>
+        <li><div><div class="st">补齐美国州法专章</div><p>增设 CCPA/CPRA 章节与 Notice at Collection 类别表,列明加州及其他已生效州的数据主体权利与行使方式。以美国为主力市场,此项为当前最具实质性的合规缺口。</p></div></li>
+        <li><div><div class="st">指定并公示 GDPR 第 27 条代表</div><p>分别指定欧盟代表与英国代表,并在隐私政策中公示联系方式,属低成本、高暴露度的形式义务。</p></div></li>
+        <li><div><div class="st">复核短信与 WhatsApp 的同意采集链条</div><p>确认入口侧同意声明是否独立、未与其他条款捆绑,以及同意时间戳、IP 与页面版本快照是否完整留存。该环节为现行链路中实际存在 TCPA 风险敞口之处。</p></div></li>
+        <li><div><div class="st">复核 CMP 的地域分流配置</div><p>以美国 IP 复核规则集适用情况。如美国访客现适用 GDPR 规则集,可评估改为按地域分流,避免在法律未作要求的法域额外增设同意环节。</p></div></li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="gut"></div>
+  <div class="col">
+    <footer>
+      本文为合规分析,不构成法律意见。文中所附现状基于 2026 年 9 月 4 日对 www.cupshe.com 的前端抓取与隐私政策文本比对,CMP 的规则集与地域分流状况建议以美国 IP 复核确认。其中欧盟代表指定与美国州法专章补齐涉及较高执法风险,建议于正式落地前由外部律师事务所出具书面结论。各州立法进展较快,落地前应复核当期法规文本。
+    </footer>
+  </div>
+
+</div>
+</div>
+</body>
+</html>
