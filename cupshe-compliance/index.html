@@ -235,14 +235,14 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
           </tbody>
         </table>
       </div>
-      <p style="margin-top:20px">签署合规数据处理协议后,MA 平台归入第一类。依 <span class="law">CCPA §1798.140(ad)(2)(C)</span>,向受托处理者披露个人信息不构成「出售」;依 GDPR,仅需第 28 条数据处理协议,无须另行取得同意。该定性为营销自动化平台在全球范围的通行部署基础,行业实践中未见在数据采集环节就 MA 平台单独设置授权。</p>
+      <p style="margin-top:20px">签署合规数据处理协议后,MA 平台归入第一类。依 <span class="law">CCPA §1798.140(ad)(2)(C)</span>,向受托处理者披露个人信息不构成「出售」;依 GDPR,仅需第 28 条数据处理协议,无须另行取得同意。该定性为营销自动化平台在全球范围的通行部署基础,行业实践中鲜见在数据采集环节就 MA 平台单独设置授权。</p>
     </section>
   </div>
 
   <div class="gut"><b>§ 3</b><span>法定要求</span></div>
   <div class="col">
     <section>
-      <h2>三、法律实际要求取得同意的情形</h2>
+      <h2>三、各法域的同意与退出要求</h2>
       <p class="sub">Cupshe 主力覆盖美国与欧盟两个市场,两地同意模式相反。以下按同意强度分列,判断依据均为数据类型、使用用途与适用法域。各项所附现状基于站点实测。</p>
 
       <h3>美国之一:须事前取得明示同意(四项)</h3>
@@ -279,7 +279,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
         <li>
           <div class="hd"><span class="nm">广告平台受众回传</span><span class="law">CPRA §1798.140(ah)</span></div>
           <p>向广告平台回传用户标识用于跨情境行为广告,在加州构成「共享」。无须事前同意,但须提供 Do Not Sell or Share 入口并自动响应 GPC 全球隐私控制信号。欧盟访客则须于取得同意后加载。</p>
-          <div class="why"><b>现状:</b>已部署 Meta、TikTok、Snapchat 像素及 Google Ads 增强型转化(回传哈希后的邮箱与手机号)。同意管理平台(CMP)已就 Cookie 层面作管理,<b>但页脚尚未提供 Do Not Sell or Share 入口</b>。此项为 Section 4.3 承诺的原本适用对象。</div>
+          <div class="why"><b>现状:</b>已部署 Meta、TikTok、Snapchat 像素及 Google Ads 增强型转化(回传哈希后的邮箱与手机号)。同意管理平台(CMP)已就 Cookie 层面作管理,<b>但页脚尚未提供 Do Not Sell or Share 入口</b>。Section 4.3 的 opt-in 承诺原本即为此类场景而设,但其落地方式按法域区分:美国以退出通道满足法定要求,欧盟须事前同意。</div>
         </li>
         <li>
           <div class="hd"><span class="nm">网页追踪像素与会话回放</span><span class="law">CA CIPA §631 / §638.51</span></div>
@@ -325,7 +325,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
         <div class="tier g">
           <div class="th"><span class="badge">级别 A</span><span class="tname">可直接同步</span><span class="trule">仅需于隐私政策与采集页告知,无须设置勾选;共同前提为已签署数据处理协议与 CCPA 服务商条款附录</span></div>
           <div class="tb">
-            <div class="item"><div class="dt">基础身份与联系方式</div><div class="do">姓名、邮箱、手机号、收货地址。以受托处理者身份接收。手机号入库本身不需授权,用于发送短信方需授权,详见级别 C。</div><div class="state"><b>现状</b>政策 Section 6 已披露 IT 服务商类目</div></div>
+            <div class="item"><div class="dt">基础身份与联系方式</div><div class="do">姓名、邮箱、手机号、收货地址。以受托处理者身份接收。手机号入库本身不需授权,用于发送短信时才需授权,详见级别 C。</div><div class="state"><b>现状</b>政策 Section 6 已披露 IT 服务商类目</div></div>
             <div class="item"><div class="dt">交易与订单数据</div><div class="do">订单、SKU、金额、退换货、物流状态。基于履行合同的必要处理,可用于发货、退款、补货等事务性通知。</div><div class="state"><b>现状</b>政策 4.1 已载明履约用途</div></div>
             <div class="item"><div class="dt">第一方站内行为</div><div class="do">浏览路径、加购、搜索词、停留时长。限自有域名采集、不回传广告平台。<strong>欧盟差异:</strong>如依赖 Cookie,须先经 CMP 取得同意。</div><div class="state"><b>现状</b>CMP 已按性能与功能类目管理,现有 MA 行为采集脚本在该框架内运行</div></div>
             <div class="item"><div class="dt">App 推送 Token</div><div class="do">推送权限经 iOS/Android 系统级弹窗取得,该系统授权即构成合法基础,无须另行取得法律同意。</div><div class="state"><b>现状</b>App 已上线,由平台机制管理</div></div>
@@ -336,7 +336,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
           <div class="th"><span class="badge">级别 B</span><span class="tname">可同步,须提供退出通道</span><span class="trule">美国默认开启并支持退出;欧盟须改为事前同意</span></div>
           <div class="tb">
             <div class="item"><div class="dt">邮件营销</div><div class="do">美国无须事前同意,但每封须含可用退订链接、真实实体地址与准确发件人身份。<strong>欧盟差异:须事前 opt-in</strong>,仅已购客户就同类商品可适用软性豁免。</div><div class="state"><b>现状</b>已设退订表单;<b>待确认</b>注册流程是否按访客地域分流</div></div>
-            <div class="item"><div class="dt">广告平台受众回传</div><div class="do">构成 CPRA 项下的「共享」,<strong>应设独立开关,亦即 Section 4.3 承诺的原本适用对象。</strong></div><div class="state"><b>现状</b>相关像素与增强型转化均已部署,CMP 已作 Cookie 层管理;<b>待补</b>页脚 Do Not Sell or Share 入口与 GPC 响应声明</div></div>
+            <div class="item"><div class="dt">广告平台受众回传</div><div class="do">构成 CPRA 项下的「共享」。<strong>美国:提供 Do Not Sell or Share 入口并响应 GPC;欧盟:须事前同意后加载。</strong>Section 4.3 的承诺范围应限定至此类场景。</div><div class="state"><b>现状</b>相关像素与增强型转化均已部署,CMP 已作 Cookie 层管理;<b>待补</b>页脚 Do Not Sell or Share 入口与 GPC 响应声明</div></div>
             <div class="item"><div class="dt">追踪像素与会话回放</div><div class="do">由 CMP 定向类目统一管理,维持现状即可。建议补充加州访客的默认关闭策略。</div><div class="state"><b>现状</b>脚本阻断机制实测有效,该项已达标</div></div>
           </div>
         </div>
@@ -345,7 +345,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
           <div class="th"><span class="badge">级别 C</span><span class="tname">须事前取得同意</span><span class="trule">未取得同意前不得用于该用途;同意须独立、可留证、可撤回</span></div>
           <div class="tb">
             <div class="item"><div class="dt">手机号用于短信与 WhatsApp</div><div class="do">两个渠道各设独立勾选框,默认不勾选,不与邮件订阅捆绑,亦不互相捆绑。留存同意时间戳、IP 与页面版本快照。平台须支持渠道级同意状态字段,并于 10 日内同步撤回指令。</div><div class="state"><b>现状</b>两渠道均已开展,短信退出机制已具备;<b>待复核</b>入口侧同意采集与留证链条的完整性</div></div>
-            <div class="item"><div class="dt">尺码问卷与体型分类</div><div class="do">胸围罩杯、腰臀围、体型标签、身高体重。如上线相关功能,须单独取得同意并明确说明用途,且不得用于广告平台受众构建。</div><div class="state"><b>现状</b>实测未见该类采集表单,当前无风险敞口</div></div>
+            <div class="item"><div class="dt">身体测量与体型数据</div><div class="do">胸围罩杯、腰臀围、体型标签、身高体重。如上线相关功能,须单独取得同意并明确说明用途,且不得用于广告平台受众构建。</div><div class="state"><b>现状</b>实测未见该类采集表单,当前无风险敞口</div></div>
             <div class="item"><div class="dt">精准地理位置</div><div class="do">多州列为敏感个人信息,须事前同意。建议仅保留城市或邮编级粗粒度,不同步 GPS 坐标。</div><div class="state"><b>现状</b>政策 2.1(e) 载明收集 IP 与时区,未见 GPS 级采集</div></div>
           </div>
         </div>
@@ -362,7 +362,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
         </div>
 
       </div>
-      <div class="note"><b>适用说明:</b>级别 A 与 B 已覆盖 MA 平台的主要业务场景,均不需要前置授权环节。</div>
+      <div class="note"><b>适用说明:</b>级别 A 与 B 已覆盖 MA 平台的主要业务场景。其中美国侧均无须前置授权;欧盟侧所需的同意由 Cookie 偏好中心统一承载,而非针对 MA 平台单独设置。</div>
     </section>
   </div>
 
@@ -378,7 +378,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-si
             <tr><td class="k">收窄 Section 4.3 适用范围</td><td class="n">限定为会为自身目的使用数据的第三方,排除受托服务商</td><td class="n">第一节</td></tr>
             <tr><td class="k">Section 6 增列供应商类目</td><td class="n">单列「营销与客户沟通平台」,载明仅按指令处理</td><td class="n">第一节</td></tr>
             <tr><td class="k">签署数据处理协议</td><td class="n">GDPR 第 28 条条款、CCPA 服务商条款附录与子处理者清单,构成受托处理者定性的合同基础</td><td class="n">第二节</td></tr>
-            <tr><td class="k">授权环节迁移至广告平台受众回传</td><td class="n">保留针对该场景的独立开关,并于页脚补充 Do Not Sell or Share 入口与 GPC 响应声明</td><td class="n">第三节 · 第五节</td></tr>
+            <tr><td class="k">将 Section 4.3 承诺范围限定至广告平台受众回传</td><td class="n">该场景按法域落地:美国于页脚补充 Do Not Sell or Share 入口并响应 GPC;欧盟维持同意后加载</td><td class="n">第三节 · 第五节</td></tr>
             <tr><td class="k">补齐隐私政策的美国州法专章</td><td class="n">增设 CCPA/CPRA 章节与 Notice at Collection 类别表,列明各州数据主体权利与行使方式。以美国为主力市场,此项为当前最具实质性的合规缺口</td><td class="n">—</td></tr>
             <tr><td class="k">指定并公示 GDPR 第 27 条代表</td><td class="n">分别指定欧盟代表与英国代表并公示联系方式,属低成本、高暴露度的形式义务</td><td class="n">第三节</td></tr>
             <tr><td class="k">复核短信与 WhatsApp 同意链条</td><td class="n">确认同意声明的独立性,以及时间戳、IP 与页面版本快照的留存完整性</td><td class="n">第三节 · 第五节</td></tr>
