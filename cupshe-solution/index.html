@@ -653,8 +653,8 @@
         <p class="hero-subtitle">把现有平台上的七条生命周期旅程一条不少地迁入并升级，再新增六条现有平台没有对应能力的旅程：每笔订单或每个商品一个实例、发送前查库存再说话、一次等待同时监听多个事件、跨渠道统一频控、WhatsApp 与短信自有通道闭环。四周对照验证后整体切换。</p>
         <div class="grid grid-4">
           <div class="stat">
-            <div class="stat-value warn">$361.5 亿</div>
-            <div class="stat-label">2030 年全球泳装市场规模预测，2024–2030 年复合增长 6.8%（Grand View Research）</div>
+            <div class="stat-value warn">2.77%</div>
+            <div class="stat-label">服饰类目电商转化率，400 余品牌 12 个月滚动基准（Dynamic Yield，2026 年 7 月）</div>
           </div>
           <div class="stat">
             <div class="stat-value info">70.2%</div>
@@ -818,7 +818,7 @@
                 <li><span class="bold">再次进入</span>：不可再次进入（同一邮箱的订阅事件仅发生一次）</li>
                 <li><span class="bold">提前退出</span>：事件「订单支付成功」</li>
                 <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听窗口 3 天；<span class="bold">收入统计</span>：同一事件 + 订单金额属性，监听窗口 3 天</li>
-                <li><span class="bold">Email 一</span>：模板消息，订阅后立即发送首单权益码，不加可发送时间；14 种语言按用户语言属性匹配</li>
+                <li><span class="bold">Email 一</span>：模板消息，订阅后立即发送首单权益码，不加可发送时间；多语言版本按用户语言属性匹配</li>
                 <li><span class="bold">等待事件</span>：3 天内同时监听「加入购物车」与「商品浏览」两个事件分支 + 默认分支——已加购结束交由旅程 5 承接；已浏览走类目精选；超时走本周热门</li>
                 <li><span class="bold">Email 二 / 三</span>：模板消息，类目精选按事件属性「浏览类目」用变量插入同一模板；本周热门为通用内容</li>
                 <li><span class="bold">等待</span>：3 天</li>
@@ -987,7 +987,7 @@
                 <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按订单并行），并发上限 5——每笔订单一个独立实例</li>
                 <li><span class="bold">提前退出</span>：事件「订单支付成功」——再次下单即复购达成，所有实例退出</li>
                 <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听窗口 5 天；<span class="bold">收入统计</span>：同一事件 + 订单金额属性，监听窗口 5 天；评价率由等待事件的分支统计查看</li>
-                <li><span class="bold">等待</span>：3 天 / 14 天两段固定等待</li>
+                <li><span class="bold">等待</span>：3 天 / 20 天两段固定等待（送达第 3 天首条，第 10 天补评价提醒，第 30 天推搭配）</li>
                 <li><span class="bold">条件分支</span>：属性「App 已安装」——App Push 通知消息（深度链接到订单的退换与评价页）/ Email 模板消息；退换入口按事件属性「是否可退换」显隐</li>
                 <li><span class="bold">等待事件</span>：7 天内同时监听「申请退换」与「提交评价」+ 默认分支，属性过滤订单号等于本实例值——已申请退换结束交由售后流程，不再索评；已评价结束；超时走默认分支</li>
                 <li><span class="bold">Email 二</span>：模板消息，晒图评价可得会员积分，积分数取贵司会员规则变量</li>
@@ -1201,7 +1201,7 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>先买后付、预售与支付中断都会留下待付款订单，订单会在期限后自动失效</li>
+                <li>先买后付、预售与支付中断都会留下待付款订单，支付期限以贵司订单规则为准</li>
                 <li>同一用户两笔待付款订单，单实例只能催第一笔</li>
                 <li>支付链接与失效时间是每笔订单不同的，群发模板给不了</li>
               </ul>
@@ -1330,7 +1330,7 @@
                 <li><span class="bold">提前退出</span>：事件「会员等级升级」</li>
                 <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听窗口 14 天；<span class="bold">收入统计</span>：同一事件 + 订单金额属性，监听窗口 14 天</li>
                 <li><span class="bold">Webhook</span>：请求贵司会员接口取当前等级、积分与距下一等级差额，响应写入变量</li>
-                <li><span class="bold">条件分支一</span>：Webhook 响应「距下一等级差额」小于等于阈值（建议取比基尼在售价中位 $39 的两倍）/ 其他——其他直接结束</li>
+                <li><span class="bold">条件分支一</span>：Webhook 响应「距下一等级差额」小于等于阈值（建议取一件商品的客单价量级，第 1 周按贵司会员规则校准）/ 其他——其他直接结束</li>
                 <li><span class="bold">等待</span>：3 天</li>
                 <li><span class="bold">条件分支二</span>：属性「App 已安装」——App Push 通知消息 / Email 模板消息，差额、下一等级名称与权益通过变量插入</li>
                 <li><span class="bold">等待事件</span>：14 天内等待「加入购物车」，已加购结束交由旅程 5 承接；超时结束</li>
@@ -1386,7 +1386,7 @@
                 <li><span class="bold">再次进入</span>：退出后可再次进入，间隔 60 天，最多进入 2 次</li>
                 <li><span class="bold">提前退出</span>：事件「订单支付成功」</li>
                 <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听窗口 5 天；<span class="bold">收入统计</span>：同一事件 + 订单金额属性，监听窗口 5 天</li>
-                <li><span class="bold">条件分支</span>：属性「App 已安装」——App Push 通知消息 / Email 模板消息，内容为日常系列上新（连衣裙、上衣、毛衣）</li>
+                <li><span class="bold">条件分支</span>：属性「App 已安装」——App Push 通知消息 / Email 模板消息，内容为日常系列上新（连衣裙、针织、上衣）</li>
                 <li><span class="bold">等待事件</span>：5 天内等待「商品浏览」，已浏览结束交由旅程 5 承接，超时走默认分支</li>
                 <li><span class="bold">等待</span>：7 天</li>
                 <li><span class="bold">Email 二</span>：模板消息，会员积分余额与免费退换权益提醒，不带折扣</li>
@@ -1883,7 +1883,7 @@
         { id: 'endB', kind: 'exitOk', title: '结束', sub: '已评价' },
         ST('st2', '终端时区 10:00–20:00'),
         { id: 'em2', kind: 'channel', title: 'Email', sub: '模板消息 · 晒图得积分' },
-        { id: 'w2', kind: 'wait', title: '等待', sub: '14 天' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '20 天' },
         { id: 'wh1', kind: 'webhook', title: 'Webhook', sub: '取本单搭配推荐' },
         ST('st3', '终端时区 10:00–20:00'),
         { id: 'em3', kind: 'channel', title: 'Email', sub: '模板消息 · 搭配推荐' },
