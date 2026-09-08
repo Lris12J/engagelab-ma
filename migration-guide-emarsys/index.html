@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageLab MA · 从 Emarsys 迁入 EngageLab MA 迁移指南</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 920px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+
+    @media (max-width: 900px) {
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-12-1 { grid-template-columns: 1fr; }
+    }
+  </style>
+
+
+  <style>
+    /* ===================================================================
+       视觉升级层 (20260828)
+       追加在原有样式之后，靠层叠顺序覆盖，不改动原有规则
+       =================================================================== */
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f6f8fb;
+      --bg-elev: #ffffff;
+      --border: #e8ecf2;
+      --border-strong: #d5dbe5;
+      --text: #0f172a;
+      --text-2: #3d4a5c;
+      --text-3: #6b7789;
+      --text-4: #97a1b0;
+      --accent: #2563eb;
+      --accent-2: #4f7dff;
+      --accent-soft: #e7efff;
+      --success: #0f9d63;
+      --success-soft: #e2f7ee;
+      --warning: #c2700a;
+      --warning-soft: #fdf1dc;
+      --info: #0369a1;
+      --info-soft: #e2f2fb;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --ink-dark: #0e1116;
+      --ink-dark-2: #1a1f2b;
+      --mint: #00d4a0;
+      --sky: #7cb0ff;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,.05);
+      --shadow: 0 1px 3px rgba(15,23,42,.05), 0 10px 28px -12px rgba(15,23,42,.10);
+      --shadow-lg: 0 2px 6px rgba(15,23,42,.06), 0 22px 48px -20px rgba(15,23,42,.18);
+      --mono-stack: "SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15.5px; }
+
+    /* ===== 通栏色带布局：main 放开宽度，section 内部收敛 ===== */
+    main { max-width: none; margin: 0; padding: 0; }
+    main > section { padding: 62px 28px; margin: 0; }
+    /* 宽度靠 .wrap 层约束，不依赖子元素的 auto 外边距——
+       否则任何使用 margin 简写的规则都会把居中打破（如 hero-subtitle / divider）*/
+    main > section > .wrap { max-width: 1180px; margin: 0 auto; }
+    main > section.section-plain { border: 0; border-radius: 0; background: transparent; }
+    main > section.section-plain:nth-of-type(even) { background: var(--bg-soft); }
+    main > section.section { border: 0; border-radius: 0; background: var(--bg-soft); }
+
+    /* ===== 字号层级 ===== */
+    h1 { font-size: 38px; font-weight: 750; letter-spacing: -0.022em; line-height: 1.18; margin: 0 0 10px; }
+    h2 { font-size: 27px; font-weight: 720; letter-spacing: -0.018em; line-height: 1.28;
+      margin: 0 0 16px; color: var(--text); }
+    h3 { font-size: 17.5px; font-weight: 650; margin: 0 0 10px; letter-spacing: -0.008em; color: var(--text); }
+    p { margin: 0 0 10px; color: var(--text-2); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 650; color: var(--text); }
+    .muted { color: var(--text-3); }
+    .mono { font-family: var(--mono-stack); font-size: 0.92em; }
+    .divider { height: 1px; background: var(--border); margin: 26px 0; border: none; }
+    .spacer-md { height: 20px; }
+
+    /* ===== 章节序号徽标 + eyebrow ===== */
+    h2 .secnum { display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: #fff;
+      font-family: var(--mono-stack); font-size: 15px; font-weight: 700;
+      margin-right: 12px; vertical-align: 3px; flex: none; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px;
+      font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px; }
+    .eyebrow::before { content: ""; width: 20px; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--mint)); }
+
+    /* ===== 顶部导航 ===== */
+    /* 注意：旧版 .toc-bar 带 margin:-32px -28px（用于抵消 main 内边距），
+       升级后 main 已全宽，必须重置，否则导航会横向溢出 56px */
+    .toc-bar { margin: 0; width: 100%; max-width: 100%; }
+    .toc-bar { position: sticky; top: 0; z-index: 30; padding: 0 28px;
+      background: rgba(255,255,255,.86); backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid var(--border); font-size: 13px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 20px;
+      align-items: center; height: 58px; overflow-x: auto; scrollbar-width: none; }
+    .toc-bar .toc-inner::-webkit-scrollbar { display: none; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
+      font-weight: 500; transition: color .15s ease; }
+    .toc-bar a:hover { color: var(--accent); }
+    /* 品牌名即返回首页入口：整块（图标 + 文字）一起高亮 */
+    .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
+      align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer;
+      transition: color .16s ease; }
+    .toc-bar a.brand .brand-home { width: 17px; height: 17px; flex: none;
+      color: var(--accent); transition: color .16s ease, transform .16s ease; }
+    .toc-bar a.brand:hover { color: var(--accent); }
+    .toc-bar a.brand:hover .brand-home { color: var(--accent); transform: translateY(-1px); }
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
+      margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
+      font-size: 13px; font-weight: 500; }
+    a.back-home:hover { color: var(--accent); background: none; }
+    a.back-home svg { width: 14px; height: 14px; opacity: .8; }
+
+    /* ===== Hero · 深色 ===== */
+    main > section.hero { position: relative; overflow: hidden; color: #fff;
+      border: 0; border-radius: 0; margin: 0; padding: 58px 28px 54px;
+      background: linear-gradient(150deg, var(--ink-dark) 0%, var(--ink-dark-2) 55%, #232b3d 100%); }
+    main > section.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(900px 420px at 88% -8%, rgba(0,212,160,.16), transparent 62%),
+        radial-gradient(760px 380px at 6% 108%, rgba(79,125,255,.20), transparent 60%); }
+    main > section.hero > .wrap { position: relative; z-index: 1; }
+    .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
+    .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
+      -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero .hero-subtitle { color: rgba(255,255,255,.74); font-size: 16px; line-height: 1.72;
+      max-width: 940px; margin: 10px 0 20px; }
+    .hero .hero-subtitle .bold { color: #fff; }
+    .hero-pills { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 18px; }
+    .hero .pill { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18);
+      color: rgba(255,255,255,.86); }
+    .hero .pill-accent { background: rgba(0,212,160,.12); border-color: rgba(0,212,160,.4); color: var(--mint); }
+    .hero .pill-info { background: rgba(124,176,255,.12); border-color: rgba(124,176,255,.38); color: var(--sky); }
+    .hero .pill-success { background: rgba(0,212,160,.12); border-color: rgba(0,212,160,.4); color: var(--mint); }
+    .hero .pill-warn { background: rgba(255,209,102,.12); border-color: rgba(255,209,102,.4); color: #ffd166; }
+    .hero .divider { background: rgba(255,255,255,.12); }
+    .hero .stat { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius); box-shadow: none; padding: 18px 18px 16px; }
+    .hero .stat-value { font-family: var(--mono-stack); font-size: 24px; font-weight: 700;
+      color: #fff; letter-spacing: -0.02em; }
+    .hero .stat-value.info { color: #a5c8ff; }
+    .hero .stat-value.success { color: var(--mint); }
+    .hero .stat-value.warn { color: #ffd166; }
+    .hero .stat-label { color: rgba(255,255,255,.6); font-size: 12px; margin-top: 6px; line-height: 1.45; }
+    .hero .muted { color: rgba(255,255,255,.45) !important; }
+    .hero p { color: rgba(255,255,255,.74); }
+
+    /* ===== 基础组件 ===== */
+    .pill { display: inline-flex; align-items: center; padding: 4px 12px; font-size: 12.5px;
+      border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-2);
+      background: #fff; font-weight: 550; }
+    .pill-accent { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: transparent; color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: transparent; color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: transparent; color: var(--warning); }
+
+    .grid { gap: 18px; }
+    .row { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 20px 20px 18px; background: var(--bg-elev);
+      border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+    .stat-value { font-size: 28px; font-weight: 750; letter-spacing: -0.025em;
+      color: var(--text); line-height: 1.15; }
+    .stat-label { font-size: 12.5px; color: var(--text-3); margin-top: 7px; line-height: 1.5; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+      transition: box-shadow .18s ease; }
+    .card:hover { box-shadow: var(--shadow-lg); }
+    .card-header { padding: 13px 18px; border-bottom: 1px solid var(--border);
+      font-weight: 700; font-size: 13.6px; color: var(--text); background: #fcfdff;
+      letter-spacing: -0.006em; }
+    .card-body { padding: 18px; }
+    .card-body.p-sm { padding: 13px; }
+    .card-body li { margin-bottom: 6px; font-size: 13.5px; color: var(--text-2); line-height: 1.65; }
+    .card-body p { font-size: 14px; }
+
+    .callout { padding: 15px 17px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; }
+    .callout-title { font-weight: 700; margin-bottom: 5px; font-size: 14px; letter-spacing: -0.008em; }
+    .callout-body { font-size: 13.4px; color: var(--text-2); }
+    .callout-body p { font-size: 13.4px; color: var(--text-2); margin: 0 0 5px; line-height: 1.7; }
+    .callout-body p:last-child { margin-bottom: 0; }
+    .callout.info { border-left-color: var(--accent); background: var(--accent-soft); border-color: #d3e2ff; }
+    .callout.info .callout-title { color: var(--accent); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); border-color: #c9eedd; }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); border-color: #f6e2c0; }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-4); background: #fff; }
+
+    /* ===== 表格 ===== */
+    table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.6px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow); }
+    th, td { padding: 13px 15px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #f8fafc; font-weight: 700; font-size: 11.5px; color: var(--text-3);
+      letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    tbody tr { transition: background .14s ease; }
+    tbody tr:hover td { background: #f9fbff; }
+    tr.tone-success td { background: rgba(15, 157, 99, .045); }
+    tr.tone-info td { background: rgba(37, 99, 235, .04); }
+
+    .signal-row { display: flex; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .label { font-size: 13.5px; font-weight: 650; color: var(--text); }
+    .signal-row .hint { font-size: 12.3px; color: var(--text-3); line-height: 1.5; }
+    .signal-row .value { font-weight: 750; color: var(--danger); font-size: 15px;
+      font-family: var(--mono-stack); white-space: nowrap; }
+
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 10px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%; background: var(--accent);
+      color: #fff; font-weight: 700; font-size: 12px; margin-right: 9px; }
+
+    /* ===== 响应式（旧版方案原本缺失，后补齐）===== */
+    @media (max-width: 980px) {
+      main > section { padding: 44px 18px; }
+      main > section.hero { padding: 38px 18px 34px; }
+      h1, .hero h1 { font-size: 26px; }
+      h2 { font-size: 21px; }
+      h2 .secnum { width: 26px; height: 26px; font-size: 13px; margin-right: 9px; vertical-align: 2px; }
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-1-2, .grid-12-1, .grid-5 { grid-template-columns: 1fr !important; }
+      .grid { gap: 14px; }
+      /* 表格在窄屏可横向滚动，避免整页溢出 */
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+      .toc-bar .toc-inner { height: 52px; }
+      .card-body, .callout { padding: 14px; }
+    }
+
+    /* ===== 打印 / PDF 导出 ===== */
+    @page { size: A4; margin: 12mm; }
+    @media print {
+      html, body { background: #fff; font-size: 12px; }
+      .toc-bar, a.back-home { display: none !important; }
+      main > section { padding: 20px 0 !important; background: #fff !important; }
+      main > section.section-plain:nth-of-type(even) { background: #fff !important; }
+      main > section.hero { padding: 22px 18px !important;
+        background: linear-gradient(150deg, #0e1116 0%, #1a1f2b 100%) !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main > section.hero::before { display: none; }
+      .card, table, .stat { box-shadow: none !important; page-break-inside: avoid; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; height: auto; }
+      table { display: table; white-space: normal; }
+    }
+  </style>
+
+
+<style>
+  /* ═══ 阅读增强层 · 20260831 ═══
+     设计原则：默认状态全部可见。JS 只负责「收起」与「加动效」，
+     因此无 JS、打印、PDF 导出时内容永远完整。 */
+
+  /* 吸顶导航高 58px——所有锚点目标留出偏移，否则标题会被盖住 */
+  main > section { scroll-margin-top: 70px; }
+
+  /* ── 图注 / 表注的要点列表 ── */
+  .notelist { margin: 7px 0 0; padding-left: 17px; }
+  .notelist li { font-size: 12.6px; color: var(--text-3); margin-bottom: 4px; line-height: 1.6; }
+  .notelist li:last-child { margin-bottom: 0; }
+
+  /* ── callout 内的要点列表（文案密度规则 §1.6）── */
+  .callout-body ul { margin: 0; padding-left: 17px; }
+  .callout-body li { margin-bottom: 5px; line-height: 1.62; }
+  .callout-body li:last-child { margin-bottom: 0; }
+
+  /* ── TOC 场景下拉 ── */
+  .toc-drop { position: relative; display: inline-flex; align-items: center; }
+  .toc-drop-btn {
+    font: inherit; color: var(--text-3); background: none; border: 0; padding: 0;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+    white-space: nowrap; font-weight: 500; transition: color .15s ease;
+  }
+  .toc-drop-btn:hover, .toc-drop[data-open="1"] .toc-drop-btn { color: var(--accent); }
+  .toc-drop-btn .caret { font-size: 9px; transition: transform .18s ease; }
+  .toc-drop[data-open="1"] .caret { transform: rotate(180deg); }
+  /* 用 fixed 定位：TOC 容器有 overflow-x:auto，absolute 面板会被裁掉 */
+  .toc-drop-panel {
+    position: fixed; top: 0; left: 0;
+    min-width: 236px; background: var(--bg-elev);
+    border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: var(--shadow-lg); padding: 7px; z-index: 60;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .toc-drop-panel[hidden] { display: none; }
+  .toc-drop-panel a {
+    display: flex; align-items: center; gap: 9px; padding: 7px 10px;
+    border-radius: 7px; font-size: 13px; color: var(--text-2); white-space: nowrap;
+  }
+  .toc-drop-panel a:hover { background: var(--accent-soft); color: var(--accent); }
+  .toc-drop-panel .sd-n {
+    flex: none; width: 19px; height: 19px; border-radius: 6px;
+    background: var(--bg-soft); color: var(--text-3);
+    font-family: var(--mono-stack); font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .toc-drop-panel a:hover .sd-n { background: var(--accent); color: #fff; }
+  .toc-drop-panel .sd-all {
+    font-weight: 650; color: var(--text);
+    border-bottom: 1px solid var(--border); border-radius: 7px 7px 0 0; margin-bottom: 4px;
+  }
+
+
+
+  /* ── 场景视觉锚点：大号序号 + 生命周期阶段色带 ── */
+  main > section[data-scene] {
+    border-top: 3px solid var(--stage, var(--border-strong));
+    padding-top: 44px;
+  }
+  main > section[data-stage="acquire"]  { --stage: #2563eb; --stage-soft: #e7efff; }
+  main > section[data-stage="activate"] { --stage: #0e7490; --stage-soft: #ddf1f8; }
+  main > section[data-stage="retain"]   { --stage: #c2700a; --stage-soft: #fdf1dc; }
+  main > section[data-stage="repeat"]   { --stage: #0f9d63; --stage-soft: #e2f7ee; }
+  main > section[data-stage="campaign"] { --stage: #6d28d9; --stage-soft: #efe9fe; }
+  main > section[data-stage="advocacy"] { --stage: #be123c; --stage-soft: #ffe4ea; }
+
+  .scene-head { display: flex; align-items: center; gap: 20px; margin-bottom: 14px; }
+  .scene-num {
+    flex: none; font-family: var(--mono-stack);
+    font-size: 44px; font-weight: 700; line-height: 1;
+    letter-spacing: -0.03em; color: var(--stage);
+    font-variant-numeric: tabular-nums;
+  }
+  .scene-head-main { min-width: 0; }
+  .scene-head h2 { margin: 0; }
+  /* 阶段 pill 染成该场景的阶段色，让 6 个场景一眼可区分 */
+  main > section[data-scene] .row .pill.pill-info {
+    background: var(--stage-soft); border-color: var(--stage); color: var(--stage);
+  }
+
+  /* ── 场景区粘性子导航（滚进场景区才出现）── */
+  .scene-rail {
+    position: fixed; top: 58px; left: 0; right: 0; z-index: 28;
+    background: rgba(255,255,255,.9);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-102%); opacity: 0;
+    transition: transform .28s cubic-bezier(.22,.61,.36,1), opacity .2s ease;
+    pointer-events: none;
+  }
+  .scene-rail.is-on { transform: none; opacity: 1; pointer-events: auto; }
+  .scene-rail-inner {
+    max-width: 1180px; margin: 0 auto; padding: 0 28px;
+    height: 46px; display: flex; align-items: center; gap: 4px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .scene-rail-inner::-webkit-scrollbar { display: none; }
+  .scene-rail .sr-label {
+    flex: none; font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--text-4); margin-right: 12px; white-space: nowrap;
+  }
+  .scene-rail a {
+    flex: none; display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 11px; border-radius: 100px; font-size: 12.5px; font-weight: 500;
+    color: var(--text-3); text-decoration: none; white-space: nowrap;
+    transition: background .16s ease, color .16s ease;
+  }
+  .scene-rail a .sr-n {
+    font-family: var(--mono-stack); font-size: 11px; font-weight: 700;
+    color: var(--text-4); transition: color .16s ease;
+  }
+  .scene-rail a:hover { background: var(--bg-soft); color: var(--text); }
+  .scene-rail a.is-active { background: var(--sr-stage-soft, var(--accent-soft)); color: var(--sr-stage, var(--accent)); font-weight: 650; }
+  .scene-rail a.is-active .sr-n { color: var(--sr-stage, var(--accent)); }
+  @media (max-width: 720px) { .scene-rail .sr-label { display: none; } }
+
+  /* 有子导航时，锚点偏移要加上它的高度 */
+  main > section[data-scene] { scroll-margin-top: 112px; }
+
+  /* ── 整块浮起：场景块作为一个整体进入 ── */
+  .anim-ready main > section[data-scene] > .wrap { opacity: 0; transform: translateY(18px); }
+  .anim-ready main > section[data-scene].is-in > .wrap {
+    opacity: 1; transform: none;
+    transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);
+  }
+
+  /* ── 右侧圆点导航 ── */
+  .rail {
+    position: fixed; right: 22px; top: 50%; transform: translateY(-50%);
+    z-index: 25; display: flex; flex-direction: column; gap: 13px;
+  }
+  .rail a {
+    position: relative; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--border-strong); transition: background .18s ease, transform .18s ease;
+  }
+  .rail a::after {
+    content: attr(data-label); position: absolute; right: 20px; top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: var(--ink-dark); color: #fff; font-size: 11.5px; font-weight: 500;
+    padding: 4px 9px; border-radius: 6px; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity .16s ease, transform .16s ease;
+  }
+  .rail a:hover { background: var(--accent); transform: scale(1.25); }
+  .rail a:hover::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+  .rail a.is-active { background: var(--accent); transform: scale(1.35); }
+  .rail a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (max-width: 1320px) { .rail { display: none; } }
+
+  /* ── 图表 hover 高亮 ── */
+  .chart svg .bar { transition: opacity .15s ease; cursor: default; }
+  .chart svg:hover .bar { opacity: .38; }
+  .chart svg .bar:hover { opacity: 1; }
+  .chart-tip {
+    position: fixed; z-index: 80; pointer-events: none; opacity: 0;
+    background: var(--ink-dark); color: #fff; font-size: 12px; line-height: 1.5;
+    padding: 6px 10px; border-radius: 7px; white-space: nowrap;
+    transition: opacity .12s ease; box-shadow: var(--shadow);
+  }
+  .chart-tip.is-on { opacity: 1; }
+  .chart-tip b { font-weight: 650; }
+
+  /* ── 滚动入场动效（仅在 JS 判定可用时启用）── */
+  .anim-ready .reveal { opacity: 0; transform: translateY(14px); }
+  .anim-ready .reveal.is-in {
+    opacity: 1; transform: none;
+    transition: opacity .5s cubic-bezier(.22,.61,.36,1), transform .5s cubic-bezier(.22,.61,.36,1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-ready .reveal,
+    .anim-ready main > section[data-scene] > .wrap {
+      opacity: 1 !important; transform: none !important; transition: none !important;
+    }
+    .scene-rail { transition: none !important; }
+    .toc-drop-btn .caret, .rail a { transition: none !important; }
+  }
+
+  /* ── 打印 / PDF：强制全部展开、去掉一切装饰 ── */
+  @media print {
+    .anim-ready .reveal,
+    .anim-ready main > section[data-scene] > .wrap { opacity: 1 !important; transform: none !important; }
+    .rail, .toc-drop, .scene-rail, .chart-tip { display: none !important; }
+    main > section[data-scene] { break-before: page; }
+    .chart svg .bar { opacity: 1 !important; }
+  }
+</style>
+
+
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA 解决方案</a>
+      <a href="#s-principles">迁移原则</a>
+      <a href="#s-roadmap">路线图</a>
+      <a href="#s-inventory">Emarsys 导出清单</a>
+      <a href="#s-mapping">数据映射</a>
+      <a href="#s-warmup">发信预热</a>
+      <a href="#s-cutover">对照与切换</a>
+      <a href="#s-raci">分工</a>
+      <a href="#s-faq">常见问题</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-pills">
+          <span class="pill pill-accent">迁移指南</span>
+          <span class="pill pill-info">从 SAP Emarsys（SAP Engagement Cloud）迁入 EngageLab MA</span>
+          <span class="pill">邮件 · App Push · Web Push · 短信 · WhatsApp</span>
+        </div>
+        <h1>从 Emarsys 迁入 EngageLab MA · <span class="grad">迁移指南</span></h1>
+        <p class="hero-subtitle">这份指南写给正在把生命周期营销从 SAP Emarsys（2026 年起更名 SAP Engagement Cloud）迁到 EngageLab MA 的运营与技术负责人。它回答四件事：在 Emarsys 里从哪里导出什么、我们如何接收、发信信誉如何平滑过渡、以及怎样在不中断触达的前提下完成切换。Emarsys 侧的操作路径与限制均取自 SAP 公开文档与 API 参考，以贵司账号的实际版本为准。</p>
+        <div class="grid grid-4">
+          <div class="stat">
+            <div class="stat-value info">8–12 周</div>
+            <div class="stat-label">从盘点到整体切换的典型周期，含 4 周并行对照与 4–6 周发信预热</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value success">2 周</div>
+            <div class="stat-label">首批旅程上线的时间：抑制名单与事件接入完成后即可小流量运行</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value warn">13 个月</div>
+            <div class="stat-label">Emarsys 邮件响应与数据变更导出的可选时间窗上限，更早的历史只能经 Open Data 取得</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">20 个</div>
+            <div class="stat-label">Emarsys 联系人导出接口单次可选的字段数上限，字段多时分批导出后按外部 ID 拼接</div>
+          </div>
+        </div>
+        <p class="small muted" style="margin-top:16px">周期为典型值，实际以贵司资产盘点结果为准；Emarsys 功能与限制以 SAP 当前文档为准。</p>
+      </div>
+    </section>
+
+    <section id="s-principles" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">迁移原则</div>
+        <h2><span class="secnum">1</span>六条原则，先于任何操作</h2>
+        <div class="grid grid-3">
+          <div class="card"><div class="card-header">抑制名单先于任何发送</div><div class="card-body p-sm"><p style="margin:0">退订、硬退信与投诉名单在第一封邮件发出之前导入，并同步为旅程可引用的订阅状态属性。Emarsys 没有独立的退订名单导出按钮，需要用分群导出（见第 3 节）。</p></div></div>
+          <div class="card"><div class="card-header">主键用贵司自己的 ID</div><div class="card-body p-sm"><p style="margin:0">Emarsys 导出文件自带的内部编号 user_id 只在活跃联系人中唯一，删除后可能被复用，SAP 文档也明确不建议在外部依赖它。以会员 ID 或邮箱为标识注册，手机号、设备号作为附加标识合并到同一个用户。</p></div></div>
+          <div class="card"><div class="card-header">自动化不搬，按映射表重建</div><div class="card-body p-sm"><p style="margin:0">Automation Center 的程序、Interactions 与 Tactics 都没有导出功能。先把每条程序写成「触发 · 等待 · 分支 · 消息」四要素，再用我方组件重建，重建时顺手升级。</p></div></div>
+          <div class="card"><div class="card-header">新子域发信，旧子域保留到合同终止</div><div class="card-body p-sm"><p style="margin:0">Emarsys 的发信（From）、跟踪链接（Link）与图片（Image）三个子域记录不动，否则历史邮件里的链接与图片立即失效。为我方新建三个子域，SAP 自己的迁移文档也建议新平台用新子域。</p></div></div>
+          <div class="card"><div class="card-header">推送订阅不迁移</div><div class="card-body p-sm"><p style="margin:0">Emarsys 的 Web Push FAQ 明确不建议跨供应商导入推送订阅。我方 Web Push SDK 在同一域名上线后，用户再次访问时静默重新订阅，不会再次弹窗。App 端两套 SDK 并存一个版本周期，按版本切流。</p></div></div>
+          <div class="card"><div class="card-header">按用户切流做对照，不按渠道叠加</div><div class="card-body p-sm"><p style="margin:0">实验组用户在 Emarsys 全部程序中排除，由 EngageLab 承接；对照组维持现状。两套平台看不见对方的发送量，按渠道叠加会重复触达。</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="s-roadmap" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">路线图</div>
+        <h2><span class="secnum">2</span>从盘点到切换：五个阶段</h2>
+        <table>
+          <thead><tr><th>阶段</th><th>周次</th><th>关键动作</th><th>出口条件</th></tr></thead>
+          <tbody>
+            <tr><td><span class="step-num">0</span>盘点与合同</td><td>第 0 周</td><td>按第 3 节清单盘点资产；读 SAP Order Form 确认到期日与不续约通知窗口；确认是否已订阅 Open Data</td><td>盘点表完成；切换截止日确定</td></tr>
+            <tr><td><span class="step-num">1</span>导出、DNS 与抑制名单</td><td>第 1–2 周</td><td>Emarsys 全量导出并导入；新子域 DNS 验证；抑制名单导入；项目、属性、事件、通道配置；SDK 与接口接入</td><td>核心事件入库率 ≥ 95%；抑制名单导入完整；DNS 验证通过</td></tr>
+            <tr><td><span class="step-num">2</span>重建与预热</td><td>第 3–6 周</td><td>程序按映射表重建为旅程；模板重建与多语言核对；发信预热启动；首批旅程小流量对照上线（实验组 50%）</td><td>首批旅程按设计发出、无配置报错</td></tr>
+            <tr><td><span class="step-num">3</span>并行对照与扩量</td><td>第 6–10 周</td><td>实验组扩至 80%；每周双向同步一次退订状态；Emarsys 用定时导出输出增量联系人</td><td>主指标相对对照组的提升可读；预热完成</td></tr>
+            <tr><td><span class="step-num">4</span>切换与收尾</td><td>第 10–12 周</td><td>对照组并入；Emarsys 程序全部停用、账号转只读；素材从 Emarsys 内容分发网络回迁到自有网络；Web Extend 脚本移除；确认 SAP 数据删除时点</td><td>切换后 7 天各旅程进入与发送量与切换前一致；旧平台无发送</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>避开旺季启动：主战场在北半球的服饰与泳装品牌，迁移窗口为 1–3 月或 8–9 月；促销密集的第四季度只做切换后的稳定运行。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s-inventory" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">Emarsys 导出清单</div>
+        <h2><span class="secnum">3</span>在 Emarsys 里从哪里导出什么</h2>
+        <p>下表按资产列出 Emarsys 的导出入口、格式与已知限制。入口名称以 SAP Help Portal 与 dev.emarsys.com 的当前文档为准。</p>
+        <table>
+          <thead><tr><th>资产</th><th>Emarsys 中的入口与操作</th><th>格式</th><th>已知限制与处理</th></tr></thead>
+          <tbody>
+            <tr><td>联系人与字段</td><td>Contacts › Data Export › Contact List：范围可选全库、某个 Segment 或 Contact List；投递方式 Email 下载链接、SFTP 或 WebDAV。接口方式：POST /api/v3/email/getcontacts，异步，配合 Check Export Status 与 Download Export Data</td><td>CSV，可选分隔符与字段名表头</td><td>接口单次最多 20 个字段，多批次按贵司外部 ID 拼接；导出自带的内部 user_id 不作主键；Segment 导出只含联系人字段，Relational Data 字段带不出来</td></tr>
+            <tr><td>增量联系人</td><td>Contacts › Data Export › Data changes：按字段与时间段导出变更过的联系人，支持定时导出</td><td>CSV，单文件不超过 10 GB</td><td>时间窗最多回溯 13 个月；当天变更不可导；由导入产生的变更不导出。并行期用它每周输出增量</td></tr>
+            <tr><td>邮件订阅状态</td><td>系统字段 Opt-in（Email）与 Mobile SMS Opt-in 随联系人一起导出；若用了多种订阅类型，每种是独立状态，逐一导出</td><td>字段值 True / False</td><td>退订链接与 STOP 会把对应字段置 False，导出即为当前状态</td></tr>
+            <tr><td>退订名单</td><td>建一个 Segment「Opt-in = False」，再走 Data Export 导出</td><td>CSV，至少含 email 字段</td><td>导出时若所选字段全为空则整行不导出，务必勾选 email 字段</td></tr>
+            <tr><td>硬退信名单</td><td>Segment「Email Valid = NO」或邮件行为条件「Hard bounce」，再导出</td><td>CSV</td><td>Bounce Management 阈值下的软退信累计也会把 Email Valid 置 NO，一并导出即可</td></tr>
+            <tr><td>投诉名单</td><td>无独立导出入口；Open Data 的 Email 数据视图含投诉事件</td><td>BigQuery 查询导出</td><td>未订阅 Open Data 时向 SAP 客户成功经理索取；发第一封前必须拿到</td></tr>
+            <tr><td>邮件响应历史</td><td>Contacts › Data Export › Contact responses，可选响应类型，支持定时导出；接口方式 POST /api/v3/email/responses（opened、clicked、bounced 等）</td><td>CSV</td><td>时间窗最多 13 个月；接口限 1 请求每分钟；更早的历史只能经 Open Data 取得。原始记录不迁移，聚合为最近打开日、最近点击日、90 天活跃三个属性</td></tr>
+            <tr><td>网站行为与推荐</td><td>Web Extend 采集的原始会话只在 Open Data 的 Predict 数据视图；Predict 推荐模型不可导出</td><td>—</td><td>不迁移；切换后由我方 Web SDK 重新采集，分群按事件回溯从上线日起算</td></tr>
+            <tr><td>订单历史</td><td>不从 Emarsys 取；Smart Insight 数据在离开 SAP 时删除</td><td>—</td><td>从贵司订单系统重抽：历史订单数、最后下单时间、历史购买类目作为属性，新订单作为事件</td></tr>
+            <tr><td>邮件模板</td><td>接口 GET /api/v3/email/{emailId}/ 返回 html_source、text_source、subject、language；加参数 raw_html=1 取原始链接而非跟踪链接；配合 List Email Campaigns 遍历；版本化活动按 root_campaign_id 归组</td><td>HTML</td><td>Visual Content Editor 的块结构与 Content Blocks 不可移植，只有渲染后 HTML；ESL 个性化语法需改写为我方变量；多语言版本逐个导出</td></tr>
+            <tr><td>图片与素材</td><td>Media Database 接口：List Media Database Files 与 Get a Media Database File</td><td>原文件</td><td>邮件内引用经 Image 子域指向 Emarsys 内容分发网络，合同终止后失效；切换前全部下载并改指向贵司自有网络</td></tr>
+            <tr><td>自动化程序</td><td>Automation Center、Interactions、Triggered Email：逐条截图并记录触发、等待、过滤、消息 ID 与参与人数</td><td>映射表（第 4 节模板）</td><td>无导出功能。Open Data 的 Automation 数据视图可导出正在流程中的用户，切换日用于避免重复触达</td></tr>
+            <tr><td>Web Extend 脚本</td><td>页面或标签管理器中的 scarab-v2.js 与 ScarabQueue 命令：setEmail、view、cart、purchase、go</td><td>命令与触发位置清单</td><td>与我方 Web SDK 并存至切换日；移除前确认同样的事件与身份识别已被覆盖</td></tr>
+            <tr><td>推送</td><td>Mobile Engage SDK 版本、Web Push 应用码与订阅量</td><td>—</td><td>Emarsys FAQ 不建议跨供应商导入推送订阅；两套 SDK 并存一个版本周期</td></tr>
+            <tr><td>DNS</td><td>From、Link、Image 三个子域；DKIM 为指向 Emarsys 托管密钥的 CNAME；SPF 为 include Emarsys 区域域名</td><td>DNS 记录清单</td><td>旧记录保留到合同终止；为我方新建三个子域</td></tr>
+            <tr><td>合同</td><td>SAP Order Form：到期日、不续约通知窗口、已订模块（Open Data、Loyalty、omnichannel option 等）</td><td>—</td><td>SAP 云条款允许订阅期内随时导出、到期前做最终导出，协议结束时删除数据；Order Form 样本为到期自动续 12 个月、客户需提前至少 1 个月通知，实际以贵司合同为准</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>来源：SAP Help Portal「Exporting contact lists」「Exporting Data Changes」「Exporting Contact Responses」「Open Data End-User Guide」，dev.emarsys.com Core API 参考，SAP 云服务通用条款 4.2 节。抓取日期 2026 年 9 月。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s-mapping" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">数据映射</div>
+        <h2><span class="secnum">4</span>导出的资产如何进入 EngageLab</h2>
+        <table>
+          <thead><tr><th>资产</th><th>我方接收方式</th><th>映射规则</th></tr></thead>
+          <tbody>
+            <tr><td>联系人与字段</td><td>用户管理批量导入（xlsx，单文件不超过 20 MB，标识用 User ID、EUID 或 Anonymous ID 之一）；或用户注册接口（单次最多 100 个标识）加属性接口、联系方式接口</td><td>Emarsys 字段类型映射到字符串、数值、布尔、日期时间、列表、对象六类；多选字段转列表；日期统一 ISO 格式</td></tr>
+            <tr><td>多标识</td><td>注册时一并写入会员 ID、邮箱、手机号、设备号等标识</td><td>同一用户的多个标识由身份合并统一为一个用户；Emarsys 内部 user_id 不导入</td></tr>
+            <tr><td>订阅状态</td><td>用户属性：邮件订阅状态、短信订阅状态、WhatsApp 订阅状态、Web Push 订阅状态；多种订阅类型各一个布尔属性</td><td>旅程里所有短信与 WhatsApp 节点之前都有按订阅状态的条件分支；退订事件由贵司站点上报并回写属性</td></tr>
+            <tr><td>抑制名单</td><td>Email 产品的退订名单与黑名单导入</td><td>发第一封之前完成；投诉类黑名单自动维护</td></tr>
+            <tr><td>邮件互动历史</td><td>聚合属性：最近打开日、最近点击日、90 天邮件活跃</td><td>用于第 5 节预热分层与沉默分群</td></tr>
+            <tr><td>订单历史</td><td>属性先行导入；新订单以事件实时上报</td><td>分群可直接按订单事件计算次数、天数与金额，不需要贵司另算聚合属性</td></tr>
+            <tr><td>邮件模板</td><td>Email 产品模板（拖拽编辑器或 HTML 导入）；旅程内选择模板并插入变量</td><td>ESL 语法改写为我方变量并配默认值；多语言以模板多语言项承载；上线前做多客户端渲染预览</td></tr>
+            <tr><td>素材</td><td>上传贵司自有内容分发网络，模板内改引用</td><td>切换前完成</td></tr>
+            <tr><td>自动化程序</td><td>按映射表逐条重建为旅程</td><td>每条至少用一项我方能力升级：同一用户多实例并行、发送前经 Webhook 取值并按响应分支、一次等待同时监听多个事件、跨渠道全局频控、旅程优先级、按终端时区的可发送时间</td></tr>
+            <tr><td>Web Extend 事件</td><td>Web SDK</td><td>setEmail 对应标识绑定；view 对应商品浏览；cart 对应加入购物车；purchase 对应订单支付成功；go 对应页面浏览</td></tr>
+            <tr><td>Web Push</td><td>Web Push SDK 同源部署</td><td>用户再次访问时静默重新订阅；预期 2–4 周覆盖恢复</td></tr>
+            <tr><td>App Push</td><td>App SDK，安卓含各厂商通道</td><td>与 Mobile Engage SDK 并存一个版本周期，按 App 版本切流</td></tr>
+            <tr><td>短信与 WhatsApp</td><td>自有通道；如短信仍在其他服务商，触达通道侧也支持通过 SMPP 对接</td><td>发送方登记与模板报备有外部审核周期，第 1 周启动</td></tr>
+            <tr><td>DNS</td><td>新建发信、跟踪链接、图片三个子域</td><td>SPF 两套并存；DKIM 记录；DMARC 先用监控模式观察，预热完成后收紧</td></tr>
+          </tbody>
+        </table>
+        <div class="spacer-md"></div>
+        <div class="card">
+          <div class="card-header">Automation Center 程序映射表模板（每条程序填一行）</div>
+          <div class="card-body">
+            <table>
+              <thead><tr><th>Emarsys 程序</th><th>触发</th><th>等待</th><th>分支</th><th>消息</th><th>对应的 EngageLab 旅程</th><th>升级点</th></tr></thead>
+              <tbody>
+                <tr><td>示例：Abandoned checkout</td><td>External event: checkout_started</td><td>Wait 1h / 23h</td><td>Filter: Opt-in</td><td>Email ×2</td><td>结账放弃挽回</td><td>每次新结账重新计时；结账端分流推送；末轮按站点选 WhatsApp 或短信</td></tr>
+                <tr><td>示例：Post-purchase care</td><td>External event: order_delivered</td><td>Wait 3d / 14d</td><td>—</td><td>Email ×2</td><td>售后关怀、退换窗口与复购</td><td>每笔订单一个实例；一次等待同时监听退换与评价；经 Webhook 取搭配推荐</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="s-warmup" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">发信预热</div>
+        <h2><span class="secnum">5</span>发信信誉如何平滑过渡</h2>
+        <p>新的发信子域与专属 IP 没有信誉，需要从最活跃的用户起分层加量。预热与并行对照期同时进行，切换时点以预热完成为准。分层依据是第 4 节聚合的最近打开日与最近点击日。</p>
+        <table>
+          <thead><tr><th>周</th><th>人群</th><th>日发送量上限（示例，按名单规模等比缩放）</th><th>观察指标与暂停条件</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>近 30 天在 Emarsys 打开或点击过</td><td>1 万 → 2.5 万</td><td>收件率、退信率</td></tr>
+            <tr><td>2</td><td>近 60 天活跃</td><td>2.5 万 → 5 万</td><td>投诉率高于 0.10% 即暂停加量</td></tr>
+            <tr><td>3</td><td>近 90 天活跃</td><td>5 万 → 7.5 万</td><td>主流邮箱收件率低于 85% 即暂停加量</td></tr>
+            <tr><td>4</td><td>近 180 天活跃</td><td>7.5 万 → 10 万</td><td>多站点按发信子域分别观察</td></tr>
+            <tr><td>5–6</td><td>全量，沉睡用户分批</td><td>按需</td><td>任一指标越线即回退到上一档</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>我方 Email 产品提供专属 IP 与智能预热，按上表节奏自动爬量；贵司只需确认分层人群与各站点的发信子域。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s-cutover" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">对照与切换</div>
+        <h2><span class="secnum">6</span>并行对照与切换日检查清单</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-header">并行对照怎么做</div>
+            <div class="card-body">
+              <ul>
+                <li>第 2 周起按用户 ID 尾号划出 50% 实验组，在 Emarsys 的全部程序中用 Segment 排除，由 EngageLab 承接；对照组维持现状</li>
+                <li>第 3 周实验组扩至 80%，保留 20% 对照组</li>
+                <li>同一批用户对全部旅程一致划分，避免交叉污染</li>
+                <li>每周双向同步一次退订状态；Emarsys 用 Data changes 定时导出输出增量联系人</li>
+                <li>主指标按旅程各自定义（挽回率、加购率、评价率、复购率），相对对照组比较</li>
+                <li>决策周期以月计的旅程，对照期只看过程事件（点击、回站），不看终点转化</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">切换日检查清单</div>
+            <div class="card-body">
+              <ul>
+                <li>抑制名单最后一次同步已导入</li>
+                <li>从 Open Data 的 Automation 视图或程序报表导出在途用户：时间敏感的程序（弃购、到货）让其自然跑完，其余立即停用；我方对应旅程排除切换前 24 小时内已收到消息的用户</li>
+                <li>Web Extend 脚本与 Emarsys Web Push 服务工作线程已移除，我方 Web SDK 与 Web Push SDK 已上线一个版本周期</li>
+                <li>App 新版本已移除 Mobile Engage SDK，旧版本用户按版本切流</li>
+                <li>新子域全部验证通过；Emarsys 的 Link 与 Image 子域记录仍保留</li>
+                <li>全局频控上限与旅程优先级已设</li>
+                <li>切换前 30 天的发送量、打开率、点击率、转化率、收入占比已记录为基线</li>
+                <li>切换后 7 天：各旅程进入量与发送量与切换前一致，送达与投诉率无异常</li>
+                <li>合同终止前 2 周：素材回迁完成，最后一次全量导出留档，向 SAP 确认数据删除时点</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="s-raci" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">分工</div>
+        <h2><span class="secnum">7</span>贵司与 EngageLab 各做什么</h2>
+        <table>
+          <thead><tr><th>事项</th><th>贵司</th><th>EngageLab</th></tr></thead>
+          <tbody>
+            <tr><td>资产盘点与合同确认</td><td>提供 Emarsys 的导出与程序清单，确认 Order Form 到期日与通知窗口</td><td>提供盘点模板，评估可迁范围</td></tr>
+            <tr><td>数据导出与导入</td><td>从 Emarsys 导出联系人、订阅状态、抑制名单、模板与素材</td><td>字段映射、批量导入、身份合并核对、抑制名单导入</td></tr>
+            <tr><td>接入</td><td>App 接入 SDK，网页接入 Web SDK；订单、物流、库存、售后、会员系统经接口上报</td><td>埋点方案、测试环境、接入验收</td></tr>
+            <tr><td>通道前置</td><td>DNS 记录变更；短信发送方登记与 WhatsApp 模板报备的资质材料</td><td>发信子域配置、专属 IP、预热计划、模板报备提交</td></tr>
+            <tr><td>旅程重建</td><td>填写程序映射表，审核文案与深度链接</td><td>按映射表重建全部旅程并配置升级点；ESL 语法改写；多语言核对</td></tr>
+            <tr><td>并行对照</td><td>在 Emarsys 用 Segment 划出实验组</td><td>频控与优先级配置、监控与调优、效果报告</td></tr>
+            <tr><td>切换</td><td>停用 Emarsys 程序，决策切换时点</td><td>切换日检查清单执行、切换后 7 天监控</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s-faq" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">常见问题</div>
+        <h2><span class="secnum">8</span>常见问题</h2>
+        <div class="grid grid-2">
+          <div class="card"><div class="card-header">迁到新平台，是否要让用户重新授权？</div><div class="card-body p-sm"><p style="margin:0">一般不需要。签署数据处理协议后我方是数据处理者，与云服务、订单系统同类；是否需要单独同意由数据类型与用途决定，不因更换平台而改变。短信与 WhatsApp 需要与邮箱分开的订阅同意，这是渠道本身的要求。以贵司法务意见为准。</p></div></div>
+          <div class="card"><div class="card-header">Emarsys 里超过 13 个月的历史还能拿到吗？</div><div class="card-body p-sm"><p style="margin:0">界面与接口的响应导出只能选最近 13 个月。更早的邮件互动只能通过 Open Data（基于 BigQuery 的付费附加模块）查询。对迁移来说这不构成障碍：预热分层与沉默分群只需要最近打开日、最近点击日与 90 天活跃三个聚合属性。</p></div></div>
+          <div class="card"><div class="card-header">Web Push 的订阅会丢吗？</div><div class="card-body p-sm"><p style="margin:0">订阅绑定服务商密钥，Emarsys 自己的文档也不建议跨供应商导入。我方 Web Push SDK 在同一域名上线后，用户再次访问时静默重新订阅，不会再次弹出权限请求。切换后前 2–4 周覆盖会下降，之后随访问恢复。</p></div></div>
+          <div class="card"><div class="card-header">App 要不要立刻拆掉 Mobile Engage SDK？</div><div class="card-body p-sm"><p style="margin:0">不需要。新版本同时集成两套 SDK 一个版本周期，按 App 版本切流；旧版本用户由 Emarsys 继续触达，直到合同终止或旧版占比低于阈值。安卓端我方 SDK 会补上各厂商通道。</p></div></div>
+          <div class="card"><div class="card-header">切换后，以前发出的邮件里的链接和图片还能打开吗？</div><div class="card-body p-sm"><p style="margin:0">只要 Emarsys 的 Link 与 Image 子域记录保留到合同终止，历史邮件在此之前都正常。合同终止后 Emarsys 内容分发网络上的素材会失效，所以素材回迁与模板改引用要在切换前完成。</p></div></div>
+          <div class="card"><div class="card-header">Automation Center 的程序真的一条都导不出来吗？</div><div class="card-body p-sm"><p style="margin:0">是。SAP 文档没有程序导出功能，Tactics 库也是私有内容。这不影响迁移：我方按映射表逐条重建，每条至少加一项 Emarsys 没有的能力，例如同一用户多实例并行、发送前经 Webhook 取值并按响应分支、一次等待同时监听多个事件。</p></div></div>
+          <div class="card"><div class="card-header">分群能回溯多久的历史？</div><div class="card-body p-sm"><p style="margin:0">按事件计算的分群条件（次数、天数、金额）从我方上线日起回溯；上线前的购买历史以属性导入（历史订单数、最后下单时间、历史购买类目），分群条件可以直接引用这些属性。</p></div></div>
+          <div class="card"><div class="card-header">什么时候启动最合适？</div><div class="card-body p-sm"><p style="margin:0">距 Emarsys 合同到期 3–4 个月启动，留出 8–12 周迁移与 Order Form 里的不续约通知窗口；避开促销密集的季度。第 2 周即可看到首批旅程运行，第 4 周复盘后决定切换时点。</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="s-why" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">关于 EngageLab</div>
+        <h2><span class="secnum">9</span>合规与数据安全</h2>
+        <table>
+          <tbody>
+            <tr><th style="width:120px">数据安全</th><td>全链路 TLS 加密 · VPC 隔离 · PII 字段脱敏 · 基于角色的权限控制</td></tr>
+            <tr><th>认证</th><td>GDPR · SOC 2</td></tr>
+            <tr><th>运营护栏</th><td>用户级全局频控 · 终端时区可发送时间 · 发送前内容预览 · 消息记录保留 60 天</td></tr>
+            <tr><th>本地法规</th><td>可协助满足各目标市场数据保护法规要求</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>EngageLab MA · 从 Emarsys 迁入 EngageLab MA 迁移指南 · 2026 年 9 月 · Emarsys 与 SAP Engagement Cloud 为 SAP SE 的商标，本文仅引用其公开文档</div>
+  </footer>
+
+
+<script>
+(function () {
+  "use strict";
+  /* ── 1. TOC 场景下拉 ── */
+  (function () {
+    var drop = document.querySelector(".toc-drop");
+    if (!drop) return;
+    var btn = drop.querySelector(".toc-drop-btn");
+    var panel = drop.querySelector(".toc-drop-panel");
+    function place() {
+      var b = btn.getBoundingClientRect();
+      var w = panel.offsetWidth || 236;
+      var left = Math.min(
+        Math.max(8, b.left + b.width / 2 - w / 2),
+        document.documentElement.clientWidth - w - 8
+      );
+      panel.style.left = left + "px";
+      panel.style.top = (b.bottom + 8) + "px";
+    }
+    function setOpen(on) {
+      drop.dataset.open = on ? "1" : "0";
+      btn.setAttribute("aria-expanded", on ? "true" : "false");
+      panel.hidden = !on;
+      if (on) place();
+    }
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setOpen(panel.hidden);
+    });
+    window.addEventListener("resize", function () { if (!panel.hidden) place(); });
+    window.addEventListener("scroll", function () { if (!panel.hidden) place(); }, { passive: true });
+    // 自己接管跳转：先展开目标场景再滚动，否则展开引起的布局变化会打断平滑滚动
+    panel.addEventListener("click", function (e) {
+      var a = e.target.closest("a");
+      if (!a) return;
+      e.preventDefault();
+      setOpen(false);
+      var id = a.getAttribute("href").slice(1);
+      var sec = document.getElementById(id);
+      if (!sec) return;
+      if (history.replaceState) history.replaceState(null, "", "#" + id);
+      requestAnimationFrame(function () {
+        sec.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+    document.addEventListener("click", function (e) {
+      if (!drop.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+  })();
+
+
+
+  /* ── 2. 场景区粘性子导航（零隐藏，只提供位置感与跳转）── */
+  (function () {
+    var STAGE_COLOR = {
+      acquire: ["#2563eb", "#e7efff"], activate: ["#0e7490", "#ddf1f8"],
+      retain: ["#c2700a", "#fdf1dc"], repeat: ["#0f9d63", "#e2f7ee"],
+      campaign: ["#6d28d9", "#efe9fe"], advocacy: ["#be123c", "#ffe4ea"]
+    };
+    var items = [
+      ["s-journey1", "1", "节令倒计时", "campaign"],
+      ["s-journey2", "2", "弃购挽回", "activate"],
+      ["s-journey3", "3", "首单培育", "acquire"],
+      ["s-journey4", "4", "访客承接", "acquire"],
+      ["s-journey5", "5", "送达评价", "advocacy"],
+      ["s-journey6", "6", "跨节令复购", "repeat"]
+    ].filter(function (it) { return document.getElementById(it[0]); });
+    if (items.length < 2) return;
+
+    var rail = document.createElement("nav");
+    rail.className = "scene-rail";
+    rail.setAttribute("aria-label", "场景导航");
+    var inner = document.createElement("div");
+    inner.className = "scene-rail-inner";
+    var lab = document.createElement("span");
+    lab.className = "sr-label";
+    lab.textContent = "六条旅程";
+    inner.appendChild(lab);
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it[0];
+      a.innerHTML = '<span class="sr-n">' + it[1] + '</span>' + it[2];
+      inner.appendChild(a);
+    });
+    rail.appendChild(inner);
+    document.body.appendChild(rail);
+    var links = inner.querySelectorAll("a");
+
+    // 覆盖范围：从场景总览表开始，到最后一个场景结束
+    var zoneStart = document.getElementById("s-scenarios") || document.getElementById(items[0][0]);
+    var zoneEnd = document.getElementById(items[items.length - 1][0]);
+
+    function onScroll() {
+      var top = zoneStart.getBoundingClientRect().top;
+      var bottom = zoneEnd.getBoundingClientRect().bottom;
+      rail.classList.toggle("is-on", top <= 90 && bottom > 140);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+
+    // 当前场景高亮 + 用该场景的阶段色
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute("href") === "#" + en.target.id;
+          a.classList.toggle("is-active", on);
+          if (on) {
+            var st = STAGE_COLOR[en.target.dataset.stage] || STAGE_COLOR.acquire;
+            a.style.setProperty("--sr-stage", st[0]);
+            a.style.setProperty("--sr-stage-soft", st[1]);
+          }
+        });
+      });
+    }, { rootMargin: "-30% 0px -55% 0px" });
+    items.forEach(function (it) { spy.observe(document.getElementById(it[0])); });
+  })();
+
+  /* ── 3. 右侧圆点导航 ── */
+  (function () {
+    var items = [
+      ["s-principles", "迁移原则"], ["s-roadmap", "路线图"],
+      ["s-inventory", "导出清单"], ["s-mapping", "数据映射"],
+      ["s-warmup", "发信预热"], ["s-cutover", "对照与切换"],
+      ["s-raci", "分工"], ["s-faq", "常见问题"]
+    ].filter(function (it) { return document.getElementById(it[0]); });
+    if (items.length < 3) return;
+
+    var rail = document.createElement("nav");
+    rail.className = "rail";
+    rail.setAttribute("aria-label", "章节导航");
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it[0];
+      a.dataset.label = it[1];
+      a.setAttribute("aria-label", it[1]);
+      rail.appendChild(a);
+    });
+    document.body.appendChild(rail);
+
+    var links = rail.querySelectorAll("a");
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    items.forEach(function (it) { spy.observe(document.getElementById(it[0])); });
+  })();
+
+  /* ── 4. 柱状图 hover tooltip ── */
+  (function () {
+    var charts = document.querySelectorAll(".chart svg");
+    if (!charts.length) return;
+    var tip = document.createElement("div");
+    tip.className = "chart-tip";
+    document.body.appendChild(tip);
+
+    charts.forEach(function (svg) {
+      svg.querySelectorAll("rect").forEach(function (r) {
+        var h = parseFloat(r.getAttribute("height") || "0");
+        if (!h || h < 1) return;               // 跳过网格/背景矩形
+        r.classList.add("bar");
+        r.addEventListener("mouseenter", function () {
+          var label = r.dataset.tip;
+          if (!label) return;
+          tip.innerHTML = label;
+          tip.classList.add("is-on");
+        });
+        r.addEventListener("mousemove", function (e) {
+          tip.style.left = (e.clientX + 14) + "px";
+          tip.style.top = (e.clientY - 34) + "px";
+        });
+        r.addEventListener("mouseleave", function () { tip.classList.remove("is-on"); });
+      });
+    });
+  })();
+
+  /* ── 5. 滚动入场动效（默认不启用，判定通过才加）── */
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var targets = [];
+    document.querySelectorAll("main > section:not([data-scene])").forEach(function (sec) {
+      sec.querySelectorAll(":scope > .wrap > .card, :scope > .wrap > table, " +
+        ":scope > .wrap > .grid > *, :scope > .wrap > .callout").forEach(function (el) {
+          el.classList.add("reveal");
+          targets.push(el);
+        });
+    });
+    if (!targets.length) return;
+
+    document.documentElement.classList.add("anim-ready");
+
+    // 场景块整体浮起（比逐元素更有「一段开始了」的信号）
+    var sceneIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("is-in");
+        sceneIO.unobserve(en.target);
+      });
+    }, { threshold: 0.04, rootMargin: "0px 0px -4% 0px" });
+    var scenes = document.querySelectorAll("main > section[data-scene]");
+    scenes.forEach(function (sc) { sceneIO.observe(sc); });
+    setTimeout(function () { scenes.forEach(function (sc) { sc.classList.add("is-in"); }); }, 3000);
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var sibs = Array.prototype.slice.call(en.target.parentNode.children);
+        var i = Math.min(sibs.indexOf(en.target), 5);
+        setTimeout(function () { en.target.classList.add("is-in"); }, i * 70);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+    targets.forEach(function (t) { io.observe(t); });
+
+    // 兜底：3 秒后无论如何全部显示，杜绝「动效没触发就永远看不见」
+    setTimeout(function () {
+      targets.forEach(function (t) { t.classList.add("is-in"); });
+    }, 3000);
+  })();
+})();
+</script>
+
+</body>
+</html>
