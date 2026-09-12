@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>EngageLab MA · 影腾智联 App 日活与云服务收入自动化方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 920px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+
+    @media (max-width: 900px) {
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-12-1 { grid-template-columns: 1fr; }
+    }
+  </style>
+
+
+  <style>
+    /* ===================================================================
+       视觉升级层 (20260828)
+       追加在原有样式之后，靠层叠顺序覆盖，不改动原有规则
+       =================================================================== */
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f6f8fb;
+      --bg-elev: #ffffff;
+      --border: #e8ecf2;
+      --border-strong: #d5dbe5;
+      --text: #0f172a;
+      --text-2: #3d4a5c;
+      --text-3: #6b7789;
+      --text-4: #97a1b0;
+      --accent: #2563eb;
+      --accent-2: #4f7dff;
+      --accent-soft: #e7efff;
+      --success: #0f9d63;
+      --success-soft: #e2f7ee;
+      --warning: #c2700a;
+      --warning-soft: #fdf1dc;
+      --info: #0369a1;
+      --info-soft: #e2f2fb;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --ink-dark: #0e1116;
+      --ink-dark-2: #1a1f2b;
+      --mint: #00d4a0;
+      --sky: #7cb0ff;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,.05);
+      --shadow: 0 1px 3px rgba(15,23,42,.05), 0 10px 28px -12px rgba(15,23,42,.10);
+      --shadow-lg: 0 2px 6px rgba(15,23,42,.06), 0 22px 48px -20px rgba(15,23,42,.18);
+      --mono-stack: "SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15.5px; }
+
+    /* ===== 通栏色带布局：main 放开宽度，section 内部收敛 ===== */
+    main { max-width: none; margin: 0; padding: 0; }
+    main > section { padding: 62px 28px; margin: 0; }
+    /* 宽度靠 .wrap 层约束，不依赖子元素的 auto 外边距——
+       否则任何使用 margin 简写的规则都会把居中打破（如 hero-subtitle / divider）*/
+    main > section > .wrap { max-width: 1180px; margin: 0 auto; }
+    main > section.section-plain { border: 0; border-radius: 0; background: transparent; }
+    main > section.section-plain:nth-of-type(even) { background: var(--bg-soft); }
+    main > section.section { border: 0; border-radius: 0; background: var(--bg-soft); }
+
+    /* ===== 字号层级 ===== */
+    h1 { font-size: 38px; font-weight: 750; letter-spacing: -0.022em; line-height: 1.18; margin: 0 0 10px; }
+    h2 { font-size: 27px; font-weight: 720; letter-spacing: -0.018em; line-height: 1.28;
+      margin: 0 0 16px; color: var(--text); }
+    h3 { font-size: 17.5px; font-weight: 650; margin: 0 0 10px; letter-spacing: -0.008em; color: var(--text); }
+    p { margin: 0 0 10px; color: var(--text-2); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 650; color: var(--text); }
+    .muted { color: var(--text-3); }
+    .mono { font-family: var(--mono-stack); font-size: 0.92em; }
+    .divider { height: 1px; background: var(--border); margin: 26px 0; border: none; }
+    .spacer-md { height: 20px; }
+
+    /* ===== 章节序号徽标 + eyebrow ===== */
+    h2 .secnum { display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: #fff;
+      font-family: var(--mono-stack); font-size: 15px; font-weight: 700;
+      margin-right: 12px; vertical-align: 3px; flex: none; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px;
+      font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px; }
+    .eyebrow::before { content: ""; width: 20px; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--mint)); }
+
+    /* ===== 顶部导航 ===== */
+    /* 注意：旧版 .toc-bar 带 margin:-32px -28px（用于抵消 main 内边距），
+       升级后 main 已全宽，必须重置，否则导航会横向溢出 56px */
+    .toc-bar { margin: 0; width: 100%; max-width: 100%; }
+    .toc-bar { position: sticky; top: 0; z-index: 30; padding: 0 28px;
+      background: rgba(255,255,255,.86); backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid var(--border); font-size: 13px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 20px;
+      align-items: center; height: 58px; overflow-x: auto; scrollbar-width: none; }
+    .toc-bar .toc-inner::-webkit-scrollbar { display: none; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
+      font-weight: 500; transition: color .15s ease; }
+    .toc-bar a:hover { color: var(--accent); }
+    /* 品牌名即返回首页入口：整块（图标 + 文字）一起高亮 */
+    .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
+      align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer;
+      transition: color .16s ease; }
+    .toc-bar a.brand .brand-home { width: 17px; height: 17px; flex: none;
+      color: var(--accent); transition: color .16s ease, transform .16s ease; }
+    .toc-bar a.brand:hover { color: var(--accent); }
+    .toc-bar a.brand:hover .brand-home { color: var(--accent); transform: translateY(-1px); }
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
+      margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
+      font-size: 13px; font-weight: 500; }
+    a.back-home:hover { color: var(--accent); background: none; }
+    a.back-home svg { width: 14px; height: 14px; opacity: .8; }
+
+    /* ===== Hero · 深色 ===== */
+    main > section.hero { position: relative; overflow: hidden; color: #fff;
+      border: 0; border-radius: 0; margin: 0; padding: 58px 28px 54px;
+      background: linear-gradient(150deg, var(--ink-dark) 0%, var(--ink-dark-2) 55%, #232b3d 100%); }
+    main > section.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(900px 420px at 88% -8%, rgba(0,212,160,.16), transparent 62%),
+        radial-gradient(760px 380px at 6% 108%, rgba(79,125,255,.20), transparent 60%); }
+    main > section.hero > .wrap { position: relative; z-index: 1; }
+    .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
+    .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
+      -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero .hero-subtitle { color: rgba(255,255,255,.74); font-size: 16px; line-height: 1.72;
+      max-width: 940px; margin: 10px 0 20px; }
+    .hero .hero-subtitle .bold { color: #fff; }
+    .hero-pills { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 18px; }
+    .hero .pill { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18);
+      color: rgba(255,255,255,.86); }
+    .hero .pill-accent { background: rgba(0,212,160,.12); border-color: rgba(0,212,160,.4); color: var(--mint); }
+    .hero .pill-info { background: rgba(124,176,255,.12); border-color: rgba(124,176,255,.38); color: var(--sky); }
+    .hero .pill-success { background: rgba(0,212,160,.12); border-color: rgba(0,212,160,.4); color: var(--mint); }
+    .hero .pill-warn { background: rgba(255,209,102,.12); border-color: rgba(255,209,102,.4); color: #ffd166; }
+    .hero .divider { background: rgba(255,255,255,.12); }
+    .hero .stat { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius); box-shadow: none; padding: 18px 18px 16px; }
+    .hero .stat-value { font-family: var(--mono-stack); font-size: 24px; font-weight: 700;
+      color: #fff; letter-spacing: -0.02em; }
+    .hero .stat-value.info { color: #a5c8ff; }
+    .hero .stat-value.success { color: var(--mint); }
+    .hero .stat-value.warn { color: #ffd166; }
+    .hero .stat-label { color: rgba(255,255,255,.6); font-size: 12px; margin-top: 6px; line-height: 1.45; }
+    .hero .muted { color: rgba(255,255,255,.45) !important; }
+    .hero p { color: rgba(255,255,255,.74); }
+
+    /* ===== 基础组件 ===== */
+    .pill { display: inline-flex; align-items: center; padding: 4px 12px; font-size: 12.5px;
+      border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-2);
+      background: #fff; font-weight: 550; }
+    .pill-accent { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: transparent; color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: transparent; color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: transparent; color: var(--warning); }
+
+    .grid { gap: 18px; }
+    .row { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 20px 20px 18px; background: var(--bg-elev);
+      border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+    .stat-value { font-size: 28px; font-weight: 750; letter-spacing: -0.025em;
+      color: var(--text); line-height: 1.15; }
+    .stat-label { font-size: 12.5px; color: var(--text-3); margin-top: 7px; line-height: 1.5; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+      transition: box-shadow .18s ease; }
+    .card:hover { box-shadow: var(--shadow-lg); }
+    .card-header { padding: 13px 18px; border-bottom: 1px solid var(--border);
+      font-weight: 700; font-size: 13.6px; color: var(--text); background: #fcfdff;
+      letter-spacing: -0.006em; }
+    .card-body { padding: 18px; }
+    .card-body.p-sm { padding: 13px; }
+    .card-body li { margin-bottom: 6px; font-size: 13.5px; color: var(--text-2); line-height: 1.65; }
+    .card-body p { font-size: 14px; }
+
+    .callout { padding: 15px 17px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; }
+    .callout-title { font-weight: 700; margin-bottom: 5px; font-size: 14px; letter-spacing: -0.008em; }
+    .callout-body { font-size: 13.4px; color: var(--text-2); }
+    .callout-body p { font-size: 13.4px; color: var(--text-2); margin: 0 0 5px; line-height: 1.7; }
+    .callout-body p:last-child { margin-bottom: 0; }
+    .callout.info { border-left-color: var(--accent); background: var(--accent-soft); border-color: #d3e2ff; }
+    .callout.info .callout-title { color: var(--accent); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); border-color: #c9eedd; }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); border-color: #f6e2c0; }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-4); background: #fff; }
+
+    /* ===== 表格 ===== */
+    table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.6px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow); }
+    th, td { padding: 13px 15px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #f8fafc; font-weight: 700; font-size: 11.5px; color: var(--text-3);
+      letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    tbody tr { transition: background .14s ease; }
+    tbody tr:hover td { background: #f9fbff; }
+    tr.tone-success td { background: rgba(15, 157, 99, .045); }
+    tr.tone-info td { background: rgba(37, 99, 235, .04); }
+
+    .signal-row { display: flex; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .label { font-size: 13.5px; font-weight: 650; color: var(--text); }
+    .signal-row .hint { font-size: 12.3px; color: var(--text-3); line-height: 1.5; }
+    .signal-row .value { font-weight: 750; color: var(--danger); font-size: 15px;
+      font-family: var(--mono-stack); white-space: nowrap; }
+
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 10px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%; background: var(--accent);
+      color: #fff; font-weight: 700; font-size: 12px; margin-right: 9px; }
+
+    /* ===== 响应式（旧版方案原本缺失，后补齐）===== */
+    @media (max-width: 980px) {
+      main > section { padding: 44px 18px; }
+      main > section.hero { padding: 38px 18px 34px; }
+      h1, .hero h1 { font-size: 26px; }
+      h2 { font-size: 21px; }
+      h2 .secnum { width: 26px; height: 26px; font-size: 13px; margin-right: 9px; vertical-align: 2px; }
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-1-2, .grid-12-1, .grid-5 { grid-template-columns: 1fr !important; }
+      .grid { gap: 14px; }
+      /* 表格在窄屏可横向滚动，避免整页溢出 */
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+      .toc-bar .toc-inner { height: 52px; }
+      .card-body, .callout { padding: 14px; }
+    }
+
+    /* ===== 打印 / PDF 导出 ===== */
+    @page { size: A4; margin: 12mm; }
+    @media print {
+      html, body { background: #fff; font-size: 12px; }
+      .toc-bar, a.back-home { display: none !important; }
+      main > section { padding: 20px 0 !important; background: #fff !important; }
+      main > section.section-plain:nth-of-type(even) { background: #fff !important; }
+      main > section.hero { padding: 22px 18px !important;
+        background: linear-gradient(150deg, #0e1116 0%, #1a1f2b 100%) !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main > section.hero::before { display: none; }
+      .card, table, .stat { box-shadow: none !important; page-break-inside: avoid; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; height: auto; }
+      table { display: table; white-space: normal; }
+    }
+  </style>
+
+
+<style>
+  /* ═══ 阅读增强层 · 20260831 ═══
+     设计原则：默认状态全部可见。JS 只负责「收起」与「加动效」，
+     因此无 JS、打印、PDF 导出时内容永远完整。 */
+
+  /* 吸顶导航高 58px——所有锚点目标留出偏移，否则标题会被盖住 */
+  main > section { scroll-margin-top: 70px; }
+
+  /* ── 图注 / 表注的要点列表 ── */
+  .notelist { margin: 7px 0 0; padding-left: 17px; }
+  .notelist li { font-size: 12.6px; color: var(--text-3); margin-bottom: 4px; line-height: 1.6; }
+  .notelist li:last-child { margin-bottom: 0; }
+
+  /* ── callout 内的要点列表（文案密度规则 §1.6）── */
+  .callout-body ul { margin: 0; padding-left: 17px; }
+  .callout-body li { margin-bottom: 5px; line-height: 1.62; }
+  .callout-body li:last-child { margin-bottom: 0; }
+
+  /* ── TOC 场景下拉 ── */
+  .toc-drop { position: relative; display: inline-flex; align-items: center; }
+  .toc-drop-btn {
+    font: inherit; color: var(--text-3); background: none; border: 0; padding: 0;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+    white-space: nowrap; font-weight: 500; transition: color .15s ease;
+  }
+  .toc-drop-btn:hover, .toc-drop[data-open="1"] .toc-drop-btn { color: var(--accent); }
+  .toc-drop-btn .caret { font-size: 9px; transition: transform .18s ease; }
+  .toc-drop[data-open="1"] .caret { transform: rotate(180deg); }
+  /* 用 fixed 定位：TOC 容器有 overflow-x:auto，absolute 面板会被裁掉 */
+  .toc-drop-panel {
+    position: fixed; top: 0; left: 0;
+    min-width: 236px; background: var(--bg-elev);
+    border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: var(--shadow-lg); padding: 7px; z-index: 60;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .toc-drop-panel[hidden] { display: none; }
+  .toc-drop-panel a {
+    display: flex; align-items: center; gap: 9px; padding: 7px 10px;
+    border-radius: 7px; font-size: 13px; color: var(--text-2); white-space: nowrap;
+  }
+  .toc-drop-panel a:hover { background: var(--accent-soft); color: var(--accent); }
+  .toc-drop-panel .sd-n {
+    flex: none; width: 19px; height: 19px; border-radius: 6px;
+    background: var(--bg-soft); color: var(--text-3);
+    font-family: var(--mono-stack); font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .toc-drop-panel a:hover .sd-n { background: var(--accent); color: #fff; }
+  .toc-drop-panel .sd-all {
+    font-weight: 650; color: var(--text);
+    border-bottom: 1px solid var(--border); border-radius: 7px 7px 0 0; margin-bottom: 4px;
+  }
+
+
+
+  /* ── 场景视觉锚点：大号序号 + 生命周期阶段色带 ── */
+  main > section[data-scene] {
+    border-top: 3px solid var(--stage, var(--border-strong));
+    padding-top: 44px;
+  }
+  main > section[data-stage="acquire"]  { --stage: #2563eb; --stage-soft: #e7efff; }
+  main > section[data-stage="activate"] { --stage: #0e7490; --stage-soft: #ddf1f8; }
+  main > section[data-stage="retain"]   { --stage: #c2700a; --stage-soft: #fdf1dc; }
+  main > section[data-stage="repeat"]   { --stage: #0f9d63; --stage-soft: #e2f7ee; }
+  main > section[data-stage="campaign"] { --stage: #6d28d9; --stage-soft: #efe9fe; }
+  main > section[data-stage="advocacy"] { --stage: #be123c; --stage-soft: #ffe4ea; }
+
+  .scene-head { display: flex; align-items: center; gap: 20px; margin-bottom: 14px; }
+  .scene-num {
+    flex: none; font-family: var(--mono-stack);
+    font-size: 44px; font-weight: 700; line-height: 1;
+    letter-spacing: -0.03em; color: var(--stage);
+    font-variant-numeric: tabular-nums;
+  }
+  .scene-head-main { min-width: 0; }
+  .scene-head h2 { margin: 0; }
+  /* 阶段 pill 染成该场景的阶段色，让 6 个场景一眼可区分 */
+  main > section[data-scene] .row .pill.pill-info {
+    background: var(--stage-soft); border-color: var(--stage); color: var(--stage);
+  }
+
+  /* ── 场景区粘性子导航（滚进场景区才出现）── */
+  .scene-rail {
+    position: fixed; top: 58px; left: 0; right: 0; z-index: 28;
+    background: rgba(255,255,255,.9);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-102%); opacity: 0;
+    transition: transform .28s cubic-bezier(.22,.61,.36,1), opacity .2s ease;
+    pointer-events: none;
+  }
+  .scene-rail.is-on { transform: none; opacity: 1; pointer-events: auto; }
+  .scene-rail-inner {
+    max-width: 1180px; margin: 0 auto; padding: 0 28px;
+    height: 46px; display: flex; align-items: center; gap: 4px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .scene-rail-inner::-webkit-scrollbar { display: none; }
+  .scene-rail .sr-label {
+    flex: none; font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--text-4); margin-right: 12px; white-space: nowrap;
+  }
+  .scene-rail a {
+    flex: none; display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 11px; border-radius: 100px; font-size: 12.5px; font-weight: 500;
+    color: var(--text-3); text-decoration: none; white-space: nowrap;
+    transition: background .16s ease, color .16s ease;
+  }
+  .scene-rail a .sr-n {
+    font-family: var(--mono-stack); font-size: 11px; font-weight: 700;
+    color: var(--text-4); transition: color .16s ease;
+  }
+  .scene-rail a:hover { background: var(--bg-soft); color: var(--text); }
+  .scene-rail a.is-active { background: var(--sr-stage-soft, var(--accent-soft)); color: var(--sr-stage, var(--accent)); font-weight: 650; }
+  .scene-rail a.is-active .sr-n { color: var(--sr-stage, var(--accent)); }
+  @media (max-width: 720px) { .scene-rail .sr-label { display: none; } }
+
+  /* 有子导航时，锚点偏移要加上它的高度 */
+  main > section[data-scene] { scroll-margin-top: 112px; }
+
+  /* ── 整块浮起：场景块作为一个整体进入 ── */
+  .anim-ready main > section[data-scene] > .wrap { opacity: 0; transform: translateY(18px); }
+  .anim-ready main > section[data-scene].is-in > .wrap {
+    opacity: 1; transform: none;
+    transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);
+  }
+
+  /* ── 右侧圆点导航 ── */
+  .rail {
+    position: fixed; right: 22px; top: 50%; transform: translateY(-50%);
+    z-index: 25; display: flex; flex-direction: column; gap: 13px;
+  }
+  .rail a {
+    position: relative; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--border-strong); transition: background .18s ease, transform .18s ease;
+  }
+  .rail a::after {
+    content: attr(data-label); position: absolute; right: 20px; top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: var(--ink-dark); color: #fff; font-size: 11.5px; font-weight: 500;
+    padding: 4px 9px; border-radius: 6px; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity .16s ease, transform .16s ease;
+  }
+  .rail a:hover { background: var(--accent); transform: scale(1.25); }
+  .rail a:hover::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+  .rail a.is-active { background: var(--accent); transform: scale(1.35); }
+  .rail a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (max-width: 1320px) { .rail { display: none; } }
+
+  /* ── 图表 hover 高亮 ── */
+  .chart svg .bar { transition: opacity .15s ease; cursor: default; }
+  .chart svg:hover .bar { opacity: .38; }
+  .chart svg .bar:hover { opacity: 1; }
+  .chart-tip {
+    position: fixed; z-index: 80; pointer-events: none; opacity: 0;
+    background: var(--ink-dark); color: #fff; font-size: 12px; line-height: 1.5;
+    padding: 6px 10px; border-radius: 7px; white-space: nowrap;
+    transition: opacity .12s ease; box-shadow: var(--shadow);
+  }
+  .chart-tip.is-on { opacity: 1; }
+  .chart-tip b { font-weight: 650; }
+
+  /* ── 滚动入场动效（仅在 JS 判定可用时启用）── */
+  .anim-ready .reveal { opacity: 0; transform: translateY(14px); }
+  .anim-ready .reveal.is-in {
+    opacity: 1; transform: none;
+    transition: opacity .5s cubic-bezier(.22,.61,.36,1), transform .5s cubic-bezier(.22,.61,.36,1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-ready .reveal,
+    .anim-ready main > section[data-scene] > .wrap {
+      opacity: 1 !important; transform: none !important; transition: none !important;
+    }
+    .scene-rail { transition: none !important; }
+    .toc-drop-btn .caret, .rail a { transition: none !important; }
+  }
+
+  /* ── 打印 / PDF：强制全部展开、去掉一切装饰 ── */
+  @media print {
+    .anim-ready .reveal,
+    .anim-ready main > section[data-scene] > .wrap { opacity: 1 !important; transform: none !important; }
+    .rail, .toc-drop, .scene-rail, .chart-tip { display: none !important; }
+    main > section[data-scene] { break-before: page; }
+    .chart svg .bar { opacity: 1 !important; }
+  }
+</style>
+
+
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA 解决方案</a>
+      <a href="#s-market">业务洞察</a>
+      <a href="#s-funnel">漏斗与基准</a>
+      <div class="toc-drop">
+        <button type="button" class="toc-drop-btn" aria-expanded="false" aria-controls="toc-scenes">十条旅程<span class="caret" aria-hidden="true">▾</span></button>
+        <div class="toc-drop-panel" id="toc-scenes" hidden>
+          <a href="#s-scenarios" class="sd-all">场景总览表</a>
+          <a href="#s-journey1"><span class="sd-n">1</span>广告展示机会分层放大</a>
+          <a href="#s-journey2"><span class="sd-n">2</span>看家日报</a>
+          <a href="#s-journey3"><span class="sd-n">3</span>沉默用户分层召回</a>
+          <a href="#s-journey4"><span class="sd-n">4</span>云录像开通：告警当下</a>
+          <a href="#s-journey5"><span class="sd-n">5</span>云录像到期续费</a>
+          <a href="#s-journey6"><span class="sd-n">6</span>4G 流量余量与续费</a>
+          <a href="#s-journey7"><span class="sd-n">7</span>设备离线唤醒</a>
+          <a href="#s-journey8"><span class="sd-n">8</span>绑定首周引导</a>
+          <a href="#s-journey9"><span class="sd-n">9</span>安装未绑定引导</a>
+          <a href="#s-journey10"><span class="sd-n">10</span>设备电量预警</a>
+        </div>
+      </div>
+      <a href="#s-data">数据整合</a>
+      <a href="#s-why">关于 EngageLab</a>
+      <a href="#s-plan">测试计划</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-pills">
+          <span class="pill pill-accent">智能摄像头 · 家用安防</span>
+          <span class="pill pill-info">App「影腾智联」· Android 为主</span>
+          <span class="pill">国内市场</span>
+          <span class="pill">客户定制提案</span>
+        </div>
+        <h1>影腾智联 · <span class="grad">App 日活与云服务收入自动化方案</span></h1>
+        <p class="hero-subtitle">让每一次触达都由设备的真实事件驱动：看家日报与沉默召回把日活和广告展示推到同一条曲线上，云录像与 4G 流量的续费提醒锚在到期日与余量上。</p>
+        <div class="grid grid-4">
+          <div class="stat">
+            <div class="stat-value warn">5507 万台</div>
+            <div class="stat-label">2025 年中国消费级监控摄像头销量，同比 +3.0%（洛图科技）</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value info">约 5.9%</div>
+            <div class="stat-label">行业龙头年度付费用户占月活的比例：月活 7791.92 万，年度累计付费用户 463.45 万（萤石网络 2025 年年报）</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value success">+9.34%</div>
+            <div class="stat-label">广告投放旅程切换当日的日活提升，随后连续 7 天正增长、周均 +4.71%（EngageLab 同行业客户生产环境实测，海外市场，仅作参考）</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">10 条 / 4 周</div>
+            <div class="stat-label">本方案交付十条旅程，四周完成测试验证</div>
+          </div>
+        </div>
+        <p class="small muted" style="margin-top:16px">本方案所列效果区间均为行业公开参考值，非承诺值，实际以测试期数据为准。</p>
+      </div>
+    </section>
+
+    <!-- 1 业务洞察 -->
+    <section id="s-market" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">业务洞察</div>
+        <h2><span class="secnum">1</span>硬件是入口，App 是收入：三条收入曲线的转化时点都在设备事件上</h2>
+        <p>影腾的摄像机以百元级价格经拼多多、天猫、京东与抖音售出，App 承担三条收入曲线：开屏与插屏广告随日活起伏，云录像按套餐付费，4G 室外机的流量套餐按周期续费。IoT 应用的广告变现以开屏与插屏为主（Taku × TopOn《2025H1 全球应用广告变现报告》），<span class="bold">广告收入因此是日活的函数，而日活取决于用户被什么理由打开 App</span>。三条曲线的共同点是<span class="bold">转化时点落在设备的真实事件上</span>——告警发生、余量见底、到期日、设备离线——而不在运营日历上。</p>
+        <div class="spacer-md"></div>
+        <div class="grid" style="grid-template-columns:1fr">
+          <div class="card">
+            <div class="card-header">三条收入曲线与本方案介入的时点</div>
+            <div class="card-body">
+              <table>
+                <thead><tr><th>收入曲线</th><th>决定变量</th><th>本方案介入的时点</th><th>驱动旅程</th></tr></thead>
+                <tbody>
+                  <tr class="tone-info"><td>广告（开屏 · 插屏 · 激励视频）</td><td>日活 × 人均打开次数 × 每次打开的广告展示 × eCPM</td><td>没有告警的日子（日报）、设备在线但 App 沉默（召回）、高活跃未付费用户的激励视频入口</td><td>1 · 2 · 3</td></tr>
+                  <tr><td>云录像套餐</td><td>开通率 × 续费率</td><td>告警发生的当下、到期前 7 天与前 1 天、过期后云端录像清除之前</td><td>4 · 5</td></tr>
+                  <tr><td>4G 流量套餐</td><td>用尽前充值率 × 设备在线率</td><td>余量低于阈值、离线 72 小时且流量为零</td><td>6 · 7</td></tr>
+                  <tr><td>三条曲线共同的基数</td><td>安装到绑定、绑定后首周留存、家人共享账号数</td><td>首次启动未绑定、绑定后 7 天内</td><td>8 · 9</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">产品线在用户生命周期中的角色</div>
+            <div class="card-body">
+              <table>
+                <thead><tr><th>品类</th><th>在售渠道与价格带</th><th>在本方案中的角色</th><th>驱动旅程</th></tr></thead>
+                <tbody>
+                  <tr class="tone-info"><td>4G 太阳能室外摄像机</td><td>拼多多、天猫在售，约 120–150 元</td><td>流量套餐与云录像双续费；离线原因按流量余量分流</td><td>4 · 5 · 6 · 7</td></tr>
+                  <tr><td>WiFi 室内摄像机</td><td>天猫、京东在售，约 100 元</td><td>云录像开通与家人共享；看家模式与在家免打扰的设置引导</td><td>4 · 5 · 8</td></tr>
+                  <tr><td>智能门铃</td><td>App 支持门铃绑定与来访推送，型号以贵司在售清单为准</td><td>事件触发口径与摄像机一致，按设备类型属性区分文案</td><td>4 · 7</td></tr>
+                  <tr><td>随身 WiFi · 行车记录仪</td><td>同品牌店铺在售，不经本 App 绑定</td><td>不进主线；作为已绑定 4G 机用户的跨品类推荐（拓展场景 12）</td><td>—</td></tr>
+                </tbody>
+              </table>
+              <ul class="notelist">
+                <li>在售价取自各电商平台店铺页 2026 年 9 月标价，用于说明价格带，不作为旅程分流阈值。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 用户漏斗 -->
+    <section id="s-funnel" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">用户漏斗与行业基准</div>
+        <h2><span class="secnum">2</span>用户漏斗：五个可被自动化直接影响的环节</h2>
+        <p>最值钱的一层是月活到云录像付费：行业龙头做到年度付费用户占月活约 5.9%，并且用了数年。其次是日活本身——每一个没有理由打开 App 的日子，都是没有广告展示的日子。</p>
+        <div class="spacer-md"></div>
+        <div class="grid" style="grid-template-columns:1fr">
+          <div class="card">
+            <div class="card-header">用户漏斗：行业参考与自动化后预期</div>
+            <div class="card-body">
+              <div class="chart" id="chart-funnel"></div>
+              <ul class="notelist">
+                <li>第 1、2、4、5 层的起点为假设值，第 1 周用贵司真实数据校准；第 2 层的预期按我方客户实测的日活相对提升折算；第 3 层以月活为分母，取自萤石网络 2025 年年报。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">公开案例与行业基准</div>
+            <div class="card-body">
+              <table>
+                <thead><tr><th>主体</th><th>场景</th><th>效果</th><th>来源</th></tr></thead>
+                <tbody>
+                  <tr><td>萤石网络</td><td>消费者云增值服务</td><td>2025 年月活 7791.92 万、年度累计付费用户 463.45 万（约 5.9%）；消费者端增值服务收入 5.29 亿元、同比 +2.55%</td><td>萤石网络 2025 年年度报告</td></tr>
+                  <tr><td>EngageLab 同行业客户（智能摄像头 App，海外市场）</td><td>广告投放旅程：按活跃度分层下发开屏与插屏策略</td><td>切换当日日活 +9.34%，随后连续 7 天正增长、周均 +4.71%；单条旅程覆盖 253 万用户，送达率 99.85%</td><td>EngageLab 客户实测</td></tr>
+                  <tr><td>同上</td><td>试用到期转付费 · 续费提醒</td><td>推送点击率最高 6.32% / 6.82%；试用转付费旅程上线首月新客收入 +11.5%</td><td>EngageLab 客户实测</td></tr>
+                  <tr><td>Taku × TopOn</td><td>IoT 与工具品类广告变现</td><td>IoT 应用的广告变现以开屏与插屏为主；工具品类开屏 eCPM 为其他品类的 3–5 倍</td><td>《2025H1 全球应用广告变现报告》</td></tr>
+                  <tr><td>推送行业公开基准（多品牌汇总）</td><td>分层定向 vs 全量群发</td><td>点击率 5% vs 2.5%</td><td>2025 年推送行业基准报告</td></tr>
+                </tbody>
+              </table>
+              <ul class="notelist">
+                <li>数据来源：市场规模取自洛图科技 2025 年中国消费级监控摄像头市场报告；我方客户实测数据来自海外市场的同类 App，用于说明机制，不作为国内效果承诺。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="s-scenarios" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">场景总览</div>
+        <h2><span class="secnum">3</span>十条运营旅程</h2>
+        <p>旅程 1–3 承接日活层，直接作用于广告展示；旅程 4–6 承接两条付费曲线；旅程 7–10 守住在线设备与账号数。十条旅程的进入条件互不重叠，旅程 6、7、10 在「流量用尽」「电量耗尽」两种离线原因上明确交接，不重复触达。</p>
+        <div class="spacer-md"></div>
+        <table>
+          <thead><tr><th>#</th><th>场景</th><th>承接漏斗环节</th><th>主渠道组合</th><th>亮点</th><th>见效节奏</th><th>预期效果</th></tr></thead>
+          <tbody>
+            <tr class="tone-info"><td>1</td><td>广告展示机会分层放大</td><td>绑定用户 → 日活（广告展示）</td><td>App Push 自定义消息</td><td>默认不减少任何广告位；高活跃未付费用户加开激励视频入口；减少投放只作 10% 对照组 A/B，收益在广告平台报表按组验收</td><td>首月见效</td><td>日活 +4.7–9.3%（相对）；人均广告收入以对照组验收</td></tr>
+            <tr class="tone-info"><td>2</td><td>看家日报</td><td>绑定用户 → 日活</td><td>App Push 通知消息</td><td>内容取自设备当日真实事件数，无事件且近期活跃的用户不打扰</td><td>首月见效</td><td>与旅程 1 合并计入日活提升</td></tr>
+            <tr><td>3</td><td>沉默用户分层召回（7 / 14 / 30 天）</td><td>绑定用户 → 日活</td><td>App Push 通知 + SMS 兜底</td><td>只召回设备在线但 App 沉默的用户；30 天以上短信兜底覆盖已卸载者</td><td>首月见效</td><td>召回推送点击率 5–7%</td></tr>
+            <tr class="tone-info"><td>4</td><td>云录像开通：告警发生的当下</td><td>月活 → 云录像付费</td><td>应用内消息 + App Push 通知</td><td>触发点是「这一次动态没有保存到云端」，而不是日历促销；高频告警用户单独给力度</td><td>首月见效</td><td>月活到付费 5.9% → 6.5–7%</td></tr>
+            <tr><td>5</td><td>云录像到期续费（前 7 天 / 前 1 天 / 后 3 天）</td><td>到期 → 续费</td><td>App Push 通知 + SMS</td><td>自动续费用户只收一条告知；过期后按云端录像剩余保留天数提醒</td><td>首月见效</td><td>到期用户续费 55% → 60–65%</td></tr>
+            <tr><td>6</td><td>4G 流量余量与套餐续费</td><td>到期 → 续费（4G 设备）</td><td>App Push 通知 + SMS</td><td>每台设备一个独立实例，余量、充值与离线按设备各自计</td><td>首月见效</td><td>用尽前充值率提升、离线台数下降</td></tr>
+            <tr><td>7</td><td>设备离线唤醒：按离线原因分流</td><td>离线 → 7 天内恢复</td><td>App Push 通知 + SMS 兜底</td><td>4G 机先取流量余量，流量为零交旅程 6 承接；排查指引按设备类型给</td><td>需数据积累</td><td>离线 7 天内恢复 40% → 50–60%</td></tr>
+            <tr><td>8</td><td>绑定首周引导：通知权限、看家模式、家人共享</td><td>绑定 → 首周留存</td><td>应用内消息 + App Push 通知</td><td>共享给家人等于同一台设备多一个日活账号</td><td>需数据积累</td><td>通知权限开启率、家人共享率</td></tr>
+            <tr><td>9</td><td>安装未绑定引导</td><td>安装 → 绑定设备</td><td>App Push 通知 + 应用内消息 + SMS 兜底</td><td>首次启动是 SDK 自带事件，不需要埋点开发；第 5 天仍未绑定的用户有手机号可短信兜底</td><td>首月见效</td><td>安装到绑定 70% → 76–80%</td></tr>
+            <tr><td>10</td><td>设备电量预警（太阳能机）</td><td>离线 → 7 天内恢复（离线前介入）</td><td>App Push 通知 + SMS</td><td>电量低于 20% 即提醒检查太阳能板，把干预点放在离线之前；每台设备一个实例</td><td>需数据积累</td><td>因电量耗尽离线的台数下降</td></tr>
+            <tr><td colspan="7" style="background:#f8fafc;font-weight:700;color:var(--text-3);font-size:12.5px;letter-spacing:.04em">拓展场景 · 测试期后按优先级推进，本方案不编排</td></tr>
+            <tr><td>11</td><td>使用满意度与应用商店评价引导</td><td>绑定 → 首周留存</td><td>应用内消息</td><td>低分先转客服，问题解决后同样开放评价入口</td><td>依赖客户侧能力（客服工单流程）</td><td>评价率与评分</td></tr>
+            <tr><td>12</td><td>跨品类推荐：随身 WiFi 与行车记录仪</td><td>月活 → 付费</td><td>App Push 自定义消息（运营位）</td><td>面向已绑定 4G 机的用户推荐同品牌流量类产品，落地到店铺页</td><td>需数据积累</td><td>跨品类下单</td></tr>
+            <tr><td>13</td><td>家人共享成员的首周激活</td><td>绑定 → 首周留存</td><td>应用内消息 + App Push 通知</td><td>被邀请者是新账号，同样需要通知权限引导与日报</td><td>需数据积累</td><td>共享成员日活</td></tr>
+            <tr><td>14</td><td>云录像大促（618 / 双 11）按人群分流</td><td>月活 → 云录像付费</td><td>App Push 通知 + SMS</td><td>历史未付费、已过期、使用中三路不同内容与力度，购买即退出</td><td>长周期培育（按大促日历）</td><td>大促期开通率</td></tr>
+            <tr><td>15</td><td>第二台设备加购</td><td>月活 → 付费</td><td>App Push 通知</td><td>单机用户在绑定 60 天后按告警频次与户型推荐加装</td><td>需数据积累</td><td>多设备用户占比</td></tr>
+            <tr><td>16</td><td>云录像试用到期转付费（前 1 天 / 后 1 天）</td><td>月活 → 云录像付费</td><td>App Push 通知 + 应用内消息</td><td>试用到期日是付费意愿最集中的时点，两条消息各自锚定到期日</td><td>依赖客户侧能力（是否提供试用期）</td><td>试用转付费率</td></tr>
+            <tr><td>17</td><td>通知权限关闭后的再引导</td><td>绑定 → 首周留存</td><td>应用内消息</td><td>SDK 事件「通知权限关闭」触发，不需要埋点开发；所有推送旅程都依赖这个权限</td><td>首月见效</td><td>通知权限恢复率</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>建议测试期优先上线旅程 1、2、4；旅程 1–3 同属日活层，效果合并计算。以上效果区间均为行业公开参考值，<span class="bold">非承诺值</span>，实际以测试期数据为准。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain" data-stage="retain" data-scene="1">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">01</div><div class="scene-head-main"><h2>旅程 1｜广告展示机会分层放大</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">广告收入直接相关</span><span class="pill pill-info">日活与广告展示</span><span class="pill">分群进入 · 每日重判 · App Push 自定义消息 · 效果在广告平台报表按组验收</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>默认分支不改任何现有广告位。增量来自两处：高活跃未付费用户加开<span class="bold">激励视频入口</span>，旅程 2、3 拉回的每次打开都是一次开屏展示。给新用户或付费用户少投插屏，只作 10% 对照组的 A/B。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 自定义消息　｜　<span class="bold">触发方式</span>：用户分群「已绑定设备用户」，每日重新判定　｜　<span class="bold">退出条件</span>：解绑全部设备即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j1"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>广告平台决定每次展示投什么，但制造不了一次打开，也不知道谁是付费用户、谁绑定第 3 天</li>
+                <li>激励视频与插屏的 eCPM 在国内长期高于开屏，而激励视频需要一个用户主动进入的入口</li>
+                <li>运营动作对广告收入的影响，必须能在贵司每天在看的广告平台报表里按人群拆出来</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：用户分群「已绑定设备用户」，发布时全量进入，之后满足条件即进入；排除已退订用户</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 1 天——每日按最新属性重新判定分支</li>
+                <li><span class="bold">提前退出</span>：事件「解绑全部设备」</li>
+                <li><span class="bold">转化统计</span>：事件「App 启动」（SDK 自带），监听窗口 1 天；广告收入不在 MA 内统计</li>
+                <li><span class="bold">条件分支</span>：属性「近 7 天打开天数」大于等于 5 且「云录像状态」等于未开通 → 激励入口分支；属性「测试分组」等于实验组 且「绑定天数」小于等于 7 → A/B 分支一；属性「测试分组」等于实验组 且「云录像状态」等于有效 → A/B 分支二；默认 → 结束，App 沿用本地广告配置</li>
+                <li><span class="bold">App Push 自定义消息一</span>：JSON 透传字段在现有开屏与插屏之上开启发现页与回放页的激励视频入口，奖励类型与额度由贵司定义（云录像试看天数或流量赠送）；App 端读取后交给广告聚合 SDK 的流量分组，不占通知栏</li>
+                <li><span class="bold">App Push 自定义消息二（A/B）</span>：绑定不满 7 天的实验组，保留冷启与热启开屏、关闭插屏</li>
+                <li><span class="bold">App Push 自定义消息三（A/B）</span>：付费用户实验组，插屏改为激励视频入口</li>
+                <li><span class="bold">对照组与验收</span>：属性「测试分组」等于对照组的用户走默认分支，保持现状；App 把该属性作为自定义流量分组键值传给广告聚合平台，广告平台报表即可按实验组与对照组拆分收益，两组 A/B 以 7 日留存与 7 日人均广告收入净额判定，是否保留由贵司决定</li>
+                <li><span class="bold">等待</span>：1 天后结束，次日重新进入并重判</li>
+                <li><span class="bold">全局频控</span>：自定义消息按消息类型单独设限，不占通知消息额度；透传字段只控制样式启用与频次，不涉及关闭方式等法定要求</li>
+                <li><span class="muted">埋点：绑定天数、云录像状态、测试分组由贵司账户系统写入用户属性；近 7 天打开天数由 SDK 的 App 启动事件聚合；广告展示次数可选上报（广告 SDK 展示回调），只作过程指标</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">日活 +4.7–9.3%（相对，EngageLab 同行业客户实测）</span></p>
+              <p style="margin:0">广告收入 = 日活 × 人均打开次数 × 每次打开的广告展示 × eCPM ÷ 1000；收入验收在广告平台报表按测试分组拆分，MA 侧只看打开与留存。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain" data-stage="retain" data-scene="2">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">02</div><div class="scene-head-main"><h2>旅程 2｜看家日报</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">见效最快</span><span class="pill pill-info">日活与广告展示</span><span class="pill">分群进入 · 每日固定时段 · Webhook 取数 · App Push 通知消息</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>给用户一个<span class="bold">告警之外的打开理由</span>：每晚用 Webhook 取当日真实事件数生成日报，「今日家中 3 次动态」直达回放。无事件且近期活跃的用户不发，无事件但三天未打开的用户收到「今日一切正常」。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息　｜　<span class="bold">触发方式</span>：用户分群「已绑定且至少一台设备在线」，每日进入　｜　<span class="bold">退出条件</span>：关闭看家日报即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j2"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>没有告警的日子，用户没有打开 App 的理由，当日广告展示为零</li>
+                <li>与用户家里实际情况无关的定时推送，点击率随发送次数衰减</li>
+                <li>日报的时点要落在用户回家之后，需要按终端时区而非组织时区</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：用户分群「已绑定且至少一台设备在线」；进入条件排除属性「看家日报开关」等于关闭的用户</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 1 天</li>
+                <li><span class="bold">提前退出</span>：事件「关闭看家日报」</li>
+                <li><span class="bold">转化统计</span>：事件「App 启动」（SDK 自带），监听窗口 12 小时</li>
+                <li><span class="bold">可发送时间</span>：终端时区 20:30–21:30，放在 Webhook 之前，当日事件数在该时段内取值</li>
+                <li><span class="bold">Webhook</span>：向贵司 IoT 视频平台取当日告警事件数与在线设备数，返回值作为变量与分支依据；请求失败时事件数为空，走默认分支不发送</li>
+                <li><span class="bold">条件分支</span>：当日事件数大于 0 / 事件数为 0 且属性「最后打开 App 时间」距今超过 3 天 / 默认（当日无事件且近期活跃，不发）</li>
+                <li><span class="bold">App Push 通知消息一</span>：「今日家中 {{事件数}} 次动态」，深度链接到当日回放；事件数取自 Webhook 返回值</li>
+                <li><span class="bold">App Push 通知消息二</span>：「今日一切正常，{{在线台数}} 台设备在线」，深度链接到设备列表</li>
+                <li><span class="bold">交接</span>：本旅程只发当日内容；连续多日未打开的用户由旅程 3 按沉默天数承接</li>
+                <li><span class="muted">埋点：告警事件与在线状态由 IoT 视频平台提供查询接口；日报开关为 App 内设置项写入用户属性</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">与旅程 1 合并计入日活提升 +4.7–9.3%（相对）</span></p>
+              <p style="margin:0">按用户实际事件生成的推送属于分层定向，公开基准下点击率约为全量群发的两倍（5% vs 2.5%）。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain" data-stage="retain" data-scene="3">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">03</div><div class="scene-head-main"><h2>旅程 3｜沉默用户分层召回（7 / 14 / 30 天）</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">日活回收</span><span class="pill pill-info">沉默召回</span><span class="pill">属性触发 · 三档分层 · Webhook 取设备状态 · App Push 通知 + SMS 兜底</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>召回的对象限定为<span class="bold">设备仍在线、App 却沉默</span>的用户。三档内容不同：一周用本周动态次数，一周没有任何动态的改发设备健康周报（电量、信号、流量）；两周用看家模式与新功能；一个月以上加短信兜底，覆盖已卸载 App 的人。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：属性「最后打开 App 时间」距今超过 7 天且在线设备数不少于 1　｜　<span class="bold">退出条件</span>：App 启动即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j3"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>设备在线但 App 一个月未打开，多半是告警推送已被忽略或关闭</li>
+                <li>长期沉默用户是广告展示基数里最大的一块可回收人群</li>
+                <li>30 天以上的沉默用户可能已卸载 App，通知到不了，需要短信兜底</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「最后打开 App 时间」距今超过 7 天 且 属性「在线设备数」大于等于 1；进入条件加上限 90 天，避免发布首日存量用户一次涌入；排除已退订用户</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 7 天，最多进入 3 次</li>
+                <li><span class="bold">提前退出</span>：事件「App 启动」（SDK 自带）</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 1 天</li>
+                <li><span class="bold">条件分支一</span>：属性「最后打开 App 时间」距今 7–13 天 / 14–29 天 / 30 天及以上</li>
+                <li><span class="bold">条件分支二（7–13 天）</span>：属性「近 7 天告警次数」大于 0 → <span class="bold">App Push 通知消息</span>「本周家中 {{近 7 天告警次数}} 次动态待查看」；等于 0 → <span class="bold">Webhook</span> 向 IoT 视频平台取各设备电量、信号与流量余量 → <span class="bold">App Push 通知消息</span>「本周无动态，设备健康周报」，字段取自返回值，请求失败改发设备在线文案</li>
+                <li><span class="bold">App Push 通知消息（14–29 天）</span>：看家模式、在家免打扰与最近版本的新功能，深度链接到设置页</li>
+                <li><span class="bold">条件分支三（30 天及以上）</span>：属性「短信接收状态」两分支——已同意走 SMS 模板消息，未同意走 App Push 通知消息，内容一致：设备在线、家人共享入口</li>
+                <li><span class="bold">可发送时间</span>：终端时区 19:00–21:30，放在每条消息之前</li>
+                <li><span class="muted">埋点：最后打开时间由 SDK 自带；近 7 天告警次数由贵司系统按设备事件聚合后写入用户属性</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">召回推送点击率 5–7%</span></p>
+              <p style="margin:0">下沿为分层定向的公开基准 5%，上沿为我方客户续费提醒场景实测的 6.82%。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain" data-stage="activate" data-scene="4">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">04</div><div class="scene-head-main"><h2>旅程 4｜云录像开通：告警发生的当下</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">付费收入直接产出</span><span class="pill pill-info">云录像转化</span><span class="pill">设备事件触发 · 先观察再触达 · 高频取优惠码 · 低频换试看 · 应用内消息 + App Push 通知</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>云录像最有说服力的时刻是<span class="bold">告警刚发生、用户正在看画面</span>：此时用应用内消息说「这次动态没有保存到云端」，不再占一条通知。次日再用近 7 天真实动态次数跟进，高频告警用户取优惠码，低频用户改用看激励视频换云录像试看。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：应用内消息 · App Push 通知消息　｜　<span class="bold">触发方式</span>：事件「告警事件触发」且云录像状态为未开通　｜　<span class="bold">退出条件</span>：购买云录像即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j4"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>云录像的价值在告警发生时最直观，隔天的促销消息说服力已经衰减</li>
+                <li>告警推送本身已由现有通道发出，转化消息若再占一条通知只会互相稀释</li>
+                <li>高频告警用户付费意愿最高，需要与偶发告警用户区分力度</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「告警事件触发」（人形检测 / 逗留 / 强拆）+ 用户属性过滤「云录像状态」等于未开通；事件属性携带设备 ID 与事件类型</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 7 天，最多进入 4 次</li>
+                <li><span class="bold">提前退出</span>：事件「购买云录像」</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天；<span class="bold">收入统计</span>：同一事件 + 订单金额属性，监听窗口 3 天</li>
+                <li><span class="bold">等待事件</span>：30 分钟内等待「查看实时画面或回放」，一个事件分支 + 超时默认分支</li>
+                <li><span class="bold">应用内消息</span>：已查看分支，用户当前在 App 内或下次打开时展示「刚才这次动态未保存到云端，开通后 {{套餐保留天数}} 天内随时回看」，直达套餐页；保留天数取自套餐属性</li>
+                <li><span class="bold">等待</span>：1 天 → 可发送时间 → <span class="bold">App Push 通知消息</span>「近 7 天家中 {{近 7 天告警次数}} 次动态仅保存在本地」，次数取自属性</li>
+                <li><span class="bold">等待</span>：3 天 → <span class="bold">条件分支</span>：属性「近 7 天告警次数」大于等于 3 走优惠分支；默认（不满 3 次）走试看分支</li>
+                <li><span class="bold">Webhook</span>：向贵司优惠券系统取首购优惠码与有效期，写入消息变量；无券返回时不发本条</li>
+                <li><span class="bold">App Push 通知消息（优惠分支）</span>：高频动态用户专属首购优惠，有效期取自 Webhook 返回值</li>
+                <li><span class="bold">App Push 通知消息（试看分支）</span>：「看一段激励视频，换 {{试看天数}} 天云录像试看」，深度链接到旅程 1 开启的激励视频入口；试看天数取自奖励配置属性，贵司未提供奖励机制时不发本条</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在三条通知之前</li>
+                <li><span class="bold">合规约束</span>：视频与人像影像不同步到 MA，只同步事件类型、次数与状态</li>
+                <li><span class="muted">埋点：告警事件与查看行为由 IoT 视频平台与 App 上报；云录像状态与购买事件由订单系统回写</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">月活到云录像付费 5.9% → 6.5–7%</span></p>
+              <p style="margin:0">起点为行业龙头 2025 年年报口径；上沿按我方客户试用转付费旅程首月新客收入 +11.5% 折算。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain" data-stage="repeat" data-scene="5">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">05</div><div class="scene-head-main"><h2>旅程 5｜云录像到期续费（前 7 天 / 前 1 天 / 后 3 天）</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">存量收入守护</span><span class="pill pill-info">续费</span><span class="pill">属性触发 · 等待至到期日 · App Push 通知 + SMS</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>三条消息全部用<span class="bold">等待至</span>锚定每个用户各自的到期日，而不是从进入时刻起算。已开自动续费的用户只收一条扣费告知并结束；过期后的最后一条以「云端录像还有 N 天清除」为理由，N 取自真实保留期。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：属性「云录像到期日」非空且状态有效　｜　<span class="bold">退出条件</span>：续费成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j5"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>手动续费用户的到期日分散在每一天，日历式促销覆盖不到</li>
+                <li>过期后云端录像的保留期是真实的最后期限，也是最有效的续费理由</li>
+                <li>已开自动续费的用户再收催续消息，只会被引导去关闭自动续费</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：属性「云录像到期日」非空 且 属性「云录像状态」等于有效；进入条件限定到期日在未来 60 天内；排除已退订用户</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 30 天——对应下一个套餐周期</li>
+                <li><span class="bold">提前退出</span>：事件「云录像续费成功」</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天；<span class="bold">收入统计</span>：同一事件 + 订单金额属性，监听窗口 3 天</li>
+                <li><span class="bold">等待至</span>：属性「云录像到期日」前 7 天、前 1 天、后 3 天三处（终端时区）；时刻已过时设为跳过继续——存量用户的到期日可能已在 7 天内</li>
+                <li><span class="bold">条件分支一</span>：属性「自动续费」已开启 → App Push 通知消息「将于 {{到期日}} 自动续费」后结束；未开启进入提醒序列</li>
+                <li><span class="bold">App Push 通知消息 × 2</span>：前 7 天与前 1 天，套餐名与到期日通过变量插入，深度链接到续费页</li>
+                <li><span class="bold">条件分支二（后 3 天）</span>：属性「短信接收状态」两分支——已同意走 SMS 模板消息，未同意走 App Push 通知消息；「云端录像将在 {{剩余保留天数}} 天后清除」取自属性，无值时不展示该句</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每条消息之前</li>
+                <li><span class="muted">埋点：到期日、自动续费状态、剩余保留天数由订单系统写入用户属性；续费成功由支付回调上报</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">到期用户续费 55% → 60–65%</span></p>
+              <p style="margin:0">起点为假设值，第 1 周校准；续费提醒推送点击率我方客户实测最高 6.82%。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain" data-stage="repeat" data-scene="6">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">06</div><div class="scene-head-main"><h2>旅程 6｜4G 流量余量与套餐续费</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">4G 室外机专属</span><span class="pill pill-info">续费与在线率</span><span class="pill">设备事件触发 · 多实例按设备并行 · App Push 通知 + SMS</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>太阳能 4G 室外机装在没有 WiFi 的地方，<span class="bold">流量用尽就是离线</span>。一户多台时每台各有套餐周期，这条旅程按设备开独立实例：余量、充值与离线都按设备各自计，充了 A 台不会让 B 台的提醒消失。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：事件「流量余量低于 20%」（按设备）　｜　<span class="bold">退出条件</span>：该设备流量充值成功即退出对应实例</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j6"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>流量用尽的设备不再产生告警，用户往往到需要回看时才发现</li>
+                <li>一户多台 4G 机的套餐周期不同，单实例旅程只能提醒其中一台</li>
+                <li>充值入口在 App 或小程序，提醒必须直达对应设备的充值页</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「流量余量低于 20%」由贵司 4G 流量服务平台回传，事件属性携带设备 ID、套餐名与余量</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按业务并行），并发上限 5，两次进入最短间隔 7 天——每台 4G 摄像机一个实例</li>
+                <li><span class="bold">提前退出</span>：事件「流量充值成功」，属性过滤设备 ID 等于本实例值，只退出对应实例</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 2 天；<span class="bold">收入统计</span>：同一事件 + 充值金额属性，监听窗口 2 天</li>
+                <li><span class="bold">App Push 通知消息一</span>：「{{设备名}} 流量剩余 {{余量}}%，用尽后设备离线」，深度链接到该设备的充值页；文案附「开通自动充值」入口（如贵司提供），减少下一周期对提醒的依赖</li>
+                <li><span class="bold">等待</span>：2 天 → <span class="bold">条件分支</span>：属性「短信接收状态」——已同意走 SMS 模板消息，未同意走 App Push 通知消息，内容一致</li>
+                <li><span class="bold">等待</span>：3 天 → <span class="bold">等待事件</span>：5 天内等待「设备离线」（设备 ID 匹配本实例）——离线分支发 App Push 通知消息「{{设备名}} 已因流量用尽离线」；未离线走默认分支结束</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每条消息之前</li>
+                <li><span class="bold">交接</span>：旅程 7 对 4G 机先取流量余量，余量为零的离线一律由本旅程承接</li>
+                <li><span class="muted">埋点：流量余量与充值成功由流量服务平台以事件回传或 Webhook 取数，第 1 周二选一</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">用尽前充值率提升、因流量离线的设备台数下降（对照组比较）</span></p>
+              <p style="margin:0">流量续费收入 = 提醒覆盖设备数 × 用尽前充值率 × 套餐单价；保住在线的设备同时是旅程 2 与旅程 4 的触达对象。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 7 -->
+    <section id="s-journey7" class="section-plain" data-stage="retain" data-scene="7">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">07</div><div class="scene-head-main"><h2>旅程 7｜设备离线唤醒：按离线原因分流</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">在线设备保有</span><span class="pill pill-info">离线恢复</span><span class="pill">设备事件触发 · Webhook 取数分流 · App Push 通知 + SMS 兜底</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>离线的设备不产生告警，用户不会自己发现。这条旅程按<span class="bold">离线原因</span>给排查指引：4G 机先用 Webhook 取流量余量，为零交旅程 6 不重复触达，正常才提示电量与信号；WiFi 机提示路由与电源。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：事件「设备离线超过 72 小时」（按设备）　｜　<span class="bold">退出条件</span>：该设备上线即退出对应实例</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j7"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>离线原因不同，排查动作不同，一条通用文案等于没有指引</li>
+                <li>离线超过一周的设备大概率转为闲置，随之流失的是云录像与流量两笔续费</li>
+                <li>设备离线期间用户也不会打开 App，日活与广告展示同步归零</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「设备离线超过 72 小时」由 IoT 视频平台回传，事件属性携带设备 ID 与设备类型</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按业务并行），并发上限 5，两次进入最短间隔 14 天</li>
+                <li><span class="bold">提前退出</span>：事件「设备上线」，属性过滤设备 ID 等于本实例值</li>
+                <li><span class="bold">转化统计</span>：事件「设备上线」，监听窗口 7 天</li>
+                <li><span class="bold">条件分支一</span>：事件属性「设备类型」——4G 太阳能 / WiFi</li>
+                <li><span class="bold">Webhook（4G 分支）</span>：向流量服务平台取该设备余量；<span class="bold">条件分支二</span>：余量为 0 直接结束并交旅程 6 承接，余量大于 0 继续；请求失败按余量大于 0 处理</li>
+                <li><span class="bold">App Push 通知消息</span>：4G 机给电量与信号的排查指引，WiFi 机给路由与电源的排查指引，均深度链接到设备页与帮助</li>
+                <li><span class="bold">等待</span>：3 天 → <span class="bold">条件分支三</span>：属性「最后打开 App 时间」距今超过 7 天 且 属性「短信接收状态」已同意 → SMS 模板消息；默认走 App Push 通知消息，内容一致</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每条消息之前</li>
+                <li><span class="bold">交接</span>：电量耗尽导致的离线由旅程 10 在离线前介入；本旅程只处理已离线 72 小时的设备</li>
+                <li><span class="muted">埋点：离线与上线事件由 IoT 视频平台回传；设备类型为绑定时写入的设备属性</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">离线 7 天内恢复 40% → 50–60%</span></p>
+              <p style="margin:0">起点为假设值，第 1 周校准；恢复上线的设备重新成为旅程 2、4、5 的触达对象。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 8 -->
+    <section id="s-journey8" class="section-plain" data-stage="acquire" data-scene="8">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">08</div><div class="scene-head-main"><h2>旅程 8｜绑定首周引导：通知权限、看家模式、家人共享</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">日活账号增长</span><span class="pill pill-info">首周留存</span><span class="pill">绑定事件触发 · 通知权限分流 · 应用内消息 + App Push 通知</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>一台摄像机通常有多位家庭成员关心，<span class="bold">共享一次就多一个日活账号</span>。首周先用 SDK 自带的通知权限状态分流，未开启者收到应用内引导；第 5 天仍未共享的用户收到邀请家人的提醒。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：应用内消息 · App Push 通知消息　｜　<span class="bold">触发方式</span>：事件「设备绑定成功」且为首台　｜　<span class="bold">退出条件</span>：解绑设备即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j8"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>通知权限未开启，告警推送与日报都到不了，后续所有旅程失效</li>
+                <li>首周是设置看家模式与在家免打扰的窗口，错过后用户不再进设置页</li>
+                <li>共享是 App 内已有功能，但没有触发时点，多数用户不会主动发起</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「设备绑定成功」+ 用户属性过滤「已绑定设备数」等于 1（首台）</li>
+                <li><span class="bold">再次进入</span>：不可再次进入</li>
+                <li><span class="bold">提前退出</span>：事件「解绑设备」</li>
+                <li><span class="bold">转化统计</span>：事件「共享设备」，监听窗口 3 天</li>
+                <li><span class="bold">条件分支</span>：SDK 属性「通知权限状态」——未开启走应用内消息，已开启跳过</li>
+                <li><span class="bold">应用内消息</span>：「开启通知才能收到告警」，按机型变量给出系统设置路径</li>
+                <li><span class="bold">等待</span>：2 日历日 → <span class="bold">可发送时间</span>：终端时区 19:00–21:00 → <span class="bold">App Push 通知消息</span>：看家模式与在家免打扰设置，深度链接到设置页</li>
+                <li><span class="bold">等待事件</span>：3 天内等待「共享设备」——已共享结束；超时走默认分支</li>
+                <li><span class="bold">App Push 通知消息</span>：「邀请家人一起看家」，深度链接到共享页（微信或手机号邀请）</li>
+                <li><span class="bold">交接</span>：本旅程不发付费内容，云录像开通由旅程 4 按告警事件承接；被邀请的家人账号由拓展场景 13 承接</li>
+                <li><span class="muted">埋点：通知权限状态由 SDK 自带；绑定、解绑、共享事件由 App 上报</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">通知权限开启率与家人共享率（对照组比较）</span></p>
+              <p style="margin:0">每一个共享账号都是新增的日活账号，不增加硬件与获客成本。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 9 -->
+    <section id="s-journey9" class="section-plain" data-stage="acquire" data-scene="9">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">09</div><div class="scene-head-main"><h2>旅程 9｜安装未绑定引导</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">零埋点即可上线</span><span class="pill pill-info">激活</span><span class="pill">SDK 标准事件触发 · 先观察再触达 · App Push 通知 + 应用内消息 + SMS 兜底</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>配网与 4G 卡激活是首次使用的两道门槛，卡住的用户不会主动求助。进入事件是 SDK 自带的「App 启动」，<span class="bold">不需要任何埋点开发</span>；先等 24 小时看用户是否自行完成绑定，再依次给三步教程与客服入口。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 应用内消息 · SMS　｜　<span class="bold">触发方式</span>：SDK 事件「App 启动」且已绑定设备数为 0　｜　<span class="bold">退出条件</span>：设备绑定成功即自动退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j9"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>未绑定的安装既不产生日活也不产生付费，硬件与获客成本却已付出</li>
+                <li>电商平台售出的设备，包装扫码到绑定之间没有任何触点</li>
+                <li>4G 卡激活与声波配网失败的用户，多数在第一天就放弃</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：SDK 标准事件「App 启动」+ 用户属性过滤「已绑定设备数」等于 0 且「注册时间」距今不超过 1 天</li>
+                <li><span class="bold">再次进入</span>：不可再次进入</li>
+                <li><span class="bold">提前退出</span>：事件「设备绑定成功」</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天</li>
+                <li><span class="bold">等待</span>：24 小时——先观察用户是否自行完成绑定</li>
+                <li><span class="bold">可发送时间</span>：终端时区 10:00–21:00 → <span class="bold">App Push 通知消息一</span>：「3 步完成添加」，深度链接到添加设备页</li>
+                <li><span class="bold">等待</span>：2 天 → <span class="bold">应用内消息</span>：用户打开 App 时展示配网视频教程与在线客服入口</li>
+                <li><span class="bold">可发送时间</span> → <span class="bold">App Push 通知消息二</span>：「添加遇到问题？」，深度链接到帮助与反馈页</li>
+                <li><span class="bold">等待</span>：2 天 → <span class="bold">条件分支</span>：属性「短信接收状态」——已同意走 SMS 模板消息，附配网教程短链接与客服电话；未同意结束。注册即有手机号，这一步覆盖已不再打开 App 的用户</li>
+                <li><span class="bold">交接</span>：绑定成功后由旅程 8 承接首周引导</li>
+                <li><span class="muted">埋点：App 启动由 SDK 自带；已绑定设备数与注册时间由账户系统写入用户属性</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">安装到绑定 70% → 76–80%</span></p>
+              <p style="margin:0">起点为假设值，第 1 周校准；每提升 1 个百分点，进入后续全部旅程的用户同步增加。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 10 -->
+    <section id="s-journey10" class="section-plain" data-stage="retain" data-scene="10">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">10</div><div class="scene-head-main"><h2>旅程 10｜设备电量预警（太阳能机）</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">离线前介入</span><span class="pill pill-info">在线设备保有</span><span class="pill">设备事件触发 · 多实例按设备并行 · App Push 通知 + SMS</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>太阳能机的离线多半从电量耗尽开始，而电量下降是设备自己知道的事。电量低于 20% 就提醒检查太阳能板的遮挡与朝向，把干预点放在离线之前；每台设备一个实例，电量恢复即退出。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：事件「电量低于 20%」（按设备）　｜　<span class="bold">退出条件</span>：该设备电量恢复至 50% 以上即退出对应实例</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j10"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>太阳能板被遮挡或朝向不对，电量会在连续阴雨天一路下降直到离线</li>
+                <li>离线之后再提醒，用户已经错过一段没有录像的日子</li>
+                <li>一户多台室外机的电量各不相同，提醒必须按设备分开</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「电量低于 20%」由 IoT 视频平台回传，事件属性携带设备 ID、设备名与当前电量；用户属性过滤「设备类型」包含太阳能机</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按业务并行），并发上限 5，两次进入最短间隔 14 天——每台太阳能机一个实例</li>
+                <li><span class="bold">提前退出</span>：事件「电量恢复至 50% 以上」，属性过滤设备 ID 等于本实例值，只退出对应实例</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 5 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00 → <span class="bold">App Push 通知消息一</span>：「{{设备名}} 电量 {{电量}}%，请检查太阳能板是否被遮挡」，深度链接到设备页与安装指引</li>
+                <li><span class="bold">等待</span>：2 天 → <span class="bold">条件分支</span>：属性「短信接收状态」——已同意走 SMS 模板消息，未同意走 App Push 通知消息，内容一致：电量仍在下降，用尽后设备将离线</li>
+                <li><span class="bold">交接</span>：本旅程只在离线前介入；设备仍离线 72 小时后由旅程 7 承接排查指引，流量为零的离线由旅程 6 承接</li>
+                <li><span class="muted">埋点：电量事件由 IoT 视频平台回传；设备类型为绑定时写入的设备属性</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">因电量耗尽离线的设备台数下降（对照组比较）</span></p>
+              <p style="margin:0">保持在线的设备继续产生告警、日报与广告展示，同时是旅程 4、5、6 的触达对象。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 4 数据整合 -->
+    <section id="s-data" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">数据整合</div>
+        <h2><span class="secnum">4</span>十条旅程依赖的事件与属性</h2>
+        <p>十条旅程依赖的数据分布在 App、账户系统、IoT 视频平台、流量服务平台与广告聚合 SDK 五处。下表列出每一项的来源与它驱动的旅程，SDK 自带的部分不需要开发。</p>
+        <div class="spacer-md"></div>
+        <table>
+          <thead><tr><th>事件或属性</th><th>类型</th><th>关键字段</th><th>来源系统</th><th>驱动的旅程</th></tr></thead>
+          <tbody>
+            <tr class="tone-info"><td>App 启动、通知权限状态、最后打开 App 时间</td><td>SDK 标准事件与属性</td><td>—</td><td>EngageLab SDK（无需开发）</td><td>1 · 2 · 3 · 8 · 9</td></tr>
+            <tr><td>设备绑定成功、解绑、共享设备</td><td>业务事件</td><td>设备 ID、设备类型、已绑定设备数、绑定天数</td><td>App 账户系统</td><td>1 · 8 · 9</td></tr>
+            <tr><td>告警事件触发、查看实时画面或回放</td><td>设备事件与行为事件</td><td>设备 ID、事件类型、时间、近 7 天告警次数</td><td>IoT 视频平台 · App</td><td>2 · 3 · 4</td></tr>
+            <tr><td>设备离线超过 72 小时、设备上线、在线设备数</td><td>设备事件与属性</td><td>设备 ID、设备类型</td><td>IoT 视频平台</td><td>2 · 3 · 6 · 7</td></tr>
+            <tr><td>电量低于 20%、电量恢复至 50% 以上；各设备电量、信号与流量余量查询</td><td>设备事件与 Webhook 取数</td><td>设备 ID、设备名、电量、信号</td><td>IoT 视频平台</td><td>3 · 10</td></tr>
+            <tr><td>云录像状态、到期日、自动续费、剩余保留天数；购买与续费成功</td><td>属性与事件</td><td>套餐名、订单金额、保留天数</td><td>订单与支付系统</td><td>1 · 4 · 5</td></tr>
+            <tr><td>流量余量低于 20%、流量充值成功、流量余量查询</td><td>事件与 Webhook 取数</td><td>设备 ID、套餐名、余量、充值金额</td><td>4G 流量服务平台</td><td>6 · 7</td></tr>
+            <tr><td>首购优惠码与有效期；激励视频奖励配置（试看天数或流量额度）</td><td>Webhook 取数与属性</td><td>优惠码、有效期、试看天数</td><td>优惠券系统 · 奖励配置</td><td>1 · 4</td></tr>
+            <tr><td>广告策略透传字段</td><td>自定义消息字段</td><td>激励视频入口开关、开屏与插屏的启用与每日上限</td><td>MA → App 端 → 广告聚合 SDK</td><td>1</td></tr>
+            <tr><td>测试分组</td><td>用户属性，同时作为聚合平台的自定义流量分组键值</td><td>实验组 / 对照组</td><td>账户系统 → MA 与广告聚合平台</td><td>1（验收）</td></tr>
+            <tr><td>广告展示次数（可选）</td><td>业务事件</td><td>样式、页面</td><td>广告 SDK 展示回调 → App 上报</td><td>过程指标</td></tr>
+            <tr><td>短信接收状态、看家日报开关</td><td>布尔属性</td><td>—</td><td>App 设置项</td><td>2 · 3 · 5 · 6 · 7 · 9 · 10</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>云录像与 4G 流量若由第三方服务平台承载，事件以接口回传或 Webhook 取数两种方式二选一，第 1 周确定；视频与人像影像不进入 MA。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5 关于 EngageLab -->
+    <section id="s-why" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">关于 EngageLab</div>
+        <h2><span class="secnum">5</span>关于 EngageLab</h2>
+        <h3>各渠道在本方案中的角色</h3>
+        <table>
+          <thead><tr><th>渠道</th><th>主要用途</th><th>平均打开率</th><th>适用市场</th></tr></thead>
+          <tbody>
+            <tr class="tone-info"><td>App Push</td><td>十条旅程的主渠道：通知消息承担日报、到期、离线与召回；自定义消息承担广告策略透传与运营位；应用内消息承担权限引导与告警当下的转化</td><td>通知点击率 2–5%，分层定向可达全量群发的约两倍</td><td>国内 + 海外</td></tr>
+            <tr class="tone-info"><td>SMS</td><td>到期、流量用尽、离线与 30 天沉默的兜底，覆盖已卸载 App 的用户；需完成短信签名与模板报备</td><td>90% 以上</td><td>国内 + 海外</td></tr>
+            <tr><td>Email</td><td>本方案未使用——账号以手机号与微信登录，未采集邮箱</td><td>—</td><td>全球</td></tr>
+            <tr><td>Web Push</td><td>本方案未使用——业务无 Web 端</td><td>—</td><td>全球</td></tr>
+            <tr><td>WhatsApp Business</td><td>本方案未使用——主要市场为国内</td><td>—</td><td>东南亚 / 南亚 / 拉美</td></tr>
+            <tr><td>LINE · Telegram · Facebook Messenger</td><td>即将上线</td><td>—</td><td>泰国 / 日本 · 中东 / 非洲 · 菲律宾 / 拉美</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>打开率为行业公开参考区间，<span class="bold">非承诺值</span>；各渠道计费方式以商务报价为准。App Push 触达通道侧支持直接添加极光 JPush 通道（含华为、小米、OPPO、vivo、荣耀厂商通道），现有告警推送链路可并行保留；短信如已有发送平台，也支持经 SMPP 对接。</li>
+        </ul>
+        <div class="divider"></div>
+        <h3>合规与数据安全</h3>
+        <table>
+          <tbody>
+            <tr><th style="width:120px">数据安全</th><td>全链路 TLS 加密 · VPC 隔离 · PII 字段脱敏 · 基于角色的权限控制</td></tr>
+            <tr><th>认证</th><td>GDPR · SOC 2；国内业务的合规配置以贵司法务意见为准</td></tr>
+            <tr><th>运营护栏</th><td>用户级全局频控 · 终端时区可发送时间 · 发送前内容预览 · 消息记录保留 60 天</td></tr>
+            <tr><th>本地法规</th><td>可协助满足各目标市场数据保护法规要求</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6 测试计划 -->
+    <section id="s-plan" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">测试计划</div>
+        <h2><span class="secnum">6</span>4 周测试计划</h2>
+        <table>
+          <thead><tr><th>周</th><th>目标</th><th>我方动作</th><th>客户动作</th><th>验收口径</th></tr></thead>
+          <tbody>
+            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案、测试环境、开通测试 VIP 账号</td><td>确认事件清单；接入 App SDK 并添加 JPush 通道；短信签名与模板报备；IoT 视频平台与流量服务平台的事件回传或查询接口；回写云录像状态、到期日、短信接收状态、已绑定设备数；设备状态类通知在推送通道登记为服务与通讯类消息分类</td><td>核心事件入库率 ≥ 95%</td></tr>
+            <tr><td><span class="step-num">2</span></td><td>核心旅程小流量上线</td><td>配置旅程 1 · 2 · 4；设全局频控上限（通知消息每日 ≤ 1 条、每周 ≤ 4 条；自定义消息与应用内消息按消息类型单独设限，告警类通知不经 MA、不受影响）</td><td>审核文案与深度链接；App 端接入广告策略透传字段；写入测试分组属性并作为自定义流量分组键值传给广告聚合平台</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错</td></tr>
+            <tr><td><span class="step-num">3</span></td><td>全量与对照</td><td>扩至全量并补齐旅程 3 · 5 · 6 · 7 · 8 · 9 · 10；监控与调优</td><td>划出 10–20% 对照组不进旅程（用属性在进入条件排除），同一批用户对十条旅程一致排除</td><td>样本量达标；日活、开通与续费数据；广告收入以广告平台报表按测试分组比较</td></tr>
+            <tr><td><span class="step-num">4</span></td><td>复盘扩面</td><td>效果报告；用真实数据校准漏斗各层；下批旅程（拓展场景 11–17）</td><td>决策扩面</td><td>主指标相对对照组的提升</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>工作量分两段：MA SDK 与 JPush 通道接入约 3–5 人日（含 SDK 自带、无需开发的部分）；客户侧聚合属性开发（绑定天数、近 7 天打开天数与告警次数、到期日、剩余保留天数、流量余量）第 1 周盘点后另行排期，不并入前者。</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div>EngageLab MA · 影腾智联 App 日活与云服务收入自动化方案 · 2026 年 9 月</div>
+  </footer>
+
+
+  <script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function el(tag, attrs) {
+      const e = document.createElementNS(NS, tag);
+      if (attrs) Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+      return e;
+    }
+    function svg(w, h) {
+      const s = el('svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('xmlns', NS);
+      return s;
+    }
+
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', danger: '#dc2626', neutral: '#6b7280',
+      grid: '#e5e7eb', text: '#374151', textMute: '#9ca3af',
+    };
+
+
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const barsPerGroup = series.length;
+      const W = 640, H = height, PAD_L = 38, PAD_R = 12, PAD_T = 16, PAD_B = 68;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const maxVal = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(maxVal / 10) * 10 || 100;
+      const groupW = innerW / categories.length;
+      const barW = Math.min((groupW * 0.66) / barsPerGroup, 30);
+      const s = svg(W, H);
+
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 5, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          const shown = (se.labels && se.labels[ci]) || (v + valueSuffix);
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2,
+            'data-tip': '<b>' + cat.split('|')[0].trim() + '</b> · ' + se.name + '：' + shown }));
+          const label = el('text', { x: x + (barW - 2) / 2, y: y - 3, 'text-anchor': 'middle', 'font-size': 8.5, fill: COLORS.text });
+          label.textContent = shown;
+          s.appendChild(label);
+        });
+        const parts = cat.split('|');
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 20, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
+        t.textContent = parts[0].trim();
+        s.appendChild(t);
+        if (parts[1]) {
+          const t2 = el('text', { x: gx + groupW / 2, y: H - PAD_B + 34, 'text-anchor': 'middle', 'font-size': 9.5, fill: COLORS.textMute });
+          t2.textContent = '（' + parts[1].trim() + '）';
+          s.appendChild(t2);
+        }
+      });
+
+      const legY = H - 14;
+      let legX = PAD_L;
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.neutral;
+        s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+        const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+        t.textContent = se.name;
+        s.appendChild(t);
+        legX += 14 + (se.name.length * 12) + 18;
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {}, incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const startX = (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          pos[it.node.id] = { x: startX + i * (NODE_W + NODE_GAP), y: 20 + r * (NODE_H + RANK_GAP) };
+        });
+      });
+
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) cur.x = prev.x + NODE_W + NODE_GAP;
+          }
+        });
+      }
+
+      const baseWidth = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      // 跨层的「提前分流到结束」走右侧通道，避免压在主链节点上
+      const hasSkip = edges.some(e => pos[e.from] && pos[e.to] && (rankOf[e.to] - rankOf[e.from]) > 1);
+      const SIDE_X = baseWidth + 20;
+      const width = hasSkip ? SIDE_X + 40 : baseWidth;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+
+      const labelJobs = [];
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        if ((rankOf[e.to] - rankOf[e.from]) > 1) {
+          const yA = y1 + 16, yB = y2 - 16;
+          const d = 'M' + x1 + ',' + y1 + ' L' + x1 + ',' + yA + ' L' + SIDE_X + ',' + yA
+                  + ' L' + SIDE_X + ',' + yB + ' L' + x2 + ',' + yB + ' L' + x2 + ',' + y2;
+          s.appendChild(el('path', { d, fill: 'none', stroke: '#b6c2d2', 'stroke-width': 1.15,
+            'stroke-dasharray': '5 4', 'marker-end': 'url(#arrow)' }));
+          if (e.label) labelJobs.push([(x1 + SIDE_X) / 2, yA, e.label]);
+          return;
+        }
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) labelJobs.push([(x1 + x2) / 2, cy, e.label]);
+      });
+
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+
+      // 边标签最后绘制，保证不被节点方块盖住
+      labelJobs.forEach(function (j) {
+        const mx = j[0], my = j[1], label = j[2];
+        const w = Math.max(label.length * 9 + 10, 28);
+        s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+        const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+        t.textContent = label;
+        s.appendChild(t);
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+
+
+    // ── Charts ──────────────────────────────────────────────────────────
+
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['安装 → 绑定设备|安装用户', '绑定用户 → 日活|绑定用户', '月活 → 云录像付费|月活用户', '到期 → 续费|到期用户', '离线 → 7 天内恢复|离线设备'],
+      series: [
+        { name: '行业参考 / 假设起点', data: [70, 25, 5.9, 55, 40], tone: 'neutral',
+          labels: ['70%', '25%', '5.9%', '55%', '40%'] },
+        { name: '自动化后预期', data: [78, 26.9, 6.75, 62.5, 55], tone: 'success',
+          labels: ['76–80%', '26–27.5%', '6.5–7%', '60–65%', '50–60%'] },
+      ],
+      valueSuffix: '%', height: 280,
+    });
+
+    // ── 旅程编排 ────────────────────────────────────────────────────────
+    // Journey 1: 广告展示机会分层放大
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '分群: 已绑定设备用户' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '活跃 · 付费 · 绑定天数 · 分组' },
+        { id: 'cm1', kind: 'channel', title: 'App Push 自定义消息', sub: '加开激励视频入口' },
+        { id: 'cm2', kind: 'channel', title: 'App Push 自定义消息', sub: 'A/B · 新绑定关插屏' },
+        { id: 'cm3', kind: 'channel', title: 'App Push 自定义消息', sub: 'A/B · 付费插屏改激励' },
+        { id: 'endD', kind: 'exitEnd', title: '结束', sub: '默认：沿用本地广告配置' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '1 天' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '次日重新进入并重判' },
+      ],
+      [
+        { from: 'start', to: 'cond' },
+        { from: 'cond', to: 'cm1', label: '高活跃未付费' },
+        { from: 'cond', to: 'cm2', label: '实验组 · 绑定 ≤ 7 天' },
+        { from: 'cond', to: 'cm3', label: '实验组 · 付费' },
+        { from: 'cond', to: 'endD', label: '默认 / 对照组' },
+        { from: 'cm1', to: 'w1' }, { from: 'cm2', to: 'w1' }, { from: 'cm3', to: 'w1' },
+        { from: 'w1', to: 'end' },
+      ]);
+
+    // Journey 2: 看家日报
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '分群: 已绑定且设备在线' },
+        { id: 'st', kind: 'sendtime', title: '可发送时间', sub: '终端时区 20:30–21:30' },
+        { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取当日事件数 · 在线台数' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '当日事件数 · 最近打开' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '今日家中 N 次动态' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '今日一切正常 · 设备在线' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '无事件且近期活跃：不发' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '次日再次进入' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '次日再次进入' },
+      ],
+      [
+        { from: 'start', to: 'st' }, { from: 'st', to: 'wh' }, { from: 'wh', to: 'cond' },
+        { from: 'cond', to: 'p1', label: '事件数 > 0' },
+        { from: 'cond', to: 'p2', label: '= 0 且 3 天未打开' },
+        { from: 'cond', to: 'endC', label: '默认' },
+        { from: 'p1', to: 'endA' }, { from: 'p2', to: 'endB' },
+      ]);
+
+    // Journey 3: 沉默用户分层召回
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 7 天未打开 · 设备在线' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 最后打开距今天数' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:30' },
+        { id: 'cond3', kind: 'branch', title: '条件分支', sub: '属性: 近 7 天告警次数' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '本周家中 N 次动态' },
+        { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取电量 · 信号 · 流量余量' },
+        { id: 'p1b', kind: 'channel', title: 'App Push 通知消息', sub: '本周无动态 · 健康周报' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:30' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '看家模式 · 新功能' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:30' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 设备在线 · 共享' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:30' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '设备在线 · 家人共享' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
+        { id: 'endA2', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
+        { id: 'endD', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
+      ],
+      [
+        { from: 'start', to: 'cond' },
+        { from: 'cond', to: 'st1', label: '7–13 天' },
+        { from: 'cond', to: 'st2', label: '14–29 天' },
+        { from: 'cond', to: 'cond2', label: '≥ 30 天' },
+        { from: 'st1', to: 'cond3' },
+        { from: 'cond3', to: 'p1', label: '> 0' },
+        { from: 'cond3', to: 'wh', label: '= 0' },
+        { from: 'wh', to: 'p1b' },
+        { from: 'st2', to: 'p2' },
+        { from: 'cond2', to: 'st3', label: '已同意短信' },
+        { from: 'cond2', to: 'st4', label: '未同意' },
+        { from: 'st3', to: 'sms' }, { from: 'st4', to: 'p3' },
+        { from: 'p1', to: 'endA' }, { from: 'p1b', to: 'endA2' }, { from: 'p2', to: 'endB' }, { from: 'sms', to: 'endC' }, { from: 'p3', to: 'endD' },
+      ]);
+
+    // Journey 4: 云录像开通
+    drawJourney(document.getElementById('dag-j4'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 告警触发 · 未开通云录像' },
+        { id: 'we1', kind: 'branch', title: '等待事件', sub: '30 分钟内: 查看画面或回放' },
+        { id: 'iam', kind: 'channel', title: '应用内消息', sub: '本次动态未保存到云端' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '1 天' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '近 7 天 N 次动态仅本地' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '3 天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 近 7 天告警次数' },
+        { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取首购优惠码与有效期' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '高频动态 · 专属优惠' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '看激励视频 · 换云录像试看' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
+      ],
+      [
+        { from: 'start', to: 'we1' },
+        { from: 'we1', to: 'iam', label: '已查看' },
+        { from: 'we1', to: 'w1', label: '超时' },
+        { from: 'iam', to: 'w1' },
+        { from: 'w1', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'w2' }, { from: 'w2', to: 'cond' },
+        { from: 'cond', to: 'wh', label: '≥ 3 次' },
+        { from: 'cond', to: 'st3', label: '< 3 次' },
+        { from: 'wh', to: 'st2' }, { from: 'st2', to: 'p2' }, { from: 'p2', to: 'endA' },
+        { from: 'st3', to: 'p3' }, { from: 'p3', to: 'endB' },
+      ]);
+
+    // Journey 5: 云录像到期续费
+    drawJourney(document.getElementById('dag-j5'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 云录像到期日 · 有效' },
+        { id: 'wa1', kind: 'wait', title: '等待至', sub: '到期日前 7 天' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: 自动续费' },
+        { id: 'st0', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p0', kind: 'channel', title: 'App Push 通知消息', sub: '将于到期日自动续费' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '自动续费用户只发告知' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '7 天后到期 · 一键续费' },
+        { id: 'wa2', kind: 'wait', title: '等待至', sub: '到期日前 1 天' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '明天到期' },
+        { id: 'wa3', kind: 'wait', title: '等待至', sub: '到期日后 3 天' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 云端录像 N 天后清除' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '云端录像 N 天后清除' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '续费成功即提前退出' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '续费成功即提前退出' },
+      ],
+      [
+        { from: 'start', to: 'wa1' }, { from: 'wa1', to: 'cond1' },
+        { from: 'cond1', to: 'st0', label: '已开自动续费' },
+        { from: 'cond1', to: 'st1', label: '手动续费' },
+        { from: 'st0', to: 'p0' }, { from: 'p0', to: 'endA' },
+        { from: 'st1', to: 'p1' }, { from: 'p1', to: 'wa2' }, { from: 'wa2', to: 'st2' }, { from: 'st2', to: 'p2' },
+        { from: 'p2', to: 'wa3' }, { from: 'wa3', to: 'cond2' },
+        { from: 'cond2', to: 'st3', label: '已同意短信' },
+        { from: 'cond2', to: 'st4', label: '未同意' },
+        { from: 'st3', to: 'sms' }, { from: 'st4', to: 'p3' },
+        { from: 'sms', to: 'endB' }, { from: 'p3', to: 'endC' },
+      ]);
+
+    // Journey 6: 4G 流量余量与套餐续费
+    drawJourney(document.getElementById('dag-j6'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 流量余量 < 20%（按设备）' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '设备流量剩余 N% · 充值' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 用尽后离线' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '用尽后离线' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '3 天' },
+        { id: 'we', kind: 'branch', title: '等待事件', sub: '5 天内: 该设备离线' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '已因流量用尽离线' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '充值成功即退出本实例' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '未离线：结束本实例' },
+      ],
+      [
+        { from: 'start', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'w1' }, { from: 'w1', to: 'cond' },
+        { from: 'cond', to: 'st2', label: '已同意短信' },
+        { from: 'cond', to: 'st3', label: '未同意' },
+        { from: 'st2', to: 'sms' }, { from: 'st3', to: 'p2' },
+        { from: 'sms', to: 'w2' }, { from: 'p2', to: 'w2' },
+        { from: 'w2', to: 'we' },
+        { from: 'we', to: 'st4', label: '设备离线' },
+        { from: 'we', to: 'endB', label: '超时' },
+        { from: 'st4', to: 'p3' }, { from: 'p3', to: 'endA' },
+      ]);
+
+    // Journey 7: 设备离线唤醒
+    drawJourney(document.getElementById('dag-j7'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 设备离线 > 72 小时' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '事件属性: 设备类型' },
+        { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取该设备流量余量' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '流量余量' },
+        { id: 'endX', kind: 'exitOk', title: '结束', sub: '流量为零：交旅程 6' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '4G 机离线 · 电量与信号' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: 'WiFi 机离线 · 路由与电源' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '3 天' },
+        { id: 'cond3', kind: 'branch', title: '条件分支', sub: '最后打开 · 短信接收状态' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 仍离线 · 指引' },
+        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '仍离线 · 指引' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '上线即退出本实例' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '上线即退出本实例' },
+      ],
+      [
+        { from: 'start', to: 'cond1' },
+        { from: 'cond1', to: 'wh', label: '4G 太阳能' },
+        { from: 'cond1', to: 'st2', label: 'WiFi' },
+        { from: 'wh', to: 'cond2' },
+        { from: 'cond2', to: 'endX', label: '余量 = 0' },
+        { from: 'cond2', to: 'st1', label: '余量 > 0' },
+        { from: 'st1', to: 'p1' }, { from: 'st2', to: 'p2' },
+        { from: 'p1', to: 'w1' }, { from: 'p2', to: 'w1' },
+        { from: 'w1', to: 'cond3' },
+        { from: 'cond3', to: 'st3', label: '7 天未打开且同意' },
+        { from: 'cond3', to: 'st4', label: '默认' },
+        { from: 'st3', to: 'sms' }, { from: 'st4', to: 'p3' },
+        { from: 'sms', to: 'endA' }, { from: 'p3', to: 'endB' },
+      ]);
+
+    // Journey 8: 绑定首周引导
+    drawJourney(document.getElementById('dag-j8'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 设备绑定成功 · 首台' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: 'SDK 属性: 通知权限状态' },
+        { id: 'iam', kind: 'channel', title: '应用内消息', sub: '开启通知才能收到告警' },
+        { id: 'wd1', kind: 'wait', title: '等待', sub: '2 日历日' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '看家模式 · 在家免打扰' },
+        { id: 'we', kind: 'branch', title: '等待事件', sub: '3 天内: 共享设备' },
+        { id: 'endA', kind: 'exitOk', title: '结束', sub: '已共享' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:00' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '邀请家人一起看家' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '云录像由旅程 4 承接' },
+      ],
+      [
+        { from: 'start', to: 'cond1' },
+        { from: 'cond1', to: 'iam', label: '未开启' },
+        { from: 'cond1', to: 'wd1', label: '已开启' },
+        { from: 'iam', to: 'wd1' },
+        { from: 'wd1', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'we' },
+        { from: 'we', to: 'endA', label: '已共享' },
+        { from: 'we', to: 'st2', label: '超时' },
+        { from: 'st2', to: 'p2' }, { from: 'p2', to: 'endB' },
+      ]);
+
+    // Journey 9: 安装未绑定引导
+    drawJourney(document.getElementById('dag-j9'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: 'SDK 事件: App 启动 · 未绑定' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '24 小时' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '3 步完成添加' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'iam', kind: 'channel', title: '应用内消息', sub: '配网视频教程 · 在线客服' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '添加遇到问题？' },
+        { id: 'w3', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 教程短链 · 客服' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '绑定成功转旅程 8' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '绑定成功转旅程 8' },
+      ],
+      [
+        { from: 'start', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'p1' },
+        { from: 'p1', to: 'w2' }, { from: 'w2', to: 'iam' }, { from: 'iam', to: 'st2' },
+        { from: 'st2', to: 'p2' }, { from: 'p2', to: 'w3' }, { from: 'w3', to: 'cond' },
+        { from: 'cond', to: 'st3', label: '已同意短信' },
+        { from: 'cond', to: 'endB', label: '未同意' },
+        { from: 'st3', to: 'sms' }, { from: 'sms', to: 'endA' },
+      ]);
+
+    // Journey 10: 设备电量预警
+    drawJourney(document.getElementById('dag-j10'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 电量 < 20%（按设备）' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '电量不足 · 检查太阳能板' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 用尽后将离线' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '用尽后将离线' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '电量恢复即退出本实例' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '电量恢复即退出本实例' },
+      ],
+      [
+        { from: 'start', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'w1' }, { from: 'w1', to: 'cond' },
+        { from: 'cond', to: 'st2', label: '已同意短信' },
+        { from: 'cond', to: 'st3', label: '未同意' },
+        { from: 'st2', to: 'sms' }, { from: 'st3', to: 'p2' },
+        { from: 'sms', to: 'endA' }, { from: 'p2', to: 'endB' },
+      ]);
+  </script>
+
+
+<script>
+(function () {
+  "use strict";
+  /* ── 1. TOC 场景下拉 ── */
+  (function () {
+    var drop = document.querySelector(".toc-drop");
+    if (!drop) return;
+    var btn = drop.querySelector(".toc-drop-btn");
+    var panel = drop.querySelector(".toc-drop-panel");
+    function place() {
+      var b = btn.getBoundingClientRect();
+      var w = panel.offsetWidth || 236;
+      var left = Math.min(
+        Math.max(8, b.left + b.width / 2 - w / 2),
+        document.documentElement.clientWidth - w - 8
+      );
+      panel.style.left = left + "px";
+      panel.style.top = (b.bottom + 8) + "px";
+    }
+    function setOpen(on) {
+      drop.dataset.open = on ? "1" : "0";
+      btn.setAttribute("aria-expanded", on ? "true" : "false");
+      panel.hidden = !on;
+      if (on) place();
+    }
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setOpen(panel.hidden);
+    });
+    window.addEventListener("resize", function () { if (!panel.hidden) place(); });
+    window.addEventListener("scroll", function () { if (!panel.hidden) place(); }, { passive: true });
+    // 自己接管跳转：先展开目标场景再滚动，否则展开引起的布局变化会打断平滑滚动
+    panel.addEventListener("click", function (e) {
+      var a = e.target.closest("a");
+      if (!a) return;
+      e.preventDefault();
+      setOpen(false);
+      var id = a.getAttribute("href").slice(1);
+      var sec = document.getElementById(id);
+      if (!sec) return;
+      if (history.replaceState) history.replaceState(null, "", "#" + id);
+      requestAnimationFrame(function () {
+        sec.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+    document.addEventListener("click", function (e) {
+      if (!drop.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+  })();
+
+
+
+  /* ── 2. 场景区粘性子导航（零隐藏，只提供位置感与跳转）── */
+  (function () {
+    var STAGE_COLOR = {
+      acquire: ["#2563eb", "#e7efff"], activate: ["#0e7490", "#ddf1f8"],
+      retain: ["#c2700a", "#fdf1dc"], repeat: ["#0f9d63", "#e2f7ee"],
+      campaign: ["#6d28d9", "#efe9fe"], advocacy: ["#be123c", "#ffe4ea"]
+    };
+    var items = [
+      ["s-journey1", "1", "广告分层", "retain"],
+      ["s-journey2", "2", "看家日报", "retain"],
+      ["s-journey3", "3", "沉默召回", "retain"],
+      ["s-journey4", "4", "云录像开通", "activate"],
+      ["s-journey5", "5", "云录像续费", "repeat"],
+      ["s-journey6", "6", "4G 流量", "repeat"],
+      ["s-journey7", "7", "离线唤醒", "retain"],
+      ["s-journey8", "8", "首周引导", "acquire"],
+      ["s-journey9", "9", "未绑定引导", "acquire"],
+      ["s-journey10", "10", "电量预警", "retain"]
+    ].filter(function (it) { return document.getElementById(it[0]); });
+    if (items.length < 2) return;
+
+    var rail = document.createElement("nav");
+    rail.className = "scene-rail";
+    rail.setAttribute("aria-label", "场景导航");
+    var inner = document.createElement("div");
+    inner.className = "scene-rail-inner";
+    var lab = document.createElement("span");
+    lab.className = "sr-label";
+    lab.textContent = "十条旅程";
+    inner.appendChild(lab);
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it[0];
+      a.innerHTML = '<span class="sr-n">' + it[1] + '</span>' + it[2];
+      inner.appendChild(a);
+    });
+    rail.appendChild(inner);
+    document.body.appendChild(rail);
+    var links = inner.querySelectorAll("a");
+
+    // 覆盖范围：从场景总览表开始，到最后一个场景结束
+    var zoneStart = document.getElementById("s-scenarios") || document.getElementById(items[0][0]);
+    var zoneEnd = document.getElementById(items[items.length - 1][0]);
+
+    function onScroll() {
+      var top = zoneStart.getBoundingClientRect().top;
+      var bottom = zoneEnd.getBoundingClientRect().bottom;
+      rail.classList.toggle("is-on", top <= 90 && bottom > 140);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+
+    // 当前场景高亮 + 用该场景的阶段色
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute("href") === "#" + en.target.id;
+          a.classList.toggle("is-active", on);
+          if (on) {
+            var st = STAGE_COLOR[en.target.dataset.stage] || STAGE_COLOR.acquire;
+            a.style.setProperty("--sr-stage", st[0]);
+            a.style.setProperty("--sr-stage-soft", st[1]);
+          }
+        });
+      });
+    }, { rootMargin: "-30% 0px -55% 0px" });
+    items.forEach(function (it) { spy.observe(document.getElementById(it[0])); });
+  })();
+
+  /* ── 3. 右侧圆点导航 ── */
+  (function () {
+    var items = [
+      ["s-market", "业务洞察"], ["s-funnel", "用户漏斗"],
+      ["s-scenarios", "十条旅程"], ["s-data", "数据整合"],
+      ["s-why", "关于 EngageLab"], ["s-plan", "测试计划"]
+    ].filter(function (it) { return document.getElementById(it[0]); });
+    if (items.length < 3) return;
+
+    var rail = document.createElement("nav");
+    rail.className = "rail";
+    rail.setAttribute("aria-label", "章节导航");
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it[0];
+      a.dataset.label = it[1];
+      a.setAttribute("aria-label", it[1]);
+      rail.appendChild(a);
+    });
+    document.body.appendChild(rail);
+
+    var links = rail.querySelectorAll("a");
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    items.forEach(function (it) { spy.observe(document.getElementById(it[0])); });
+  })();
+
+  /* ── 4. 柱状图 hover tooltip ── */
+  (function () {
+    var charts = document.querySelectorAll(".chart svg");
+    if (!charts.length) return;
+    var tip = document.createElement("div");
+    tip.className = "chart-tip";
+    document.body.appendChild(tip);
+
+    charts.forEach(function (svg) {
+      svg.querySelectorAll("rect").forEach(function (r) {
+        var h = parseFloat(r.getAttribute("height") || "0");
+        if (!h || h < 1) return;               // 跳过网格/背景矩形
+        r.classList.add("bar");
+        r.addEventListener("mouseenter", function () {
+          var label = r.dataset.tip;
+          if (!label) return;
+          tip.innerHTML = label;
+          tip.classList.add("is-on");
+        });
+        r.addEventListener("mousemove", function (e) {
+          tip.style.left = (e.clientX + 14) + "px";
+          tip.style.top = (e.clientY - 34) + "px";
+        });
+        r.addEventListener("mouseleave", function () { tip.classList.remove("is-on"); });
+      });
+    });
+  })();
+
+  /* ── 5. 滚动入场动效（默认不启用，判定通过才加）── */
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var targets = [];
+    document.querySelectorAll("main > section:not([data-scene])").forEach(function (sec) {
+      sec.querySelectorAll(":scope > .wrap > .card, :scope > .wrap > table, " +
+        ":scope > .wrap > .grid > *, :scope > .wrap > .callout").forEach(function (el) {
+          el.classList.add("reveal");
+          targets.push(el);
+        });
+    });
+    if (!targets.length) return;
+
+    document.documentElement.classList.add("anim-ready");
+
+    // 场景块整体浮起（比逐元素更有「一段开始了」的信号）
+    var sceneIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("is-in");
+        sceneIO.unobserve(en.target);
+      });
+    }, { threshold: 0.04, rootMargin: "0px 0px -4% 0px" });
+    var scenes = document.querySelectorAll("main > section[data-scene]");
+    scenes.forEach(function (sc) { sceneIO.observe(sc); });
+    setTimeout(function () { scenes.forEach(function (sc) { sc.classList.add("is-in"); }); }, 3000);
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var sibs = Array.prototype.slice.call(en.target.parentNode.children);
+        var i = Math.min(sibs.indexOf(en.target), 5);
+        setTimeout(function () { en.target.classList.add("is-in"); }, i * 70);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+    targets.forEach(function (t) { io.observe(t); });
+
+    // 兜底：3 秒后无论如何全部显示，杜绝「动效没触发就永远看不见」
+    setTimeout(function () {
+      targets.forEach(function (t) { t.classList.add("is-in"); });
+    }, 3000);
+  })();
+})();
+
+</script>
+
+</body>
+</html>
