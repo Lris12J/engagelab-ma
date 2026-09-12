@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EngageLab MA · 闪铸 Flashforge · 消费级 3D 打印机 DTC 增长方案</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <title>EngageLab MA · 闪铸 Flashforge 全生命周期自动化方案</title>
   <style>
     :root {
       --bg: #ffffff;
@@ -25,8 +26,6 @@
       --info-soft: #e0f2fe;
       --danger: #dc2626;
       --danger-soft: #fee2e2;
-      --purple: #7c3aed;
-      --purple-soft: #ede9fe;
       --radius: 10px;
       --radius-sm: 6px;
       --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
@@ -47,7 +46,6 @@
     .muted { color: var(--text-3); }
     .small { font-size: 13px; }
     .bold { font-weight: 600; }
-    .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.92em; }
 
     .section { background: var(--bg-elev); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
@@ -58,7 +56,7 @@
       border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
       margin-bottom: 24px; }
     .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 900px; margin: 8px 0 18px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 920px; margin: 8px 0 18px; }
 
     .pill { display: inline-flex; align-items: center; padding: 2px 10px;
       font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
@@ -67,13 +65,11 @@
     .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
     .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
     .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
-    .pill-purple { background: var(--purple-soft); border-color: var(--purple); color: var(--purple); }
 
     .grid { display: grid; gap: 16px; }
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
     .grid-2 { grid-template-columns: repeat(2, 1fr); }
-    .grid-5 { grid-template-columns: repeat(5, 1fr); }
     .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
     .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
     .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
@@ -107,8 +103,6 @@
     .callout.success .callout-title { color: var(--success); }
     .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
     .callout.warn .callout-title { color: var(--warning); }
-    .callout.purple { border-left-color: var(--purple); background: var(--purple-soft); }
-    .callout.purple .callout-title { color: var(--purple); }
     .callout.neutral { border-left-color: var(--text-3); }
 
     table { width: 100%; border-collapse: collapse; font-size: 13.5px;
@@ -121,7 +115,6 @@
     tr:last-child td { border-bottom: 0; }
     tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
     tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
-    tr.tone-purple td { background: rgba(124, 58, 237, 0.04); }
     .align-center { text-align: center; }
     .align-right { text-align: right; }
 
@@ -135,7 +128,6 @@
 
     .chart { width: 100%; }
     .chart svg { width: 100%; height: auto; display: block; }
-
     .dag-wrap { overflow-x: auto; padding: 8px 2px; }
     .dag-wrap svg { display: block; margin: 0 auto; }
 
@@ -153,20 +145,6 @@
       color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
     a.back-home:hover { text-decoration: underline; }
 
-    .stage-card { border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; background: var(--bg-elev); }
-    .stage-card .stage-head { padding: 12px 16px; background: var(--info-soft);
-      border-bottom: 1px solid var(--border); }
-    .stage-card.stage-2 .stage-head { background: var(--warning-soft); }
-    .stage-card.stage-3 .stage-head { background: var(--purple-soft); }
-    .stage-card .stage-title { font-size: 15px; font-weight: 700; color: var(--info); margin-bottom: 2px; }
-    .stage-card.stage-2 .stage-title { color: var(--warning); }
-    .stage-card.stage-3 .stage-title { color: var(--purple); }
-    .stage-card .stage-sub { font-size: 12px; color: var(--text-3); }
-    .stage-card .stage-body { padding: 14px 16px; font-size: 13px; }
-    .stage-card .stage-body ul { margin: 0; padding-left: 18px; }
-    .stage-card .stage-body li { margin-bottom: 3px; }
-
     @page { size: A4; margin: 14mm; }
     @media print {
       body { background: #fff; }
@@ -174,24 +152,23 @@
       .toc-bar, a.back-home { display: none; }
       .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
       h2 { page-break-after: avoid; }
-      .hero { break-before: avoid; }
       .dag-wrap { overflow: visible; }
       .dag-wrap svg { max-width: 100%; }
     }
 
     .spacer-sm { height: 6px; }
     .spacer-md { height: 12px; }
-
     .step-num { display: inline-flex; align-items: center; justify-content: center;
       width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
       color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
 
     footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
       font-size: 12px; color: var(--text-4); text-align: center; }
+
+    @media (max-width: 900px) {
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-12-1 { grid-template-columns: 1fr; }
+    }
   </style>
-
-
-
 
 
   <style>
@@ -439,854 +416,1065 @@
     }
   </style>
 
-  <meta name="robots" content="noindex, nofollow" />
+
+<style>
+  /* ═══ 阅读增强层 · 20260831 ═══
+     设计原则：默认状态全部可见。JS 只负责「收起」与「加动效」，
+     因此无 JS、打印、PDF 导出时内容永远完整。 */
+
+  /* 吸顶导航高 58px——所有锚点目标留出偏移，否则标题会被盖住 */
+  main > section { scroll-margin-top: 70px; }
+
+  /* ── 图注 / 表注的要点列表 ── */
+  .notelist { margin: 7px 0 0; padding-left: 17px; }
+  .notelist li { font-size: 12.6px; color: var(--text-3); margin-bottom: 4px; line-height: 1.6; }
+  .notelist li:last-child { margin-bottom: 0; }
+
+  /* ── callout 内的要点列表（文案密度规则 §1.6）── */
+  .callout-body ul { margin: 0; padding-left: 17px; }
+  .callout-body li { margin-bottom: 5px; line-height: 1.62; }
+  .callout-body li:last-child { margin-bottom: 0; }
+
+  /* ── TOC 场景下拉 ── */
+  .toc-drop { position: relative; display: inline-flex; align-items: center; }
+  .toc-drop-btn {
+    font: inherit; color: var(--text-3); background: none; border: 0; padding: 0;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+    white-space: nowrap; font-weight: 500; transition: color .15s ease;
+  }
+  .toc-drop-btn:hover, .toc-drop[data-open="1"] .toc-drop-btn { color: var(--accent); }
+  .toc-drop-btn .caret { font-size: 9px; transition: transform .18s ease; }
+  .toc-drop[data-open="1"] .caret { transform: rotate(180deg); }
+  /* 用 fixed 定位：TOC 容器有 overflow-x:auto，absolute 面板会被裁掉 */
+  .toc-drop-panel {
+    position: fixed; top: 0; left: 0;
+    min-width: 236px; background: var(--bg-elev);
+    border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: var(--shadow-lg); padding: 7px; z-index: 60;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .toc-drop-panel[hidden] { display: none; }
+  .toc-drop-panel a {
+    display: flex; align-items: center; gap: 9px; padding: 7px 10px;
+    border-radius: 7px; font-size: 13px; color: var(--text-2); white-space: nowrap;
+  }
+  .toc-drop-panel a:hover { background: var(--accent-soft); color: var(--accent); }
+  .toc-drop-panel .sd-n {
+    flex: none; width: 19px; height: 19px; border-radius: 6px;
+    background: var(--bg-soft); color: var(--text-3);
+    font-family: var(--mono-stack); font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .toc-drop-panel a:hover .sd-n { background: var(--accent); color: #fff; }
+  .toc-drop-panel .sd-all {
+    font-weight: 650; color: var(--text);
+    border-bottom: 1px solid var(--border); border-radius: 7px 7px 0 0; margin-bottom: 4px;
+  }
+
+
+
+  /* ── 场景视觉锚点：大号序号 + 生命周期阶段色带 ── */
+  main > section[data-scene] {
+    border-top: 3px solid var(--stage, var(--border-strong));
+    padding-top: 44px;
+  }
+  main > section[data-stage="acquire"]  { --stage: #2563eb; --stage-soft: #e7efff; }
+  main > section[data-stage="activate"] { --stage: #0e7490; --stage-soft: #ddf1f8; }
+  main > section[data-stage="retain"]   { --stage: #c2700a; --stage-soft: #fdf1dc; }
+  main > section[data-stage="repeat"]   { --stage: #0f9d63; --stage-soft: #e2f7ee; }
+  main > section[data-stage="campaign"] { --stage: #6d28d9; --stage-soft: #efe9fe; }
+  main > section[data-stage="advocacy"] { --stage: #be123c; --stage-soft: #ffe4ea; }
+
+  .scene-head { display: flex; align-items: center; gap: 20px; margin-bottom: 14px; }
+  .scene-num {
+    flex: none; font-family: var(--mono-stack);
+    font-size: 44px; font-weight: 700; line-height: 1;
+    letter-spacing: -0.03em; color: var(--stage);
+    font-variant-numeric: tabular-nums;
+  }
+  .scene-head-main { min-width: 0; }
+  .scene-head h2 { margin: 0; }
+  /* 阶段 pill 染成该场景的阶段色，让 6 个场景一眼可区分 */
+  main > section[data-scene] .row .pill.pill-info {
+    background: var(--stage-soft); border-color: var(--stage); color: var(--stage);
+  }
+
+  /* ── 场景区粘性子导航（滚进场景区才出现）── */
+  .scene-rail {
+    position: fixed; top: 58px; left: 0; right: 0; z-index: 28;
+    background: rgba(255,255,255,.9);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-102%); opacity: 0;
+    transition: transform .28s cubic-bezier(.22,.61,.36,1), opacity .2s ease;
+    pointer-events: none;
+  }
+  .scene-rail.is-on { transform: none; opacity: 1; pointer-events: auto; }
+  .scene-rail-inner {
+    max-width: 1180px; margin: 0 auto; padding: 0 28px;
+    height: 46px; display: flex; align-items: center; gap: 4px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .scene-rail-inner::-webkit-scrollbar { display: none; }
+  .scene-rail .sr-label {
+    flex: none; font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--text-4); margin-right: 12px; white-space: nowrap;
+  }
+  .scene-rail a {
+    flex: none; display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 11px; border-radius: 100px; font-size: 12.5px; font-weight: 500;
+    color: var(--text-3); text-decoration: none; white-space: nowrap;
+    transition: background .16s ease, color .16s ease;
+  }
+  .scene-rail a .sr-n {
+    font-family: var(--mono-stack); font-size: 11px; font-weight: 700;
+    color: var(--text-4); transition: color .16s ease;
+  }
+  .scene-rail a:hover { background: var(--bg-soft); color: var(--text); }
+  .scene-rail a.is-active { background: var(--sr-stage-soft, var(--accent-soft)); color: var(--sr-stage, var(--accent)); font-weight: 650; }
+  .scene-rail a.is-active .sr-n { color: var(--sr-stage, var(--accent)); }
+  @media (max-width: 720px) { .scene-rail .sr-label { display: none; } }
+
+  /* 有子导航时，锚点偏移要加上它的高度 */
+  main > section[data-scene] { scroll-margin-top: 112px; }
+
+  /* ── 整块浮起：场景块作为一个整体进入 ── */
+  .anim-ready main > section[data-scene] > .wrap { opacity: 0; transform: translateY(18px); }
+  .anim-ready main > section[data-scene].is-in > .wrap {
+    opacity: 1; transform: none;
+    transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);
+  }
+
+  /* ── 右侧圆点导航 ── */
+  .rail {
+    position: fixed; right: 22px; top: 50%; transform: translateY(-50%);
+    z-index: 25; display: flex; flex-direction: column; gap: 13px;
+  }
+  .rail a {
+    position: relative; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--border-strong); transition: background .18s ease, transform .18s ease;
+  }
+  .rail a::after {
+    content: attr(data-label); position: absolute; right: 20px; top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: var(--ink-dark); color: #fff; font-size: 11.5px; font-weight: 500;
+    padding: 4px 9px; border-radius: 6px; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity .16s ease, transform .16s ease;
+  }
+  .rail a:hover { background: var(--accent); transform: scale(1.25); }
+  .rail a:hover::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+  .rail a.is-active { background: var(--accent); transform: scale(1.35); }
+  .rail a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (max-width: 1320px) { .rail { display: none; } }
+
+  /* ── 图表 hover 高亮 ── */
+  .chart svg .bar { transition: opacity .15s ease; cursor: default; }
+  .chart svg:hover .bar { opacity: .38; }
+  .chart svg .bar:hover { opacity: 1; }
+  .chart-tip {
+    position: fixed; z-index: 80; pointer-events: none; opacity: 0;
+    background: var(--ink-dark); color: #fff; font-size: 12px; line-height: 1.5;
+    padding: 6px 10px; border-radius: 7px; white-space: nowrap;
+    transition: opacity .12s ease; box-shadow: var(--shadow);
+  }
+  .chart-tip.is-on { opacity: 1; }
+  .chart-tip b { font-weight: 650; }
+
+  /* ── 滚动入场动效（仅在 JS 判定可用时启用）── */
+  .anim-ready .reveal { opacity: 0; transform: translateY(14px); }
+  .anim-ready .reveal.is-in {
+    opacity: 1; transform: none;
+    transition: opacity .5s cubic-bezier(.22,.61,.36,1), transform .5s cubic-bezier(.22,.61,.36,1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-ready .reveal,
+    .anim-ready main > section[data-scene] > .wrap {
+      opacity: 1 !important; transform: none !important; transition: none !important;
+    }
+    .scene-rail { transition: none !important; }
+    .toc-drop-btn .caret, .rail a { transition: none !important; }
+  }
+
+  /* ── 打印 / PDF：强制全部展开、去掉一切装饰 ── */
+  @media print {
+    .anim-ready .reveal,
+    .anim-ready main > section[data-scene] > .wrap { opacity: 1 !important; transform: none !important; }
+    .rail, .toc-drop, .scene-rail, .chart-tip { display: none !important; }
+    main > section[data-scene] { break-before: page; }
+    .chart svg .bar { opacity: 1 !important; }
+  }
+</style>
+
+
 </head>
 <body>
   <nav class="toc-bar">
     <div class="toc-inner">
       <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA 解决方案</a>
-      <a href="#s-market">行业机会</a>
-      <a href="#s-current">触达现状</a>
-      <a href="#s-why">为什么 MA</a>
-      <a href="#s-preset">SDK 预置能力</a>
-      <a href="#s-scenarios">六大旅程</a>
-      <a href="#s-journey1">旅程编排</a>
-      <a href="#s-roadmap">三阶段路线</a>
-      <a href="#s-benchmark">行业对标</a>
-      <a href="#s-compliance">合规护栏</a>
+      <a href="#s-market">业务洞察</a>
+      <a href="#s-funnel">漏斗与基准</a>
+      <div class="toc-drop">
+        <button type="button" class="toc-drop-btn" aria-expanded="false" aria-controls="toc-scenes">十条旅程<span class="caret" aria-hidden="true">▾</span></button>
+        <div class="toc-drop-panel" id="toc-scenes" hidden>
+          <a href="#s-scenarios" class="sd-all">场景总览表</a>
+          <a href="#s-journey1"><span class="sd-n">1</span>平台买家与 App 用户建立官网触点</a>
+          <a href="#s-journey2"><span class="sd-n">2</span>欢迎与首单激活</a>
+          <a href="#s-journey3"><span class="sd-n">3</span>弃购挽回</a>
+          <a href="#s-journey4"><span class="sd-n">4</span>购后履约与首次打印</a>
+          <a href="#s-journey5"><span class="sd-n">5</span>耗材补货</a>
+          <a href="#s-journey6"><span class="sd-n">6</span>打印失败后的服务旅程</a>
+          <a href="#s-journey7"><span class="sd-n">7</span>评价与推荐有礼</a>
+          <a href="#s-journey8"><span class="sd-n">8</span>沉睡设备唤醒</a>
+          <a href="#s-journey9"><span class="sd-n">9</span>换机升级</a>
+          <a href="#s-journey10"><span class="sd-n">10</span>新品预售与大促</a>
+        </div>
+      </div>
+      <a href="#s-data">数据整合</a>
+      <a href="#s-why">关于 EngageLab</a>
       <a href="#s-plan">测试计划</a>
     </div>
   </nav>
 
   <main>
-<!-- Hero -->
+    <!-- Hero -->
     <section class="hero">
       <div class="wrap">
-      <div class="hero-pills">
-        <span class="pill pill-info">闪铸 Flashforge · 定制提案</span>
-        <span class="pill">消费级 3D 打印机 · DTC 独立站</span>
-        <span class="pill">App Push 已合作 · 复用即扩展</span>
-        <span class="pill pill-success">零埋点冷启动 · 4 周验证</span>
-      </div>
-      <h1>EngageLab MA · 闪铸 Flashforge · 消费级 3D 打印机 DTC 生命周期增长方案</h1>
-      <p class="hero-subtitle">
-        闪铸产品覆盖全球 200+ 国家、近百万用户，自建推荐算法与埋点体系已支撑独立站商品推荐，
-        App Push 触达通道也已就绪。<span class="bold">MA 的定位是给现有 Push 装上"运营大脑"——
-        什么时候发、发给谁、跨渠道协同、发完看归因</span>。
-        本方案采用<span class="bold">三阶段渐进式接入路线</span>：
-        第一阶段仅需 SDK 集成（0.5–1 天），即可跑通 4 条基于 SDK 预置事件的旅程，让运营团队用最低成本先感受 MA 价值；
-        之后再按业务节奏补齐电商与设备事件，逐步覆盖全链路。
-      </p>
-      <div class="grid grid-4">
-        <div class="stat">
-          <div class="stat-value">$26.5 <span style="font-size:14px;font-weight:500">亿</span></div>
-          <div class="stat-label">全球桌面级 3D 打印机市场规模（2025，Valuates Report）</div>
+        <div class="hero-pills">
+          <span class="pill pill-accent">消费级 3D 打印机 · DTC 独立站</span>
+          <span class="pill pill-info">App「Flash Studio」· iOS 与 Android</span>
+          <span class="pill">北美 · 欧洲 · 澳洲 · 拉美</span>
+          <span class="pill">客户定制提案</span>
         </div>
-        <div class="stat">
-          <div class="stat-value success">200+</div>
-          <div class="stat-label">闪铸产品已进驻国家与地区（含近百万用户，官网数据）</div>
+        <h1>闪铸 Flashforge · <span class="grad">从设备事件到耗材复购的全生命周期自动化方案</span></h1>
+        <p class="hero-subtitle">把官网已有的积分、推荐有礼、评价与预售，和 Flash Studio 里的打印任务、耗材用量、错误码接成按用户状态自动运行的旅程。<span class="bold">App Push 沿用已开通的通道</span>，邮件与短信不打断现有发送，官网新增 Web Push 触点。</p>
+        <div class="grid grid-4">
+          <div class="stat">
+            <div class="stat-value warn">70.22%</div>
+            <div class="stat-label">电商平均购物车弃购率（Baymard Institute，50 项研究汇总，2025 年更新）</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value info">3% → 11.4%</div>
+            <div class="stat-label">同行耗材收入占总营收的比例，2022 年到 2024 年（创想三维港交所招股书）</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value success">54% → 69%</div>
+            <div class="stat-label">硬件品牌购后账户与订阅绑定率一年内的变化（GoPro 2026 年第二季度财报）</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">10 条 / 4 周</div>
+            <div class="stat-label">本方案交付十条旅程，四周完成测试验证</div>
+          </div>
         </div>
-        <div class="stat">
-          <div class="stat-value info">4 条</div>
-          <div class="stat-label">阶段一即可跑起来的旅程（零业务埋点）</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value warn">0.5–1 天</div>
-          <div class="stat-label">Web + App SDK 集成的前端投入</div>
-        </div>
-      </div>
+        <p class="small muted" style="margin-top:16px">本方案所列效果区间均为行业公开参考值，非承诺值，实际以测试期数据为准。</p>
       </div>
     </section>
 
-    <!-- Market opportunity -->
-    <section id="s-market" class="section">
+    <!-- 1 业务洞察 -->
+    <section id="s-market" class="section-plain">
       <div class="wrap">
-      <h2><span class="secnum">1</span>行业机会 · 消费级 3D 打印机 DTC 已经进入"生命周期运营"阶段</h2>
-      <div class="grid grid-2-1">
-        <div>
-          <p>消费级 3D 打印机赛道过去 3 年经历了两次重要转变：</p>
-          <p>
-            <span class="bold">第一次转变</span>：从"极客工具"走向"家庭桌面消费品"——用户群体大幅泛化，
-            用户对开箱难度、切片教程、模型资源的依赖大幅增加，
-            <span class="bold">首打成功率</span>成为决定复购与口碑的关键指标。
-          </p>
-          <p>
-            <span class="bold">第二次转变</span>：从"平台电商为主"走向"独立站+平台协同"——
-            头部品牌普遍把独立站作为"品牌与私域主阵地"、把平台作为"市场覆盖辅助"。
-            这背后的核心是<span class="bold">用户资产沉淀权</span>——用户数据、行为、模型偏好都留在自己手里，才能做长期运营。
-          </p>
-          <p>
-            在这样的行业结构下，运营环节的核心命题已经从"投流转化"转向了
-            <span class="bold">"用户全生命周期自动化"</span>——从访问、注册、下单、开箱、首打、模型消费、耗材复购到升级换代，
-            每个阶段都有明确的触达价值，也都需要跨渠道自动化。
-          </p>
-        </div>
-        <div>
+        <div class="eyebrow">业务洞察</div>
+        <h2><span class="secnum">1</span>用户身份沉淀在 App 里，收入增长在耗材上：两者之间缺一条自动化的链路</h2>
+        <p>打印机经官网、Amazon、线下连锁与经销商售出，所有渠道的买家只在扫码绑定 Flash Studio 时才第一次成为可识别的账号。绑定之后，每一次打印任务都在告诉贵司这台机器用了什么耗材、停在哪个错误码、多久没开机，<span class="bold">这些是官网工具与同行 App 都拿不到的触发信号</span>。官网这边，积分、推荐有礼、评价、教育试用、预售与季节活动已经齐备，但彼此独立，也没有和设备数据连在一起。</p>
+        <div class="spacer-md"></div>
+        <div class="grid" style="grid-template-columns:1fr">
           <div class="card">
-            <div class="card-header">头部品牌独立站的流量结构（公开数据）</div>
+            <div class="card-header">三条收入线与本方案介入的时点</div>
             <div class="card-body">
-              <div class="signal-row">
-                <div class="left">
-                  <div class="label">直接访问占比</div>
-                  <div class="hint">品牌力与私域运营驱动</div>
-                </div>
-                <div class="value">54.9%</div>
-              </div>
-              <div class="signal-row">
-                <div class="left">
-                  <div class="label">自然搜索占比</div>
-                  <div class="hint">SEO + 品牌词沉淀</div>
-                </div>
-                <div class="value">30%</div>
-              </div>
-              <div class="signal-row">
-                <div class="left">
-                  <div class="label">付费广告占比</div>
-                  <div class="hint">低占比 · 私域为主</div>
-                </div>
-                <div class="value">6%</div>
-              </div>
-              <div class="signal-row">
-                <div class="left">
-                  <div class="label">购机一年后仍活跃用户</div>
-                  <div class="hint">软硬件生态 + 私域运营</div>
-                </div>
-                <div class="value">90%+</div>
-              </div>
+              <table>
+                <thead><tr><th>收入线</th><th>决定变量</th><th>本方案介入的时点</th><th>驱动旅程</th></tr></thead>
+                <tbody>
+                  <tr class="tone-info"><td>整机首购（官网与平台）</td><td>留资率 × 加购到支付 × 预售履约</td><td>留资后 7 天内、加购后 1 小时到 3 天、预售发货日前 3 天</td><td>2 · 3 · 4 · 10</td></tr>
+                  <tr><td>耗材与配件复购（官网，中国仓发货）</td><td>绑定率 × 打印用量 × 复购间隔</td><td>绑定第 3 天、累计用量达阈值、打印失败之后</td><td>1 · 5 · 6</td></tr>
+                  <tr><td>换机升级与推荐（官网）</td><td>累计打印时长 × 首件成品的满意度</td><td>累计 300 小时、首件成品之后、活动开卖时刻</td><td>7 · 9 · 10</td></tr>
+                  <tr><td>三条线共同的基数</td><td>绑定率与首次打印成功率</td><td>签收后、绑定后 7 天内、30 天无打印</td><td>4 · 8</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">产品线在用户生命周期中的角色</div>
+            <div class="card-body">
+              <table>
+                <thead><tr><th>品类</th><th>官网售价与状态</th><th>在本方案中的角色</th><th>驱动旅程</th></tr></thead>
+                <tbody>
+                  <tr class="tone-info"><td>CJ270 全彩树脂打印机</td><td>预售 $3,999，首批 10 月 15 日发货</td><td>履约等待期最长的订单，预售人群在购后与大促旅程里单独分支</td><td>4 · 10</td></tr>
+                  <tr><td>Creator 5 / Creator 5 Pro 四喷头多色</td><td>$799 / $949</td><td>换机升级的目标机型；多台设备用户与批量采购的推荐对象</td><td>9 · 10</td></tr>
+                  <tr><td>AD5X 四色 · Adventurer 5M / 5M Pro</td><td>$399 / $299 / $449；翻新机 $199–339</td><td>走量机型；AD5M 无内置摄像头需选配；翻新机作为升级推荐的预算档</td><td>2 · 3 · 4 · 9</td></tr>
+                  <tr><td>耗材 17 款</td><td>$23–35 每千克，常年 20% off</td><td>复购主线；按打印用量、材质与颜色推荐，不按日历</td><td>5 · 8 · 10</td></tr>
+                  <tr><td>配件：喷嘴、热端、挤出机、PEI 平台</td><td>$10–135；挤出机部件保修 3 个月</td><td>打印失败后的服务分流；过保用户的自助维修入口</td><td>6</td></tr>
+                </tbody>
+              </table>
+              <ul class="notelist">
+                <li>售价取自官网美国站 2026 年 9 月标价，用于说明价格带；旅程 3 的金额分流阈值按各区域站点币种换算，以贵司当期在售价为准。</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-      <div class="spacer-md"></div>
-      <div class="callout info">
-        <div class="callout-title">对闪铸的直接含义</div>
-        <div class="callout-body">
-          <p>· 闪铸的产品力（FDM + DLP + MJP 全技术栈、MJP 全球销量第一、Adventurer 5M 亚马逊冠军）已经在赛道上，200+ 国家的渠道深度不输任何头部品牌；</p>
-          <p>· 独立站 + 自建推荐 + App Push 的基础触达能力已经就位；</p>
-          <p>· <span class="bold">目前欠缺的是"跨渠道生命周期运营"这一层</span>——缺一个能自动化把用户从"访问 → 使用 → 复购"每个阶段串起来的运营大脑；</p>
-          <p>· 这正是 EngageLab MA 定位的核心价值，也是本方案的落地重点。</p>
+    </section>
+
+    <!-- 2 用户漏斗 -->
+    <section id="s-funnel" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">用户漏斗与行业基准</div>
+        <h2><span class="secnum">2</span>用户漏斗：六个可被自动化直接影响的环节</h2>
+        <p>最贵的一层是签收到绑定：没有绑定的机器对贵司就是一台不存在的机器，耗材、服务、换机三条线都从这里起算。其次是加购到支付，一台整机的弃购金额是一单耗材的十倍以上。</p>
+        <div class="spacer-md"></div>
+        <div class="grid" style="grid-template-columns:1fr">
+          <div class="card">
+            <div class="card-header">用户漏斗：行业参考与自动化后预期</div>
+            <div class="card-body">
+              <div class="chart" id="chart-funnel"></div>
+              <ul class="notelist">
+                <li>第 1 层取电商订阅弹窗公开报告的均值，第 2 层由 Baymard 弃购率折算；第 3–6 层为假设起点，第 1 周用贵司真实数据校准，现有邮件平台已在运行的流程以其当前数据为基线。第 3 层预期参照 GoPro 一年内从 54% 到 69% 的公开变化。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">公开案例与行业基准</div>
+            <div class="card-body">
+              <table>
+                <thead><tr><th>主体</th><th>场景</th><th>效果</th><th>来源</th></tr></thead>
+                <tbody>
+                  <tr><td>Baymard Institute</td><td>电商购物车弃购</td><td>平均弃购率 70.22%（50 项独立研究汇总）</td><td>Baymard Institute 弃购率研究，2025 年更新</td></tr>
+                  <tr><td>GoPro</td><td>硬件购后账户与订阅绑定</td><td>绑定率 54% → 69%（2025 年第二季度到 2026 年第二季度）</td><td>GoPro 2026 年第二季度财报</td></tr>
+                  <tr><td>创想三维</td><td>硬件加耗材的收入结构</td><td>耗材收入占比 3% → 11.4%（2022 年到 2024 年）；云平台注册用户约 570 万</td><td>港交所招股书，2026 年 3 月</td></tr>
+                  <tr><td>跨渠道营销自动化公开研究（超 20 亿次触达样本）</td><td>单渠道与三个及以上渠道的活动</td><td>购买率 2.56% 对 8.96%，约 3.5 倍</td><td>2019 年跨渠道营销自动化公开报告</td></tr>
+                  <tr><td>电商自动化公开基准（多品牌汇总）</td><td>弃购挽回 · 欢迎序列 · 购后邮件 · 评价邀请 · 沉睡召回</td><td>弃购邮件下单率 5–12%；欢迎序列下单率 3–8%，优化后 8–12%；购后邮件打开率 50–65%；评价邀请提交率 2.5–5%；单封召回邮件转化 3–8%</td><td>2026 年电商邮件营销基准报告与评价平台公开数据</td></tr>
+                </tbody>
+              </table>
+              <ul class="notelist">
+                <li>数据来源：基于 2019–2026 年电商与硬件品牌公开财报、招股书与行业基准报告综合测算；平台厂商的报告以匿名方式引用，未按 3D 打印品类单独核实的区间在各旅程效益块注明。</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
+
+    <!-- 3 场景总览 -->
+    <section id="s-scenarios" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">场景总览</div>
+        <h2><span class="secnum">3</span>十条运营旅程</h2>
+        <p>旅程 1–3 承接留资与首购，旅程 4 承接购后到首次打印，旅程 5–9 建立在设备事件之上，旅程 10 把预售与大促做成按人群分流的旅程。旅程 5 与 8 在「累计用量」上互斥，旅程 3 承接所有旅程产生的加购，交接写在各自的组件配置里。</p>
+        <div class="spacer-md"></div>
+        <table>
+          <thead><tr><th>#</th><th>场景</th><th>承接漏斗环节</th><th>主渠道组合</th><th>亮点</th><th>见效节奏</th><th>预期效果</th></tr></thead>
+          <tbody>
+            <tr class="tone-info"><td>1</td><td>平台买家与 App 用户建立官网触点</td><td>签收 → 绑定 App（平台买家入口）</td><td>App Push 通知 + Email</td><td>设备绑定事件是官网工具看不到的入口；先让首印完成，第 3 天再引导注册</td><td>首月见效</td><td>平台买家官网注册率；其余九条旅程的覆盖同步放大</td></tr>
+            <tr><td>2</td><td>欢迎与首单激活：按有没有打印机分流</td><td>访问 → 留资 → 首单</td><td>Email + Web Push</td><td>已绑定设备的留资用户第一封就是按机型选好的耗材；无设备用户先消除分期与退货顾虑，积分放末轮</td><td>首月见效</td><td>留资到首单 3–8% → 8–12%</td></tr>
+            <tr class="tone-info"><td>3</td><td>弃购挽回：整机与耗材两套理由</td><td>加购 → 支付</td><td>Web Push + Email</td><td>已开始结账的用户单独一路；按购物车金额分两套顾虑消除内容；再次加购重新计时；推荐引擎选搭配</td><td>首月见效</td><td>加购到支付 30% → 33–38%</td></tr>
+            <tr class="tone-info"><td>4</td><td>购后履约与首次打印</td><td>支付 → 签收 → 绑定 → 首印</td><td>Email + App Push 通知</td><td>拆单发货先解释；预售单等待发货日；签收后按 App 安装状态引导绑定，直到首件成品</td><td>首月见效</td><td>签收到绑定 50% → 60–70%（假设起点）</td></tr>
+            <tr><td>5</td><td>耗材补货：按打印用量提醒</td><td>首印 → 90 天内耗材复购</td><td>App Push 通知 + Email</td><td>用量从打印任务累计，推荐引擎按材质与颜色选 SKU，在断料前而不是断料后提醒</td><td>需数据积累</td><td>首印用户 90 天内耗材复购 25% → 30–35%（假设起点）</td></tr>
+            <tr class="tone-info"><td>6</td><td>打印失败后的服务旅程</td><td>首印 → 持续使用</td><td>App Push 通知 + Webhook 建工单 + Email</td><td>错误码分三类送对应排错页；两天未开机按保修状态分流到工单或配件</td><td>首月见效</td><td>失败后 3 天内恢复打印的设备占比；工单量与配件订单</td></tr>
+            <tr><td>7</td><td>评价与推荐有礼：先问体验，再邀评价</td><td>首印 → 评价与推荐</td><td>应用内消息 + Email</td><td>邀评时点是首件成品之后；低分先建工单，解决后同样开放评价；平台买家邀分享与推荐</td><td>首月见效</td><td>评价邀请提交率 2.5–5% → 5–10%</td></tr>
+            <tr><td>8</td><td>沉睡设备唤醒：给一个打印的理由</td><td>持续使用 → 沉睡 30 天</td><td>App Push 通知 + Email</td><td>唤醒内容是按机型取的热门模型，两轮不带折扣，无响应即停</td><td>需数据积累</td><td>沉睡设备 30 天内回流 15% → 20–25%（假设起点）</td></tr>
+            <tr><td>9</td><td>换机升级：按累计打印时长与已有机型推荐</td><td>持续使用 → 升级换机</td><td>Email + App Push 通知</td><td>300 小时的单色机用户推多色机，多台用户推批量价，翻新机作预算档，积分放末轮</td><td>长周期培育</td><td>重度用户 90 天内整机订单（对照组比较）</td></tr>
+            <tr><td>10</td><td>新品预售与大促：三种人三种内容</td><td>全漏斗，按人群</td><td>Email + Web Push</td><td>老用户、浏览未购者、新订阅者三路内容，开卖时刻收敛，购买即退出，稀缺信息取自真实数据</td><td>首月见效（按活动日历）</td><td>三个及以上渠道的活动购买率约为单渠道的 3.5 倍</td></tr>
+            <tr><td colspan="7" style="background:#f8fafc;font-weight:700;color:var(--text-3);font-size:12.5px;letter-spacing:.04em">拓展场景 · 测试期后按优先级推进，本方案不编排</td></tr>
+            <tr><td>11</td><td>教育线索培育</td><td>留资 → 首单（教育采购）</td><td>Email + Webhook</td><td>教师凭学校邮箱申请免费耗材试用后，按申请时间推进课程案例与批量报价，Webhook 通知销售建线索</td><td>长周期培育（学校采购按学期）</td><td>试用申请到报价请求</td></tr>
+            <tr><td>12</td><td>固件升级前置沟通</td><td>持续使用</td><td>App Push 通知 + 应用内消息</td><td>按固件版本号比较只提醒低于目标版本的设备，升级前先告知改动与注意事项</td><td>首月见效</td><td>目标版本覆盖率</td></tr>
+            <tr><td>13</td><td>旧 App 用户迁移到 Flash Studio</td><td>绑定 → 持续使用</td><td>App Push 通知 + Email</td><td>仍在使用 Flash Maker 的账号按最后启动时间分批引导迁移</td><td>依赖客户侧能力（旧 App 是否接入推送）</td><td>迁移率</td></tr>
+            <tr><td>14</td><td>保修到期前 30 天提醒</td><td>持续使用 → 配件</td><td>Email</td><td>整机 12 个月保修到期前按设备清单逐台提醒，附自检清单与配件入口</td><td>需数据积累</td><td>保修期内工单率、配件订单</td></tr>
+            <tr><td>15</td><td>打印农场与批量采购线索</td><td>持续使用 → 升级</td><td>Email + Webhook</td><td>设备数量大于等于 3 的账号转给销售，附批量价与企业站入口</td><td>依赖客户侧能力（销售承接流程）</td><td>线索转报价</td></tr>
+            <tr><td>16</td><td>积分差额提醒：离 10% off 兑换还差多少分</td><td>首印 → 耗材复购</td><td>Email + App Push 通知</td><td>积分余额介于 800–999 且有耗材加购或浏览时提醒差额，兑换门槛与差额来自积分系统属性；到达 1000 分即结束</td><td>需数据积累</td><td>积分兑换率与兑换后订单</td></tr>
+            <tr><td>17</td><td>浏览未加购唤起</td><td>访问 → 加购</td><td>Web Push + Email</td><td>浏览整机页两次以上未加购的访客，Webhook 取同价位机型对比后触达；加购即交旅程 3</td><td>首月见效</td><td>浏览到加购率</td></tr>
+            <tr><td>18</td><td>通知权限关闭后的再引导</td><td>绑定 → 持续使用</td><td>应用内消息</td><td>SDK 事件「通知权限关闭」触发，不需要埋点开发；旅程 1、5、6、8 都依赖这个权限</td><td>首月见效</td><td>通知权限恢复率</td></tr>
+            <tr><td>19</td><td>国内 App 上线后的承接</td><td>全漏斗（国内）</td><td>App Push（JPush 通道）+ SMS</td><td>复用本方案的旅程结构，触达通道侧直接添加极光 JPush 通道；国内用户数据的部署区域与合规配置为前置项</td><td>依赖客户侧能力（国内 App 排期）</td><td>与海外同口径</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>建议测试期优先上线旅程 3、4、6。以上效果区间均为行业公开参考值，<span class="bold">非承诺值</span>，实际以测试期数据为准。</li>
+        </ul>
       </div>
     </section>
 
-    <!-- Current touchpoint audit -->
-    <section id="s-current" class="section">
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain" data-stage="acquire" data-scene="1">
       <div class="wrap">
-      <h2><span class="secnum">2</span>闪铸当前触达能力盘点 · 加装 MA 后的价值放大</h2>
-      <table>
-        <thead><tr>
-          <th style="width:16%">触达渠道 / 能力</th>
-          <th style="width:24%">闪铸当前状态</th>
-          <th style="width:30%">加装 MA 后的新增价值</th>
-          <th>是否需替换现有能力</th>
-        </tr></thead>
-        <tbody>
-          <tr class="tone-success">
-            <td class="bold">App Push</td>
-            <td>已合作 EngageLab（触达通道就绪）</td>
-            <td>用旅程编排能力包裹现有 Push 通道，自动决定"什么时候发、发给谁、跟其他渠道怎么协同"</td>
-            <td class="align-center bold" style="color:var(--success)">否 · 直接叠加</td>
-          </tr>
-          <tr>
-            <td class="bold">Web Push</td>
-            <td>暂未启用</td>
-            <td>独立站 SDK 接入后即可开通，覆盖"未登录浏览用户"这一块最大的流量池</td>
-            <td class="align-center">— · 新增能力</td>
-          </tr>
-          <tr>
-            <td class="bold">Email</td>
-            <td>主要用于订单/发货交易邮件</td>
-            <td>MA 用于欢迎邮件、耗材复购、活动预热、流失召回等运营邮件，与交易邮件并存</td>
-            <td class="align-center bold" style="color:var(--success)">否 · 补充运营邮件</td>
-          </tr>
-          <tr>
-            <td class="bold">SMS</td>
-            <td>可能已有</td>
-            <td>MA 支持通过 SMPP 协议对接已有短信供应商</td>
-            <td class="align-center bold" style="color:var(--success)">否 · 保留现有供应商</td>
-          </tr>
-          <tr>
-            <td class="bold">WhatsApp</td>
-            <td>暂未启用</td>
-            <td>覆盖闪铸主战场的东南亚、拉美、欧洲部分市场（WhatsApp 普及率高）</td>
-            <td class="align-center">— · 可选新增</td>
-          </tr>
-          <tr class="tone-info">
-            <td class="bold">自建推荐 + 埋点 CDP</td>
-            <td>已成熟，用于站内商品推荐</td>
-            <td>MA 与自建 CDP 分工：自建 CDP 做"画像 + 站内推荐"，MA 做"跨渠道旅程 + 触达"。自建 CDP 计算好的分群/标签可通过接口批量同步到 MA 作为旅程分支条件</td>
-            <td class="align-center bold" style="color:var(--success)">否 · 分层协作</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="spacer-md"></div>
-      <div class="callout success">
-        <div class="callout-title">核心结论 · MA 不替换任何现有能力，只补齐"跨渠道运营大脑"这一层</div>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">01</div><div class="scene-head-main"><h2>旅程 1｜平台买家与 App 用户建立官网触点</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">其余旅程的覆盖基数</span><span class="pill pill-info">绑定 → 官网账号</span><span class="pill">设备绑定事件触发 · 先让首印完成 · App Push 通知 + Email</span></div>
+      <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>闪铸现有的每一项投入——App Push、独立站、自建推荐 CDP、埋点体系——都会因为加装 MA 而 ROI 放大。
-          尤其 App Push 的 ROI 会在 MA 旅程编排之后有明显跃升，因为"消息发出去"和"消息发得对"是两件事。</p>
+          <p>平台与经销商售出的打印机，只在扫码绑定 Flash Studio 时才第一次和贵司建立账号关系。<span class="bold">绑定事件是官网工具看不到的入口</span>，用它把平台买家引到官网账号与积分体系。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · Email　｜　<span class="bold">触发方式</span>：事件「设备绑定成功」且官网订单数为 0　｜　<span class="bold">退出条件</span>：官网注册完成即退出</p>
         </div>
       </div>
-      </div>
-    </section>
-
-    <!-- Why MA -->
-    <section id="s-why" class="section">
-      <div class="wrap">
-      <h2><span class="secnum">3</span>为什么现在是接入 EngageLab MA 的最佳时机</h2>
-      <div class="grid grid-3">
-        <div class="card"><div class="card-header">1. Push 已合作 → MA 无缝叠加</div><div class="card-body">
-          <p>Push 服务只解决"消息发得出去"，MA 解决"什么时候发、发给谁、跨渠道怎么协同、发完看归因"。
-          <span class="bold">MA 不替换 Push，是给 Push 装上驾驶座</span>——你现有的 Push 投入 ROI 会因为加装 MA 而放大。</p>
-          <ul style="margin-top:8px;padding-left:18px;">
-            <li>Push 通道复用 · 无需重新对接</li>
-            <li>触达数据打通 · 送达/点击/转化归因</li>
-            <li>频控与去重 · 避免多条旅程重复打扰</li>
-          </ul>
-        </div></div>
-        <div class="card"><div class="card-header">2. SDK 预置能力 → 零业务埋点冷启动</div><div class="card-body">
-          <p>EngageLab MA SDK 自带 <span class="bold">10+ 预置事件</span>与 <span class="bold">10+ 预置用户属性</span>——
-          App 冷启动、页面浏览、通知权限开关、EUID 注册、会话开始、首次 UTM、累计购买次数、最后活跃时间…
-          <span class="bold">SDK 一装就自动上报</span>。</p>
-          <ul style="margin-top:8px;padding-left:18px;">
-            <li>前端投入仅 <span class="bold">0.5–1 天</span></li>
-            <li>业务方不需要新增任何埋点</li>
-            <li>4 条基础旅程立即可用</li>
-          </ul>
-        </div></div>
-        <div class="card"><div class="card-header">3. 未来国内 App → 1:1 迁移</div><div class="card-body">
-          <p>闪铸正在规划国内 App 开发。EngageLab（海外）与极光 JPush + 极光 MA（国内）是<span class="bold">同一集团、同一产品逻辑</span>，
-          海外 MA 上跑通的旅程模板、埋点规范、运营 SOP 可以 <span class="bold">1:1 复用到国内</span>。</p>
-          <ul style="margin-top:8px;padding-left:18px;">
-            <li>海外 MA 经验可直接迁移</li>
-            <li>跨海内外双轨运营基础设施</li>
-            <li>单次投入 · 长期复用</li>
-          </ul>
-        </div></div>
-      </div>
-      <div class="spacer-md"></div>
-      <h3 style="margin-top:16px;">渠道能力总览 · 全渠道旅程一体化编排</h3>
-      <table>
-        <thead><tr>
-          <th>渠道</th><th>核心用途</th><th>定价方式</th><th>闪铸海外市场匹配度</th>
-        </tr></thead>
-        <tbody>
-          <tr><td class="bold">App Push</td><td>App 内活跃用户高频触达 · 通知权限利用</td><td>按 DAU 定价</td><td class="align-center bold" style="color:var(--success)">已合作</td></tr>
-          <tr><td class="bold">Web Push</td><td>独立站未登录/未下载 App 用户 · 浏览器订阅推送</td><td>按 DAU 定价</td><td class="align-center bold" style="color:var(--info)">强烈推荐 · 覆盖最大流量池</td></tr>
-          <tr><td class="bold">Email</td><td>运营邮件（欢迎/复购/召回/活动预热）</td><td>按条数计费</td><td class="align-center">推荐 · 与交易邮件互补</td></tr>
-          <tr><td class="bold">SMS</td><td>关键节点兜底（如订单/物流关键状态）</td><td>按目标国家定价</td><td class="align-center">可选 · 保留现有供应商</td></tr>
-          <tr><td class="bold">WhatsApp</td><td>东南亚/拉美/欧洲部分市场 · 高触达率对话</td><td>按目标国家定价</td><td class="align-center">可选 · 后续覆盖新兴市场</td></tr>
-          <tr class="tone-info"><td class="bold">LINE / Telegram / Messenger</td><td>即将上线 · 日本/欧美/新兴市场</td><td>—</td><td class="align-center">未来扩展 · 匹配闪铸多区域布局</td></tr>
-        </tbody>
-      </table>
-      </div>
-    </section>
-
-    <!-- SDK Preset Capabilities -->
-    <section id="s-preset" class="section">
-      <div class="wrap">
-      <h2><span class="secnum">4</span>SDK 预置能力 · 零业务埋点即可跑起来</h2>
-      <p>EngageLab MA SDK 集成完成后（Web + App，前端 0.5–1 天工作量），以下事件与用户属性会 <span class="bold">自动上报</span>，
-      业务方不需要新增任何埋点。第一阶段 4 条旅程完全基于这些预置能力。</p>
-      <div class="spacer-md"></div>
-      <div class="grid grid-2">
+      <div class="grid grid-2-1">
         <div class="card">
-          <div class="card-header">SDK 预置事件（自动上报）</div>
-          <div class="card-body">
-            <table style="border:none">
-              <thead><tr><th>事件</th><th>触发时机</th></tr></thead>
-              <tbody>
-                <tr><td class="bold">App Launch</td><td>App 冷启动 / 从后台唤起</td></tr>
-                <tr><td class="bold">Session Start / End</td><td>会话开始与结束</td></tr>
-                <tr><td class="bold">Page View</td><td>Web 页面访问 / URL 变化</td></tr>
-                <tr><td class="bold">Page Stay</td><td>页面停留（5s / 30s / 60s / 2min / 5min / 10min 分档）</td></tr>
-                <tr><td class="bold">Switch to Foreground</td><td>App 由后台切前台 / Web 回到当前 Tab</td></tr>
-                <tr><td class="bold">Switch to Background</td><td>App 切后台 / Web 最小化或切换 Tab</td></tr>
-                <tr><td class="bold">Notification State On</td><td>用户开启通知权限（App / Web Push）</td></tr>
-                <tr><td class="bold">Notification State Off</td><td>用户关闭通知权限</td></tr>
-                <tr><td class="bold">User Activation</td><td>新用户 EUID 注册成功</td></tr>
-                <tr><td class="bold">App Update</td><td>App 版本更新后重启</td></tr>
-              </tbody>
-            </table>
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j1"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>平台买家的邮箱与订单留在平台，官网的积分、推荐有礼与评价体系对他们不可见</li>
+                <li>App 账号与官网账号是两套体系，用户不会主动把两者关联</li>
+                <li>绑定后前三天用户忙于首次打印，此时推官网注册只会被忽略</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「设备绑定成功」，用户属性过滤「官网订单数」等于 0 或为空；事件属性携带机型与设备 ID</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 90 天，最多进入 2 次</li>
+                <li><span class="bold">提前退出</span>：事件「官网注册完成」</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天</li>
+                <li><span class="bold">等待</span>：3 个日历日——首次打印交由旅程 4 引导，本旅程不在同一时段发消息 → <span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">App Push 通知消息一</span>：「注册官网账号得 20 积分，{{机型}} 的耗材与配件在官网下单」，深度链接到官网积分页并预填 App 账号邮箱</li>
+                <li><span class="bold">等待</span>：7 天 → <span class="bold">条件分支</span>：属性「邮件营销同意」——已同意走 <span class="bold">Email 模板消息</span>：积分规则、推荐好友双方各得 100 积分、教育用户免费耗材试用入口；未同意走结束</li>
+                <li><span class="bold">交接</span>：注册完成后进入旅程 2 的已绑定设备分支</li>
+                <li><span class="muted">埋点：设备绑定成功由 App 上报（含机型）；官网订单数由订单系统写入用户属性；邮件营销同意来自 App 注册页与官网订阅表单</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">平台买家的官网注册率（对照组比较）；其余九条旅程的覆盖人数同步放大</span></p>
+              <p style="margin:0">增量 = 绑定用户数 × 注册转化率 × 后续耗材复购率 × 耗材客单价，代入贵司数据。</p>
+            </div>
           </div>
         </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain" data-stage="acquire" data-scene="2">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">02</div><div class="scene-head-main"><h2>旅程 2｜欢迎与首单激活：按有没有打印机分流</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">见效最快</span><span class="pill pill-info">留资 → 首单</span><span class="pill">留资事件触发 · 激励后置 · Email + Web Push</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>留资的人分两种：已有打印机来找耗材的，和还在比较机型的。<span class="bold">前者第一封邮件就是按机型选好的耗材</span>，后者先消除分期、退货与到货时效的顾虑，积分放末轮。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email 模板消息 · Web Push 通知消息　｜　<span class="bold">触发方式</span>：事件「留资完成」（注册或订阅）　｜　<span class="bold">退出条件</span>：官网下单即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
         <div class="card">
-          <div class="card-header">SDK 预置用户属性（自动计算）</div>
-          <div class="card-body">
-            <table style="border:none">
-              <thead><tr><th>属性</th><th>说明</th></tr></thead>
-              <tbody>
-                <tr><td class="bold">创建时间</td><td>用户首次被识别的时间戳</td></tr>
-                <tr><td class="bold">最后活跃时间</td><td>用于"距今 N 天"类判断</td></tr>
-                <tr><td class="bold">首次 / 最后会话开始时间</td><td>会话时序追踪</td></tr>
-                <tr><td class="bold">累计购买金额 / 次数</td><td>需业务方上报 purchase 后自动累计</td></tr>
-                <tr><td class="bold">最后购买时间</td><td>用于"复购提醒 / 沉睡召回"</td></tr>
-                <tr><td class="bold">激活渠道</td><td>App / Web 激活来源</td></tr>
-                <tr><td class="bold">首次来源页 URL / 域名</td><td>Web 首访来源追踪</td></tr>
-                <tr><td class="bold">首次 UTM Source</td><td>google / facebook / youtube 等</td></tr>
-                <tr><td class="bold">首次 UTM Medium / Campaign</td><td>渠道媒介 / 活动 ID 归因</td></tr>
-                <tr><td class="bold">首次 UTM Term / Content</td><td>关键词 / 素材归因</td></tr>
-              </tbody>
-            </table>
-          </div>
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j2"></div></div>
         </div>
-      </div>
-      <div class="spacer-md"></div>
-      <div class="callout success">
-        <div class="callout-title">价值主张：4 条旅程 · 零业务埋点</div>
-        <div class="callout-body">
-          <p>基于以上预置事件与属性，第一阶段 4 条旅程（通知权限欢迎、EUID 激活、长期未活跃召回、UTM 归因分层欢迎）
-          <span class="bold">完全不需要业务方新增任何埋点</span>。
-          闪铸前端团队集成 SDK 后，MA 就可以直接跑起来，用最低成本验证价值。
-          等看到效果之后，再决定是否投入阶段二、三的业务埋点。</p>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>$299–$949 的整机决策以天计，一封欢迎邮件之后没有第二次触达理由</li>
+                <li>订阅送 30 积分、注册送 20 积分已经在页面上，但没有人在留资后告诉用户积分能换什么</li>
+                <li>已有打印机的用户收到机型介绍等于被当成陌生人</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「留资完成」，事件属性「来源」为注册或订阅；用户属性过滤「邮件营销同意」为真</li>
+                <li><span class="bold">再次进入</span>：不可再次进入</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天</li>
+                <li><span class="bold">条件分支</span>：属性「设备清单」非空 → <span class="bold">Webhook 取数</span>：调用贵司推荐引擎，传入机型与常用材质，取回 3 个耗材或配件 SKU → <span class="bold">Email 模板消息</span>：「{{机型}} 的常用耗材」，SKU 名称、图片与价格来自返回值，缺值走默认兜底 → 等待事件 3 天「加入购物车」：加购交旅程 3，未加购结束</li>
+                <li><span class="bold">默认分支</span>（无设备）：<span class="bold">Email 模板消息一</span>：欢迎与积分规则，机型对比页入口，不带折扣 → <span class="bold">等待</span>：2 个日历日 → <span class="bold">可发送时间</span>：终端时区 9:00–21:00 → <span class="bold">条件分支</span>：属性「Web Push 订阅状态」——已订阅走 <span class="bold">Web Push 通知消息</span>，未订阅走 <span class="bold">Email 模板消息二</span>，内容一致：分期、30 天退货、打印机本地仓 2–5 天到货</li>
+                <li><span class="bold">等待</span>：5 天 → <span class="bold">可发送时间</span> → <span class="bold">Email 模板消息三</span>：积分抵扣规则与当季活动页（活动名称、截止日由活动属性取值），不另发新折扣</li>
+                <li><span class="muted">埋点：留资完成由官网注册与订阅表单上报（SDK 页面事件之外的一个业务事件）；设备清单由 App 绑定同步为 object array 属性</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">留资到首单 3–8% → 8–12%</span></p>
+              <p style="margin:0">已绑定设备分支的首单是耗材，转化快于整机，用真实数据分开看。</p>
+            </div>
+          </div>
         </div>
       </div>
       </div>
     </section>
 
-    <!-- Scenarios Overview -->
-    <section id="s-scenarios" class="section">
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain" data-stage="acquire" data-scene="3">
       <div class="wrap">
-      <h2><span class="secnum">5</span>六大高 ROI 旅程场景总览</h2>
-      <table>
-        <thead><tr>
-          <th style="width:5%">#</th>
-          <th style="width:12%">阶段</th>
-          <th style="width:20%">场景</th>
-          <th style="width:22%">进入条件</th>
-          <th style="width:20%">主推渠道</th>
-          <th>核心价值</th>
-        </tr></thead>
-        <tbody>
-          <tr class="tone-info">
-            <td class="bold">J1</td>
-            <td><span class="pill pill-info">阶段一 · 零埋点</span></td>
-            <td class="bold">通知权限开启欢迎</td>
-            <td>事件：通知权限开启</td>
-            <td>App Push → Email</td>
-            <td>用户刚打开权限即精准触达，转化率最高的黄金窗口</td>
-          </tr>
-          <tr class="tone-info">
-            <td class="bold">J2</td>
-            <td><span class="pill pill-info">阶段一 · 零埋点</span></td>
-            <td class="bold">新用户激活引导</td>
-            <td>事件：EUID 注册成功</td>
-            <td>App Push → Email</td>
-            <td>先观察是否自主浏览，未浏览再补充引导，降低打扰</td>
-          </tr>
-          <tr class="tone-info">
-            <td class="bold">J3</td>
-            <td><span class="pill pill-info">阶段一 · 零埋点</span></td>
-            <td class="bold">长期未活跃召回</td>
-            <td>属性：最后活跃距今超过 14 天 且 累计购买 = 0</td>
-            <td>App Push → Web Push → Email</td>
-            <td>拉回沉睡访客，避免"访问了没下单就流失"的最大漏损</td>
-          </tr>
-          <tr class="tone-info">
-            <td class="bold">J4</td>
-            <td><span class="pill pill-info">阶段一 · 零埋点</span></td>
-            <td class="bold">UTM 归因分层欢迎</td>
-            <td>属性：首次 UTM Source 不为空</td>
-            <td>Web Push</td>
-            <td>按来源渠道差异化触达（搜索 / 社交 / 视频用户各不同）</td>
-          </tr>
-          <tr class="tone-purple">
-            <td class="bold">J5</td>
-            <td><span class="pill pill-warn">阶段二 · 电商事件</span></td>
-            <td class="bold">加购未下单挽回</td>
-            <td>事件：加入购物车</td>
-            <td>Web Push → App Push → Email</td>
-            <td>DTC 独立站转化漏斗最大的漏损环节，18 小时内三段挽回</td>
-          </tr>
-          <tr class="tone-purple">
-            <td class="bold">J6</td>
-            <td><span class="pill pill-purple">阶段三 · 设备事件</span></td>
-            <td class="bold">打印机绑定首打引导</td>
-            <td>事件：打印机绑定成功</td>
-            <td>App Push → Email</td>
-            <td>首打成功率 = 长期留存的核心指标（对标拓竹 90%+ 一年留存）</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">03</div><div class="scene-head-main"><h2>旅程 3｜弃购挽回：整机与耗材两套理由</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">收入直接产出</span><span class="pill pill-info">加购 → 支付</span><span class="pill">加购事件触发 · 多实例最新覆盖 · Web Push + Email</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>购物车里是 $399 的整机还是三卷耗材，犹豫的原因不同：前者是分期与退货，后者是到货时间。<span class="bold">按购物车金额分两套顾虑消除内容</span>，再次加购重新计时。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：事件「加入购物车」　｜　<span class="bold">退出条件</span>：订单支付成功即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j3"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>官网当前没有 Web Push 订阅入口，未留邮箱的访客加购后没有任何可触达的渠道</li>
+                <li>整机与耗材的弃购原因不同，同一封「你的购物车还在」对两者都没有说服力</li>
+                <li>首轮就给折扣会把犹豫买家训练成等券</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「加入购物车」，事件属性携带商品、购物车金额</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例，最新覆盖）：并发上限 1、达到上限替换最早实例——再次加购即重新计时</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 2 小时</li>
+                <li><span class="bold">等待事件</span>：1 小时内等待「开始结账」——已开始结账的用户走 <span class="bold">Email 模板消息一（结账）</span>：订单已保留、可用支付方式与分期，这是意向最高的一群人；未开始 → <span class="bold">条件分支</span>：属性「Web Push 订阅状态」——已订阅走 <span class="bold">Web Push 通知消息一</span>，未订阅走 <span class="bold">Email 模板消息一</span>：购物车已保留，打印机本地仓 2–5 天到货、耗材与配件另寄，不带折扣</li>
+                <li><span class="bold">等待</span>：1 个日历日 → <span class="bold">可发送时间</span>：终端时区 9:00–21:00 → <span class="bold">条件分支</span>：事件属性「购物车金额」大于等于 299 → <span class="bold">Email 模板消息二</span>：分期、30 天退货、12 个月保修；小于 299 → <span class="bold">Email 模板消息二</span>：耗材当季活动与积分抵扣，中国仓发货时效说明</li>
+                <li><span class="bold">等待</span>：2 天 → <span class="bold">可发送时间</span> → <span class="bold">Webhook 取数</span>：推荐引擎返回与购物车商品搭配的 1 个 SKU → <span class="bold">Email 模板消息三</span>：积分可抵扣金额（来自属性）与搭配建议，末轮才提激励 → 结束</li>
+                <li><span class="muted">埋点：加入购物车、开始结账、订单支付成功由官网 Web SDK 或 Shopify 客户事件上报；Web Push 订阅状态由 SDK 维护；积分余额由积分系统写入属性</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">加购到支付 30% → 33–38%</span></p>
+              <p style="margin:0">弃购挽回消息的下单率行业区间 5–12%，以收到消息的弃购用户为分母；整机与耗材分开看。</p>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </section>
 
-    <!-- Journeys -->
-    <section id="s-journey1" class="section">
+    <!-- Journey 4 -->
+    <section id="s-journey4" class="section-plain" data-stage="activate" data-scene="4">
       <div class="wrap">
-      <h2><span class="secnum">6</span>核心旅程详细编排</h2>
-
-      <!-- J1 -->
-      <h3 style="margin-top:8px;">J1 · 通知权限开启欢迎旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">04</div><div class="scene-head-main"><h2>旅程 4｜购后履约与首次打印：从下单到第一件成品</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">退货与差评的第一道闸</span><span class="pill pill-info">支付 → 签收 → 绑定 → 首印</span><span class="pill">订单事件触发 · 按订单多实例 · 预售单独等待发货日 · Email + App Push</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>用户开启通知权限 → <span class="bold">SDK 预置事件即触发欢迎旅程</span>（零业务埋点），引导浏览核心内容，旅程内频控 ≤ 3 条。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push　｜　<span class="bold">触发方式</span>：事件「通知权限开启」（SDK 预置）　｜　<span class="bold">退出条件</span>：完成下单即提前退出</p>
+          <p>打印机从本地仓 2–5 天到，耗材从中国仓另寄，一张订单是两个包裹；CJ270 预售单要等到 10 月 15 日。<span class="bold">旅程按订单推进到「首次打印完成」为止</span>，签收后先引导绑定 App。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email 模板消息 · App Push 通知消息　｜　<span class="bold">触发方式</span>：事件「订单支付成功」且含打印机　｜　<span class="bold">退出条件</span>：退货申请即退出对应订单实例</p>
         </div>
       </div>
-      <div class="grid grid-12-1">
-        <div class="dag-wrap"><div id="dag-j1"></div></div>
-        <div>
-          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
-            <ul>
-              <li><span class="bold">开始</span>：事件 · 通知权限开启（SDK 预置）</li>
-              <li><span class="bold">再次进入</span>：不可（一次性事件）</li>
-              <li><span class="bold">提前退出</span>：用户完成下单则出旅程</li>
-              <li><span class="bold">转化统计</span>：页面浏览事件 · 监听 3 天</li>
-              <li><span class="bold">频控</span>：旅程内每用户 ≤ 3 条消息</li>
-            </ul>
-          </div></div>
-          <div class="spacer-sm"></div>
-          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
-            <ul>
-              <li>用户刚开权限时正处于最高意愿窗口</li>
-              <li>Push 首触 + Email 深度内容 · 双通道协同</li>
-              <li>SDK 一装就跑，零业务埋点</li>
-              <li>预期打开率参考区间：Push 18–28% · Email 24–38%</li>
-            </ul>
-          </div></div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j4"></div></div>
         </div>
-      </div>
-      <div class="spacer-md"></div>
-
-      <!-- J2 -->
-      <h3>J2 · 新用户激活引导旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
-      <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-body">
-          <p>EUID 注册成功后先观察 1 小时——自主浏览则不打扰；未浏览 → <span class="bold">Push 新手引导内容</span>逐级跟进。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push　｜　<span class="bold">触发方式</span>：事件「EUID 注册成功」（SDK 预置）　｜　<span class="bold">退出条件</span>：完成下单即提前退出</p>
-        </div>
-      </div>
-      <div class="grid grid-12-1">
-        <div class="dag-wrap"><div id="dag-j2"></div></div>
-        <div>
-          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
-            <ul>
-              <li><span class="bold">开始</span>：事件 · EUID 注册成功（SDK 预置）</li>
-              <li><span class="bold">再次进入</span>：不可</li>
-              <li><span class="bold">转化统计</span>：页面浏览事件 · 监听 3 天</li>
-              <li><span class="bold">先观察再触达</span>：等 1 小时看用户是否自主浏览</li>
-            </ul>
-          </div></div>
-          <div class="spacer-sm"></div>
-          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
-            <ul>
-              <li>自主浏览用户 → 直接给精选内容（Email 深度）</li>
-              <li>未浏览用户 → 先 Push 唤醒再 Email 引导</li>
-              <li>差异化触达 · 避免对高意愿用户过度打扰</li>
-            </ul>
-          </div></div>
-        </div>
-      </div>
-      <div class="spacer-md"></div>
-
-      <!-- J3 -->
-      <h3>J3 · 长期未活跃召回旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
-      <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-body">
-          <p>超过 14 天未活跃且从未购买 → <span class="bold">召回 Push 逐级触达</span>（每条消息前有可发送时间控制）。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「最后活跃超 14 天 + 累计购买 = 0」，14 天后可重入　｜　<span class="bold">退出条件</span>：完成下单即提前退出</p>
-        </div>
-      </div>
-      <div class="grid grid-12-1">
-        <div class="dag-wrap"><div id="dag-j3"></div></div>
-        <div>
-          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
-            <ul>
-              <li><span class="bold">开始</span>：属性 · 最后活跃距今超过 14 天 且 累计购买 = 0</li>
-              <li><span class="bold">再次进入</span>：14 天（与进入条件阈值对齐）</li>
-              <li><span class="bold">转化统计</span>：页面浏览事件 · 监听 5 天</li>
-              <li><span class="bold">可发送时间</span>：终端时区 09:00–21:00（每条消息前）</li>
-              <li><span class="bold">提前退出</span>：完成下单立即出旅程</li>
-            </ul>
-          </div></div>
-          <div class="spacer-sm"></div>
-          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
-            <ul>
-              <li>拉回访问过但未下单的沉睡用户</li>
-              <li>3 段触达 · 步步升级（提醒→优惠→挽回信）</li>
-              <li>对标行业公开案例召回率 15–25%</li>
-            </ul>
-          </div></div>
-        </div>
-      </div>
-      <div class="spacer-md"></div>
-
-      <!-- J4 -->
-      <h3>J4 · UTM 归因分层欢迎旅程 <span class="pill pill-info" style="margin-left:8px;">阶段一 · 零埋点</span></h3>
-      <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-body">
-          <p>首次来源渠道（UTM Source）不为空 → <span class="bold">按 Search / Social / Video / 其他四路差异化欢迎内容</span>，让广告来源与承接内容一致。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：属性「首次 UTM Source 不为空」，30 天后可重入　｜　<span class="bold">退出条件</span>：按分支发送后结束</p>
-        </div>
-      </div>
-      <div class="grid grid-12-1">
-        <div class="dag-wrap"><div id="dag-j4"></div></div>
-        <div>
-          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
-            <ul>
-              <li><span class="bold">开始</span>：属性 · 首次 UTM Source 不为空</li>
-              <li><span class="bold">再次进入</span>：30 天</li>
-              <li><span class="bold">条件分支</span>：按首次 UTM Source 分四路（Search / Social / Video / 其他）</li>
-              <li><span class="bold">转化统计</span>：页面浏览事件 · 监听 3 天</li>
-            </ul>
-          </div></div>
-          <div class="spacer-sm"></div>
-          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
-            <ul>
-              <li>搜索用户 → 强化技术评测与机型对比</li>
-              <li>社交用户 → 用户作品与场景视觉</li>
-              <li>视频用户 → 深度评测与教程</li>
-              <li>让触达内容与用户来源心智一致</li>
-            </ul>
-          </div></div>
-        </div>
-      </div>
-      <div class="spacer-md"></div>
-
-      <!-- J5 -->
-      <h3>J5 · 加购未下单挽回旅程 <span class="pill pill-warn" style="margin-left:8px;">阶段二 · 需接入电商事件</span></h3>
-      <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-body">
-          <p>加入购物车未下单 → <span class="bold">30 分钟 → 4 小时 → 12 小时三段挽回</span>，逐级加强动机。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「加入购物车」，3 天后可重入　｜　<span class="bold">退出条件</span>：完成下单即自动退出</p>
-        </div>
-      </div>
-      <div class="grid grid-12-1">
-        <div class="dag-wrap"><div id="dag-j5"></div></div>
-        <div>
-          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
-            <ul>
-              <li><span class="bold">开始</span>：事件 · 加入购物车（需业务方上报 add_to_cart）</li>
-              <li><span class="bold">再次进入</span>：3 天</li>
-              <li><span class="bold">提前退出</span>：完成下单立即出旅程</li>
-              <li><span class="bold">转化统计</span>：购买事件 · 监听 1 天</li>
-              <li><span class="bold">分层挽回</span>：30 分钟→ 4 小时→ 12 小时三段</li>
-            </ul>
-          </div></div>
-          <div class="spacer-sm"></div>
-          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
-            <ul>
-              <li>3D 打印机客单价高、决策周期长</li>
-              <li>加购环节漏损常在 60–70%，MA 可回收其中一部分</li>
-              <li>与自建推荐 CDP 分工：CDP 决定推什么，MA 决定何时/怎么发</li>
-            </ul>
-          </div></div>
-        </div>
-      </div>
-      <div class="spacer-md"></div>
-
-      <!-- J6 -->
-      <h3>J6 · 打印机绑定首打引导旅程 <span class="pill pill-purple" style="margin-left:8px;">阶段三 · 需接入设备事件</span></h3>
-      <div class="callout info" style="margin-bottom:14px">
-        <div class="callout-body">
-          <p>打印机绑定成功后先观察首打（4 小时 → 48 小时）——<span class="bold">未开打的引导首打、失败的给排障内容</span>。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push · Email　｜　<span class="bold">触发方式</span>：事件「打印机绑定成功」（每台仅一次）　｜　<span class="bold">退出条件</span>：首次打印成功即完成转化</p>
-        </div>
-      </div>
-      <div class="grid grid-12-1">
-        <div class="dag-wrap"><div id="dag-j6"></div></div>
-        <div>
-          <div class="card"><div class="card-header">旅程配置</div><div class="card-body p-sm">
-            <ul>
-              <li><span class="bold">开始</span>：事件 · 打印机绑定成功（需业务方上报 printer_bound）</li>
-              <li><span class="bold">再次进入</span>：不可（每台机器仅一次首绑）</li>
-              <li><span class="bold">转化统计</span>：首次打印成功 · 监听 7 天</li>
-              <li><span class="bold">先观察再触达</span>：等 4 小时 → 48 小时观察首打结果</li>
-            </ul>
-          </div></div>
-          <div class="spacer-sm"></div>
-          <div class="card"><div class="card-header">业务价值</div><div class="card-body p-sm">
-            <ul>
-              <li>首打成功率 = 长期留存与口碑的核心指标</li>
-              <li>对标拓竹 90%+ 一年留存的底层机制</li>
-              <li>为后续耗材复购 / 模型库运营打基础</li>
-            </ul>
-          </div></div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>拆单发货不解释，用户收到打印机没收到耗材就会开工单</li>
+                <li>30 天退货窗口内没有打印成功的用户，是退货与差评的主要来源</li>
+                <li>预售买家等待期最长，也最容易在等待中取消</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「订单支付成功」，事件属性过滤「含打印机」为真；携带订单号、商品、是否预售、预计发货日</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按业务并行）：并发上限 3，每张订单一个实例；等待事件与提前退出的属性过滤右值取本实例订单号</li>
+                <li><span class="bold">提前退出</span>：事件「退货申请」，订单号等于本实例值</li>
+                <li><span class="bold">转化统计</span>：事件「首次打印完成」，监听窗口 7 天</li>
+                <li><span class="bold">条件分支</span>：事件属性「是否预售」为真 → <span class="bold">等待至</span>：属性「预计发货日」前 3 天 → <span class="bold">Email 模板消息</span>：发货准备与预售权益清单 → 汇入签收等待；默认 → <span class="bold">Email 模板消息一</span>（即时，事务类）：订单确认、两个包裹的说明、先安装 Flash Studio 并注册账号</li>
+                <li><span class="bold">等待事件</span>：7 天内等待「订单签收」（订单号等于本实例值）；未签收 → <span class="bold">Email 模板消息</span>：物流查询入口 → 结束</li>
+                <li>签收 → <span class="bold">条件分支</span>：属性「App 安装状态」——已安装走 <span class="bold">App Push 通知消息</span>：扫码绑定引导；未安装走 <span class="bold">Email 模板消息二</span>：开箱与首印指南、App 下载；机型为 AD5M 时用变量追加摄像头选配说明</li>
+                <li><span class="bold">等待事件</span>：5 天内等待「设备绑定成功」；未绑定 → <span class="bold">Email 模板消息三</span>：远程监控、模型库与积分的三个理由 → 结束</li>
+                <li>已绑定 → <span class="bold">等待事件</span>：3 天内等待「首次打印完成」；完成 → 结束，交旅程 7；未完成 → <span class="bold">可发送时间</span>：终端时区 9:00–21:00 → <span class="bold">App Push 通知消息</span>：首印教程与快速入门页 → 结束</li>
+                <li><span class="muted">埋点：订单支付成功、签收、退货申请由订单与物流系统同步；设备绑定成功、首次打印完成由 App 上报；App 安装状态由 SDK 维护</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">签收到绑定 50% → 60–70%（假设起点，第 1 周校准）；绑定后 7 天内首次打印完成率（对照组比较）</span></p>
+              <p style="margin:0">30 天内退货率与首月工单量在测试期按对照组比较，不在旅程内统计。</p>
+            </div>
+          </div>
         </div>
       </div>
       </div>
     </section>
 
-    <!-- Roadmap -->
-    <section id="s-roadmap" class="section">
+    <!-- Journey 5 -->
+    <section id="s-journey5" class="section-plain" data-stage="repeat" data-scene="5">
       <div class="wrap">
-      <h2><span class="secnum">7</span>三阶段渐进式接入路线 · 先跑起来，再看价值，再深化</h2>
-      <p>本方案的核心接入策略是"渐进式"——不要求闪铸一次性完成所有埋点。
-      <span class="bold">第一阶段仅需集成 SDK，即可跑通 4 条旅程</span>；
-      看到价值后再决定是否投入阶段二、三的业务埋点。</p>
-      <div class="spacer-md"></div>
-      <div class="grid grid-3">
-        <div class="stage-card">
-          <div class="stage-head">
-            <div class="stage-title">阶段一 · 零埋点冷启动</div>
-            <div class="stage-sub">Week 1–4 · 4 条旅程</div>
-          </div>
-          <div class="stage-body">
-            <p class="bold" style="margin-bottom:6px;">埋点范围</p>
-            <ul>
-              <li>仅接入 MA SDK（Web + App）</li>
-              <li>使用 SDK 预置事件与属性</li>
-              <li>业务方 <span class="bold">无需新增任何埋点</span></li>
-            </ul>
-            <p class="bold" style="margin:10px 0 6px;">可运行旅程</p>
-            <ul>
-              <li>J1 通知权限开启欢迎</li>
-              <li>J2 新用户激活引导</li>
-              <li>J3 长期未活跃召回</li>
-              <li>J4 UTM 归因分层欢迎</li>
-            </ul>
-            <p class="bold" style="margin:10px 0 6px;">目标</p>
-            <ul>
-              <li>最低成本验证 MA 价值</li>
-              <li>为后续深化决策提供数据依据</li>
-            </ul>
-          </div>
-        </div>
-        <div class="stage-card stage-2">
-          <div class="stage-head">
-            <div class="stage-title">阶段二 · 核心电商事件补齐</div>
-            <div class="stage-sub">Month 2–3 · 累计 8 条旅程</div>
-          </div>
-          <div class="stage-body">
-            <p class="bold" style="margin-bottom:6px;">埋点范围</p>
-            <ul>
-              <li>4 个业务事件：view_product / add_to_cart / add_to_wishlist / purchase</li>
-              <li>可复用自研推荐 CDP 现有数据源</li>
-              <li>前端 + 后端投入约 3–5 天</li>
-            </ul>
-            <p class="bold" style="margin:10px 0 6px;">新增旅程</p>
-            <ul>
-              <li>J5 加购未下单挽回</li>
-              <li>J7 商品浏览未下单</li>
-              <li>J8 首购欢迎与耗材周期</li>
-              <li>J9 愿望单动销提醒</li>
-            </ul>
-            <p class="bold" style="margin:10px 0 6px;">目标</p>
-            <ul>
-              <li>覆盖商城全链路运营</li>
-              <li>形成完整转化归因漏斗</li>
-            </ul>
-          </div>
-        </div>
-        <div class="stage-card stage-3">
-          <div class="stage-head">
-            <div class="stage-title">阶段三 · 设备与内容深度融合</div>
-            <div class="stage-sub">Month 4–6 · 累计 11 条旅程</div>
-          </div>
-          <div class="stage-body">
-            <p class="bold" style="margin-bottom:6px;">埋点范围</p>
-            <ul>
-              <li>设备事件：printer_bound / first_print_success / filament_low</li>
-              <li>内容事件：model_downloaded / slicer_used</li>
-              <li>前端 + App + 云端投入约 5–10 天</li>
-            </ul>
-            <p class="bold" style="margin:10px 0 6px;">新增旅程</p>
-            <ul>
-              <li>J6 打印机绑定首打引导</li>
-              <li>J10 耗材余量预警补货</li>
-              <li>J11 沉睡打印机唤醒 + 模型库推荐</li>
-            </ul>
-            <p class="bold" style="margin:10px 0 6px;">目标</p>
-            <ul>
-              <li>建立"硬件→打印→耗材→模型"软硬融合运营</li>
-              <li>对标拓竹 90%+ 一年留存</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="spacer-md"></div>
-      <div class="callout purple">
-        <div class="callout-title">国内 App 平滑迁移</div>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">05</div><div class="scene-head-main"><h2>旅程 5｜耗材补货：按打印用量而不是日历提醒</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">复购主线</span><span class="pill pill-info">首印 → 耗材复购</span><span class="pill">用量属性触发 · Webhook 调推荐引擎选色 · App Push + Email</span></div>
+      <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>闪铸国内 App 上线时，海外 MA 上跑通的旅程模板、埋点规范、运营 SOP 可通过极光 JPush + 极光 MA（同集团产品、同产品逻辑）
-          <span class="bold">1:1 复用到国内</span>。也就是说本次投入是"跨海内外双轨"的基础设施，不是一次性支出。</p>
+          <p>每次打印任务都带着材质、颜色与用量，累计起来就是这台机器还剩多少耗材。<span class="bold">在用完之前提醒，而不是用完之后</span>：耗材从中国仓发货，断料再买意味着机器闲置一周以上。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：属性「自上次耗材购买后累计打印用量」达到阈值　｜　<span class="bold">退出条件</span>：耗材订单支付成功即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j5"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>耗材常年 20% off 挂在横幅上，但用户只在断料时才想起来买，而且未必回官网</li>
+                <li>AD5X 与 Creator 5 同时装四卷耗材，各颜色的消耗速度不同，按天提醒会错位</li>
+                <li>官网没有耗材订阅制，复购全靠用户自己记得</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：用户属性「自上次耗材购买后累计打印用量」介于 700–1200 克，且「设备清单」非空；上限用于避免发布首日存量用户同时涌入，分批放量</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 30 天</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」，事件属性「含耗材」为真</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 5 天</li>
+                <li><span class="bold">Webhook 取数</span>：调用推荐引擎，传入机型、近 30 天使用最多的材质与颜色，取回推荐 SKU、价格与图片；返回为空时消息走默认的 HS PLA 组合</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00 → <span class="bold">App Push 通知消息</span>：「按你近一个月的打印量，{{材质}} {{颜色}} 大约还够用 {{天数}} 天」，深度链接到该 SKU；天数由属性计算</li>
+                <li><span class="bold">等待事件</span>：3 天内等待「加入购物车」——加购交旅程 3 承接；未加购 → <span class="bold">条件分支</span>：属性「邮件营销同意」——已同意走 <span class="bold">Email 模板消息</span>：同一推荐加当季耗材活动与积分抵扣，未同意结束</li>
+                <li><span class="bold">交接</span>：进入本旅程的用户不进入旅程 8；旅程 8 的进入条件排除「累计用量」达阈值者</li>
+                <li><span class="muted">埋点：打印完成事件带材质、颜色、用量；累计用量、近 30 天主用材质与颜色由贵司按打印任务聚合后写入属性（客户侧聚合属性）</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">首印用户 90 天内耗材复购 25% → 30–35%（假设起点，第 1 周校准）</span></p>
+              <p style="margin:0">补货类触发消息的转化率显著高于日历群发，行业综合区间 8–15% 对 1–3%，未按 3D 打印耗材品类单独核实。</p>
+            </div>
+          </div>
         </div>
       </div>
       </div>
     </section>
 
-    <!-- Benchmark -->
-    <section id="s-benchmark" class="section">
+    <!-- Journey 6 -->
+    <section id="s-journey6" class="section-plain" data-stage="retain" data-scene="6">
       <div class="wrap">
-      <h2><span class="secnum">8</span>行业对标 · 消费级 3D 打印机 DTC 头部品牌运营数据</h2>
-      <div class="grid grid-2">
-        <div>
-          <div class="chart" id="chart-benchmark"></div>
-        </div>
-        <div>
-          <div class="card"><div class="card-header">3D 打印机 DTC 独立站公开案例</div><div class="card-body">
-            <ul>
-              <li>某桌面级 3D 打印机品牌独立站直接访问 54.9% + 自然搜索 30% + 付费广告仅 6%（品牌力 + 私域驱动）</li>
-              <li>同品牌用户购机一年后 90%+ 仍活跃（软硬件生态支撑）</li>
-              <li>参与社区活动的用户复购率 68%、客单价 +42%</li>
-              <li>另一品牌独立站升级后自然流量 +30%、转化率 +20%</li>
-              <li>头部品牌独立站上线 5 个月即突破 2000 万人民币成交</li>
-            </ul>
-            <p class="small muted" style="margin-top:8px;">
-              数据来源：2024–2026 年桌面级 3D 打印机行业公开报道综合整理；仅作为业务背景参考，闪铸实际效果以测试期数据为准。
-            </p>
-          </div></div>
-        </div>
-      </div>
-      </div>
-    </section>
-
-    <!-- Compliance -->
-    <section id="s-compliance" class="section">
-      <div class="wrap">
-      <h2><span class="secnum">9</span>合规与运营护栏</h2>
-      <div class="grid grid-2">
-        <div class="card"><div class="card-header">数据安全</div><div class="card-body">
-          <ul>
-            <li>全链路 TLS 加密传输 · VPC 网络隔离</li>
-            <li>敏感数据脱敏处理 · 基于角色的访问控制（RBAC）</li>
-            <li>数据中心可按客户安全需求灵活扩展</li>
-            <li>消息发送记录保留 <span class="bold">60 天</span>，可导出用于合规审查</li>
-          </ul>
-        </div></div>
-        <div class="card"><div class="card-header">合规支持</div><div class="card-body">
-          <ul>
-            <li>已通过 <span class="bold">GDPR</span> 合规认证 + <span class="bold">SOC 2 Type II</span> 安全审计</li>
-            <li>可协助闪铸满足各目标市场本地数据保护法规要求（欧盟 GDPR / 美国 CCPA 等）</li>
-            <li>支持用户数据删除、导出、同意管理等合规权利</li>
-            <li>面向国内运营时，可协助满足《个人信息保护法》（PIPL）、《数据安全法》要求</li>
-          </ul>
-        </div></div>
-      </div>
-      <div class="spacer-md"></div>
-      <div class="callout info">
-        <div class="callout-title">运营护栏</div>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">06</div><div class="scene-head-main"><h2>旅程 6｜打印失败后的服务旅程：错误码分流到排错页、配件或工单</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">先于促销建立推送信任</span><span class="pill pill-info">首印 → 持续使用</span><span class="pill">打印失败事件触发 · 按设备多实例 · App Push 通知 + Webhook 建工单</span></div>
+      <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>· 频控策略：每用户每日最多 N 次推送，旅程内自动去重，防止同一用户被多条旅程重复触达；</p>
-          <p>· 可发送时间：基于用户本地时区自动控制发送窗口（如 09:00–21:00），避免深夜打扰；</p>
-          <p>· 内容预览：消息发送前支持完整样式预览，确认效果后再发送；</p>
-          <p>· 提前退出：用户一旦完成目标行为（如下单），立即从旅程退出，不再继续触达。</p>
+          <p>打印机知道自己为什么停下来，每个错误码在 Wiki 里都有对应的排错页。<span class="bold">失败后半小时内把正确的那一页送到手机上</span>，两天内没再开机的，按保修状态分流到工单或配件。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：事件「打印失败」（按设备）　｜　<span class="bold">退出条件</span>：该设备打印完成即退出对应实例</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j6"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>用户遇到错误码先去搜索引擎与 Facebook 群，官方 Wiki 的排错页排在后面</li>
+                <li>挤出机部件保修只有 3 个月，过保用户不知道喷嘴与热端配件在官网就能买到</li>
+                <li>同行 App 的推送只报「打印完成」，用户没有理由把通知留着</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「打印失败」，事件属性携带设备 ID、机型、错误码与错误类别</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按业务并行）：并发上限 3，两次进入最短间隔 6 小时，每台设备一个实例</li>
+                <li><span class="bold">提前退出</span>：事件「打印完成」，设备 ID 等于本实例值</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天</li>
+                <li><span class="bold">等待</span>：30 分钟——多数失败用户会自行重试，重试成功即退出</li>
+                <li><span class="bold">条件分支</span>：事件属性「错误类别」——断料与耗材类 / 喷嘴与挤出类 / 网络与其他，三路各自发 <span class="bold">App Push 通知消息</span>：「{{机型}} 错误 {{错误码}}：这样处理」，深度链接到 Wiki 对应排错页；文案由 AI 多语言文案生成按 App 语言输出</li>
+                <li><span class="bold">等待事件</span>：2 天内等待「打印开始」（设备 ID 等于本实例值）；已开始 → 结束</li>
+                <li>未开始 → <span class="bold">条件分支</span>：属性「设备清单」中该设备的保修到期日——在保 → <span class="bold">Webhook 执行动作</span>：在客服系统创建工单，带机型、错误码与失败时间 → <span class="bold">Email 模板消息</span>：已为你建立工单，附工单号；过保 → <span class="bold">Email 模板消息</span>：对应配件（喷嘴、热端、挤出机总成）与积分抵扣，附排错视频</li>
+                <li><span class="bold">全局频控</span>：本旅程的通知按服务类消息类型单独设限，不占营销通知额度</li>
+                <li><span class="muted">埋点：打印失败、打印开始、打印完成由 App 或云平台上报；保修到期日由订单系统按购买日写入设备清单属性</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">失败后 3 天内恢复打印的设备占比（对照组比较）；配件订单与工单量按对照组比较</span></p>
+              <p style="margin:0">这条旅程先上线，用户先收到有用的通知，旅程 5、8、9 的营销触达才有信任基础。</p>
+            </div>
+          </div>
         </div>
       </div>
       </div>
     </section>
 
-    <!-- Plan -->
+    <!-- Journey 7 -->
+    <section id="s-journey7" class="section-plain" data-stage="advocacy" data-scene="7">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">07</div><div class="scene-head-main"><h2>旅程 7｜评价与推荐有礼：先问体验，再邀评价</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">口碑与获客成本</span><span class="pill pill-info">首印 → 评价与推荐</span><span class="pill">首次打印完成触发 · 低分先转客服 · 应用内消息 + Email</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>邀评的时点不是发货后第 N 天，而是第一件成品之后。<span class="bold">先在 App 内问一次体验评分</span>，高分引到官网评价与推荐有礼，低分先建工单，解决后同样开放评价入口。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 应用内消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：事件「首次打印完成」　｜　<span class="bold">退出条件</span>：官网评价提交即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j7"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>评价系统按发货日自动邀评，收到邀请时用户可能还没拆箱</li>
+                <li>推荐好友双方各 100 积分只写在积分页，用户最满意的那一刻没人告诉他</li>
+                <li>平台买家没有官网订单，不能邀官网评价，但可以邀他分享作品与推荐</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：事件「首次打印完成」</li>
+                <li><span class="bold">再次进入</span>：不可再次进入</li>
+                <li><span class="bold">提前退出</span>：事件「官网评价提交」</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天</li>
+                <li><span class="bold">等待</span>：3 个日历日 → <span class="bold">可发送时间</span>：终端时区 9:00–21:00 → <span class="bold">App Push 应用内消息</span>：打开 App 时展示「第一件作品打得怎么样」的 1–5 分评分卡</li>
+                <li><span class="bold">等待事件</span>：3 天内等待「体验评分提交」，按事件属性分两支：评分大于等于 4 → <span class="bold">条件分支</span>：属性「官网订单数」大于 0 → <span class="bold">Email 模板消息</span>：官网评价邀请（评价系统表单链接）与推荐好友双方各 100 积分；等于 0 → <span class="bold">Email 模板消息</span>：分享作品到官方用户群与推荐有礼，附官网注册入口</li>
+                <li>评分小于等于 3 → <span class="bold">Webhook 执行动作</span>：创建客服工单，带评分与机型 → <span class="bold">App Push 通知消息</span>：已安排支持 → <span class="bold">等待事件</span>：7 天内等待「工单已解决」；解决 → 同样发出 <span class="bold">Email 模板消息</span>：评价邀请；未解决 → 结束</li>
+                <li>3 天未评分 → <span class="bold">条件分支</span>：属性「邮件营销同意」——已同意走 <span class="bold">Email 模板消息</span>：评价邀请，未同意结束</li>
+                <li><span class="bold">交接</span>：本旅程上线后，评价系统的自动邀评邮件关闭，避免同一用户收到两封</li>
+                <li><span class="muted">埋点：首次打印完成由 App 上报；体验评分卡由 App 实现并上报事件；官网评价提交由评价系统 Webhook 回传；工单已解决由客服系统回传</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">评价邀请提交率 2.5–5% → 5–10%；推荐计划参与率 2–5%</span></p>
+              <p style="margin:0">行业公开参考区间，分母分别为收到邀请的用户与符合推荐条件的用户。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 8 -->
+    <section id="s-journey8" class="section-plain" data-stage="retain" data-scene="8">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">08</div><div class="scene-head-main"><h2>旅程 8｜沉睡设备唤醒：给一个打印的理由，不给折扣</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">耗材复购的前置</span><span class="pill pill-info">持续使用 → 沉睡</span><span class="pill">最后打印时间属性触发 · Webhook 取模型推荐 · App Push + Email</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>一台 30 天没有打印任务的机器不会买耗材。<span class="bold">唤醒的内容是「打什么」</span>：按机型取当周热门模型送到 App，未响应换 Email 补一次教程，两轮都不带折扣。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：属性「最后一次打印完成距今」30–45 天　｜　<span class="bold">退出条件</span>：打印开始即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j8"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>家庭用户的停机原因多是「不知道打什么」，不是机器坏了</li>
+                <li>Flash Studio 首页就是模型推荐页，但没打开 App 的人看不到</li>
+                <li>沉睡召回没有截止时点，第三条消息起就是打扰</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：用户属性「最后一次打印完成距今」介于 30–45 天，且「设备清单」非空，且「自上次耗材购买后累计打印用量」未达旅程 5 阈值</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 30 天</li>
+                <li><span class="bold">提前退出</span>：事件「打印开始」</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 5 天</li>
+                <li><span class="bold">Webhook 取数</span>：调用推荐引擎或模型库接口，传入机型，取回 3 个当周热门模型的名称、缩略图与链接</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00 → <span class="bold">App Push 通知消息</span>：「适合 {{机型}} 的本周热门模型」，深度链接到模型页，一键发送打印</li>
+                <li><span class="bold">等待事件</span>：5 天内等待「App 启动」（SDK 自带）：已启动未打印 → <span class="bold">Email 模板消息</span>：教程合集与用户作品；未启动 → <span class="bold">条件分支</span>：属性「邮件营销同意」——已同意走同一封 Email（换渠道解决可达），未同意结束</li>
+                <li><span class="bold">交接</span>：连续两轮无响应的用户由再次进入间隔自然拉长，不追加第三轮</li>
+                <li><span class="muted">埋点：最后一次打印完成时间由 App 打印完成事件更新为属性；模型推荐接口由贵司提供</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">沉睡设备 30 天内回流 15% → 20–25%（假设起点，第 1 周校准）</span></p>
+              <p style="margin:0">单封召回消息的转化行业区间 3–8%，回流后的耗材购买计入旅程 5。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 9 -->
+    <section id="s-journey9" class="section-plain" data-stage="repeat" data-scene="9">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">09</div><div class="scene-head-main"><h2>旅程 9｜换机升级：按累计打印时长与已有机型推荐</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">整机二次销售</span><span class="pill pill-info">持续使用 → 升级换机</span><span class="pill">累计打印时长属性触发 · 设备清单分流 · Email + App Push</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>累计打印 300 小时的 AD5M 用户，比任何广告受众都更接近下一台机器。<span class="bold">升级理由按他现在的机型给</span>：单色机推多色机，多台用户推批量价，预算档给翻新机，积分放末轮。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email 模板消息 · App Push 通知消息　｜　<span class="bold">触发方式</span>：属性「累计打印时长」达 300 小时且未拥有多色机型　｜　<span class="bold">退出条件</span>：打印机订单支付成功即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j9"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>新品发布只对全部订阅者群发，重度用户与刚买机的人收到同一封</li>
+                <li>用户不知道自己的打印时长，也就没有「该升级了」的自我判断</li>
+                <li>$799–$949 的 Creator 5 系列需要分期与翻新机档位来接住预算敏感的人</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：用户属性「累计打印时长」介于 300–400 小时，且「设备清单」的机型不包含 AD5X、Creator 5、Creator 5 Pro、CJ270，且「绑定天数」大于等于 180</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 180 天</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」，事件属性「含打印机」为真</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 5 天</li>
+                <li><span class="bold">条件分支</span>：属性「设备数量」大于等于 2 → <span class="bold">Email 模板消息</span>：Creator 5 系列与批量采购价；默认 → <span class="bold">Email 模板消息一</span>：「你已用 {{机型}} 打印 {{小时}} 小时」，多色打印与自动换料的升级理由，不带折扣</li>
+                <li><span class="bold">等待事件</span>：7 天内等待「浏览商品」（事件属性商品为升级机型）：浏览未购 → <span class="bold">可发送时间</span>：终端时区 9:00–21:00 → <span class="bold">Email 模板消息二</span>：分期、30 天退货与翻新机档位；未浏览 → <span class="bold">可发送时间</span> → <span class="bold">App Push 通知消息</span>：同一内容的短版，深度链接到机型对比页</li>
+                <li><span class="bold">等待</span>：14 天 → <span class="bold">可发送时间</span> → <span class="bold">Email 模板消息三</span>：积分可抵扣金额与当季活动，末轮才提激励 → 结束</li>
+                <li><span class="muted">埋点：累计打印时长由打印完成事件的时长字段聚合为属性（客户侧聚合属性）；设备清单为 object array，含机型、绑定日期、保修到期日</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">重度用户的升级换机率（对照组比较）</span></p>
+              <p style="margin:0">行业无公开的换机周期数据，验收以进入本旅程用户在 90 天内的整机订单相对对照组的差异为准。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 10 -->
+    <section id="s-journey10" class="section-plain" data-stage="campaign" data-scene="10">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">10</div><div class="scene-head-main"><h2>旅程 10｜新品预售与大促：同一张日历，三种人三种内容</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">大促期收入</span><span class="pill pill-info">全漏斗 · 按人群</span><span class="pill">分群进入 · 等待至开卖日收敛 · Email + Web Push</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>预售与大促现在是一封邮件发给全部订阅者。<span class="bold">做成旅程后，老用户看到升级与囤货理由，浏览未购者看到他看过的机型的活动价，新订阅者看到首单权益</span>；开卖时刻收敛，买了就退出。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email 模板消息 · Web Push 通知消息　｜　<span class="bold">触发方式</span>：用户分群「本次活动目标人群」　｜　<span class="bold">退出条件</span>：订单支付成功即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j10"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>预售首批 100 台、活动截止倒计时这类稀缺信息，群发时无法按每个人的状态更新</li>
+                <li>已经在活动期下单的用户仍会收到后续预热与截止提醒</li>
+                <li>浏览过 AD5X 的人收到 CJ270 的邮件，等于没收到</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul>
+                <li><span class="bold">开始组件</span>：用户分群「本次活动目标人群」（邮件营销同意为真，排除近 7 天已下单者），预热日发布时全量进入，之后满足即进入；每次活动复制一条旅程，活动名称、开卖时刻、截止时刻写成活动属性</li>
+                <li><span class="bold">再次进入</span>：不可再次进入</li>
+                <li><span class="bold">提前退出</span>：事件「订单支付成功」</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天；收入统计：同一事件的订单金额</li>
+                <li><span class="bold">条件分支</span>：属性「设备清单」非空 → <span class="bold">Email 模板消息</span>：升级机型与耗材囤货活动（Creator 5 送两卷耗材、耗材买二付一等，内容取活动属性）；属性「近 30 天浏览商品」非空 → <span class="bold">Webhook 取数</span>：取该商品的活动价 → <span class="bold">Email 模板消息</span>：「你看过的 {{商品}} 活动价 {{价格}}」；默认（新订阅者）→ <span class="bold">Email 模板消息</span>：首单权益（积分、免运费、30 天退货）</li>
+                <li><span class="bold">等待至</span>：指定时刻「开卖时刻」（组织时区），三路在此收敛 → <span class="bold">条件分支</span>：属性「Web Push 订阅状态」——已订阅走 <span class="bold">Web Push 通知消息</span>，未订阅走 <span class="bold">Email 模板消息</span>：已开卖；预售场景用 <span class="bold">Webhook 取数</span> 取剩余台数，有数据才展示「首批剩余 {{台数}} 台」</li>
+                <li><span class="bold">等待事件</span>：3 天内等待「加入购物车」：加购交旅程 3 承接；未加购 → <span class="bold">等待至</span>：「截止时刻」前 1 天 → <span class="bold">Email 模板消息</span>：截止提醒，截止时间来自活动属性 → 结束</li>
+                <li><span class="bold">全局频控</span>：活动期与旅程 2、3、5 并行，同一用户每周营销类消息上限见测试计划</li>
+                <li><span class="muted">埋点：分群由 Customer 产品按属性计算；近 30 天浏览商品由浏览事件聚合为属性；活动价与剩余台数由贵司接口提供</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">三个及以上渠道的活动购买率约为单渠道的 3.5 倍（2.56% → 8.96%）</span></p>
+              <p style="margin:0">跨渠道营销自动化公开研究，超 20 亿次触达样本；以活动触达用户为分母。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 4 数据整合 -->
+    <section id="s-data" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">数据整合</div>
+        <h2><span class="secnum">4</span>十条旅程依赖的事件与属性</h2>
+        <p>十条旅程依赖的数据分布在官网、订单与物流系统、Flash Studio 与云平台、推荐引擎、评价系统与客服系统。下表列出每一项的来源与它驱动的旅程，SDK 自带的部分不需要开发。</p>
+        <div class="spacer-md"></div>
+        <table>
+          <thead><tr><th>事件或属性</th><th>类型</th><th>关键字段</th><th>来源系统</th><th>驱动的旅程</th></tr></thead>
+          <tbody>
+            <tr class="tone-info"><td>App 启动、通知权限状态、App 安装状态、Web Push 订阅状态</td><td>SDK 标准事件与属性</td><td>—</td><td>EngageLab SDK（无需开发）</td><td>2 · 3 · 4 · 8 · 10</td></tr>
+            <tr><td>留资完成、浏览商品、加入购物车、开始结账、订单支付成功、订单签收、退货申请、官网评价提交</td><td>业务事件</td><td>来源、商品、购物车金额、订单号、含打印机与含耗材、是否预售、预计发货日</td><td>官网（Shopify 客户事件或 Web SDK）· 订单与物流系统 · 评价系统回传</td><td>1 · 2 · 3 · 4 · 5 · 7 · 9 · 10</td></tr>
+            <tr><td>设备绑定成功、打印开始、打印完成、首次打印完成、打印失败、体验评分提交</td><td>设备与 App 事件</td><td>设备 ID、机型、错误码与错误类别、材质、颜色、用量、时长、评分</td><td>Flash Studio · 云平台</td><td>1 · 4 · 5 · 6 · 7 · 8 · 9</td></tr>
+            <tr><td>设备清单（机型、绑定日期、保修到期日）、设备数量、绑定天数</td><td>object array 与属性</td><td>—</td><td>App 账户系统 · 订单系统</td><td>2 · 6 · 9 · 10</td></tr>
+            <tr><td>累计打印时长、最后一次打印完成时间、自上次耗材购买后累计打印用量、近 30 天主用材质与颜色</td><td>客户侧聚合属性</td><td>—</td><td>贵司按打印任务聚合后写入</td><td>5 · 8 · 9</td></tr>
+            <tr><td>官网订单数、积分余额、邮件营销同意、近 30 天浏览商品</td><td>属性</td><td>—</td><td>官网账号 · 积分系统 · 订阅表单与 App 注册页</td><td>1 · 2 · 3 · 7 · 10</td></tr>
+            <tr><td>推荐 SKU（名称、价格、图片）、热门模型、活动价、预售剩余台数</td><td>Webhook 取数</td><td>—</td><td>贵司推荐引擎 · 模型库 · 活动配置接口</td><td>2 · 3 · 5 · 8 · 10</td></tr>
+            <tr><td>创建客服工单、工单已解决</td><td>Webhook 执行动作与回传事件</td><td>机型、错误码、评分、工单号</td><td>客服系统</td><td>6 · 7</td></tr>
+            <tr><td>所属区域站点、语言、货币</td><td>属性</td><td>站点（美国 / 欧盟 / 英国 / 加拿大 / 澳洲 / 拉美）、语言、币种</td><td>官网账号 · App 设置</td><td>2 · 3 · 10（文案语言、金额阈值按币种换算）</td></tr>
+            <tr><td>测试分组</td><td>属性</td><td>实验组 / 对照组</td><td>账户系统</td><td>验收</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>官网事件在现有埋点触发点同步上报，或以 Shopify 客户事件接入，第 1 周确定；支付信息与收货地址不进入 MA，旅程只用订单号与商品字段。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5 关于 EngageLab -->
+    <section id="s-why" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">关于 EngageLab</div>
+        <h2><span class="secnum">5</span>关于 EngageLab</h2>
+        <h3>各渠道在本方案中的角色</h3>
+        <table>
+          <thead><tr><th>渠道</th><th>客户现状</th><th>主要用途</th><th>平均打开率</th><th>适用市场</th></tr></thead>
+          <tbody>
+            <tr class="tone-info"><td>App Push</td><td>已合作，沿用已开通的通道</td><td>设备事件旅程的主渠道：通知消息承担补货、排错、模型推荐与绑定引导；应用内消息承担体验评分</td><td>通知点击率 2–5%</td><td>全球</td></tr>
+            <tr class="tone-info"><td>Email</td><td>第三方平台在用</td><td>长内容与决策类：开箱指南、顾虑消除、评价邀请、升级理由、活动预热与截止提醒</td><td>硬件品类约 30%</td><td>全球</td></tr>
+            <tr class="tone-info"><td>Web Push</td><td>官网未见订阅入口</td><td>官网访客的即时触点：弃购、开卖、耗材推荐；订阅入口随 Web SDK 一并接入</td><td>通知点击率 1–7%</td><td>全球</td></tr>
+            <tr><td>SMS</td><td>第三方平台在用</td><td>本方案主线未使用——整机决策以天计，不需要分钟级触达；预售发货与工单类事务通知可在拓展场景使用</td><td>—</td><td>北美 · 欧洲 · 澳洲</td></tr>
+            <tr><td>WhatsApp Business</td><td>未使用</td><td>本方案未使用——主战场北美与欧洲以 Email 与 Push 为主；拉美站可作预售与到货通知渠道</td><td>—</td><td>拉美 · 东南亚</td></tr>
+            <tr><td>LINE · Telegram · Facebook Messenger</td><td>—</td><td>即将上线</td><td>—</td><td>日本 · 中东 · 拉美</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>打开率为行业公开参考区间，<span class="bold">非承诺值</span>；各渠道计费方式以商务报价为准。Email 与短信如沿用现有平台，可经 SMTP / SMPP 对接；国内 App 上线时，App Push 触达通道侧支持直接添加极光 JPush 通道。</li>
+        </ul>
+        <div class="divider"></div>
+        <h3>合规与数据安全</h3>
+        <table>
+          <tbody>
+            <tr><th style="width:120px">数据安全</th><td>全链路 TLS 加密 · VPC 隔离 · PII 字段脱敏 · 基于角色的权限控制</td></tr>
+            <tr><th>认证</th><td>GDPR · SOC 2</td></tr>
+            <tr><th>运营护栏</th><td>用户级全局频控 · 终端时区可发送时间 · 发送前内容预览 · 消息记录保留 60 天</td></tr>
+            <tr><th>本地法规</th><td>可协助满足各目标市场数据保护法规要求</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>签署数据处理协议后，向 MA 同步事件与属性一般无需单独取得用户同意，与订单系统、云服务同类；具体以贵司法务意见为准。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6 测试计划 -->
     <section id="s-plan" class="section-plain">
       <div class="wrap">
-      <h2><span class="secnum">10</span>4 周测试计划 · 可量化验收</h2>
-      <table>
-        <thead><tr>
-          <th class="align-center" style="width:10%">周</th>
-          <th style="width:20%">阶段</th>
-          <th style="width:30%">工作内容</th>
-          <th style="width:20%">交付物</th>
-          <th>验收指标</th>
-        </tr></thead>
-        <tbody>
-          <tr>
-            <td class="align-center bold">Week 1</td>
-            <td>启动 &amp; SDK 接入</td>
-            <td>确定试点站点（美国站 / 欧洲站 / 全球站）· MA 测试账号开通 · 前端集成 Web + App SDK · 数据回流验证</td>
-            <td>SDK 集成完成 + 数据入库确认</td>
-            <td>预置事件入库率 ≥ 95%</td>
-          </tr>
-          <tr class="tone-info">
-            <td class="align-center bold">Week 2</td>
-            <td>首批旅程上线</td>
-            <td>J1 通知权限欢迎 + J3 长期未活跃召回 2 条旅程构建上线 · 小流量验证（5–10% 用户）· 文案 A/B 设置</td>
-            <td>2 条旅程跑通 + 触达数据回流</td>
-            <td>旅程触发成功率 ≥ 98%</td>
-          </tr>
-          <tr class="tone-info">
-            <td class="align-center bold">Week 3</td>
-            <td>扩量 &amp; 完善</td>
-            <td>2 条旅程扩全量 · 新增 J2 新用户激活 + J4 UTM 归因 · 对照组数据观测</td>
-            <td>4 条旅程全量运行 + 对照组数据</td>
-            <td>Push 点击率 ≥ 6% · 召回旅程 uplift 可测</td>
-          </tr>
-          <tr class="tone-success">
-            <td class="align-center bold">Week 4</td>
-            <td>复盘 &amp; 阶段二规划</td>
-            <td>数据复盘 · 效果结算 · 阶段二埋点方案对齐（view_product / add_to_cart / purchase / add_to_wishlist）· 下阶段扩展规划</td>
-            <td>测试结案报告 + 阶段二埋点方案</td>
-            <td>核心旅程 uplift 可量化归因</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="spacer-md"></div>
-      <div class="grid grid-3">
-        <div class="stat"><div class="stat-value">4 周</div><div class="stat-label">从 SDK 接入到 4 条旅程全量运行</div></div>
-        <div class="stat"><div class="stat-value success">$0</div><div class="stat-label">测试期间授权费用（免费测试 VIP）</div></div>
-        <div class="stat"><div class="stat-value">专属</div><div class="stat-label">EngageLab 交付团队 1v1 支持</div></div>
-      </div>
-
-      <div class="spacer-md"></div>
-      <hr class="divider" />
-      <h3>下一步建议 · 三步启动</h3>
-      <div class="grid grid-3">
-        <div class="card"><div class="card-header"><span class="step-num">1</span>对齐试点范围</div><div class="card-body">
-          共同确定试点站点（美国 / 欧洲 / 全球）、预计覆盖 DAU、
-          确认 4 条旅程的文案基调与品牌风格；对齐现有 App Push 与新增 Web Push 的协同规则。
-        </div></div>
-        <div class="card"><div class="card-header"><span class="step-num">2</span>SDK 集成</div><div class="card-body">
-          前端团队按 EngageLab 交付团队提供的接入指南完成 Web + App SDK 集成，
-          <span class="bold">通常 1 名前端 + 1 名移动端开发 0.5–1 天可完成</span>。业务方不需要新增任何埋点。
-        </div></div>
-        <div class="card"><div class="card-header"><span class="step-num">3</span>旅程验证</div><div class="card-body">
-          开通测试 VIP 账号，优先搭建 <span class="bold">J1 通知权限欢迎 + J3 长期未活跃召回</span>
-          两条 ROI 最高的旅程，小流量验证后扩全量。4 周内产出可量化效果报告。
-        </div></div>
-      </div>
+        <div class="eyebrow">测试计划</div>
+        <h2><span class="secnum">6</span>4 周测试计划</h2>
+        <table>
+          <thead><tr><th>周</th><th>目标</th><th>我方动作</th><th>客户动作</th><th>验收口径</th></tr></thead>
+          <tbody>
+            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案、测试环境、开通测试 VIP 账号</td><td>确认事件清单；官网接入 Web SDK 与 Web Push 订阅入口；App 侧上报设备事件（App Push 沿用已开通应用）；订单、签收、退货与评价事件同步；发信域名认证；回写设备清单、官网订单数、邮件营销同意；现有邮件平台已在运行的欢迎与弃购流程与本方案二选一承接</td><td>核心事件入库率 ≥ 95%</td></tr>
+            <tr><td><span class="step-num">2</span></td><td>核心旅程小流量上线</td><td>配置旅程 3 · 4 · 6；设全局频控上限（App Push 通知每日 ≤ 1 条、每周 ≤ 3 条；Email 每周 ≤ 3 条；服务类通知与订单类邮件按消息类型单独设限）</td><td>审核文案与深度链接；评价系统自动邀评的关闭时点与旅程 7 上线对齐</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错</td></tr>
+            <tr><td><span class="step-num">3</span></td><td>全量与对照</td><td>扩至全量并补齐旅程 1 · 2 · 5 · 7 · 8 · 9；旅程 10 按最近一次活动日历配置；监控与调优</td><td>划出 10–20% 对照组不进旅程（用测试分组属性在进入条件排除），同一批用户对十条旅程一致排除</td><td>样本量达标；送达、点击、转化数据</td></tr>
+            <tr><td><span class="step-num">4</span></td><td>复盘扩面</td><td>效果报告；用真实数据校准漏斗各层；下批旅程（拓展场景 11–19）</td><td>决策扩面；国内 App 排期对齐</td><td>主指标相对对照组的提升</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>工作量分两段：MA Web 与 App SDK 接入约 3–5 人日（含 SDK 自带、无需开发的部分）；客户侧聚合属性开发（累计打印时长、最后打印时间、自上次耗材购买后累计用量、近 30 天主用材质与颜色、设备清单、官网订单数）第 1 周盘点后另行排期，不并入前者。</li>
+        </ul>
       </div>
     </section>
 
-    <footer class="site-footer">
-      本方案中闪铸 Flashforge 品牌与业务数据（200+ 国家、近百万用户、MJP 3D 打印机全球销量第一、Adventurer 5M 亚马逊冠军）
-      仅作为业务背景引用，来源于闪铸官网、尚普咨询 2024 报告及公开报道。
-      行业对标数据来自 2024–2026 年桌面级 3D 打印机行业公开案例综合整理，非闪铸自身实测数据；
-      预期效果数据为同类场景参考区间，实际效果以双方 4 周测试期间数据为准。
-      <br />© EngageLab · Marketing Automation Solution for Flashforge
-    </footer>
   </main>
 
-  <script>
-  (function () {
-    const COLORS = {
-      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
-      warning: '#d97706', purple: '#7c3aed', neutral: '#94a3b8',
-      muted: '#cbd5e1', text: '#374151', textMute: '#9ca3af', grid: '#e5e7eb',
-    };
+  <footer class="site-footer">
+    <div>EngageLab MA · 闪铸 Flashforge 全生命周期自动化方案 · 2026 年 9 月</div>
+  </footer>
 
-    function svg(w, h) {
-      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-      s.setAttribute('width', '100%');
-      s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-      return s;
-    }
+
+  <script>
+    const NS = 'http://www.w3.org/2000/svg';
     function el(tag, attrs) {
-      const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
-      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      const e = document.createElementNS(NS, tag);
+      if (attrs) Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
       return e;
     }
+    function svg(w, h) {
+      const s = el('svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('xmlns', NS);
+      return s;
+    }
+
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', danger: '#dc2626', neutral: '#6b7280',
+      grid: '#e5e7eb', text: '#374151', textMute: '#9ca3af',
+    };
+
+
 
     function drawBarChart(mount, opts) {
       const { categories, series, valueSuffix = '', height = 240 } = opts;
-      const W = 700, H = height, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 72;
-      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
-      const max = Math.max(...series.flatMap(s => s.data), 1);
-      const niceMax = Math.ceil(max / 20) * 20 || 100;
-      const groupCount = categories.length;
       const barsPerGroup = series.length;
-      const groupW = innerW / groupCount;
-      const barW = Math.min(22, (groupW - 12) / barsPerGroup);
+      const W = 640, H = height, PAD_L = 38, PAD_R = 12, PAD_T = 16, PAD_B = 68;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const maxVal = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(maxVal / 10) * 10 || 100;
+      const groupW = innerW / categories.length;
+      const barW = Math.min((groupW * 0.66) / barsPerGroup, 30);
       const s = svg(W, H);
+
       for (let i = 0; i <= 4; i++) {
         const v = (niceMax / 4) * i;
         const y = PAD_T + innerH - (v / niceMax) * innerH;
         s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
-        const t = el('text', { x: PAD_L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        const t = el('text', { x: PAD_L - 5, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
         t.textContent = Math.round(v) + valueSuffix;
         s.appendChild(t);
       }
+
       categories.forEach((cat, ci) => {
         const gx = PAD_L + groupW * ci;
         series.forEach((se, si) => {
@@ -1295,32 +1483,39 @@
           const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
           const y = PAD_T + innerH - h;
           const color = COLORS[se.tone] || COLORS.neutral;
-          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2 }));
-          if (v > 0) {
-            const label = el('text', { x: x + (barW - 2) / 2, y: y - 2, 'text-anchor': 'middle', 'font-size': 8, fill: COLORS.text });
-            label.textContent = v + valueSuffix;
-            s.appendChild(label);
-          }
+          const shown = (se.labels && se.labels[ci]) || (v + valueSuffix);
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2,
+            'data-tip': '<b>' + cat.split('|')[0].trim() + '</b> · ' + se.name + '：' + shown }));
+          const label = el('text', { x: x + (barW - 2) / 2, y: y - 3, 'text-anchor': 'middle', 'font-size': 8.5, fill: COLORS.text });
+          label.textContent = shown;
+          s.appendChild(label);
         });
-        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 18, 'text-anchor': 'middle', 'font-size': 11, fill: COLORS.text });
-        t.textContent = cat;
+        const parts = cat.split('|');
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 20, 'text-anchor': 'middle', 'font-size': 9.5, fill: COLORS.text });
+        t.textContent = parts[0].trim();
         s.appendChild(t);
+        if (parts[1]) {
+          const t2 = el('text', { x: gx + groupW / 2, y: H - PAD_B + 34, 'text-anchor': 'middle', 'font-size': 8.5, fill: COLORS.textMute });
+          t2.textContent = '（' + parts[1].trim() + '）';
+          s.appendChild(t2);
+        }
       });
-      if (series.length > 1) {
-        const legY = H - 14;
-        let legX = PAD_L;
-        series.forEach((se) => {
-          const color = COLORS[se.tone] || COLORS.neutral;
-          s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
-          const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
-          t.textContent = se.name;
-          s.appendChild(t);
-          legX += 14 + (se.name.length * 11) + 24;
-        });
-      }
+
+      const legY = H - 14;
+      let legX = PAD_L;
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.neutral;
+        s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+        const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+        t.textContent = se.name;
+        s.appendChild(t);
+        legX += 14 + (se.name.length * 12) + 18;
+      });
+
       mount.innerHTML = '';
       mount.appendChild(s);
     }
+
 
     const KIND_STYLE = {
       entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
@@ -1334,7 +1529,7 @@
 
     function drawJourney(mount, nodes, edges) {
       const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
-      const rankOf = {}; const incoming = {};
+      const rankOf = {}, incoming = {};
       nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
       edges.forEach(e => { incoming[e.to].push(e.from); });
       let changed = true;
@@ -1342,7 +1537,8 @@
         changed = false;
         edges.forEach(e => {
           if (rankOf[e.to] < rankOf[e.from] + 1) {
-            rankOf[e.to] = rankOf[e.from] + 1; changed = true;
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
           }
         });
       }
@@ -1350,9 +1546,11 @@
       const ranks = [];
       for (let r = 0; r <= maxRank; r++) ranks.push([]);
       nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+
       const pos = {};
       const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
       const maxWidth = Math.max(...rankWidths, 400);
+
       ranks.forEach((rankNodes, r) => {
         const withAnchor = rankNodes.map(n => {
           const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
@@ -1366,57 +1564,62 @@
           return a.anchor - b.anchor;
         });
         const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
-        const definedAnchors = withAnchor.filter(n => n.anchor !== null).map(n => n.anchor);
-        const startX = definedAnchors.length > 0
-          ? Math.max(20, definedAnchors.reduce((a, b) => a + b, 0) / definedAnchors.length - totalW / 2)
-          : (maxWidth - totalW) / 2 + 20;
+        const startX = (maxWidth - totalW) / 2 + 20;
         withAnchor.forEach((it, i) => {
-          const x = startX + i * (NODE_W + NODE_GAP);
-          const y = 20 + r * (NODE_H + RANK_GAP);
-          pos[it.node.id] = { x, y };
+          pos[it.node.id] = { x: startX + i * (NODE_W + NODE_GAP), y: 20 + r * (NODE_H + RANK_GAP) };
         });
       });
+
       for (let pass = 0; pass < 3; pass++) {
         ranks.forEach((rankNodes) => {
           const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
           for (let i = 1; i < sorted.length; i++) {
             const prev = pos[sorted[i - 1].id];
             const cur = pos[sorted[i].id];
-            if (cur.x < prev.x + NODE_W + NODE_GAP) {
-              cur.x = prev.x + NODE_W + NODE_GAP;
-            }
+            if (cur.x < prev.x + NODE_W + NODE_GAP) cur.x = prev.x + NODE_W + NODE_GAP;
           }
         });
       }
-      const width = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+
+      const baseWidth = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
       const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      // 跨层的「提前分流到结束」走右侧通道，避免压在主链节点上
+      const hasSkip = edges.some(e => pos[e.from] && pos[e.to] && (rankOf[e.to] - rankOf[e.from]) > 1);
+      const SIDE_X = baseWidth + 20;
+      const width = hasSkip ? SIDE_X + 40 : baseWidth;
       const s = svg(width, height);
       s.setAttribute('width', width);
       s.setAttribute('height', height);
       s.style.maxWidth = '100%';
       s.style.height = 'auto';
+
       const defs = el('defs');
       const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
       marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
       defs.appendChild(marker);
       s.appendChild(defs);
+
+      const labelJobs = [];
       edges.forEach(e => {
         const from = pos[e.from], to = pos[e.to];
         if (!from || !to) return;
         const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
         const x2 = to.x + NODE_W / 2, y2 = to.y;
+        if ((rankOf[e.to] - rankOf[e.from]) > 1) {
+          const yA = y1 + 16, yB = y2 - 16;
+          const d = 'M' + x1 + ',' + y1 + ' L' + x1 + ',' + yA + ' L' + SIDE_X + ',' + yA
+                  + ' L' + SIDE_X + ',' + yB + ' L' + x2 + ',' + yB + ' L' + x2 + ',' + y2;
+          s.appendChild(el('path', { d, fill: 'none', stroke: '#b6c2d2', 'stroke-width': 1.15,
+            'stroke-dasharray': '5 4', 'marker-end': 'url(#arrow)' }));
+          if (e.label) labelJobs.push([(x1 + SIDE_X) / 2, yA, e.label]);
+          return;
+        }
         const cy = (y1 + y2) / 2;
         const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
         s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
-        if (e.label) {
-          const mx = (x1 + x2) / 2, my = cy;
-          const w = Math.max(e.label.length * 9 + 10, 28);
-          s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
-          const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
-          t.textContent = e.label;
-          s.appendChild(t);
-        }
+        if (e.label) labelJobs.push([(x1 + x2) / 2, cy, e.label]);
       });
+
       nodes.forEach(n => {
         const p = pos[n.id];
         const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
@@ -1431,202 +1634,551 @@
           s.appendChild(sub);
         }
       });
+
+      // 边标签最后绘制，保证不被节点方块盖住
+      labelJobs.forEach(function (j) {
+        const mx = j[0], my = j[1], label = j[2];
+        const w = Math.max(label.length * 9 + 10, 28);
+        s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+        const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+        t.textContent = label;
+        s.appendChild(t);
+      });
+
       mount.innerHTML = '';
       mount.appendChild(s);
     }
 
-    // ========== Benchmark chart ==========
-    drawBarChart(document.getElementById('chart-benchmark'), {
-      categories: ['独立站直接访问', '一年后活跃', '社区用户复购', '独立站转化提升'],
+
+
+    // ── Charts ──────────────────────────────────────────────────────────
+
+    // ── Charts ──────────────────────────────────────────────────────────
+
+    drawBarChart(document.getElementById('chart-funnel'), {
+      categories: ['访问 → 留资|官网访客', '加购 → 支付|加购用户', '签收 → 绑定|购机用户', '绑定 → 首印|绑定用户 · 7 天内', '首印 → 耗材复购|首印用户 · 90 天内', '沉睡 → 回流|沉睡 30 天设备'],
       series: [
-        { name: '桌面级 3D 打印机行业公开数据', data: [55, 90, 68, 20], tone: 'success' },
+        { name: '行业参考 / 假设起点', data: [2.1, 30, 50, 75, 25, 15], tone: 'neutral',
+          labels: ['2.1%', '30%', '50%', '75%', '25%', '15%'] },
+        { name: '自动化后预期', data: [4, 35.5, 65, 85, 32.5, 22.5], tone: 'success',
+          labels: ['3–5%', '33–38%', '60–70%', '85%', '30–35%', '20–25%'] },
       ],
-      valueSuffix: '%', height: 260,
+      valueSuffix: '%', height: 280,
     });
 
-    // ========== Journey DAGs ==========
+    // ── 旅程编排 ────────────────────────────────────────────────────────
 
-    // J1: 通知权限开启欢迎
+    // J1 平台买家与 App 用户建立官网触点
     drawJourney(document.getElementById('dag-j1'),
       [
-        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: 通知权限开启' },
-        { id: 'w1',     kind: 'wait',     title: '等待',       sub: '30 分钟' },
-        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '欢迎 · 热销机型' },
-        { id: 'w2',     kind: 'wait',     title: '等待',       sub: '24 小时' },
-        { id: 'st1',    kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
-        { id: 'push2',  kind: 'channel',  title: 'App Push',   sub: '选购建议 · 教程' },
-        { id: 'w3',     kind: 'wait',     title: '等待',       sub: '48 小时' },
-        { id: 'st2',    kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
-        { id: 'email',  kind: 'channel',  title: 'Email',      sub: '品牌故事 · 精选机型' },
-        { id: 'end',    kind: 'exitEnd',  title: '结束',       sub: '' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 设备绑定成功 · 官网订单数=0' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '3 个日历日' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '注册官网得 20 积分' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '7 天' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 邮件营销同意' },
+        { id: 'em1', kind: 'channel', title: 'Email 模板消息', sub: '积分规则 · 推荐有礼' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '注册完成即提前退出' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '90 天后可再进入' },
       ],
       [
-        { from: 'start', to: 'w1' },
-        { from: 'w1',    to: 'push1' },
-        { from: 'push1', to: 'w2' },
-        { from: 'w2',    to: 'st1' },
-        { from: 'st1',   to: 'push2' },
-        { from: 'push2', to: 'w3' },
-        { from: 'w3',    to: 'st2' },
-        { from: 'st2',   to: 'email' },
-        { from: 'email', to: 'end' },
+        { from: 'start', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'w2' }, { from: 'w2', to: 'cond' },
+        { from: 'cond', to: 'em1', label: '已同意' }, { from: 'cond', to: 'endB', label: '未同意' },
+        { from: 'em1', to: 'endA' },
       ]);
 
-    // J2: 新用户激活引导
+    // J2 欢迎与首单激活
     drawJourney(document.getElementById('dag-j2'),
       [
-        { id: 'start',  kind: 'entry',    title: '开始',       sub: '事件: EUID 注册成功' },
-        { id: 'w1',     kind: 'wait',     title: '等待',       sub: '1 小时' },
-        { id: 'wfe1',   kind: 'branch',   title: '等待事件',    sub: '页面浏览 · 24h' },
-        { id: 'email1', kind: 'channel',  title: 'Email',      sub: '精选机型推荐' },
-        { id: 'ok1',    kind: 'exitOk',   title: '已浏览',      sub: '' },
-        { id: 'st1',    kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
-        { id: 'push1',  kind: 'channel',  title: 'App Push',   sub: '选购指南' },
-        { id: 'w2',     kind: 'wait',     title: '等待',       sub: '24 小时' },
-        { id: 'email2', kind: 'channel',  title: 'Email',      sub: '品牌故事' },
-        { id: 'end',    kind: 'exitEnd',  title: '结束',       sub: '' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 留资完成（注册或订阅）' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: 设备清单' },
+        { id: 'wh', kind: 'branch', title: 'Webhook 取数', sub: '推荐引擎按机型选耗材' },
+        { id: 'em0', kind: 'channel', title: 'Email 模板消息', sub: '机型常用耗材' },
+        { id: 'we0', kind: 'wait', title: '等待事件', sub: '3 天 · 加入购物车' },
+        { id: 'endA', kind: 'exitOk', title: '结束', sub: '加购交旅程 3' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '未加购' },
+        { id: 'em1', kind: 'channel', title: 'Email 模板消息一', sub: '欢迎 · 积分规则 · 机型对比' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '2 个日历日' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: Web Push 订阅状态' },
+        { id: 'wp', kind: 'channel', title: 'Web Push 通知消息', sub: '分期 · 退货 · 到货时效' },
+        { id: 'em2', kind: 'channel', title: 'Email 模板消息二', sub: '分期 · 退货 · 到货时效' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '5 天' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em3', kind: 'channel', title: 'Email 模板消息三', sub: '积分抵扣 · 当季活动' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '下单即提前退出' },
       ],
       [
-        { from: 'start',  to: 'w1' },
-        { from: 'w1',     to: 'wfe1' },
-        { from: 'wfe1',   to: 'email1', label: '已浏览' },
-        { from: 'email1', to: 'ok1' },
-        { from: 'wfe1',   to: 'st1',    label: '超时未浏览' },
-        { from: 'st1',    to: 'push1' },
-        { from: 'push1',  to: 'w2' },
-        { from: 'w2',     to: 'email2' },
-        { from: 'email2', to: 'end' },
+        { from: 'start', to: 'cond1' },
+        { from: 'cond1', to: 'wh', label: '已绑定设备' }, { from: 'wh', to: 'em0' }, { from: 'em0', to: 'we0' },
+        { from: 'we0', to: 'endA', label: '已加购' }, { from: 'we0', to: 'endB', label: '未加购' },
+        { from: 'cond1', to: 'em1', label: '无设备' }, { from: 'em1', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'cond2' },
+        { from: 'cond2', to: 'wp', label: '已订阅' }, { from: 'cond2', to: 'em2', label: '未订阅' },
+        { from: 'wp', to: 'w2' }, { from: 'em2', to: 'w2' }, { from: 'w2', to: 'st2' }, { from: 'st2', to: 'em3' }, { from: 'em3', to: 'endC' },
       ]);
 
-    // J3: 长期未活跃召回
+    // J3 弃购挽回
     drawJourney(document.getElementById('dag-j3'),
       [
-        { id: 'start', kind: 'entry',    title: '开始',       sub: '未活跃 >14 天 且 未购' },
-        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
-        { id: 'push1', kind: 'channel',  title: 'App Push',   sub: '新品 / 优惠提醒' },
-        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '页面浏览 · 3 天' },
-        { id: 'email1',kind: 'channel',  title: 'Email',      sub: '精选专区' },
-        { id: 'ok1',   kind: 'exitOk',   title: '已回访',      sub: '' },
-        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
-        { id: 'wpush', kind: 'channel',  title: 'Web Push',   sub: '优惠券提示' },
-        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '3 天' },
-        { id: 'st3',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
-        { id: 'email2',kind: 'channel',  title: 'Email',      sub: '挽回信 · 客服协助' },
-        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 加入购物车 · 最新覆盖' },
+        { id: 'w1', kind: 'wait', title: '等待事件', sub: '1 小时 · 开始结账' },
+        { id: 'em1c', kind: 'channel', title: 'Email 模板消息一', sub: '订单已保留 · 支付方式与分期' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: Web Push 订阅状态' },
+        { id: 'wp1', kind: 'channel', title: 'Web Push 通知消息一', sub: '购物车已保留 · 到货时效' },
+        { id: 'em1', kind: 'channel', title: 'Email 模板消息一', sub: '购物车已保留 · 到货时效' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '1 个日历日' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '事件属性: 购物车金额' },
+        { id: 'em2a', kind: 'channel', title: 'Email 模板消息二', sub: '分期 · 30 天退货 · 保修' },
+        { id: 'em2b', kind: 'channel', title: 'Email 模板消息二', sub: '耗材活动 · 中国仓时效' },
+        { id: 'w3', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wh', kind: 'branch', title: 'Webhook 取数', sub: '推荐引擎选搭配 SKU' },
+        { id: 'em3', kind: 'channel', title: 'Email 模板消息三', sub: '积分抵扣 · 搭配建议' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '支付即提前退出' },
       ],
       [
-        { from: 'start',  to: 'st1' },
-        { from: 'st1',    to: 'push1' },
-        { from: 'push1',  to: 'wfe1' },
-        { from: 'wfe1',   to: 'email1', label: '已回访' },
-        { from: 'email1', to: 'ok1' },
-        { from: 'wfe1',   to: 'st2',    label: '超时未访问' },
-        { from: 'st2',    to: 'wpush' },
-        { from: 'wpush',  to: 'w1' },
-        { from: 'w1',     to: 'st3' },
-        { from: 'st3',    to: 'email2' },
-        { from: 'email2', to: 'end' },
+        { from: 'start', to: 'w1' }, { from: 'w1', to: 'em1c', label: '已开始结账' }, { from: 'w1', to: 'cond1', label: '未开始' },
+        { from: 'cond1', to: 'wp1', label: '已订阅' }, { from: 'cond1', to: 'em1', label: '未订阅' },
+        { from: 'em1c', to: 'w2' }, { from: 'wp1', to: 'w2' }, { from: 'em1', to: 'w2' }, { from: 'w2', to: 'st1' }, { from: 'st1', to: 'cond2' },
+        { from: 'cond2', to: 'em2a', label: '≥ $299' }, { from: 'cond2', to: 'em2b', label: '< $299' },
+        { from: 'em2a', to: 'w3' }, { from: 'em2b', to: 'w3' }, { from: 'w3', to: 'st2' }, { from: 'st2', to: 'wh' }, { from: 'wh', to: 'em3' }, { from: 'em3', to: 'end' },
       ]);
 
-    // J4: UTM 归因分层欢迎
+    // J4 购后履约与首次打印
     drawJourney(document.getElementById('dag-j4'),
       [
-        { id: 'start', kind: 'entry',   title: '开始',      sub: '首次 UTM 不为空' },
-        { id: 'br',    kind: 'branch',  title: '条件分支',   sub: '按首次 UTM 分层' },
-        { id: 'wp1',   kind: 'channel', title: 'Web Push',  sub: '搜索用户 · 技术评测' },
-        { id: 'wp2',   kind: 'channel', title: 'Web Push',  sub: '社交用户 · 用户作品' },
-        { id: 'wp3',   kind: 'channel', title: 'Web Push',  sub: '视频用户 · 深度评测' },
-        { id: 'wp4',   kind: 'channel', title: 'Web Push',  sub: '默认 · 精选机型' },
-        { id: 'end',   kind: 'exitEnd', title: '结束',      sub: '' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 订单支付成功 · 含打印机' },
+        { id: 'cond0', kind: 'branch', title: '条件分支', sub: '事件属性: 是否预售' },
+        { id: 'wa', kind: 'wait', title: '等待至', sub: '属性: 预计发货日 T-3' },
+        { id: 'emP', kind: 'channel', title: 'Email 模板消息', sub: '发货准备 · 预售权益' },
+        { id: 'em1', kind: 'channel', title: 'Email 模板消息一', sub: '订单确认 · 拆单说明 · 装 App' },
+        { id: 'we1', kind: 'wait', title: '等待事件', sub: '7 天 · 订单签收' },
+        { id: 'emL', kind: 'channel', title: 'Email 模板消息', sub: '物流查询入口' },
+        { id: 'endL', kind: 'exitEnd', title: '结束', sub: '退货申请即退出实例' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '扫码绑定引导' },
+        { id: 'em2', kind: 'channel', title: 'Email 模板消息二', sub: '开箱首印指南 · App 下载' },
+        { id: 'we2', kind: 'wait', title: '等待事件', sub: '5 天 · 设备绑定成功' },
+        { id: 'em3', kind: 'channel', title: 'Email 模板消息三', sub: '绑定的三个理由' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '未绑定' },
+        { id: 'we3', kind: 'wait', title: '等待事件', sub: '3 天 · 首次打印完成' },
+        { id: 'endOk', kind: 'exitOk', title: '结束', sub: '首印完成 · 交旅程 7' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '首印教程 · 快速入门' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '转化窗口 7 天' },
       ],
       [
-        { from: 'start', to: 'br' },
-        { from: 'br', to: 'wp1', label: 'Google / Bing' },
-        { from: 'br', to: 'wp2', label: 'FB / IG / TikTok' },
-        { from: 'br', to: 'wp3', label: 'YouTube' },
-        { from: 'br', to: 'wp4', label: '默认' },
-        { from: 'wp1', to: 'end' },
-        { from: 'wp2', to: 'end' },
-        { from: 'wp3', to: 'end' },
-        { from: 'wp4', to: 'end' },
+        { from: 'start', to: 'cond0' },
+        { from: 'cond0', to: 'wa', label: '预售' }, { from: 'wa', to: 'emP' }, { from: 'emP', to: 'we1' },
+        { from: 'cond0', to: 'em1', label: '现货' }, { from: 'em1', to: 'we1' },
+        { from: 'we1', to: 'emL', label: '未签收' }, { from: 'emL', to: 'endL' },
+        { from: 'we1', to: 'cond1', label: '已签收' },
+        { from: 'cond1', to: 'p1', label: '已安装' }, { from: 'cond1', to: 'em2', label: '未安装' },
+        { from: 'p1', to: 'we2' }, { from: 'em2', to: 'we2' },
+        { from: 'we2', to: 'em3', label: '未绑定' }, { from: 'em3', to: 'endB' },
+        { from: 'we2', to: 'we3', label: '已绑定' },
+        { from: 'we3', to: 'endOk', label: '已完成' }, { from: 'we3', to: 'st1', label: '未完成' },
+        { from: 'st1', to: 'p2' }, { from: 'p2', to: 'endC' },
       ]);
 
-    // J5: 加购未下单挽回
+    // J5 耗材补货
     drawJourney(document.getElementById('dag-j5'),
       [
-        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 加入购物车' },
-        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '30 分钟' },
-        { id: 'wpush', kind: 'channel',  title: 'Web Push',   sub: '加购提醒' },
-        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '购买 · 2 小时' },
-        { id: 'ok1',   kind: 'exitOk',   title: '已下单',      sub: '' },
-        { id: 'w2',    kind: 'wait',     title: '等待',       sub: '4 小时' },
-        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
-        { id: 'push1', kind: 'channel',  title: 'App Push',   sub: '限时优惠券' },
-        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '购买 · 12 小时' },
-        { id: 'ok2',   kind: 'exitOk',   title: '已下单',      sub: '' },
-        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
-        { id: 'email', kind: 'channel',  title: 'Email',      sub: '对比清单 · 客服' },
-        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 累计打印用量 700–1200 克' },
+        { id: 'wh', kind: 'branch', title: 'Webhook 取数', sub: '推荐引擎按材质颜色选 SKU' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '还够用 N 天 · 深链到 SKU' },
+        { id: 'we1', kind: 'wait', title: '等待事件', sub: '3 天 · 加入购物车' },
+        { id: 'endA', kind: 'exitOk', title: '结束', sub: '加购交旅程 3' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 邮件营销同意' },
+        { id: 'em1', kind: 'channel', title: 'Email 模板消息', sub: '推荐 · 当季活动 · 积分' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '耗材下单即提前退出' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '30 天后可再进入' },
       ],
       [
-        { from: 'start', to: 'w1' },
-        { from: 'w1',    to: 'wpush' },
-        { from: 'wpush', to: 'wfe1' },
-        { from: 'wfe1',  to: 'ok1',   label: '已下单' },
-        { from: 'wfe1',  to: 'w2',    label: '超时未下单' },
-        { from: 'w2',    to: 'st1' },
-        { from: 'st1',   to: 'push1' },
-        { from: 'push1', to: 'wfe2' },
-        { from: 'wfe2',  to: 'ok2',   label: '已下单' },
-        { from: 'wfe2',  to: 'st2',   label: '超时未下单' },
-        { from: 'st2',   to: 'email' },
-        { from: 'email', to: 'end' },
+        { from: 'start', to: 'wh' }, { from: 'wh', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'we1' },
+        { from: 'we1', to: 'endA', label: '已加购' }, { from: 'we1', to: 'cond', label: '未加购' },
+        { from: 'cond', to: 'em1', label: '已同意' }, { from: 'cond', to: 'endC', label: '未同意' },
+        { from: 'em1', to: 'endB' },
       ]);
 
-    // J6: 打印机绑定首打引导
+    // J6 打印失败后的服务旅程
     drawJourney(document.getElementById('dag-j6'),
       [
-        { id: 'start', kind: 'entry',    title: '开始',       sub: '事件: 打印机绑定成功' },
-        { id: 'w1',    kind: 'wait',     title: '等待',       sub: '4 小时' },
-        { id: 'push1', kind: 'channel',  title: 'App Push',   sub: '开箱 · 切片教程' },
-        { id: 'wfe1',  kind: 'branch',   title: '等待事件',    sub: '首打成功 · 48 小时' },
-        { id: 'email1',kind: 'channel',  title: 'Email',      sub: '恭喜 · 模型库推荐' },
-        { id: 'ok1',   kind: 'exitOk',   title: '已首打',      sub: '' },
-        { id: 'st1',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
-        { id: 'push2', kind: 'channel',  title: 'App Push',   sub: '视频教程 · 客服' },
-        { id: 'wfe2',  kind: 'branch',   title: '等待事件',    sub: '首打成功 · 48 小时' },
-        { id: 'ok2',   kind: 'exitOk',   title: '已首打',      sub: '' },
-        { id: 'st2',   kind: 'sendtime', title: '可发送时间',  sub: '终端 09:00-21:00' },
-        { id: 'email2',kind: 'channel',  title: 'Email',      sub: '客服协助介入' },
-        { id: 'end',   kind: 'exitEnd',  title: '结束',       sub: '' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 打印失败 · 按设备' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '30 分钟' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '事件属性: 错误类别' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '断料与耗材类排错页' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '喷嘴与挤出类排错页' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '网络与其他排错页' },
+        { id: 'we1', kind: 'wait', title: '等待事件', sub: '2 天 · 打印开始' },
+        { id: 'endA', kind: 'exitOk', title: '结束', sub: '已恢复打印' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: 该设备保修到期日' },
+        { id: 'wh', kind: 'branch', title: 'Webhook 执行动作', sub: '客服系统创建工单' },
+        { id: 'em1', kind: 'channel', title: 'Email 模板消息', sub: '工单已建立 · 工单号' },
+        { id: 'em2', kind: 'channel', title: 'Email 模板消息', sub: '对应配件 · 积分抵扣' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '打印完成即退出实例' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '打印完成即退出实例' },
       ],
       [
-        { from: 'start',  to: 'w1' },
-        { from: 'w1',     to: 'push1' },
-        { from: 'push1',  to: 'wfe1' },
-        { from: 'wfe1',   to: 'email1', label: '已完成' },
-        { from: 'email1', to: 'ok1' },
-        { from: 'wfe1',   to: 'st1',    label: '超时未完成' },
-        { from: 'st1',    to: 'push2' },
-        { from: 'push2',  to: 'wfe2' },
-        { from: 'wfe2',   to: 'ok2',    label: '已完成' },
-        { from: 'wfe2',   to: 'st2',    label: '超时未完成' },
-        { from: 'st2',    to: 'email2' },
-        { from: 'email2', to: 'end' },
+        { from: 'start', to: 'w1' }, { from: 'w1', to: 'cond1' },
+        { from: 'cond1', to: 'p1', label: '断料 / 耗材' }, { from: 'cond1', to: 'p2', label: '喷嘴 / 挤出' }, { from: 'cond1', to: 'p3', label: '网络 / 其他' },
+        { from: 'p1', to: 'we1' }, { from: 'p2', to: 'we1' }, { from: 'p3', to: 'we1' },
+        { from: 'we1', to: 'endA', label: '已开始' }, { from: 'we1', to: 'cond2', label: '未开始' },
+        { from: 'cond2', to: 'wh', label: '在保' }, { from: 'cond2', to: 'em2', label: '过保' },
+        { from: 'wh', to: 'em1' }, { from: 'em1', to: 'endB' }, { from: 'em2', to: 'endC' },
       ]);
 
-    // Sticky nav highlight
-    const links = document.querySelectorAll('.toc-bar a');
-    const sections = Array.from(document.querySelectorAll('section[id]'));
-    function onScroll() {
-      const y = window.scrollY + 100;
-      let cur = sections[0]?.id;
-      sections.forEach(s => { if (s.offsetTop <= y) cur = s.id; });
-      links.forEach(a => a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--accent)' : '');
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  })();
+    // J7 评价与推荐有礼
+    drawJourney(document.getElementById('dag-j7'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 首次打印完成' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '3 个日历日' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'in1', kind: 'channel', title: 'App Push 应用内消息', sub: '体验评分 1–5 分' },
+        { id: 'we1', kind: 'wait', title: '等待事件', sub: '3 天 · 体验评分提交' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: 官网订单数' },
+        { id: 'em1', kind: 'channel', title: 'Email 模板消息', sub: '官网评价邀请 · 推荐有礼' },
+        { id: 'em2', kind: 'channel', title: 'Email 模板消息', sub: '分享作品 · 推荐有礼' },
+        { id: 'wh', kind: 'branch', title: 'Webhook 执行动作', sub: '创建客服工单' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '已安排支持' },
+        { id: 'we2', kind: 'wait', title: '等待事件', sub: '7 天 · 工单已解决' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: 邮件营销同意' },
+        { id: 'em3', kind: 'channel', title: 'Email 模板消息', sub: '评价邀请' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '评价提交即提前退出' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '评价提交即提前退出' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '评价提交即提前退出' },
+        { id: 'endD', kind: 'exitEnd', title: '结束', sub: '工单未解决 · 不邀评' },
+        { id: 'endE', kind: 'exitEnd', title: '结束', sub: '未同意邮件' },
+      ],
+      [
+        { from: 'start', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'in1' }, { from: 'in1', to: 'we1' },
+        { from: 'we1', to: 'cond1', label: '≥ 4 分' },
+        { from: 'cond1', to: 'em1', label: '有官网订单' }, { from: 'cond1', to: 'em2', label: '无官网订单' },
+        { from: 'em1', to: 'endA' }, { from: 'em2', to: 'endB' },
+        { from: 'we1', to: 'wh', label: '≤ 3 分' }, { from: 'wh', to: 'p1' }, { from: 'p1', to: 'we2' },
+        { from: 'we2', to: 'em3', label: '已解决' }, { from: 'we2', to: 'endD', label: '未解决' },
+        { from: 'we1', to: 'cond2', label: '未评分' },
+        { from: 'cond2', to: 'em3', label: '已同意' }, { from: 'cond2', to: 'endE', label: '未同意' },
+        { from: 'em3', to: 'endC' },
+      ]);
+
+    // J8 沉睡设备唤醒
+    drawJourney(document.getElementById('dag-j8'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 最后打印距今 30–45 天' },
+        { id: 'wh', kind: 'branch', title: 'Webhook 取数', sub: '按机型取本周热门模型' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '本周热门模型 · 一键打印' },
+        { id: 'we1', kind: 'wait', title: '等待事件', sub: '5 天 · App 启动' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 邮件营销同意' },
+        { id: 'em1', kind: 'channel', title: 'Email 模板消息', sub: '教程合集 · 用户作品' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '打印开始即提前退出' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '30 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'wh' }, { from: 'wh', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'we1' },
+        { from: 'we1', to: 'em1', label: '已启动未打印' }, { from: 'we1', to: 'cond', label: '未启动' },
+        { from: 'cond', to: 'em1', label: '已同意' }, { from: 'cond', to: 'endB', label: '未同意' },
+        { from: 'em1', to: 'endA' },
+      ]);
+
+    // J9 换机升级
+    drawJourney(document.getElementById('dag-j9'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 累计打印 300–400 小时 · 无多色机' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: 设备数量' },
+        { id: 'emF', kind: 'channel', title: 'Email 模板消息', sub: 'Creator 5 系列 · 批量价' },
+        { id: 'endF', kind: 'exitEnd', title: '结束', sub: '整机下单即提前退出' },
+        { id: 'em1', kind: 'channel', title: 'Email 模板消息一', sub: '打印时长 · 升级理由' },
+        { id: 'we1', kind: 'wait', title: '等待事件', sub: '7 天 · 浏览升级机型' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em2', kind: 'channel', title: 'Email 模板消息二', sub: '分期 · 退货 · 翻新机档' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '机型对比页短版' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '14 天' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'em3', kind: 'channel', title: 'Email 模板消息三', sub: '积分抵扣 · 当季活动' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '180 天后可再进入' },
+      ],
+      [
+        { from: 'start', to: 'cond1' },
+        { from: 'cond1', to: 'emF', label: '≥ 2 台' }, { from: 'emF', to: 'endF' },
+        { from: 'cond1', to: 'em1', label: '单机' }, { from: 'em1', to: 'we1' },
+        { from: 'we1', to: 'st1', label: '浏览未购' }, { from: 'st1', to: 'em2' },
+        { from: 'we1', to: 'st2', label: '未浏览' }, { from: 'st2', to: 'p1' },
+        { from: 'em2', to: 'w2' }, { from: 'p1', to: 'w2' }, { from: 'w2', to: 'st3' }, { from: 'st3', to: 'em3' }, { from: 'em3', to: 'end' },
+      ]);
+
+    // J10 新品预售与大促
+    drawJourney(document.getElementById('dag-j10'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '分群: 本次活动目标人群' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: 设备清单 / 近 30 天浏览' },
+        { id: 'emA', kind: 'channel', title: 'Email 模板消息', sub: '升级机型 · 耗材囤货' },
+        { id: 'wh', kind: 'branch', title: 'Webhook 取数', sub: '取浏览过商品的活动价' },
+        { id: 'emB', kind: 'channel', title: 'Email 模板消息', sub: '你看过的商品活动价' },
+        { id: 'emC', kind: 'channel', title: 'Email 模板消息', sub: '首单权益' },
+        { id: 'wa', kind: 'wait', title: '等待至', sub: '指定时刻: 开卖时刻' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: Web Push 订阅状态' },
+        { id: 'wp', kind: 'channel', title: 'Web Push 通知消息', sub: '已开卖 · 剩余台数取真实值' },
+        { id: 'emD', kind: 'channel', title: 'Email 模板消息', sub: '已开卖 · 剩余台数取真实值' },
+        { id: 'we1', kind: 'wait', title: '等待事件', sub: '3 天 · 加入购物车' },
+        { id: 'endA', kind: 'exitOk', title: '结束', sub: '加购交旅程 3' },
+        { id: 'wa2', kind: 'wait', title: '等待至', sub: '截止时刻前 1 天' },
+        { id: 'emE', kind: 'channel', title: 'Email 模板消息', sub: '截止提醒 · 时间取活动属性' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '下单即提前退出' },
+      ],
+      [
+        { from: 'start', to: 'cond1' },
+        { from: 'cond1', to: 'emA', label: '已有设备' }, { from: 'cond1', to: 'wh', label: '近 30 天浏览' }, { from: 'cond1', to: 'emC', label: '新订阅者' },
+        { from: 'wh', to: 'emB' },
+        { from: 'emA', to: 'wa' }, { from: 'emB', to: 'wa' }, { from: 'emC', to: 'wa' },
+        { from: 'wa', to: 'cond2' }, { from: 'cond2', to: 'wp', label: '已订阅' }, { from: 'cond2', to: 'emD', label: '未订阅' },
+        { from: 'wp', to: 'we1' }, { from: 'emD', to: 'we1' },
+        { from: 'we1', to: 'endA', label: '已加购' }, { from: 'we1', to: 'wa2', label: '未加购' },
+        { from: 'wa2', to: 'emE' }, { from: 'emE', to: 'endB' },
+      ]);
+
   </script>
+
+
+<script>
+(function () {
+  "use strict";
+  /* ── 1. TOC 场景下拉 ── */
+  (function () {
+    var drop = document.querySelector(".toc-drop");
+    if (!drop) return;
+    var btn = drop.querySelector(".toc-drop-btn");
+    var panel = drop.querySelector(".toc-drop-panel");
+    function place() {
+      var b = btn.getBoundingClientRect();
+      var w = panel.offsetWidth || 236;
+      var left = Math.min(
+        Math.max(8, b.left + b.width / 2 - w / 2),
+        document.documentElement.clientWidth - w - 8
+      );
+      panel.style.left = left + "px";
+      panel.style.top = (b.bottom + 8) + "px";
+    }
+    function setOpen(on) {
+      drop.dataset.open = on ? "1" : "0";
+      btn.setAttribute("aria-expanded", on ? "true" : "false");
+      panel.hidden = !on;
+      if (on) place();
+    }
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setOpen(panel.hidden);
+    });
+    window.addEventListener("resize", function () { if (!panel.hidden) place(); });
+    window.addEventListener("scroll", function () { if (!panel.hidden) place(); }, { passive: true });
+    // 自己接管跳转：先展开目标场景再滚动，否则展开引起的布局变化会打断平滑滚动
+    panel.addEventListener("click", function (e) {
+      var a = e.target.closest("a");
+      if (!a) return;
+      e.preventDefault();
+      setOpen(false);
+      var id = a.getAttribute("href").slice(1);
+      var sec = document.getElementById(id);
+      if (!sec) return;
+      if (history.replaceState) history.replaceState(null, "", "#" + id);
+      requestAnimationFrame(function () {
+        sec.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+    document.addEventListener("click", function (e) {
+      if (!drop.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+  })();
+
+
+
+  /* ── 2. 场景区粘性子导航（零隐藏，只提供位置感与跳转）── */
+  (function () {
+    var STAGE_COLOR = {
+      acquire: ["#2563eb", "#e7efff"], activate: ["#0e7490", "#ddf1f8"],
+      retain: ["#c2700a", "#fdf1dc"], repeat: ["#0f9d63", "#e2f7ee"],
+      campaign: ["#6d28d9", "#efe9fe"], advocacy: ["#be123c", "#ffe4ea"]
+    };
+    var items = [
+      ["s-journey1", "1", "广告分层", "retain"],
+      ["s-journey2", "2", "看家日报", "retain"],
+      ["s-journey3", "3", "沉默召回", "retain"],
+      ["s-journey4", "4", "云录像开通", "activate"],
+      ["s-journey5", "5", "云录像续费", "repeat"],
+      ["s-journey6", "6", "4G 流量", "repeat"],
+      ["s-journey7", "7", "离线唤醒", "retain"],
+      ["s-journey8", "8", "首周引导", "acquire"],
+      ["s-journey9", "9", "未绑定引导", "acquire"],
+      ["s-journey10", "10", "电量预警", "retain"]
+    ].filter(function (it) { return document.getElementById(it[0]); });
+    if (items.length < 2) return;
+
+    var rail = document.createElement("nav");
+    rail.className = "scene-rail";
+    rail.setAttribute("aria-label", "场景导航");
+    var inner = document.createElement("div");
+    inner.className = "scene-rail-inner";
+    var lab = document.createElement("span");
+    lab.className = "sr-label";
+    lab.textContent = "十条旅程";
+    inner.appendChild(lab);
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it[0];
+      a.innerHTML = '<span class="sr-n">' + it[1] + '</span>' + it[2];
+      inner.appendChild(a);
+    });
+    rail.appendChild(inner);
+    document.body.appendChild(rail);
+    var links = inner.querySelectorAll("a");
+
+    // 覆盖范围：从场景总览表开始，到最后一个场景结束
+    var zoneStart = document.getElementById("s-scenarios") || document.getElementById(items[0][0]);
+    var zoneEnd = document.getElementById(items[items.length - 1][0]);
+
+    function onScroll() {
+      var top = zoneStart.getBoundingClientRect().top;
+      var bottom = zoneEnd.getBoundingClientRect().bottom;
+      rail.classList.toggle("is-on", top <= 90 && bottom > 140);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+
+    // 当前场景高亮 + 用该场景的阶段色
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute("href") === "#" + en.target.id;
+          a.classList.toggle("is-active", on);
+          if (on) {
+            var st = STAGE_COLOR[en.target.dataset.stage] || STAGE_COLOR.acquire;
+            a.style.setProperty("--sr-stage", st[0]);
+            a.style.setProperty("--sr-stage-soft", st[1]);
+          }
+        });
+      });
+    }, { rootMargin: "-30% 0px -55% 0px" });
+    items.forEach(function (it) { spy.observe(document.getElementById(it[0])); });
+  })();
+
+  /* ── 3. 右侧圆点导航 ── */
+  (function () {
+    var items = [
+      ["s-market", "业务洞察"], ["s-funnel", "用户漏斗"],
+      ["s-scenarios", "十条旅程"], ["s-data", "数据整合"],
+      ["s-why", "关于 EngageLab"], ["s-plan", "测试计划"]
+    ].filter(function (it) { return document.getElementById(it[0]); });
+    if (items.length < 3) return;
+
+    var rail = document.createElement("nav");
+    rail.className = "rail";
+    rail.setAttribute("aria-label", "章节导航");
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it[0];
+      a.dataset.label = it[1];
+      a.setAttribute("aria-label", it[1]);
+      rail.appendChild(a);
+    });
+    document.body.appendChild(rail);
+
+    var links = rail.querySelectorAll("a");
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    items.forEach(function (it) { spy.observe(document.getElementById(it[0])); });
+  })();
+
+  /* ── 4. 柱状图 hover tooltip ── */
+  (function () {
+    var charts = document.querySelectorAll(".chart svg");
+    if (!charts.length) return;
+    var tip = document.createElement("div");
+    tip.className = "chart-tip";
+    document.body.appendChild(tip);
+
+    charts.forEach(function (svg) {
+      svg.querySelectorAll("rect").forEach(function (r) {
+        var h = parseFloat(r.getAttribute("height") || "0");
+        if (!h || h < 1) return;               // 跳过网格/背景矩形
+        r.classList.add("bar");
+        r.addEventListener("mouseenter", function () {
+          var label = r.dataset.tip;
+          if (!label) return;
+          tip.innerHTML = label;
+          tip.classList.add("is-on");
+        });
+        r.addEventListener("mousemove", function (e) {
+          tip.style.left = (e.clientX + 14) + "px";
+          tip.style.top = (e.clientY - 34) + "px";
+        });
+        r.addEventListener("mouseleave", function () { tip.classList.remove("is-on"); });
+      });
+    });
+  })();
+
+  /* ── 5. 滚动入场动效（默认不启用，判定通过才加）── */
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var targets = [];
+    document.querySelectorAll("main > section:not([data-scene])").forEach(function (sec) {
+      sec.querySelectorAll(":scope > .wrap > .card, :scope > .wrap > table, " +
+        ":scope > .wrap > .grid > *, :scope > .wrap > .callout").forEach(function (el) {
+          el.classList.add("reveal");
+          targets.push(el);
+        });
+    });
+    if (!targets.length) return;
+
+    document.documentElement.classList.add("anim-ready");
+
+    // 场景块整体浮起（比逐元素更有「一段开始了」的信号）
+    var sceneIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("is-in");
+        sceneIO.unobserve(en.target);
+      });
+    }, { threshold: 0.04, rootMargin: "0px 0px -4% 0px" });
+    var scenes = document.querySelectorAll("main > section[data-scene]");
+    scenes.forEach(function (sc) { sceneIO.observe(sc); });
+    setTimeout(function () { scenes.forEach(function (sc) { sc.classList.add("is-in"); }); }, 3000);
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var sibs = Array.prototype.slice.call(en.target.parentNode.children);
+        var i = Math.min(sibs.indexOf(en.target), 5);
+        setTimeout(function () { en.target.classList.add("is-in"); }, i * 70);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+    targets.forEach(function (t) { io.observe(t); });
+
+    // 兜底：3 秒后无论如何全部显示，杜绝「动效没触发就永远看不见」
+    setTimeout(function () {
+      targets.forEach(function (t) { t.classList.add("is-in"); });
+    }, 3000);
+  })();
+})();
+
+</script>
+
 </body>
 </html>
