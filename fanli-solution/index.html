@@ -619,16 +619,16 @@
         <button type="button" class="toc-drop-btn" aria-expanded="false" aria-controls="toc-scenes">七条旅程<span class="caret" aria-hidden="true">▾</span></button>
         <div class="toc-drop-panel" id="toc-scenes" hidden>
           <a href="#s-scenarios" class="sd-all">场景总览表</a>
-          <a href="#s-journey1"><span class="sd-n">1</span>订阅后首条消息</a>
+          <a href="#s-journey1"><span class="sd-n">1</span>订阅邀请</a>
           <a href="#s-journey2"><span class="sd-n">2</span>关注店铺新券</a>
           <a href="#s-journey3"><span class="sd-n">3</span>券码到期提醒</a>
           <a href="#s-journey4"><span class="sd-n">4</span>邮箱捕获</a>
           <a href="#s-journey5"><span class="sd-n">5</span>大促日历分流</a>
           <a href="#s-journey6"><span class="sd-n">6</span>沉默订阅者唤回</a>
-          <a href="#s-journey7"><span class="sd-n">7</span>Email 兴趣周报</a>
+          <a href="#s-journey7"><span class="sd-n">7</span>兴趣类目周报</a>
         </div>
       </div>
-      <a href="#s-data">订阅入口与数据整合</a>
+      <a href="#s-data">订阅提示与数据整合</a>
       <a href="#s-why">关于 EngageLab</a>
       <a href="#s-plan">测试计划</a>
     </div>
@@ -739,41 +739,41 @@
     <section id="s-scenarios" class="section-plain">
       <div class="wrap">
         <div class="eyebrow">场景总览</div>
-        <h2><span class="secnum">3</span>七条旅程：从开启提醒开始，把回访变成跳转商家</h2>
-        <p>订阅之前的环节由站点侧的订阅入口承接（第 4 节），七条旅程从用户开启推送提醒之后开始。旅程 1–3 围绕店铺与券码驱动跳转商家，旅程 4 建立邮件通道，旅程 5 对齐大促，旅程 6、7 维持长期活跃。</p>
+        <h2><span class="secnum">3</span>七条旅程：店铺层跟踪精准意向，类目层补足选择空间</h2>
+        <p>旅程 1 在用户用过券码后邀请开启提醒，由页面展示提示条（第 4 节）。旅程 2、3 在店铺与券码层驱动跳转商家；旅程 5、7 在类目层按兴趣分群给精选，补足关注的店铺没有新券时的空档；旅程 4 建立邮件通道，旅程 6 维持活跃。</p>
         <div class="spacer-md"></div>
         <table>
           <thead><tr><th>#</th><th>场景</th><th>承接漏斗环节</th><th>主渠道组合</th><th>亮点</th><th>见效节奏</th><th>预期效果</th></tr></thead>
           <tbody>
-            <tr><td>1</td><td>订阅后首条消息</td><td>送达 → 点击</td><td>Web Push</td><td>次日晚间发出，内容取订阅时所在店铺的可用券码</td><td>首月见效</td><td>推送点击率 2.5% → 4–5%</td></tr>
-            <tr class="tone-info"><td>2</td><td>关注店铺新券</td><td>送达 → 点击</td><td>Web Push</td><td>只跟踪最近关注的一家店，发送时刻查询有无新券，无新券不发</td><td>首月见效</td><td>推送点击率 2.5% → 4–5%</td></tr>
+            <tr class="tone-info"><td>1</td><td>订阅邀请</td><td>访问 → 订阅</td><td>Web Push 自定义消息</td><td>用过一次券码后按浏览器权限状态下发，页面在切回本站时展示，由用户点击授权</td><td>首月见效</td><td>访客订阅率 5% → 6–8%</td></tr>
+            <tr class="tone-info"><td>2</td><td>关注店铺新券</td><td>送达 → 点击</td><td>Web Push</td><td>开启提醒前看过的店铺同样跟踪；发送时刻查新增券码，无新券不发</td><td>首月见效</td><td>推送点击率 2.5% → 4–5%</td></tr>
             <tr class="tone-info"><td>3</td><td>券码到期提醒</td><td>送达 → 点击</td><td>Web Push</td><td>每张被放弃的券独立计时，发送前核对券码仍有效</td><td>首月见效</td><td>放弃券码的挽回率，按贵司数据校准</td></tr>
             <tr><td>4</td><td>邮箱捕获</td><td>订阅 → 留邮箱</td><td>Web Push 应用内消息</td><td>订阅满 7 天的回访时才邀请，与开启提醒的那次访问错开</td><td>需数据积累</td><td>订阅者留邮率 2% → 4–6%</td></tr>
-            <tr class="tone-info"><td>5</td><td>大促日历分流</td><td>送达 → 点击</td><td>Web Push + Email</td><td>每人在自己时区的早上收到，晚间只跟进当天未回访的人</td><td>首月见效（对齐大促）</td><td>大促日点击率约为全量群发的两倍</td></tr>
+            <tr class="tone-info"><td>5</td><td>大促日历分流</td><td>送达 → 点击</td><td>Web Push + Email</td><td>早上按兴趣分群发不同类目的精选，晚间只跟进当天未回访的人</td><td>首月见效（对齐大促）</td><td>大促日点击率约为全量群发的两倍</td></tr>
             <tr><td>6</td><td>沉默订阅者唤回</td><td>送达 → 展示</td><td>Web Push + Email</td><td>只在沉默 14–21 天窗口触达，之后停发</td><td>需数据积累</td><td>整体发送名单展示率 35% → 50–60%</td></tr>
-            <tr class="tone-info"><td>7</td><td>Email 兴趣周报</td><td>送达 → 点击</td><td>Email</td><td>发送时刻按最近浏览类目取榜单，发送前再核对同意状态</td><td>需数据积累（依赖旅程 4）</td><td>周报点击对照群发邮件，测试期验证</td></tr>
+            <tr class="tone-info"><td>7</td><td>兴趣类目周报</td><td>送达 → 点击</td><td>Web Push + Email</td><td>按兴趣分群给类目精选，同类店铺之间比价，发送时刻取榜单</td><td>需数据积累（依赖兴趣分群）</td><td>推送点击率 2.5% → 4–5%</td></tr>
             <tr><td colspan="7" style="background:#f8fafc;font-weight:700;color:var(--text-3);font-size:12.5px;letter-spacing:.04em">拓展场景 · 测试期后按优先级推进，本方案不编排</td></tr>
             <tr><td>8</td><td>旅游内容站行程锚点</td><td>送达 → 点击</td><td>Web Push</td><td>浏览目的地攻略后，按目的地推酒店与航线促销码</td><td>依赖客户侧能力（旅游站纳入同一 MA 项目）</td><td>旅游类跳转</td></tr>
             <tr><td>9</td><td>美国大促日短信</td><td>送达 → 点击</td><td>SMS</td><td>仅对已取得书面同意的美国号码，在黑五当天发一条</td><td>依赖客户侧能力（短信同意采集）</td><td>大促日回访</td></tr>
             <tr><td>10</td><td>报价类线索跟进</td><td>订阅 → 留邮箱</td><td>Email</td><td>金融、保险类报价表单提交后的分步跟进</td><td>依赖客户侧能力（表单事件上报）</td><td>线索转化</td></tr>
-            <tr><td>11</td><td>跨站推荐</td><td>送达 → 点击</td><td>Web Push</td><td>优惠站订阅者按旅游类目的浏览推旅游站内容</td><td>长周期培育</td><td>跨站回访</td></tr>
+            <tr><td>11</td><td>跨站推荐</td><td>送达 → 点击</td><td>Web Push</td><td>优惠站订阅者按旅游类目兴趣分群推旅游站内容</td><td>长周期培育</td><td>跨站回访</td></tr>
           </tbody>
         </table>
         <ul class="notelist">
-          <li>建议测试期优先上线旅程 1、2、3；旅程 1、2、3、5、7 同处「送达 → 点击」一层，效果不叠加计算。以上效果区间均为行业公开参考值，<span class="bold">非承诺值</span>，实际以测试期数据为准。</li>
+          <li>建议测试期优先上线旅程 1、2、3；旅程 2、3、5、7 同处「送达 → 点击」一层，效果不叠加计算。以上效果区间均为行业公开参考值，<span class="bold">非承诺值</span>，实际以测试期数据为准。</li>
         </ul>
       </div>
     </section>
 
     <!-- Journey 1 -->
-    <section id="s-journey1" class="section-plain" data-stage="activate" data-scene="1">
+    <section id="s-journey1" class="section-plain" data-stage="acquire" data-scene="1">
       <div class="wrap">
-      <div class="scene-head"><div class="scene-num" aria-hidden="true">01</div><div class="scene-head-main"><h2>旅程 1｜订阅后首条消息</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">见效最快</span><span class="pill pill-info">首次触达</span><span class="pill">订阅事件触发 · 次日晚间 · 发送前取券 · Web Push</span></div>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">01</div><div class="scene-head-main"><h2>旅程 1｜订阅邀请</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">优先级最高</span><span class="pill pill-info">建立触点</span><span class="pill">跳转商家触发 · 按权限状态分流 · 自定义消息驱动页面提示 · Web Push</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>用户开启提醒时，往往刚复制完券码、商家页面正在打开。此刻不发推送，站点在页面内确认订阅；第一条推送放到<span class="bold">次日晚间</span>，内容取他订阅时所在店铺的可用券码。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息　｜　<span class="bold">触发方式</span>：事件「订阅成功」（携带店铺、类目）　｜　<span class="bold">退出条件</span>：单条消息，发出后结束</p>
+          <p>用户用过一次券码、切回本站时，最能理解提醒的价值。旅程按浏览器权限状态决定发不发、发什么；页面收到后在切回本站时展示提示条，<span class="bold">由用户点击再请求授权</span>。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 自定义消息　｜　<span class="bold">触发方式</span>：事件「跳转商家」，未开启提醒　｜　<span class="bold">退出条件</span>：单条消息，发出后结束；7 天后可再次进入，最多 3 次</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -786,9 +786,9 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>订阅当下用户正在跳转商家，即时推送会打断操作</li>
-                <li>订阅后的第一条消息决定用户是否保留提醒权限</li>
-                <li>与订阅时所看店铺无关的全站热门，难以获得点击</li>
+                <li>一进页面就请求权限，访客还不知道提醒有什么用</li>
+                <li>浏览器授权框被拒绝后，站点无法再次弹出</li>
+                <li>连续关闭授权框三次，浏览器会暂停该站点的请求</li>
               </ul>
             </div>
           </div>
@@ -796,24 +796,23 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：事件「订阅成功」触发，事件属性携带店铺、类目；不可再次进入</li>
-                <li><span class="bold">提前退出</span>：不配置——单条消息，发送前没有需要中断的情形</li>
-                <li><span class="bold">转化统计</span>：事件「跳转商家」，监听窗口 1 天；<span class="bold">收入统计</span>：事件「联盟转化」+ 佣金金额，监听窗口 30 天</li>
-                <li><span class="bold">等待</span>：1 日历日，终端时区次日零点放行</li>
-                <li><span class="bold">可发送时间</span>：终端时区 18:00–21:00</li>
-                <li><span class="bold">Webhook</span>：在发送时刻以事件属性「店铺」「类目」请求贵司券码接口，取该店铺当前可用券码前三条与同类目热门券码前三条，响应字段提取为变量</li>
-                <li><span class="bold">条件分支</span>：Webhook 返回「店铺券码数量」≥ 1 / 为 0</li>
-                <li><span class="bold">Web Push 通知消息</span>：≥ 1 一支写店铺名与最优面额，点击打开该店铺券码页；为 0 一支写类目热门券码，点击打开类目页</li>
-                <li><span class="bold">交接</span>：之后的推送由旅程 2 按店铺浏览承接，沉默后由旅程 6 承接</li>
-                <li><span class="muted">埋点：「订阅成功」由站点在浏览器授权通过后上报，同时写入用户属性「订阅时间」「已开启提醒」</span></li>
+                <li><span class="bold">开始组件</span>：事件「跳转商家」触发；用户属性过滤「已开启提醒」不为真，且满足其一：「通知权限状态」为未确认；或「通知权限状态」为已禁用、「权限禁用时间」距今超过 30 天、「开启指引已展示」不为真</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入，间隔 7 天，最多进入 3 次</li>
+                <li><span class="bold">提前退出</span>：不配置——单条消息，发出即结束</li>
+                <li><span class="bold">转化统计</span>：事件「订阅成功」，监听窗口 1 天</li>
+                <li><span class="bold">条件分支</span>：属性「通知权限状态」为未确认 / 为已禁用</li>
+                <li><span class="bold">Web Push 自定义消息</span>（未确认）：下发「显示订阅提示条」指令与店铺名变量；页面在用户切回本站标签页时展示，用户点击按钮后调用浏览器授权请求</li>
+                <li><span class="bold">Web Push 自定义消息</span>（已禁用）：下发「显示开启指引」指令；页面展示在浏览器设置中开启本站通知的步骤</li>
+                <li><span class="bold">交接</span>：开启提醒后，订阅前看过的店铺由旅程 2 继续跟踪</li>
+                <li><span class="muted">埋点：「通知权限状态」「权限禁用时间」由站点按 SDK 权限状态接口写入；「订阅提示展示」「订阅提示关闭」「订阅成功」由站点上报</span></li>
               </ul>
             </div>
           </div>
           <div class="callout success">
             <div class="callout-title">预期效益参考</div>
             <div class="callout-body">
-              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">推送点击率 2.5% → 4–5%</span></p>
-              <p style="margin:0">增量 = 订阅者数 × 推送点击率 × 跳转商家率 × 每次跳转收益，代入贵司联盟后台数据即可测算；起点取全量推送的公开水平。</p>
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">访客订阅率 5% → 6–8%</span></p>
+              <p style="margin:0">增量 = 订阅者数 × 推送点击率 × 跳转商家率 × 每次跳转收益，代入贵司联盟后台数据即可测算；订阅者每多一成，其余旅程的覆盖同步放大一成。</p>
             </div>
           </div>
         </div>
@@ -825,11 +824,11 @@
     <section id="s-journey2" class="section-plain" data-stage="repeat" data-scene="2">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">02</div><div class="scene-head-main"><h2>旅程 2｜关注店铺新券</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">优先级最高</span><span class="pill pill-info">回访与跳转</span><span class="pill">浏览店铺页触发 · 多实例最新覆盖 · 有新券才发 · Web Push</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">见效最快</span><span class="pill pill-info">回访与跳转</span><span class="pill">浏览店铺页触发 · 多实例最新覆盖 · 有新券才发 · Web Push</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>用户看过哪家店的券码，那家店就是他下次要买的店。旅程只跟踪他<span class="bold">最近关注的一家店</span>，三天后在发送时刻查询有没有新券，有才发，没有不发。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息　｜　<span class="bold">触发方式</span>：事件「浏览店铺页」（携带店铺、类目）　｜　<span class="bold">退出条件</span>：三天内在该店铺成交即结束</p>
+          <p>用户看过哪家店，那家店就是他下次要买的店。旅程只跟踪<span class="bold">最近关注的一家店</span>，开启提醒前看过的也算；三天后在发送时刻查这家店有没有新券，有才发。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息　｜　<span class="bold">触发方式</span>：事件「浏览店铺页」（携带店铺、类目）　｜　<span class="bold">退出条件</span>：三天内在该店成交即结束；未开启提醒不发送</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -852,16 +851,17 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：事件「浏览店铺页」触发，事件属性携带店铺、类目；用户属性过滤「已开启提醒」为真</li>
+                <li><span class="bold">开始组件</span>：事件「浏览店铺页」触发，事件属性携带店铺、类目；不按订阅状态过滤，开启提醒前看过的店铺同样进入</li>
                 <li><span class="bold">再次进入</span>：可同时多次进入（多实例），并发上限 1，达到上限时替换最早进入的实例，两次进入最短间隔 10 分钟——再次浏览任一店铺即以新店铺重新计时</li>
-                <li><span class="bold">提前退出</span>：不配置——需要中断的情形（已在该店成交）由等待事件就地判断</li>
+                <li><span class="bold">提前退出</span>：不配置——已在该店成交由等待事件就地判断</li>
                 <li><span class="bold">转化统计</span>：事件「跳转商家」，监听窗口 1 天；<span class="bold">收入统计</span>：事件「联盟转化」+ 佣金金额，监听窗口 30 天</li>
                 <li><span class="bold">等待事件</span>：3 天内等待「联盟转化」，属性过滤店铺等于本实例店铺；发生即结束，超时进入下一步</li>
+                <li><span class="bold">条件分支</span>：属性「已开启提醒」为真 / 为假，为假一支结束</li>
                 <li><span class="bold">可发送时间</span>：终端时区 18:00–21:00</li>
                 <li><span class="bold">Webhook</span>：在发送时刻以本实例店铺与进入时间请求贵司券码接口，只返回进入之后新增的券码</li>
                 <li><span class="bold">条件分支</span>：Webhook 返回「新增券码数量」≥ 1 / 为 0，为 0 直接结束</li>
                 <li><span class="bold">Web Push 通知消息</span>：店铺名、新券数量、最优面额变量，点击打开该店铺券码页</li>
-                <li><span class="muted">埋点：「浏览店铺页」由站点上报，同时覆盖写入用户属性「最近浏览店铺」「最近浏览类目」</span></li>
+                <li><span class="muted">埋点：「浏览店铺页」由站点上报，同时覆盖写入用户属性「最近浏览店铺」</span></li>
               </ul>
             </div>
           </div>
@@ -869,7 +869,7 @@
             <div class="callout-title">预期效益参考</div>
             <div class="callout-body">
               <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">推送点击率 2.5% → 4–5%</span></p>
-              <p style="margin:0">按兴趣分层推送约为全量推送的两倍（第 2 节）；无新券不发，同一订阅者的推送频次随之下降。</p>
+              <p style="margin:0">按兴趣分层推送约为全量推送的两倍（第 2 节）；新订阅者收到的第一条推送，就是他订阅前关注的那家店的新券。</p>
             </div>
           </div>
         </div>
@@ -908,12 +908,13 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：事件「查看券码」触发，事件属性携带券 ID、店铺、到期时间；用户属性过滤「已开启提醒」为真</li>
+                <li><span class="bold">开始组件</span>：事件「查看券码」触发，事件属性携带券 ID、店铺、到期时间；不按订阅状态过滤，到期前开启提醒的用户同样能收到</li>
                 <li><span class="bold">再次进入</span>：可同时多次进入（多实例），并发上限 3，达到上限时替换最早进入的实例，两次进入最短间隔 30 分钟</li>
                 <li><span class="bold">提前退出</span>：事件「跳转商家」，属性过滤店铺等于本实例店铺——等待至到期日期间无法就地监听事件，需要全程生效，且只退出该店铺的实例</li>
                 <li><span class="bold">转化统计</span>：事件「跳转商家」，监听窗口 2 小时；<span class="bold">收入统计</span>：事件「联盟转化」+ 佣金金额，监听窗口 30 天</li>
                 <li><span class="bold">等待至</span>：事件属性「到期时间」前 1 天；时刻已过或无到期时间时直接退出</li>
                 <li><span class="bold">可发送时间</span>：终端时区 09:00–21:00</li>
+                <li><span class="bold">条件分支</span>：属性「已开启提醒」为真 / 为假，为假一支结束</li>
                 <li><span class="bold">Webhook</span>：在发送时刻以本实例券 ID 请求贵司券码接口，核对券码是否仍有效</li>
                 <li><span class="bold">条件分支</span>：Webhook 返回「券码状态」为有效 / 已失效，已失效直接结束</li>
                 <li><span class="bold">Web Push 通知消息</span>：店铺名、面额、到期日期变量，点击打开该券码详情页</li>
@@ -968,7 +969,7 @@
                 <li><span class="bold">再次进入</span>：退出后可再次进入，间隔 30 天，最多进入 3 次</li>
                 <li><span class="bold">提前退出</span>：不配置——单条消息，发出即结束</li>
                 <li><span class="bold">转化统计</span>：事件「邮件订阅提交」，监听窗口 1 天</li>
-                <li><span class="bold">Web Push 应用内消息</span>：弹出页面设为店铺券码页；文案带「最近浏览类目」变量；点击打开邮件订阅表单，表单含同意勾选</li>
+                <li><span class="bold">Web Push 应用内消息</span>：弹出页面设为店铺券码页；文案带「最近浏览店铺」变量；点击打开邮件订阅表单，表单含同意勾选</li>
                 <li><span class="bold">交接</span>：提交并勾选同意的用户进入旅程 7</li>
                 <li><span class="muted">埋点：「邮件订阅提交」由表单上报，同时写入「邮箱」「Email 同意」属性</span></li>
               </ul>
@@ -990,10 +991,10 @@
     <section id="s-journey5" class="section-plain" data-stage="campaign" data-scene="5">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">05</div><div class="scene-head-main"><h2>旅程 5｜大促日历分流</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">对齐黑五</span><span class="pill pill-info">大促战役</span><span class="pill">属性批量进入 · 终端时区早间 · 晚间只跟进未回访者 · Web Push + Email</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">对齐黑五</span><span class="pill pill-info">大促战役</span><span class="pill">属性批量进入 · 按兴趣分群分流 · 晚间只跟进未回访者 · Web Push + Email</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>大促当天在每位用户所在时区的早上发出，内容按他最近浏览的类目<span class="bold">在发送时刻取数</span>；当天没回站的人晚间再跟进一次，已同意邮件的改发邮件。</p>
+          <p>大促当天在每位用户所在时区的早上发出，<span class="bold">按兴趣分群给不同类目的精选</span>，发送时刻取数；当天没回站的人晚间再跟进一次，已同意邮件的改发邮件。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：用户属性，已开启提醒且近 90 天活跃　｜　<span class="bold">退出条件</span>：不设全局退出，当天是否回访由等待事件判断</p>
         </div>
       </div>
@@ -1022,11 +1023,12 @@
                 <li><span class="bold">转化统计</span>：事件「跳转商家」，监听窗口 3 天；<span class="bold">收入统计</span>：事件「联盟转化」+ 佣金金额，监听窗口 30 天</li>
                 <li><span class="bold">等待至</span>：指定时刻，大促当天 08:00，终端用户时区；时刻已过时直接退出</li>
                 <li><span class="bold">可发送时间</span>：终端时区 08:00–21:00</li>
-                <li><span class="bold">Webhook</span>：以用户属性「最近浏览类目」请求贵司大促精选接口，取该类目前三条</li>
-                <li><span class="bold">Web Push 通知消息</span>：类目名与精选券码变量，点击打开大促专题页</li>
-                <li><span class="bold">等待事件</span>：12 小时内等待「页面浏览」；已回访一支结束</li>
+                <li><span class="bold">条件分支</span>：用户分群，按兴趣分群逐支判断（第 4 节定义的 6 个类目兴趣分群），同时属于多个时命中第一个，均不属于走默认</li>
+                <li><span class="bold">Webhook</span>（每个分支）：以该分支的类目请求贵司大促精选接口，取前三条；默认分支取全站精选</li>
+                <li><span class="bold">Web Push 通知消息</span>（每个分支）：类目名与精选券码变量，点击打开大促专题页</li>
+                <li><span class="bold">等待事件</span>：各分支汇合后，12 小时内等待「页面浏览」；已回访一支结束</li>
                 <li><span class="bold">可发送时间</span>：终端时区 19:00–21:00</li>
-                <li><span class="bold">Webhook</span>：同一接口再次取数，拿到晚间仍有效的精选</li>
+                <li><span class="bold">Webhook</span>：取全站晚间仍有效的大促精选</li>
                 <li><span class="bold">条件分支</span>：属性「Email 同意」为真 / 为假</li>
                 <li><span class="bold">Email 模板消息</span>（为真）/ <span class="bold">Web Push 通知消息</span>（为假，换文案）；之后结束</li>
                 <li><span class="bold">优先级</span>：本旅程优先级设为最高；大促当天两条推送在测试计划的每日上限之内</li>
@@ -1081,11 +1083,11 @@
                 <li><span class="bold">提前退出</span>：不配置——推送后是否回访由等待事件判断</li>
                 <li><span class="bold">转化统计</span>：事件「页面浏览」，监听窗口 5 天</li>
                 <li><span class="bold">可发送时间</span>：终端时区 18:00–21:00</li>
-                <li><span class="bold">Webhook</span>：以「最近浏览店铺」「最近浏览类目」请求贵司券码接口，店铺无新券时返回类目热门</li>
+                <li><span class="bold">Webhook</span>：以「最近浏览店铺」请求贵司券码接口，店铺无新券时返回该店所属类目的热门券码</li>
                 <li><span class="bold">Web Push 通知消息</span>：店铺名或类目名与券码变量</li>
                 <li><span class="bold">等待事件</span>：3 天内等待「页面浏览」；已回访一支结束</li>
                 <li><span class="bold">条件分支</span>：属性「Email 同意」为真 / 为假；为假一支结束</li>
-                <li><span class="bold">可发送时间</span>：终端时区 18:00–21:00 → <span class="bold">Webhook</span>：取最近浏览类目本周精选 → <span class="bold">Email 模板消息</span>：唤回一封，之后结束</li>
+                <li><span class="bold">可发送时间</span>：终端时区 18:00–21:00 → <span class="bold">Webhook</span>：取最近浏览店铺所属类目的本周精选 → <span class="bold">Email 模板消息</span>：唤回一封，之后结束</li>
                 <li><span class="muted">埋点：「最后活跃时间」由站点在页面浏览时更新</span></li>
               </ul>
             </div>
@@ -1105,12 +1107,12 @@
     <!-- Journey 7 -->
     <section id="s-journey7" class="section-plain" data-stage="retain" data-scene="7">
       <div class="wrap">
-      <div class="scene-head"><div class="scene-num" aria-hidden="true">07</div><div class="scene-head-main"><h2>旅程 7｜Email 兴趣周报</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">邮件通道主用途</span><span class="pill pill-info">订阅留存</span><span class="pill">属性进入 · 每周四发送时取榜单 · Email</span></div>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">07</div><div class="scene-head-main"><h2>旅程 7｜兴趣类目周报</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">类目层主引擎</span><span class="pill pill-info">订阅留存</span><span class="pill">属性进入 · 按兴趣分群分流 · 发送时刻取榜单 · Web Push + Email</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>每人一份按最近浏览类目取数的周报。榜单在<span class="bold">周四发送的那一刻</span>才去取，退订在发送前再核对一次，不依赖发布时排好的内容。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email 模板消息　｜　<span class="bold">触发方式</span>：用户属性，已同意接收邮件　｜　<span class="bold">退出条件</span>：发送前核对同意状态，已退订即结束</p>
+          <p>店铺新券回答「我关注的那家店有没有新券」，周报回答「这一类东西这周哪家最划算」。每人按兴趣分群收到对应类目的精选，<span class="bold">榜单在发送时刻才去取</span>。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：用户属性，已开启提醒或已同意接收邮件　｜　<span class="bold">退出条件</span>：单次发送后结束，7 天后再次进入</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1123,9 +1125,9 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>群发邮件对所有人是同一份内容，点击随列表增长下滑</li>
-                <li>提前排好的邮件内容，到发送时好价已经过期</li>
-                <li>邮箱留下后若没有固定的使用场景，很快沉默</li>
+                <li>只盯一家店，这家店没有新券时用户收不到任何好价</li>
+                <li>同一份全站榜单发给所有人，与多数人的购物需求无关</li>
+                <li>提前排好的榜单，到发送时好价已经过期</li>
               </ul>
             </div>
           </div>
@@ -1133,23 +1135,24 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：用户属性「Email 同意」为真</li>
+                <li><span class="bold">开始组件</span>：用户属性「已开启提醒」为真，或「Email 同意」为真</li>
                 <li><span class="bold">再次进入</span>：退出后可再次进入，间隔 7 天</li>
-                <li><span class="bold">提前退出</span>：不配置——进入后到周四之间退订的用户，由发送前的条件分支拦截</li>
+                <li><span class="bold">提前退出</span>：不配置——发送前由条件分支核对渠道状态</li>
                 <li><span class="bold">转化统计</span>：事件「跳转商家」，监听窗口 3 天；<span class="bold">收入统计</span>：事件「联盟转化」+ 佣金金额，监听窗口 30 天</li>
                 <li><span class="bold">可发送时间</span>：每周四 08:00–11:00，终端用户时区</li>
-                <li><span class="bold">条件分支</span>：发送前再次核对「Email 同意」为真 / 为假，为假一支结束</li>
-                <li><span class="bold">Webhook</span>：在发送时刻按「最近浏览类目」请求贵司券码接口，取本周前五条</li>
-                <li><span class="bold">Email 模板消息</span>：五条好价全部为变量，变量支持默认值兜底；每封带退订链接</li>
-                <li><span class="muted">埋点：「邮件退订」由 Email 通道回调上报，并把「Email 同意」写为假</span></li>
+                <li><span class="bold">条件分支</span>：用户分群，按 6 个类目兴趣分群逐支判断，同时属于多个时命中第一个，均不属于走默认</li>
+                <li><span class="bold">Webhook</span>（每个分支）：在发送时刻以该分支类目请求贵司券码接口，取本周前五条；默认分支取全站前五条</li>
+                <li><span class="bold">条件分支</span>（每个分支）：属性「Email 同意」为真 → Email；否则「已开启提醒」为真 → Web Push；均否结束</li>
+                <li><span class="bold">Email 模板消息</span>：五条好价全部为变量，变量支持默认值兜底，每封带退订链接；<span class="bold">Web Push 通知消息</span>：类目名与最优一条</li>
+                <li><span class="muted">埋点：「邮件退订」由 Email 通道回调上报，并把「Email 同意」写为假；通知权限关闭时站点把「已开启提醒」写为假</span></li>
               </ul>
             </div>
           </div>
           <div class="callout success">
             <div class="callout-title">预期效益参考</div>
             <div class="callout-body">
-              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">周报点击对照群发邮件，测试期验证</span></p>
-              <p style="margin:0">自动化流程邮件以 5.3% 的发送量贡献 41% 的邮件收入（第 2 节）；本旅程以点击与跳转商家为主指标，不以打开率为准。</p>
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">推送点击率 2.5% → 4–5%</span></p>
+              <p style="margin:0">按兴趣标签分层约为全量推送的两倍（第 2 节）；邮件版以点击与跳转商家为主指标，自动化流程邮件以 5.3% 的发送量贡献 41% 的邮件收入。</p>
             </div>
           </div>
         </div>
@@ -1160,20 +1163,30 @@
     <!-- 4 订阅入口与数据整合 -->
     <section id="s-data" class="section-plain">
       <div class="wrap">
-        <div class="eyebrow">订阅入口与数据整合</div>
-        <h2><span class="secnum">4</span>订阅入口规则与旅程依赖的数据</h2>
-        <p>七条旅程都从用户开启推送提醒之后开始。订阅入口需要精确判断页面状态，由站点用 Web Push SDK 的自定义提示实现；下面两张表分别是入口规则，和旅程依赖的事件与属性。</p>
+        <div class="eyebrow">订阅提示、兴趣分群与数据整合</div>
+        <h2><span class="secnum">4</span>订阅提示的页面实现、兴趣分群与旅程依赖的数据</h2>
+        <p>谁在什么时候收到订阅邀请由旅程 1 决定，提示条怎么展示由站点页面实现；类目层的兴趣由分群自动计算。下面三张表分别是页面实现规则、兴趣分群定义，和旅程依赖的事件与属性。</p>
         <div class="spacer-md"></div>
-        <h3>订阅入口规则（站点侧）</h3>
+        <h3>订阅提示的页面实现（站点侧）</h3>
         <table>
-          <thead><tr><th style="width:160px">项</th><th>设置</th></tr></thead>
+          <thead><tr><th style="width:190px">项</th><th>设置</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>出现时机</td><td>用户复制券码、商家页面打开后，回到本站标签页时</td></tr>
-            <tr><td>出现页面</td><td>店铺券码页、券码详情页</td></tr>
-            <tr><td>不出现</td><td>首次进入页面时；浏览器通知权限已被禁用时；已开启提醒时</td></tr>
-            <tr><td>频次</td><td>关闭提示后 7 天内不再出现；累计出现 3 次后不再出现</td></tr>
-            <tr class="tone-info"><td>授权通过后</td><td>页面内提示已开启这家店的新券提醒，不发送推送；上报「订阅成功」事件并写入订阅时间</td></tr>
-            <tr><td>实现方式</td><td>SDK 自定义提示回调提供授权请求，站点在上述时机调用；权限状态用 SDK 接口判断</td></tr>
+            <tr class="tone-info"><td>收到「显示订阅提示条」后</td><td>在用户切回本站标签页时展示提示条，文案带店铺名；30 分钟内未切回则不展示，等下一次旅程下发</td></tr>
+            <tr class="tone-info"><td>授权请求</td><td>只在用户点击提示条按钮时调用 SDK 授权请求；Firefox 与 Safari 要求授权请求必须由用户点击触发</td></tr>
+            <tr><td>收到「显示开启指引」后</td><td>展示在浏览器设置中开启本站通知的步骤，并写入「开启指引已展示」</td></tr>
+            <tr><td>授权通过后</td><td>页面内确认已开启提醒，不发送推送；上报「订阅成功」</td></tr>
+            <tr><td>权限状态回写</td><td>每次页面加载按 SDK 权限状态接口写入「通知权限状态」；首次检测到已禁用时写入「权限禁用时间」</td></tr>
+          </tbody>
+        </table>
+        <div class="spacer-md"></div>
+        <h3>类目兴趣分群</h3>
+        <table>
+          <thead><tr><th style="width:190px">项</th><th>设置</th></tr></thead>
+          <tbody>
+            <tr class="tone-info"><td>分群条件</td><td>近 30 天做过「浏览店铺页」，事件属性「类目」等于该类目，次数 ≥ 2；实时更新</td></tr>
+            <tr><td>建哪些类目</td><td>按贵司各类目访问量取前 6 个；百货综合、其他两个类目覆盖面过宽，不单独建群</td></tr>
+            <tr><td>同时属于多个分群</td><td>条件分支按分支顺序命中第一个，分支顺序按各类目的佣金收益从高到低排列</td></tr>
+            <tr><td>使用位置</td><td>旅程 5、旅程 7 的条件分支</td></tr>
           </tbody>
         </table>
         <div class="spacer-md"></div>
@@ -1181,17 +1194,18 @@
         <table>
           <thead><tr><th>事件或属性</th><th>类型</th><th>关键字段</th><th>来源系统</th><th>驱动的旅程</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>浏览店铺页</td><td>业务事件</td><td>店铺、类目、站点</td><td>站点</td><td>2 · 4</td></tr>
+            <tr class="tone-info"><td>浏览店铺页</td><td>业务事件</td><td>店铺、类目、站点</td><td>站点</td><td>2 · 4 · 兴趣分群</td></tr>
             <tr><td>查看券码</td><td>业务事件</td><td>券 ID、店铺、到期时间</td><td>站点，对应现有券码弹窗埋点</td><td>3</td></tr>
-            <tr class="tone-info"><td>跳转商家</td><td>业务事件</td><td>店铺、类目、券 ID、点击 ID</td><td>站点，对应现有复制与跳转埋点</td><td>全部旅程的转化统计；3 的提前退出</td></tr>
-            <tr><td>订阅成功</td><td>业务事件</td><td>店铺、类目</td><td>站点，授权通过后上报</td><td>1</td></tr>
+            <tr class="tone-info"><td>跳转商家</td><td>业务事件</td><td>店铺、类目、券 ID、点击 ID</td><td>站点，对应现有复制与跳转埋点</td><td>1 的进入；各旅程转化统计；3 的提前退出</td></tr>
+            <tr><td>订阅提示展示 · 订阅提示关闭 · 订阅成功</td><td>业务事件</td><td>店铺</td><td>站点</td><td>1</td></tr>
             <tr><td>页面浏览</td><td>SDK 标准事件</td><td>—</td><td>Web SDK</td><td>5 · 6</td></tr>
             <tr><td>邮件订阅提交 · 邮件退订</td><td>业务事件</td><td>邮箱、同意标记</td><td>表单 · Email 通道回调</td><td>4 · 7</td></tr>
             <tr class="tone-info"><td>联盟转化</td><td>业务事件</td><td>佣金金额、状态、店铺</td><td>贵司按跳转时记录的点击 ID 找到对应用户后上报</td><td>2 的等待事件；各旅程收入统计</td></tr>
-            <tr><td>最近浏览店铺 · 最近浏览类目</td><td>string 属性</td><td>每次浏览店铺页时覆盖写入</td><td>站点</td><td>4 · 5 · 6 · 7</td></tr>
-            <tr><td>订阅时间 · 已开启提醒 · 最后活跃时间</td><td>datetime · bool · datetime 属性</td><td>—</td><td>站点</td><td>2 · 3 · 4 · 5 · 6</td></tr>
+            <tr><td>通知权限状态 · 权限禁用时间 · 开启指引已展示</td><td>string · datetime · bool 属性</td><td>按 SDK 权限状态接口写入</td><td>站点</td><td>1</td></tr>
+            <tr><td>最近浏览店铺</td><td>string 属性</td><td>每次浏览店铺页时覆盖写入</td><td>站点</td><td>4 · 6</td></tr>
+            <tr><td>订阅时间 · 已开启提醒 · 最后活跃时间</td><td>datetime · bool · datetime 属性</td><td>—</td><td>站点</td><td>2 · 3 · 4 · 5 · 6 · 7</td></tr>
             <tr><td>邮箱 · Email 同意 · 国家</td><td>string · bool · string 属性</td><td>—</td><td>表单 · 站点</td><td>4 · 5 · 6 · 7</td></tr>
-            <tr class="tone-info"><td>券码接口</td><td>Webhook 取数</td><td>按店铺返回可用券码与新增券码；按券 ID 返回状态；按类目返回精选</td><td>贵司券码系统</td><td>1 · 2 · 3 · 5 · 6 · 7</td></tr>
+            <tr class="tone-info"><td>券码接口</td><td>Webhook 取数</td><td>按店铺返回新增券码与所属类目热门；按券 ID 返回状态；按类目返回精选与本周前五</td><td>贵司券码系统</td><td>2 · 3 · 5 · 6 · 7</td></tr>
           </tbody>
         </table>
         <ul class="notelist">
@@ -1209,8 +1223,8 @@
         <table>
           <thead><tr><th>渠道</th><th>主要用途</th><th>平均打开率</th><th>适用市场</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>Web Push</td><td>订阅后首条消息、关注店铺新券、券码到期、大促、唤回；应用内消息用于邀请邮件订阅</td><td>点击率约 2.5–5%，送达为分母</td><td>全球</td></tr>
-            <tr class="tone-info"><td>Email</td><td>兴趣周报、大促邮件版、唤回末轮</td><td>30% 上下，受 Apple 邮件隐私保护影响，以点击为准</td><td>全球</td></tr>
+            <tr class="tone-info"><td>Web Push</td><td>订阅邀请（自定义消息驱动页面提示条）、关注店铺新券、券码到期、大促、类目周报、唤回；应用内消息用于邀请邮件订阅</td><td>点击率约 2.5–5%，送达为分母</td><td>全球</td></tr>
+            <tr class="tone-info"><td>Email</td><td>类目周报、大促邮件版、唤回末轮</td><td>30% 上下，受 Apple 邮件隐私保护影响，以点击为准</td><td>全球</td></tr>
             <tr><td>SMS</td><td>本方案主线未使用——拓展场景 9 仅对已取得书面同意的美国号码在大促日使用</td><td>—</td><td>全球兜底</td></tr>
             <tr><td>App Push</td><td>本方案未使用——贵司海外站点为纯 Web，无自有 App</td><td>—</td><td>全球</td></tr>
             <tr><td>WhatsApp Business</td><td>本方案未使用——站点未采集 WhatsApp 号码，主要市场为美国</td><td>—</td><td>东南亚 / 南亚 / 拉美 / 欧洲</td></tr>
@@ -1245,9 +1259,9 @@
         <table>
           <thead><tr><th>周</th><th>目标</th><th>我方动作</th><th>客户动作</th><th>验收口径</th></tr></thead>
           <tbody>
-            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案、测试环境、开通测试 VIP 账号；确认已接入的 Web Push SDK 开启 MA 模块</td><td>按第 4 节规则实现订阅入口；上报浏览店铺页、查看券码、跳转商家、订阅成功事件；回写最近浏览店铺与类目、订阅时间、已开启提醒、最后活跃时间属性；跳转点击 ID 与用户对应；发信域名认证</td><td>核心事件入库率 ≥ 95%</td></tr>
-            <tr><td><span class="step-num">2</span></td><td>核心旅程小流量上线</td><td>配置旅程 1 · 2 · 3；设全局频控上限：Web Push 通知每日 ≤ 2 条、每周 ≤ 5 条，应用内消息每日 ≤ 1 条，Email 每周 ≤ 2 封</td><td>审核推送文案；提供券码接口供 Webhook 取数</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错</td></tr>
-            <tr><td><span class="step-num">3</span></td><td>全量与对照</td><td>扩至全量并上线旅程 4 · 6；监控送达、展示、点击</td><td>划出 10–20% 对照组不进旅程（用属性在进入条件排除）；上线邮件订阅表单与同意勾选</td><td>样本量达标；送达、展示、点击、跳转商家数据</td></tr>
+            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案、测试环境、开通测试 VIP 账号；确认已接入的 Web Push SDK 开启 MA 模块</td><td>按第 4 节实现提示条与开启指引的页面展示；上报浏览店铺页、查看券码、跳转商家、订阅提示展示与关闭、订阅成功事件；回写通知权限状态、权限禁用时间、已开启提醒、最近浏览店铺、最后活跃时间属性；跳转点击 ID 与用户对应；发信域名认证</td><td>核心事件入库率 ≥ 95%</td></tr>
+            <tr><td><span class="step-num">2</span></td><td>核心旅程小流量上线</td><td>配置旅程 1 · 2 · 3；设全局频控上限：Web Push 通知每日 ≤ 2 条、每周 ≤ 5 条，自定义消息每日 ≤ 1 条，应用内消息每日 ≤ 1 条，Email 每周 ≤ 2 封</td><td>审核提示条、开启指引与推送文案；提供券码接口供 Webhook 取数</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错</td></tr>
+            <tr><td><span class="step-num">3</span></td><td>全量与对照</td><td>扩至全量并上线旅程 4 · 6；按类目访问量建 6 个兴趣分群；监控送达、展示、点击</td><td>划出 10–20% 对照组不进旅程（用属性在进入条件排除）；上线邮件订阅表单与同意勾选；提供各类目访问量与佣金收益排序</td><td>样本量达标；订阅率、送达、展示、点击、跳转商家数据</td></tr>
             <tr><td><span class="step-num">4</span></td><td>复盘扩面</td><td>效果报告；用真实数据校准漏斗各层；上线旅程 7；按黑五日期配置旅程 5</td><td>决策扩面；确认联盟转化的上报口径</td><td>主指标相对对照组的提升：订阅率、展示率、推送点击率、跳转商家率、留邮率</td></tr>
           </tbody>
         </table>
@@ -1502,23 +1516,20 @@
     });
 
     // ── 旅程编排 ────────────────────────────────────────────────────────
-    // Journey 1: 订阅后首条消息
+    // Journey 1: 订阅邀请
     drawJourney(document.getElementById('dag-j1'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 订阅成功' },
-        { id: 'w1', kind: 'wait', title: '等待', sub: '1 日历日' },
-        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 18:00–21:00' },
-        { id: 'wh', kind: 'webhook', title: 'Webhook', sub: '取该店铺可用券码' },
-        { id: 'cond', kind: 'branch', title: '条件分支', sub: '返回: 店铺券码数' },
-        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '通知消息 · 店铺可用券码' },
-        { id: 'wp2', kind: 'channel', title: 'Web Push', sub: '通知消息 · 类目热门券码' },
-        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '转由旅程 2 承接' },
-        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '转由旅程 2 承接' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 跳转商家 · 未开启提醒' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 通知权限状态' },
+        { id: 'cm1', kind: 'channel', title: 'Web Push', sub: '自定义消息 · 显示订阅提示条' },
+        { id: 'cm2', kind: 'channel', title: 'Web Push', sub: '自定义消息 · 显示开启指引' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '7 天后可再进入, 最多 3 次' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '指引只展示一次' },
       ],
       [
-        { from: 'start', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'wh' }, { from: 'wh', to: 'cond' },
-        { from: 'cond', to: 'wp1', label: '≥1' }, { from: 'cond', to: 'wp2', label: '为 0' },
-        { from: 'wp1', to: 'endA' }, { from: 'wp2', to: 'endB' },
+        { from: 'start', to: 'cond' },
+        { from: 'cond', to: 'cm1', label: '未确认' }, { from: 'cond', to: 'cm2', label: '已禁用满30天' },
+        { from: 'cm1', to: 'endA' }, { from: 'cm2', to: 'endB' },
       ]);
 
     // Journey 2: 关注店铺新券
@@ -1527,6 +1538,8 @@
         { id: 'start', kind: 'entry', title: '开始', sub: '浏览店铺页 · 最新覆盖' },
         { id: 'we', kind: 'branch', title: '等待事件', sub: '3 天内: 该店联盟转化' },
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '近期已在该店成交' },
+        { id: 'sub', kind: 'branch', title: '条件分支', sub: '属性: 已开启提醒' },
+        { id: 'endD', kind: 'exitEnd', title: '结束', sub: '未开启提醒不发' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 18:00–21:00' },
         { id: 'wh', kind: 'webhook', title: 'Webhook', sub: '取该店铺新增券码' },
         { id: 'cond', kind: 'branch', title: '条件分支', sub: '返回: 新增券码数' },
@@ -1536,7 +1549,8 @@
       ],
       [
         { from: 'start', to: 'we' },
-        { from: 'we', to: 'endA', label: '已成交' }, { from: 'we', to: 'st1', label: '超时' },
+        { from: 'we', to: 'endA', label: '已成交' }, { from: 'we', to: 'sub', label: '超时' },
+        { from: 'sub', to: 'st1', label: '为真' }, { from: 'sub', to: 'endD', label: '为假' },
         { from: 'st1', to: 'wh' }, { from: 'wh', to: 'cond' },
         { from: 'cond', to: 'wp', label: '≥1' }, { from: 'cond', to: 'endC', label: '为 0' },
         { from: 'wp', to: 'endB' },
@@ -1549,6 +1563,8 @@
         { id: 'wu', kind: 'wait', title: '等待至', sub: '券到期前 1 天' },
         { id: 'exit', kind: 'exitOk', title: '提前退出', sub: '跳转商家 · 同店铺' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'sub', kind: 'branch', title: '条件分支', sub: '属性: 已开启提醒' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '未开启提醒不发' },
         { id: 'wh', kind: 'webhook', title: 'Webhook', sub: '核对券码是否有效' },
         { id: 'cond', kind: 'branch', title: '条件分支', sub: '返回: 券码状态' },
         { id: 'wp', kind: 'channel', title: 'Web Push', sub: '通知消息 · 券码明天到期' },
@@ -1557,7 +1573,9 @@
       ],
       [
         { from: 'start', to: 'wu' }, { from: 'start', to: 'exit', label: '等待期间' },
-        { from: 'wu', to: 'st1' }, { from: 'st1', to: 'wh' }, { from: 'wh', to: 'cond' },
+        { from: 'wu', to: 'st1' }, { from: 'st1', to: 'sub' },
+        { from: 'sub', to: 'wh', label: '为真' }, { from: 'sub', to: 'endC', label: '为假' },
+        { from: 'wh', to: 'cond' },
         { from: 'cond', to: 'wp', label: '有效' }, { from: 'cond', to: 'endB', label: '已失效' },
         { from: 'wp', to: 'endA' },
       ]);
@@ -1579,8 +1597,12 @@
         { id: 'start', kind: 'entry', title: '开始', sub: '属性: 已开启提醒且活跃' },
         { id: 'wa', kind: 'wait', title: '等待至', sub: '大促当天 8:00 终端时区' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 8:00–21:00' },
-        { id: 'wh1', kind: 'webhook', title: 'Webhook', sub: '按最近浏览类目取精选' },
-        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '通知消息 · 大促精选' },
+        { id: 'seg', kind: 'branch', title: '条件分支', sub: '用户分群: 类目兴趣' },
+        { id: 'wh1', kind: 'webhook', title: 'Webhook', sub: '取美妆个护大促精选' },
+        { id: 'oth', kind: 'wait', title: '其余 5 个兴趣分群', sub: '结构同左 · 取对应类目' },
+        { id: 'wh0', kind: 'webhook', title: 'Webhook', sub: '取全站大促精选' },
+        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '通知消息 · 美妆个护精选' },
+        { id: 'wp0', kind: 'channel', title: 'Web Push', sub: '通知消息 · 全站精选' },
         { id: 'we', kind: 'branch', title: '等待事件', sub: '12 小时内: 页面浏览' },
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '当天已回访' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:00' },
@@ -1592,7 +1614,10 @@
         { id: 'endC', kind: 'exitEnd', title: '结束', sub: '不再追加' },
       ],
       [
-        { from: 'start', to: 'wa' }, { from: 'wa', to: 'st1' }, { from: 'st1', to: 'wh1' }, { from: 'wh1', to: 'wp1' }, { from: 'wp1', to: 'we' },
+        { from: 'start', to: 'wa' }, { from: 'wa', to: 'st1' }, { from: 'st1', to: 'seg' },
+        { from: 'seg', to: 'wh1', label: '美妆个护' }, { from: 'seg', to: 'oth', label: '其余分群' }, { from: 'seg', to: 'wh0', label: '默认' },
+        { from: 'wh1', to: 'wp1' }, { from: 'wh0', to: 'wp0' },
+        { from: 'wp1', to: 'we' }, { from: 'oth', to: 'we' }, { from: 'wp0', to: 'we' },
         { from: 'we', to: 'endA', label: '已回访' }, { from: 'we', to: 'st2', label: '未回访' },
         { from: 'st2', to: 'wh2' }, { from: 'wh2', to: 'cond' },
         { from: 'cond', to: 'em', label: '为真' }, { from: 'cond', to: 'wp2', label: '为假' },
@@ -1610,7 +1635,7 @@
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '已回访' },
         { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: Email 同意' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 18:00–21:00' },
-        { id: 'wh2', kind: 'webhook', title: 'Webhook', sub: '取最近浏览类目精选' },
+        { id: 'wh2', kind: 'webhook', title: 'Webhook', sub: '取该店所属类目精选' },
         { id: 'em', kind: 'channel', title: 'Email', sub: '模板消息 · 唤回一封' },
         { id: 'endB', kind: 'exitEnd', title: '结束', sub: '之后停发' },
         { id: 'endC', kind: 'exitEnd', title: '结束', sub: '之后停发' },
@@ -1622,21 +1647,31 @@
         { from: 'st2', to: 'wh2' }, { from: 'wh2', to: 'em' }, { from: 'em', to: 'endB' },
       ]);
 
-    // Journey 7: Email 兴趣周报
+    // Journey 7: 兴趣类目周报
     drawJourney(document.getElementById('dag-j7'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 已同意接收邮件' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 已开启提醒或同意邮件' },
         { id: 'st', kind: 'sendtime', title: '可发送时间', sub: '周四 8:00–11:00 终端时区' },
-        { id: 'cond', kind: 'branch', title: '条件分支', sub: '发送前核对 Email 同意' },
-        { id: 'wh', kind: 'webhook', title: 'Webhook', sub: '按最近浏览类目取前五' },
-        { id: 'em', kind: 'channel', title: 'Email', sub: '模板消息 · 兴趣周报' },
+        { id: 'seg', kind: 'branch', title: '条件分支', sub: '用户分群: 类目兴趣' },
+        { id: 'wh1', kind: 'webhook', title: 'Webhook', sub: '取美妆个护本周前五' },
+        { id: 'oth', kind: 'wait', title: '其余 5 个兴趣分群', sub: '结构同左 · 取对应类目' },
+        { id: 'def', kind: 'wait', title: '默认分支', sub: '结构同左 · 取全站前五' },
+        { id: 'ch', kind: 'branch', title: '条件分支', sub: '属性: 渠道状态' },
+        { id: 'em', kind: 'channel', title: 'Email', sub: '模板消息 · 类目周报' },
+        { id: 'wp', kind: 'channel', title: 'Web Push', sub: '通知消息 · 类目最优一条' },
+        { id: 'endN', kind: 'exitEnd', title: '结束', sub: '两个渠道均不可用' },
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '7 天后再次进入' },
-        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '已退订' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '7 天后再次进入' },
+        { id: 'endO', kind: 'exitEnd', title: '结束', sub: '7 天后再次进入' },
+        { id: 'endD', kind: 'exitEnd', title: '结束', sub: '7 天后再次进入' },
       ],
       [
-        { from: 'start', to: 'st' }, { from: 'st', to: 'cond' },
-        { from: 'cond', to: 'wh', label: '为真' }, { from: 'cond', to: 'endB', label: '为假' },
-        { from: 'wh', to: 'em' }, { from: 'em', to: 'endA' },
+        { from: 'start', to: 'st' }, { from: 'st', to: 'seg' },
+        { from: 'seg', to: 'wh1', label: '美妆个护' }, { from: 'seg', to: 'oth', label: '其余分群' }, { from: 'seg', to: 'def', label: '默认' },
+        { from: 'wh1', to: 'ch' },
+        { from: 'ch', to: 'em', label: 'Email 同意' }, { from: 'ch', to: 'wp', label: '已开启提醒' }, { from: 'ch', to: 'endN', label: '均否' },
+        { from: 'em', to: 'endA' }, { from: 'wp', to: 'endB' },
+        { from: 'oth', to: 'endO' }, { from: 'def', to: 'endD' },
       ]);
 
   </script>
@@ -1704,13 +1739,13 @@
       campaign: ["#6d28d9", "#efe9fe"], advocacy: ["#be123c", "#ffe4ea"]
     };
     var items = [
-      ["s-journey1", "1", "订阅后首条", "activate"],
+      ["s-journey1", "1", "订阅邀请", "acquire"],
       ["s-journey2", "2", "店铺新券", "repeat"],
       ["s-journey3", "3", "券码到期", "activate"],
       ["s-journey4", "4", "邮箱捕获", "acquire"],
       ["s-journey5", "5", "大促分流", "campaign"],
       ["s-journey6", "6", "沉默唤回", "retain"],
-      ["s-journey7", "7", "兴趣周报", "retain"]
+      ["s-journey7", "7", "类目周报", "retain"]
     ].filter(function (it) { return document.getElementById(it[0]); });
     if (items.length < 2) return;
 
@@ -1768,7 +1803,7 @@
   (function () {
     var items = [
       ["s-market", "业务洞察"], ["s-funnel", "用户漏斗"],
-      ["s-scenarios", "七条旅程"], ["s-data", "订阅入口与数据整合"],
+      ["s-scenarios", "七条旅程"], ["s-data", "订阅提示与数据整合"],
       ["s-why", "关于 EngageLab"], ["s-plan", "测试计划"]
     ].filter(function (it) { return document.getElementById(it[0]); });
     if (items.length < 3) return;
