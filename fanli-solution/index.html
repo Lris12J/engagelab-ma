@@ -720,7 +720,6 @@
                 <thead><tr><th>主体</th><th>场景</th><th>效果</th><th>来源</th></tr></thead>
                 <tbody>
                   <tr><td>Web Push 公开统计（5,000 万订阅者，2022）</td><td>按兴趣标签分层 vs 全量推送</td><td>点击率约 5% vs 约 2.5%，送达为分母</td><td>2022 年 Web Push 公开统计</td></tr>
-                  <tr><td>Web Push 公开统计（同上）</td><td>推送展示</td><td>展示数为送达数的 35–60%，随行业与发送参数变化</td><td>2022 年 Web Push 公开统计</td></tr>
                   <tr><td>Web Push 公开统计（同上）</td><td>电商站点订阅</td><td>接入后前三个月订阅率约 5%</td><td>2022 年 Web Push 公开统计</td></tr>
                   <tr><td>站内弹窗留资研究（12.4 亿次展示）</td><td>弹窗留资</td><td>平均留资率约 2.1%</td><td>站内弹窗公开研究</td></tr>
                   <tr><td>电商邮件公开基准（18.3 万品牌，2026）</td><td>自动化流程邮件 vs 群发</td><td>流程邮件占发送量 5.3%，贡献邮件收入 41%</td><td>2026 年电商邮件公开基准</td></tr>
@@ -750,7 +749,7 @@
             <tr class="tone-info"><td>3</td><td>券码到期提醒</td><td>送达 → 点击</td><td>Web Push</td><td>每张被放弃的券独立计时，发送前核对券码仍有效</td><td>首月见效</td><td>放弃券码的挽回率，按贵司数据校准</td></tr>
             <tr><td>4</td><td>邮箱捕获</td><td>订阅 → 留邮箱</td><td>Web Push 应用内消息</td><td>订阅满 7 天的回访时才邀请，与开启提醒的那次访问错开</td><td>需数据积累</td><td>订阅者留邮率 2% → 4–6%</td></tr>
             <tr class="tone-info"><td>5</td><td>大促日历分流</td><td>送达 → 点击</td><td>Web Push + Email</td><td>早上按兴趣分群发不同类目的精选，晚间只跟进当天未回访的人</td><td>首月见效（对齐大促）</td><td>大促日点击率约为全量群发的两倍</td></tr>
-            <tr><td>6</td><td>隔期回访提醒</td><td>送达 → 点击</td><td>Web Push + Email</td><td>超过 30 天、90 天未回访时，各推一次自上次来访以来错过的好价，之后照常接收周报与大促</td><td>需数据积累</td><td>隔期订阅者的回访率，以对照组比较</td></tr>
+            <tr><td>6</td><td>隔期回访提醒</td><td>送达 → 点击</td><td>Web Push + Email</td><td>超过 30 天、90 天未回访时，各推一次自上次来访以来错过的好价，之后照常接收周报与大促</td><td>长周期培育（最后活跃时间需积累满 31 天，回填历史访问可提前）</td><td>隔期订阅者的回访率，以对照组比较</td></tr>
             <tr class="tone-info"><td>7</td><td>兴趣类目周报</td><td>送达 → 点击</td><td>Web Push + Email</td><td>按兴趣分群选类目、按回访状态换写法；长期不点击推送的只在有强力好价时发</td><td>需数据积累（依赖兴趣分群）</td><td>推送点击率 2.5% → 4–5%</td></tr>
             <tr><td colspan="7" style="background:#f8fafc;font-weight:700;color:var(--text-3);font-size:12.5px;letter-spacing:.04em">拓展场景 · 测试期后按优先级推进，本方案不编排</td></tr>
             <tr><td>8</td><td>旅游内容站行程锚点</td><td>送达 → 点击</td><td>Web Push</td><td>浏览目的地攻略后，按目的地推酒店与航线促销码</td><td>依赖客户侧能力（旅游站纳入同一 MA 项目）</td><td>旅游类跳转</td></tr>
@@ -955,7 +954,7 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>推送只在浏览器运行时可达，离线用户需要第二条通道</li>
+                <li>清缓存、换浏览器或关闭提醒后，推送就无法再触达，需要第二条通道</li>
                 <li>开启提醒与留邮箱叠在同一次访问里，两次索取互相抵消</li>
                 <li>没有交换物的邮箱表单，留资率停在个位数</li>
               </ul>
@@ -995,7 +994,7 @@
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
           <p>大促当天在每位用户所在时区的早上发出，<span class="bold">按兴趣分群给不同类目的精选</span>，发送时刻取数；当天没回站的人晚间再跟进一次，已同意邮件的改发邮件。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：用户属性，已开启提醒　｜　<span class="bold">退出条件</span>：不设全局退出，当天是否回访由等待事件判断</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：用户属性，已开启提醒或已同意邮件　｜　<span class="bold">退出条件</span>：不设全局退出，当天是否回访由等待事件判断</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1018,15 +1017,16 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：用户属性「已开启提醒」为真，不按回访时间过滤；每个大促建一条，发布即批量进入，不可再次进入</li>
+                <li><span class="bold">开始组件</span>：用户属性「已开启提醒」为真或「Email 同意」为真，不按回访时间过滤；每个大促建一条，发布即批量进入，不可再次进入</li>
                 <li><span class="bold">提前退出</span>：不配置——大促消息发出前用户的任何行为都不应让他错过大促；是否需要晚间跟进由等待事件就地判断</li>
                 <li><span class="bold">转化统计</span>：事件「跳转商家」，监听窗口 3 天；<span class="bold">收入统计</span>：事件「联盟转化」+ 佣金金额，监听窗口 30 天</li>
                 <li><span class="bold">等待至</span>：指定时刻，大促当天 08:00，终端用户时区；时刻已过时直接退出</li>
                 <li><span class="bold">可发送时间</span>：终端时区 08:00–21:00</li>
                 <li><span class="bold">条件分支</span>：用户分群，按兴趣分群逐支判断（第 4 节定义的 6 个类目兴趣分群，图中以美妆个护为例），同时属于多个时命中第一个，均不属于走默认</li>
                 <li><span class="bold">Webhook</span>（每个分支）：以该分支的类目请求贵司大促精选接口，取前三条；默认分支取全站精选</li>
+                <li><span class="bold">条件分支</span>（每个分支）：属性「已开启提醒」为真 → Web Push；为假（只同意邮件）→ 发 Email 版精选后结束</li>
                 <li><span class="bold">Web Push 通知消息</span>（每个分支）：类目名与精选券码变量，点击打开大促专题页</li>
-                <li><span class="bold">等待事件</span>：各分支汇合后，12 小时内等待「页面浏览」；已回访一支结束</li>
+                <li><span class="bold">等待事件</span>：开启提醒的用户各分支汇合后，12 小时内等待「页面浏览」；已回访一支结束</li>
                 <li><span class="bold">可发送时间</span>：终端时区 19:00–21:00</li>
                 <li><span class="bold">Webhook</span>：取全站晚间仍有效的大促精选</li>
                 <li><span class="bold">条件分支</span>：属性「Email 同意」为真 / 为假</li>
@@ -1055,7 +1055,7 @@
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
           <p>按购物需求才来的用户，隔一段时间回来是常态，不算流失。在超过 30 天、90 天未回访的两个时点，各推一次<span class="bold">这段时间关注的店错过了哪些券</span>，之后照常接收周报与大促。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：用户属性，最后活跃距今 31–37 天或 90–97 天　｜　<span class="bold">退出条件</span>：推送后五天内回访即结束</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：用户属性，已开启提醒或已同意邮件，最后活跃距今 31–37 天或 90–97 天　｜　<span class="bold">退出条件</span>：推送后五天内回访即结束</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1078,7 +1078,7 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：用户属性「已开启提醒」为真，且「最后活跃时间」距今 31–37 天或 90–97 天（窗口上限避免存量一次涌入）</li>
+                <li><span class="bold">开始组件</span>：用户属性「已开启提醒」为真或「Email 同意」为真，且「最后活跃时间」距今 31–37 天或 90–97 天（窗口上限避免存量一次涌入）</li>
                 <li><span class="bold">再次进入</span>：退出后可再次进入，间隔 30 天</li>
                 <li><span class="bold">提前退出</span>：不配置——推送后是否回访由等待事件判断</li>
                 <li><span class="bold">转化统计</span>：事件「页面浏览」，监听窗口 5 天；<span class="bold">收入统计</span>：事件「联盟转化」+ 佣金金额，监听窗口 30 天</li>
@@ -1086,12 +1086,13 @@
                 <li><span class="bold">条件分支</span>：属性「最后活跃时间」距今 31–37 天 / 90–97 天</li>
                 <li><span class="bold">Webhook</span>（31–37 天）：以「最近浏览店铺」「最后活跃时间」请求贵司券码接口，取该店及所属类目自上次来访以来新增的券码数与最高面额</li>
                 <li><span class="bold">Webhook</span>（90–97 天）：取该店所属类目近三个月累计好价前三条与最近一个大促日期</li>
-                <li><span class="bold">Web Push 通知消息</span>：31–37 天一支写「这段时间新增 N 张券」；90–97 天一支写「三个月里错过的好价」与大促日期</li>
-                <li><span class="bold">等待事件</span>：两支汇合后，5 天内等待「页面浏览」；已回访一支结束</li>
+                <li><span class="bold">条件分支</span>：两支汇合后，属性「已开启提醒」为真 → Web Push；为假（只同意邮件）→ 直接发 Email 后结束</li>
+                <li><span class="bold">Web Push 通知消息</span>：文案取 Webhook 返回的距上次来访天数、新增券码数、最高面额与大促日期，两个时点共用一个模板，变量支持默认值兜底</li>
+                <li><span class="bold">等待事件</span>：5 天内等待「页面浏览」；已回访一支结束</li>
                 <li><span class="bold">条件分支</span>：属性「Email 同意」为真 / 为假，为假一支结束</li>
                 <li><span class="bold">可发送时间</span>：终端时区 18:00–21:00 → <span class="bold">Webhook</span>：按「最后活跃时间」再次取自上次来访以来的摘要 → <span class="bold">Email 模板消息</span>：一封，之后结束</li>
                 <li><span class="bold">交接</span>：旅程结束后照常接收旅程 5 大促与旅程 7 周报</li>
-                <li><span class="muted">埋点：「最后活跃时间」由站点在页面浏览时更新；回访状态分界第 1 周按贵司访客两次访问间隔的分布校准</span></li>
+                <li><span class="muted">埋点：「最后活跃时间」由站点在页面浏览时更新，历史访问时间按访客标识回填后，测试期内即有用户进入；回访状态分界第 1 周按贵司访客两次访问间隔的分布校准</span></li>
               </ul>
             </div>
           </div>
@@ -1099,7 +1100,7 @@
             <div class="callout-title">预期效益参考</div>
             <div class="callout-body">
               <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">隔期订阅者的回访率，以对照组比较</span></p>
-              <p style="margin:0">公开研究里网购两次下单约一半隔 30 天以上；内容按每个人上次来访的时间实时取数，给出只属于他的回访理由。</p>
+              <p style="margin:0">回访间隔以贵司访客数据校准；内容按每个人上次来访的时间实时取数，给出只属于他的回访理由。</p>
             </div>
           </div>
         </div>
@@ -1158,7 +1159,7 @@
             <div class="callout-title">预期效益参考</div>
             <div class="callout-body">
               <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">推送点击率 2.5% → 4–5%</span></p>
-              <p style="margin:0">按兴趣标签分层约为全量推送的两倍（第 2 节）；长期不点击的订阅者按价值门槛发送，同时降低浏览器收回通知权限的风险。</p>
+              <p style="margin:0">按兴趣标签分层约为全量推送的两倍，自动化流程邮件以 5.3% 的发送量贡献 41% 的邮件收入（第 2 节）；长期不点击的订阅者按价值门槛发送。</p>
             </div>
           </div>
         </div>
@@ -1265,9 +1266,9 @@
         <table>
           <thead><tr><th>周</th><th>目标</th><th>我方动作</th><th>客户动作</th><th>验收口径</th></tr></thead>
           <tbody>
-            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案、测试环境、开通测试 VIP 账号；确认已接入的 Web Push SDK 开启 MA 模块</td><td>按第 4 节实现提示条与开启指引的页面展示；上报浏览店铺页、查看券码、跳转商家、订阅提示展示与关闭、订阅成功事件；按第 4 节写入权限状态、提示展示、订阅时间、已开启提醒、最近浏览店铺、最后活跃时间等属性；跳转点击 ID 与用户对应；导出近 12 个月访客两次访问间隔的分布；发信域名认证</td><td>核心事件入库率 ≥ 95%</td></tr>
+            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案、测试环境、开通测试 VIP 账号；确认已接入的 Web Push SDK 开启 MA 模块</td><td>按第 4 节实现提示条与开启指引的页面展示；上报浏览店铺页、查看券码、跳转商家、订阅提示展示与关闭、订阅成功事件；按第 4 节写入权限状态、提示展示、订阅时间、已开启提醒、最近浏览店铺、最后活跃时间等属性；跳转点击 ID 与用户对应；Web SDK 访客标识采用站点访客 Cookie ID，并按该 ID 回填历史最后访问时间；导出近 12 个月访客两次访问间隔的分布；发信域名认证</td><td>核心事件入库率 ≥ 95%</td></tr>
             <tr><td><span class="step-num">2</span></td><td>核心旅程小流量上线</td><td>配置旅程 1 · 2 · 3；设全局频控上限：Web Push 通知每日 ≤ 2 条、每周 ≤ 5 条，自定义消息每日 ≤ 1 条，应用内消息每日 ≤ 1 条，Email 每周 ≤ 2 封</td><td>审核提示条、开启指引与推送文案；提供券码接口供 Webhook 取数</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错</td></tr>
-            <tr><td><span class="step-num">3</span></td><td>全量与对照</td><td>扩至全量并上线旅程 4 · 6；按类目访问量建 6 个兴趣分群与推送低互动分群；按访问间隔分布校准回访状态分界；监控送达、展示、点击</td><td>划出 10–20% 对照组不进旅程（用属性在进入条件排除）；上线邮件订阅表单与同意勾选；提供各类目访问量与佣金收益排序</td><td>样本量达标；订阅率、送达、展示、点击、跳转商家数据</td></tr>
+            <tr><td><span class="step-num">3</span></td><td>全量与对照</td><td>扩至全量并上线旅程 4 · 6（旅程 6 依赖回填的最后访问时间才有用户进入）；按类目访问量建 6 个兴趣分群与推送低互动分群；按访问间隔分布校准回访状态分界；监控送达、展示、点击</td><td>划出 10–20% 对照组不进旅程（用属性在进入条件排除）；上线邮件订阅表单与同意勾选；提供各类目访问量与佣金收益排序</td><td>样本量达标；订阅率、送达、展示、点击、跳转商家数据</td></tr>
             <tr><td><span class="step-num">4</span></td><td>复盘扩面</td><td>效果报告；用真实数据校准漏斗各层；上线旅程 7；按黑五日期配置旅程 5</td><td>决策扩面；确认联盟转化的上报口径</td><td>主指标相对对照组的提升：订阅率、展示率、推送点击率、跳转商家率、留邮率</td></tr>
           </tbody>
         </table>
@@ -1600,15 +1601,21 @@
     // Journey 5: 大促日历分流
     drawJourney(document.getElementById('dag-j5'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 已开启提醒' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 已开启提醒或同意邮件' },
         { id: 'wa', kind: 'wait', title: '等待至', sub: '大促当天 8:00 终端时区' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 8:00–21:00' },
         { id: 'seg', kind: 'branch', title: '条件分支', sub: '用户分群: 类目兴趣' },
         { id: 'wh1', kind: 'webhook', title: 'Webhook', sub: '取美妆个护大促精选' },
         { id: 'oth', kind: 'wait', title: '其余 5 个兴趣分群', sub: '结构同左 · 取对应类目' },
         { id: 'wh0', kind: 'webhook', title: 'Webhook', sub: '取全站大促精选' },
+        { id: 'ch1', kind: 'branch', title: '条件分支', sub: '属性: 已开启提醒' },
+        { id: 'ch0', kind: 'branch', title: '条件分支', sub: '属性: 已开启提醒' },
         { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '通知消息 · 美妆个护精选' },
+        { id: 'em1', kind: 'channel', title: 'Email', sub: '模板消息 · 美妆个护精选' },
         { id: 'wp0', kind: 'channel', title: 'Web Push', sub: '通知消息 · 全站精选' },
+        { id: 'em0', kind: 'channel', title: 'Email', sub: '模板消息 · 全站精选' },
+        { id: 'endM1', kind: 'exitEnd', title: '结束', sub: '只同意邮件的发一封' },
+        { id: 'endM0', kind: 'exitEnd', title: '结束', sub: '只同意邮件的发一封' },
         { id: 'we', kind: 'branch', title: '等待事件', sub: '12 小时内: 页面浏览' },
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '当天已回访' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:00' },
@@ -1622,7 +1629,10 @@
       [
         { from: 'start', to: 'wa' }, { from: 'wa', to: 'st1' }, { from: 'st1', to: 'seg' },
         { from: 'seg', to: 'wh1', label: '美妆个护' }, { from: 'seg', to: 'oth', label: '其余分群' }, { from: 'seg', to: 'wh0', label: '默认' },
-        { from: 'wh1', to: 'wp1' }, { from: 'wh0', to: 'wp0' },
+        { from: 'wh1', to: 'ch1' }, { from: 'wh0', to: 'ch0' },
+        { from: 'ch1', to: 'wp1', label: '为真' }, { from: 'ch1', to: 'em1', label: '为假' },
+        { from: 'ch0', to: 'wp0', label: '为真' }, { from: 'ch0', to: 'em0', label: '为假' },
+        { from: 'em1', to: 'endM1' }, { from: 'em0', to: 'endM0' },
         { from: 'wp1', to: 'we' }, { from: 'oth', to: 'we' }, { from: 'wp0', to: 'we' },
         { from: 'we', to: 'endA', label: '已回访' }, { from: 'we', to: 'st2', label: '未回访' },
         { from: 'st2', to: 'wh2' }, { from: 'wh2', to: 'cond' },
@@ -1638,13 +1648,15 @@
         { id: 'rec', kind: 'branch', title: '条件分支', sub: '属性: 最后活跃时间' },
         { id: 'wh1', kind: 'webhook', title: 'Webhook', sub: '取上次来访后新增券码' },
         { id: 'wh2', kind: 'webhook', title: 'Webhook', sub: '取三个月累计好价' },
-        { id: 'wp1', kind: 'channel', title: 'Web Push', sub: '通知消息 · 这段时间新增' },
-        { id: 'wp2', kind: 'channel', title: 'Web Push', sub: '通知消息 · 三个月错过的' },
+        { id: 'ch', kind: 'branch', title: '条件分支', sub: '属性: 已开启提醒' },
+        { id: 'wp', kind: 'channel', title: 'Web Push', sub: '通知消息 · 错过的好价' },
+        { id: 'emD', kind: 'channel', title: 'Email', sub: '模板消息 · 错过的好价' },
         { id: 'we', kind: 'branch', title: '等待事件', sub: '5 天内: 页面浏览' },
+        { id: 'endD', kind: 'exitEnd', title: '结束', sub: '照常接收周报与大促' },
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '已回访' },
         { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: Email 同意' },
-        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '照常接收周报与大促' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 18:00–21:00' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '照常接收周报与大促' },
         { id: 'wh3', kind: 'webhook', title: 'Webhook', sub: '取上次来访以来摘要' },
         { id: 'em', kind: 'channel', title: 'Email', sub: '模板消息 · 错过的好价' },
         { id: 'endB', kind: 'exitEnd', title: '结束', sub: '照常接收周报与大促' },
@@ -1652,8 +1664,9 @@
       [
         { from: 'start', to: 'st1' }, { from: 'st1', to: 'rec' },
         { from: 'rec', to: 'wh1', label: '31–37天' }, { from: 'rec', to: 'wh2', label: '90–97天' },
-        { from: 'wh1', to: 'wp1' }, { from: 'wh2', to: 'wp2' },
-        { from: 'wp1', to: 'we' }, { from: 'wp2', to: 'we' },
+        { from: 'wh1', to: 'ch' }, { from: 'wh2', to: 'ch' },
+        { from: 'ch', to: 'wp', label: '为真' }, { from: 'ch', to: 'emD', label: '为假' },
+        { from: 'wp', to: 'we' }, { from: 'emD', to: 'endD' },
         { from: 'we', to: 'endA', label: '已回访' }, { from: 'we', to: 'cond', label: '未回访' },
         { from: 'cond', to: 'st2', label: '为真' }, { from: 'cond', to: 'endC', label: '为假' },
         { from: 'st2', to: 'wh3' }, { from: 'wh3', to: 'em' }, { from: 'em', to: 'endB' },
