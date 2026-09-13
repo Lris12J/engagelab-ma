@@ -768,10 +768,10 @@
     <section id="s-journey1" class="section-plain" data-stage="acquire" data-scene="1">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">01</div><div class="scene-head-main"><h2>旅程 1｜订阅邀请</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">优先级最高</span><span class="pill pill-info">建立触点</span><span class="pill">跳转商家触发 · 按权限状态分流 · 自定义消息驱动页面提示 · Web Push</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">优先级最高</span><span class="pill pill-info">建立触点</span><span class="pill">跳转商家触发 · 按权限状态筛选 · 自定义消息驱动页面提示 · Web Push</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>用户用过一次券码、切回本站时，最能理解提醒的价值。旅程按浏览器权限状态决定发不发、发什么；页面收到后在切回本站时展示提示条，<span class="bold">由用户点击再请求授权</span>。</p>
+          <p>用户用过一次券码、切回本站时，最能理解提醒的价值。旅程按浏览器权限状态决定发不发；页面收到后在切回本站时，按当前权限展示提示条或开启指引，<span class="bold">由用户点击再请求授权</span>。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 自定义消息　｜　<span class="bold">触发方式</span>：事件「跳转商家」，未开启提醒　｜　<span class="bold">退出条件</span>：单条消息，发出后结束；距上次实际展示满 7 天可再次邀请，最多展示 3 次</p>
         </div>
       </div>
@@ -799,9 +799,7 @@
                 <li><span class="bold">再次进入</span>：退出后可再次进入，间隔 1 天——7 天冷却与 3 次上限按页面实际展示计算，未展示的下发不占用机会</li>
                 <li><span class="bold">提前退出</span>：不配置——单条消息，发出即结束</li>
                 <li><span class="bold">转化统计</span>：事件「订阅成功」，监听窗口 1 天</li>
-                <li><span class="bold">条件分支</span>：属性「通知权限状态」为未确认 / 为已禁用</li>
-                <li><span class="bold">Web Push 自定义消息</span>（未确认）：下发「显示订阅提示条」指令与店铺名变量；页面在本站标签页回到前台时展示，用户点击按钮后调用浏览器授权请求</li>
-                <li><span class="bold">Web Push 自定义消息</span>（已禁用）：下发「显示开启指引」指令；页面展示在浏览器设置中开启本站通知的步骤</li>
+                <li><span class="bold">Web Push 自定义消息</span>：下发「显示订阅邀请」指令与店铺名变量；权限状态已由进入条件筛选，旅程内不再分支，页面在本站标签页回到前台时按当前权限展示：未确认展示提示条，用户点击按钮后调用浏览器授权请求；已禁用展示在浏览器设置中开启本站通知的步骤</li>
                 <li><span class="bold">交接</span>：开启提醒后，订阅前看过的店铺由旅程 2 继续跟踪</li>
                 <li><span class="muted">埋点：权限状态与提示展示相关属性由站点写入，写入时机见第 4 节；「订阅提示展示」「订阅提示关闭」「订阅成功」由站点上报</span></li>
               </ul>
@@ -1054,7 +1052,7 @@
       <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">按回访节奏</span><span class="pill pill-info">隔期回访</span><span class="pill">属性触发 · 30 天与 90 天两个时点 · 自上次来访取数 · Web Push + Email</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>按购物需求才来的用户，隔一段时间回来是常态，不算流失。在超过 30 天、90 天未回访的两个时点，各推一次<span class="bold">这段时间关注的店错过了哪些券</span>，之后照常接收周报与大促。</p>
+          <p>按购物需求才来的用户，隔一段时间回来是常态，不算流失。在超过 30 天、90 天未回访的两个时点，各推一次<span class="bold">这段时间关注的店错过了哪些券</span>，没有新增就不发，之后照常接收周报与大促。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：Web Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：用户属性，已开启提醒或已同意邮件，最后活跃距今 31–37 天或 90–97 天　｜　<span class="bold">退出条件</span>：推送后五天内回访即结束</p>
         </div>
       </div>
@@ -1078,16 +1076,15 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul>
-                <li><span class="bold">开始组件</span>：用户属性「已开启提醒」为真或「Email 同意」为真，且「最后活跃时间」距今 31–37 天或 90–97 天（窗口上限避免存量一次涌入）</li>
+                <li><span class="bold">开始组件</span>：用户属性「已开启提醒」为真或「Email 同意」为真，且「最后活跃时间」距今 31–37 天或 90–97 天（窗口上限避免存量一次涌入）；时点只在这里限定，旅程内不再按时间分支</li>
                 <li><span class="bold">再次进入</span>：退出后可再次进入，间隔 30 天</li>
                 <li><span class="bold">提前退出</span>：不配置——推送后是否回访由等待事件判断</li>
                 <li><span class="bold">转化统计</span>：事件「页面浏览」，监听窗口 5 天；<span class="bold">收入统计</span>：事件「联盟转化」+ 佣金金额，监听窗口 30 天</li>
                 <li><span class="bold">可发送时间</span>：终端时区 18:00–21:00</li>
-                <li><span class="bold">条件分支</span>：属性「最后活跃时间」距今 31–37 天 / 90–97 天</li>
-                <li><span class="bold">Webhook</span>（31–37 天）：以「最近浏览店铺」「最后活跃时间」请求贵司券码接口，取该店及所属类目自上次来访以来新增的券码数与最高面额</li>
-                <li><span class="bold">Webhook</span>（90–97 天）：取该店所属类目近三个月累计好价前三条与最近一个大促日期</li>
-                <li><span class="bold">条件分支</span>：两支汇合后，属性「已开启提醒」为真 → Web Push；为假（只同意邮件）→ 直接发 Email 后结束</li>
-                <li><span class="bold">Web Push 通知消息</span>：文案取 Webhook 返回的距上次来访天数、新增券码数、最高面额与大促日期，两个时点共用一个模板，变量支持默认值兜底</li>
+                <li><span class="bold">Webhook</span>：以「最近浏览店铺」「最后活跃时间」请求贵司券码接口，返回距上次来访天数、期间该店及所属类目新增券码数、最高面额、累计好价前三条与最近一个大促日期</li>
+                <li><span class="bold">条件分支</span>：Webhook 返回「期间新增券码数」≥ 1 / 为 0，为 0 直接结束；发送前用户已自行回访时，自上次来访以来的新增为 0，同样在此结束</li>
+                <li><span class="bold">条件分支</span>：属性「已开启提醒」为真 → Web Push；为假（只同意邮件）→ 直接发 Email 后结束</li>
+                <li><span class="bold">Web Push 通知消息</span>：文案取 Webhook 返回的天数、新增券码数、最高面额与大促日期，两个时点共用一个模板，变量支持默认值兜底</li>
                 <li><span class="bold">等待事件</span>：5 天内等待「页面浏览」；已回访一支结束</li>
                 <li><span class="bold">条件分支</span>：属性「Email 同意」为真 / 为假，为假一支结束</li>
                 <li><span class="bold">可发送时间</span>：终端时区 18:00–21:00 → <span class="bold">Webhook</span>：按「最后活跃时间」再次取自上次来访以来的摘要 → <span class="bold">Email 模板消息</span>：一封，之后结束</li>
@@ -1178,9 +1175,9 @@
         <table>
           <thead><tr><th style="width:190px">项</th><th>设置</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>收到「显示订阅提示条」后</td><td>只要本站标签页仍打开，在它回到前台时展示提示条，文案带店铺名；页面刷新或关闭则丢弃。展示时写入「最近提示展示时间」，并把「提示展示次数」加 1</td></tr>
+            <tr class="tone-info"><td>收到「显示订阅邀请」后</td><td>只要本站标签页仍打开，在它回到前台时读取当前通知权限：未确认则展示提示条，文案带店铺名，并写入「最近提示展示时间」、把「提示展示次数」加 1；已禁用则展示开启指引。页面刷新或关闭则丢弃</td></tr>
             <tr class="tone-info"><td>授权请求</td><td>只在用户点击提示条按钮时调用 SDK 授权请求；Firefox 与 Safari 要求授权请求必须由用户点击触发</td></tr>
-            <tr><td>收到「显示开启指引」后</td><td>展示在浏览器设置中开启本站通知的步骤，并写入「开启指引已展示」</td></tr>
+            <tr><td>开启指引</td><td>展示在浏览器设置中开启本站通知的步骤，并写入「开启指引已展示」</td></tr>
             <tr><td>授权通过后</td><td>页面内确认已开启提醒，不发送推送；上报「订阅成功」，写入「已开启提醒」为真与「订阅时间」</td></tr>
             <tr><td>权限状态回写</td><td>每次页面加载按 SDK 权限状态接口写入「通知权限状态」；首次检测到已禁用时写入「权限禁用时间」；检测到权限被关闭时把「已开启提醒」写为假</td></tr>
           </tbody>
@@ -1527,16 +1524,11 @@
     drawJourney(document.getElementById('dag-j1'),
       [
         { id: 'start', kind: 'entry', title: '开始', sub: '事件: 跳转商家 · 未开启提醒' },
-        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 通知权限状态' },
-        { id: 'cm1', kind: 'channel', title: 'Web Push', sub: '自定义消息 · 显示订阅提示条' },
-        { id: 'cm2', kind: 'channel', title: 'Web Push', sub: '自定义消息 · 显示开启指引' },
-        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '展示满7天可再邀请, 最多3次' },
-        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '指引只展示一次' },
+        { id: 'cm', kind: 'channel', title: 'Web Push', sub: '自定义消息 · 显示订阅邀请' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '展示满7天可再邀请, 最多3次' },
       ],
       [
-        { from: 'start', to: 'cond' },
-        { from: 'cond', to: 'cm1', label: '未确认' }, { from: 'cond', to: 'cm2', label: '已禁用满30天' },
-        { from: 'cm1', to: 'endA' }, { from: 'cm2', to: 'endB' },
+        { from: 'start', to: 'cm' }, { from: 'cm', to: 'end' },
       ]);
 
     // Journey 2: 关注店铺新券
@@ -1645,10 +1637,10 @@
       [
         { id: 'start', kind: 'entry', title: '开始', sub: '属性: 未回访 30 天或 90 天' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 18:00–21:00' },
-        { id: 'rec', kind: 'branch', title: '条件分支', sub: '属性: 最后活跃时间' },
-        { id: 'wh1', kind: 'webhook', title: 'Webhook', sub: '取上次来访后新增券码' },
-        { id: 'wh2', kind: 'webhook', title: 'Webhook', sub: '取三个月累计好价' },
+        { id: 'wh', kind: 'webhook', title: 'Webhook', sub: '按上次来访时间取好价' },
+        { id: 'cnt', kind: 'branch', title: '条件分支', sub: '返回: 期间新增券码数' },
         { id: 'ch', kind: 'branch', title: '条件分支', sub: '属性: 已开启提醒' },
+        { id: 'endZ', kind: 'exitEnd', title: '结束', sub: '没有新增不发' },
         { id: 'wp', kind: 'channel', title: 'Web Push', sub: '通知消息 · 错过的好价' },
         { id: 'emD', kind: 'channel', title: 'Email', sub: '模板消息 · 错过的好价' },
         { id: 'we', kind: 'branch', title: '等待事件', sub: '5 天内: 页面浏览' },
@@ -1662,9 +1654,8 @@
         { id: 'endB', kind: 'exitEnd', title: '结束', sub: '照常接收周报与大促' },
       ],
       [
-        { from: 'start', to: 'st1' }, { from: 'st1', to: 'rec' },
-        { from: 'rec', to: 'wh1', label: '31–37天' }, { from: 'rec', to: 'wh2', label: '90–97天' },
-        { from: 'wh1', to: 'ch' }, { from: 'wh2', to: 'ch' },
+        { from: 'start', to: 'st1' }, { from: 'st1', to: 'wh' }, { from: 'wh', to: 'cnt' },
+        { from: 'cnt', to: 'ch', label: '≥1' }, { from: 'cnt', to: 'endZ', label: '为 0' },
         { from: 'ch', to: 'wp', label: '为真' }, { from: 'ch', to: 'emD', label: '为假' },
         { from: 'wp', to: 'we' }, { from: 'emD', to: 'endD' },
         { from: 'we', to: 'endA', label: '已回访' }, { from: 'we', to: 'cond', label: '未回访' },
