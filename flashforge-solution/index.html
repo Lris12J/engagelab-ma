@@ -794,6 +794,7 @@
 
 
 
+
     <!-- Journey 1 -->
     <section id="s-journey1" class="section-plain" data-stage="activate" data-scene="1">
       <div class="wrap">
@@ -929,7 +930,7 @@
                     </li>
                   </ul>
                 </li>
-                <li><span class="bold">交接</span>：Shopify 侧已开启欢迎自动化时，第 1 周二选一：排除本旅程的无设备分支，或把 Shopify 的订阅事件接入 MA，由本旅程统一发送；已绑定设备分支两种情况都保留</li>
+                <li><span class="bold">交接</span>：注册账号后的欢迎沿用 Shopify 客户账户欢迎通知，本旅程只接订阅，两者不重复；Shopify 侧已开启欢迎自动化时，第 1 周二选一：排除本旅程的无设备分支，或把 Shopify 的订阅事件接入 MA，由本旅程统一发送；已绑定设备分支两种情况都保留</li>
                 <li><span class="muted">埋点：订阅邮件营销经 Shopify 对接接入，取 Shopify 客户邮件营销同意变为已订阅的时刻与来源；设备清单由 App 写入</span></li>
               </ul>
             </div>
@@ -1021,7 +1022,7 @@
                   </ul>
                 </li>
                 <li><span class="bold">交接</span>：Shopify 侧已开启弃单或弃购提醒时，第 1 周二选一：关闭本旅程的 Email 分支，只保留 Web Push 与各轮的差异内容；或把 Shopify 的加购与结账事件接入 MA，由本旅程统一发送</li>
-                <li><span class="muted">埋点：加入购物车、开始结账、订单支付成功经 Shopify 对接接入，「购物车含打印机」在接入加购事件时按购物车商品附带；Web Push 订阅状态由 SDK 维护</span></li>
+                <li><span class="muted">埋点：加入购物车经 Shopify 像素接入，「购物车含打印机」按购物车商品附带；需要 Cookie 同意的地区，访客同意前加购不上报。开始结账与订单支付成功经 Shopify 服务端推送，不受 Cookie 同意影响；Web Push 订阅状态由 SDK 维护</span></li>
               </ul>
             </div>
           </div>
@@ -1280,7 +1281,7 @@
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
           <p>打印机知道自己为什么停下来。<span class="bold">半小时内没重新开始打印，才把对应的排错页送到手机上</span>；送料类错误顺带给同款耗材的补货入口，两天仍未开机的按保修状态转工单或配件。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：事件「打印失败」　｜　<span class="bold">退出条件</span>：该设备打印完成即退出对应实例</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 应用内消息 · Email 模板消息　｜　<span class="bold">触发方式</span>：事件「打印失败」　｜　<span class="bold">退出条件</span>：该设备打印完成即退出对应实例</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1325,6 +1326,7 @@
                     <li>网络、文件与其他：<span class="bold">App Push 通知消息</span>，写法同上</li>
                   </ul>
                 </li>
+                <li><span class="bold">App Push 应用内消息</span>：同一张排错卡片，下次打开 App 时展示，内容按错误类别与错误码变量填充；关闭了通知的用户靠这一条看到</li>
                 <li><span class="bold">等待事件</span>：2 天内等待「打印开始」
                   <ul>
                     <li>已开始：结束</li>
@@ -1547,7 +1549,7 @@
               <ul class="cfg-list">
                 <li><span class="bold">开始组件</span>：用户分群「升级候选」，满足任一条件组，且用户特征「设备清单」的机型不含 AD5X、Creator 5、Creator 5 Pro、CJ270
                   <ul>
-                    <li>条件组一：用户特征「累计打印时长」介于 300–400 小时，且「首次绑定时间」距今超过 180 天</li>
+                    <li>条件组一：用户特征「设备清单」中任一台设备的「累计打印时长」介于 300–400 小时</li>
                     <li>条件组二：行为事件「订单支付成功」最近 365 天次数大于等于 2，过滤条件为商品含喷嘴或挤出机总成</li>
                     <li>分群发布时分批放量</li>
                   </ul>
@@ -1560,7 +1562,8 @@
                   <ul>
                     <li>「邮件营销同意」为真且「设备数量」大于等于 2：<span class="bold">Email 模板消息</span>，Creator 5 系列与批量采购价；结束</li>
                     <li>「邮件营销同意」为真且属于用户分群「配件高频更换」（条件同条件组二）：<span class="bold">Email 模板消息一</span>，喷嘴与挤出机反复更换时的升级理由</li>
-                    <li>「邮件营销同意」为真的其余用户，即只满足条件组一：<span class="bold">Email 模板消息一</span>，「你已用 {{机型}} 打印 {{小时}} 小时」与多色打印的升级理由</li>
+                    <li>「邮件营销同意」为真，且「设备清单」中同一台设备「累计打印时长」大于等于 300 小时、「绑定日期」距今超过 180 天：<span class="bold">Email 模板消息一</span>，「你的 {{机型}} 已打印 {{小时}} 小时」与多色打印的升级理由；机型与小时数用变量从设备清单筛出这台设备</li>
+                    <li>「邮件营销同意」为真的其余用户，即时长达标的设备绑定不足 180 天：结束，分群定时重判后再进入</li>
                     <li>默认（未同意邮件）：<span class="bold">App Push 通知消息</span>，升级理由短版与机型对比页；结束</li>
                   </ul>
                 </li>
@@ -1583,7 +1586,7 @@
                 <li><span class="bold">等待</span>：14 天</li>
                 <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
                 <li><span class="bold">Email 模板消息三</span>：积分规则，末轮才提激励；结束</li>
-                <li><span class="muted">埋点：累计打印时长、首次绑定时间、设备清单与设备数量由 App 或云平台写入；配件订单次数由 MA 分群「升级候选」与「配件高频更换」按订单事件计算</span></li>
+                <li><span class="muted">埋点：设备清单的每台设备带设备 ID、机型、绑定日期与累计打印时长，由 App 或云平台按设备 ID 增量更新：绑定时新增、解绑时删除、每次打印完成后更新该台时长；设备数量同步写入；配件订单次数由 MA 分群按订单事件计算</span></li>
               </ul>
             </div>
           </div>
@@ -1701,12 +1704,12 @@
         <table>
           <thead><tr><th>事件或属性</th><th>类型</th><th>关键字段</th><th>提供方</th><th>驱动的旅程</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>App 启动、通知权限状态、App 安装状态、Web Push 订阅状态</td><td>SDK 标准事件与属性</td><td>—</td><td>EngageLab SDK，无需开发</td><td>2 · 3 · 4 · 9 · 11</td></tr>
+            <tr class="tone-info"><td>App 启动、App 安装状态、Web Push 订阅状态</td><td>SDK 标准事件与属性</td><td>—</td><td>EngageLab SDK，无需开发</td><td>2 · 3 · 4 · 9 · 11</td></tr>
             <tr class="tone-info"><td>订阅邮件营销、浏览商品、加入购物车、开始结账、订单支付成功、订单发货、订单取消与退款</td><td>业务事件</td><td>订阅来源、商品、购物车含打印机、订单号、含打印机与含耗材、是否预售</td><td>Shopify 店铺，经 Shopify 对接接入</td><td>2 · 3 · 4 · 5 · 6 · 10 · 11</td></tr>
             <tr class="tone-info"><td>邮件营销同意、官网订单数</td><td>用户属性</td><td>—</td><td>Shopify 客户原生字段，经 Shopify 对接同步</td><td>3 · 6 · 8 · 9 · 10 · 11</td></tr>
             <tr class="tone-info"><td>补货候选、沉睡设备、升级候选、配件高频更换、本次活动目标人群</td><td>用户分群</td><td>打印用量求和、打印时间窗、配件订单次数、近 7 天订阅与下单</td><td>EngageLab 用户分群，按表内事件计算，无需开发</td><td>6 · 9 · 10 · 11</td></tr>
             <tr><td>设备绑定成功、设备解绑、打印开始、打印完成、首次打印完成、打印失败、体验评分提交</td><td>设备与 App 事件</td><td>设备 ID、机型、是否首次绑定、错误码与错误类别、材质、颜色、用量（取自切片文件）、时长、评分</td><td>Flash Studio 与云平台，贵司上报</td><td>1 · 4 · 6 · 7 · 8 · 9</td></tr>
-            <tr><td>设备清单（设备 ID、机型、绑定日期、保修到期日）、设备数量、首次绑定时间、累计打印时长</td><td>object array 与属性</td><td>—</td><td>App 账户系统、云平台与订单系统，贵司写入</td><td>2 · 7 · 10 · 11</td></tr>
+            <tr><td>设备清单（每台设备的设备 ID、机型、绑定日期、保修到期日、累计打印时长）、设备数量</td><td>object array 与属性</td><td>按设备 ID 增量更新：绑定时新增、解绑时删除、打印完成后更新该台时长</td><td>App 账户系统、云平台与订单系统，贵司写入</td><td>2 · 7 · 10 · 11</td></tr>
             <tr><td>订单签收、退货表单提交、官网评价提交、工单已解决</td><td>业务事件</td><td>订单号、评分</td><td>物流系统 · 退货表单 · 评价系统 · 客服系统</td><td>4 · 5 · 8</td></tr>
             <tr><td>推荐 SKU 与上次官网购买的耗材 SKU、近 30 天浏览最多的整机与活动价、热门模型、预售剩余台数、订单生产进度与最新预计发货日</td><td>Webhook 取数</td><td>—</td><td>贵司推荐引擎 · 模型库 · 订单系统</td><td>2 · 3 · 5 · 6 · 7 · 9 · 11</td></tr>
             <tr><td>创建客服工单</td><td>Webhook 执行动作</td><td>机型、错误码、评分</td><td>客服系统</td><td>7 · 8</td></tr>
@@ -1716,6 +1719,7 @@
         </table>
         <ul class="notelist">
           <li>App 登录与 Shopify 客户统一以邮箱作为用户标识上报，同一邮箱即同一用户，用户不需要另行注册官网；支付信息与收货地址不进入 MA。</li>
+          <li>浏览商品与加入购物车经 Shopify 像素采集。在需要 Cookie 同意的地区，访客同意前这两类事件不上报，弃购挽回在这些地区的覆盖率会偏低；开始结账、订单与客户数据经 Shopify 服务端推送，不受影响。</li>
         </ul>
       </div>
     </section>
@@ -1770,7 +1774,7 @@
           </tbody>
         </table>
         <ul class="notelist">
-          <li>工作量分两段：Shopify 对接授权、MA Web 与 App SDK 接入约 3–5 人日（含 SDK 自带、无需开发的部分）；客户侧开发（设备清单、设备数量、首次绑定时间、累计打印时长四个属性，打印事件的用量与错误类别字段，推荐引擎与订单进度接口）第 1 周盘点后另行排期；补货、沉睡、换机所需的用量与次数统计由 MA 分群计算，不需要贵司开发聚合。</li>
+          <li>工作量分两段：Shopify 对接授权、MA Web 与 App SDK 接入约 3–5 人日（含 SDK 自带、无需开发的部分）；客户侧开发（设备清单与设备数量两个属性，设备清单按台记录保修到期日与累计打印时长，打印事件的用量与错误类别字段，推荐引擎与订单进度接口）第 1 周盘点后另行排期；补货、沉睡、换机所需的用量与次数统计由 MA 分群计算，不需要贵司开发聚合。</li>
         </ul>
       </div>
     </section>
@@ -2204,6 +2208,7 @@
         { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '送料排错 · 补货入口' },
         { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '喷嘴与挤出排错页' },
         { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '网络文件与其他排错页' },
+        { id: 'ia', kind: 'channel', title: 'App Push 应用内消息', sub: '同一排错卡片 · 打开 App 时展示' },
         { id: 'we1', kind: 'wait', title: '等待事件', sub: '2 天 · 打印开始' },
         { id: 'endA', kind: 'exitOk', title: '结束', sub: '已恢复打印' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
@@ -2219,7 +2224,7 @@
         { from: 'we0', to: 'end0', label: '已开始' }, { from: 'we0', to: 'c1', label: '未开始' },
         { from: 'c1', to: 'wh', label: '送料与耗材' }, { from: 'wh', to: 'p1' },
         { from: 'c1', to: 'p2', label: '喷嘴与挤出' }, { from: 'c1', to: 'p3', label: '网络文件与其他' },
-        { from: 'p1', to: 'we1' }, { from: 'p2', to: 'we1' }, { from: 'p3', to: 'we1' },
+        { from: 'p1', to: 'ia' }, { from: 'p2', to: 'ia' }, { from: 'p3', to: 'ia' }, { from: 'ia', to: 'we1' },
         { from: 'we1', to: 'endA', label: '已开始' }, { from: 'we1', to: 'st1', label: '未开始' },
         { from: 'st1', to: 'c2' },
         { from: 'c2', to: 'wx', label: '在保' }, { from: 'c2', to: 'em2', label: '过保或无记录' },
@@ -2292,10 +2297,11 @@
       [
         { id: 'start', kind: 'entry', title: '开始', sub: '分群: 升级候选' },
         { id: 'st0', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'c1', kind: 'branch', title: '条件分支', sub: '邮件同意 · 设备数 · 分群' },
+        { id: 'c1', kind: 'branch', title: '条件分支', sub: '邮件同意 · 设备 · 分群' },
         { id: 'emF', kind: 'channel', title: 'Email 模板消息', sub: 'Creator 5 系列 · 批量价' },
         { id: 'emB', kind: 'channel', title: 'Email 模板消息一', sub: '配件反复更换的升级理由' },
-        { id: 'emA', kind: 'channel', title: 'Email 模板消息一', sub: '打印 N 小时的升级理由' },
+        { id: 'emA', kind: 'channel', title: 'Email 模板消息一', sub: '单台打印 N 小时的升级理由' },
+        { id: 'endR', kind: 'exitEnd', title: '结束', sub: '绑定不足 180 天 · 待重判' },
         { id: 'pN', kind: 'channel', title: 'App Push 通知消息', sub: '升级理由短版 · 机型对比' },
         { id: 'endF', kind: 'exitEnd', title: '结束', sub: '整机下单即提前退出' },
         { id: 'endN', kind: 'exitEnd', title: '结束', sub: '未同意邮件' },
@@ -2313,7 +2319,8 @@
         { from: 'start', to: 'st0' }, { from: 'st0', to: 'c1' },
         { from: 'c1', to: 'emF', label: '同意 · ≥ 2 台' }, { from: 'emF', to: 'endF' },
         { from: 'c1', to: 'emB', label: '同意 · 配件分群' },
-        { from: 'c1', to: 'emA', label: '同意 · 其余' },
+        { from: 'c1', to: 'emA', label: '同意 · 单台达标' },
+        { from: 'c1', to: 'endR', label: '同意 · 其余' },
         { from: 'c1', to: 'pN', label: '未同意' }, { from: 'pN', to: 'endN' },
         { from: 'emB', to: 'we1' }, { from: 'emA', to: 'we1' },
         { from: 'we1', to: 'st1', label: '浏览未购' }, { from: 'st1', to: 'em2' },
