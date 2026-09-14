@@ -765,8 +765,8 @@
         <table>
           <thead><tr><th>#</th><th>场景</th><th>承接漏斗环节</th><th>主渠道组合</th><th>亮点</th><th>见效节奏</th><th>预期效果</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>1</td><td>设备绑定到首次打印成功：所有渠道买家的第一个识别时点</td><td>绑定 → 首印</td><td>App Push 通知 + 应用内消息</td><td>所有渠道买家的第一个识别时点；先观察 24 小时再触达，只对卡住的用户发教程</td><td>首月见效</td><td>绑定到 7 天内首印 75% → 85%（假设起点）</td></tr>
-            <tr><td>2</td><td>欢迎与首单激活：按有没有打印机分流</td><td>订阅 → 首单</td><td>Email + Web Push</td><td>已绑定设备的订阅用户第一封就是按机型选好的耗材；结账页订阅的人不进入；无设备用户先消除顾虑</td><td>首月见效</td><td>订阅到首单 3–8% → 8–12%；Shopify 侧已有欢迎自动化时以其数据为基线</td></tr>
+            <tr class="tone-info"><td>1</td><td>设备绑定到首次打印成功：所有渠道买家的第一个识别时点</td><td>绑定 → 首印</td><td>App Push 通知 + 应用内消息</td><td>绑定当场由 App 展示首印引导；24 小时仍未首印才推送教程，3 天后再给求助入口</td><td>首月见效</td><td>绑定到 7 天内首印 75% → 85%（假设起点）</td></tr>
+            <tr><td>2</td><td>欢迎与首单激活：按设备与订单分流</td><td>订阅 → 首单</td><td>Email + Web Push</td><td>先按设备与订单分流：已绑定设备的推耗材，下单等货的交履约旅程，买过未绑定的发欢迎回来，没买过的才收首单内容</td><td>首月见效</td><td>订阅到首单 3–8% → 8–12%；Shopify 侧已有欢迎自动化时以其数据为基线</td></tr>
             <tr class="tone-info"><td>3</td><td>弃购挽回：整机与耗材两套理由</td><td>加购 → 支付</td><td>Web Push + Email</td><td>已开始结账的人单独一路；按购物车是否含打印机分两套顾虑消除内容；再次加购重新计时</td><td>首月见效</td><td>加购到支付 30% → 33–38%；Shopify 侧已有弃单提醒时以其数据为基线</td></tr>
             <tr class="tone-info"><td>4</td><td>官网订单履约：拆单、签收到绑定</td><td>官网购机 → 绑定</td><td>Email + App Push 通知</td><td>拆单发货先说明；签收后按是否装了 App 分两路引导，绑定后交旅程 1</td><td>首月见效</td><td>官网购机用户签收到绑定 50% → 60–70%（假设起点）</td></tr>
             <tr><td>5</td><td>CJ270 预售等待期：从付款到发货的每个节点</td><td>官网购机 → 绑定（预售订单）</td><td>Email + Webhook 取进度</td><td>付款到发货之间按真实进度逐单更新，发货日调整逐单说明，等待期推荐配套全彩树脂</td><td>长周期培育（按预售批次）</td><td>预售发货前取消率（对照组比较）</td></tr>
@@ -796,14 +796,16 @@
 
 
 
+
+
     <!-- Journey 1 -->
     <section id="s-journey1" class="section-plain" data-stage="activate" data-scene="1">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">01</div><div class="scene-head-main"><h2>旅程 1｜设备绑定到首次打印成功：所有渠道买家的第一个识别时点</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">退货与差评的第一道闸</span><span class="pill pill-info">绑定 → 首印</span><span class="pill">绑定事件触发 · 先观察再触达 · App Push 通知 + 应用内消息</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">退货与差评的第一道闸</span><span class="pill pill-info">绑定 → 首印</span><span class="pill">绑定事件触发 · App 当场引导、旅程补位 · App Push 通知 + 应用内消息</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>所有渠道的买家都在扫码绑定 Flash Studio 时成为可识别的用户。<span class="bold">先观察 24 小时是否自己打出第一件</span>，没打出来再按机型推教程，教程发出后 3 天仍未完成才给求助入口。</p>
+          <p>绑定完成页由 App 当场展示本机型的首印引导，不依赖消息。<span class="bold">旅程只接当天没操作或没做完的人</span>：24 小时仍未打出第一件再推教程，教程发出后 3 天仍未完成才给求助入口。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 应用内消息　｜　<span class="bold">触发方式</span>：事件「设备绑定成功」（首次绑定）　｜　<span class="bold">退出条件</span>：设备解绑即退出</p>
         </div>
       </div>
@@ -819,7 +821,7 @@
               <ul>
                 <li>平台与经销商的买家在绑定之前对贵司不可见，绑定是第一个识别时点</li>
                 <li>首次打印要经过调平、上料、切片与发送，任何一步卡住都会停在第一天</li>
-                <li>首印教程在 Wiki 里，App 首页是模型推荐，新用户卡住时未必找得到</li>
+                <li>绑定当天没打完的人第二天再打开 App，首页是模型推荐，绑定时的引导已经找不到</li>
               </ul>
             </div>
           </div>
@@ -856,7 +858,7 @@
                     </li>
                   </ul>
                 </li>
-                <li><span class="bold">交接</span>：App 登录与 Shopify 客户统一以邮箱作为用户标识，同一邮箱即同一用户，用户不需要另行注册官网</li>
+                <li><span class="bold">交接</span>：绑定完成页的本机型首印引导由 App 展示，不经过 MA，本旅程从 24 小时后接手；App 登录与 Shopify 客户统一以邮箱作为用户标识，同一邮箱即同一用户，用户不需要另行注册官网</li>
                 <li><span class="muted">埋点：设备绑定成功（含是否首次绑定与机型页链接）、设备解绑、首次打印完成由 App 或云平台上报；机型页链接按机型维护在 App 侧，新机型上线只补链接，旅程不用改</span></li>
               </ul>
             </div>
@@ -876,11 +878,11 @@
     <!-- Journey 2 -->
     <section id="s-journey2" class="section-plain" data-stage="acquire" data-scene="2">
       <div class="wrap">
-      <div class="scene-head"><div class="scene-num" aria-hidden="true">02</div><div class="scene-head-main"><h2>旅程 2｜欢迎与首单激活：按有没有打印机分流</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">见效最快</span><span class="pill pill-info">订阅 → 首单</span><span class="pill">订阅事件触发 · 激励后置 · Email + Web Push</span></div>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">02</div><div class="scene-head-main"><h2>旅程 2｜欢迎与首单激活：按设备与订单分流</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">见效最快</span><span class="pill pill-info">订阅 → 首单</span><span class="pill">订阅事件触发 · 按设备与订单分流 · Email + Web Push</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>新订阅的人分两种：已有打印机来找耗材的，和还在比较机型的。<span class="bold">前者第一封邮件就是按机型选好的耗材</span>，后者先消除分期、退货与到货时效的顾虑，积分放末轮。</p>
+          <p>新订阅的人不全是新客：有已绑定设备来找耗材的，有下了单还没收到货的，也有还在比较机型的。<span class="bold">先按设备与订单分流</span>，只有没买过的人才收到首单内容，积分放末轮。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email 模板消息 · Web Push 通知消息　｜　<span class="bold">触发方式</span>：事件「订阅邮件营销」（结账页勾选除外）　｜　<span class="bold">退出条件</span>：官网下单即退出</p>
         </div>
       </div>
@@ -895,7 +897,7 @@
             <div class="callout-body">
               <ul>
                 <li>$299–$949 的整机决策以天计，欢迎邮件之后需要第二、第三个购买理由</li>
-                <li>结账时勾选订阅的人刚下完单，不该再收到首单激活内容</li>
+                <li>结账页勾选或下单后在页脚订阅的人已经是买家，不该收到首单激活内容</li>
                 <li>已有打印机的用户收到机型介绍，等于被当成陌生人</li>
               </ul>
             </div>
@@ -908,9 +910,9 @@
                 <li><span class="bold">再次进入</span>：不可再次进入</li>
                 <li><span class="bold">提前退出</span>：事件「订单支付成功」</li>
                 <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天</li>
-                <li><span class="bold">条件分支</span>：属性「设备清单」
+                <li><span class="bold">条件分支</span>：按设备与订单分流
                   <ul>
-                    <li>非空（已绑定设备）：
+                    <li>属性「设备清单」非空（已绑定设备）：
                       <ul>
                         <li><span class="bold">Webhook 取数</span>：调用贵司推荐引擎，传入机型，取回 3 个耗材或配件 SKU</li>
                         <li><span class="bold">Email 模板消息</span>：「{{机型}} 的常用耗材」，名称、图片与价格来自返回值，缺值走默认兜底</li>
@@ -922,7 +924,14 @@
                         </li>
                       </ul>
                     </li>
-                    <li>默认（无设备）：
+                    <li>属于用户分群「近 30 天官网购机」：结束，订单履约与绑定由旅程 4 承接</li>
+                    <li>属性「官网订单数」大于 0（在官网买过、还没绑定设备）：
+                      <ul>
+                        <li><span class="bold">Webhook 取数</span>：调用贵司推荐引擎，返回上次官网购买的商品与同类耗材推荐</li>
+                        <li><span class="bold">Email 模板消息</span>：欢迎回来，绑定 Flash Studio 后的远程监控与耗材预设参数，附同类耗材推荐；结束</li>
+                      </ul>
+                    </li>
+                    <li>默认（无设备、无官网订单）：
                       <ul>
                         <li><span class="bold">Email 模板消息一</span>：欢迎与机型对比页，不带折扣</li>
                         <li><span class="bold">等待</span>：2 个日历日</li>
@@ -941,7 +950,7 @@
                   </ul>
                 </li>
                 <li><span class="bold">交接</span>：注册账号后的欢迎沿用 Shopify 客户账户欢迎通知，本旅程只接订阅，两者不重复；Shopify 侧已开启欢迎自动化时，第 1 周二选一：排除本旅程的无设备分支，或把 Shopify 的订阅事件接入 MA，由本旅程统一发送；已绑定设备分支两种情况都保留</li>
-                <li><span class="muted">埋点：订阅邮件营销经 Shopify 对接接入，取 Shopify 客户邮件营销同意变为已订阅的时刻与来源；设备清单由 App 写入</span></li>
+                <li><span class="muted">埋点：订阅邮件营销经 Shopify 对接接入，取 Shopify 客户邮件营销同意变为已订阅的时刻与来源；设备清单由 App 写入；官网订单数为 Shopify 客户原生字段，含历史订单；「近 30 天官网购机」由 MA 分群按订单事件计算</span></li>
               </ul>
             </div>
           </div>
@@ -1767,8 +1776,8 @@
           <tbody>
             <tr class="tone-info"><td>App 启动、App 安装状态、Web Push 订阅状态</td><td>SDK 标准事件与属性</td><td>—</td><td>EngageLab SDK，无需开发</td><td>2 · 3 · 4 · 9 · 11</td></tr>
             <tr class="tone-info"><td>订阅邮件营销、浏览商品、加入购物车、开始结账、订单支付成功、订单发货、订单取消与退款</td><td>业务事件</td><td>订阅来源、商品、购物车含打印机、订单号、含打印机与含耗材、是否预售与预售批次</td><td>Shopify 店铺，经 Shopify 对接接入</td><td>2 · 3 · 4 · 5 · 6 · 10 · 11</td></tr>
-            <tr class="tone-info"><td>邮件营销同意、官网订单数</td><td>用户属性</td><td>—</td><td>Shopify 客户原生字段，经 Shopify 对接同步</td><td>3 · 6 · 8 · 9 · 10 · 11</td></tr>
-            <tr class="tone-info"><td>补货候选、沉睡设备、升级候选、配件高频更换、本次活动目标人群</td><td>用户分群</td><td>打印用量求和、打印时间窗、配件订单次数、近 7 天订阅与下单</td><td>EngageLab 用户分群，按表内事件计算，无需开发</td><td>6 · 9 · 10 · 11</td></tr>
+            <tr class="tone-info"><td>邮件营销同意、官网订单数</td><td>用户属性</td><td>—</td><td>Shopify 客户原生字段，经 Shopify 对接同步</td><td>2 · 3 · 6 · 8 · 9 · 10 · 11</td></tr>
+            <tr class="tone-info"><td>补货候选、沉睡设备、升级候选、配件高频更换、近 30 天官网购机、本次活动目标人群</td><td>用户分群</td><td>打印用量求和、打印时间窗、配件订单次数、近 7 天订阅与下单</td><td>EngageLab 用户分群，按表内事件计算，无需开发</td><td>2 · 6 · 9 · 10 · 11</td></tr>
             <tr><td>设备绑定成功、设备解绑、打印开始、打印完成、首次打印完成、打印失败、体验评分提交</td><td>设备与 App 事件</td><td>设备 ID、机型、机型页链接、是否首次绑定、错误码与错误类别、材质、颜色、用量（取自切片文件）、时长、评分</td><td>Flash Studio 与云平台，贵司上报</td><td>1 · 4 · 6 · 7 · 8 · 9</td></tr>
             <tr><td>设备清单（每台设备的设备 ID、机型、绑定日期、保修到期日、累计打印时长）、设备数量</td><td>object array 与属性</td><td>按设备 ID 增量更新：绑定时新增、解绑时删除、打印完成后更新该台时长</td><td>App 账户系统、云平台与订单系统，贵司写入</td><td>2 · 7 · 10 · 11</td></tr>
             <tr><td>订单签收、退货表单提交、官网评价提交、工单已解决</td><td>业务事件</td><td>订单号、评分</td><td>物流系统 · 退货表单 · 评价系统 · 客服系统</td><td>4 · 5 · 8</td></tr>
@@ -1828,7 +1837,7 @@
         <table>
           <thead><tr><th>周</th><th>目标</th><th>我方动作</th><th>客户动作</th><th>验收口径</th></tr></thead>
           <tbody>
-            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案与 Shopify 对接配置、测试环境、开通测试 VIP 账号</td><td>确认事件清单；授权 Shopify 店铺对接，接入客户、订单、加购、结账与浏览事件；官网开启 Web Push 订阅入口；App 侧上报设备事件（App Push 沿用已开通应用）；App 登录与 Shopify 客户统一以邮箱作为用户标识；设备绑定事件附带机型页链接、打印完成事件附带用量、打印失败事件附带错误类别；物流与评价事件同步；发信域名认证；盘点 Shopify 侧与现有邮件平台已开启的自动化，逐条确定排除或改由 MA 发送</td><td>核心事件入库率 ≥ 95%</td></tr>
+            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案与 Shopify 对接配置、测试环境、开通测试 VIP 账号</td><td>确认事件清单；授权 Shopify 店铺对接，接入客户、订单、加购、结账与浏览事件；官网开启 Web Push 订阅入口；App 侧上报设备事件，并在绑定完成页展示本机型首印引导（App Push 沿用已开通应用）；App 登录与 Shopify 客户统一以邮箱作为用户标识；设备绑定事件附带机型页链接、打印完成事件附带用量、打印失败事件附带错误类别；物流与评价事件同步；发信域名认证；盘点 Shopify 侧与现有邮件平台已开启的自动化，逐条确定排除或改由 MA 发送</td><td>核心事件入库率 ≥ 95%</td></tr>
             <tr><td><span class="step-num">2</span></td><td>核心旅程小流量上线</td><td>配置旅程 1 · 4 · 7；设全局频控上限：App Push 通知消息每日 ≤ 2 条、每周 ≤ 5 条，营销内容按每日 1 条设计，为首印与排错预留额度；Email 每周 ≤ 4 条，营销旅程按每周 3 条设计，为履约与预售邮件预留额度；旅程 1、7 设较高旅程优先级</td><td>审核文案与深度链接；按第 1 周盘点结果关闭或保留 Shopify 侧的重叠自动化</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错</td></tr>
             <tr><td><span class="step-num">3</span></td><td>全量与对照</td><td>扩至全量，补齐旅程 2 · 3 · 5 · 6 · 8 · 9 · 10；旅程 11 按最近一次活动日历配置；监控与调优</td><td>划出 10–20% 对照组不进旅程（用测试分组属性在进入条件排除），同一批用户对十一条旅程一致排除；评价系统对已绑定设备的订单关闭自动邀评，与旅程 8 上线同步</td><td>样本量达标；送达、点击、转化数据；与 Shopify 侧保留的自动化并行的旅程，对比其当前数据</td></tr>
             <tr><td><span class="step-num">4</span></td><td>复盘扩面</td><td>效果报告；用真实数据校准漏斗各层；下批旅程（拓展场景 12–17）</td><td>决策扩面；国内 App 排期对齐</td><td>主指标相对对照组的提升</td></tr>
@@ -2110,12 +2119,16 @@
     drawJourney(document.getElementById('dag-j2'),
       [
         { id: 'start', kind: 'entry', title: '开始', sub: '事件: 订阅邮件营销 · 非结账页' },
-        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: 设备清单' },
+        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '设备清单 · 分群 · 官网订单数' },
         { id: 'wh', kind: 'branch', title: 'Webhook 取数', sub: '推荐引擎按机型选耗材' },
         { id: 'em0', kind: 'channel', title: 'Email 模板消息', sub: '机型常用耗材' },
         { id: 'we0', kind: 'wait', title: '等待事件', sub: '3 天 · 加入购物车' },
         { id: 'endA', kind: 'exitOk', title: '结束', sub: '加购交旅程 3' },
         { id: 'endB', kind: 'exitEnd', title: '结束', sub: '未加购' },
+        { id: 'endJ4', kind: 'exitEnd', title: '结束', sub: '履约中 · 交旅程 4' },
+        { id: 'whR', kind: 'branch', title: 'Webhook 取数', sub: '上次官网购买 · 同类耗材' },
+        { id: 'emR', kind: 'channel', title: 'Email 模板消息', sub: '欢迎回来 · 绑定理由 · 耗材' },
+        { id: 'endR', kind: 'exitEnd', title: '结束', sub: '已发欢迎回来' },
         { id: 'em1', kind: 'channel', title: 'Email 模板消息一', sub: '欢迎 · 机型对比' },
         { id: 'w1', kind: 'wait', title: '等待', sub: '2 个日历日' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
@@ -2131,7 +2144,8 @@
         { from: 'start', to: 'cond1' },
         { from: 'cond1', to: 'wh', label: '已绑定设备' }, { from: 'wh', to: 'em0' }, { from: 'em0', to: 'we0' },
         { from: 'we0', to: 'endA', label: '已加购' }, { from: 'we0', to: 'endB', label: '未加购' },
-        { from: 'cond1', to: 'em1', label: '无设备' }, { from: 'em1', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'cond2' },
+        { from: 'cond1', to: 'endJ4', label: '近 30 天购机' }, { from: 'cond1', to: 'whR', label: '有官网订单' }, { from: 'whR', to: 'emR' }, { from: 'emR', to: 'endR' },
+        { from: 'cond1', to: 'em1', label: '默认' }, { from: 'em1', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'cond2' },
         { from: 'cond2', to: 'wp', label: '已订阅' }, { from: 'cond2', to: 'em2', label: '未订阅' },
         { from: 'wp', to: 'w2' }, { from: 'em2', to: 'w2' }, { from: 'w2', to: 'st2' }, { from: 'st2', to: 'em3' }, { from: 'em3', to: 'endC' },
       ]);
