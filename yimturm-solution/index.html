@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>EngageLab MA · 影腾智联 App 日活与云服务收入自动化方案</title>
+  <title>EngageLab MA · 影腾智联 App 日活与云录像收入自动化方案</title>
   <style>
     :root {
       --bg: #ffffff;
@@ -605,6 +605,10 @@
     main > section[data-scene] { break-before: page; }
     .chart svg .bar { opacity: 1 !important; }
   }
+
+  .cfg-list ul { margin: 5px 0 6px; padding-left: 18px; list-style: circle; }
+  .cfg-list ul ul { list-style: square; }
+  .card-body .cfg-list li li { margin-bottom: 3px; font-size: 13.2px; }
 </style>
 
 
@@ -624,11 +628,11 @@
           <a href="#s-journey3"><span class="sd-n">3</span>沉默用户分层召回</a>
           <a href="#s-journey4"><span class="sd-n">4</span>云录像开通：告警当下</a>
           <a href="#s-journey5"><span class="sd-n">5</span>云录像到期续费</a>
-          <a href="#s-journey6"><span class="sd-n">6</span>4G 流量余量与续费</a>
+          <a href="#s-journey6"><span class="sd-n">6</span>电量预警</a>
           <a href="#s-journey7"><span class="sd-n">7</span>设备离线唤醒</a>
           <a href="#s-journey8"><span class="sd-n">8</span>绑定首周引导</a>
           <a href="#s-journey9"><span class="sd-n">9</span>安装未绑定引导</a>
-          <a href="#s-journey10"><span class="sd-n">10</span>设备电量预警</a>
+          <a href="#s-journey10"><span class="sd-n">10</span>告警通知权限找回</a>
         </div>
       </div>
       <a href="#s-data">数据整合</a>
@@ -642,13 +646,13 @@
     <section class="hero">
       <div class="wrap">
         <div class="hero-pills">
-          <span class="pill pill-accent">智能摄像头 · 家用安防</span>
+          <span class="pill pill-accent">智能摄像头 · 室外太阳能供电</span>
           <span class="pill pill-info">App「影腾智联」· Android 为主</span>
           <span class="pill">国内市场</span>
           <span class="pill">客户定制提案</span>
         </div>
-        <h1>影腾智联 · <span class="grad">App 日活与云服务收入自动化方案</span></h1>
-        <p class="hero-subtitle">让每一次触达都由设备的真实事件驱动：看家日报与沉默召回把日活和广告展示推到同一条曲线上，云录像与 4G 流量的续费提醒锚在到期日与余量上。</p>
+        <h1>影腾智联 · <span class="grad">App 日活与云录像收入自动化方案</span></h1>
+        <p class="hero-subtitle">让每一次触达都由设备的真实事件驱动：看家日报与沉默召回把没有告警的日子变成打开 App 的日子，云录像的开通与续费落在告警发生与到期日上，电量与离线提醒守住在线设备。</p>
         <div class="grid grid-4">
           <div class="stat">
             <div class="stat-value warn">5507 万台</div>
@@ -675,38 +679,37 @@
     <section id="s-market" class="section-plain">
       <div class="wrap">
         <div class="eyebrow">业务洞察</div>
-        <h2><span class="secnum">1</span>硬件是入口，App 是收入：三条收入曲线的转化时点都在设备事件上</h2>
-        <p>影腾的摄像机以百元级价格经拼多多、天猫、京东与抖音售出，App 承担三条收入曲线：开屏与插屏广告随日活起伏，云录像按套餐付费，4G 室外机的流量套餐按周期续费。IoT 应用的广告变现以开屏与插屏为主（Taku × TopOn《2025H1 全球应用广告变现报告》），<span class="bold">广告收入因此是日活的函数，而日活取决于用户被什么理由打开 App</span>。三条曲线的共同点是<span class="bold">转化时点落在设备的真实事件上</span>——告警发生、余量见底、到期日、设备离线——而不在运营日历上。</p>
+        <h2><span class="secnum">1</span>硬件是入口，App 是收入：两条收入曲线的转化时点都在设备事件上</h2>
+        <p>影腾在售的摄像机以室外太阳能供电、蜂窝网络联网的机型为主，流量随设备配发，用户无需充值。App 因此承担两条收入：开屏、插屏等广告随日活起伏，云录像按套餐付费。IoT 应用的广告变现以开屏与插屏为主（Taku × TopOn《2025H1 全球应用广告变现报告》），<span class="bold">广告收入是日活的函数</span>。两条收入的转化时点都落在<span class="bold">设备的真实事件</span>上：告警发生、到期日、电量下降、设备离线。</p>
         <div class="spacer-md"></div>
         <div class="grid" style="grid-template-columns:1fr">
           <div class="card">
-            <div class="card-header">三条收入曲线与本方案介入的时点</div>
+            <div class="card-header">两条收入曲线与本方案介入的时点</div>
             <div class="card-body">
               <table>
                 <thead><tr><th>收入曲线</th><th>决定变量</th><th>本方案介入的时点</th><th>驱动旅程</th></tr></thead>
                 <tbody>
                   <tr class="tone-info"><td>广告（开屏 · 插屏 · 激励视频）</td><td>日活 × 人均打开次数 × 每次打开的广告展示 × eCPM</td><td>没有告警的日子（日报）、设备在线但 App 沉默（召回）、高活跃未付费用户的激励视频入口</td><td>1 · 2 · 3</td></tr>
                   <tr><td>云录像套餐</td><td>开通率 × 续费率</td><td>告警发生的当下、到期前 7 天与前 1 天、过期后云端录像清除之前</td><td>4 · 5</td></tr>
-                  <tr><td>4G 流量套餐</td><td>用尽前充值率 × 设备在线率</td><td>余量低于阈值、离线 72 小时且流量为零</td><td>6 · 7</td></tr>
-                  <tr><td>三条曲线共同的基数</td><td>安装到绑定、绑定后首周留存、家人共享账号数</td><td>首次启动未绑定、绑定后 7 天内</td><td>8 · 9</td></tr>
+                  <tr><td>两条曲线共同的基数</td><td>在线设备数、已绑定账号数、告警通知可达</td><td>电量下降、离线 72 小时、首次启动未绑定、绑定首周、通知权限关闭</td><td>6 – 10</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
           <div class="card">
-            <div class="card-header">产品线在用户生命周期中的角色</div>
+            <div class="card-header">设备与账号特征在本方案中的用途</div>
             <div class="card-body">
               <table>
-                <thead><tr><th>品类</th><th>在售渠道与价格带</th><th>在本方案中的角色</th><th>驱动旅程</th></tr></thead>
+                <thead><tr><th>特征</th><th>对旅程的影响</th><th>驱动旅程</th></tr></thead>
                 <tbody>
-                  <tr class="tone-info"><td>4G 太阳能室外摄像机</td><td>拼多多、天猫在售，约 120–150 元</td><td>流量套餐与云录像双续费；离线原因按流量余量分流</td><td>4 · 5 · 6 · 7</td></tr>
-                  <tr><td>WiFi 室内摄像机</td><td>天猫、京东在售，约 100 元</td><td>云录像开通与家人共享；看家模式与在家免打扰的设置引导</td><td>4 · 5 · 8</td></tr>
-                  <tr><td>智能门铃</td><td>App 支持门铃绑定与来访推送，型号以贵司在售清单为准</td><td>事件触发口径与摄像机一致，按设备类型属性区分文案</td><td>4 · 7</td></tr>
-                  <tr><td>随身 WiFi · 行车记录仪</td><td>同品牌店铺在售，不经本 App 绑定</td><td>不进主线；作为已绑定 4G 机用户的跨品类推荐（拓展场景 12）</td><td>—</td></tr>
+                  <tr class="tone-info"><td>室外太阳能供电（含风能、太阳能双供电机型）</td><td>板面遮挡与连续阴雨会让电量持续下降直到离线，干预点应在离线之前</td><td>6 · 7</td></tr>
+                  <tr><td>蜂窝网络联网，流量随设备配发</td><td>没有流量续费环节；离线原因收敛为电量、信号与其他故障三类</td><td>7</td></tr>
+                  <tr><td>AI 人形检测等告警</td><td>告警事件是日报、召回与云录像开通的触发信号</td><td>2 · 3 · 4</td></tr>
+                  <tr><td>手机号或微信登录，未采集邮箱</td><td>触达以 App Push 为主，有手机号的用户可短信兜底，不使用 Email</td><td>3 · 5 · 6 · 7 · 9 · 10</td></tr>
                 </tbody>
               </table>
               <ul class="notelist">
-                <li>在售价取自各电商平台店铺页 2026 年 9 月标价，用于说明价格带，不作为旅程分流阈值。</li>
+                <li>设备特征取自贵司电商店铺在售商品页与应用商店描述；具体型号与联网方式以贵司在售清单为准。</li>
               </ul>
             </div>
           </div>
@@ -719,7 +722,7 @@
       <div class="wrap">
         <div class="eyebrow">用户漏斗与行业基准</div>
         <h2><span class="secnum">2</span>用户漏斗：五个可被自动化直接影响的环节</h2>
-        <p>最值钱的一层是月活到云录像付费：行业龙头做到年度付费用户占月活约 5.9%，并且用了数年。其次是日活本身——每一个没有理由打开 App 的日子，都是没有广告展示的日子。</p>
+        <p>最值钱的一层是月活到云录像付费：行业龙头做到年度付费用户占月活约 5.9%，并且用了数年。其次是日活本身，每一个没有理由打开 App 的日子，都是没有广告展示的日子。</p>
         <div class="spacer-md"></div>
         <div class="grid" style="grid-template-columns:1fr">
           <div class="card">
@@ -738,7 +741,7 @@
                 <thead><tr><th>主体</th><th>场景</th><th>效果</th><th>来源</th></tr></thead>
                 <tbody>
                   <tr><td>萤石网络</td><td>消费者云增值服务</td><td>2025 年月活 7791.92 万、年度累计付费用户 463.45 万（约 5.9%）；消费者端增值服务收入 5.29 亿元、同比 +2.55%</td><td>萤石网络 2025 年年度报告</td></tr>
-                  <tr><td>EngageLab 同行业客户（智能摄像头 App，海外市场）</td><td>广告投放旅程：按活跃度分层下发开屏与插屏策略</td><td>切换当日日活 +9.34%，随后连续 7 天正增长、周均 +4.71%；单条旅程覆盖 253 万用户，送达率 99.85%</td><td>EngageLab 客户实测</td></tr>
+                  <tr><td>EngageLab 同行业客户（智能摄像头 App，海外市场）</td><td>广告投放旅程：按活跃度分层下发开屏与插屏配置</td><td>切换当日日活 +9.34%，随后连续 7 天正增长、周均 +4.71%；单条旅程覆盖 253 万用户，送达率 99.85%</td><td>EngageLab 客户实测</td></tr>
                   <tr><td>同上</td><td>试用到期转付费 · 续费提醒</td><td>推送点击率最高 6.32% / 6.82%；试用转付费旅程上线首月新客收入 +11.5%</td><td>EngageLab 客户实测</td></tr>
                   <tr><td>Taku × TopOn</td><td>IoT 与工具品类广告变现</td><td>IoT 应用的广告变现以开屏与插屏为主；工具品类开屏 eCPM 为其他品类的 3–5 倍</td><td>《2025H1 全球应用广告变现报告》</td></tr>
                   <tr><td>推送行业公开基准（多品牌汇总）</td><td>分层定向 vs 全量群发</td><td>点击率 5% vs 2.5%</td><td>2025 年推送行业基准报告</td></tr>
@@ -757,29 +760,26 @@
       <div class="wrap">
         <div class="eyebrow">场景总览</div>
         <h2><span class="secnum">3</span>十条运营旅程</h2>
-        <p>旅程 1–3 承接日活层，直接作用于广告展示；旅程 4–6 承接两条付费曲线；旅程 7–10 守住在线设备与账号数。十条旅程的进入条件互不重叠，旅程 6、7、10 在「流量用尽」「电量耗尽」两种离线原因上明确交接，不重复触达。</p>
+        <p>旅程 1–3 承接日活，直接作用于广告展示；旅程 4–5 承接云录像收入；旅程 6–10 守住在线设备与可触达账号。旅程 6 与旅程 7 按离线前后交接，旅程 7 发送时按离线原因分流。</p>
         <div class="spacer-md"></div>
         <table>
           <thead><tr><th>#</th><th>场景</th><th>承接漏斗环节</th><th>主渠道组合</th><th>亮点</th><th>见效节奏</th><th>预期效果</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>1</td><td>广告展示机会分层放大</td><td>绑定用户 → 日活（广告展示）</td><td>App Push 自定义消息</td><td>默认不减少任何广告位；高活跃未付费用户加开激励视频入口；减少投放只作 10% 对照组 A/B，收益在广告平台报表按组验收</td><td>首月见效</td><td>日活 +4.7–9.3%（相对）；人均广告收入以对照组验收</td></tr>
-            <tr class="tone-info"><td>2</td><td>看家日报</td><td>绑定用户 → 日活</td><td>App Push 通知消息</td><td>内容取自设备当日真实事件数，无事件且近期活跃的用户不打扰</td><td>首月见效</td><td>与旅程 1 合并计入日活提升</td></tr>
-            <tr><td>3</td><td>沉默用户分层召回（7 / 14 / 30 天）</td><td>绑定用户 → 日活</td><td>App Push 通知 + SMS 兜底</td><td>只召回设备在线但 App 沉默的用户；30 天以上短信兜底覆盖已卸载者</td><td>首月见效</td><td>召回推送点击率 5–7%</td></tr>
-            <tr class="tone-info"><td>4</td><td>云录像开通：告警发生的当下</td><td>月活 → 云录像付费</td><td>应用内消息 + App Push 通知</td><td>触发点是「这一次动态没有保存到云端」，而不是日历促销；高频告警用户单独给力度</td><td>首月见效</td><td>月活到付费 5.9% → 6.5–7%</td></tr>
-            <tr><td>5</td><td>云录像到期续费（前 7 天 / 前 1 天 / 后 3 天）</td><td>到期 → 续费</td><td>App Push 通知 + SMS</td><td>自动续费用户只收一条告知；过期后按云端录像剩余保留天数提醒</td><td>首月见效</td><td>到期用户续费 55% → 60–65%</td></tr>
-            <tr><td>6</td><td>4G 流量余量与套餐续费</td><td>到期 → 续费（4G 设备）</td><td>App Push 通知 + SMS</td><td>每台设备一个独立实例，余量、充值与离线按设备各自计</td><td>首月见效</td><td>用尽前充值率提升、离线台数下降</td></tr>
-            <tr><td>7</td><td>设备离线唤醒：按离线原因分流</td><td>离线 → 7 天内恢复</td><td>App Push 通知 + SMS 兜底</td><td>4G 机先取流量余量，流量为零交旅程 6 承接；排查指引按设备类型给</td><td>需数据积累</td><td>离线 7 天内恢复 40% → 50–60%</td></tr>
-            <tr><td>8</td><td>绑定首周引导：通知权限、看家模式、家人共享</td><td>绑定 → 首周留存</td><td>应用内消息 + App Push 通知</td><td>共享给家人等于同一台设备多一个日活账号</td><td>需数据积累</td><td>通知权限开启率、家人共享率</td></tr>
-            <tr><td>9</td><td>安装未绑定引导</td><td>安装 → 绑定设备</td><td>App Push 通知 + 应用内消息 + SMS 兜底</td><td>首次启动是 SDK 自带事件，不需要埋点开发；第 5 天仍未绑定的用户有手机号可短信兜底</td><td>首月见效</td><td>安装到绑定 70% → 76–80%</td></tr>
-            <tr><td>10</td><td>设备电量预警（太阳能机）</td><td>离线 → 7 天内恢复（离线前介入）</td><td>App Push 通知 + SMS</td><td>电量低于 20% 即提醒检查太阳能板，把干预点放在离线之前；每台设备一个实例</td><td>需数据积累</td><td>因电量耗尽离线的台数下降</td></tr>
+            <tr class="tone-info"><td>1</td><td>广告展示机会分层放大</td><td>绑定用户 → 日活</td><td>App Push 自定义消息</td><td>默认不减少任何广告位；高活跃未付费用户加开激励视频入口；减少投放只作 10% 对照测试，收益在广告平台报表按组验收</td><td>首月见效</td><td>日活 +4.7–9.3%（相对）；人均广告收入以对照组验收</td></tr>
+            <tr class="tone-info"><td>2</td><td>看家日报</td><td>绑定用户 → 日活</td><td>App Push 通知消息</td><td>发送时取当日真实事件数；设备离线、当日无事件且近期活跃的用户不发</td><td>首月见效</td><td>与旅程 1 合并计入日活提升</td></tr>
+            <tr><td>3</td><td>沉默用户分层召回（7 / 14 / 30 天）</td><td>绑定用户 → 日活</td><td>App Push 通知 + SMS 兜底</td><td>只召回设备在线的沉默用户；一周无动态的改发设备健康周报</td><td>首月见效</td><td>召回推送点击率 5–7%</td></tr>
+            <tr class="tone-info"><td>4</td><td>云录像开通：告警发生的当下</td><td>月活 → 云录像付费</td><td>应用内消息 + App Push 通知</td><td>触发点是这一次动态没有云端备份；高频告警用户取优惠码，低频用户改用激励视频换试看</td><td>首月见效</td><td>月活到付费 5.9% → 6.5–7%</td></tr>
+            <tr><td>5</td><td>云录像到期续费（前 7 天 / 前 1 天 / 后 3 天）</td><td>到期 → 续费</td><td>App Push 通知 + SMS</td><td>自动续费用户只收一条告知；过期后按云端录像的真实清除日期提醒</td><td>首月见效</td><td>到期用户续费 55% → 60–65%</td></tr>
+            <tr><td>6</td><td>电量预警（离线前介入）</td><td>离线 → 7 天内恢复</td><td>App Push 通知 + SMS</td><td>电量低于 20% 即提醒检查太阳能板；每台设备一个实例</td><td>需数据积累</td><td>因电量耗尽离线的台数下降</td></tr>
+            <tr><td>7</td><td>设备离线唤醒：按离线原因分流</td><td>离线 → 7 天内恢复</td><td>App Push 通知 + SMS</td><td>发送时取离线前最后上报的电量与信号，按原因给排查指引</td><td>需数据积累</td><td>离线 7 天内恢复 40% → 50–60%</td></tr>
+            <tr><td>8</td><td>绑定首周引导：报警设置与家人共享</td><td>绑定用户 → 日活</td><td>App Push 通知</td><td>共享给家人等于同一台设备多一个日活账号</td><td>需数据积累</td><td>家人共享率（对照组比较）</td></tr>
+            <tr><td>9</td><td>安装未绑定引导</td><td>安装 → 绑定设备</td><td>App Push 通知 + 应用内消息 + SMS 兜底</td><td>进入事件为 SDK 自带的 App 启动；每一步先看用户是否已自行绑定</td><td>首月见效</td><td>安装到绑定 70% → 76–80%</td></tr>
+            <tr><td>10</td><td>告警通知权限找回</td><td>绑定用户 → 日活</td><td>应用内消息 + SMS</td><td>进入事件为 SDK 自带的通知权限关闭；推送到不了这批用户，改用应用内消息与短信</td><td>首月见效</td><td>通知权限恢复率（对照组比较）</td></tr>
             <tr><td colspan="7" style="background:#f8fafc;font-weight:700;color:var(--text-3);font-size:12.5px;letter-spacing:.04em">拓展场景 · 测试期后按优先级推进，本方案不编排</td></tr>
-            <tr><td>11</td><td>使用满意度与应用商店评价引导</td><td>绑定 → 首周留存</td><td>应用内消息</td><td>低分先转客服，问题解决后同样开放评价入口</td><td>依赖客户侧能力（客服工单流程）</td><td>评价率与评分</td></tr>
-            <tr><td>12</td><td>跨品类推荐：随身 WiFi 与行车记录仪</td><td>月活 → 付费</td><td>App Push 自定义消息（运营位）</td><td>面向已绑定 4G 机的用户推荐同品牌流量类产品，落地到店铺页</td><td>需数据积累</td><td>跨品类下单</td></tr>
-            <tr><td>13</td><td>家人共享成员的首周激活</td><td>绑定 → 首周留存</td><td>应用内消息 + App Push 通知</td><td>被邀请者是新账号，同样需要通知权限引导与日报</td><td>需数据积累</td><td>共享成员日活</td></tr>
-            <tr><td>14</td><td>云录像大促（618 / 双 11）按人群分流</td><td>月活 → 云录像付费</td><td>App Push 通知 + SMS</td><td>历史未付费、已过期、使用中三路不同内容与力度，购买即退出</td><td>长周期培育（按大促日历）</td><td>大促期开通率</td></tr>
-            <tr><td>15</td><td>第二台设备加购</td><td>月活 → 付费</td><td>App Push 通知</td><td>单机用户在绑定 60 天后按告警频次与户型推荐加装</td><td>需数据积累</td><td>多设备用户占比</td></tr>
-            <tr><td>16</td><td>云录像试用到期转付费（前 1 天 / 后 1 天）</td><td>月活 → 云录像付费</td><td>App Push 通知 + 应用内消息</td><td>试用到期日是付费意愿最集中的时点，两条消息各自锚定到期日</td><td>依赖客户侧能力（是否提供试用期）</td><td>试用转付费率</td></tr>
-            <tr><td>17</td><td>通知权限关闭后的再引导</td><td>绑定 → 首周留存</td><td>应用内消息</td><td>SDK 事件「通知权限关闭」触发，不需要埋点开发；所有推送旅程都依赖这个权限</td><td>首月见效</td><td>通知权限恢复率</td></tr>
+            <tr><td>11</td><td>使用满意度与应用商店评价引导</td><td>绑定用户 → 日活</td><td>应用内消息</td><td>低分先转客服，问题解决后同样开放评价入口</td><td>依赖客户侧能力（客服工单流程）</td><td>评价率与评分</td></tr>
+            <tr><td>12</td><td>家人共享成员的首周激活</td><td>绑定用户 → 日活</td><td>应用内消息 + App Push 通知</td><td>被邀请者是新账号，同样需要报警设置引导与日报</td><td>需数据积累</td><td>共享成员日活</td></tr>
+            <tr><td>13</td><td>云录像大促（618 / 双 11）按人群分流</td><td>月活 → 云录像付费</td><td>App Push 通知 + SMS</td><td>历史未付费、已过期、使用中三路不同内容与力度，购买即退出</td><td>长周期培育（按大促日历）</td><td>大促期开通率</td></tr>
+            <tr><td>14</td><td>云录像试用到期转付费（前 1 天 / 后 1 天）</td><td>月活 → 云录像付费</td><td>App Push 通知 + 应用内消息</td><td>试用到期日是付费意愿最集中的时点，两条消息各自锚定到期日</td><td>依赖客户侧能力（是否提供试用期）</td><td>试用转付费率</td></tr>
           </tbody>
         </table>
         <ul class="notelist">
@@ -792,11 +792,11 @@
     <section id="s-journey1" class="section-plain" data-stage="retain" data-scene="1">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">01</div><div class="scene-head-main"><h2>旅程 1｜广告展示机会分层放大</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">广告收入直接相关</span><span class="pill pill-info">日活与广告展示</span><span class="pill">分群进入 · 每日重判 · App Push 自定义消息 · 效果在广告平台报表按组验收</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">广告收入直接相关</span><span class="pill pill-info">日活与广告展示</span><span class="pill">分群进入 · 每日重判 · App Push 自定义消息 · 广告平台报表按组验收</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>默认分支不改任何现有广告位。增量来自两处：高活跃未付费用户加开<span class="bold">激励视频入口</span>，旅程 2、3 拉回的每次打开都是一次开屏展示。给新用户或付费用户少投插屏，只作 10% 对照组的 A/B。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 自定义消息　｜　<span class="bold">触发方式</span>：用户分群「已绑定设备用户」，每日重新判定　｜　<span class="bold">退出条件</span>：解绑全部设备即退出</p>
+          <p>默认分支不改现有广告位。增量来自高活跃未付费用户新增的<span class="bold">激励视频入口</span>，以及旅程 2、3 拉回的每一次开屏。对新用户或付费用户少投插屏，只作 10% 对照测试。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 自定义消息　｜　<span class="bold">触发方式</span>：用户分群「已绑定设备用户」，每日重新判定　｜　<span class="bold">退出条件</span>：每日单条配置消息，发出即结束</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -809,28 +809,38 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>广告平台决定每次展示投什么，但制造不了一次打开，也不知道谁是付费用户、谁绑定第 3 天</li>
-                <li>激励视频与插屏的 eCPM 在国内长期高于开屏，而激励视频需要一个用户主动进入的入口</li>
-                <li>运营动作对广告收入的影响，必须能在贵司每天在看的广告平台报表里按人群拆出来</li>
+                <li>广告平台决定每次展示投什么，但制造不了一次打开，也不知道谁是付费用户</li>
+                <li>激励视频需要一个用户主动进入的入口，入口给谁决定了它能否不伤体验</li>
+                <li>任何投放调整都必须在贵司每天在看的广告平台报表里按人群拆出结果</li>
               </ul>
             </div>
           </div>
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
-              <ul>
-                <li><span class="bold">开始组件</span>：用户分群「已绑定设备用户」，发布时全量进入，之后满足条件即进入；排除已退订用户</li>
-                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 1 天——每日按最新属性重新判定分支</li>
-                <li><span class="bold">提前退出</span>：事件「解绑全部设备」</li>
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：用户分群「已绑定设备用户」，发布时全量进入，之后满足条件即进入</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 1 天，每日按最新状态重新判定</li>
+                <li><span class="bold">提前退出</span>：不配置，每日只发一条配置消息，发出即结束</li>
                 <li><span class="bold">转化统计</span>：事件「App 启动」（SDK 自带），监听窗口 1 天；广告收入不在 MA 内统计</li>
-                <li><span class="bold">条件分支</span>：属性「近 7 天打开天数」大于等于 5 且「云录像状态」等于未开通 → 激励入口分支；属性「测试分组」等于实验组 且「绑定天数」小于等于 7 → A/B 分支一；属性「测试分组」等于实验组 且「云录像状态」等于有效 → A/B 分支二；默认 → 结束，App 沿用本地广告配置</li>
-                <li><span class="bold">App Push 自定义消息一</span>：JSON 透传字段在现有开屏与插屏之上开启发现页与回放页的激励视频入口，奖励类型与额度由贵司定义（云录像试看天数或流量赠送）；App 端读取后交给广告聚合 SDK 的流量分组，不占通知栏</li>
-                <li><span class="bold">App Push 自定义消息二（A/B）</span>：绑定不满 7 天的实验组，保留冷启与热启开屏、关闭插屏</li>
-                <li><span class="bold">App Push 自定义消息三（A/B）</span>：付费用户实验组，插屏改为激励视频入口</li>
-                <li><span class="bold">对照组与验收</span>：属性「测试分组」等于对照组的用户走默认分支，保持现状；App 把该属性作为自定义流量分组键值传给广告聚合平台，广告平台报表即可按实验组与对照组拆分收益，两组 A/B 以 7 日留存与 7 日人均广告收入净额判定，是否保留由贵司决定</li>
-                <li><span class="bold">等待</span>：1 天后结束，次日重新进入并重判</li>
-                <li><span class="bold">全局频控</span>：自定义消息按消息类型单独设限，不占通知消息额度；透传字段只控制样式启用与频次，不涉及关闭方式等法定要求</li>
-                <li><span class="muted">埋点：绑定天数、云录像状态、测试分组由贵司账户系统写入用户属性；近 7 天打开天数由 SDK 的 App 启动事件聚合；广告展示次数可选上报（广告 SDK 展示回调），只作过程指标</span></li>
+                <li><span class="bold">条件分支</span>：按顺序命中第一个
+                  <ul>
+                    <li>属于分群「近 7 天启动 App 不少于 5 次」，且属性「云录像状态」为未开通：
+                      <ul><li><span class="bold">App Push 自定义消息</span>：在现有开屏与插屏之上开启发现页与回放页的激励视频入口，奖励为云录像试看天数，额度由贵司定义</li></ul>
+                    </li>
+                    <li>属性「测试分组」为实验组，且属性「首次绑定时间」距今不超过 7 天：
+                      <ul><li><span class="bold">App Push 自定义消息</span>：保留冷启与热启开屏，关闭插屏</li></ul>
+                    </li>
+                    <li>属性「测试分组」为实验组，且属性「云录像状态」为有效：
+                      <ul><li><span class="bold">App Push 自定义消息</span>：插屏改为激励视频入口</li></ul>
+                    </li>
+                    <li>默认（含对照组）：结束，App 沿用本地广告配置</li>
+                  </ul>
+                </li>
+                <li><span class="bold">结束</span>：各分支发出后结束，次日重新进入</li>
+                <li><span class="bold">验收</span>：App 把属性「测试分组」作为自定义流量分组键值传给广告聚合平台，广告平台报表按实验组与对照组拆分收益；两组对照测试以 7 日留存与 7 日人均广告收入净额判定，是否保留由贵司决定</li>
+                <li><span class="bold">全局频控</span>：自定义消息按消息类型单独设限，不占通知消息额度；配置字段只控制样式启用与频次，不涉及关闭方式等法定要求</li>
+                <li><span class="muted">数据：「近 7 天启动 App 不少于 5 次」由 MA 分群按 App 启动事件计算；云录像状态、首次绑定时间、测试分组由贵司账户与订单系统写入</span></li>
               </ul>
             </div>
           </div>
@@ -850,11 +860,11 @@
     <section id="s-journey2" class="section-plain" data-stage="retain" data-scene="2">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">02</div><div class="scene-head-main"><h2>旅程 2｜看家日报</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">见效最快</span><span class="pill pill-info">日活与广告展示</span><span class="pill">分群进入 · 每日固定时段 · Webhook 取数 · App Push 通知消息</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">见效最快</span><span class="pill pill-info">日活与广告展示</span><span class="pill">分群进入 · 发送时取当日事件数 · App Push 通知消息</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>给用户一个<span class="bold">告警之外的打开理由</span>：每晚用 Webhook 取当日真实事件数生成日报，「今日家中 3 次动态」直达回放。无事件且近期活跃的用户不发，无事件但三天未打开的用户收到「今日一切正常」。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息　｜　<span class="bold">触发方式</span>：用户分群「已绑定且至少一台设备在线」，每日进入　｜　<span class="bold">退出条件</span>：关闭看家日报即退出</p>
+          <p>给用户一个<span class="bold">告警之外的打开理由</span>：每晚取当日真实事件数生成日报，「今日家中 3 次动态」直达回放。设备离线、当日无事件且近期活跃的用户都不发。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息　｜　<span class="bold">触发方式</span>：用户分群「已绑定设备用户」，每日进入　｜　<span class="bold">退出条件</span>：单条消息，发出即结束</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -869,25 +879,34 @@
               <ul>
                 <li>没有告警的日子，用户没有打开 App 的理由，当日广告展示为零</li>
                 <li>与用户家里实际情况无关的定时推送，点击率随发送次数衰减</li>
-                <li>日报的时点要落在用户回家之后，需要按终端时区而非组织时区</li>
+                <li>日报时点要落在用户回家之后，需要按终端时区而非组织时区</li>
               </ul>
             </div>
           </div>
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
-              <ul>
-                <li><span class="bold">开始组件</span>：用户分群「已绑定且至少一台设备在线」；进入条件排除属性「看家日报开关」等于关闭的用户</li>
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：用户分群「已绑定设备用户」；进入条件排除属性「看家日报开关」为关闭的用户</li>
                 <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 1 天</li>
-                <li><span class="bold">提前退出</span>：事件「关闭看家日报」</li>
+                <li><span class="bold">提前退出</span>：不配置，单条消息，发送前没有需要中断的等待</li>
                 <li><span class="bold">转化统计</span>：事件「App 启动」（SDK 自带），监听窗口 12 小时</li>
-                <li><span class="bold">可发送时间</span>：终端时区 20:30–21:30，放在 Webhook 之前，当日事件数在该时段内取值</li>
-                <li><span class="bold">Webhook</span>：向贵司 IoT 视频平台取当日告警事件数与在线设备数，返回值作为变量与分支依据；请求失败时事件数为空，走默认分支不发送</li>
-                <li><span class="bold">条件分支</span>：当日事件数大于 0 / 事件数为 0 且属性「最后打开 App 时间」距今超过 3 天 / 默认（当日无事件且近期活跃，不发）</li>
-                <li><span class="bold">App Push 通知消息一</span>：「今日家中 {{事件数}} 次动态」，深度链接到当日回放；事件数取自 Webhook 返回值</li>
-                <li><span class="bold">App Push 通知消息二</span>：「今日一切正常，{{在线台数}} 台设备在线」，深度链接到设备列表</li>
-                <li><span class="bold">交接</span>：本旅程只发当日内容；连续多日未打开的用户由旅程 3 按沉默天数承接</li>
-                <li><span class="muted">埋点：告警事件与在线状态由 IoT 视频平台提供查询接口；日报开关为 App 内设置项写入用户属性</span></li>
+                <li><span class="bold">可发送时间</span>：终端时区 20:30–21:30</li>
+                <li><span class="bold">Webhook 取数</span>：向贵司 IoT 视频平台查询该用户当日告警事件数与在线设备数；请求失败时返回值为空，走默认分支</li>
+                <li><span class="bold">条件分支</span>：按顺序命中第一个
+                  <ul>
+                    <li>返回值「在线设备数」为 0：结束，离线由旅程 7 承接</li>
+                    <li>返回值「当日事件数」大于 0：
+                      <ul><li><span class="bold">App Push 通知消息</span>：「今日家中 {{事件数}} 次动态」，深度链接到当日回放</li></ul>
+                    </li>
+                    <li>返回值「当日事件数」为 0，且属于分群「近 3 天未启动 App」：
+                      <ul><li><span class="bold">App Push 通知消息</span>：「今日一切正常，{{在线台数}} 台设备在线」，深度链接到设备列表</li></ul>
+                    </li>
+                    <li>默认（当日无事件且近期活跃）：结束，不发送</li>
+                  </ul>
+                </li>
+                <li><span class="bold">交接</span>：连续一周以上未打开的用户由旅程 3 承接</li>
+                <li><span class="muted">数据：告警事件数与在线状态由 IoT 视频平台查询接口返回；「近 3 天未启动 App」由 MA 分群计算；看家日报开关为 App 设置项，由贵司写入用户属性</span></li>
               </ul>
             </div>
           </div>
@@ -895,7 +914,7 @@
             <div class="callout-title">预期效益参考</div>
             <div class="callout-body">
               <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">与旅程 1 合并计入日活提升 +4.7–9.3%（相对）</span></p>
-              <p style="margin:0">按用户实际事件生成的推送属于分层定向，公开基准下点击率约为全量群发的两倍（5% vs 2.5%）。</p>
+              <p style="margin:0">按用户实际事件生成的推送属于分层定向，公开基准下点击率约为全量群发的两倍（5% vs 2.5%）；每一次点击打开都是一次开屏展示。</p>
             </div>
           </div>
         </div>
@@ -907,11 +926,11 @@
     <section id="s-journey3" class="section-plain" data-stage="retain" data-scene="3">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">03</div><div class="scene-head-main"><h2>旅程 3｜沉默用户分层召回（7 / 14 / 30 天）</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">日活回收</span><span class="pill pill-info">沉默召回</span><span class="pill">属性触发 · 三档分层 · Webhook 取设备状态 · App Push 通知 + SMS 兜底</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">日活回收</span><span class="pill pill-info">沉默召回</span><span class="pill">分群进入 · 发送时查设备状态 · App Push 通知 + SMS 兜底</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>召回的对象限定为<span class="bold">设备仍在线、App 却沉默</span>的用户。三档内容不同：一周用本周动态次数，一周没有任何动态的改发设备健康周报（电量、信号、流量）；两周用看家模式与新功能；一个月以上加短信兜底，覆盖已卸载 App 的人。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：属性「最后打开 App 时间」距今超过 7 天且在线设备数不少于 1　｜　<span class="bold">退出条件</span>：App 启动即退出</p>
+          <p>召回对象限定为<span class="bold">设备仍在线、App 却沉默</span>的用户。一周沉默的发本周动态次数，无动态改发设备健康周报；两周发报警设置与新功能；一个月以上加短信兜底。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：用户分群「近 7–90 天未启动 App 的已绑定用户」　｜　<span class="bold">退出条件</span>：单条消息，发出即结束；启动 App 后离开分群，不再进入</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -926,24 +945,45 @@
               <ul>
                 <li>设备在线但 App 一个月未打开，多半是告警推送已被忽略或关闭</li>
                 <li>长期沉默用户是广告展示基数里最大的一块可回收人群</li>
-                <li>30 天以上的沉默用户可能已卸载 App，通知到不了，需要短信兜底</li>
+                <li>30 天以上的沉默用户可能已卸载 App，推送到不了，需要短信兜底</li>
               </ul>
             </div>
           </div>
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
-              <ul>
-                <li><span class="bold">开始组件</span>：属性「最后打开 App 时间」距今超过 7 天 且 属性「在线设备数」大于等于 1；进入条件加上限 90 天，避免发布首日存量用户一次涌入；排除已退订用户</li>
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：用户分群「近 7–90 天未启动 App 的已绑定用户」，90 天上限避免发布首日存量涌入</li>
                 <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 7 天，最多进入 3 次</li>
-                <li><span class="bold">提前退出</span>：事件「App 启动」（SDK 自带）</li>
-                <li><span class="bold">转化统计</span>：同一事件，监听窗口 1 天</li>
-                <li><span class="bold">条件分支一</span>：属性「最后打开 App 时间」距今 7–13 天 / 14–29 天 / 30 天及以上</li>
-                <li><span class="bold">条件分支二（7–13 天）</span>：属性「近 7 天告警次数」大于 0 → <span class="bold">App Push 通知消息</span>「本周家中 {{近 7 天告警次数}} 次动态待查看」；等于 0 → <span class="bold">Webhook</span> 向 IoT 视频平台取各设备电量、信号与流量余量 → <span class="bold">App Push 通知消息</span>「本周无动态，设备健康周报」，字段取自返回值，请求失败改发设备在线文案</li>
-                <li><span class="bold">App Push 通知消息（14–29 天）</span>：看家模式、在家免打扰与最近版本的新功能，深度链接到设置页</li>
-                <li><span class="bold">条件分支三（30 天及以上）</span>：属性「短信接收状态」两分支——已同意走 SMS 模板消息，未同意走 App Push 通知消息，内容一致：设备在线、家人共享入口</li>
-                <li><span class="bold">可发送时间</span>：终端时区 19:00–21:30，放在每条消息之前</li>
-                <li><span class="muted">埋点：最后打开时间由 SDK 自带；近 7 天告警次数由贵司系统按设备事件聚合后写入用户属性</span></li>
+                <li><span class="bold">提前退出</span>：不配置，单条消息，发送前没有需要中断的等待</li>
+                <li><span class="bold">转化统计</span>：事件「App 启动」（SDK 自带），监听窗口 1 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 19:00–21:30</li>
+                <li><span class="bold">Webhook 取数</span>：向 IoT 视频平台查询近 7 天告警事件数、在线设备数与各设备电量、信号</li>
+                <li><span class="bold">条件分支</span>：按顺序命中第一个
+                  <ul>
+                    <li>返回值「在线设备数」为 0：结束，离线由旅程 7 承接</li>
+                    <li>属于分群「近 30 天未启动 App」：
+                      <ul>
+                        <li><span class="bold">条件分支</span>：属性「短信接收状态」
+                          <ul>
+                            <li>未退订：<span class="bold">SMS 模板消息</span>，设备在线提醒与家人共享入口</li>
+                            <li>已退订：<span class="bold">App Push 通知消息</span>，内容一致</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>属于分群「近 14 天未启动 App」：
+                      <ul><li><span class="bold">App Push 通知消息</span>：报警区域设置与最近版本的新功能，深度链接到设置页</li></ul>
+                    </li>
+                    <li>返回值「近 7 天事件数」大于 0：
+                      <ul><li><span class="bold">App Push 通知消息</span>：「本周家中 {{事件数}} 次动态待查看」</li></ul>
+                    </li>
+                    <li>默认（本周无动态）：
+                      <ul><li><span class="bold">App Push 通知消息</span>：设备健康周报，电量与信号取自返回值</li></ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><span class="muted">数据：沉默天数由 MA 分群按 App 启动事件计算，不需要贵司开发；设备状态由 IoT 视频平台查询接口返回</span></li>
               </ul>
             </div>
           </div>
@@ -966,8 +1006,8 @@
       <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">付费收入直接产出</span><span class="pill pill-info">云录像转化</span><span class="pill">设备事件触发 · 先观察再触达 · 高频取优惠码 · 低频换试看 · 应用内消息 + App Push 通知</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>云录像最有说服力的时刻是<span class="bold">告警刚发生、用户正在看画面</span>：此时用应用内消息说「这次动态没有保存到云端」，不再占一条通知。次日再用近 7 天真实动态次数跟进，高频告警用户取优惠码，低频用户改用看激励视频换云录像试看。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：应用内消息 · App Push 通知消息　｜　<span class="bold">触发方式</span>：事件「告警事件触发」且云录像状态为未开通　｜　<span class="bold">退出条件</span>：购买云录像即自动退出</p>
+          <p>云录像最有说服力的时刻是<span class="bold">告警刚发生、用户正在看画面</span>，此时用应用内消息说明这段动态没有云端备份。次日按近 7 天真实动态次数跟进，高频用户取优惠码，低频用户改用激励视频换试看。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：应用内消息 · App Push 通知消息　｜　<span class="bold">触发方式</span>：事件「告警事件」且云录像未开通　｜　<span class="bold">退出条件</span>：购买云录像即自动退出</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -981,7 +1021,7 @@
             <div class="callout-body">
               <ul>
                 <li>云录像的价值在告警发生时最直观，隔天的促销消息说服力已经衰减</li>
-                <li>告警推送本身已由现有通道发出，转化消息若再占一条通知只会互相稀释</li>
+                <li>告警推送已由现有通道发出，转化消息再占一条通知只会互相稀释</li>
                 <li>高频告警用户付费意愿最高，需要与偶发告警用户区分力度</li>
               </ul>
             </div>
@@ -989,21 +1029,38 @@
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
-              <ul>
-                <li><span class="bold">开始组件</span>：事件「告警事件触发」（人形检测 / 逗留 / 强拆）+ 用户属性过滤「云录像状态」等于未开通；事件属性携带设备 ID 与事件类型</li>
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：事件「告警事件」，用户属性过滤「云录像状态」为未开通；事件携带设备 ID 与告警类型</li>
                 <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 7 天，最多进入 4 次</li>
                 <li><span class="bold">提前退出</span>：事件「购买云录像」</li>
-                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天；<span class="bold">收入统计</span>：同一事件 + 订单金额属性，监听窗口 3 天</li>
-                <li><span class="bold">等待事件</span>：30 分钟内等待「查看实时画面或回放」，一个事件分支 + 超时默认分支</li>
-                <li><span class="bold">应用内消息</span>：已查看分支，用户当前在 App 内或下次打开时展示「刚才这次动态未保存到云端，开通后 {{套餐保留天数}} 天内随时回看」，直达套餐页；保留天数取自套餐属性</li>
-                <li><span class="bold">等待</span>：1 天 → 可发送时间 → <span class="bold">App Push 通知消息</span>「近 7 天家中 {{近 7 天告警次数}} 次动态仅保存在本地」，次数取自属性</li>
-                <li><span class="bold">等待</span>：3 天 → <span class="bold">条件分支</span>：属性「近 7 天告警次数」大于等于 3 走优惠分支；默认（不满 3 次）走试看分支</li>
-                <li><span class="bold">Webhook</span>：向贵司优惠券系统取首购优惠码与有效期，写入消息变量；无券返回时不发本条</li>
-                <li><span class="bold">App Push 通知消息（优惠分支）</span>：高频动态用户专属首购优惠，有效期取自 Webhook 返回值</li>
-                <li><span class="bold">App Push 通知消息（试看分支）</span>：「看一段激励视频，换 {{试看天数}} 天云录像试看」，深度链接到旅程 1 开启的激励视频入口；试看天数取自奖励配置属性，贵司未提供奖励机制时不发本条</li>
-                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在三条通知之前</li>
-                <li><span class="bold">合规约束</span>：视频与人像影像不同步到 MA，只同步事件类型、次数与状态</li>
-                <li><span class="muted">埋点：告警事件与查看行为由 IoT 视频平台与 App 上报；云录像状态与购买事件由订单系统回写</span></li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天；<span class="bold">收入统计</span>：同一事件与订单金额属性，监听窗口 3 天</li>
+                <li><span class="bold">等待事件</span>：30 分钟内等待「查看实时画面或回放」
+                  <ul>
+                    <li>已查看：<span class="bold">应用内消息</span>，「刚才这段动态没有云端备份，设备损坏或被拆就无法回看」，直达套餐页；用户当前在 App 内或下次打开时展示</li>
+                    <li>超时：进入下一步</li>
+                  </ul>
+                </li>
+                <li><span class="bold">等待</span>：1 日历日</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">Webhook 取数</span>：向 IoT 视频平台查询近 7 天告警事件数</li>
+                <li><span class="bold">App Push 通知消息</span>：「近 7 天家中 {{事件数}} 次动态没有云端备份」，深度链接到套餐页</li>
+                <li><span class="bold">等待</span>：3 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">条件分支</span>：用户分群
+                  <ul>
+                    <li>属于分群「近 7 天告警事件不少于 3 次」：
+                      <ul>
+                        <li><span class="bold">Webhook 取数</span>：向贵司优惠券系统取首购优惠码与有效期</li>
+                        <li><span class="bold">App Push 通知消息</span>：高频动态用户专属首购优惠，有效期取自返回值；无券返回时文案默认值兜底为通用首购权益</li>
+                      </ul>
+                    </li>
+                    <li>默认：
+                      <ul><li><span class="bold">App Push 通知消息</span>：「看一段激励视频，换 {{试看天数}} 天云录像试看」，深度链接到旅程 1 开启的激励视频入口；贵司不提供试看奖励时本分支改为结束</li></ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><span class="bold">合规约束</span>：视频与人像影像不同步到 MA，只同步告警类型、次数与状态</li>
+                <li><span class="muted">数据：告警事件由 IoT 视频平台回传，查看行为由 App 上报；云录像状态与购买事件由订单系统写入；「近 7 天告警事件不少于 3 次」由 MA 分群计算</span></li>
               </ul>
             </div>
           </div>
@@ -1023,11 +1080,11 @@
     <section id="s-journey5" class="section-plain" data-stage="repeat" data-scene="5">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">05</div><div class="scene-head-main"><h2>旅程 5｜云录像到期续费（前 7 天 / 前 1 天 / 后 3 天）</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">存量收入守护</span><span class="pill pill-info">续费</span><span class="pill">属性触发 · 等待至到期日 · App Push 通知 + SMS</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">存量收入守护</span><span class="pill pill-info">续费</span><span class="pill">属性触发 · 等待至到期日 · 发送时取清除日期 · App Push 通知 + SMS</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>三条消息全部用<span class="bold">等待至</span>锚定每个用户各自的到期日，而不是从进入时刻起算。已开自动续费的用户只收一条扣费告知并结束；过期后的最后一条以「云端录像还有 N 天清除」为理由，N 取自真实保留期。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：属性「云录像到期日」非空且状态有效　｜　<span class="bold">退出条件</span>：续费成功即自动退出</p>
+          <p>三条消息都用<span class="bold">等待至</span>锚定每个用户各自的到期日。已开自动续费的用户只收一条扣费告知；过期后的最后一条以云端录像的真实清除日期为理由，日期在发送时取值。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：属性「云录像到期日」在未来 60 天内且状态有效　｜　<span class="bold">退出条件</span>：续费成功即自动退出</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1041,7 +1098,7 @@
             <div class="callout-body">
               <ul>
                 <li>手动续费用户的到期日分散在每一天，日历式促销覆盖不到</li>
-                <li>过期后云端录像的保留期是真实的最后期限，也是最有效的续费理由</li>
+                <li>过期后云端录像的清除日期是真实的最后期限，也是最有效的续费理由</li>
                 <li>已开自动续费的用户再收催续消息，只会被引导去关闭自动续费</li>
               </ul>
             </div>
@@ -1049,17 +1106,41 @@
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
-              <ul>
-                <li><span class="bold">开始组件</span>：属性「云录像到期日」非空 且 属性「云录像状态」等于有效；进入条件限定到期日在未来 60 天内；排除已退订用户</li>
-                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 30 天——对应下一个套餐周期</li>
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：属性「云录像到期日」在未来 60 天内，且属性「云录像状态」为有效</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 30 天，对应下一个套餐周期</li>
                 <li><span class="bold">提前退出</span>：事件「云录像续费成功」</li>
-                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天；<span class="bold">收入统计</span>：同一事件 + 订单金额属性，监听窗口 3 天</li>
-                <li><span class="bold">等待至</span>：属性「云录像到期日」前 7 天、前 1 天、后 3 天三处（终端时区）；时刻已过时设为跳过继续——存量用户的到期日可能已在 7 天内</li>
-                <li><span class="bold">条件分支一</span>：属性「自动续费」已开启 → App Push 通知消息「将于 {{到期日}} 自动续费」后结束；未开启进入提醒序列</li>
-                <li><span class="bold">App Push 通知消息 × 2</span>：前 7 天与前 1 天，套餐名与到期日通过变量插入，深度链接到续费页</li>
-                <li><span class="bold">条件分支二（后 3 天）</span>：属性「短信接收状态」两分支——已同意走 SMS 模板消息，未同意走 App Push 通知消息；「云端录像将在 {{剩余保留天数}} 天后清除」取自属性，无值时不展示该句</li>
-                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每条消息之前</li>
-                <li><span class="muted">埋点：到期日、自动续费状态、剩余保留天数由订单系统写入用户属性；续费成功由支付回调上报</span></li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天；<span class="bold">收入统计</span>：同一事件与订单金额属性，监听窗口 3 天</li>
+                <li><span class="bold">等待至</span>：属性「云录像到期日」前 7 天，终端时区；时刻已过设为跳过继续</li>
+                <li><span class="bold">条件分支</span>：属性「自动续费」
+                  <ul>
+                    <li>已开启：
+                      <ul>
+                        <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                        <li><span class="bold">App Push 通知消息</span>：「将于 {{到期日}} 自动续费」，之后结束</li>
+                      </ul>
+                    </li>
+                    <li>未开启：
+                      <ul>
+                        <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                        <li><span class="bold">App Push 通知消息</span>：「7 天后到期」，套餐名与到期日通过变量插入，深度链接到续费页</li>
+                        <li><span class="bold">等待至</span>：到期日前 1 天；时刻已过设为跳过继续</li>
+                        <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                        <li><span class="bold">App Push 通知消息</span>：「明天到期」</li>
+                        <li><span class="bold">等待至</span>：到期日后 3 天</li>
+                        <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                        <li><span class="bold">Webhook 取数</span>：向贵司云录像服务查询该用户云端录像的清除日期</li>
+                        <li><span class="bold">条件分支</span>：属性「短信接收状态」
+                          <ul>
+                            <li>未退订：<span class="bold">SMS 模板消息</span>，「云端录像将于 {{清除日期}} 清除」，无返回值时不展示日期</li>
+                            <li>已退订：<span class="bold">App Push 通知消息</span>，内容一致</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><span class="muted">数据：到期日、自动续费、云录像状态由贵司订单系统写入用户属性；续费成功由支付回调上报</span></li>
               </ul>
             </div>
           </div>
@@ -1076,14 +1157,14 @@
     </section>
 
     <!-- Journey 6 -->
-    <section id="s-journey6" class="section-plain" data-stage="repeat" data-scene="6">
+    <section id="s-journey6" class="section-plain" data-stage="retain" data-scene="6">
       <div class="wrap">
-      <div class="scene-head"><div class="scene-num" aria-hidden="true">06</div><div class="scene-head-main"><h2>旅程 6｜4G 流量余量与套餐续费</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">4G 室外机专属</span><span class="pill pill-info">续费与在线率</span><span class="pill">设备事件触发 · 多实例按设备并行 · App Push 通知 + SMS</span></div>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">06</div><div class="scene-head-main"><h2>旅程 6｜电量预警（离线前介入）</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">离线前介入</span><span class="pill pill-info">在线设备保有</span><span class="pill">设备事件触发 · 多实例按设备并行 · App Push 通知 + SMS</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>太阳能 4G 室外机装在没有 WiFi 的地方，<span class="bold">流量用尽就是离线</span>。一户多台时每台各有套餐周期，这条旅程按设备开独立实例：余量、充值与离线都按设备各自计，充了 A 台不会让 B 台的提醒消失。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：事件「流量余量低于 20%」（按设备）　｜　<span class="bold">退出条件</span>：该设备流量充值成功即退出对应实例</p>
+          <p>太阳能供电设备的离线多从电量耗尽开始，电量下降是设备自己知道的事。电量低于 20% 就提醒检查太阳能板的遮挡与朝向，<span class="bold">把干预点放在离线之前</span>；每台设备一个实例。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：事件「电量低于 20%」（按设备）　｜　<span class="bold">退出条件</span>：该设备电量恢复至 50% 以上即退出对应实例</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1096,34 +1177,40 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>流量用尽的设备不再产生告警，用户往往到需要回看时才发现</li>
-                <li>一户多台 4G 机的套餐周期不同，单实例旅程只能提醒其中一台</li>
-                <li>充值入口在 App 或小程序，提醒必须直达对应设备的充值页</li>
+                <li>板面遮挡或连续阴雨，电量会一路下降直到离线</li>
+                <li>离线之后再提醒，用户已经错过一段没有录像的日子</li>
+                <li>一户多台室外设备电量各不相同，提醒必须按设备分开</li>
               </ul>
             </div>
           </div>
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
-              <ul>
-                <li><span class="bold">开始组件</span>：事件「流量余量低于 20%」由贵司 4G 流量服务平台回传，事件属性携带设备 ID、套餐名与余量</li>
-                <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按业务并行），并发上限 5，两次进入最短间隔 7 天——每台 4G 摄像机一个实例</li>
-                <li><span class="bold">提前退出</span>：事件「流量充值成功」，属性过滤设备 ID 等于本实例值，只退出对应实例</li>
-                <li><span class="bold">转化统计</span>：同一事件，监听窗口 2 天；<span class="bold">收入统计</span>：同一事件 + 充值金额属性，监听窗口 2 天</li>
-                <li><span class="bold">App Push 通知消息一</span>：「{{设备名}} 流量剩余 {{余量}}%，用尽后设备离线」，深度链接到该设备的充值页；文案附「开通自动充值」入口（如贵司提供），减少下一周期对提醒的依赖</li>
-                <li><span class="bold">等待</span>：2 天 → <span class="bold">条件分支</span>：属性「短信接收状态」——已同意走 SMS 模板消息，未同意走 App Push 通知消息，内容一致</li>
-                <li><span class="bold">等待</span>：3 天 → <span class="bold">等待事件</span>：5 天内等待「设备离线」（设备 ID 匹配本实例）——离线分支发 App Push 通知消息「{{设备名}} 已因流量用尽离线」；未离线走默认分支结束</li>
-                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每条消息之前</li>
-                <li><span class="bold">交接</span>：旅程 7 对 4G 机先取流量余量，余量为零的离线一律由本旅程承接</li>
-                <li><span class="muted">埋点：流量余量与充值成功由流量服务平台以事件回传或 Webhook 取数，第 1 周二选一</span></li>
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：事件「电量低于 20%」，由 IoT 视频平台回传，事件携带设备 ID、设备名与当前电量</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按业务并行），并发上限 5，两次进入最短间隔 14 天，每台设备一个实例</li>
+                <li><span class="bold">提前退出</span>：事件「电量恢复至 50% 以上」，属性过滤设备 ID 等于本实例的设备 ID，只退出对应实例</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 5 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">App Push 通知消息</span>：「{{设备名}} 电量 {{电量}}%，请检查太阳能板是否被遮挡」，深度链接到设备页与安装指引</li>
+                <li><span class="bold">等待</span>：2 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">条件分支</span>：属性「短信接收状态」
+                  <ul>
+                    <li>未退订：<span class="bold">SMS 模板消息</span>，电量仍在下降，用尽后设备将离线</li>
+                    <li>已退订：<span class="bold">App Push 通知消息</span>，内容一致</li>
+                  </ul>
+                </li>
+                <li><span class="bold">交接</span>：设备离线 72 小时后由旅程 7 承接</li>
+                <li><span class="muted">数据：电量事件由 IoT 视频平台回传；平台只提供电量读数时，由贵司按阈值比较后上报事件</span></li>
               </ul>
             </div>
           </div>
           <div class="callout success">
             <div class="callout-title">预期效益参考</div>
             <div class="callout-body">
-              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">用尽前充值率提升、因流量离线的设备台数下降（对照组比较）</span></p>
-              <p style="margin:0">流量续费收入 = 提醒覆盖设备数 × 用尽前充值率 × 套餐单价；保住在线的设备同时是旅程 2 与旅程 4 的触达对象。</p>
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">因电量耗尽离线的设备台数下降（对照组比较）</span></p>
+              <p style="margin:0">保持在线的设备继续产生告警、日报与广告展示，同时是旅程 4、5 的触达对象。</p>
             </div>
           </div>
         </div>
@@ -1135,10 +1222,10 @@
     <section id="s-journey7" class="section-plain" data-stage="retain" data-scene="7">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">07</div><div class="scene-head-main"><h2>旅程 7｜设备离线唤醒：按离线原因分流</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">在线设备保有</span><span class="pill pill-info">离线恢复</span><span class="pill">设备事件触发 · Webhook 取数分流 · App Push 通知 + SMS 兜底</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">在线设备保有</span><span class="pill pill-info">离线恢复</span><span class="pill">设备事件触发 · 发送时取离线原因 · App Push 通知 + SMS</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>离线的设备不产生告警，用户不会自己发现。这条旅程按<span class="bold">离线原因</span>给排查指引：4G 机先用 Webhook 取流量余量，为零交旅程 6 不重复触达，正常才提示电量与信号；WiFi 机提示路由与电源。</p>
+          <p>离线的设备不产生告警，用户不会自己发现。发送时取这台设备<span class="bold">离线前最后上报的电量与信号</span>，电量耗尽、信号弱与其他原因各给一套排查指引，不发通用文案。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：事件「设备离线超过 72 小时」（按设备）　｜　<span class="bold">退出条件</span>：该设备上线即退出对应实例</p>
         </div>
       </div>
@@ -1153,7 +1240,7 @@
             <div class="callout-body">
               <ul>
                 <li>离线原因不同，排查动作不同，一条通用文案等于没有指引</li>
-                <li>离线超过一周的设备大概率转为闲置，随之流失的是云录像与流量两笔续费</li>
+                <li>离线超过一周的设备大概率转为闲置，云录像续费随之流失</li>
                 <li>设备离线期间用户也不会打开 App，日活与广告展示同步归零</li>
               </ul>
             </div>
@@ -1161,18 +1248,29 @@
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
-              <ul>
-                <li><span class="bold">开始组件</span>：事件「设备离线超过 72 小时」由 IoT 视频平台回传，事件属性携带设备 ID 与设备类型</li>
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：事件「设备离线超过 72 小时」，由 IoT 视频平台回传，事件携带设备 ID 与设备名</li>
                 <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按业务并行），并发上限 5，两次进入最短间隔 14 天</li>
-                <li><span class="bold">提前退出</span>：事件「设备上线」，属性过滤设备 ID 等于本实例值</li>
-                <li><span class="bold">转化统计</span>：事件「设备上线」，监听窗口 7 天</li>
-                <li><span class="bold">条件分支一</span>：事件属性「设备类型」——4G 太阳能 / WiFi</li>
-                <li><span class="bold">Webhook（4G 分支）</span>：向流量服务平台取该设备余量；<span class="bold">条件分支二</span>：余量为 0 直接结束并交旅程 6 承接，余量大于 0 继续；请求失败按余量大于 0 处理</li>
-                <li><span class="bold">App Push 通知消息</span>：4G 机给电量与信号的排查指引，WiFi 机给路由与电源的排查指引，均深度链接到设备页与帮助</li>
-                <li><span class="bold">等待</span>：3 天 → <span class="bold">条件分支三</span>：属性「最后打开 App 时间」距今超过 7 天 且 属性「短信接收状态」已同意 → SMS 模板消息；默认走 App Push 通知消息，内容一致</li>
-                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00，放在每条消息之前</li>
-                <li><span class="bold">交接</span>：电量耗尽导致的离线由旅程 10 在离线前介入；本旅程只处理已离线 72 小时的设备</li>
-                <li><span class="muted">埋点：离线与上线事件由 IoT 视频平台回传；设备类型为绑定时写入的设备属性</span></li>
+                <li><span class="bold">提前退出</span>：事件「设备上线」，属性过滤设备 ID 等于本实例的设备 ID</li>
+                <li><span class="bold">转化统计</span>：同一事件，监听窗口 7 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">Webhook 取数</span>：向 IoT 视频平台查询该设备离线前最后上报的电量与信号强度</li>
+                <li><span class="bold">条件分支</span>：Webhook 返回值
+                  <ul>
+                    <li>电量低于 10%：<span class="bold">App Push 通知消息</span>，太阳能板朝向、遮挡与连续阴雨时的续航说明</li>
+                    <li>信号强度为弱：<span class="bold">App Push 通知消息</span>，调整安装位置与天线方向的指引</li>
+                    <li>默认：<span class="bold">App Push 通知消息</span>，重启步骤与在线客服入口</li>
+                  </ul>
+                </li>
+                <li><span class="bold">等待</span>：3 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">条件分支</span>：属性「短信接收状态」
+                  <ul>
+                    <li>未退订：<span class="bold">SMS 模板消息</span>，「{{设备名}} 仍离线」与排查指引短链接</li>
+                    <li>已退订：结束</li>
+                  </ul>
+                </li>
+                <li><span class="muted">数据：离线与上线事件由 IoT 视频平台回传；电量与信号由查询接口返回</span></li>
               </ul>
             </div>
           </div>
@@ -1191,12 +1289,12 @@
     <!-- Journey 8 -->
     <section id="s-journey8" class="section-plain" data-stage="acquire" data-scene="8">
       <div class="wrap">
-      <div class="scene-head"><div class="scene-num" aria-hidden="true">08</div><div class="scene-head-main"><h2>旅程 8｜绑定首周引导：通知权限、看家模式、家人共享</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">日活账号增长</span><span class="pill pill-info">首周留存</span><span class="pill">绑定事件触发 · 通知权限分流 · 应用内消息 + App Push 通知</span></div>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">08</div><div class="scene-head-main"><h2>旅程 8｜绑定首周引导：报警设置与家人共享</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">日活账号增长</span><span class="pill pill-info">绑定首周</span><span class="pill">绑定事件触发 · 按共享行为分流 · App Push 通知</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>一台摄像机通常有多位家庭成员关心，<span class="bold">共享一次就多一个日活账号</span>。首周先用 SDK 自带的通知权限状态分流，未开启者收到应用内引导；第 5 天仍未共享的用户收到邀请家人的提醒。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：应用内消息 · App Push 通知消息　｜　<span class="bold">触发方式</span>：事件「设备绑定成功」且为首台　｜　<span class="bold">退出条件</span>：解绑设备即退出</p>
+          <p>一台室外摄像机通常有多位家庭成员关心，<span class="bold">共享一次就多一个日活账号</span>。首周先引导设置报警区域与灵敏度、减少误报；第 5 天仍未共享的用户再收到邀请家人的提醒。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息　｜　<span class="bold">触发方式</span>：事件「设备绑定成功」且为首台设备　｜　<span class="bold">退出条件</span>：解绑设备即退出</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1209,8 +1307,8 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>通知权限未开启，告警推送与日报都到不了，后续所有旅程失效</li>
-                <li>首周是设置看家模式与在家免打扰的窗口，错过后用户不再进设置页</li>
+                <li>报警区域与灵敏度未设置，误报多的告警容易被用户整体关掉</li>
+                <li>首周是设置报警的窗口，错过后用户很少再进设置页</li>
                 <li>共享是 App 内已有功能，但没有触发时点，多数用户不会主动发起</li>
               </ul>
             </div>
@@ -1218,25 +1316,34 @@
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
-              <ul>
-                <li><span class="bold">开始组件</span>：事件「设备绑定成功」+ 用户属性过滤「已绑定设备数」等于 1（首台）</li>
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：事件「设备绑定成功」，事件属性「是否首台设备」为真</li>
                 <li><span class="bold">再次进入</span>：不可再次进入</li>
                 <li><span class="bold">提前退出</span>：事件「解绑设备」</li>
                 <li><span class="bold">转化统计</span>：事件「共享设备」，监听窗口 3 天</li>
-                <li><span class="bold">条件分支</span>：SDK 属性「通知权限状态」——未开启走应用内消息，已开启跳过</li>
-                <li><span class="bold">应用内消息</span>：「开启通知才能收到告警」，按机型变量给出系统设置路径</li>
-                <li><span class="bold">等待</span>：2 日历日 → <span class="bold">可发送时间</span>：终端时区 19:00–21:00 → <span class="bold">App Push 通知消息</span>：看家模式与在家免打扰设置，深度链接到设置页</li>
-                <li><span class="bold">等待事件</span>：3 天内等待「共享设备」——已共享结束；超时走默认分支</li>
-                <li><span class="bold">App Push 通知消息</span>：「邀请家人一起看家」，深度链接到共享页（微信或手机号邀请）</li>
-                <li><span class="bold">交接</span>：本旅程不发付费内容，云录像开通由旅程 4 按告警事件承接；被邀请的家人账号由拓展场景 13 承接</li>
-                <li><span class="muted">埋点：通知权限状态由 SDK 自带；绑定、解绑、共享事件由 App 上报</span></li>
+                <li><span class="bold">等待</span>：2 日历日</li>
+                <li><span class="bold">可发送时间</span>：终端时区 19:00–21:00</li>
+                <li><span class="bold">App Push 通知消息</span>：报警区域与灵敏度设置，深度链接到设备设置页</li>
+                <li><span class="bold">等待事件</span>：3 天内等待「共享设备」
+                  <ul>
+                    <li>已共享：结束</li>
+                    <li>超时：
+                      <ul>
+                        <li><span class="bold">可发送时间</span>：终端时区 19:00–21:00</li>
+                        <li><span class="bold">App Push 通知消息</span>：「邀请家人一起看家」，深度链接到共享页</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><span class="bold">交接</span>：本旅程不发付费内容，云录像开通由旅程 4 按告警事件承接；关闭通知权限的用户由旅程 10 承接</li>
+                <li><span class="muted">数据：绑定、解绑、共享事件由贵司 App 上报</span></li>
               </ul>
             </div>
           </div>
           <div class="callout success">
             <div class="callout-title">预期效益参考</div>
             <div class="callout-body">
-              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">通知权限开启率与家人共享率（对照组比较）</span></p>
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">家人共享率提升（对照组比较）</span></p>
               <p style="margin:0">每一个共享账号都是新增的日活账号，不增加硬件与获客成本。</p>
             </div>
           </div>
@@ -1249,11 +1356,11 @@
     <section id="s-journey9" class="section-plain" data-stage="acquire" data-scene="9">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">09</div><div class="scene-head-main"><h2>旅程 9｜安装未绑定引导</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">零埋点即可上线</span><span class="pill pill-info">激活</span><span class="pill">SDK 标准事件触发 · 先观察再触达 · App Push 通知 + 应用内消息 + SMS 兜底</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">零埋点即可上线</span><span class="pill pill-info">激活</span><span class="pill">SDK 标准事件触发 · 每步先看是否已绑定 · App Push 通知 + 应用内消息 + SMS 兜底</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>配网与 4G 卡激活是首次使用的两道门槛，卡住的用户不会主动求助。进入事件是 SDK 自带的「App 启动」，<span class="bold">不需要任何埋点开发</span>；先等 24 小时看用户是否自行完成绑定，再依次给三步教程与客服入口。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 应用内消息 · SMS　｜　<span class="bold">触发方式</span>：SDK 事件「App 启动」且已绑定设备数为 0　｜　<span class="bold">退出条件</span>：设备绑定成功即自动退出</p>
+          <p>首次添加设备卡住的用户不会主动求助。进入事件是 SDK 自带的「App 启动」，<span class="bold">不需要埋点开发</span>；每一步先看用户是否已自行绑定，再依次给添加步骤、视频教程与短信提醒。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 应用内消息 · SMS　｜　<span class="bold">触发方式</span>：SDK 事件「App 启动」且未绑定设备　｜　<span class="bold">退出条件</span>：每一步等待期内完成绑定即结束</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1266,27 +1373,49 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>未绑定的安装既不产生日活也不产生付费，硬件与获客成本却已付出</li>
-                <li>电商平台售出的设备，包装扫码到绑定之间没有任何触点</li>
-                <li>4G 卡激活与声波配网失败的用户，多数在第一天就放弃</li>
+                <li>未绑定的安装既不产生日活也不产生付费，而硬件已经售出</li>
+                <li>电商售出的设备，从拆箱扫码到绑定之间没有任何触点</li>
+                <li>室外设备首次添加受安装位置信号影响，失败的用户多在第一天放弃</li>
               </ul>
             </div>
           </div>
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
-              <ul>
-                <li><span class="bold">开始组件</span>：SDK 标准事件「App 启动」+ 用户属性过滤「已绑定设备数」等于 0 且「注册时间」距今不超过 1 天</li>
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：SDK 标准事件「App 启动」，用户属性过滤「已绑定设备数」为 0 且「注册时间」距今不超过 1 天</li>
                 <li><span class="bold">再次进入</span>：不可再次进入</li>
-                <li><span class="bold">提前退出</span>：事件「设备绑定成功」</li>
-                <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天</li>
-                <li><span class="bold">等待</span>：24 小时——先观察用户是否自行完成绑定</li>
-                <li><span class="bold">可发送时间</span>：终端时区 10:00–21:00 → <span class="bold">App Push 通知消息一</span>：「3 步完成添加」，深度链接到添加设备页</li>
-                <li><span class="bold">等待</span>：2 天 → <span class="bold">应用内消息</span>：用户打开 App 时展示配网视频教程与在线客服入口</li>
-                <li><span class="bold">可发送时间</span> → <span class="bold">App Push 通知消息二</span>：「添加遇到问题？」，深度链接到帮助与反馈页</li>
-                <li><span class="bold">等待</span>：2 天 → <span class="bold">条件分支</span>：属性「短信接收状态」——已同意走 SMS 模板消息，附配网教程短链接与客服电话；未同意结束。注册即有手机号，这一步覆盖已不再打开 App 的用户</li>
-                <li><span class="bold">交接</span>：绑定成功后由旅程 8 承接首周引导</li>
-                <li><span class="muted">埋点：App 启动由 SDK 自带；已绑定设备数与注册时间由账户系统写入用户属性</span></li>
+                <li><span class="bold">提前退出</span>：不配置，每一步由等待事件判断是否已绑定</li>
+                <li><span class="bold">转化统计</span>：事件「设备绑定成功」，监听窗口 3 天</li>
+                <li><span class="bold">等待事件</span>：24 小时内等待「设备绑定成功」
+                  <ul>
+                    <li>已绑定：结束，由旅程 8 承接首周引导</li>
+                    <li>超时：进入下一步</li>
+                  </ul>
+                </li>
+                <li><span class="bold">可发送时间</span>：终端时区 10:00–21:00</li>
+                <li><span class="bold">App Push 通知消息</span>：「3 步完成添加」，深度链接到添加设备页</li>
+                <li><span class="bold">等待事件</span>：2 天内等待「设备绑定成功」
+                  <ul>
+                    <li>已绑定：结束</li>
+                    <li>超时：进入下一步</li>
+                  </ul>
+                </li>
+                <li><span class="bold">应用内消息</span>：添加视频教程与在线客服入口，用户打开 App 时展示</li>
+                <li><span class="bold">等待事件</span>：2 天内等待「设备绑定成功」
+                  <ul>
+                    <li>已绑定：结束</li>
+                    <li>超时：进入下一步</li>
+                  </ul>
+                </li>
+                <li><span class="bold">可发送时间</span>：终端时区 10:00–21:00</li>
+                <li><span class="bold">条件分支</span>：属性「短信接收状态」
+                  <ul>
+                    <li>未退订：<span class="bold">SMS 模板消息</span>，添加教程短链接与客服电话</li>
+                    <li>已退订：结束</li>
+                  </ul>
+                </li>
+                <li><span class="muted">数据：App 启动由 SDK 自带；已绑定设备数与注册时间由贵司账户系统写入用户属性</span></li>
               </ul>
             </div>
           </div>
@@ -1305,12 +1434,12 @@
     <!-- Journey 10 -->
     <section id="s-journey10" class="section-plain" data-stage="retain" data-scene="10">
       <div class="wrap">
-      <div class="scene-head"><div class="scene-num" aria-hidden="true">10</div><div class="scene-head-main"><h2>旅程 10｜设备电量预警（太阳能机）</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">离线前介入</span><span class="pill pill-info">在线设备保有</span><span class="pill">设备事件触发 · 多实例按设备并行 · App Push 通知 + SMS</span></div>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">10</div><div class="scene-head-main"><h2>旅程 10｜告警通知权限找回</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">推送旅程的前提</span><span class="pill pill-info">可触达保有</span><span class="pill">SDK 标准事件触发 · 先观察再触达 · 应用内消息 + SMS</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>太阳能机的离线多半从电量耗尽开始，而电量下降是设备自己知道的事。电量低于 20% 就提醒检查太阳能板的遮挡与朝向，把干预点放在离线之前；每台设备一个实例，电量恢复即退出。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · SMS　｜　<span class="bold">触发方式</span>：事件「电量低于 20%」（按设备）　｜　<span class="bold">退出条件</span>：该设备电量恢复至 50% 以上即退出对应实例</p>
+          <p>关掉通知的用户收不到告警、日报与续费提醒。进入事件是 SDK 自带的<span class="bold">通知权限关闭</span>；推送已经到不了这批人，改用下次打开时的应用内消息与短信，说明关闭的影响。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：应用内消息 · SMS　｜　<span class="bold">触发方式</span>：SDK 事件「通知权限关闭」　｜　<span class="bold">退出条件</span>：各步等待期内重新开启通知即结束</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1323,32 +1452,49 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>太阳能板被遮挡或朝向不对，电量会在连续阴雨天一路下降直到离线</li>
-                <li>离线之后再提醒，用户已经错过一段没有录像的日子</li>
-                <li>一户多台室外机的电量各不相同，提醒必须按设备分开</li>
+                <li>关掉通知的用户，家里有动静时无法第一时间知道</li>
+                <li>推送到不了这批用户，只能等他们打开 App 或用短信提醒</li>
+                <li>刚关闭时立即劝说容易引起反感，需要隔天再提</li>
               </ul>
             </div>
           </div>
           <div class="card">
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
-              <ul>
-                <li><span class="bold">开始组件</span>：事件「电量低于 20%」由 IoT 视频平台回传，事件属性携带设备 ID、设备名与当前电量；用户属性过滤「设备类型」包含太阳能机</li>
-                <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按业务并行），并发上限 5，两次进入最短间隔 14 天——每台太阳能机一个实例</li>
-                <li><span class="bold">提前退出</span>：事件「电量恢复至 50% 以上」，属性过滤设备 ID 等于本实例值，只退出对应实例</li>
-                <li><span class="bold">转化统计</span>：同一事件，监听窗口 5 天</li>
-                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00 → <span class="bold">App Push 通知消息一</span>：「{{设备名}} 电量 {{电量}}%，请检查太阳能板是否被遮挡」，深度链接到设备页与安装指引</li>
-                <li><span class="bold">等待</span>：2 天 → <span class="bold">条件分支</span>：属性「短信接收状态」——已同意走 SMS 模板消息，未同意走 App Push 通知消息，内容一致：电量仍在下降，用尽后设备将离线</li>
-                <li><span class="bold">交接</span>：本旅程只在离线前介入；设备仍离线 72 小时后由旅程 7 承接排查指引，流量为零的离线由旅程 6 承接</li>
-                <li><span class="muted">埋点：电量事件由 IoT 视频平台回传；设备类型为绑定时写入的设备属性</span></li>
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：SDK 标准事件「通知权限关闭」，用户属性过滤「已绑定设备数」大于 0</li>
+                <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 30 天，最多进入 3 次</li>
+                <li><span class="bold">提前退出</span>：不配置，每一步由等待事件判断是否已重新开启</li>
+                <li><span class="bold">转化统计</span>：SDK 标准事件「通知权限开启」，监听窗口 3 天</li>
+                <li><span class="bold">等待事件</span>：1 天内等待「通知权限开启」
+                  <ul>
+                    <li>已开启：结束</li>
+                    <li>超时：进入下一步</li>
+                  </ul>
+                </li>
+                <li><span class="bold">应用内消息</span>：「关闭通知后，家里有动静将无法第一时间提醒你」，附系统设置中的开启路径，用户打开 App 时展示</li>
+                <li><span class="bold">等待事件</span>：3 天内等待「通知权限开启」
+                  <ul>
+                    <li>已开启：结束</li>
+                    <li>超时：进入下一步</li>
+                  </ul>
+                </li>
+                <li><span class="bold">可发送时间</span>：终端时区 10:00–20:00</li>
+                <li><span class="bold">条件分支</span>：属性「短信接收状态」
+                  <ul>
+                    <li>未退订：<span class="bold">SMS 模板消息</span>，告警通知已关闭的影响与开启指引短链接</li>
+                    <li>已退订：结束</li>
+                  </ul>
+                </li>
+                <li><span class="muted">数据：通知权限开启与关闭由 SDK 自带，不需要开发；已绑定设备数由贵司账户系统写入</span></li>
               </ul>
             </div>
           </div>
           <div class="callout success">
             <div class="callout-title">预期效益参考</div>
             <div class="callout-body">
-              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">因电量耗尽离线的设备台数下降（对照组比较）</span></p>
-              <p style="margin:0">保持在线的设备继续产生告警、日报与广告展示，同时是旅程 4、5、6 的触达对象。</p>
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">通知权限恢复率提升（对照组比较）</span></p>
+              <p style="margin:0">恢复通知的用户重新成为旅程 2–8 的推送对象，其余推送旅程的覆盖同步放大。</p>
             </div>
           </div>
         </div>
@@ -1361,27 +1507,24 @@
       <div class="wrap">
         <div class="eyebrow">数据整合</div>
         <h2><span class="secnum">4</span>十条旅程依赖的事件与属性</h2>
-        <p>十条旅程依赖的数据分布在 App、账户系统、IoT 视频平台、流量服务平台与广告聚合 SDK 五处。下表列出每一项的来源与它驱动的旅程，SDK 自带的部分不需要开发。</p>
+        <p>下表按提供方分行。SDK 自带与 MA 分群计算的部分不需要贵司开发；需要贵司对接的是 App 与账户系统的少量事件与属性、IoT 视频平台的事件回传与查询接口，以及云录像订单系统的状态写入。</p>
         <div class="spacer-md"></div>
         <table>
-          <thead><tr><th>事件或属性</th><th>类型</th><th>关键字段</th><th>来源系统</th><th>驱动的旅程</th></tr></thead>
+          <thead><tr><th>事件或属性</th><th>类型</th><th>关键字段</th><th>提供方</th><th>驱动的旅程</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>App 启动、通知权限状态、最后打开 App 时间</td><td>SDK 标准事件与属性</td><td>—</td><td>EngageLab SDK（无需开发）</td><td>1 · 2 · 3 · 8 · 9</td></tr>
-            <tr><td>设备绑定成功、解绑、共享设备</td><td>业务事件</td><td>设备 ID、设备类型、已绑定设备数、绑定天数</td><td>App 账户系统</td><td>1 · 8 · 9</td></tr>
-            <tr><td>告警事件触发、查看实时画面或回放</td><td>设备事件与行为事件</td><td>设备 ID、事件类型、时间、近 7 天告警次数</td><td>IoT 视频平台 · App</td><td>2 · 3 · 4</td></tr>
-            <tr><td>设备离线超过 72 小时、设备上线、在线设备数</td><td>设备事件与属性</td><td>设备 ID、设备类型</td><td>IoT 视频平台</td><td>2 · 3 · 6 · 7</td></tr>
-            <tr><td>电量低于 20%、电量恢复至 50% 以上；各设备电量、信号与流量余量查询</td><td>设备事件与 Webhook 取数</td><td>设备 ID、设备名、电量、信号</td><td>IoT 视频平台</td><td>3 · 10</td></tr>
-            <tr><td>云录像状态、到期日、自动续费、剩余保留天数；购买与续费成功</td><td>属性与事件</td><td>套餐名、订单金额、保留天数</td><td>订单与支付系统</td><td>1 · 4 · 5</td></tr>
-            <tr><td>流量余量低于 20%、流量充值成功、流量余量查询</td><td>事件与 Webhook 取数</td><td>设备 ID、套餐名、余量、充值金额</td><td>4G 流量服务平台</td><td>6 · 7</td></tr>
-            <tr><td>首购优惠码与有效期；激励视频奖励配置（试看天数或流量额度）</td><td>Webhook 取数与属性</td><td>优惠码、有效期、试看天数</td><td>优惠券系统 · 奖励配置</td><td>1 · 4</td></tr>
-            <tr><td>广告策略透传字段</td><td>自定义消息字段</td><td>激励视频入口开关、开屏与插屏的启用与每日上限</td><td>MA → App 端 → 广告聚合 SDK</td><td>1</td></tr>
-            <tr><td>测试分组</td><td>用户属性，同时作为聚合平台的自定义流量分组键值</td><td>实验组 / 对照组</td><td>账户系统 → MA 与广告聚合平台</td><td>1（验收）</td></tr>
-            <tr><td>广告展示次数（可选）</td><td>业务事件</td><td>样式、页面</td><td>广告 SDK 展示回调 → App 上报</td><td>过程指标</td></tr>
-            <tr><td>短信接收状态、看家日报开关</td><td>布尔属性</td><td>—</td><td>App 设置项</td><td>2 · 3 · 5 · 6 · 7 · 9 · 10</td></tr>
+            <tr class="tone-info"><td>App 启动、通知权限开启、通知权限关闭</td><td>SDK 标准事件</td><td>—</td><td>SDK 自带（无需开发）</td><td>1 · 2 · 3 · 9 · 10</td></tr>
+            <tr class="tone-info"><td>近 7 天启动 App 不少于 5 次；近 3 / 7 / 14 / 30 天未启动 App；近 7 天告警事件不少于 3 次；已绑定设备用户</td><td>用户分群</td><td>—</td><td>MA 分群计算（按已接入事件，无需开发）</td><td>1 · 2 · 3 · 4</td></tr>
+            <tr><td>设备绑定成功（含是否首台）、解绑设备、共享设备、查看实时画面或回放</td><td>业务事件</td><td>设备 ID</td><td>客户上报：贵司 App</td><td>4 · 8 · 9</td></tr>
+            <tr><td>已绑定设备数、注册时间、首次绑定时间、短信接收状态、看家日报开关、测试分组</td><td>用户属性</td><td>—</td><td>客户写入：贵司账户系统</td><td>1 · 2 · 3 · 5 · 6 · 7 · 9 · 10</td></tr>
+            <tr><td>云录像状态、云录像到期日、自动续费；购买云录像、云录像续费成功</td><td>用户属性与业务事件</td><td>套餐名、订单金额</td><td>客户写入与上报：云录像订单系统</td><td>1 · 4 · 5</td></tr>
+            <tr><td>告警事件、设备离线超过 72 小时、设备上线、电量低于 20%、电量恢复至 50% 以上</td><td>设备事件</td><td>设备 ID、设备名、告警类型、电量</td><td>平台对接：IoT 视频平台回传</td><td>4 · 6 · 7</td></tr>
+            <tr><td>当日与近 7 天告警事件数、在线设备数、各设备电量与信号</td><td>Webhook 返回值</td><td>设备 ID、事件数、电量、信号</td><td>Webhook：IoT 视频平台查询接口</td><td>2 · 3 · 4 · 7</td></tr>
+            <tr><td>云端录像清除日期；首购优惠码与有效期</td><td>Webhook 返回值</td><td>清除日期、优惠码、有效期</td><td>Webhook：云录像服务、优惠券系统</td><td>4 · 5</td></tr>
+            <tr><td>广告配置字段；测试分组作为流量分组键值</td><td>自定义消息字段</td><td>激励视频入口开关、开屏与插屏的启用与每日上限、实验组 / 对照组</td><td>MA 下发，贵司 App 读取后交广告聚合平台</td><td>1</td></tr>
           </tbody>
         </table>
         <ul class="notelist">
-          <li>云录像与 4G 流量若由第三方服务平台承载，事件以接口回传或 Webhook 取数两种方式二选一，第 1 周确定；视频与人像影像不进入 MA。</li>
+          <li>视频与人像影像不进入 MA，只同步事件类型、次数与状态；IoT 视频平台若只能提供查询、不能回传事件，第 1 周改为贵司服务端定时比较后上报。</li>
         </ul>
       </div>
     </section>
@@ -1395,8 +1538,8 @@
         <table>
           <thead><tr><th>渠道</th><th>主要用途</th><th>平均打开率</th><th>适用市场</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>App Push</td><td>十条旅程的主渠道：通知消息承担日报、到期、离线与召回；自定义消息承担广告策略透传与运营位；应用内消息承担权限引导与告警当下的转化</td><td>通知点击率 2–5%，分层定向可达全量群发的约两倍</td><td>国内 + 海外</td></tr>
-            <tr class="tone-info"><td>SMS</td><td>到期、流量用尽、离线与 30 天沉默的兜底，覆盖已卸载 App 的用户；需完成短信签名与模板报备</td><td>90% 以上</td><td>国内 + 海外</td></tr>
+            <tr class="tone-info"><td>App Push</td><td>主渠道：通知消息承担日报、到期、电量、离线与召回；自定义消息承担广告配置下发；应用内消息承担告警当下的转化、添加教程与通知权限找回</td><td>通知点击率 2–5%，分层定向可达全量群发的约两倍</td><td>国内 + 海外</td></tr>
+            <tr class="tone-info"><td>SMS</td><td>到期、电量、离线、30 天沉默、未绑定与通知关闭的兜底，覆盖推送到不了的用户；需完成短信签名与模板报备</td><td>90% 以上</td><td>国内 + 海外</td></tr>
             <tr><td>Email</td><td>本方案未使用——账号以手机号与微信登录，未采集邮箱</td><td>—</td><td>全球</td></tr>
             <tr><td>Web Push</td><td>本方案未使用——业务无 Web 端</td><td>—</td><td>全球</td></tr>
             <tr><td>WhatsApp Business</td><td>本方案未使用——主要市场为国内</td><td>—</td><td>东南亚 / 南亚 / 拉美</td></tr>
@@ -1404,7 +1547,7 @@
           </tbody>
         </table>
         <ul class="notelist">
-          <li>打开率为行业公开参考区间，<span class="bold">非承诺值</span>；各渠道计费方式以商务报价为准。App Push 触达通道侧支持直接添加极光 JPush 通道（含华为、小米、OPPO、vivo、荣耀厂商通道），现有告警推送链路可并行保留；短信如已有发送平台，也支持经 SMPP 对接。</li>
+          <li>打开率为行业公开参考区间，<span class="bold">非承诺值</span>；各渠道计费方式以商务报价为准。App Push 触达通道侧支持直接添加极光 JPush 通道（含华为、荣耀、小米、OPPO、vivo 等中国大陆厂商通道），现有告警推送链路可并行保留；短信如已有发送平台，也支持经 SMPP 对接。</li>
         </ul>
         <div class="divider"></div>
         <h3>合规与数据安全</h3>
@@ -1427,14 +1570,14 @@
         <table>
           <thead><tr><th>周</th><th>目标</th><th>我方动作</th><th>客户动作</th><th>验收口径</th></tr></thead>
           <tbody>
-            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案、测试环境、开通测试 VIP 账号</td><td>确认事件清单；接入 App SDK 并添加 JPush 通道；短信签名与模板报备；IoT 视频平台与流量服务平台的事件回传或查询接口；回写云录像状态、到期日、短信接收状态、已绑定设备数；设备状态类通知在推送通道登记为服务与通讯类消息分类</td><td>核心事件入库率 ≥ 95%</td></tr>
-            <tr><td><span class="step-num">2</span></td><td>核心旅程小流量上线</td><td>配置旅程 1 · 2 · 4；设全局频控上限（通知消息每日 ≤ 1 条、每周 ≤ 4 条；自定义消息与应用内消息按消息类型单独设限，告警类通知不经 MA、不受影响）</td><td>审核文案与深度链接；App 端接入广告策略透传字段；写入测试分组属性并作为自定义流量分组键值传给广告聚合平台</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错</td></tr>
+            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案、测试环境、开通测试 VIP 账号；配置分群</td><td>确认事件清单；接入 App SDK 并添加 JPush 通道；短信签名与模板报备；IoT 视频平台开放设备事件回传与查询接口；账户与云录像订单系统写入属性；设备状态类通知在推送通道登记为服务与通讯类消息</td><td>核心事件入库率 ≥ 95%</td></tr>
+            <tr><td><span class="step-num">2</span></td><td>核心旅程小流量上线</td><td>配置旅程 1 · 2 · 4；设全局频控上限：App Push 通知消息每日 ≤ 2 条、每周 ≤ 8 条，自定义消息与应用内消息按消息类型单独设限；旅程优先级电量预警与离线唤醒高于日报与召回；告警推送不经 MA，不受影响</td><td>审核文案与深度链接；App 端读取广告配置字段；写入测试分组属性并作为自定义流量分组键值传给广告聚合平台</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错</td></tr>
             <tr><td><span class="step-num">3</span></td><td>全量与对照</td><td>扩至全量并补齐旅程 3 · 5 · 6 · 7 · 8 · 9 · 10；监控与调优</td><td>划出 10–20% 对照组不进旅程（用属性在进入条件排除），同一批用户对十条旅程一致排除</td><td>样本量达标；日活、开通与续费数据；广告收入以广告平台报表按测试分组比较</td></tr>
-            <tr><td><span class="step-num">4</span></td><td>复盘扩面</td><td>效果报告；用真实数据校准漏斗各层；下批旅程（拓展场景 11–17）</td><td>决策扩面</td><td>主指标相对对照组的提升</td></tr>
+            <tr><td><span class="step-num">4</span></td><td>复盘扩面</td><td>效果报告；用真实数据校准漏斗各层；下批旅程（拓展场景 11–14）</td><td>决策扩面</td><td>主指标相对对照组的提升</td></tr>
           </tbody>
         </table>
         <ul class="notelist">
-          <li>工作量分两段：MA SDK 与 JPush 通道接入约 3–5 人日（含 SDK 自带、无需开发的部分）；客户侧聚合属性开发（绑定天数、近 7 天打开天数与告警次数、到期日、剩余保留天数、流量余量）第 1 周盘点后另行排期，不并入前者。</li>
+          <li>工作量分两段：MA SDK 与 JPush 通道接入约 3–5 人日（含 SDK 自带、无需开发的部分），沉默天数与近 7 天次数由 MA 分群计算，不需要贵司开发；IoT 视频平台的事件回传与查询接口、云录像订单属性写入第 1 周盘点后另行排期，不并入前者。</li>
         </ul>
       </div>
     </section>
@@ -1442,7 +1585,7 @@
   </main>
 
   <footer class="site-footer">
-    <div>EngageLab MA · 影腾智联 App 日活与云服务收入自动化方案 · 2026 年 9 月</div>
+    <div>EngageLab MA · 影腾智联 App 日活与云录像收入自动化方案 · 2026 年 9 月</div>
   </footer>
 
 
@@ -1682,13 +1825,14 @@
     drawJourney(document.getElementById('dag-j1'),
       [
         { id: 'start', kind: 'entry', title: '开始', sub: '分群: 已绑定设备用户' },
-        { id: 'cond', kind: 'branch', title: '条件分支', sub: '活跃 · 付费 · 绑定天数 · 分组' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '活跃 · 付费 · 测试分组' },
         { id: 'cm1', kind: 'channel', title: 'App Push 自定义消息', sub: '加开激励视频入口' },
-        { id: 'cm2', kind: 'channel', title: 'App Push 自定义消息', sub: 'A/B · 新绑定关插屏' },
-        { id: 'cm3', kind: 'channel', title: 'App Push 自定义消息', sub: 'A/B · 付费插屏改激励' },
-        { id: 'endD', kind: 'exitEnd', title: '结束', sub: '默认：沿用本地广告配置' },
-        { id: 'w1', kind: 'wait', title: '等待', sub: '1 天' },
-        { id: 'end', kind: 'exitEnd', title: '结束', sub: '次日重新进入并重判' },
+        { id: 'cm2', kind: 'channel', title: 'App Push 自定义消息', sub: '实验组 · 新绑定关插屏' },
+        { id: 'cm3', kind: 'channel', title: 'App Push 自定义消息', sub: '实验组 · 插屏改激励' },
+        { id: 'endD', kind: 'exitEnd', title: '结束', sub: '沿用本地广告配置' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '次日重新进入' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '次日重新进入' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '次日重新进入' },
       ],
       [
         { from: 'start', to: 'cond' },
@@ -1696,27 +1840,28 @@
         { from: 'cond', to: 'cm2', label: '实验组 · 绑定 ≤ 7 天' },
         { from: 'cond', to: 'cm3', label: '实验组 · 付费' },
         { from: 'cond', to: 'endD', label: '默认 / 对照组' },
-        { from: 'cm1', to: 'w1' }, { from: 'cm2', to: 'w1' }, { from: 'cm3', to: 'w1' },
-        { from: 'w1', to: 'end' },
+        { from: 'cm1', to: 'endA' }, { from: 'cm2', to: 'endB' }, { from: 'cm3', to: 'endC' },
       ]);
 
     // Journey 2: 看家日报
     drawJourney(document.getElementById('dag-j2'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '分群: 已绑定且设备在线' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '分群: 已绑定设备用户' },
         { id: 'st', kind: 'sendtime', title: '可发送时间', sub: '终端时区 20:30–21:30' },
         { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取当日事件数 · 在线台数' },
-        { id: 'cond', kind: 'branch', title: '条件分支', sub: '当日事件数 · 最近打开' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '返回值 · 近 3 天未启动' },
+        { id: 'endX', kind: 'exitEnd', title: '结束', sub: '离线交旅程 7' },
         { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '今日家中 N 次动态' },
-        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '今日一切正常 · 设备在线' },
-        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '无事件且近期活跃：不发' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '今日一切正常' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '近期活跃：不发' },
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '次日再次进入' },
         { id: 'endB', kind: 'exitEnd', title: '结束', sub: '次日再次进入' },
       ],
       [
         { from: 'start', to: 'st' }, { from: 'st', to: 'wh' }, { from: 'wh', to: 'cond' },
+        { from: 'cond', to: 'endX', label: '在线为 0' },
         { from: 'cond', to: 'p1', label: '事件数 > 0' },
-        { from: 'cond', to: 'p2', label: '= 0 且 3 天未打开' },
+        { from: 'cond', to: 'p2', label: '= 0 · 3 天未启动' },
         { from: 'cond', to: 'endC', label: '默认' },
         { from: 'p1', to: 'endA' }, { from: 'p2', to: 'endB' },
       ]);
@@ -1724,186 +1869,160 @@
     // Journey 3: 沉默用户分层召回
     drawJourney(document.getElementById('dag-j3'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 7 天未打开 · 设备在线' },
-        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 最后打开距今天数' },
-        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:30' },
-        { id: 'cond3', kind: 'branch', title: '条件分支', sub: '属性: 近 7 天告警次数' },
-        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '本周家中 N 次动态' },
-        { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取电量 · 信号 · 流量余量' },
-        { id: 'p1b', kind: 'channel', title: 'App Push 通知消息', sub: '本周无动态 · 健康周报' },
-        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:30' },
-        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '看家模式 · 新功能' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '分群: 7–90 天未启动' },
+        { id: 'st', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:30' },
+        { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取周事件数 · 设备状态' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '沉默天数 · 返回值' },
+        { id: 'endX', kind: 'exitEnd', title: '结束', sub: '离线交旅程 7' },
         { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
-        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:30' },
-        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 设备在线 · 共享' },
-        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:30' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '报警设置 · 新功能' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '本周家中 N 次动态' },
+        { id: 'p1b', kind: 'channel', title: 'App Push 通知消息', sub: '设备健康周报' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 设备在线' },
         { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '设备在线 · 家人共享' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
         { id: 'endA2', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
-        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
         { id: 'endC', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
         { id: 'endD', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
       ],
       [
-        { from: 'start', to: 'cond' },
-        { from: 'cond', to: 'st1', label: '7–13 天' },
-        { from: 'cond', to: 'st2', label: '14–29 天' },
+        { from: 'start', to: 'st' }, { from: 'st', to: 'wh' }, { from: 'wh', to: 'cond' },
+        { from: 'cond', to: 'endX', label: '在线为 0' },
         { from: 'cond', to: 'cond2', label: '≥ 30 天' },
-        { from: 'st1', to: 'cond3' },
-        { from: 'cond3', to: 'p1', label: '> 0' },
-        { from: 'cond3', to: 'wh', label: '= 0' },
-        { from: 'wh', to: 'p1b' },
-        { from: 'st2', to: 'p2' },
-        { from: 'cond2', to: 'st3', label: '已同意短信' },
-        { from: 'cond2', to: 'st4', label: '未同意' },
-        { from: 'st3', to: 'sms' }, { from: 'st4', to: 'p3' },
-        { from: 'p1', to: 'endA' }, { from: 'p1b', to: 'endA2' }, { from: 'p2', to: 'endB' }, { from: 'sms', to: 'endC' }, { from: 'p3', to: 'endD' },
+        { from: 'cond', to: 'p2', label: '14–29 天' },
+        { from: 'cond', to: 'p1', label: '周事件 > 0' },
+        { from: 'cond', to: 'p1b', label: '默认' },
+        { from: 'cond2', to: 'sms', label: '未退订' },
+        { from: 'cond2', to: 'p3', label: '已退订' },
+        { from: 'p2', to: 'endB' }, { from: 'p1', to: 'endA' }, { from: 'p1b', to: 'endA2' },
+        { from: 'sms', to: 'endC' }, { from: 'p3', to: 'endD' },
       ]);
 
     // Journey 4: 云录像开通
     drawJourney(document.getElementById('dag-j4'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 告警触发 · 未开通云录像' },
-        { id: 'we1', kind: 'branch', title: '等待事件', sub: '30 分钟内: 查看画面或回放' },
-        { id: 'iam', kind: 'channel', title: '应用内消息', sub: '本次动态未保存到云端' },
-        { id: 'w1', kind: 'wait', title: '等待', sub: '1 天' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 告警 · 未开通云录像' },
+        { id: 'we1', kind: 'branch', title: '等待事件', sub: '30 分钟内: 查看画面' },
+        { id: 'iam', kind: 'channel', title: '应用内消息', sub: '这段动态没有云端备份' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '1 日历日' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '近 7 天 N 次动态仅本地' },
+        { id: 'wh1', kind: 'branch', title: 'Webhook', sub: '取近 7 天事件数' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: 'N 次动态无云端备份' },
         { id: 'w2', kind: 'wait', title: '等待', sub: '3 天' },
-        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 近 7 天告警次数' },
-        { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取首购优惠码与有效期' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '分群: 近 7 天告警 ≥ 3' },
+        { id: 'wh2', kind: 'branch', title: 'Webhook', sub: '取首购优惠码' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '看激励视频换试看' },
         { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '高频动态 · 专属优惠' },
-        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '看激励视频 · 换云录像试看' },
-        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
         { id: 'endB', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '间隔 7 天可再进入' },
       ],
       [
         { from: 'start', to: 'we1' },
         { from: 'we1', to: 'iam', label: '已查看' },
         { from: 'we1', to: 'w1', label: '超时' },
         { from: 'iam', to: 'w1' },
-        { from: 'w1', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'w2' }, { from: 'w2', to: 'cond' },
-        { from: 'cond', to: 'wh', label: '≥ 3 次' },
-        { from: 'cond', to: 'st3', label: '< 3 次' },
-        { from: 'wh', to: 'st2' }, { from: 'st2', to: 'p2' }, { from: 'p2', to: 'endA' },
-        { from: 'st3', to: 'p3' }, { from: 'p3', to: 'endB' },
+        { from: 'w1', to: 'st1' }, { from: 'st1', to: 'wh1' }, { from: 'wh1', to: 'p1' },
+        { from: 'p1', to: 'w2' }, { from: 'w2', to: 'st2' }, { from: 'st2', to: 'cond' },
+        { from: 'cond', to: 'wh2', label: '属于' },
+        { from: 'cond', to: 'p3', label: '默认' },
+        { from: 'wh2', to: 'p2' }, { from: 'p2', to: 'endA' }, { from: 'p3', to: 'endB' },
       ]);
 
     // Journey 5: 云录像到期续费
     drawJourney(document.getElementById('dag-j5'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 云录像到期日 · 有效' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '属性: 60 天内到期 · 有效' },
         { id: 'wa1', kind: 'wait', title: '等待至', sub: '到期日前 7 天' },
         { id: 'cond1', kind: 'branch', title: '条件分支', sub: '属性: 自动续费' },
         { id: 'st0', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p0', kind: 'channel', title: 'App Push 通知消息', sub: '将于到期日自动续费' },
-        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '自动续费用户只发告知' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '7 天后到期 · 一键续费' },
+        { id: 'p0', kind: 'channel', title: 'App Push 通知消息', sub: '将于到期日自动续费' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '7 天后到期' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '只发一条告知' },
         { id: 'wa2', kind: 'wait', title: '等待至', sub: '到期日前 1 天' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
         { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '明天到期' },
         { id: 'wa3', kind: 'wait', title: '等待至', sub: '到期日后 3 天' },
-        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
         { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 云端录像 N 天后清除' },
-        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '云端录像 N 天后清除' },
+        { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取云端录像清除日期' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 录像将清除' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '云端录像将清除' },
         { id: 'endB', kind: 'exitEnd', title: '结束', sub: '续费成功即提前退出' },
         { id: 'endC', kind: 'exitEnd', title: '结束', sub: '续费成功即提前退出' },
       ],
       [
         { from: 'start', to: 'wa1' }, { from: 'wa1', to: 'cond1' },
-        { from: 'cond1', to: 'st0', label: '已开自动续费' },
-        { from: 'cond1', to: 'st1', label: '手动续费' },
+        { from: 'cond1', to: 'st0', label: '已开启' },
+        { from: 'cond1', to: 'st1', label: '未开启' },
         { from: 'st0', to: 'p0' }, { from: 'p0', to: 'endA' },
         { from: 'st1', to: 'p1' }, { from: 'p1', to: 'wa2' }, { from: 'wa2', to: 'st2' }, { from: 'st2', to: 'p2' },
-        { from: 'p2', to: 'wa3' }, { from: 'wa3', to: 'cond2' },
-        { from: 'cond2', to: 'st3', label: '已同意短信' },
-        { from: 'cond2', to: 'st4', label: '未同意' },
-        { from: 'st3', to: 'sms' }, { from: 'st4', to: 'p3' },
+        { from: 'p2', to: 'wa3' }, { from: 'wa3', to: 'st3' }, { from: 'st3', to: 'wh' }, { from: 'wh', to: 'cond2' },
+        { from: 'cond2', to: 'sms', label: '未退订' },
+        { from: 'cond2', to: 'p3', label: '已退订' },
         { from: 'sms', to: 'endB' }, { from: 'p3', to: 'endC' },
       ]);
 
-    // Journey 6: 4G 流量余量与套餐续费
+    // Journey 6: 电量预警
     drawJourney(document.getElementById('dag-j6'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 流量余量 < 20%（按设备）' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 电量 < 20%（按设备）' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '设备流量剩余 N% · 充值' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '电量不足 · 检查太阳能板' },
         { id: 'w1', kind: 'wait', title: '等待', sub: '2 天' },
-        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 用尽后离线' },
-        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '用尽后离线' },
-        { id: 'w2', kind: 'wait', title: '等待', sub: '3 天' },
-        { id: 'we', kind: 'branch', title: '等待事件', sub: '5 天内: 该设备离线' },
-        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '已因流量用尽离线' },
-        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '充值成功即退出本实例' },
-        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '未离线：结束本实例' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 用尽后将离线' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '用尽后将离线' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '电量恢复即退出本实例' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '电量恢复即退出本实例' },
       ],
       [
-        { from: 'start', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'w1' }, { from: 'w1', to: 'cond' },
-        { from: 'cond', to: 'st2', label: '已同意短信' },
-        { from: 'cond', to: 'st3', label: '未同意' },
-        { from: 'st2', to: 'sms' }, { from: 'st3', to: 'p2' },
-        { from: 'sms', to: 'w2' }, { from: 'p2', to: 'w2' },
-        { from: 'w2', to: 'we' },
-        { from: 'we', to: 'st4', label: '设备离线' },
-        { from: 'we', to: 'endB', label: '超时' },
-        { from: 'st4', to: 'p3' }, { from: 'p3', to: 'endA' },
+        { from: 'start', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'w1' },
+        { from: 'w1', to: 'st2' }, { from: 'st2', to: 'cond' },
+        { from: 'cond', to: 'sms', label: '未退订' },
+        { from: 'cond', to: 'p2', label: '已退订' },
+        { from: 'sms', to: 'endA' }, { from: 'p2', to: 'endB' },
       ]);
 
     // Journey 7: 设备离线唤醒
     drawJourney(document.getElementById('dag-j7'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 设备离线 > 72 小时' },
-        { id: 'cond1', kind: 'branch', title: '条件分支', sub: '事件属性: 设备类型' },
-        { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取该设备流量余量' },
-        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '流量余量' },
-        { id: 'endX', kind: 'exitOk', title: '结束', sub: '流量为零：交旅程 6' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 离线 > 72 小时' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '4G 机离线 · 电量与信号' },
-        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: 'WiFi 机离线 · 路由与电源' },
+        { id: 'wh', kind: 'branch', title: 'Webhook', sub: '取离线前电量 · 信号' },
+        { id: 'cond', kind: 'branch', title: '条件分支', sub: 'Webhook 返回值' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '电量耗尽 · 续航说明' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '信号弱 · 安装位置' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '重启步骤 · 客服' },
         { id: 'w1', kind: 'wait', title: '等待', sub: '3 天' },
-        { id: 'cond3', kind: 'branch', title: '条件分支', sub: '最后打开 · 短信接收状态' },
-        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 仍离线 · 指引' },
-        { id: 'st4', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '仍离线 · 指引' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'cond2', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 仍离线' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '已退订' },
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '上线即退出本实例' },
-        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '上线即退出本实例' },
       ],
       [
-        { from: 'start', to: 'cond1' },
-        { from: 'cond1', to: 'wh', label: '4G 太阳能' },
-        { from: 'cond1', to: 'st2', label: 'WiFi' },
-        { from: 'wh', to: 'cond2' },
-        { from: 'cond2', to: 'endX', label: '余量 = 0' },
-        { from: 'cond2', to: 'st1', label: '余量 > 0' },
-        { from: 'st1', to: 'p1' }, { from: 'st2', to: 'p2' },
-        { from: 'p1', to: 'w1' }, { from: 'p2', to: 'w1' },
-        { from: 'w1', to: 'cond3' },
-        { from: 'cond3', to: 'st3', label: '7 天未打开且同意' },
-        { from: 'cond3', to: 'st4', label: '默认' },
-        { from: 'st3', to: 'sms' }, { from: 'st4', to: 'p3' },
-        { from: 'sms', to: 'endA' }, { from: 'p3', to: 'endB' },
+        { from: 'start', to: 'st1' }, { from: 'st1', to: 'wh' }, { from: 'wh', to: 'cond' },
+        { from: 'cond', to: 'p1', label: '电量 < 10%' },
+        { from: 'cond', to: 'p2', label: '信号弱' },
+        { from: 'cond', to: 'p3', label: '默认' },
+        { from: 'p1', to: 'w1' }, { from: 'p2', to: 'w1' }, { from: 'p3', to: 'w1' },
+        { from: 'w1', to: 'st2' }, { from: 'st2', to: 'cond2' },
+        { from: 'cond2', to: 'sms', label: '未退订' },
+        { from: 'cond2', to: 'endB', label: '已退订' },
+        { from: 'sms', to: 'endA' },
       ]);
 
     // Journey 8: 绑定首周引导
     drawJourney(document.getElementById('dag-j8'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 设备绑定成功 · 首台' },
-        { id: 'cond1', kind: 'branch', title: '条件分支', sub: 'SDK 属性: 通知权限状态' },
-        { id: 'iam', kind: 'channel', title: '应用内消息', sub: '开启通知才能收到告警' },
-        { id: 'wd1', kind: 'wait', title: '等待', sub: '2 日历日' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 绑定成功 · 首台' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '2 日历日' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:00' },
-        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '看家模式 · 在家免打扰' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '报警区域与灵敏度' },
         { id: 'we', kind: 'branch', title: '等待事件', sub: '3 天内: 共享设备' },
         { id: 'endA', kind: 'exitOk', title: '结束', sub: '已共享' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 19:00–21:00' },
@@ -1911,11 +2030,7 @@
         { id: 'endB', kind: 'exitEnd', title: '结束', sub: '云录像由旅程 4 承接' },
       ],
       [
-        { from: 'start', to: 'cond1' },
-        { from: 'cond1', to: 'iam', label: '未开启' },
-        { from: 'cond1', to: 'wd1', label: '已开启' },
-        { from: 'iam', to: 'wd1' },
-        { from: 'wd1', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'we' },
+        { from: 'start', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'we' },
         { from: 'we', to: 'endA', label: '已共享' },
         { from: 'we', to: 'st2', label: '超时' },
         { from: 'st2', to: 'p2' }, { from: 'p2', to: 'endB' },
@@ -1925,50 +2040,63 @@
     drawJourney(document.getElementById('dag-j9'),
       [
         { id: 'start', kind: 'entry', title: '开始', sub: 'SDK 事件: App 启动 · 未绑定' },
-        { id: 'w1', kind: 'wait', title: '等待', sub: '24 小时' },
+        { id: 'we1', kind: 'branch', title: '等待事件', sub: '24 小时内: 绑定成功' },
+        { id: 'endA', kind: 'exitOk', title: '结束', sub: '转旅程 8' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
         { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '3 步完成添加' },
-        { id: 'w2', kind: 'wait', title: '等待', sub: '2 天' },
-        { id: 'iam', kind: 'channel', title: '应用内消息', sub: '配网视频教程 · 在线客服' },
+        { id: 'we2', kind: 'branch', title: '等待事件', sub: '2 天内: 绑定成功' },
+        { id: 'endB', kind: 'exitOk', title: '结束', sub: '已绑定' },
+        { id: 'iam', kind: 'channel', title: '应用内消息', sub: '视频教程 · 在线客服' },
+        { id: 'we3', kind: 'branch', title: '等待事件', sub: '2 天内: 绑定成功' },
+        { id: 'endC', kind: 'exitOk', title: '结束', sub: '已绑定' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
-        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '添加遇到问题？' },
-        { id: 'w3', kind: 'wait', title: '等待', sub: '2 天' },
         { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
-        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
-        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 教程短链 · 客服' },
-        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '绑定成功转旅程 8' },
-        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '绑定成功转旅程 8' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 教程 · 客服' },
+        { id: 'endE', kind: 'exitEnd', title: '结束', sub: '已退订' },
+        { id: 'endD', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
       ],
       [
-        { from: 'start', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'p1' },
-        { from: 'p1', to: 'w2' }, { from: 'w2', to: 'iam' }, { from: 'iam', to: 'st2' },
-        { from: 'st2', to: 'p2' }, { from: 'p2', to: 'w3' }, { from: 'w3', to: 'cond' },
-        { from: 'cond', to: 'st3', label: '已同意短信' },
-        { from: 'cond', to: 'endB', label: '未同意' },
-        { from: 'st3', to: 'sms' }, { from: 'sms', to: 'endA' },
+        { from: 'start', to: 'we1' },
+        { from: 'we1', to: 'endA', label: '已绑定' },
+        { from: 'we1', to: 'st1', label: '超时' },
+        { from: 'st1', to: 'p1' }, { from: 'p1', to: 'we2' },
+        { from: 'we2', to: 'endB', label: '已绑定' },
+        { from: 'we2', to: 'iam', label: '超时' },
+        { from: 'iam', to: 'we3' },
+        { from: 'we3', to: 'endC', label: '已绑定' },
+        { from: 'we3', to: 'st2', label: '超时' },
+        { from: 'st2', to: 'cond' },
+        { from: 'cond', to: 'sms', label: '未退订' },
+        { from: 'cond', to: 'endE', label: '已退订' },
+        { from: 'sms', to: 'endD' },
       ]);
 
-    // Journey 10: 设备电量预警
+    // Journey 10: 告警通知权限找回
     drawJourney(document.getElementById('dag-j10'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 电量 < 20%（按设备）' },
-        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '电量不足 · 检查太阳能板' },
-        { id: 'w1', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'start', kind: 'entry', title: '开始', sub: 'SDK 事件: 通知权限关闭' },
+        { id: 'we1', kind: 'branch', title: '等待事件', sub: '1 天内: 通知权限开启' },
+        { id: 'endA', kind: 'exitOk', title: '结束', sub: '已开启' },
+        { id: 'iam', kind: 'channel', title: '应用内消息', sub: '关闭通知的影响 · 路径' },
+        { id: 'we2', kind: 'branch', title: '等待事件', sub: '3 天内: 通知权限开启' },
+        { id: 'endB', kind: 'exitOk', title: '结束', sub: '已开启' },
+        { id: 'st', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–20:00' },
         { id: 'cond', kind: 'branch', title: '条件分支', sub: '属性: 短信接收状态' },
-        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 用尽后将离线' },
-        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
-        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '用尽后将离线' },
-        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '电量恢复即退出本实例' },
-        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '电量恢复即退出本实例' },
+        { id: 'sms', kind: 'channel', title: 'SMS', sub: '模板消息 · 开启指引' },
+        { id: 'endD', kind: 'exitEnd', title: '结束', sub: '已退订' },
+        { id: 'endC', kind: 'exitEnd', title: '结束', sub: '间隔 30 天可再进入' },
       ],
       [
-        { from: 'start', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'w1' }, { from: 'w1', to: 'cond' },
-        { from: 'cond', to: 'st2', label: '已同意短信' },
-        { from: 'cond', to: 'st3', label: '未同意' },
-        { from: 'st2', to: 'sms' }, { from: 'st3', to: 'p2' },
-        { from: 'sms', to: 'endA' }, { from: 'p2', to: 'endB' },
+        { from: 'start', to: 'we1' },
+        { from: 'we1', to: 'endA', label: '已开启' },
+        { from: 'we1', to: 'iam', label: '超时' },
+        { from: 'iam', to: 'we2' },
+        { from: 'we2', to: 'endB', label: '已开启' },
+        { from: 'we2', to: 'st', label: '超时' },
+        { from: 'st', to: 'cond' },
+        { from: 'cond', to: 'sms', label: '未退订' },
+        { from: 'cond', to: 'endD', label: '已退订' },
+        { from: 'sms', to: 'endC' },
       ]);
   </script>
 
@@ -2041,11 +2169,11 @@
       ["s-journey3", "3", "沉默召回", "retain"],
       ["s-journey4", "4", "云录像开通", "activate"],
       ["s-journey5", "5", "云录像续费", "repeat"],
-      ["s-journey6", "6", "4G 流量", "repeat"],
+      ["s-journey6", "6", "电量预警", "retain"],
       ["s-journey7", "7", "离线唤醒", "retain"],
       ["s-journey8", "8", "首周引导", "acquire"],
       ["s-journey9", "9", "未绑定引导", "acquire"],
-      ["s-journey10", "10", "电量预警", "retain"]
+      ["s-journey10", "10", "通知权限", "retain"]
     ].filter(function (it) { return document.getElementById(it[0]); });
     if (items.length < 2) return;
 
