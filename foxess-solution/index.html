@@ -685,7 +685,7 @@
               <table>
                 <thead><tr><th>端</th><th>身份与入口</th><th>收到的内容</th><th>不收的内容</th><th>驱动旅程</th></tr></thead>
                 <tbody>
-                  <tr class="tone-info"><td>安装商</td><td>FoxCloud2.0 安装商账号，名下多个电站</td><td>建站与交付提醒、新品培训；设备故障工单与扩容线索经 Webhook 送达，不进本旅程的 MA 消息</td><td>业主侧的电价与收益内容</td><td>1 · 2 · 9</td></tr>
+                  <tr class="tone-info"><td>安装商</td><td>FoxCloud2.0 安装商账号，名下多个电站</td><td>建站与交付提醒、新品培训；设备故障工单与扩容线索经 Webhook 送达，不进安装商账号的 MA 消息</td><td>业主侧的电价与收益内容</td><td>1 · 2 · 9</td></tr>
                   <tr class="tone-info"><td>业主</td><td>业主账号，由安装商邀请绑定或自行建站</td><td>离线自助排查、固件说明、电价计划与 AI 模式、月度报告；扩容与新品内容只发给已同意营销的业主</td><td>需要到场处理的设备故障细节，由安装商承接</td><td>3 · 4 · 5 · 6 · 7 · 8 · 9</td></tr>
                   <tr><td>两端之间</td><td>电站分享：安装商邀请业主，业主关联安装商</td><td>业主提交的扩容咨询与设备故障，经 Webhook 转给该电站关联的安装商</td><td>—</td><td>2 · 4 · 7</td></tr>
                 </tbody>
@@ -699,8 +699,8 @@
                 <thead><tr><th>能力或时点</th><th>适用范围</th><th>本方案的承接</th><th>驱动旅程</th></tr></thead>
                 <tbody>
                   <tr class="tone-info"><td>电站分享与安装商维修服务</td><td>全部市场</td><td>建站后跟进业主绑定；设备类故障自动建单给关联安装商</td><td>2 · 4</td></tr>
-                  <tr><td>告警与离线状态</td><td>全部市场</td><td>先等两小时自行恢复，网络类教业主排查，设备类交安装商</td><td>4</td></tr>
-                  <tr><td>App 内固件升级</td><td>目前支持 H1-G2</td><td>升级前说明改动，升级后核对工作模式与电价计划是否变化</td><td>5</td></tr>
+                  <tr><td>告警与离线状态</td><td>全部市场</td><td>先等两小时，再查平台是否维护；网络类教业主排查，设备类交安装商；未装 App 同样分流</td><td>4</td></tr>
+                  <tr><td>App 内固件升级</td><td>目前支持 H1-G2</td><td>发版当下推升级提醒，升级后核对工作模式与电价计划是否变化</td><td>5</td></tr>
                   <tr class="tone-info"><td>电价计划、智能电价与 AI 模式</td><td>智能电价：荷兰、比利时、英国；AI 模式：荷兰</td><td>绑定后引导设电价计划；荷兰有电池业主在净计量取消前开启 AI 模式</td><td>3 · 6</td></tr>
                   <tr><td>荷兰 2027-01-01 取消净计量</td><td>荷兰业主</td><td>自用比例决定电费，旅程 6 以此为行动理由</td><td>6 · 7</td></tr>
                   <tr><td>德国 2025-02-25 起新装系统规则</td><td>德国新投运电站</td><td>无智能电表与控制盒时馈网功率限 60%，负电价时段不计补贴，作为加装电池的理由之一</td><td>7</td></tr>
@@ -763,13 +763,13 @@
         <table>
           <thead><tr><th>#</th><th>场景</th><th>承接漏斗环节</th><th>主渠道组合</th><th>亮点</th><th>见效节奏</th><th>预期效果</th></tr></thead>
           <tbody>
-            <tr><td>1</td><td>安装商激活：注册到第一个电站</td><td>安装商注册 → 首个电站</td><td>Email + App Push 通知</td><td>按建站、配网、安装商计划三步推进，建站即停</td><td>需数据积累</td><td>30 天内建站 50% → 60%（假设起点）</td></tr>
+            <tr><td>1</td><td>安装商激活：注册到第一个电站</td><td>安装商注册 → 首个电站</td><td>Email + App Push 通知</td><td>App 与网页都能注册；建站、配网两轮按当时是否已装 App 分流，建站即停</td><td>需数据积累</td><td>30 天内建站 50% → 60%（假设起点）</td></tr>
             <tr class="tone-info"><td>2</td><td>电站交付：安装商建站到业主绑定</td><td>建站 → 业主绑定</td><td>App Push 通知 + Email（安装商端）</td><td>每个电站一个实例；未邀请提醒后汇入同一条「等待业主接受」</td><td>首月见效</td><td>14 天内业主绑定 65% → 80%（假设起点）</td></tr>
             <tr><td>3</td><td>业主上手：绑定到设置电价计划</td><td>绑定 → 设置电价计划</td><td>App Push 通知 + Email</td><td>未装 App 先发下载邮件，装上后接同一条电价引导；荷比英走智能电价</td><td>首月见效</td><td>30 天内设置电价计划 15% → 30%（假设起点）</td></tr>
             <tr class="tone-info"><td>4</td><td>离线与告警：先等恢复，再分流到业主或安装商</td><td>离线 → 恢复在线</td><td>App Push 通知 + Email + Webhook 建工单</td><td>先查平台是否维护，未装 App 同样分流；网络类教排查，设备类自动建单</td><td>首月见效</td><td>离线 24 小时内恢复 60% → 70%（假设起点）</td></tr>
-            <tr class="tone-info"><td>5</td><td>固件升级：升级前说明，升级后核对设置</td><td>固件可用 → 升级完成</td><td>App Push 通知 + 应用内消息</td><td>升级后经 Webhook 比对设置差异，有变化才提示；版本撤回即停止提醒</td><td>首月见效（按发版节奏）</td><td>14 天内升级 30% → 50%（假设起点）</td></tr>
+            <tr class="tone-info"><td>5</td><td>固件升级：升级前说明，升级后核对设置</td><td>固件可用 → 升级完成</td><td>App Push 通知 + 应用内消息</td><td>发版当下推升级；升级后比对设置差异，有变化才提示；版本撤回即停</td><td>首月见效（按发版节奏）</td><td>14 天内升级 30% → 50%（假设起点）</td></tr>
             <tr class="tone-info"><td>6</td><td>荷兰净计量取消前：电价计划到 AI 模式</td><td>电价计划 → AI 模式</td><td>App Push 通知 + 应用内消息 + Email</td><td>以 2027-01-01 为行动理由，先补电价计划再开 AI 模式，两步各有等待</td><td>首月见效（截至 2026 年底）</td><td>荷兰有电池业主开启 AI 模式 20% → 35%（假设起点）</td></tr>
-            <tr class="tone-info"><td>7</td><td>加装电池：由馈网电量发起，线索交安装商</td><td>扩容候选 → 扩容咨询</td><td>App Push 通知 + Email + Webhook 转线索</td><td>无电池讲馈网价值下降、引导买电池；有电池讲兼容模块；浏览后再等是否提交咨询</td><td>需数据积累</td><td>候选业主 90 天内扩容咨询（对照组比较）</td></tr>
+            <tr class="tone-info"><td>7</td><td>加装电池：无电池买电池，有电池再扩容</td><td>扩容候选 → 扩容咨询</td><td>App Push 通知 + Email + Webhook 转线索</td><td>无电池讲馈网价值下降、引导买电池；有电池讲兼容模块；浏览后再等是否提交咨询</td><td>需数据积累</td><td>候选业主 90 天内扩容咨询（对照组比较）</td></tr>
             <tr><td>8</td><td>月度能源报告：沉默业主的回访理由</td><td>沉默 → 回访</td><td>App Push 通知 + Email</td><td>上个月未打开 App 的业主，每月 2 日发上月发电与收益；有未处理告警时改发告警</td><td>需数据积累</td><td>沉默业主 30 天内回访 15% → 20–25%（假设起点）</td></tr>
             <tr><td>9</td><td>新品发布：安装商与业主两种内容</td><td>扩容候选 → 扩容咨询（发布期）</td><td>Email + App Push 通知</td><td>安装商收规格与培训名额；业主只在兼容时收到，未装 App 走 Email</td><td>首月见效（按发布日历）</td><td>新品培训报名与业主咨询数（对照组比较）</td></tr>
             <tr><td colspan="7" style="background:#f8fafc;font-weight:700;color:var(--text-3);font-size:12.5px;letter-spacing:.04em">拓展场景 · 测试期后按优先级推进，本方案不编排</td></tr>
@@ -793,7 +793,7 @@
       <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">渠道的起点</span><span class="pill pill-info">安装商注册 → 首个电站</span><span class="pill">注册事件触发 · 建站即停 · Email + App Push</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>安装商账号是业主进入 FoxCloud 的前一步，注册后迟迟不建站，后面的交付、告警与扩容都无从发生。<span class="bold">三轮各给一个理由</span>：建站步骤、现场配网要点、安装商计划权益，建站即停。</p>
+          <p>安装商账号是业主进入 FoxCloud 的前一步，注册后迟迟不建站，后面的交付、告警与扩容都无从发生。注册可以在 App 里完成，也可以在 foxesscloud.com 网页完成。<span class="bold">先等一天</span>：已装 App 的发建站步骤 Push，网页注册未装 App 的发同一内容的 Email；之后再发配网要点和安装商计划，建站即停。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email 模板消息 · App Push 通知消息　｜　<span class="bold">触发方式</span>：事件「安装商账号注册」　｜　<span class="bold">退出条件</span>：创建电站即退出</p>
         </div>
       </div>
@@ -807,7 +807,7 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>安装商通常在第一个项目现场才打开 App，建站与配网步骤要当场摸索</li>
+                <li>安装商可在 App 或网页注册；网页注册的人收不到 Push，建站步骤发不到</li>
                 <li>配网只支持 2.4GHz Wi-Fi，现场不知道这一点会导致首次配网失败</li>
                 <li>安装商计划的等级与权益不在建站流程里，新安装商看不到</li>
               </ul>
@@ -823,7 +823,12 @@
                 <li><span class="bold">转化统计</span>：同一事件，监听窗口 3 天</li>
                 <li><span class="bold">等待</span>：1 个日历日</li>
                 <li><span class="bold">可发送时间</span>：终端时区 9:00–18:00</li>
-                <li><span class="bold">Email 模板消息一</span>：建站、添加设备与邀请业主三步，附培训课程入口</li>
+                <li><span class="bold">条件分支</span>：属性「App 安装状态」
+                  <ul>
+                    <li>已安装：<span class="bold">App Push 通知消息</span>，建站、添加设备与邀请业主三步，附培训课程入口</li>
+                    <li>未安装：<span class="bold">Email 模板消息一</span>，同一套建站三步与培训入口</li>
+                  </ul>
+                </li>
                 <li><span class="bold">等待</span>：5 天</li>
                 <li><span class="bold">可发送时间</span>：终端时区 9:00–18:00</li>
                 <li><span class="bold">条件分支</span>：属性「App 安装状态」
@@ -840,7 +845,7 @@
                     <li>未同意：结束</li>
                   </ul>
                 </li>
-                <li><span class="muted">埋点：安装商账号注册与创建电站由 FoxCloud 后台上报；邮件营销同意取安装商计划注册页的订阅勾选；App 安装状态由 SDK 维护</span></li>
+                <li><span class="muted">埋点：安装商账号注册与创建电站由 FoxCloud 后台上报（App 与网页同一账号体系）；邮件营销同意取安装商计划注册页的订阅勾选；App 安装状态由 SDK 维护</span></li>
               </ul>
             </div>
           </div>
@@ -893,7 +898,7 @@
                 <li><span class="bold">转化统计</span>：事件「业主接受邀请」，电站 ID 等于本实例值，监听窗口 1 天</li>
                 <li><span class="bold">等待事件</span>：24 小时内等待「邀请业主」（电站 ID 等于本实例值）
                   <ul>
-                    <li>已邀请：进入下一步「等待事件 · 业主接受邀请」</li>
+                    <li>已邀请：进入「等待事件 · 7 天内等待业主接受邀请」</li>
                     <li>未邀请：
                       <ul>
                         <li><span class="bold">可发送时间</span>：终端时区 9:00–18:00</li>
@@ -903,7 +908,7 @@
                             <li>未安装：<span class="bold">Email 模板消息</span>，同一电站、同一邀请入口</li>
                           </ul>
                         </li>
-                        <li>两条消息发出后都进入下一步，接到同一条「等待事件 · 业主接受邀请」，不另建分支</li>
+                        <li>两条消息发出后都接到同一条「等待事件 · 7 天内等待业主接受邀请」，不另建分支</li>
                       </ul>
                     </li>
                   </ul>
@@ -946,7 +951,7 @@
     <section id="s-journey3" class="section-plain" data-stage="activate" data-scene="3">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">03</div><div class="scene-head-main"><h2>旅程 3｜业主上手：绑定到设置电价计划</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">收益数据的前提</span><span class="pill pill-info">绑定 → 设置电价计划</span><span class="pill">绑定事件触发 · 按市场分流 · App Push + Email</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">收益数据的前提</span><span class="pill pill-info">绑定 → 设置电价计划</span><span class="pill">接受邀请或自行建站 · 未装先邮件 · App Push + Email</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
           <p>收益页与 AI 模式都以电价计划为前提，绑定当天由 App 展示电站概览。<span class="bold">未装 App 的业主先收到下载邮件</span>，装上并打开后再走与已装用户同一条电价引导：荷兰、比利时、英国一键选服务商，其他市场手动录入。</p>
@@ -984,20 +989,20 @@
                         <li><span class="bold">Email 模板消息一</span>（即时），App 下载、电价计划与告警通知的作用、保修登记入口（序列号取开始事件属性）</li>
                         <li><span class="bold">等待事件</span>：14 天内
                           <ul>
-                            <li>「设置电价计划」：结束</li>
-                            <li>SDK 事件「App 启动」：进入下一步，接到同一条「等待事件 · 设置电价计划」</li>
-                            <li>超时：结束</li>
+                            <li>「设置电价计划」：结束（等待期间已设电价）</li>
+                            <li>SDK 事件「App 启动」：进入「等待事件 · 24 小时内等待设置电价计划」（与已安装分支接到同一条，不另建）</li>
+                            <li>超时：结束（未装 App 超时）</li>
                           </ul>
                         </li>
                       </ul>
                     </li>
-                    <li>已安装：进入下一步</li>
+                    <li>已安装：进入「等待事件 · 24 小时内等待设置电价计划」</li>
                   </ul>
                 </li>
                 <li><span class="bold">等待事件</span>：24 小时内等待「设置电价计划」
                   <ul>
-                    <li>已设置：结束</li>
-                    <li>未设置：进入下一步</li>
+                    <li>已设置：结束（已设置电价计划）</li>
+                    <li>未设置：进入「可发送时间 · 终端时区 9:00–21:00」，其后按国家分流发送 App Push</li>
                   </ul>
                 </li>
                 <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
@@ -1087,7 +1092,7 @@
                         <li>结束</li>
                       </ul>
                     </li>
-                    <li>为假：进入下一步</li>
+                    <li>为假：进入「条件分支 · 离线原因类别与已关联安装商」</li>
                   </ul>
                 </li>
                 <li><span class="bold">条件分支</span>：事件属性「离线原因类别」与属性「已关联安装商」
@@ -1308,7 +1313,7 @@
     <!-- Journey 7 -->
     <section id="s-journey7" class="section-plain" data-stage="repeat" data-scene="7">
       <div class="wrap">
-      <div class="scene-head"><div class="scene-num" aria-hidden="true">07</div><div class="scene-head-main"><h2>旅程 7｜加装电池：由馈网电量发起，线索交安装商</h2></div></div>
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">07</div><div class="scene-head-main"><h2>旅程 7｜加装电池：无电池买电池，有电池再扩容</h2></div></div>
       <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">硬件增量收入</span><span class="pill pill-info">扩容候选 → 扩容咨询</span><span class="pill">分群进入 · Webhook 取电站数据与转线索 · App Push + Email</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
@@ -1343,7 +1348,7 @@
                 <li><span class="bold">可发送时间</span>：终端时区 10:00–20:00</li>
                 <li><span class="bold">条件分支</span>：营销同意（属性「App 营销推送同意」或「邮件营销同意」）
                   <ul>
-                    <li>至少一项为真：进入下一步</li>
+                    <li>至少一项为真：进入「Webhook 取数 · 电站数、馈网电量与兼容电池」</li>
                     <li>默认：结束</li>
                   </ul>
                 </li>
@@ -1374,12 +1379,12 @@
                 </li>
                 <li><span class="bold">等待事件</span>：3 天
                   <ul>
-                    <li>「提交扩容咨询」：进入下一步「Webhook 执行动作 · 线索转交」</li>
+                    <li>「提交扩容咨询」：进入「Webhook 执行动作 · 线索转交关联安装商」</li>
                     <li>「浏览扩容评估页」：
                       <ul>
                         <li><span class="bold">等待事件</span>：3 天内等待「提交扩容咨询」
                           <ul>
-                            <li>已提交：进入同一条「Webhook 执行动作 · 线索转交」，不另建</li>
+                            <li>已提交：进入「Webhook 执行动作 · 线索转交关联安装商」（与「提交扩容咨询」分支接到同一条，不另建）</li>
                             <li>超时：
                               <ul>
                                 <li><span class="bold">可发送时间</span>：终端时区 10:00–20:00</li>
@@ -1492,7 +1497,7 @@
       <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">按发布日历运行</span><span class="pill pill-info">扩容候选 → 扩容咨询（发布期）</span><span class="pill">分群进入 · 按角色与兼容性分流 · Email + App Push</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>新品对安装商是要学的产品，对业主是可能加装的设备，一次群发满足不了两者。<span class="bold">安装商收规格与培训名额，业主只在本电站兼容时收到</span>，报名或咨询即停止跟进。</p>
+          <p>新品对安装商是要学的产品，对业主是可能加装的设备，一次群发满足不了两者。<span class="bold">安装商收规格与培训名额；业主只在电站清单有兼容逆变器时收到</span>，未装 App 走 Email，报名或咨询即停止跟进。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：Email 模板消息 · App Push 通知消息 · Webhook　｜　<span class="bold">触发方式</span>：分群「本次发布目标人群」　｜　<span class="bold">退出条件</span>：提交培训报名或产品咨询即退出</p>
         </div>
       </div>
@@ -1599,19 +1604,19 @@
       <div class="wrap">
         <div class="eyebrow">数据整合</div>
         <h2><span class="secnum">4</span>九条旅程依赖的事件与属性</h2>
-        <p>九条旅程依赖的数据集中在 FoxCloud 平台与贵司服务系统。下表按提供方列出每一项与它驱动的旅程：SDK 自带与「是否达阈值 / 是否沉默」的分群判断不需要开发；消息里展示的电站数量、馈网电量、金额与兼容型号由 Webhook 取值，累计或单电站口径由贵司选定，接口按该口径返回。</p>
+        <p>九条旅程依赖的数据集中在 FoxCloud 平台与贵司服务系统。下表按提供方列出每一项与它驱动的旅程：SDK 自带与分群判断（上个月未打开 App、无电池投运天数、有电池才看馈网是否达阈值）不需要开发；消息里展示的电站数量、馈网电量、金额与兼容型号由 Webhook 取值，累计或单电站口径由贵司选定，接口按该口径返回。</p>
         <div class="spacer-md"></div>
         <table>
           <thead><tr><th>事件或属性</th><th>类型</th><th>关键字段</th><th>提供方</th><th>驱动的旅程</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>App 启动、App 安装状态</td><td>SDK 标准事件与属性</td><td>—</td><td>EngageLab SDK，无需开发</td><td>1 · 2 · 3 · 4 · 7 · 8 · 9</td></tr>
+            <tr class="tone-info"><td>App 启动、App 安装状态</td><td>SDK 标准事件与属性</td><td>—</td><td>EngageLab SDK，无需开发</td><td>1 · 2 · 3 · 4 · 5 · 6 · 7 · 8 · 9</td></tr>
             <tr class="tone-info"><td>上个月未打开 App 的业主、扩容候选业主、荷兰有电池未开启 AI 模式的业主、本次发布目标人群</td><td>用户分群</td><td>上一自然月无 App 启动；馈网电量求和是否达阈值仅用于有电池业主入群，不输出求和数值；国家、电站清单、工作模式</td><td>EngageLab 用户分群，按表内事件与属性计算入群名单</td><td>6 · 7 · 8 · 9</td></tr>
             <tr><td>安装商账号注册、创建电站、邀请业主、业主接受邀请、业主创建电站、删除电站、解绑电站</td><td>平台事件</td><td>电站 ID、电站名称、是否首个电站、设备序列号</td><td>FoxCloud 后台上报</td><td>1 · 2 · 3</td></tr>
             <tr><td>设置电价计划、工作模式变更、每日能量汇总、电站新增电池</td><td>设备与平台事件</td><td>电价类型（手动 / 智能）、新模式、馈网电量</td><td>FoxCloud 后台上报</td><td>3 · 6 · 7</td></tr>
             <tr><td>电站离线、电站恢复在线、固件可用、固件升级完成、固件版本撤回</td><td>设备与平台事件</td><td>电站 ID、离线原因类别、设备序列号、机型、目标版本、更新说明链接</td><td>FoxCloud 后台上报</td><td>4 · 5</td></tr>
             <tr><td>浏览扩容评估页、提交扩容咨询、浏览新品页、新品意向提交</td><td>业务事件</td><td>电站 ID、意向类型</td><td>FoxCloud 与官网上报</td><td>7 · 9</td></tr>
             <tr><td>账号角色、国家、语言、电价计划状态、当前工作模式、已关联安装商、安装商名称</td><td>用户属性</td><td>角色（业主 / 安装商）</td><td>FoxCloud 账号系统写入</td><td>全部</td></tr>
-            <tr><td>电站清单（每个电站的电站 ID、有无电池、电池型号、逆变器型号、光伏容量、投运日期）</td><td>object array</td><td>按电站 ID 增量更新：建站时新增、删除时移除、加装电池后更新该电站</td><td>FoxCloud 后台写入</td><td>6 · 7 · 9</td></tr>
+            <tr><td>电站清单（每个电站的电站 ID、有无电池、电池型号、逆变器型号、光伏容量、投运日期）</td><td>object array</td><td>按电站 ID 增量更新：建站时新增、删除时移除、加装电池后更新该电站</td><td>FoxCloud 后台写入</td><td>6 · 7 · 8 · 9</td></tr>
             <tr><td>邮件营销同意、App 营销推送同意</td><td>用户属性</td><td>布尔，含同意时间</td><td>FoxCloud 账号设置与安装商计划注册页</td><td>1 · 7 · 9</td></tr>
             <tr><td>平台服务状态、电站月度数据、近 30 天馈网电量与兼容电池、升级前后设置差异、培训名额</td><td>Webhook 取数</td><td>电站数量；馈网电量、折算金额、电池型号与可加模块数（累计或单电站，口径由贵司选定）</td><td>FoxCloud 接口 · 培训报名系统</td><td>4 · 5 · 7 · 8 · 9</td></tr>
             <tr><td>创建服务工单、扩容线索转交</td><td>Webhook 执行动作</td><td>电站 ID、设备序列号、告警信息、兼容型号</td><td>服务工单系统 · 安装商与经销商线索系统</td><td>4 · 7</td></tr>
@@ -1674,7 +1679,7 @@
           </tbody>
         </table>
         <ul class="notelist">
-          <li>工作量分两段：MA App SDK 事件与属性接入约 3–5 人日（App Push 沿用已开通应用，App 启动与安装状态为 SDK 自带）；FoxCloud 后台事件上报与五个查询接口、两个接收接口第 1 周盘点后另行排期。沉默判断与「有电池业主馈网电量是否达阈值」由 MA 分群计算；消息里的电站数量、电量、金额与兼容型号仍走 Webhook，口径由贵司选定。</li>
+          <li>工作量分两段：MA App SDK 事件与属性接入约 3–5 人日（App Push 沿用已开通应用，App 启动与安装状态为 SDK 自带）；FoxCloud 后台事件上报与五个查询接口、两个接收接口第 1 周盘点后另行排期。「上个月未打开 App」与「有电池业主馈网电量是否达阈值」由 MA 分群计算；消息里的电站数量、电量、金额与兼容型号仍走 Webhook，口径由贵司选定。</li>
         </ul>
       </div>
     </section>
@@ -1835,10 +1840,12 @@
 
       const baseWidth = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
       const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
-      // 跨层的「提前分流到结束」走右侧通道，避免压在主链节点上
-      const hasSkip = edges.some(e => pos[e.from] && pos[e.to] && (rankOf[e.to] - rankOf[e.from]) > 1);
-      const SIDE_X = baseWidth + 20;
-      const width = hasSkip ? SIDE_X + 40 : baseWidth;
+      // 跨层边走右侧通道；多条跨层边错开，避免叠成一根
+      const skipEdges = edges.filter(e => pos[e.from] && pos[e.to] && (rankOf[e.to] - rankOf[e.from]) > 1);
+      const skipLane = {};
+      skipEdges.forEach((e, i) => { skipLane[e.from + '>' + e.to] = i; });
+      const SIDE0 = baseWidth + 18;
+      const width = skipEdges.length ? SIDE0 + 28 + skipEdges.length * 16 : baseWidth;
       const s = svg(width, height);
       s.setAttribute('width', width);
       s.setAttribute('height', height);
@@ -1858,7 +1865,9 @@
         const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
         const x2 = to.x + NODE_W / 2, y2 = to.y;
         if ((rankOf[e.to] - rankOf[e.from]) > 1) {
-          const yA = y1 + 16, yB = y2 - 16;
+          const lane = skipLane[e.from + '>' + e.to] || 0;
+          const SIDE_X = SIDE0 + lane * 16;
+          const yA = y1 + 14, yB = y2 - 14;
           const d = 'M' + x1 + ',' + y1 + ' L' + x1 + ',' + yA + ' L' + SIDE_X + ',' + yA
                   + ' L' + SIDE_X + ',' + yB + ' L' + x2 + ',' + yB + ' L' + x2 + ',' + y2;
           s.appendChild(el('path', { d, fill: 'none', stroke: '#b6c2d2', 'stroke-width': 1.15,
@@ -1924,7 +1933,9 @@
         { id: 'start', kind: 'entry', title: '开始', sub: '事件: 安装商账号注册' },
         { id: 'w1', kind: 'wait', title: '等待', sub: '1 个日历日' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–18:00' },
-        { id: 'em1', kind: 'channel', title: 'Email 模板消息一', sub: '建站三步 · 培训入口' },
+        { id: 'cApp0', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
+        { id: 'p0', kind: 'channel', title: 'App Push 通知消息', sub: '建站三步 · 培训入口' },
+        { id: 'em1', kind: 'channel', title: 'Email 模板消息一', sub: '同一套建站三步' },
         { id: 'w2', kind: 'wait', title: '等待', sub: '5 天' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–18:00' },
         { id: 'cApp', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
@@ -1938,8 +1949,9 @@
         { id: 'endB', kind: 'exitEnd', title: '结束', sub: '未同意营销' },
       ],
       [
-        { from: 'start', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'em1' },
-        { from: 'em1', to: 'w2' }, { from: 'w2', to: 'st2' }, { from: 'st2', to: 'cApp' },
+        { from: 'start', to: 'w1' }, { from: 'w1', to: 'st1' }, { from: 'st1', to: 'cApp0' },
+        { from: 'cApp0', to: 'p0', label: '已安装' }, { from: 'cApp0', to: 'em1', label: '未安装' },
+        { from: 'p0', to: 'w2' }, { from: 'em1', to: 'w2' }, { from: 'w2', to: 'st2' }, { from: 'st2', to: 'cApp' },
         { from: 'cApp', to: 'p1', label: '已安装' }, { from: 'cApp', to: 'emP', label: '未安装' },
         { from: 'p1', to: 'w3' }, { from: 'emP', to: 'w3' }, { from: 'w3', to: 'st3' }, { from: 'st3', to: 'c1' },
         { from: 'c1', to: 'em2', label: '已同意' }, { from: 'c1', to: 'endB', label: '未同意' },
@@ -1981,6 +1993,7 @@
         { id: 'em0', kind: 'channel', title: 'Email 模板消息一', sub: 'App 下载 · 电价 · 保修' },
         { id: 'weApp', kind: 'wait', title: '等待事件', sub: '14 天 · App 启动或已设电价' },
         { id: 'end0', kind: 'exitEnd', title: '结束', sub: '未装 App 超时' },
+        { id: 'endMail', kind: 'exitOk', title: '结束', sub: '等待期间已设电价' },
         { id: 'we1', kind: 'wait', title: '等待事件', sub: '24 小时 · 设置电价计划' },
         { id: 'endA', kind: 'exitOk', title: '结束', sub: '已设置电价计划' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
@@ -1996,7 +2009,8 @@
       [
         { from: 'start', to: 'c0' },
         { from: 'c0', to: 'em0', label: '未安装' }, { from: 'em0', to: 'weApp' },
-        { from: 'weApp', to: 'endA', label: '已设置' }, { from: 'weApp', to: 'we1', label: 'App 启动' },
+        { from: 'weApp', to: 'endMail', label: '已设置' },
+        { from: 'weApp', to: 'we1', label: 'App 启动' },
         { from: 'weApp', to: 'end0', label: '超时' },
         { from: 'c0', to: 'we1', label: '已安装' },
         { from: 'we1', to: 'endA', label: '已设置' }, { from: 'we1', to: 'st1', label: '未设置' },
@@ -2118,17 +2132,23 @@
         { id: 'pB', kind: 'channel', title: 'App Push 通知消息', sub: '充满后仍送出 · 兼容模块' },
         { id: 'emB', kind: 'channel', title: 'Email 模板消息', sub: '同一套扩容内容' },
         { id: 'we1', kind: 'wait', title: '等待事件', sub: '3 天 · 咨询或浏览' },
+        { id: 'endWait', kind: 'exitEnd', title: '结束', sub: '超时未操作' },
         { id: 'we2', kind: 'wait', title: '等待事件', sub: '3 天 · 提交咨询' },
         { id: 'whL', kind: 'branch', title: 'Webhook 执行动作', sub: '线索转交关联安装商' },
         { id: 'cAppL', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
         { id: 'pL', kind: 'channel', title: 'App Push 通知消息', sub: '咨询已转交安装商' },
         { id: 'emL', kind: 'channel', title: 'Email 模板消息', sub: '同一转交说明' },
         { id: 'endL', kind: 'exitOk', title: '结束', sub: '已提交扩容咨询' },
+        { id: 'whL2', kind: 'branch', title: 'Webhook 执行动作', sub: '线索转交关联安装商' },
+        { id: 'cAppL2', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
+        { id: 'pL2', kind: 'channel', title: 'App Push 通知消息', sub: '咨询已转交安装商' },
+        { id: 'emL2', kind: 'channel', title: 'Email 模板消息', sub: '同一转交说明' },
+        { id: 'endL2', kind: 'exitOk', title: '结束', sub: '浏览后已提交咨询' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–20:00' },
         { id: 'c2', kind: 'branch', title: '条件分支', sub: '属性: 邮件营销同意' },
         { id: 'em1', kind: 'channel', title: 'Email 模板消息', sub: '加装流程 · 兼容性问答' },
         { id: 'endE', kind: 'exitEnd', title: '结束', sub: '已发常见问题' },
-        { id: 'endN', kind: 'exitEnd', title: '结束', sub: '未同意或未操作' },
+        { id: 'endN', kind: 'exitEnd', title: '结束', sub: '未同意邮件营销' },
       ],
       [
         { from: 'start', to: 'st0' }, { from: 'st0', to: 'c0' },
@@ -2139,13 +2159,15 @@
         { from: 'pA', to: 'we1' }, { from: 'emA', to: 'we1' }, { from: 'pB', to: 'we1' }, { from: 'emB', to: 'we1' },
         { from: 'we1', to: 'whL', label: '提交咨询' },
         { from: 'we1', to: 'we2', label: '浏览评估页' },
-        { from: 'we2', to: 'whL', label: '已提交' },
+        { from: 'we1', to: 'endWait', label: '超时' },
+        { from: 'we2', to: 'whL2', label: '已提交' },
         { from: 'we2', to: 'st1', label: '超时' }, { from: 'st1', to: 'c2' },
         { from: 'c2', to: 'em1', label: '已同意' }, { from: 'em1', to: 'endE' },
         { from: 'c2', to: 'endN', label: '未同意' },
-        { from: 'we1', to: 'endN', label: '超时' },
         { from: 'whL', to: 'cAppL' }, { from: 'cAppL', to: 'pL', label: '已安装' }, { from: 'cAppL', to: 'emL', label: '未安装' },
         { from: 'pL', to: 'endL' }, { from: 'emL', to: 'endL' },
+        { from: 'whL2', to: 'cAppL2' }, { from: 'cAppL2', to: 'pL2', label: '已安装' }, { from: 'cAppL2', to: 'emL2', label: '未安装' },
+        { from: 'pL2', to: 'endL2' }, { from: 'emL2', to: 'endL2' },
       ]);
 
     // J8 月度能源报告
