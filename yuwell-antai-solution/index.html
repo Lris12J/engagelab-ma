@@ -1128,10 +1128,10 @@
     <section id="s-journey6" class="section-plain" data-stage="retain" data-scene="6">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">06</div><div class="scene-head-main"><h2>旅程 6｜数据同步中断：先等恢复，再按原因分流</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">数据完整性 · 服务型</span><span class="pill pill-info">中断 → 恢复同步</span><span class="pill">中断事件触发 · 按设备分实例 · 先判安装与通知状态再换渠道</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">实时监测不中断 · 服务型</span><span class="pill pill-info">中断 → 恢复同步</span><span class="pill">中断事件触发 · 按设备分实例 · 先判安装与通知状态再换渠道</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>发射器能缓存约 12 小时数据，断连超过这个上限才会真正丢失。<span class="bold">旅程在 4 小时就触发、先给两小时自行恢复</span>，仍未恢复再按中断原因给对应的一步操作，都发生在数据丢失之前。</p>
+          <p>同步中断期间，App 拿不到实时读数，依赖实时读数的高低血糖提醒也随之失效；App 自带的信号丢失提醒只在 App 存活时有效，后台被系统清理、账号掉线或已卸载时无从提醒。<span class="bold">旅程由设备云侧发现连续 4 小时无数据上传而触发，先给两小时自行恢复</span>，仍未恢复再按中断原因给对应的一步操作。</p>
           <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底短信或邮件（按项目）　｜　<span class="bold">触发方式</span>：事件「数据同步中断」　｜　<span class="bold">退出条件</span>：该发射器数据恢复上传即退出本实例</p>
         </div>
       </div>
@@ -1145,7 +1145,7 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>发射器缓存满 12 小时后数据才真正丢失，但用户往往在查看报告时才发现数据已中断</li>
+                <li>同步中断期间看不到实时读数，高低血糖提醒也随之失效，而用户往往在查看报告时才发现已经中断了一段时间</li>
                 <li>蓝牙、后台权限、账号掉登录三种原因，处理步骤完全不同</li>
                 <li>关闭系统通知的用户收不到任何推送，而这部分人恰恰最需要这条提醒</li>
               </ul>
@@ -1155,7 +1155,7 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul class="cfg-list">
-                <li><span class="bold">开始组件</span>：事件「数据同步中断」，由设备云在连续 <span class="bold">4 小时</span>无数据上传时上报，携带发射器 ID 与中断类型。取 4 小时是为了明显早于缓存上限，第 1 周用贵司真实的断连时长分布校准</li>
+                <li><span class="bold">开始组件</span>：事件「数据同步中断」，由设备云在连续 <span class="bold">4 小时</span>无数据上传时上报，携带发射器 ID 与中断类型。4 小时为建议起点：短于一次正常的短时离开（外出未带手机、夜间充电）容易误报，再长则提醒空窗过久；第 1 周用贵司真实的断连时长分布校准</li>
                 <li><span class="bold">再次进入</span>：可同时多次进入（多实例，按业务并行），并发上限 5，每台发射器一个实例；提前退出与转化统计按本实例发射器 ID 过滤</li>
                 <li><span class="bold">提前退出</span>：事件「数据恢复上传」，发射器 ID 等于本实例值</li>
                 <li><span class="bold">转化统计</span>：事件「数据恢复上传」，监听窗口 1 天</li>
@@ -1609,7 +1609,7 @@
           </tbody>
         </table>
         <ul class="notelist">
-          <li>签署数据处理协议后，向 MA 同步事件与属性一般无需单独取得用户同意，与云服务、订单系统同类；健康相关数据的处理依据与各市场的数据驻留要求以贵司法务意见为准。</li>
+          <li>签署数据处理协议后，向 MA 同步事件与属性一般无需单独取得用户同意，与云服务、订单系统同类；健康相关数据的处理依据与各市场的数据驻留要求以贵司法务意见为准。「消息记录保留 60 天」指 MA 自身的消息发送记录，与贵司设备数据的保存期限无关——设备与健康数据始终保存在贵司系统内，MA 不存储读数。</li>
         </ul>
       </div>
     </section>
