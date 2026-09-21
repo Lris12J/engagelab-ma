@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>EngageLab MA · 天地伟业 云订阅续费、召回与扣款失败恢复方案</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-elev: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6b7280;
+      --text-4: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --info: #0369a1;
+      --info-soft: #e0f2fe;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg-soft); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    h1 { font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; color: var(--text); }
+    h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.005em; color: var(--text); }
+    h3 { font-size: 17px; font-weight: 600; margin: 0 0 10px; color: var(--text); }
+    p { margin: 0 0 8px; color: var(--text-2); }
+    .muted { color: var(--text-3); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 600; }
+
+    .section { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px; margin-bottom: 20px; }
+    .section-plain { padding: 6px 2px 18px; margin-bottom: 12px; }
+    .divider { height: 1px; background: var(--border); margin: 16px 0; border: none; }
+
+    .hero { background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px;
+      margin-bottom: 24px; }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hero-subtitle { color: var(--text-3); font-size: 15px; max-width: 920px; margin: 8px 0 18px; }
+
+    .pill { display: inline-flex; align-items: center; padding: 2px 10px;
+      font-size: 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      color: var(--text-2); background: #fff; font-weight: 500; }
+    .pill-accent { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2-1 { grid-template-columns: 1.4fr 1fr; }
+    .grid-12-1 { grid-template-columns: 1.2fr 1fr; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); }
+    .stat-value { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.15; }
+    .stat-value.success { color: var(--success); }
+    .stat-value.info { color: var(--info); }
+    .stat-value.warn { color: var(--warning); }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; }
+    .card-header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #fafbfc; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .card-body { padding: 16px; }
+    .card-body.p-sm { padding: 12px; }
+    .card-body ul { margin: 0; padding-left: 18px; }
+    .card-body li { margin-bottom: 4px; font-size: 13.5px; color: var(--text-2); }
+
+    .callout { padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; background: var(--bg-soft); }
+    .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+    .callout-body { font-size: 13px; color: var(--text-2); }
+    .callout-body p { font-size: 13px; color: var(--text-2); margin: 0 0 4px; }
+    .callout.info { border-left-color: var(--info); background: var(--info-soft); }
+    .callout.info .callout-title { color: var(--info); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-3); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #fafbfc; font-weight: 600; font-size: 12.5px; color: var(--text-3);
+      letter-spacing: 0.01em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    tr.tone-success td { background: rgba(22, 163, 74, 0.04); }
+    tr.tone-info td { background: rgba(3, 105, 161, 0.04); }
+    .align-center { text-align: center; }
+    .align-right { text-align: right; }
+
+    .signal-row { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .left { flex: 1; min-width: 0; }
+    .signal-row .label { font-size: 13px; font-weight: 600; }
+    .signal-row .hint { font-size: 12px; color: var(--text-3); }
+    .signal-row .value { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+
+    .chart { width: 100%; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 8px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+
+    .toc-bar { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 10; padding: 10px 28px; margin: -32px -28px 24px;
+      font-size: 12.5px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 14px;
+      align-items: center; overflow-x: auto; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+    .toc-bar a:hover { color: var(--accent); }
+    .toc-bar .brand { font-weight: 700; color: var(--text); }
+
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+    a.back-home:hover { text-decoration: underline; }
+
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .toc-bar, a.back-home { display: none; }
+      .section, .card, .hero { page-break-inside: avoid; box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; }
+    }
+
+    .spacer-sm { height: 6px; }
+    .spacer-md { height: 12px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft);
+      color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+
+    footer.site-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-4); text-align: center; }
+
+    @media (max-width: 900px) {
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-12-1 { grid-template-columns: 1fr; }
+    }
+  </style>
+
+
+  <style>
+    /* ===================================================================
+       视觉升级层 (20260828)
+       追加在原有样式之后，靠层叠顺序覆盖，不改动原有规则
+       =================================================================== */
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f6f8fb;
+      --bg-elev: #ffffff;
+      --border: #e8ecf2;
+      --border-strong: #d5dbe5;
+      --text: #0f172a;
+      --text-2: #3d4a5c;
+      --text-3: #6b7789;
+      --text-4: #97a1b0;
+      --accent: #2563eb;
+      --accent-2: #4f7dff;
+      --accent-soft: #e7efff;
+      --success: #0f9d63;
+      --success-soft: #e2f7ee;
+      --warning: #c2700a;
+      --warning-soft: #fdf1dc;
+      --info: #0369a1;
+      --info-soft: #e2f2fb;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --ink-dark: #0e1116;
+      --ink-dark-2: #1a1f2b;
+      --mint: #00d4a0;
+      --sky: #7cb0ff;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,.05);
+      --shadow: 0 1px 3px rgba(15,23,42,.05), 0 10px 28px -12px rgba(15,23,42,.10);
+      --shadow-lg: 0 2px 6px rgba(15,23,42,.06), 0 22px 48px -20px rgba(15,23,42,.18);
+      --mono-stack: "SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15.5px; }
+
+    /* ===== 通栏色带布局：main 放开宽度，section 内部收敛 ===== */
+    main { max-width: none; margin: 0; padding: 0; }
+    main > section { padding: 62px 28px; margin: 0; }
+    /* 宽度靠 .wrap 层约束，不依赖子元素的 auto 外边距——
+       否则任何使用 margin 简写的规则都会把居中打破（如 hero-subtitle / divider）*/
+    main > section > .wrap { max-width: 1180px; margin: 0 auto; }
+    main > section.section-plain { border: 0; border-radius: 0; background: transparent; }
+    main > section.section-plain:nth-of-type(even) { background: var(--bg-soft); }
+    main > section.section { border: 0; border-radius: 0; background: var(--bg-soft); }
+
+    /* ===== 字号层级 ===== */
+    h1 { font-size: 38px; font-weight: 750; letter-spacing: -0.022em; line-height: 1.18; margin: 0 0 10px; }
+    h2 { font-size: 27px; font-weight: 720; letter-spacing: -0.018em; line-height: 1.28;
+      margin: 0 0 16px; color: var(--text); }
+    h3 { font-size: 17.5px; font-weight: 650; margin: 0 0 10px; letter-spacing: -0.008em; color: var(--text); }
+    p { margin: 0 0 10px; color: var(--text-2); }
+    .small { font-size: 13px; }
+    .bold { font-weight: 650; color: var(--text); }
+    .muted { color: var(--text-3); }
+    .mono { font-family: var(--mono-stack); font-size: 0.92em; }
+    .divider { height: 1px; background: var(--border); margin: 26px 0; border: none; }
+    .spacer-md { height: 20px; }
+
+    /* ===== 章节序号徽标 + eyebrow ===== */
+    h2 .secnum { display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: #fff;
+      font-family: var(--mono-stack); font-size: 15px; font-weight: 700;
+      margin-right: 12px; vertical-align: 3px; flex: none; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px;
+      font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px; }
+    .eyebrow::before { content: ""; width: 20px; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--mint)); }
+
+    /* ===== 顶部导航 ===== */
+    /* 注意：旧版 .toc-bar 带 margin:-32px -28px（用于抵消 main 内边距），
+       升级后 main 已全宽，必须重置，否则导航会横向溢出 56px */
+    .toc-bar { margin: 0; width: 100%; max-width: 100%; }
+    .toc-bar { position: sticky; top: 0; z-index: 30; padding: 0 28px;
+      background: rgba(255,255,255,.86); backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid var(--border); font-size: 13px; }
+    .toc-bar .toc-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 20px;
+      align-items: center; height: 58px; overflow-x: auto; scrollbar-width: none; }
+    .toc-bar .toc-inner::-webkit-scrollbar { display: none; }
+    .toc-bar a { color: var(--text-3); text-decoration: none; white-space: nowrap;
+      font-weight: 500; transition: color .15s ease; }
+    .toc-bar a:hover { color: var(--accent); }
+    /* 品牌名即返回首页入口：整块（图标 + 文字）一起高亮 */
+    .toc-bar .brand { font-weight: 750; color: var(--text); display: inline-flex;
+      align-items: center; gap: 9px; white-space: nowrap; letter-spacing: -0.01em; }
+    .toc-bar a.brand { text-decoration: none; cursor: pointer;
+      transition: color .16s ease; }
+    .toc-bar a.brand .brand-home { width: 17px; height: 17px; flex: none;
+      color: var(--accent); transition: color .16s ease, transform .16s ease; }
+    .toc-bar a.brand:hover { color: var(--accent); }
+    .toc-bar a.brand:hover .brand-home { color: var(--accent); transform: translateY(-1px); }
+    a.back-home { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0;
+      margin-right: 16px; background: none; color: var(--text-3); text-decoration: none;
+      font-size: 13px; font-weight: 500; }
+    a.back-home:hover { color: var(--accent); background: none; }
+    a.back-home svg { width: 14px; height: 14px; opacity: .8; }
+
+    /* ===== Hero · 深色 ===== */
+    main > section.hero { position: relative; overflow: hidden; color: #fff;
+      border: 0; border-radius: 0; margin: 0; padding: 58px 28px 54px;
+      background: linear-gradient(150deg, var(--ink-dark) 0%, var(--ink-dark-2) 55%, #232b3d 100%); }
+    main > section.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(900px 420px at 88% -8%, rgba(0,212,160,.16), transparent 62%),
+        radial-gradient(760px 380px at 6% 108%, rgba(79,125,255,.20), transparent 60%); }
+    main > section.hero > .wrap { position: relative; z-index: 1; }
+    .hero h1 { color: #fff; font-size: 38px; text-wrap: balance; }
+    .hero h1 .grad { background: linear-gradient(92deg, var(--sky) 10%, var(--mint) 90%);
+      -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero .hero-subtitle { color: rgba(255,255,255,.74); font-size: 16px; line-height: 1.72;
+      max-width: 940px; margin: 10px 0 20px; }
+    .hero .hero-subtitle .bold { color: #fff; }
+    .hero-pills { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 18px; }
+    .hero .pill { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18);
+      color: rgba(255,255,255,.86); }
+    .hero .pill-accent { background: rgba(0,212,160,.12); border-color: rgba(0,212,160,.4); color: var(--mint); }
+    .hero .pill-info { background: rgba(124,176,255,.12); border-color: rgba(124,176,255,.38); color: var(--sky); }
+    .hero .pill-success { background: rgba(0,212,160,.12); border-color: rgba(0,212,160,.4); color: var(--mint); }
+    .hero .pill-warn { background: rgba(255,209,102,.12); border-color: rgba(255,209,102,.4); color: #ffd166; }
+    .hero .divider { background: rgba(255,255,255,.12); }
+    .hero .stat { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius); box-shadow: none; padding: 18px 18px 16px; }
+    .hero .stat-value { font-family: var(--mono-stack); font-size: 24px; font-weight: 700;
+      color: #fff; letter-spacing: -0.02em; }
+    .hero .stat-value.info { color: #a5c8ff; }
+    .hero .stat-value.success { color: var(--mint); }
+    .hero .stat-value.warn { color: #ffd166; }
+    .hero .stat-label { color: rgba(255,255,255,.6); font-size: 12px; margin-top: 6px; line-height: 1.45; }
+    .hero .muted { color: rgba(255,255,255,.45) !important; }
+    .hero p { color: rgba(255,255,255,.74); }
+
+    /* ===== 基础组件 ===== */
+    .pill { display: inline-flex; align-items: center; padding: 4px 12px; font-size: 12.5px;
+      border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-2);
+      background: #fff; font-weight: 550; }
+    .pill-accent { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+    .pill-info { background: var(--info-soft); border-color: transparent; color: var(--info); }
+    .pill-success { background: var(--success-soft); border-color: transparent; color: var(--success); }
+    .pill-warn { background: var(--warning-soft); border-color: transparent; color: var(--warning); }
+
+    .grid { gap: 18px; }
+    .row { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; }
+
+    .stat { padding: 20px 20px 18px; background: var(--bg-elev);
+      border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+    .stat-value { font-size: 28px; font-weight: 750; letter-spacing: -0.025em;
+      color: var(--text); line-height: 1.15; }
+    .stat-label { font-size: 12.5px; color: var(--text-3); margin-top: 7px; line-height: 1.5; }
+
+    .card { background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+      transition: box-shadow .18s ease; }
+    .card:hover { box-shadow: var(--shadow-lg); }
+    .card-header { padding: 13px 18px; border-bottom: 1px solid var(--border);
+      font-weight: 700; font-size: 13.6px; color: var(--text); background: #fcfdff;
+      letter-spacing: -0.006em; }
+    .card-body { padding: 18px; }
+    .card-body.p-sm { padding: 13px; }
+    .card-body li { margin-bottom: 6px; font-size: 13.5px; color: var(--text-2); line-height: 1.65; }
+    .card-body p { font-size: 14px; }
+
+    .callout { padding: 15px 17px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); border-left-width: 3px; }
+    .callout-title { font-weight: 700; margin-bottom: 5px; font-size: 14px; letter-spacing: -0.008em; }
+    .callout-body { font-size: 13.4px; color: var(--text-2); }
+    .callout-body p { font-size: 13.4px; color: var(--text-2); margin: 0 0 5px; line-height: 1.7; }
+    .callout-body p:last-child { margin-bottom: 0; }
+    .callout.info { border-left-color: var(--accent); background: var(--accent-soft); border-color: #d3e2ff; }
+    .callout.info .callout-title { color: var(--accent); }
+    .callout.success { border-left-color: var(--success); background: var(--success-soft); border-color: #c9eedd; }
+    .callout.success .callout-title { color: var(--success); }
+    .callout.warn { border-left-color: var(--warning); background: var(--warning-soft); border-color: #f6e2c0; }
+    .callout.warn .callout-title { color: var(--warning); }
+    .callout.neutral { border-left-color: var(--text-4); background: #fff; }
+
+    /* ===== 表格 ===== */
+    table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.6px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow); }
+    th, td { padding: 13px 15px; text-align: left; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; }
+    th { background: #f8fafc; font-weight: 700; font-size: 11.5px; color: var(--text-3);
+      letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    tbody tr { transition: background .14s ease; }
+    tbody tr:hover td { background: #f9fbff; }
+    tr.tone-success td { background: rgba(15, 157, 99, .045); }
+    tr.tone-info td { background: rgba(37, 99, 235, .04); }
+
+    .signal-row { display: flex; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--border); align-items: center; }
+    .signal-row:last-child { border-bottom: 0; }
+    .signal-row .label { font-size: 13.5px; font-weight: 650; color: var(--text); }
+    .signal-row .hint { font-size: 12.3px; color: var(--text-3); line-height: 1.5; }
+    .signal-row .value { font-weight: 750; color: var(--danger); font-size: 15px;
+      font-family: var(--mono-stack); white-space: nowrap; }
+
+    .chart svg { width: 100%; height: auto; display: block; }
+    .dag-wrap { overflow-x: auto; padding: 10px 2px; }
+    .dag-wrap svg { display: block; margin: 0 auto; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%; background: var(--accent);
+      color: #fff; font-weight: 700; font-size: 12px; margin-right: 9px; }
+
+    /* ===== 响应式（旧版方案原本缺失，后补齐）===== */
+    @media (max-width: 980px) {
+      main > section { padding: 44px 18px; }
+      main > section.hero { padding: 38px 18px 34px; }
+      h1, .hero h1 { font-size: 26px; }
+      h2 { font-size: 21px; }
+      h2 .secnum { width: 26px; height: 26px; font-size: 13px; margin-right: 9px; vertical-align: 2px; }
+      .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-1-2, .grid-12-1, .grid-5 { grid-template-columns: 1fr !important; }
+      .grid { gap: 14px; }
+      /* 表格在窄屏可横向滚动，避免整页溢出 */
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+      .toc-bar .toc-inner { height: 52px; }
+      .card-body, .callout { padding: 14px; }
+    }
+
+    /* ===== 打印 / PDF 导出 ===== */
+    @page { size: A4; margin: 12mm; }
+    @media print {
+      html, body { background: #fff; font-size: 12px; }
+      .toc-bar, a.back-home { display: none !important; }
+      main > section { padding: 20px 0 !important; background: #fff !important; }
+      main > section.section-plain:nth-of-type(even) { background: #fff !important; }
+      main > section.hero { padding: 22px 18px !important;
+        background: linear-gradient(150deg, #0e1116 0%, #1a1f2b 100%) !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main > section.hero::before { display: none; }
+      .card, table, .stat { box-shadow: none !important; page-break-inside: avoid; }
+      h2 { page-break-after: avoid; }
+      .dag-wrap { overflow: visible; }
+      .dag-wrap svg { max-width: 100%; height: auto; }
+      table { display: table; white-space: normal; }
+    }
+  </style>
+
+
+<style>
+  /* ═══ 阅读增强层 · 20260831 ═══
+     设计原则：默认状态全部可见。JS 只负责「收起」与「加动效」，
+     因此无 JS、打印、PDF 导出时内容永远完整。 */
+
+  /* 吸顶导航高 58px——所有锚点目标留出偏移，否则标题会被盖住 */
+  main > section { scroll-margin-top: 70px; }
+
+  /* ── 图注 / 表注的要点列表 ── */
+  .notelist { margin: 7px 0 0; padding-left: 17px; }
+  .notelist li { font-size: 12.6px; color: var(--text-3); margin-bottom: 4px; line-height: 1.6; }
+  .notelist li:last-child { margin-bottom: 0; }
+
+  /* ── callout 内的要点列表（文案密度规则 §1.6）── */
+  .callout-body ul { margin: 0; padding-left: 17px; }
+  .callout-body li { margin-bottom: 5px; line-height: 1.62; }
+  .callout-body li:last-child { margin-bottom: 0; }
+
+  /* ── TOC 场景下拉 ── */
+  .toc-drop { position: relative; display: inline-flex; align-items: center; }
+  .toc-drop-btn {
+    font: inherit; color: var(--text-3); background: none; border: 0; padding: 0;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+    white-space: nowrap; font-weight: 500; transition: color .15s ease;
+  }
+  .toc-drop-btn:hover, .toc-drop[data-open="1"] .toc-drop-btn { color: var(--accent); }
+  .toc-drop-btn .caret { font-size: 9px; transition: transform .18s ease; }
+  .toc-drop[data-open="1"] .caret { transform: rotate(180deg); }
+  /* 用 fixed 定位：TOC 容器有 overflow-x:auto，absolute 面板会被裁掉 */
+  .toc-drop-panel {
+    position: fixed; top: 0; left: 0;
+    min-width: 236px; background: var(--bg-elev);
+    border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: var(--shadow-lg); padding: 7px; z-index: 60;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .toc-drop-panel[hidden] { display: none; }
+  .toc-drop-panel a {
+    display: flex; align-items: center; gap: 9px; padding: 7px 10px;
+    border-radius: 7px; font-size: 13px; color: var(--text-2); white-space: nowrap;
+  }
+  .toc-drop-panel a:hover { background: var(--accent-soft); color: var(--accent); }
+  .toc-drop-panel .sd-n {
+    flex: none; width: 19px; height: 19px; border-radius: 6px;
+    background: var(--bg-soft); color: var(--text-3);
+    font-family: var(--mono-stack); font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .toc-drop-panel a:hover .sd-n { background: var(--accent); color: #fff; }
+  .toc-drop-panel .sd-all {
+    font-weight: 650; color: var(--text);
+    border-bottom: 1px solid var(--border); border-radius: 7px 7px 0 0; margin-bottom: 4px;
+  }
+
+
+
+  /* ── 场景视觉锚点：大号序号 + 生命周期阶段色带 ── */
+  main > section[data-scene] {
+    border-top: 3px solid var(--stage, var(--border-strong));
+    padding-top: 44px;
+  }
+  main > section[data-stage="acquire"]  { --stage: #2563eb; --stage-soft: #e7efff; }
+  main > section[data-stage="activate"] { --stage: #0e7490; --stage-soft: #ddf1f8; }
+  main > section[data-stage="retain"]   { --stage: #c2700a; --stage-soft: #fdf1dc; }
+  main > section[data-stage="repeat"]   { --stage: #0f9d63; --stage-soft: #e2f7ee; }
+  main > section[data-stage="campaign"] { --stage: #6d28d9; --stage-soft: #efe9fe; }
+  main > section[data-stage="advocacy"] { --stage: #be123c; --stage-soft: #ffe4ea; }
+
+  .scene-head { display: flex; align-items: center; gap: 20px; margin-bottom: 14px; }
+  .scene-num {
+    flex: none; font-family: var(--mono-stack);
+    font-size: 44px; font-weight: 700; line-height: 1;
+    letter-spacing: -0.03em; color: var(--stage);
+    font-variant-numeric: tabular-nums;
+  }
+  .scene-head-main { min-width: 0; }
+  .scene-head h2 { margin: 0; }
+  /* 阶段 pill 染成该场景的阶段色，让 6 个场景一眼可区分 */
+  main > section[data-scene] .row .pill.pill-info {
+    background: var(--stage-soft); border-color: var(--stage); color: var(--stage);
+  }
+
+  /* ── 场景区粘性子导航（滚进场景区才出现）── */
+  .scene-rail {
+    position: fixed; top: 58px; left: 0; right: 0; z-index: 28;
+    background: rgba(255,255,255,.9);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-102%); opacity: 0;
+    transition: transform .28s cubic-bezier(.22,.61,.36,1), opacity .2s ease;
+    pointer-events: none;
+  }
+  .scene-rail.is-on { transform: none; opacity: 1; pointer-events: auto; }
+  .scene-rail-inner {
+    max-width: 1180px; margin: 0 auto; padding: 0 28px;
+    height: 46px; display: flex; align-items: center; gap: 4px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .scene-rail-inner::-webkit-scrollbar { display: none; }
+  .scene-rail .sr-label {
+    flex: none; font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--text-4); margin-right: 12px; white-space: nowrap;
+  }
+  .scene-rail a {
+    flex: none; display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 11px; border-radius: 100px; font-size: 12.5px; font-weight: 500;
+    color: var(--text-3); text-decoration: none; white-space: nowrap;
+    transition: background .16s ease, color .16s ease;
+  }
+  .scene-rail a .sr-n {
+    font-family: var(--mono-stack); font-size: 11px; font-weight: 700;
+    color: var(--text-4); transition: color .16s ease;
+  }
+  .scene-rail a:hover { background: var(--bg-soft); color: var(--text); }
+  .scene-rail a.is-active { background: var(--sr-stage-soft, var(--accent-soft)); color: var(--sr-stage, var(--accent)); font-weight: 650; }
+  .scene-rail a.is-active .sr-n { color: var(--sr-stage, var(--accent)); }
+  @media (max-width: 720px) { .scene-rail .sr-label { display: none; } }
+
+  /* 有子导航时，锚点偏移要加上它的高度 */
+  main > section[data-scene] { scroll-margin-top: 112px; }
+
+  /* ── 整块浮起：场景块作为一个整体进入 ── */
+  .anim-ready main > section[data-scene] > .wrap { opacity: 0; transform: translateY(18px); }
+  .anim-ready main > section[data-scene].is-in > .wrap {
+    opacity: 1; transform: none;
+    transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);
+  }
+
+  /* ── 右侧圆点导航 ── */
+  .rail {
+    position: fixed; right: 22px; top: 50%; transform: translateY(-50%);
+    z-index: 25; display: flex; flex-direction: column; gap: 13px;
+  }
+  .rail a {
+    position: relative; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--border-strong); transition: background .18s ease, transform .18s ease;
+  }
+  .rail a::after {
+    content: attr(data-label); position: absolute; right: 20px; top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: var(--ink-dark); color: #fff; font-size: 11.5px; font-weight: 500;
+    padding: 4px 9px; border-radius: 6px; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity .16s ease, transform .16s ease;
+  }
+  .rail a:hover { background: var(--accent); transform: scale(1.25); }
+  .rail a:hover::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+  .rail a.is-active { background: var(--accent); transform: scale(1.35); }
+  .rail a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (max-width: 1320px) { .rail { display: none; } }
+
+  /* ── 图表 hover 高亮 ── */
+  .chart svg .bar { transition: opacity .15s ease; cursor: default; }
+  .chart svg:hover .bar { opacity: .38; }
+  .chart svg .bar:hover { opacity: 1; }
+  .chart-tip {
+    position: fixed; z-index: 80; pointer-events: none; opacity: 0;
+    background: var(--ink-dark); color: #fff; font-size: 12px; line-height: 1.5;
+    padding: 6px 10px; border-radius: 7px; white-space: nowrap;
+    transition: opacity .12s ease; box-shadow: var(--shadow);
+  }
+  .chart-tip.is-on { opacity: 1; }
+  .chart-tip b { font-weight: 650; }
+
+  /* ── 滚动入场动效（仅在 JS 判定可用时启用）── */
+  .anim-ready .reveal { opacity: 0; transform: translateY(14px); }
+  .anim-ready .reveal.is-in {
+    opacity: 1; transform: none;
+    transition: opacity .5s cubic-bezier(.22,.61,.36,1), transform .5s cubic-bezier(.22,.61,.36,1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-ready .reveal,
+    .anim-ready main > section[data-scene] > .wrap {
+      opacity: 1 !important; transform: none !important; transition: none !important;
+    }
+    .scene-rail { transition: none !important; }
+    .toc-drop-btn .caret, .rail a { transition: none !important; }
+  }
+
+  /* ── 打印 / PDF：强制全部展开、去掉一切装饰 ── */
+  @media print {
+    .anim-ready .reveal,
+    .anim-ready main > section[data-scene] > .wrap { opacity: 1 !important; transform: none !important; }
+    .rail, .toc-drop, .scene-rail, .chart-tip { display: none !important; }
+    main > section[data-scene] { break-before: page; }
+    .chart svg .bar { opacity: 1 !important; }
+  }
+</style>
+
+
+<style>
+  .cfg-list ul { margin: 5px 0 6px; padding-left: 18px; list-style: circle; }
+  .cfg-list ul ul { list-style: square; }
+  .card-body .cfg-list li li { margin-bottom: 3px; font-size: 13.2px; }
+</style>
+</head>
+<body>
+  <nav class="toc-bar">
+    <div class="toc-inner">
+      <a class="brand" href="../" title="返回方案总览"><svg class="brand-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.6V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.6"/><path d="M9.5 21v-6h5v6"/></svg>EngageLab MA · 天地伟业</a>
+      <div class="toc-drop">
+        <button type="button" class="toc-drop-btn" aria-expanded="false" aria-controls="toc-scenes">三条旅程<span class="caret" aria-hidden="true">▾</span></button>
+        <div class="toc-drop-panel" id="toc-scenes" hidden>
+          <a href="#s-scenarios" class="sd-all">场景总览表</a>
+          <a href="#s-journey1"><span class="sd-n">1</span>订阅续费提醒</a>
+          <a href="#s-journey2"><span class="sd-n">2</span>过期用户分层召回</a>
+          <a href="#s-journey3"><span class="sd-n">3</span>自动续费扣款失败恢复</a>
+        </div>
+      </div>
+      <a href="#s-data">数据整合</a>
+      <a href="#s-confirm">上线前确认</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-pills">
+          <span class="pill pill-accent">智能安防硬件 · 云存储与 AI 订阅</span>
+          <span class="pill pill-info">设备级订阅 · 手动续费与连续包月</span>
+          <span class="pill">客户定制提案</span>
+        </div>
+        <h1>天地伟业 · <span class="grad">云订阅续费、过期召回与扣款失败恢复</span></h1>
+        <p class="hero-subtitle">订阅挂在每一台设备上，到期时间各不相同。本方案让贵司<span class="bold">在权益开通时上报一次到期时间</span>，此后到期前 7 天至过期后 30 天的每一次提醒，都由旅程按这台设备自己的时间判断。</p>
+        <div class="grid grid-3">
+          <div class="stat">
+            <div class="stat-value info">3 个事件 · 1 个接口</div>
+            <div class="stat-label">权益开通成功、订阅支付成功、自动续费扣款失败；另提供一个设备订阅现状查询接口</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">到期前 7 天 → 过期后 30 天</div>
+            <div class="stat-label">时间点全部由「等待至」按到期时间推算，贵司后台不需要为提醒运行定时任务</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value success">支付成功只停这一台</div>
+            <div class="stat-label">每台设备每个周期一个旅程实例，同一账号下其他设备的提醒不受影响</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1 场景总览 -->
+    <section id="s-scenarios" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">场景总览</div>
+        <h2><span class="secnum">1</span>三条旅程覆盖一个订阅周期的前后</h2>
+        <p>旅程 1 与旅程 2 由事件「权益开通成功」进入，分别等到到期前与过期后才开始触达；旅程 3 由事件「自动续费扣款失败」进入，只负责失败后的前三天，之后由旅程 2 承接。</p>
+        <div class="spacer-md"></div>
+        <table>
+          <thead><tr><th>#</th><th>场景</th><th>进入方式</th><th>覆盖时段</th><th>主渠道组合</th><th>亮点</th><th>衡量指标</th></tr></thead>
+          <tbody>
+            <tr class="tone-info"><td>1</td><td>订阅续费提醒</td><td>事件「权益开通成功」，每台设备每个周期一个实例</td><td>到期前 7 天、3 天、1 天</td><td>App Push 通知消息 + 应用内消息 + SMS 兜底</td><td>每次发送前查询这台设备的订阅现状；<span class="bold">中途关闭自动续费或签约失效的用户同样会被提醒</span>，自动续费有效的不打扰</td><td>到期前续费率</td></tr>
+            <tr><td>2</td><td>过期用户分层召回</td><td>事件「权益开通成功」，每台设备每个周期一个实例</td><td>过期后 3 天、10 天、15 天、30 天</td><td>App Push 通知消息 + 应用内消息</td><td>第 10 天按设备在线状态与近 7 天活动分三层；优惠放在第 15 天，只给有资格的用户</td><td>过期后 30 天内恢复订阅率</td></tr>
+            <tr><td>3</td><td>自动续费扣款失败恢复</td><td>事件「自动续费扣款失败」，每个订阅周期一个实例</td><td>失败当天、1 天后、3 天后</td><td>App Push 通知消息 + 应用内消息 + SMS 兜底</td><td>只接收需要用户处理的失败；一条消息按失败类型换文案与恢复入口，不按类型拆分支</td><td>扣款失败后 3 天内恢复支付率</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>三条旅程的提前退出、转化统计与收入统计都使用事件「订阅支付成功」，并按周期 ID 限定到这台设备的这一个周期。衡量指标以上线前同口径数据为基线。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Journey 1 -->
+    <section id="s-journey1" class="section-plain" data-stage="retain" data-scene="1">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">01</div><div class="scene-head-main"><h2>旅程 1｜订阅续费提醒</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">建议最先上线</span><span class="pill pill-info">有效订阅 → 到期前续费</span><span class="pill">权益开通事件触发 · 按到期时间倒推 · App Push + SMS 兜底</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>贵司在权益开通时上报一次到期时间，到期前 7 天、3 天、1 天由旅程自己等到。<span class="bold">每台设备每个周期一个实例</span>，这台设备支付成功只停这一台；发送前查询订阅现状，自动续费有效的用户不打扰。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 应用内消息 · SMS 模板消息　｜　<span class="bold">触发方式</span>：事件「权益开通成功」　｜　<span class="bold">退出条件</span>：这台设备这一周期的「订阅支付成功」即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j1"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>同一账号下多台设备的到期时间各不相同，按账号提醒会错位</li>
+                <li>已经续费的设备继续收到提醒，会直接损害用户信任</li>
+                <li>中途关闭自动续费的用户，容易落在两套提醒之外</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：事件「权益开通成功」（首次购买、手动续费、自动续费扣款成功后权益生效时各上报一次，只上报到设备所有者账号）</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入，每台设备每个周期一个实例；并发上限按单账号设备数确定，达到上限时拒绝新进入</li>
+                <li><span class="bold">提前退出</span>：事件「订阅支付成功」，事件属性「上一周期 ID」= 本实例的「周期 ID」</li>
+                <li><span class="bold">转化统计</span>：事件「订阅支付成功」，事件属性「上一周期 ID」= 本实例的「周期 ID」，监听窗口 3 天</li>
+                <li><span class="bold">收入统计</span>：事件「订阅支付成功」，金额属性「支付金额」，监听窗口 3 天</li>
+                <li><span class="bold">等待至</span>：事件属性「到期时间」前 7 天；时刻已过时直接退出旅程（上线时剩余不足 7 天的存量订阅由旅程 2 承接）</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">Webhook 取数</span>：设备订阅现状接口，请求带本实例的「设备 ID」与「服务类型」</li>
+                <li><span class="bold">条件分支</span>：Webhook 返回值（按顺序命中第一个）
+                  <ul>
+                    <li>「服务状态」≠ 有效，或「是否设备所有者」= 否：<span class="bold">结束</span>（已退款、已解绑或已转让）</li>
+                    <li>「续费方式」= 自动 且「自动续费签约状态」= 有效：不发送，进入「等待至 · 到期时间前 3 天」</li>
+                    <li>默认（手动续费、已关闭自动续费、签约失效，或接口未返回）：<span class="bold">App Push 通知消息</span>：设备名称、到期日期、当前套餐，深度链接用事件属性「续费页链接」；随后进入「等待至 · 到期时间前 3 天」</li>
+                  </ul>
+                </li>
+                <li><span class="bold">等待至</span>：事件属性「到期时间」前 3 天；时刻已过时跳过继续</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">Webhook 取数</span>：设备订阅现状接口，请求带本实例的「设备 ID」与「服务类型」</li>
+                <li><span class="bold">条件分支</span>：Webhook 返回值（按顺序命中第一个）
+                  <ul>
+                    <li>「服务状态」≠ 有效，或「是否设备所有者」= 否：<span class="bold">结束</span></li>
+                    <li>「续费方式」= 自动 且「自动续费签约状态」= 有效：不发送，进入「等待至 · 到期时间前 1 天」</li>
+                    <li>默认：<span class="bold">App Push 通知消息</span>：到期后云存储与 AI 功能将暂停，附续费入口；随后进入「等待至 · 到期时间前 1 天」</li>
+                  </ul>
+                </li>
+                <li><span class="bold">等待至</span>：事件属性「到期时间」前 1 天；时刻已过时跳过继续</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">Webhook 取数</span>：设备订阅现状接口，请求带本实例的「设备 ID」与「服务类型」</li>
+                <li><span class="bold">条件分支</span>：Webhook 返回值（按顺序命中第一个）
+                  <ul>
+                    <li>「服务状态」≠ 有效，或「是否设备所有者」= 否：<span class="bold">结束</span></li>
+                    <li>「续费方式」= 自动 且「自动续费签约状态」= 有效：<span class="bold">结束</span>，到期时由贵司支付后台扣款，扣款失败由旅程 3 承接</li>
+                    <li>默认：<span class="bold">条件分支</span> 属性「App 安装状态」
+                      <ul>
+                        <li>已安装：依次发送两条
+                          <ul>
+                            <li><span class="bold">App Push 通知消息</span>：明天到期，最后一次提醒，不写未经确认的价格与优惠</li>
+                            <li><span class="bold">App Push 应用内消息</span>：用户打开 App 时展示这台设备的续费入口；<span class="bold">结束</span>，过期后由旅程 2 承接</li>
+                          </ul>
+                        </li>
+                        <li>未安装：<span class="bold">SMS 模板消息</span>：设备名称、到期日期与续费链接；<span class="bold">结束</span>，过期后由旅程 2 承接</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">衡量指标：到期前续费率，按设备周期统计</span></p>
+              <p style="margin:0">改善来自三处：提醒落在每台设备自己的到期日、已续费立即停止、关闭自动续费的用户被纳入提醒。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 2 -->
+    <section id="s-journey2" class="section-plain" data-stage="repeat" data-scene="2">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">02</div><div class="scene-head-main"><h2>旅程 2｜过期用户分层召回</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">承接旅程 1 与旅程 3 未恢复的设备</span><span class="pill pill-info">权益过期 → 恢复订阅</span><span class="pill">权益开通事件触发 · 按设备状态分层 · App Push + 应用内消息</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>过期不需要贵司另报事件：旅程与旅程 1 由同一次「权益开通成功」进入，等到到期时间后 3 天才开始。<span class="bold">召回理由取自发送当时的设备状态</span>——在线且有活动、在线无活动、离线各不相同；优惠放在第 15 天。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 应用内消息　｜　<span class="bold">触发方式</span>：事件「权益开通成功」　｜　<span class="bold">退出条件</span>：这台设备这一周期的「订阅支付成功」即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j2"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>设备仍在使用与设备已经离线的用户，需要的召回理由不同</li>
+                <li>过期后重新购买的用户，后续召回必须立即停止</li>
+                <li>首轮就给优惠，会让用户习惯等到过期再买</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：事件「权益开通成功」（与旅程 1 使用同一次上报，不需要「权益过期」事件）</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入，每台设备每个周期一个实例；并发上限与旅程 1 取相同数值，达到上限时拒绝新进入</li>
+                <li><span class="bold">提前退出</span>：事件「订阅支付成功」，事件属性「上一周期 ID」= 本实例的「周期 ID」（到期前续费、自动续费扣款成功、过期后重新购买都会触发）</li>
+                <li><span class="bold">转化统计</span>：事件「订阅支付成功」，事件属性「上一周期 ID」= 本实例的「周期 ID」，监听窗口 5 天</li>
+                <li><span class="bold">收入统计</span>：事件「订阅支付成功」，金额属性「支付金额」，监听窗口 5 天</li>
+                <li><span class="bold">等待至</span>：事件属性「到期时间」后 3 天；时刻已过时直接退出旅程（上线前已过期超过 3 天的存量设备不补发）</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">Webhook 取数</span>：设备订阅现状接口，请求带本实例的「设备 ID」与「服务类型」</li>
+                <li><span class="bold">条件分支</span>：Webhook 返回值（按顺序命中第一个）
+                  <ul>
+                    <li>「服务状态」= 有效 或 已解绑，或「是否设备所有者」= 否：<span class="bold">结束</span></li>
+                    <li>「停止原因」= 自动续费扣款失败：不发送，进入「等待至 · 到期时间后 10 天」；这三天由旅程 3 负责</li>
+                    <li>默认：依次发送两条，随后进入「等待至 · 到期时间后 10 天」
+                      <ul>
+                        <li><span class="bold">App Push 通知消息</span>：这台设备的云存储与 AI 权益已暂停，附套餐页深度链接；不展示报警与画面内容</li>
+                        <li><span class="bold">App Push 应用内消息</span>：用户打开 App 时展示这台设备的恢复入口</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><span class="bold">等待至</span>：事件属性「到期时间」后 10 天；时刻已过时跳过继续</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">Webhook 取数</span>：设备订阅现状接口，请求带本实例的「设备 ID」与「服务类型」</li>
+                <li><span class="bold">条件分支</span>：Webhook 返回值（按顺序命中第一个）
+                  <ul>
+                    <li>「服务状态」= 有效 或 已解绑，或「是否设备所有者」= 否：<span class="bold">结束</span></li>
+                    <li>「设备在线状态」= 在线 且「近 7 天活动次数」&gt; 0：<span class="bold">App Push 通知消息</span>：设备仍在使用，近 7 天的录像与事件没有云端留存；进入「等待至 · 到期时间后 15 天」</li>
+                    <li>「设备在线状态」= 离线：<span class="bold">App Push 通知消息</span>：先给网络与供电检查入口，再给套餐入口；进入「等待至 · 到期时间后 15 天」</li>
+                    <li>默认（在线无活动，或接口未返回）：<span class="bold">App Push 通知消息</span>：只介绍恢复后的云存储与 AI 权益，不写设备正在使用；进入「等待至 · 到期时间后 15 天」</li>
+                  </ul>
+                </li>
+                <li><span class="bold">等待至</span>：事件属性「到期时间」后 15 天；时刻已过时跳过继续</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">Webhook 取数</span>：设备订阅现状接口，返回值含「优惠资格」「优惠名称」「优惠截止日」</li>
+                <li><span class="bold">条件分支</span>：Webhook 返回值（按顺序命中第一个）
+                  <ul>
+                    <li>「服务状态」= 有效 或 已解绑，或「是否设备所有者」= 否：<span class="bold">结束</span></li>
+                    <li>「优惠资格」= 是：<span class="bold">App Push 通知消息</span>：优惠名称与截止日取接口返回值；进入「等待至 · 到期时间后 30 天」</li>
+                    <li>默认：<span class="bold">App Push 通知消息</span>：云存储与 AI 权益的具体用途，不带优惠；进入「等待至 · 到期时间后 30 天」</li>
+                  </ul>
+                </li>
+                <li><span class="bold">等待至</span>：事件属性「到期时间」后 30 天；时刻已过时跳过继续</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">Webhook 取数</span>：设备订阅现状接口，请求带本实例的「设备 ID」与「服务类型」</li>
+                <li><span class="bold">条件分支</span>：Webhook 返回值
+                  <ul>
+                    <li>「服务状态」= 有效 或 已解绑，或「是否设备所有者」= 否：<span class="bold">结束</span></li>
+                    <li>默认：<span class="bold">App Push 通知消息</span>：就本次到期的最后一次提醒，附套餐入口；<span class="bold">结束</span>，不再就这一周期发送</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">衡量指标：过期后 30 天内恢复订阅率，按设备周期统计</span></p>
+              <p style="margin:0">三层消息的恢复率分开统计，可直接看出在线有活动、在线无活动、离线三类设备各自的恢复空间。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Journey 3 -->
+    <section id="s-journey3" class="section-plain" data-stage="advocacy" data-scene="3">
+      <div class="wrap">
+      <div class="scene-head"><div class="scene-num" aria-hidden="true">03</div><div class="scene-head-main"><h2>旅程 3｜自动续费扣款失败恢复</h2></div></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">用户并未决定离开</span><span class="pill pill-info">连续包月扣款失败 → 恢复支付</span><span class="pill">扣款失败事件触发 · 一条消息按失败类型换内容 · App Push + SMS 兜底</span></div>
+      <div class="callout info" style="margin-bottom:14px">
+        <div class="callout-body">
+          <p>渠道与网络异常由贵司支付后台重试，<span class="bold">只有需要用户自己处理的失败才上报</span>。失败类型与恢复入口随事件带入，一条消息按类型换文案；三天内未恢复的设备，由旅程 2 自过期后第 10 天起承接。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 应用内消息 · SMS 模板消息　｜　<span class="bold">触发方式</span>：事件「自动续费扣款失败」　｜　<span class="bold">退出条件</span>：这台设备这一周期的「订阅支付成功」即退出</p>
+        </div>
+      </div>
+      <div class="grid grid-2-1">
+        <div class="card">
+          <div class="card-header">旅程编排示意图</div>
+          <div class="card-body"><div class="dag-wrap" id="dag-j3"></div></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:12px; align-content:start;">
+          <div class="callout warn">
+            <div class="callout-title">业务痛点</div>
+            <div class="callout-body">
+              <ul>
+                <li>扣款失败后服务立即停止，用户往往在查看设备时才发现</li>
+                <li>余额不足与签约失效的处理方式不同，入口给错等于没给</li>
+                <li>渠道与网络异常用户无法处理，应由支付后台重试而不是发消息</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">旅程组件配置</div>
+            <div class="card-body">
+              <ul class="cfg-list">
+                <li><span class="bold">开始组件</span>：事件「自动续费扣款失败」，事件属性「本周期首次失败」= 是（后续重试失败不重复进入；只上报到设备所有者账号）</li>
+                <li><span class="bold">再次进入</span>：可同时多次进入，每个订阅周期一个实例；并发上限与旅程 1 取相同数值，达到上限时拒绝新进入</li>
+                <li><span class="bold">提前退出</span>：事件「订阅支付成功」，事件属性「上一周期 ID」= 本实例的「周期 ID」（用户手动支付与支付后台重试成功都会触发）</li>
+                <li><span class="bold">转化统计</span>：事件「订阅支付成功」，事件属性「上一周期 ID」= 本实例的「周期 ID」，监听窗口 1 天</li>
+                <li><span class="bold">收入统计</span>：事件「订阅支付成功」，金额属性「支付金额」，监听窗口 1 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00（扣款在夜间批量执行时，首条消息顺延到早上）</li>
+                <li><span class="bold">条件分支</span>：属性「App 安装状态」
+                  <ul>
+                    <li>已安装：依次发送两条，随后进入「等待 · 1 天」
+                      <ul>
+                        <li><span class="bold">App Push 通知消息</span>：设备名称、服务已停止、按事件属性「失败类型」换文案——余额不足写补足余额或改为手动支付一次，签约失效写重新开通自动续费，其他写支付帮助；深度链接用事件属性「恢复页链接」；事件属性「是否还会自动重试」= 是时才显示「下次重试时间」</li>
+                        <li><span class="bold">App Push 应用内消息</span>：用户打开 App 时展示这台设备的恢复入口</li>
+                      </ul>
+                    </li>
+                    <li>未安装：<span class="bold">SMS 模板消息</span>：设备名称、服务已停止与恢复链接；随后进入「等待 · 1 天」</li>
+                  </ul>
+                </li>
+                <li><span class="bold">等待</span>：1 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">App Push 通知消息</span>：服务停止期间新的录像与事件不再存入云端，附恢复入口；不再显示重试时间</li>
+                <li><span class="bold">等待</span>：2 天</li>
+                <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
+                <li><span class="bold">App Push 通知消息</span>：就本次扣款失败的最后一次提醒；服务已经停止，不使用「即将停止」类表述</li>
+                <li><span class="bold">结束</span>：仍未恢复的设备，由旅程 2 自到期时间后第 10 天起承接</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout success">
+            <div class="callout-title">预期效益参考</div>
+            <div class="callout-body">
+              <p style="margin:0 0 4px"><span class="bold" style="font-size:15px;color:var(--success)">衡量指标：扣款失败后 3 天内恢复支付率，按订阅周期统计</span></p>
+              <p style="margin:0">余额不足的恢复同时取决于支付后台的重试节奏，建议与重试规则一并评估。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 2 数据整合 -->
+    <section id="s-data" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">数据整合</div>
+        <h2><span class="secnum">2</span>三条旅程依赖的事件、接口与属性</h2>
+        <p>下表按提供方列出每一项与它驱动的旅程。<span class="bold">需要贵司排期的是三个服务端事件与一个查询接口</span>；到期、过期与各提醒时点不需要上报事件，也不需要为提醒运行定时任务。</p>
+        <div class="spacer-md"></div>
+        <table>
+          <thead><tr><th>事件、接口或属性</th><th>类型</th><th>关键字段</th><th>提供方与上报时机</th><th>驱动的旅程</th></tr></thead>
+          <tbody>
+            <tr class="tone-info"><td>App 安装状态、终端时区</td><td>SDK 标准属性</td><td>—</td><td>EngageLab App SDK 自带，无需开发</td><td>1 · 3</td></tr>
+            <tr><td>权益开通成功</td><td>业务事件</td><td>周期 ID、设备 ID、设备名称、服务类型、到期时间、续费页链接</td><td>贵司服务端；首次购买、手动续费、自动续费扣款成功后权益生效时各上报一次，只上报到设备所有者账号</td><td>1 · 2</td></tr>
+            <tr><td>订阅支付成功</td><td>业务事件</td><td>上一周期 ID（这台设备这项服务上一个周期的 ID，首次购买为空）、设备 ID、服务类型、支付金额</td><td>贵司服务端；支付后台确认到账时上报，含用户手动支付与自动扣款成功</td><td>1 · 2 · 3</td></tr>
+            <tr><td>自动续费扣款失败</td><td>业务事件</td><td>周期 ID（扣款对应的到期周期）、设备 ID、设备名称、服务类型、失败类型（余额不足、签约失效、其他）、恢复页链接、是否还会自动重试、下次重试时间、本周期首次失败</td><td>贵司服务端；只上报需要用户处理的失败，渠道与网络异常由支付后台重试，不上报</td><td>3</td></tr>
+            <tr><td>设备订阅现状接口</td><td>Webhook 取数</td><td>请求：设备 ID、服务类型。返回：服务状态（有效、已过期、已解绑）、是否设备所有者、续费方式、自动续费签约状态、停止原因、设备在线状态、近 7 天活动次数、优惠资格、优惠名称、优惠截止日</td><td>贵司服务端；返回内容为 JSON 对象。低功耗设备的正常休眠请按在线返回</td><td>1 · 2</td></tr>
+            <tr><td>手机号</td><td>用户属性</td><td>—</td><td>贵司账号体系写入；仅用于 App 未安装时的 SMS 兜底</td><td>1 · 3</td></tr>
+            <tr><td>存量有效订阅回灌</td><td>一次性上报</td><td>字段与事件「权益开通成功」一致</td><td>上线时把当前有效的订阅各补报一次；剩余不足 7 天的设备不进入旅程 1，由旅程 2 承接</td><td>1 · 2</td></tr>
+            <tr class="tone-info"><td>兜底渠道</td><td>项目级配置</td><td>中国大陆项目用 SMS；海外项目部署同一套旅程模板时改为 Email</td><td>部署时选定，不进旅程判断</td><td>1 · 3</td></tr>
+          </tbody>
+        </table>
+        <ul class="notelist">
+          <li>视频画面、报警内容、支付账户信息不进入 MA。设备订阅现状接口不可用时，可改为由贵司按设备 ID 增量维护用户属性「设备清单」，条件分支按这台设备的子字段判断，旅程结构不变。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3 上线前确认 -->
+    <section id="s-confirm" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">上线前确认</div>
+        <h2><span class="secnum">3</span>需要贵司确认的六件事</h2>
+        <div class="spacer-md"></div>
+        <table>
+          <thead><tr><th>#</th><th>确认事项</th><th>影响的配置</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>支付后台对扣款失败是否自动重试，重试几次、间隔多久，是否设有宽限期</td><td>旅程 3 首条消息是否显示下次重试时间；三次提醒的间隔是否与重试时点错开</td></tr>
+            <tr><td>2</td><td>单个账号名下的设备数量分布</td><td>三条旅程的多实例并发上限；全局频控中 App Push 通知消息的每日上限</td></tr>
+            <tr><td>3</td><td>设备订阅现状接口能否提供，设备在线状态与近 7 天活动次数的口径</td><td>旅程 1、2 发送前的复核与旅程 2 第 10 天的三层分流；不可提供时改用「设备清单」属性</td></tr>
+            <tr><td>4</td><td>微信支付、支付宝是否已就扣款失败向用户发送通知</td><td>旅程 3 首条消息的文案避免与支付渠道通知重复</td></tr>
+            <tr><td>5</td><td>过期后云端录像是否有保留期限</td><td>有期限时，旅程 2 最后一次提醒改为保留截止日前发送，文案写明截止日</td></tr>
+            <tr><td>6</td><td>手机号的来源与服务类短信模板的报备</td><td>旅程 1、3 在 App 未安装时的 SMS 兜底能否启用</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>EngageLab MA · 天地伟业 云订阅续费、召回与扣款失败恢复方案 · 2026 年 9 月</div>
+  </footer>
+
+
+  <script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function el(tag, attrs) {
+      const e = document.createElementNS(NS, tag);
+      if (attrs) Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+      return e;
+    }
+    function svg(w, h) {
+      const s = el('svg');
+      s.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      s.setAttribute('xmlns', NS);
+      return s;
+    }
+
+    const COLORS = {
+      accent: '#2563eb', info: '#0369a1', success: '#16a34a',
+      warning: '#d97706', danger: '#dc2626', neutral: '#6b7280',
+      grid: '#e5e7eb', text: '#374151', textMute: '#9ca3af',
+    };
+
+
+
+    function drawBarChart(mount, opts) {
+      const { categories, series, valueSuffix = '', height = 240 } = opts;
+      const barsPerGroup = series.length;
+      const W = opts.width || 640, H = height, PAD_L = 38, PAD_R = 12, PAD_T = 16, PAD_B = 68;
+      const innerW = W - PAD_L - PAD_R, innerH = H - PAD_T - PAD_B;
+      const maxVal = Math.max(...series.flatMap(s => s.data), 1);
+      const niceMax = Math.ceil(maxVal / 10) * 10 || 100;
+      const groupW = innerW / categories.length;
+      const barW = Math.min((groupW * 0.66) / barsPerGroup, 30);
+      const s = svg(W, H);
+
+      for (let i = 0; i <= 4; i++) {
+        const v = (niceMax / 4) * i;
+        const y = PAD_T + innerH - (v / niceMax) * innerH;
+        s.appendChild(el('line', { x1: PAD_L, x2: W - PAD_R, y1: y, y2: y, stroke: COLORS.grid, 'stroke-width': 1 }));
+        const t = el('text', { x: PAD_L - 5, y: y + 4, 'text-anchor': 'end', 'font-size': 10, fill: COLORS.textMute });
+        t.textContent = Math.round(v) + valueSuffix;
+        s.appendChild(t);
+      }
+
+      categories.forEach((cat, ci) => {
+        const gx = PAD_L + groupW * ci;
+        series.forEach((se, si) => {
+          const v = se.data[ci] || 0;
+          const h = (v / niceMax) * innerH;
+          const x = gx + (groupW - barW * barsPerGroup) / 2 + si * barW;
+          const y = PAD_T + innerH - h;
+          const color = COLORS[se.tone] || COLORS.neutral;
+          const shown = (se.labels && se.labels[ci]) || (v + valueSuffix);
+          s.appendChild(el('rect', { x, y, width: barW - 2, height: h, fill: color, rx: 2,
+            'data-tip': '<b>' + cat.split('|')[0].trim() + '</b> · ' + se.name + '：' + shown }));
+          const label = el('text', { x: x + (barW - 2) / 2, y: y - 3, 'text-anchor': 'middle', 'font-size': 8.5, fill: COLORS.text });
+          label.textContent = shown;
+          s.appendChild(label);
+        });
+        const parts = cat.split('|');
+        const t = el('text', { x: gx + groupW / 2, y: H - PAD_B + 20, 'text-anchor': 'middle', 'font-size': 9.5, fill: COLORS.text });
+        t.textContent = parts[0].trim();
+        s.appendChild(t);
+        if (parts[1]) {
+          const t2 = el('text', { x: gx + groupW / 2, y: H - PAD_B + 34, 'text-anchor': 'middle', 'font-size': 8.5, fill: COLORS.textMute });
+          t2.textContent = '（' + parts[1].trim() + '）';
+          s.appendChild(t2);
+        }
+      });
+
+      const legY = H - 14;
+      let legX = PAD_L;
+      series.forEach((se) => {
+        const color = COLORS[se.tone] || COLORS.neutral;
+        s.appendChild(el('rect', { x: legX, y: legY - 8, width: 10, height: 10, fill: color, rx: 2 }));
+        const t = el('text', { x: legX + 14, y: legY + 1, 'font-size': 11, fill: COLORS.text });
+        t.textContent = se.name;
+        s.appendChild(t);
+        legX += 14 + (se.name.length * 12) + 18;
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+
+    const KIND_STYLE = {
+      entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
+      wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
+      branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
+      channel: { fill: '#dbeafe', stroke: '#2563eb', text: '#1e3a8a' },
+      sendtime:{ fill: '#fef3c7', stroke: '#d97706', text: '#92400e' },
+      exitOk:  { fill: '#dcfce7', stroke: '#16a34a', text: '#14532d' },
+      exitEnd: { fill: '#f3f4f6', stroke: '#9ca3af', text: '#4b5563' },
+    };
+
+    function drawJourney(mount, nodes, edges) {
+      const NODE_W = 176, NODE_H = 62, RANK_GAP = 42, NODE_GAP = 22;
+      const rankOf = {}, incoming = {};
+      nodes.forEach(n => { rankOf[n.id] = 0; incoming[n.id] = []; });
+      edges.forEach(e => { incoming[e.to].push(e.from); });
+      let changed = true;
+      while (changed) {
+        changed = false;
+        edges.forEach(e => {
+          if (rankOf[e.to] < rankOf[e.from] + 1) {
+            rankOf[e.to] = rankOf[e.from] + 1;
+            changed = true;
+          }
+        });
+      }
+      const maxRank = Math.max(...Object.values(rankOf));
+      const ranks = [];
+      for (let r = 0; r <= maxRank; r++) ranks.push([]);
+      nodes.forEach(n => { ranks[rankOf[n.id]].push(n); });
+
+      const pos = {};
+      const rankWidths = ranks.map(r => r.length * NODE_W + (r.length - 1) * NODE_GAP);
+      const maxWidth = Math.max(...rankWidths, 400);
+
+      ranks.forEach((rankNodes, r) => {
+        const withAnchor = rankNodes.map(n => {
+          const parents = incoming[n.id].map(p => pos[p] ? pos[p].x + NODE_W / 2 : null).filter(x => x !== null);
+          const anchor = parents.length ? parents.reduce((a, b) => a + b, 0) / parents.length : null;
+          return { node: n, anchor };
+        });
+        withAnchor.sort((a, b) => {
+          if (a.anchor === null && b.anchor === null) return 0;
+          if (a.anchor === null) return 1;
+          if (b.anchor === null) return -1;
+          return a.anchor - b.anchor;
+        });
+        const totalW = withAnchor.length * NODE_W + (withAnchor.length - 1) * NODE_GAP;
+        const startX = (maxWidth - totalW) / 2 + 20;
+        withAnchor.forEach((it, i) => {
+          pos[it.node.id] = { x: startX + i * (NODE_W + NODE_GAP), y: 20 + r * (NODE_H + RANK_GAP) };
+        });
+      });
+
+      for (let pass = 0; pass < 3; pass++) {
+        ranks.forEach((rankNodes) => {
+          const sorted = rankNodes.slice().sort((a, b) => pos[a.id].x - pos[b.id].x);
+          for (let i = 1; i < sorted.length; i++) {
+            const prev = pos[sorted[i - 1].id];
+            const cur = pos[sorted[i].id];
+            if (cur.x < prev.x + NODE_W + NODE_GAP) cur.x = prev.x + NODE_W + NODE_GAP;
+          }
+        });
+      }
+
+      const baseWidth = Math.max(...Object.values(pos).map(p => p.x)) + NODE_W + 20;
+      const height = Math.max(...Object.values(pos).map(p => p.y)) + NODE_H + 24;
+      // 跨层的「提前分流到结束」走右侧通道，避免压在主链节点上
+      const hasSkip = edges.some(e => pos[e.from] && pos[e.to] && (rankOf[e.to] - rankOf[e.from]) > 1);
+      const SIDE_X = baseWidth + 20;
+      const width = hasSkip ? SIDE_X + 40 : baseWidth;
+      const s = svg(width, height);
+      s.setAttribute('width', width);
+      s.setAttribute('height', height);
+      s.style.maxWidth = '100%';
+      s.style.height = 'auto';
+
+      const defs = el('defs');
+      const marker = el('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      marker.appendChild(el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#94a3b8' }));
+      defs.appendChild(marker);
+      s.appendChild(defs);
+
+      const labelJobs = [];
+      edges.forEach(e => {
+        const from = pos[e.from], to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + NODE_W / 2, y1 = from.y + NODE_H;
+        const x2 = to.x + NODE_W / 2, y2 = to.y;
+        if ((rankOf[e.to] - rankOf[e.from]) > 1) {
+          const yA = y1 + 16, yB = y2 - 16;
+          const d = 'M' + x1 + ',' + y1 + ' L' + x1 + ',' + yA + ' L' + SIDE_X + ',' + yA
+                  + ' L' + SIDE_X + ',' + yB + ' L' + x2 + ',' + yB + ' L' + x2 + ',' + y2;
+          s.appendChild(el('path', { d, fill: 'none', stroke: '#b6c2d2', 'stroke-width': 1.15,
+            'stroke-dasharray': '5 4', 'marker-end': 'url(#arrow)' }));
+          if (e.label) labelJobs.push([(x1 + SIDE_X) / 2, yA, e.label]);
+          return;
+        }
+        const cy = (y1 + y2) / 2;
+        const d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy + ' ' + x2 + ',' + cy + ' ' + x2 + ',' + y2;
+        s.appendChild(el('path', { d, fill: 'none', stroke: '#94a3b8', 'stroke-width': 1.25, 'marker-end': 'url(#arrow)' }));
+        if (e.label) labelJobs.push([(x1 + x2) / 2, cy, e.label]);
+      });
+
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const k = KIND_STYLE[n.kind] || KIND_STYLE.entry;
+        s.appendChild(el('rect', { x: p.x, y: p.y, width: NODE_W, height: NODE_H, rx: 10, fill: k.fill, stroke: k.stroke, 'stroke-width': n.kind === 'channel' ? 1.4 : 1 }));
+        const titleY = n.sub ? p.y + 24 : p.y + NODE_H / 2 + 4;
+        const title = el('text', { x: p.x + NODE_W / 2, y: titleY, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: k.text });
+        title.textContent = n.title;
+        s.appendChild(title);
+        if (n.sub) {
+          const sub = el('text', { x: p.x + NODE_W / 2, y: p.y + 42, 'text-anchor': 'middle', 'font-size': 11, fill: k.text, opacity: 0.82 });
+          sub.textContent = n.sub;
+          s.appendChild(sub);
+        }
+      });
+
+      // 边标签最后绘制，保证不被节点方块盖住
+      labelJobs.forEach(function (j) {
+        const mx = j[0], my = j[1], label = j[2];
+        const w = Math.max(label.length * 9 + 10, 28);
+        s.appendChild(el('rect', { x: mx - w / 2, y: my - 10, width: w, height: 18, rx: 4, fill: '#ffffff', stroke: '#e5e7eb' }));
+        const t = el('text', { x: mx, y: my + 3, 'text-anchor': 'middle', 'font-size': 11, fill: '#475569' });
+        t.textContent = label;
+        s.appendChild(t);
+      });
+
+      mount.innerHTML = '';
+      mount.appendChild(s);
+    }
+
+
+
+
+
+    // ── 旅程编排 ────────────────────────────────────────────────────────
+
+    // J1 订阅续费提醒
+    drawJourney(document.getElementById('dag-j1'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 权益开通成功' },
+        { id: 'wu7', kind: 'wait', title: '等待至', sub: '到期时间前 7 天' },
+        { id: 'st7', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wh7', kind: 'branch', title: 'Webhook 取数', sub: '设备订阅现状' },
+        { id: 'c7', kind: 'branch', title: '条件分支', sub: 'Webhook 返回: 订阅现状' },
+        { id: 'end7', kind: 'exitEnd', title: '结束', sub: '已失效或已解绑' },
+        { id: 'p7', kind: 'channel', title: 'App Push 通知消息', sub: '到期日期与当前套餐' },
+        { id: 'wu3', kind: 'wait', title: '等待至', sub: '到期时间前 3 天' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wh3', kind: 'branch', title: 'Webhook 取数', sub: '设备订阅现状' },
+        { id: 'c3', kind: 'branch', title: '条件分支', sub: 'Webhook 返回: 订阅现状' },
+        { id: 'end3', kind: 'exitEnd', title: '结束', sub: '已失效或已解绑' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '到期后暂停的功能' },
+        { id: 'wu1', kind: 'wait', title: '等待至', sub: '到期时间前 1 天' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wh1', kind: 'branch', title: 'Webhook 取数', sub: '设备订阅现状' },
+        { id: 'c1', kind: 'branch', title: '条件分支', sub: 'Webhook 返回: 订阅现状' },
+        { id: 'end1', kind: 'exitEnd', title: '结束', sub: '已失效或已解绑' },
+        { id: 'endAuto', kind: 'exitEnd', title: '结束', sub: '到期由支付后台扣款' },
+        { id: 'ci', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '明天到期 · 最后提醒' },
+        { id: 'ia1', kind: 'channel', title: 'App Push 应用内消息', sub: '打开 App 时的续费入口' },
+        { id: 'sms1', kind: 'channel', title: 'SMS 模板消息', sub: '到期日期与续费链接' },
+        { id: 'endA', kind: 'exitEnd', title: '结束', sub: '过期后由旅程 2 承接' },
+        { id: 'endB', kind: 'exitEnd', title: '结束', sub: '过期后由旅程 2 承接' },
+      ],
+      [
+        { from: 'start', to: 'wu7' }, { from: 'wu7', to: 'st7' }, { from: 'st7', to: 'wh7' }, { from: 'wh7', to: 'c7' },
+        { from: 'c7', to: 'end7', label: '已失效或解绑' }, { from: 'c7', to: 'p7', label: '默认: 需提醒' },
+        { from: 'c7', to: 'wu3', label: '自动续费有效' },
+        { from: 'p7', to: 'wu3' },
+        { from: 'wu3', to: 'st3' }, { from: 'st3', to: 'wh3' }, { from: 'wh3', to: 'c3' },
+        { from: 'c3', to: 'end3', label: '已失效或解绑' }, { from: 'c3', to: 'p3', label: '默认: 需提醒' },
+        { from: 'c3', to: 'wu1', label: '自动续费有效' },
+        { from: 'p3', to: 'wu1' },
+        { from: 'wu1', to: 'st1' }, { from: 'st1', to: 'wh1' }, { from: 'wh1', to: 'c1' },
+        { from: 'c1', to: 'end1', label: '已失效或解绑' }, { from: 'c1', to: 'endAuto', label: '自动续费有效' },
+        { from: 'c1', to: 'ci', label: '默认: 需提醒' },
+        { from: 'ci', to: 'p1', label: '已安装' }, { from: 'ci', to: 'sms1', label: '未安装' },
+        { from: 'p1', to: 'ia1' }, { from: 'ia1', to: 'endA' },
+        { from: 'sms1', to: 'endB' },
+      ]);
+
+    // J2 过期用户分层召回
+    drawJourney(document.getElementById('dag-j2'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 权益开通成功' },
+        { id: 'wu3', kind: 'wait', title: '等待至', sub: '到期时间后 3 天' },
+        { id: 'st3', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wh3', kind: 'branch', title: 'Webhook 取数', sub: '设备订阅现状' },
+        { id: 'c3', kind: 'branch', title: '条件分支', sub: 'Webhook 返回: 订阅现状' },
+        { id: 'end3', kind: 'exitEnd', title: '结束', sub: '已恢复或已解绑' },
+        { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '权益已暂停 · 套餐入口' },
+        { id: 'ia3', kind: 'channel', title: 'App Push 应用内消息', sub: '打开 App 时的恢复入口' },
+        { id: 'wu10', kind: 'wait', title: '等待至', sub: '到期时间后 10 天' },
+        { id: 'st10', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wh10', kind: 'branch', title: 'Webhook 取数', sub: '在线状态与近 7 天活动' },
+        { id: 'c10', kind: 'branch', title: '条件分支', sub: 'Webhook 返回: 设备状态' },
+        { id: 'end10', kind: 'exitEnd', title: '结束', sub: '已恢复或已解绑' },
+        { id: 'm10a', kind: 'channel', title: 'App Push 通知消息', sub: '仍在使用 · 无云端留存' },
+        { id: 'm10b', kind: 'channel', title: 'App Push 通知消息', sub: '只介绍恢复后的权益' },
+        { id: 'm10c', kind: 'channel', title: 'App Push 通知消息', sub: '网络与供电检查入口' },
+        { id: 'wu15', kind: 'wait', title: '等待至', sub: '到期时间后 15 天' },
+        { id: 'st15', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wh15', kind: 'branch', title: 'Webhook 取数', sub: '订阅现状与优惠资格' },
+        { id: 'c15', kind: 'branch', title: '条件分支', sub: 'Webhook 返回: 优惠资格' },
+        { id: 'end15', kind: 'exitEnd', title: '结束', sub: '已恢复或已解绑' },
+        { id: 'm15a', kind: 'channel', title: 'App Push 通知消息', sub: '优惠名称与截止日' },
+        { id: 'm15b', kind: 'channel', title: 'App Push 通知消息', sub: '权益用途 · 不带优惠' },
+        { id: 'wu30', kind: 'wait', title: '等待至', sub: '到期时间后 30 天' },
+        { id: 'st30', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'wh30', kind: 'branch', title: 'Webhook 取数', sub: '设备订阅现状' },
+        { id: 'c30', kind: 'branch', title: '条件分支', sub: 'Webhook 返回: 订阅现状' },
+        { id: 'end30', kind: 'exitEnd', title: '结束', sub: '已恢复或已解绑' },
+        { id: 'm30', kind: 'channel', title: 'App Push 通知消息', sub: '本次到期的最后提醒' },
+        { id: 'endZ', kind: 'exitEnd', title: '结束', sub: '这一周期不再发送' },
+      ],
+      [
+        { from: 'start', to: 'wu3' }, { from: 'wu3', to: 'st3' }, { from: 'st3', to: 'wh3' }, { from: 'wh3', to: 'c3' },
+        { from: 'c3', to: 'end3', label: '已恢复或解绑' }, { from: 'c3', to: 'p3', label: '默认' },
+        { from: 'c3', to: 'wu10', label: '扣款失败: 旅程 3 负责' },
+        { from: 'p3', to: 'ia3' }, { from: 'ia3', to: 'wu10' },
+        { from: 'wu10', to: 'st10' }, { from: 'st10', to: 'wh10' }, { from: 'wh10', to: 'c10' },
+        { from: 'c10', to: 'end10', label: '已恢复或解绑' }, { from: 'c10', to: 'm10a', label: '在线有活动' },
+        { from: 'c10', to: 'm10b', label: '默认' }, { from: 'c10', to: 'm10c', label: '离线' },
+        { from: 'm10a', to: 'wu15' }, { from: 'm10b', to: 'wu15' }, { from: 'm10c', to: 'wu15' },
+        { from: 'wu15', to: 'st15' }, { from: 'st15', to: 'wh15' }, { from: 'wh15', to: 'c15' },
+        { from: 'c15', to: 'end15', label: '已恢复或解绑' }, { from: 'c15', to: 'm15a', label: '有优惠资格' },
+        { from: 'c15', to: 'm15b', label: '默认' },
+        { from: 'm15a', to: 'wu30' }, { from: 'm15b', to: 'wu30' },
+        { from: 'wu30', to: 'st30' }, { from: 'st30', to: 'wh30' }, { from: 'wh30', to: 'c30' },
+        { from: 'c30', to: 'end30', label: '已恢复或解绑' }, { from: 'c30', to: 'm30', label: '默认' },
+        { from: 'm30', to: 'endZ' },
+      ]);
+
+    // J3 自动续费扣款失败恢复
+    drawJourney(document.getElementById('dag-j3'),
+      [
+        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 自动续费扣款失败' },
+        { id: 'st0', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'ci', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
+        { id: 'p0', kind: 'channel', title: 'App Push 通知消息', sub: '按失败类型 · 恢复入口' },
+        { id: 'ia0', kind: 'channel', title: 'App Push 应用内消息', sub: '打开 App 时的恢复入口' },
+        { id: 'sms0', kind: 'channel', title: 'SMS 模板消息', sub: '服务已停止 · 恢复链接' },
+        { id: 'w1', kind: 'wait', title: '等待', sub: '1 天' },
+        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '停止期间的影响' },
+        { id: 'w2', kind: 'wait', title: '等待', sub: '2 天' },
+        { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
+        { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '本次失败的最后提醒' },
+        { id: 'end', kind: 'exitEnd', title: '结束', sub: '旅程 2 第 10 天起承接' },
+      ],
+      [
+        { from: 'start', to: 'st0' }, { from: 'st0', to: 'ci' },
+        { from: 'ci', to: 'p0', label: '已安装' }, { from: 'ci', to: 'sms0', label: '未安装' },
+        { from: 'p0', to: 'ia0' }, { from: 'ia0', to: 'w1' }, { from: 'sms0', to: 'w1' },
+        { from: 'w1', to: 'st1' }, { from: 'st1', to: 'p1' }, { from: 'p1', to: 'w2' },
+        { from: 'w2', to: 'st2' }, { from: 'st2', to: 'p2' }, { from: 'p2', to: 'end' },
+      ]);
+  </script>
+
+<script>
+(function () {
+  "use strict";
+  /* ── 1. TOC 场景下拉 ── */
+  (function () {
+    var drop = document.querySelector(".toc-drop");
+    if (!drop) return;
+    var btn = drop.querySelector(".toc-drop-btn");
+    var panel = drop.querySelector(".toc-drop-panel");
+    function place() {
+      var b = btn.getBoundingClientRect();
+      var w = panel.offsetWidth || 236;
+      var left = Math.min(
+        Math.max(8, b.left + b.width / 2 - w / 2),
+        document.documentElement.clientWidth - w - 8
+      );
+      panel.style.left = left + "px";
+      panel.style.top = (b.bottom + 8) + "px";
+    }
+    function setOpen(on) {
+      drop.dataset.open = on ? "1" : "0";
+      btn.setAttribute("aria-expanded", on ? "true" : "false");
+      panel.hidden = !on;
+      if (on) place();
+    }
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setOpen(panel.hidden);
+    });
+    window.addEventListener("resize", function () { if (!panel.hidden) place(); });
+    window.addEventListener("scroll", function () { if (!panel.hidden) place(); }, { passive: true });
+    // 自己接管跳转：先展开目标场景再滚动，否则展开引起的布局变化会打断平滑滚动
+    panel.addEventListener("click", function (e) {
+      var a = e.target.closest("a");
+      if (!a) return;
+      e.preventDefault();
+      setOpen(false);
+      var id = a.getAttribute("href").slice(1);
+      var sec = document.getElementById(id);
+      if (!sec) return;
+      if (history.replaceState) history.replaceState(null, "", "#" + id);
+      requestAnimationFrame(function () {
+        sec.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+    document.addEventListener("click", function (e) {
+      if (!drop.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+  })();
+
+
+
+  /* ── 2. 场景区粘性子导航（零隐藏，只提供位置感与跳转）── */
+  (function () {
+    var STAGE_COLOR = {
+      acquire: ["#2563eb", "#e7efff"], activate: ["#0e7490", "#ddf1f8"],
+      retain: ["#c2700a", "#fdf1dc"], repeat: ["#0f9d63", "#e2f7ee"],
+      campaign: ["#6d28d9", "#efe9fe"], advocacy: ["#be123c", "#ffe4ea"]
+    };
+    var items = [
+      ["s-journey1", "1", "订阅续费提醒", "retain"],
+      ["s-journey2", "2", "过期用户分层召回", "repeat"],
+      ["s-journey3", "3", "自动续费扣款失败恢复", "advocacy"]
+    ].filter(function (it) { return document.getElementById(it[0]); });
+    if (items.length < 2) return;
+
+    var rail = document.createElement("nav");
+    rail.className = "scene-rail";
+    rail.setAttribute("aria-label", "场景导航");
+    var inner = document.createElement("div");
+    inner.className = "scene-rail-inner";
+    var lab = document.createElement("span");
+    lab.className = "sr-label";
+    lab.textContent = "三条旅程";
+    inner.appendChild(lab);
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it[0];
+      a.innerHTML = '<span class="sr-n">' + it[1] + '</span>' + it[2];
+      inner.appendChild(a);
+    });
+    rail.appendChild(inner);
+    document.body.appendChild(rail);
+    var links = inner.querySelectorAll("a");
+
+    // 覆盖范围：从场景总览表开始，到最后一个场景结束
+    var zoneStart = document.getElementById("s-scenarios") || document.getElementById(items[0][0]);
+    var zoneEnd = document.getElementById(items[items.length - 1][0]);
+
+    function onScroll() {
+      var top = zoneStart.getBoundingClientRect().top;
+      var bottom = zoneEnd.getBoundingClientRect().bottom;
+      rail.classList.toggle("is-on", top <= 90 && bottom > 140);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+
+    // 当前场景高亮 + 用该场景的阶段色
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute("href") === "#" + en.target.id;
+          a.classList.toggle("is-active", on);
+          if (on) {
+            var st = STAGE_COLOR[en.target.dataset.stage] || STAGE_COLOR.acquire;
+            a.style.setProperty("--sr-stage", st[0]);
+            a.style.setProperty("--sr-stage-soft", st[1]);
+          }
+        });
+      });
+    }, { rootMargin: "-30% 0px -55% 0px" });
+    items.forEach(function (it) { spy.observe(document.getElementById(it[0])); });
+  })();
+
+  /* ── 3. 右侧圆点导航 ── */
+  (function () {
+    var items = [
+      ["s-scenarios", "场景总览"], ["s-data", "数据整合"],
+      ["s-confirm", "上线前确认"]
+    ].filter(function (it) { return document.getElementById(it[0]); });
+    if (items.length < 3) return;
+
+    var rail = document.createElement("nav");
+    rail.className = "rail";
+    rail.setAttribute("aria-label", "章节导航");
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it[0];
+      a.dataset.label = it[1];
+      a.setAttribute("aria-label", it[1]);
+      rail.appendChild(a);
+    });
+    document.body.appendChild(rail);
+
+    var links = rail.querySelectorAll("a");
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    items.forEach(function (it) { spy.observe(document.getElementById(it[0])); });
+  })();
+
+  /* ── 4. 柱状图 hover tooltip ── */
+  (function () {
+    var charts = document.querySelectorAll(".chart svg");
+    if (!charts.length) return;
+    var tip = document.createElement("div");
+    tip.className = "chart-tip";
+    document.body.appendChild(tip);
+
+    charts.forEach(function (svg) {
+      svg.querySelectorAll("rect").forEach(function (r) {
+        var h = parseFloat(r.getAttribute("height") || "0");
+        if (!h || h < 1) return;               // 跳过网格/背景矩形
+        r.classList.add("bar");
+        r.addEventListener("mouseenter", function () {
+          var label = r.dataset.tip;
+          if (!label) return;
+          tip.innerHTML = label;
+          tip.classList.add("is-on");
+        });
+        r.addEventListener("mousemove", function (e) {
+          tip.style.left = (e.clientX + 14) + "px";
+          tip.style.top = (e.clientY - 34) + "px";
+        });
+        r.addEventListener("mouseleave", function () { tip.classList.remove("is-on"); });
+      });
+    });
+  })();
+
+  /* ── 5. 滚动入场动效（默认不启用，判定通过才加）── */
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var targets = [];
+    document.querySelectorAll("main > section:not([data-scene])").forEach(function (sec) {
+      sec.querySelectorAll(":scope > .wrap > .card, :scope > .wrap > table, " +
+        ":scope > .wrap > .grid > *, :scope > .wrap > .callout").forEach(function (el) {
+          el.classList.add("reveal");
+          targets.push(el);
+        });
+    });
+    if (!targets.length) return;
+
+    document.documentElement.classList.add("anim-ready");
+
+    // 场景块整体浮起（比逐元素更有「一段开始了」的信号）
+    var sceneIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("is-in");
+        sceneIO.unobserve(en.target);
+      });
+    }, { threshold: 0.04, rootMargin: "0px 0px -4% 0px" });
+    var scenes = document.querySelectorAll("main > section[data-scene]");
+    scenes.forEach(function (sc) { sceneIO.observe(sc); });
+    setTimeout(function () { scenes.forEach(function (sc) { sc.classList.add("is-in"); }); }, 3000);
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var sibs = Array.prototype.slice.call(en.target.parentNode.children);
+        var i = Math.min(sibs.indexOf(en.target), 5);
+        setTimeout(function () { en.target.classList.add("is-in"); }, i * 70);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+    targets.forEach(function (t) { io.observe(t); });
+
+    // 兜底：3 秒后无论如何全部显示，杜绝「动效没触发就永远看不见」
+    setTimeout(function () {
+      targets.forEach(function (t) { t.classList.add("is-in"); });
+    }, 3000);
+  })();
+})();
+
+</script>
+
+</body>
+</html>
