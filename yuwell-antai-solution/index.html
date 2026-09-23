@@ -637,7 +637,7 @@
           <a href="#s-journey10"><span class="sd-n">10</span>沉默召回</a>
         </div>
       </div>
-      <a href="#s-data">数据整合</a>
+      <a href="#s-data">数据底座</a>
       <a href="#s-peers">同行做法</a>
       <a href="#s-compliance">多市场合规</a>
       <a href="#s-build">自建与采购</a>
@@ -765,27 +765,28 @@
       <div class="wrap">
         <div class="eyebrow">场景总览</div>
         <h2><span class="secnum">3</span>十条运营旅程</h2>
-        <p><span class="bold">十条旅程按项目部署</span>：中国项目与海外项目共用同一套编排，兜底渠道（国内短信、海外邮件）、购买链接、语言与存储区域在项目级配置，旅程内不按市场做运行时判断；只有旅程 9 因两边内容不同而把两条路径分开画出。旅程 1–3 完成首片启用并判定用户的后续路径，旅程 4–5 承接一片接一片，旅程 6–8 维持长期使用，旅程 9 放大覆盖面，旅程 10 承接兜底召回。测试期先上 4、2、9：接续是收入，佩戴期是接续的前提，触达决定前两条能覆盖多少人。</p>
+        <p><span class="bold">十条旅程按项目部署</span>：中国项目与海外项目共用同一套编排，兜底渠道（海外邮件；国内待短信纳入器械注册范围）、购买链接、语言与存储区域在项目级配置，旅程内不按市场做运行时判断；只有旅程 9 因两边内容不同而把两条路径分开画出。旅程 1–3 完成首片启用并判定用户的后续路径，旅程 4–5 承接一片接一片，旅程 6–8 维持长期使用，旅程 9 放大覆盖面，旅程 10 承接兜底召回。测试期先上 4、2、9：接续是收入，佩戴期是接续的前提，触达决定前两条能覆盖多少人。</p>
         <div class="spacer-md"></div>
         <table>
           <thead><tr><th>#</th><th>场景</th><th>承接漏斗环节</th><th>主渠道组合</th><th>亮点</th><th>见效节奏</th><th>预期效果</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>1</td><td>注册到首次激活</td><td>注册 → 首次激活</td><td>App Push 通知 + 兜底短信 / 邮件</td><td>App 当场引导，旅程只补位次日仍未激活的人；按型号给充电与配对指引</td><td>首月见效</td><td>55% → 70%（假设起点）</td></tr>
+            <tr class="tone-info"><td>1</td><td>注册到首次激活</td><td>注册 → 首次激活</td><td>App Push 通知 + 邮件兜底（海外）</td><td>App 当场引导，旅程只补位次日仍未激活的人；按型号给充电与配对指引</td><td>首月见效</td><td>55% → 70%（假设起点）</td></tr>
             <tr class="tone-info"><td>2</td><td>首片佩戴期陪伴</td><td>首次激活 → 佩戴满期</td><td>App Push 通知 + 应用内消息 + Webhook 建单</td><td>脱落与校准失败两类故障各有分支并自动建工单；佩戴正常的用户只在第 5 天收到一条应用内保养提示</td><td>首月见效</td><td>60% → 75%（假设起点）</td></tr>
-            <tr class="tone-info"><td>3</td><td>首片结束：按使用目的分型</td><td>到期 → 接续（首片）</td><td>App Push 通知 + 应用内消息 + 兜底短信 / 邮件</td><td>患者与间歇使用者走两条完全不同的路径；对间歇使用者约定下次复测时间，到点提醒并补位一次，而非催促续购</td><td>首月见效</td><td>首片未接续用户的重新激活率与复测设置率（对照组比较）</td></tr>
-            <tr class="tone-info"><td>4</td><td>传感器到期接续</td><td>到期 → 接续</td><td>App Push 通知 + 兜底短信 / 邮件</td><td>每片一个实例，等待至该片自己的到期时刻；消息只讲更换，补货入口放在 App 更换指引页，不受广告文号进度影响</td><td>首月见效</td><td>45% → 60%（假设起点）</td></tr>
-            <tr><td>5</td><td>接续断档召回</td><td>断档 → 重新激活</td><td>App Push 通知 + 兜底短信 / 邮件</td><td>只召回连续佩戴人群，间歇使用者交旅程 3；已装与未装 App 各两轮，只讲更换与协助，补货入口在 App 页面上</td><td>需数据积累</td><td>20% → 32%（假设起点）</td></tr>
-            <tr class="tone-info"><td>6</td><td>数据同步中断</td><td>中断 → 恢复同步</td><td>App Push 通知 + 兜底短信 / 邮件</td><td>先等自行恢复，再按安装与通知状态换渠道、按中断原因分流；不做临床告警</td><td>首月见效</td><td>50% → 68%（假设起点）</td></tr>
+            <tr class="tone-info"><td>3</td><td>首片结束：按使用目的分型</td><td>到期 → 接续（首片）</td><td>App Push 通知 + 应用内消息 + 邮件兜底（海外）</td><td>患者与间歇使用者走两条完全不同的路径；对间歇使用者约定下次复测时间，到点提醒并补位一次，而非催促续购</td><td>首月见效</td><td>首片未接续用户的重新激活率与复测设置率（对照组比较）</td></tr>
+            <tr class="tone-info"><td>4</td><td>传感器到期接续</td><td>到期 → 接续</td><td>App Push 通知 + 邮件兜底（海外）</td><td>每片一个实例，等待至该片自己的到期时刻；消息只讲更换，补货入口在 App 页面；院内患者的医生端同步收到评估提醒</td><td>首月见效</td><td>45% → 60%（假设起点）</td></tr>
+            <tr><td>5</td><td>接续断档召回</td><td>断档 → 重新激活</td><td>App Push 通知 + 邮件兜底（海外）</td><td>只召回连续佩戴人群，间歇使用者交旅程 3、妊娠期用户不召回；已装与未装 App 各两轮，只讲更换与协助，补货入口在 App 页面上</td><td>需数据积累</td><td>20% → 32%（假设起点）</td></tr>
+            <tr class="tone-info"><td>6</td><td>数据同步中断</td><td>中断 → 恢复同步</td><td>App Push 通知 + 应用内消息 / 邮件兜底</td><td>先等自行恢复，再按安装与通知状态换渠道、按中断原因分流；不做临床告警</td><td>首月见效</td><td>50% → 68%（假设起点）</td></tr>
             <tr class="tone-info"><td>7</td><td>告警太多的人：把提醒调到能接受的程度</td><td>到期 → 接续（防中途放弃）</td><td>应用内消息 + App Push 通知</td><td>用告警触发次数而不是血糖值分群；高值教调阈值，低值只教免打扰不教调低，设备类交旅程 6</td><td>需数据积累</td><td>设置调整率与其后续佩戴天数（对照组比较）</td></tr>
-            <tr class="tone-info"><td>8</td><td>关注人邀请</td><td>使用者 → 关注人绑定</td><td>App Push 通知 + 应用内消息</td><td>使用者邀请或审批亲友申请两条路径；关注人只收开放数据与服务提醒，不进营销</td><td>需数据积累</td><td>15% → 26%（假设起点）</td></tr>
-            <tr class="tone-info"><td>9</td><td>触达能力建立</td><td>覆盖放大器</td><td>应用内消息 + 短信或邮件（按项目）</td><td>中国与海外两条路径分开编排、不汇聚；超时后分别用短信与邮件告知提醒改道</td><td>首月见效</td><td>其余九条旅程的覆盖同步放大</td></tr>
-            <tr><td>10</td><td>沉默召回</td><td>沉默 → 回访</td><td>App Push 通知 + 兜底短信 / 邮件</td><td>发送前先查有没有未了结的服务事项，有则只发送服务内容</td><td>需数据积累</td><td>12% → 18–22%（假设起点）</td></tr>
+            <tr class="tone-info"><td>8</td><td>关注人邀请</td><td>使用者 → 关注人绑定</td><td>App Push 通知 + 应用内消息</td><td>只对儿童、妊娠期、高龄用户发起；邀请或审批两条路径；关注人只收开放数据与服务提醒，不进营销</td><td>需数据积累</td><td>15% → 26%（假设起点）</td></tr>
+            <tr class="tone-info"><td>9</td><td>触达能力建立</td><td>覆盖放大器</td><td>应用内消息 + 邮件（海外项目）</td><td>中国与海外两条路径分开编排、不汇聚；超时后国内再发一条应用内提醒、海外改发邮件</td><td>首月见效</td><td>其余九条旅程的覆盖同步放大</td></tr>
+            <tr><td>10</td><td>沉默召回</td><td>沉默 → 回访</td><td>App Push 通知 + 邮件兜底（海外）</td><td>发送前先查有没有未了结的服务事项，有则只发送服务内容</td><td>需数据积累</td><td>12% → 18–22%（假设起点）</td></tr>
             <tr><td colspan="7" style="background:#f8fafc;font-weight:700;color:var(--text-3);font-size:12.5px;letter-spacing:.04em">拓展场景 · 测试期后按优先级推进，本方案不编排</td></tr>
             <tr><td>11</td><td>传感器订阅与按期直发</td><td>到期 → 接续</td><td>App Push 通知 + Email</td><td>把按片购买改为按周期直发，发货前几天提醒并留出改期与暂停的窗口；贵司澳大利亚经销商网店已提供传感器月度订阅，同品类亦有先例</td><td>依赖客户侧能力（订阅商品与履约）</td><td>订阅用户占比与接续率差</td></tr>
             <tr><td>12</td><td>首片试用转化</td><td>注册 → 首次激活</td><td>Email + App Push 通知</td><td>领取试用后按天推进教育内容，试用期结束前给出继续使用的选择；同品类已有免费试用先例</td><td>依赖客户侧能力（试用活动）</td><td>试用到首次付费的转化</td></tr>
             <tr><td>13</td><td>发射器换新与型号升级</td><td>持续使用 → 硬件换新</td><td>App Push 通知 + Email</td><td>按激活日期与累计片数在发射器寿命末期提示换新，并按当前型号推更长周期的新型号</td><td>依赖客户侧能力（发射器寿命数据）</td><td>换新率与升级率</td></tr>
             <tr><td>14</td><td>复诊前报告提醒</td><td>使用者 → 关注人绑定</td><td>App Push 通知 + 应用内消息</td><td>按用户自设的复诊时间提醒导出周期报告并分享给医生</td><td>依赖客户侧能力（复诊时间采集）</td><td>报告分享率</td></tr>
             <tr><td>15</td><td>跨产品线联动</td><td>全漏斗</td><td>App Push 通知 + Email</td><td>健康管家 App 的隐私政策已载明可连接发射器并采集葡萄糖数据，两端的数据口径本就重叠，账号打通后即可合并成一份健康提醒</td><td>依赖客户侧能力（账号打通）</td><td>跨品类绑定率</td></tr>
+            <tr><td>16</td><td>妊娠期糖尿病产后复测</td><td>到期 → 接续（首片）</td><td>App Push 通知 + Email</td><td>预产期后不做断档召回，按临床指南的产后时点邀请一次复测，之后转健康管理路径</td><td>依赖客户侧能力（预产期采集）</td><td>产后复测率</td></tr>
           </tbody>
         </table>
         <ul class="notelist">
@@ -802,7 +803,7 @@
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
           <p>注册当下用户正在 App 里，激活引导由 App 页面完成。<span class="bold">旅程把当天交给 App，次日只对仍未激活的用户补位</span>，任何时点激活都即时退出，再按是否装了 App 换渠道。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底短信或邮件（按项目）　｜　<span class="bold">触发方式</span>：事件「用户注册」或「App 首次启动」　｜　<span class="bold">退出条件</span>：传感器激活成功即提前退出</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底邮件（海外项目）　｜　<span class="bold">触发方式</span>：事件「用户注册」或「App 首次启动」　｜　<span class="bold">退出条件</span>：传感器激活成功即提前退出</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -833,8 +834,8 @@
                 <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
                 <li><span class="bold">条件分支</span>：属性「App 安装状态」
                   <ul>
-                    <li>已安装：<span class="bold">App Push 通知消息</span>，<span class="bold">首句先说明充电</span>——发射器须充满电才能支撑完整周期，且充电耗时，是激活的前置步骤；随后是按机身编号配对、选对贴敷部位，深度链接到激活页</li>
-                    <li>未安装：<span class="bold">兜底消息</span>（中国项目为 SMS 模板消息，海外项目为 Email 模板消息，按项目配置、旅程内不分支），同样以充电开头的三步，加 App 下载链接</li>
+                    <li>已安装：<span class="bold">App Push 通知消息</span>，<span class="bold">首句先说明充电</span>——发射器须充满电才能支撑完整周期，且充电耗时，是激活的前置步骤；随后是按机身编号配对、选对贴敷部位并提示洗澡时勿搓揉，深度链接到激活页</li>
+                    <li>未安装：<span class="bold">兜底消息</span>（海外项目为 Email 模板消息；中国项目在短信纳入器械注册范围前没有触达未安装用户的渠道，该分支直接结束并计入不可触达名单），同样以充电开头的三步，海外邮件加 App 下载链接</li>
                   </ul>
                 </li>
                 <li><span class="bold">等待</span>：5 天——其间激活即提前退出</li>
@@ -875,7 +876,7 @@
             <div class="callout-title">业务痛点</div>
             <div class="callout-body">
               <ul>
-                <li>脱落多发生在前几天，用户需要联系客服申请补发，这段时间数据完全断档</li>
+                <li>脱落多发生在前几天，首因是洗澡时搓揉贴片；用户需要联系客服申请补发，这段时间数据完全断档</li>
                 <li>校准失败与脱落的处理方式完全不同，发送同一条内容只会加重困惑</li>
                 <li>从异常发生到客服受理之间缺少自动环节，补发流程往往延后一天启动</li>
               </ul>
@@ -898,7 +899,7 @@
                 </li>
                 <li><span class="bold">「传感器脱落」的判定来源</span>：设备云按工作电流与传感器温度的信号特征判定并上报，或由用户在 App 内结束佩戴时选择原因；两种来源第 1 周与贵司确认，缺一种时以另一种为准</li>
                 <li><span class="bold">可发送时间</span>：终端时区 9:00–21:00</li>
-                <li><span class="bold">应用内消息</span>：第 5 天的边缘加固与剧烈运动注意事项，随后结束——<span class="bold">佩戴正常的用户全程只收这一条，且是应用内消息、不推送</span>；8 天规格此时已过大半，15 天规格刚进入后半程，两种规格都适用</li>
+                <li><span class="bold">应用内消息</span>：第 5 天的边缘加固、洗澡时勿搓揉贴片与剧烈运动注意事项，随后结束——<span class="bold">佩戴正常的用户全程只收这一条，且是应用内消息、不推送</span>；8 天规格此时已过大半，15 天规格刚进入后半程，两种规格都适用</li>
                 <li><span class="bold">合规约束</span>：消息不含血糖读数与趋势判断；高低血糖告警由 App 原生功能承担，本旅程不监听血糖阈值事件</li>
               </ul>
             </div>
@@ -923,7 +924,7 @@
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
           <p>糖尿病用户需要连续佩戴；健康与体重管理用户的使用本就是间歇的——体重管理期、饮食调整期戴两周看反应，之后停一段时间。两者用完第一片后需要的内容完全不同。<span class="bold">发射器可循环使用两年，间歇使用者每次只需再买一片传感器</span>；两次佩戴之间中断，主因是忘了，不是决定不用。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 应用内消息 · 兜底短信或邮件（按项目）　｜　<span class="bold">触发方式</span>：事件「传感器结束」且为首片　｜　<span class="bold">退出条件</span>：传感器激活成功即提前退出，复测等待期内同样生效</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 应用内消息 · 兜底邮件（海外项目）　｜　<span class="bold">触发方式</span>：事件「传感器结束」且为首片　｜　<span class="bold">退出条件</span>：传感器激活成功即提前退出，复测等待期内同样生效</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -967,11 +968,11 @@
                 <li><span class="bold">条件分支</span>：属性「App 安装状态」——距上一步已过去数月，发送前重新判定
                   <ul>
                     <li>已安装：进入<span class="bold">可发送时间</span>（终端时区 9:00–21:00），随后 <span class="bold">App Push 通知消息</span>，约定的复测时间已到，深度链接到更换指引页（含补货入口，指向按项目配置）</li>
-                    <li>未安装：进入可发送时间，随后 <span class="bold">兜底消息</span>（中国项目为 SMS 模板消息，海外项目为 Email 模板消息，按项目配置、旅程内不分支），内容同上并附打开 App 的链接，随后结束</li>
+                    <li>未安装：进入可发送时间，随后 <span class="bold">兜底消息</span>（海外项目为 Email 模板消息；中国项目在短信纳入器械注册范围前没有触达未安装用户的渠道，该分支直接结束并计入不可触达名单），内容同上，海外邮件附打开 App 的链接，随后结束</li>
                   </ul>
                 </li>
                 <li><span class="bold">等待</span>：7 天（已安装路径）——其间激活即提前退出</li>
-                <li><span class="bold">兜底消息</span>：仍未复测的用户补发一条（中国项目短信、海外项目邮件），随后结束；此后仍无动作的用户由旅程 10 在 30 天沉默时承接</li>
+                <li><span class="bold">兜底消息</span>：仍未复测的海外用户补发一封邮件，国内用户由旅程 10 承接，随后结束；此后仍无动作的用户由旅程 10 在 30 天沉默时承接</li>
                 <li><span class="bold">合规约束</span>：消息不含血糖读数与达标判断；健康管理分支不做疾病风险表述</li>
               </ul>
             </div>
@@ -996,7 +997,7 @@
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
           <p>在售规格的佩戴周期从 8 天到 15 天不等，同一用户还可能提前换片。<span class="bold">到期时刻来自这一片自己的激活事件</span>，提醒发给该用户当前这一片，新激活一片即重新计时。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底短信或邮件（按项目）　｜　<span class="bold">触发方式</span>：事件「传感器激活成功」（每一片）　｜　<span class="bold">退出条件</span>：本片结束即退出（主动结束或脱落），新片激活由「替换最早」重新计时</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底邮件（海外项目） · 医生端 App Push　｜　<span class="bold">触发方式</span>：事件「传感器激活成功」（每一片）　｜　<span class="bold">退出条件</span>：本片结束即退出（主动结束或脱落），新片激活由「替换最早」重新计时</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1030,21 +1031,27 @@
                     <li>库存大于 0：进入可发送时间（终端时区 9:00–21:00），随后<span class="bold">条件分支 · 属性「App 安装状态」</span>（距上一步已过去十余天，发送前重新判定）
                       <ul>
                         <li>已安装：<span class="bold">App Push 通知消息</span>，本片两天后到期、当前剩余片数，深度链接到 App 更换指引页</li>
-                        <li>未安装：<span class="bold">兜底消息</span>（中国项目为 SMS 模板消息，海外项目为 Email 模板消息，按项目配置、旅程内不分支），本片到期时间、剩余片数与更换步骤，附打开 App 的链接</li>
+                        <li>未安装：<span class="bold">兜底消息</span>（海外项目为 Email 模板消息；中国项目在短信纳入器械注册范围前没有触达未安装用户的渠道，该分支直接结束并计入不可触达名单），本片到期时间、剩余片数与更换步骤，海外邮件附打开 App 的链接</li>
                       </ul>
                     </li>
                     <li>库存为 0 或未知：进入可发送时间，随后<span class="bold">条件分支 · 属性「App 安装状态」</span>
                       <ul>
                         <li>已安装：<span class="bold">App Push 通知消息</span>，本片两天后到期，深度链接到同一更换指引页，页面上直接看到补货入口（指向按项目配置）</li>
-                        <li>未安装：<span class="bold">兜底消息</span>（中国项目为 SMS 模板消息，海外项目为 Email 模板消息，按项目配置、旅程内不分支），本片到期时间与更换步骤，附打开 App 的链接；海外项目的邮件是否附补货入口按项目配置——开启时在本节点前加一个「营销同意」条件分支，购买链接取项目配置（英国、澳大利亚链经销商网店，其余链购买指引页），本方案默认不开启</li>
+                        <li>未安装：<span class="bold">兜底消息</span>（海外项目为 Email 模板消息；中国项目在短信纳入器械注册范围前没有触达未安装用户的渠道，该分支直接结束并计入不可触达名单），本片到期时间与更换步骤，海外邮件附打开 App 的链接；海外项目的邮件是否附补货入口按项目配置——开启时在本节点前加一个「营销同意」条件分支，购买链接取项目配置（英国、澳大利亚链经销商网店，其余链购买指引页），本方案默认不开启</li>
                       </ul>
                     </li>
+                  </ul>
+                </li>
+                <li><span class="bold">条件分支</span>：属性「关注者含医生」——院内由医生关注的患者，医生端同步收到一条
+                  <ul>
+                    <li>含医生：<span class="bold">医生端 App Push 通知消息</span>，「患者 X 的传感器将于两天后到期，请评估是否续用」，携带患者 ID、病号与当前佩戴状态，不含读数；医生端为同一项目下的第二个应用</li>
+                    <li>不含：直接进入下方等待</li>
                   </ul>
                 </li>
                 <li><span class="bold">等待</span>：3 天固定等待，与转化窗口对齐；其间用户若激活新片，由「替换最早」在同一实例上完成交接</li>
                 <li><span class="bold">结束组件</span>：本实例结束，未接续的用户交旅程 5 承接断档召回</li>
                 <li><span class="bold">与现有促销推送的关系</span>：优惠券到账、拼团结果等由贵司现有体系发送，本旅程不叠加促销内容；同一用户同日已收促销时由用户级全局频控协调</li>
-                <li><span class="bold">合规约束</span>：到期提醒的内容是这一片的使用期限与更换方法，属于产品使用与安全告知，不以推销为目的，一般不构成商业广告；<span class="bold">一旦消息本身附上购买入口、价格或优惠，即构成医疗器械广告</span>，需广告审查批准文号。本旅程的 App Push、短信与默认邮件均不含购买内容，可先行上线；补货入口放在 App 更换指引页，属贵司 App 的既有页面（中国项目指向 App 内商城，海外项目指向经销商网店或购买指引）。最终定性以贵司法务意见为准</li>
+                <li><span class="bold">合规约束</span>：到期提醒的内容是这一片的使用期限与更换方法，属于产品使用与安全告知，不以推销为目的，一般不构成商业广告；<span class="bold">一旦消息本身附上购买入口、价格或优惠，即构成医疗器械广告</span>，需广告审查批准文号。本旅程的 App Push 与默认邮件均不含购买内容，可先行上线；补货入口放在 App 更换指引页，属贵司 App 的既有页面（中国项目指向 App 内商城，海外项目指向经销商网店或购买指引）。最终定性以贵司法务意见为准</li>
               </ul>
             </div>
           </div>
@@ -1068,7 +1075,7 @@
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
           <p>到期三天仍未接续的用户，多数并非不愿使用，而是受阻于购买、操作或犹豫。<span class="bold">第一轮只说明更换方法，第二轮按有无余片给换片协助或补货指引</span>。间歇使用者不进入本旅程，其回访由旅程 3 设定的复测提醒承接。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底短信或邮件（按项目）　｜　<span class="bold">触发方式</span>：分群「到期已过 3–7 天、未激活下一片且非间歇使用者」　｜　<span class="bold">退出条件</span>：传感器激活成功即退出</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底邮件（海外项目）　｜　<span class="bold">触发方式</span>：分群「到期已过 3–7 天、未激活下一片且非间歇使用者」　｜　<span class="bold">退出条件</span>：传感器激活成功即退出</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1091,14 +1098,14 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul class="cfg-list">
-                <li><span class="bold">开始组件</span>：用户分群「到期时间已过 <span class="bold">3–7 天</span>、期间无传感器激活成功事件，且使用目的不为健康管理或体重管理」，由 MA 按已接入事件计算，不需要贵司写入聚合属性。窗口收在 7 天以内，是因为连续佩戴人群断档越久风险越高，第 8 天起已不属于及时召回；上限同时避免发布当日存量用户集中进入</li>
+                <li><span class="bold">开始组件</span>：用户分群「到期时间已过 <span class="bold">3–7 天</span>、期间无传感器激活成功事件，且使用目的不为健康管理或体重管理、用户类型不为妊娠期」，由 MA 按已接入事件计算，不需要贵司写入聚合属性。妊娠期用户在预产期后停用属正常终止，不进入断档召回，产后复测邀请见拓展场景 16。窗口收在 7 天以内，是因为连续佩戴人群断档越久风险越高，第 8 天起已不属于及时召回；上限同时避免发布当日存量用户集中进入</li>
                 <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 30 天，最多进入 2 次</li>
                 <li><span class="bold">提前退出</span>：事件「传感器激活成功」</li>
                 <li><span class="bold">转化统计</span>：事件「传感器激活成功」，监听窗口 5 天</li>
                 <li><span class="bold">条件分支</span>：属性「App 安装状态」——进入条件不是 App 内事件，先确认渠道可达；两条路径结构相同、各两轮，只是渠道不同
                   <ul>
                     <li>已安装：可发送时间（终端时区 9:00–21:00）后 <span class="bold">App Push 通知消息一</span>，更换步骤与常见失败原因，深度链接到 App 更换指引页</li>
-                    <li>未安装：可发送时间后 <span class="bold">兜底消息一</span>（中国项目短信、海外项目邮件），更换步骤与打开 App 的链接</li>
+                    <li>未安装：可发送时间后 <span class="bold">兜底消息一</span>（海外项目邮件，更换步骤与打开 App 的链接；中国项目在短信纳入注册范围前该分支结束并计入不可触达名单）</li>
                   </ul>
                 </li>
                 <li><span class="bold">等待</span>：3 个日历日（两条路径各自等待）</li>
@@ -1106,7 +1113,7 @@
                 <li><span class="bold">条件分支</span>：属性「未激活传感器库存」（两条路径各判一次）——第二轮同样只讲服务，补货入口在 App 更换指引页上
                   <ul>
                     <li>库存大于 0：<span class="bold">App Push 通知消息二</span> 或 <span class="bold">兜底消息二</span>——尚有余片却始终未更换，多半受阻于操作或顾虑，给换片视频与在线客服入口，随后结束</li>
-                    <li>库存为 0 或未知：<span class="bold">App Push 通知消息二</span> 或 <span class="bold">兜底消息二</span>，仍未更换、需要协助时的联系方式；Push 深度链接到更换指引页（含补货入口，指向按项目配置），兜底消息附打开 App 的链接，随后结束</li>
+                    <li>库存为 0 或未知：<span class="bold">App Push 通知消息二</span> 或 <span class="bold">兜底消息二</span>，仍未更换、需要协助时的联系方式；Push 深度链接到更换指引页（含补货入口，指向按项目配置），海外邮件附打开 App 的链接，随后结束</li>
                   </ul>
                 </li>
               </ul>
@@ -1132,7 +1139,7 @@
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
           <p>同步中断期间，App 拿不到实时读数，依赖实时读数的高低血糖提醒也随之失效；App 自带的信号丢失提醒只在 App 存活时有效，后台被系统清理、账号掉线或已卸载时无从提醒。<span class="bold">旅程由设备云侧发现连续 4 小时无数据上传而触发，先给两小时自行恢复</span>，仍未恢复再按中断原因给对应的一步操作。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底短信或邮件（按项目）　｜　<span class="bold">触发方式</span>：事件「数据同步中断」　｜　<span class="bold">退出条件</span>：该发射器数据恢复上传即退出本实例</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底应用内消息或邮件（按项目）　｜　<span class="bold">触发方式</span>：事件「数据同步中断」　｜　<span class="bold">退出条件</span>：该发射器数据恢复上传即退出本实例</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1163,7 +1170,7 @@
                 <li><span class="bold">条件分支</span>：属性「App 安装状态」与「设备通知状态」——同步中断的原因之一就是卸载了 App，而系统通知一旦关闭，任何来源的推送都无法送达，两种情况都要先判定再决定走哪条渠道
                   <ul>
                     <li>已安装且通知开启：进入下方按中断类型分流的 App Push</li>
-                    <li>未安装或通知关闭：<span class="bold">兜底消息</span>（中国项目为 SMS 模板消息，海外项目为 Email 模板消息，按项目配置、旅程内不分支），正文按中断类型变量填充对应的排查步骤——数据中断属服务类通知，不需要营销同意</li>
+                    <li>未安装或通知关闭：<span class="bold">兜底消息</span>（中国项目为应用内消息，用户下次打开 App 时可见；海外项目为 Email 模板消息），正文按中断类型变量填充对应的排查步骤——数据中断属服务类通知，不需要营销同意；国内用户日均打开 App 6–7 次，应用内消息的空窗通常在数小时内，已卸载 App 的国内用户在短信可用前无法触达</li>
                   </ul>
                 </li>
                 <li><span class="bold">条件分支</span>：事件属性「中断类型」（通知已开启路径）
@@ -1229,10 +1236,11 @@
                 <li><span class="bold">条件分支</span>：用户分群，按近 14 天占比最高的告警类型分为三群，由 MA 分群计算，不需要贵司写入聚合属性
                   <ul>
                     <li><span class="bold">高值告警为主</span>（血糖高于用户设定的上限时触发）：<span class="bold">应用内消息</span>，说明上限阈值与提醒间隔可自行调整，入口指向 App 内告警设置页</li>
-                    <li><span class="bold">低值告警为主</span>（血糖低于用户设定的下限时触发，是三类中风险最高的一类）：<span class="bold">应用内消息</span>，只介绍每日免打扰时段与提醒间隔的设置方式，<span class="bold">不建议调低下限或关闭低值告警</span>，并提示若频繁出现低值应与医生沟通，入口直接指向 App 内的医生问诊功能</li>
+                    <li><span class="bold">低值告警为主</span>（血糖低于用户设定的下限时触发，是三类中风险最高的一类）：<span class="bold">应用内消息</span>，只介绍每日免打扰时段与提醒间隔的设置方式，<span class="bold">App 不允许关闭低血糖告警，本旅程也不引导调低下限</span>，并提示若频繁出现低值应与医生沟通，入口直接指向 App 内的医生问诊功能</li>
                     <li><span class="bold">信号或设备类告警为主</span>（蓝牙断开、信号丢失、传感器与发射器状态异常，与血糖数值无关）：进入<span class="bold">结束组件</span>，这类问题应当修复而不是调低提醒，交旅程 6 处理，本旅程不重复触达</li>
                   </ul>
                 </li>
+                <li><span class="bold">免打扰建议按用户类型取值</span>：儿童与妊娠期用户不建议设置覆盖夜间的免打扰；高龄用户给最少步骤的设置路径；夜间集中触发的告警多为压贴所致，提示调整贴敷位置并可直达医生问诊</li>
                 <li><span class="bold">等待</span>：7 天——其间修改设置即提前退出</li>
                 <li><span class="bold">App Push 通知消息</span>：仍未修改的用户，简要说明提醒方式可调整并给出设置入口，随后结束</li>
                 <li><span class="bold">合规约束</span>：本旅程不发送任何血糖读数与临床判断，不替代医疗建议；低值提醒分支不引导降低安全相关的提醒强度</li>
@@ -1258,8 +1266,8 @@
       <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">分端触达</span><span class="pill pill-info">使用者 → 关注人绑定</span><span class="pill">激活后第 3 天触发 · 邀请或审批两条路径 · 应用内消息 + App Push</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>夜间的异常状况需要有人知道，复诊时医生需要的是一份完整报告。共享有两条路径：使用者主动邀请，或亲友在关注端发起申请、由使用者审批——贵司现有的「申请共享」与「取消监护」两条推送分别对应这两个时刻。<span class="bold">开放给谁、开放什么始终由使用者决定</span>，关注人只收已开放的状态提醒，不进营销旅程。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：应用内消息 · App Push 通知消息　｜　<span class="bold">触发方式</span>：事件「传感器激活成功」且关注人数量为 0　｜　<span class="bold">退出条件</span>：关注人绑定成功即退出</p>
+          <p>夜间的异常状况需要有人知道，复诊时医生需要的是一份完整报告——这对儿童、妊娠期与高龄用户最要紧，本旅程只面向这三类。共享有两条路径：使用者主动邀请，或亲友在关注端发起申请、由使用者审批——贵司现有的「申请共享」与「取消监护」两条推送分别对应这两个时刻。<span class="bold">开放给谁、开放什么始终由使用者决定</span>，关注人只收已开放的状态提醒，不进营销旅程。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：应用内消息 · App Push 通知消息　｜　<span class="bold">触发方式</span>：事件「传感器激活成功」，关注人数量为 0 且用户类型为儿童 / 妊娠期 / 高龄　｜　<span class="bold">退出条件</span>：关注人绑定成功即退出</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1273,7 +1281,7 @@
             <div class="callout-body">
               <ul>
                 <li>子女常为购买者，却无法得知父母是否仍在佩戴</li>
-                <li>用户未必了解共享功能的设置位置，也顾虑家人看到后过度干预</li>
+                <li>功能已上线但使用率低，院外用户对数据分享认知不足；成年患者另有隐私顾虑，不宜主动推</li>
                 <li>关注人要装关注端 App 并完成绑定才能看到数据，邀请发出不等于绑定完成</li>
               </ul>
             </div>
@@ -1282,7 +1290,7 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul class="cfg-list">
-                <li><span class="bold">开始组件</span>：事件「传感器激活成功」，用户属性过滤「关注人数量」等于 0</li>
+                <li><span class="bold">开始组件</span>：事件「传感器激活成功」，用户属性过滤「关注人数量」等于 0 且「用户类型」为儿童、妊娠期或高龄——共享功能对其他用户不主动推荐；院内由医生关注的患者关注人数量已大于 0，自然不进入</li>
                 <li><span class="bold">与现有两条共享推送的关系</span>：「申请共享您的血糖信息」在申请到达时发，「亲友取消了对你的监护」在解绑时发，本旅程都不替代；本旅程补的是两个空档——激活 3 天后仍没有任何关注人，以及邀请或申请发出后两天仍未完成绑定。三者共用用户级频控额度，不会同日叠发</li>
                 <li><span class="bold">再次进入</span>：退出后可再次进入（单实例），间隔 90 天，最多进入 2 次</li>
                 <li><span class="bold">提前退出</span>：事件「关注人绑定成功」</li>
@@ -1317,11 +1325,11 @@
     <section id="s-journey9" class="section-plain" data-stage="acquire" data-scene="9">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">09</div><div class="scene-head-main"><h2>旅程 9｜触达能力建立：中国与海外各补一条</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">其余九条旅程的覆盖基数 · 优先上线</span><span class="pill pill-info">覆盖放大器</span><span class="pill">分群触发 · 中国与海外两条路径各自走完 · 应用内消息 + 短信 / 邮件</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">其余九条旅程的覆盖基数 · 优先上线</span><span class="pill pill-info">覆盖放大器</span><span class="pill">分群触发 · 中国与海外两条路径各自走完 · 应用内消息 + 邮件（海外）</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
-          <p>无法接收消息的用户，其余九条旅程对其等同于不存在。<span class="bold">三个市场的缺口不一样</span>：国内是厂商通道与权限，欧洲是 iOS 的营销推送同意，俄罗斯还要考虑设备的推送服务环境。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：应用内消息 · 中国项目短信 · 海外项目邮件　｜　<span class="bold">触发方式</span>：分群「无推送标识或通知权限关闭」　｜　<span class="bold">退出条件</span>：通知权限开启即提前退出</p>
+          <p>无法接收消息的用户，其余九条旅程对其等同于不存在。<span class="bold">两个项目的缺口不一样</span>：国内是厂商通道与权限，荣耀、魅族通道第四季度补全；海外主力是红米、传音、TCL 等百元级安卓机，系统强杀后台、用户设置能力弱，现有海外推送通道 24 小时送达率约七成，先补保活与权限，再谈同意。</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：应用内消息 · 海外项目邮件　｜　<span class="bold">触发方式</span>：分群「无推送标识或通知权限关闭」　｜　<span class="bold">退出条件</span>：通知权限开启即提前退出</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1336,7 +1344,7 @@
               <ul>
                 <li>安卓 13 起通知默认关闭，即便已安装 App 也未必能够收到</li>
                 <li>iOS 的推广类推送另需 App 内明示同意，系统权限开关无法替代</li>
-                <li>推送关闭后，到期与故障提醒只能改走短信或邮件，用户需要被告知这一点</li>
+                <li>推送关闭后，国内用户只能在打开 App 时看到提醒，海外用户改走邮件——两边都要被告知这一点</li>
               </ul>
             </div>
           </div>
@@ -1350,8 +1358,8 @@
                 <li><span class="bold">转化统计</span>：事件「通知权限开启」，监听窗口 3 天</li>
                 <li><span class="bold">按项目启用其中一条路径</span>（部署时选定，不是运行时判断）；两条路径各自走完，不汇聚
                   <ul>
-                    <li><span class="bold">中国项目</span>：<span class="bold">应用内消息</span>，按机型开启通知与厂商通道自启的步骤 → <span class="bold">等待</span> 7 天（其间开启即提前退出）→ <span class="bold">SMS 模板消息</span>，仍未开启的用户：再给一次开启步骤，并说明在此之前到期与故障提醒会先经短信送达 → 结束</li>
-                    <li><span class="bold">海外项目</span>：<span class="bold">应用内消息</span>，说明服务提醒与推广消息分别需要什么同意，并给出 App 内营销推送同意的开关位置 → <span class="bold">等待</span> 7 天（其间开启即提前退出）→ <span class="bold">Email 模板消息</span>，仍未开启的用户：再给一次开启步骤，并说明到期与故障提醒会先经邮件送达 → 结束</li>
+                    <li><span class="bold">中国项目</span>：<span class="bold">应用内消息</span>，按机型开启通知与厂商通道自启的步骤（荣耀、魅族通道补全后同步更新）→ <span class="bold">等待</span> 7 天（其间开启即提前退出）→ <span class="bold">应用内消息</span>（第二条），仍未开启的用户：再给一次开启步骤，并说明开启前到期与故障提醒只能在打开 App 时看到 → 结束</li>
+                    <li><span class="bold">海外项目</span>：<span class="bold">应用内消息</span>，先按机型（红米、传音、TCL 等）给出后台保活与通知开启的最短步骤，大字截图、不弹系统弹窗；服务提醒与推广消息各需什么同意放在第二屏 → <span class="bold">等待</span> 7 天（其间开启即提前退出）→ <span class="bold">Email 模板消息</span>，仍未开启的用户：再给一次开启步骤，并说明到期与故障提醒会先经邮件送达 → 结束</li>
                     <li><span class="bold">俄罗斯项目</span>：待法务定方向后按海外路径部署，应用内消息内容改为系统通知开启步骤，并说明若未能收到推送可改用邮件接收到期提醒</li>
                   </ul>
                 </li>
@@ -1376,11 +1384,11 @@
     <section id="s-journey10" class="section-plain" data-stage="retain" data-scene="10">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">10</div><div class="scene-head-main"><h2>旅程 10｜沉默召回：有服务事项就不发促销</h2></div></div>
-      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">全市场召回</span><span class="pill pill-info">沉默 → 回访</span><span class="pill">分群触发 · 发送前取未处理事项 · App Push + 兜底短信 / 邮件</span></div>
+      <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">全市场召回</span><span class="pill pill-info">沉默 → 回访</span><span class="pill">分群触发 · 发送前取未处理事项 · App Push + 邮件兜底（海外）</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
           <p>三十天未打开 App 的用户，可能有一张未处理完的工单，也可能只是传感器已到期而尚未接续。<span class="bold">发送前先查询该用户有无未了结的服务事项</span>，若有则只发送服务内容，没有才邀请回访。</p>
-          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底短信或邮件（按项目）　｜　<span class="bold">触发方式</span>：分群「近 30 天未启动 App 且仍有绑定设备」　｜　<span class="bold">退出条件</span>：App 启动即退出</p>
+          <p style="margin-top:6px"><span class="bold">建议渠道</span>：App Push 通知消息 · 兜底邮件（海外项目）　｜　<span class="bold">触发方式</span>：分群「近 30 天未启动 App 且仍有绑定设备」　｜　<span class="bold">退出条件</span>：App 启动即退出</p>
         </div>
       </div>
       <div class="grid grid-2-1">
@@ -1395,7 +1403,7 @@
               <ul>
                 <li>沉默用户中混杂着等待补发、等待接续与已更换品牌的三类人，单一文案难以匹配其中任何一类</li>
                 <li>仍有未处理工单的用户收到促销，只会让其更确信无人处理</li>
-                <li>已卸载 App 的用户同样可能有未处理完的工单，只能通过短信或邮件告知</li>
+                <li>已卸载 App 的用户同样可能有未处理完的工单，海外可通过邮件告知，国内在短信可用前无法触达</li>
               </ul>
             </div>
           </div>
@@ -1410,7 +1418,7 @@
                 <li><span class="bold">条件分支</span>：属性「App 安装状态」——只决定走哪条渠道，未安装的人同样要知道有没有未了结的事项
                   <ul>
                     <li>已安装：进入<span class="bold">可发送时间</span>（终端时区 10:00–21:00），随后 <span class="bold">Webhook 取数</span>，查询该用户是否有未处理工单或未接续的传感器，紧接着进入下方的<span class="bold">条件分支 · 未处理事项类型</span></li>
-                    <li>未安装：进入可发送时间，随后 <span class="bold">Webhook 取数</span>（与已安装路径同一接口），再进入 <span class="bold">兜底消息</span>（中国项目为 SMS 模板消息，海外项目为 Email 模板消息，按项目配置、旅程内不分支），正文按事项类型用变量填充：有工单则说明进度，有未接续则提供更换步骤，均无则邀请重新开始，随后结束</li>
+                    <li>未安装：进入可发送时间，随后 <span class="bold">Webhook 取数</span>（与已安装路径同一接口），再进入 <span class="bold">兜底消息</span>（海外项目为 Email 模板消息；中国项目在短信纳入器械注册范围前没有触达未安装用户的渠道，该分支直接结束并计入不可触达名单），正文按事项类型用变量填充：有工单则说明进度，有未接续则提供更换步骤，均无则邀请重新开始，随后结束</li>
                   </ul>
                 </li>
                 <li><span class="bold">条件分支</span>：Webhook 返回的「未处理事项类型」（已安装路径）
@@ -1436,21 +1444,21 @@
       </div>
     </section>
 
-    <!-- 4 数据整合 -->
+    <!-- 4 数据底座 -->
     <section id="s-data" class="section-plain">
       <div class="wrap">
-        <div class="eyebrow">数据整合</div>
-        <h2><span class="secnum">4</span>十条旅程依赖的事件与属性</h2>
-        <p>下表按提供方分行，贵司需要开发的是「客户上报事件」「客户写入属性」与「Webhook 接口」三行，其余由 SDK 与 MA 承担；时间窗口与次数类条件由 MA 分群计算，不需要写入聚合属性。</p>
+        <div class="eyebrow">数据底座</div>
+        <h2><span class="secnum">4</span>数据底座：采集、分群、看板与经营分析</h2>
+        <p>十条旅程只是数据底座上的第一层用法。底座本身由四段组成：SDK 采集与贵司事件上报、清洗落库、运营自助分群与看板、旅程触达与归因——贵司需要开发的只有「客户上报事件」「客户写入属性」与「Webhook 接口」三行，其余由 SDK 与 MA 承担；时间窗口与次数类条件由 MA 分群计算，不需要写入聚合属性。SDK 只采设备 ID、型号、国家与 OS 版本等基础字段，不采 WiFi 与精准位置，各采集开关由贵司后台控制；健康数据全部由贵司事件上报，MA 不存读数。</p>
         <div class="spacer-md"></div>
         <table>
           <thead><tr><th>事件或属性</th><th>类型</th><th>关键字段</th><th>提供方</th><th>驱动的旅程</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>App 启动、App 安装状态、设备通知状态、通知权限开启与关闭</td><td>SDK 标准事件与属性</td><td>—</td><td>EngageLab SDK，无需开发</td><td>1 · 3 · 4 · 5 · 6 · 9 · 10</td></tr>
-            <tr><td>到期 3–7 天未激活下一片且非间歇使用者、近 14 天告警频繁且未改设置、近 14 天占比最高的告警类型、近 30 天未启动 App、无推送标识或通知关闭</td><td>用户分群</td><td>时间窗 + 事件次数</td><td>MA 分群计算，无需写入属性</td><td>5 · 7 · 9 · 10</td></tr>
+            <tr class="tone-info"><td>App 启动、App 安装状态、设备通知状态、通知权限开启与关闭</td><td>SDK 标准事件与属性</td><td>—</td><td>EngageLab SDK（安耐糖 App 与医生端 App 各接入一次），无需开发</td><td>1 · 3 · 4 · 5 · 6 · 9 · 10</td></tr>
+            <tr><td>到期 3–7 天未激活下一片、非间歇使用者且非妊娠期、近 14 天告警频繁且未改设置、近 14 天占比最高的告警类型、近 30 天未启动 App、无推送标识或通知关闭</td><td>用户分群</td><td>时间窗 + 事件次数</td><td>MA 分群计算，无需写入属性</td><td>5 · 7 · 9 · 10</td></tr>
             <tr class="tone-info"><td>用户注册（含网页端）、传感器激活成功、传感器结束、传感器脱落、校准失败、数据同步中断、数据恢复上传、告警触发、告警设置已修改、复测提醒已设置、共享邀请已发出、共享申请待处理、关注人绑定成功、关注人绑定解除</td><td>客户上报事件</td><td>传感器 ID、到期时间、是否首片、结束类型（到期 / 主动结束 / 脱落）、中断类型、告警类型；脱落由设备云按信号特征判定或用户在 App 内选择原因</td><td>安耐糖与海外 CGM 设备云、App 账号系统</td><td>1 · 2 · 3 · 4 · 5 · 6 · 7 · 8</td></tr>
-            <tr><td><span class="bold">未激活传感器库存</span>、使用目的、语言、手机号、邮箱、关注人数量、复测提醒时间、营销同意（按渠道分别记录）</td><td>客户写入属性</td><td>未激活库存 = 官方渠道订单片数（含 App 内商城）减已激活片数，由贵司订单系统与设备云计算后写入，第三方平台与海外经销商订单不进贵司系统时该属性为空，旅程按「未知」处理、只讲更换不讲补货；使用目的在注册或首片期间采集</td><td>App 账号系统与设置页、订单系统</td><td>1 · 3 · 4 · 5 · 8 · 10</td></tr>
-            <tr class="tone-info"><td>兜底渠道（短信 / 邮件）、补货入口指向（国内 App 内商城 / 海外经销商网店或购买指引）、购买链接、邮件是否附补货入口、语言、时区、存储区域</td><td>项目级配置</td><td>中国项目与海外项目各设一套，旅程模板相同；俄罗斯项目待法务定方向后建立</td><td>我方按项目配置，贵司确认取值</td><td>全部</td></tr>
+            <tr><td><span class="bold">未激活传感器库存</span>、<span class="bold">用户类型</span>（儿童 / 妊娠期 / 高龄 / 成人）、关注者关系（家属 / 医生）、使用目的、语言、手机号、邮箱、关注人数量、复测提醒时间、营销同意（按渠道分别记录）</td><td>客户写入属性</td><td>未激活库存 = 官方渠道订单片数（含 App 内商城）减已激活片数，由贵司订单系统与设备云计算后写入，第三方平台与海外经销商订单不进贵司系统时该属性为空，旅程按「未知」处理、只讲更换不讲补货；用户类型来自注册问卷、医生端录入或外采年龄段标签；使用目的在注册或首片期间采集</td><td>App 账号系统与设置页、医生端、订单系统</td><td>1 · 3 · 4 · 5 · 7 · 8 · 10</td></tr>
+            <tr class="tone-info"><td>兜底渠道（海外邮件；国内应用内消息，未安装用户待短信纳入注册范围）、补货入口指向（国内 App 内商城 / 海外经销商网店或购买指引）、购买链接、邮件是否附补货入口、语言、时区、存储区域</td><td>项目级配置</td><td>中国项目与海外项目各设一套，旅程模板相同；俄罗斯项目待法务定方向后建立</td><td>我方按项目配置，贵司确认取值</td><td>全部</td></tr>
             <tr class="tone-info"><td>设备清单</td><td>object array</td><td>传感器 ID、发射器 ID、型号、激活日、到期日，按传感器 ID 增量更新</td><td>设备云</td><td>5 · 9 · 10</td></tr>
             <tr><td>未处理工单与未接续传感器</td><td>Webhook 取数</td><td>发送时才能确定的用户状态</td><td>客服系统</td><td>10</td></tr>
             <tr><td>创建补发评估工单</td><td>Webhook 执行动作</td><td>传感器 ID、失败类型</td><td>客服工单系统</td><td>2</td></tr>
@@ -1460,7 +1468,46 @@
         <ul class="notelist">
           <li>血糖读数、曲线、目标范围内时间与校准原值不同步到 MA；旅程只用激活、脱落、中断、恢复这类状态事件与由此计算的次数。鱼跃健康管家 App 的隐私政策同样载明采集葡萄糖数据，同一位用户可能在两个 App 各有账号，第 1 周需确认设备事件由哪一端上报，避免重复计入。</li>
         </ul>
+        <div class="spacer-md"></div>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-header">运营自助分群：条件即人群包</div>
+            <div class="card-body">
+              <table>
+                <thead><tr><th>分群条件</th><th>用途</th></tr></thead>
+                <tbody>
+                  <tr class="tone-info"><td>近 30 天激活传感器 ≥ 2 次，且累计支付金额 > 1,000 元</td><td>高价值连续佩戴用户，优先保障其接续与故障处理</td></tr>
+                  <tr><td>到期已过 3–7 天，且期间无激活事件</td><td>旅程 5 的进入人群</td></tr>
+                  <tr class="tone-info"><td>近 14 天告警触发次数达到阈值，且未修改过告警设置</td><td>旅程 7 的进入人群</td></tr>
+                  <tr><td>用户类型为儿童，且关注人数量为 0</td><td>旅程 8 的进入人群</td></tr>
+                </tbody>
+              </table>
+              <ul class="notelist">
+                <li>条件由运营在后台自助配置，实时生成人群包，不需要开发；分群结果可导出为看板，按趋势与明细下钻，漏斗各层用真实分布校准。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">同一份数据的经营分析用法</div>
+            <div class="card-body">
+              <table>
+                <thead><tr><th>问题</th><th>怎么算</th></tr></thead>
+                <tbody>
+                  <tr class="tone-info"><td>哪些经销商在压货</td><td>按经销商聚合「已购片数 − 已激活片数」，购买多、激活少即预警；叠加账期即回款风险</td></tr>
+                  <tr><td>各细分市场做到了多大</td><td>按用户类型（儿童 / 妊娠期 / 老年）统计活跃佩戴人数，与外部患者基数对比得细分渗透率</td></tr>
+                  <tr class="tone-info"><td>画像缺口怎么补</td><td>两类外采标签：设备维度（运动 / 医疗类 App 活跃、机型）与加密手机号撞库（地区、年龄段、BMI 范围、消费能力区间）；需用户明示同意、贵司提供 MD5 底包，匹配后回写，直接用于用户类型补全与旅程分群</td></tr>
+                </tbody>
+              </table>
+              <ul class="notelist">
+                <li>外采标签的维度清单另行提供，由贵司确认后再启动撞库；体重等强个人特征不提供，只能由减脂类 App 行为间接推断。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- 5 同行做法 -->      </div>
     </section>
 
     <!-- 5 同行做法 -->
@@ -1533,7 +1580,8 @@
                 <thead><tr><th>材料</th><th>内容与用途</th></tr></thead>
                 <tbody>
                   <tr class="tone-info"><td>数据处理协议</td><td>约定处理目的、处理范围、子处理者与数据删除义务，签约前交贵司法务审阅</td></tr>
-                  <tr><td>认证证书与审计报告</td><td>SOC 2 Type II 报告（覆盖安全性、可用性、处理完整性、保密性与隐私五项信任服务准则）、ISO/IEC 27001 与 ISO/IEC 27701 证书副本</td></tr>
+                  <tr><td>认证证书与审计报告</td><td>SOC 2 Type II 报告（覆盖安全性、可用性、处理完整性、保密性与隐私五项信任服务准则）、ISO/IEC 27001 与 ISO/IEC 27701 证书副本；GDPR 合规认证报告（认证完成后提供）</td></tr>
+                  <tr class="tone-info"><td>常态化合规监测</td><td>共享我方采购的第三方合规检测的维度与整改建议，采集项变更前先过检测，不等通报再响应</td></tr>
                   <tr class="tone-info"><td>安全问卷与子处理者清单</td><td>配合贵司安全团队的供应商评估流程，按贵司模板答复并提供本项目涉及的子处理者范围</td></tr>
                   <tr><td>数据删除与退出安排</td><td>合作终止时的数据返还与删除方式、时限，在合同中约定</td></tr>
                 </tbody>
@@ -1588,10 +1636,10 @@
         <table>
           <thead><tr><th>渠道</th><th>客户现状</th><th>主要用途</th><th>平均打开率</th><th>适用市场</th></tr></thead>
           <tbody>
-            <tr class="tone-info"><td>App Push</td><td>国内已接极光 JPush，触达通道侧可直接添加；海外按计划接入 EngageLab AppPush</td><td>十条旅程的主渠道：通知消息承担激活、佩戴、到期、中断与召回；应用内消息承担用户打开 App 时的引导、设置与邀请类提示（旅程 1、2、3、7、8、9）</td><td>直接打开率：全行业中位 Android 3.4% / iOS 3.1%，医疗健康类头部 10% 为 15.7% / 11.3%</td><td>全部</td></tr>
-            <tr><td>Email</td><td>海外 App 以邮箱注册，邮箱必有</td><td>海外用户未装 App 或关闭通知时的兜底；完整的更换步骤与排查清单，按项目配置决定是否附补货入口</td><td>健康美妆类约 30%（含邮件客户端自动打开）</td><td>中国大陆以外</td></tr>
+            <tr class="tone-info"><td>App Push</td><td>国内已接极光 JPush 一年：送达率提升 16.07%、超频报错由 21% 归零、峰值 405 万条 / 日（贵司数据）；海外按计划接入 EngageLab AppPush</td><td>十条旅程的主渠道：通知消息承担激活、佩戴、到期、中断与召回；应用内消息承担用户打开 App 时的引导、设置与邀请类提示，并作为国内关闭通知用户的兜底；医生端 App 作为同一项目下的第二个应用接入（旅程 4 医生端提醒）</td><td>直接打开率：全行业中位 Android 3.4% / iOS 3.1%，医疗健康类头部 10% 为 15.7% / 11.3%</td><td>全部</td></tr>
+            <tr><td>Email</td><td>海外 App 以邮箱注册，邮箱必有</td><td>海外用户未装 App 或关闭通知时的兜底；完整的更换步骤与排查清单，按项目配置决定是否附补货入口；同步中断这类时效性强的提醒不宜只靠邮件</td><td>健康美妆类约 30%（含邮件客户端自动打开）</td><td>中国大陆以外</td></tr>
             <tr><td>Web Push</td><td>无独立站作为本项目入口</td><td>本方案未使用——安耐糖的用户触点集中在 App</td><td>—</td><td>—</td></tr>
-            <tr><td>SMS</td><td>国内 App 以手机号注册，手机号必有</td><td>国内用户未装 App 或关闭通知时的服务类兜底：激活步骤、到期更换、同步中断、工单进度；不含购买内容，不需要营销同意，需完成签名与模板报备</td><td>—</td><td>中国大陆</td></tr>
+            <tr><td>SMS</td><td>国内 App 以手机号注册，手机号必有</td><td>本方案未使用——国内短信通知需药监局审批，当前器械注册范围未包含短信通知；纳入注册范围后可作为国内未安装与关闭通知用户的服务类兜底</td><td>—</td><td>—</td></tr>
             <tr><td>WhatsApp Business</td><td>未使用</td><td>本方案未使用——平台商业政策限制医疗器械交易类内容，健康信息的发送也受限</td><td>—</td><td>—</td></tr>
           </tbody>
         </table>
@@ -1622,14 +1670,14 @@
         <table>
           <thead><tr><th>周</th><th>目标</th><th>我方动作</th><th>客户动作</th><th>验收口径</th></tr></thead>
           <tbody>
-            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案、测试环境、开通测试 VIP 账号</td><td>确认事件清单与试点 App；国内在触达通道侧添加 JPush 通道并完成短信签名与服务类模板报备，海外接入 EngageLab AppPush；设备云回传激活、脱落、校准失败、中断与恢复事件，并携带传感器 ID 与到期时间；按中国项目、海外项目分别建立 MA 项目并配置兜底渠道与语言；写入未激活传感器库存与各渠道营销同意；法务确认三件事：国内数据出境路径、俄罗斯用户是否纳入本期、欧盟用户数据落在德国节点的合同表述</td><td>核心事件入库率 ≥ 95%</td></tr>
-            <tr><td><span class="step-num">2</span></td><td>核心旅程小流量上线</td><td>配置旅程 4 · 2 · 9；设全局频控上限（App Push 通知消息每日 ≤ 3 条、每周 ≤ 6 条，其中营销类每周 ≤ 1 条，其余额度留给到期、脱落与中断这类服务通知；应用内消息每日 ≤ 1 条；SMS 每周 ≤ 2 条，仅服务类；Email 每周 ≤ 2 条）</td><td>审核文案与深度链接；在 App 更换指引页按项目配置补货入口；按项目配置购买链接与邮件补货入口开关；客服工单查询接口联调</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错</td></tr>
-            <tr><td><span class="step-num">3</span></td><td>全量与对照</td><td>扩至全量并补齐旅程 1 · 3 · 5 · 6 · 7 · 8 · 10；把旅程 5 的旅程优先级设为高于旅程 10，使其在两条同时命中时先占用当日频控额度；监控与调优</td><td>划出 10–20% 对照组不进旅程（用测试分组属性在进入条件排除），同一批用户对十条旅程一致排除</td><td>样本量达标；送达、点击、激活数据；旅程 2 验收首片满期率，旅程 3 验收复测设置率，旅程 9 验收可触达用户占比</td></tr>
+            <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案、测试环境、开通测试 VIP 账号</td><td>确认事件清单与试点 App；国内在触达通道侧添加 JPush 通道，海外接入 EngageLab AppPush，医生端 App 一并接入 SDK；设备云回传激活、脱落、校准失败、中断与恢复事件，并携带传感器 ID 与到期时间；按中国项目、海外项目分别建立 MA 项目并配置兜底渠道与语言；写入未激活传感器库存与各渠道营销同意；法务确认三件事：国内数据出境路径、俄罗斯用户是否纳入本期、欧盟用户数据落在德国节点的合同表述</td><td>核心事件入库率 ≥ 95%</td></tr>
+            <tr><td><span class="step-num">2</span></td><td>核心旅程小流量上线</td><td>配置旅程 4 · 2 · 9；设全局频控上限（App Push 通知消息每日 ≤ 3 条、每周 ≤ 6 条，其中营销类每周 ≤ 1 条，其余额度留给到期、脱落与中断这类服务通知；应用内消息每日 ≤ 1 条；Email 每周 ≤ 2 条）</td><td>审核文案与深度链接；在 App 更换指引页按项目配置补货入口；按项目配置购买链接与邮件补货入口开关；客服工单查询接口联调</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错</td></tr>
+            <tr><td><span class="step-num">3</span></td><td>全量与对照</td><td>扩至全量并补齐旅程 1 · 3 · 5 · 6 · 7 · 8 · 10；把旅程 5 的旅程优先级设为高于旅程 10，使其在两条同时命中时先占用当日频控额度；A/B 测试组件上线后（10 月）用于旅程 4 的文案与到期前天数实验，对照组仍按测试分组属性排除；监控与调优</td><td>划出 10–20% 对照组不进旅程（用测试分组属性在进入条件排除），同一批用户对十条旅程一致排除</td><td>样本量达标；送达、点击、激活数据；旅程 2 验收首片满期率，旅程 3 验收复测设置率，旅程 9 验收可触达用户占比</td></tr>
             <tr><td><span class="step-num">4</span></td><td>复盘扩面</td><td>效果报告；用真实数据校准漏斗各层</td><td>决策扩面；海外 AppPush 是否扩至其余海外 App；俄罗斯与美国是否纳入下一批</td><td>接续率与首片满期率相对对照组的提升</td></tr>
           </tbody>
         </table>
         <ul class="notelist">
-          <li>工作量分两段：MA SDK 接入每个 App 约 2–3 人日（含 SDK 自带、无需开发的部分）；设备云事件上报与一个 Webhook 接口（未处理事项查询）第 1 周盘点后另行排期。分群的时间窗与次数由 MA 计算，不计入贵司开发量。</li>
+          <li>工作量分两段：MA SDK 接入每个 App 约 2–3 人日（含医生端）；容量按峰值 30 万日活、接口 15,000 次 / 分钟规划；设备云事件上报与一个 Webhook 接口（未处理事项查询）第 1 周盘点后另行排期。分群的时间窗与次数由 MA 计算，不计入贵司开发量。</li>
         </ul>
       </div>
     </section>
@@ -1886,7 +1934,7 @@
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
         { id: 'br1', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
         { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '先充电 · 配对 · 贴敷' },
-        { id: 'f1', kind: 'channel', title: '兜底消息（短信 / 邮件）', sub: '先充电 · 三步 · 下载' },
+        { id: 'f1', kind: 'channel', title: '兜底消息（海外邮件）', sub: '先充电 · 三步 · 下载' },
         { id: 'w1', kind: 'wait', title: '等待', sub: '5 天 · 激活即提前退出' },
         { id: 'in1', kind: 'channel', title: 'App Push 应用内消息', sub: '电量与贴片卡点' },
         { id: 'endEnd', kind: 'exitEnd', title: '结束', sub: '不可再次进入' },
@@ -1909,7 +1957,7 @@
         { id: 'end2', kind: 'exitEnd', title: '结束', sub: '持续失败交旅程 6' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
         { id: 'end1', kind: 'exitEnd', title: '结束', sub: '已建工单' },
-        { id: 'in2', kind: 'channel', title: 'App Push 应用内消息', sub: '第 5 天 · 加固与运动' },
+        { id: 'in2', kind: 'channel', title: 'App Push 应用内消息', sub: '第 5 天 · 加固 · 勿搓揉' },
         { id: 'end3', kind: 'exitOk', title: '结束', sub: '佩戴满期' },
       ],
       [
@@ -1934,9 +1982,9 @@
         { id: 'br0', kind: 'branch', title: '条件分支', sub: '属性: App 安装状态' },
         { id: 'st', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
         { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '复测时间已到 · 指引页' },
-        { id: 'f0', kind: 'channel', title: '兜底消息（短信 / 邮件）', sub: '复测提醒 · 打开 App' },
+        { id: 'f0', kind: 'channel', title: '兜底消息（海外邮件）', sub: '复测提醒 · 打开 App' },
         { id: 'w7', kind: 'wait', title: '等待', sub: '7 天 · 激活即提前退出' },
-        { id: 'f1', kind: 'channel', title: '兜底消息（短信 / 邮件）', sub: '仍未复测 · 补位一次' },
+        { id: 'f1', kind: 'channel', title: '兜底消息（海外邮件）', sub: '仍未复测 · 补位一次' },
         { id: 'endD', kind: 'exitEnd', title: '结束', sub: '一次补位后结束' },
       ],
       [
@@ -1962,9 +2010,11 @@
         { id: 'stA', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
         { id: 'stB', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
         { id: 'pA', kind: 'channel', title: 'App Push 通知消息', sub: '剩余片数 · 更换指引页' },
-        { id: 'fA', kind: 'channel', title: '兜底消息（短信 / 邮件）', sub: '剩余片数 · 更换步骤' },
+        { id: 'fA', kind: 'channel', title: '兜底消息（海外邮件）', sub: '剩余片数 · 更换步骤' },
         { id: 'pB', kind: 'channel', title: 'App Push 通知消息', sub: '将到期 · 指引页含补货' },
-        { id: 'fB', kind: 'channel', title: '兜底消息（短信 / 邮件）', sub: '更换步骤 · 补货按项目' },
+        { id: 'fB', kind: 'channel', title: '兜底消息（海外邮件）', sub: '更换步骤 · 补货按项目' },
+        { id: 'brDoc', kind: 'branch', title: '条件分支', sub: '属性: 关注者含医生' },
+        { id: 'pDoc', kind: 'channel', title: '医生端 App Push', sub: '患者将到期 · 评估续用' },
         { id: 'w2', kind: 'wait', title: '等待', sub: '3 天 · 转化窗口内' },
         { id: 'endNo', kind: 'exitEnd', title: '结束', sub: '未接续 · 交旅程 5' },
       ],
@@ -1974,7 +2024,8 @@
         { from: 'stA', to: 'brA' }, { from: 'stB', to: 'brB' },
         { from: 'brA', to: 'pA', label: '已安装' }, { from: 'brA', to: 'fA', label: '未安装' },
         { from: 'brB', to: 'pB', label: '已安装' }, { from: 'brB', to: 'fB', label: '未安装' },
-        { from: 'pA', to: 'w2' }, { from: 'fA', to: 'w2' }, { from: 'pB', to: 'w2' }, { from: 'fB', to: 'w2' },
+        { from: 'pA', to: 'brDoc' }, { from: 'fA', to: 'brDoc' }, { from: 'pB', to: 'brDoc' }, { from: 'fB', to: 'brDoc' },
+        { from: 'brDoc', to: 'pDoc', label: '含医生' }, { from: 'brDoc', to: 'w2', label: '不含' }, { from: 'pDoc', to: 'w2' },
         { from: 'w2', to: 'endNo' },
       ]);
 
@@ -1986,7 +2037,7 @@
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
         { id: 'st1b', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
         { id: 'p1', kind: 'channel', title: 'App Push 通知消息一', sub: '更换步骤 · 指引页' },
-        { id: 'f1', kind: 'channel', title: '兜底消息一（短信 / 邮件）', sub: '更换步骤 · 打开 App' },
+        { id: 'f1', kind: 'channel', title: '兜底消息一（海外邮件）', sub: '更换步骤 · 打开 App' },
         { id: 'w1', kind: 'wait', title: '等待', sub: '3 个日历日' },
         { id: 'w1b', kind: 'wait', title: '等待', sub: '3 个日历日' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 9:00–21:00' },
@@ -1995,8 +2046,8 @@
         { id: 'brSb', kind: 'branch', title: '条件分支', sub: '属性: 未激活库存' },
         { id: 'p2a', kind: 'channel', title: 'App Push 通知消息二', sub: '换片视频 · 在线客服' },
         { id: 'p2b', kind: 'channel', title: 'App Push 通知消息二', sub: '需协助 · 指引页' },
-        { id: 'f2a', kind: 'channel', title: '兜底消息二（短信 / 邮件）', sub: '换片视频 · 客服' },
-        { id: 'f2b', kind: 'channel', title: '兜底消息二（短信 / 邮件）', sub: '需协助 · 打开 App' },
+        { id: 'f2a', kind: 'channel', title: '兜底消息二（海外邮件）', sub: '换片视频 · 客服' },
+        { id: 'f2b', kind: 'channel', title: '兜底消息二（海外邮件）', sub: '需协助 · 打开 App' },
         { id: 'end1', kind: 'exitEnd', title: '结束', sub: '激活即提前退出' },
       ],
       [
@@ -2018,7 +2069,7 @@
         { id: 'w1', kind: 'wait', title: '等待', sub: '2 小时 · 等自行恢复' },
         { id: 'br0', kind: 'branch', title: '条件分支', sub: '属性: 安装与通知状态' },
         { id: 'br1', kind: 'branch', title: '条件分支', sub: '事件属性: 中断类型' },
-        { id: 'f1', kind: 'channel', title: '兜底消息（短信 / 邮件）', sub: '按中断类型填排查' },
+        { id: 'f1', kind: 'channel', title: '兜底消息（应用内 / 邮件）', sub: '按中断类型填排查' },
         { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '蓝牙开关与距离' },
         { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '后台与通知权限' },
         { id: 'p3', kind: 'channel', title: 'App Push 通知消息', sub: '重新登录补传' },
@@ -2057,7 +2108,7 @@
     // J8 关注人邀请
     drawJourney(document.getElementById('dag-j8'),
       [
-        { id: 'start', kind: 'entry', title: '开始', sub: '事件: 激活 · 关注人为 0' },
+        { id: 'start', kind: 'entry', title: '开始', sub: '激活 · 三类用户 · 无关注人' },
         { id: 'w1', kind: 'wait', title: '等待', sub: '3 个日历日' },
         { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
         { id: 'in1', kind: 'channel', title: 'App Push 应用内消息', sub: '邀请家人远程查看' },
@@ -2082,10 +2133,10 @@
         { id: 'start', kind: 'entry', title: '开始', sub: '分群: 无推送标识或通知关闭' },
         { id: 'prj', kind: 'branch', title: '按项目启用', sub: '部署时选定 · 非运行时判断' },
         { id: 'inC', kind: 'channel', title: 'App Push 应用内消息', sub: '中国 · 通知与厂商通道' },
-        { id: 'inO', kind: 'channel', title: 'App Push 应用内消息', sub: '海外 · 两类同意的区别' },
+        { id: 'inO', kind: 'channel', title: 'App Push 应用内消息', sub: '海外 · 保活与通知步骤' },
         { id: 'wC', kind: 'wait', title: '等待', sub: '7 天 · 开启即提前退出' },
         { id: 'wO', kind: 'wait', title: '等待', sub: '7 天 · 开启即提前退出' },
-        { id: 'smC', kind: 'channel', title: 'SMS 模板消息', sub: '开启步骤 · 提醒先走短信' },
+        { id: 'smC', kind: 'channel', title: 'App Push 应用内消息', sub: '再提醒 · 荣耀魅族设置' },
         { id: 'emO', kind: 'channel', title: 'Email 模板消息', sub: '开启步骤 · 提醒先走邮件' },
         { id: 'endC', kind: 'exitEnd', title: '结束', sub: '中国 · 30 天后可再进入' },
         { id: 'endO', kind: 'exitEnd', title: '结束', sub: '海外 · 30 天后可再进入' },
@@ -2106,7 +2157,7 @@
         { id: 'wh1', kind: 'branch', title: 'Webhook 取数', sub: '查未处理事项' },
         { id: 'st2', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–21:00' },
         { id: 'wh2', kind: 'branch', title: 'Webhook 取数', sub: '查未处理事项' },
-        { id: 'f1', kind: 'channel', title: '兜底消息（短信 / 邮件）', sub: '按事项类型变量填充' },
+        { id: 'f1', kind: 'channel', title: '兜底消息（海外邮件）', sub: '按事项类型变量填充' },
         { id: 'br2', kind: 'branch', title: '条件分支', sub: '返回: 未处理事项类型' },
         { id: 'p1', kind: 'channel', title: 'App Push 通知消息', sub: '工单进度与联系' },
         { id: 'p2', kind: 'channel', title: 'App Push 通知消息', sub: '更换步骤入口' },
@@ -2249,7 +2300,7 @@
   (function () {
     var items = [
       ["s-market", "业务洞察"], ["s-funnel", "用户漏斗"],
-      ["s-scenarios", "十条旅程"], ["s-data", "数据整合"],
+      ["s-scenarios", "十条旅程"], ["s-data", "数据底座"],
       ["s-peers", "同行做法"], ["s-compliance", "多市场合规"],
       ["s-build", "自建与采购"], ["s-why", "关于 EngageLab"], ["s-plan", "测试计划"]
     ].filter(function (it) { return document.getElementById(it[0]); });
