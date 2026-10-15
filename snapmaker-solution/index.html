@@ -610,6 +610,14 @@
 
 <style>
   .cfg-list ul { margin: 5px 0 6px; padding-left: 18px; list-style: circle; }
+  .feature-note { padding: 12px 16px; margin: 12px 0 16px; border-left: 4px solid #7c3aed; background: #f5f3ff; color: #4c1d95; border-radius: 6px; line-height: 1.8; }
+  .feature-note a, .feature-tag { color: #5b21b6; font-weight: 650; }
+  .feature-tag { display: inline-block; background: #ede9fe; padding: 1px 7px; border-radius: 4px; font-size: 12px; text-decoration: none; }
+  .feature-note.experiment { border-color: #0f766e; background: #f0fdfa; color: #115e59; }
+  .feature-note.integration { border-color: #2563eb; background: #eff6ff; color: #1e40af; }
+  .feature-note.review { border-color: #64748b; background: #f8fafc; color: #334155; }
+  .comparison-table td { vertical-align: top; }
+  [id^="adv-"] { scroll-margin-top: 90px; }
   .cfg-list ul ul { list-style: square; }
   .card-body .cfg-list li li { margin-bottom: 3px; font-size: 13.2px; }
 </style>
@@ -640,6 +648,7 @@
       <a href="#s-data">数据整合</a>
       <a href="#s-why">关于 EngageLab</a>
       <a href="#s-plan">测试计划</a>
+      <a href="#s-advantage">优势附录</a>
     </div>
   </nav>
 
@@ -666,7 +675,7 @@
           </div>
           <div class="stat">
             <div class="stat-value">4 周</div>
-            <div class="stat-label">设备侧旅程先行小流量上线，商城侧与现有平台按市场并行对照</div>
+            <div class="stat-label">设备侧先小流量验证；商城侧先做旅程 A/B，再评估同市场用户对照</div>
           </div>
         </div>
         <p class="small muted" style="margin-top:16px">本方案所列效果区间均为行业公开参考值，非承诺值，实际以测试期数据为准。</p>
@@ -745,12 +754,13 @@
         <div class="eyebrow">场景总览</div>
         <h2><span class="secnum">3</span>十一条运营旅程</h2>
         <p>旅程 1、2 承接商城到首单；3–6 覆盖发货到第一件成功作品，同时把非官网购机的用户接进来；7–10 做模块、线材、延保与推荐；11 召回闲置设备。</p>
+        <div class="feature-note"><strong>亮点阅读指引</strong>：紫色 D1–D3 标记已核实的标准编排差异，蓝色标记已有合作的接入优势，青绿色标记 A/B 实验；灰色说明有待核实的同等实现。点击差异编号可查看<a href="#s-advantage">不点名的优势对照附录</a>。</div>
         <div class="spacer-md"></div>
         <table>
           <thead><tr><th>#</th><th>场景</th><th>承接漏斗环节</th><th>主渠道组合</th><th>亮点</th><th>见效节奏</th><th>预期效果</th></tr></thead>
           <tbody>
             <tr><td>1</td><td>订阅欢迎与首单激活</td><td>订阅 → 首单</td><td>Email + Web Push</td><td>先分出设备用户、在途订单与老客；第二封按近 14 天浏览的品类换内容</td><td>首月见效</td><td>订阅后 30 天首单率 2% → 2.5%（假设起点）</td></tr>
-            <tr><td>2</td><td>高客单弃购挽回</td><td>加购 → 支付</td><td>Email + App Push + SMS 或 WhatsApp</td><td>按是否已进结账分流；$500 以上购物车才加即时渠道，发送前取当前价格</td><td>首月见效</td><td>加购到支付 30% → 32%（以现有流程为基线）</td></tr>
+            <tr><td>2</td><td>高客单弃购挽回</td><td>加购 → 支付</td><td>Email + App Push + SMS 或 WhatsApp</td><td>首轮按结账行为分流；$500 以上第二轮用 A/B 验证增量，<a class="feature-tag" href="#adv-time">D2 当地时段</a>发送</td><td>首月验证</td><td>加购到支付 30% → 32%（假设起点，以现有流程校准；A/B 另看进入节点后的支付率）</td></tr>
             <tr><td>3</td><td>发货到开箱：按机型准备第一步</td><td>签收 → 激活绑定</td><td>App Push + Email</td><td>U1 与其他机型第一步不同，到货前按机型发准备步骤，签收后按机型各补一次</td><td>首月见效</td><td>U1 签收后 7 天激活绑定率 60% → 70%（假设起点）</td></tr>
             <tr class="tone-info"><td>4</td><td>绑定到第一件成功作品</td><td>绑定 → 首次成功打印</td><td>App Push + Email</td><td>App 在绑定时当场引导，旅程 24 小时后只补位未打印、未出异常的设备</td><td>首月见效</td><td>新绑定 U1 7 天首次成功打印率 70% → 78%（假设起点）</td></tr>
             <tr class="tone-info"><td>5</td><td>打印异常补救：按异常类型给方法，连续异常自动建单</td><td>绑定 → 首次成功打印</td><td>App Push + Email + Webhook 建工单</td><td>按异常类型给排查方法，已联系客服的不再推送；<span class="bold">同一设备连续两次异常由系统在客服系统建单</span>，不等用户提交</td><td>首月见效</td><td>首次异常后 24 小时恢复成功打印 60% → 68%（假设起点）</td></tr>
@@ -859,6 +869,8 @@
     <section id="s-journey2" class="section-plain" data-stage="activate" data-scene="2">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">02</div><div class="scene-head-main"><h2>旅程 2｜高客单弃购挽回</h2></div></div>
+      <div class="feature-note experiment"><strong>A/B 实验 · 第二轮是否带来增量</strong>：$500 以上、首轮后仍未支付的用户随机分为两组，50% 追加第二轮，50% 不再追加。比较到达 A/B 后 7 天内的支付率与收入，而不是把自然回购都算成消息贡献。A/B 是验证手段，不是独有功能。</div>
+      <div class="feature-note"><a href="#adv-time">D2 · 用户当地时段</a>：第二轮只在用户当地 10:00–20:00 发送；与按账户时区等待相比，减少按时区拆分同一套流程。</div>
       <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">单笔金额最重的一层</span><span class="pill pill-info">加购 → 支付</span><span class="pill">加购事件触发 · 多实例最新覆盖 · Push + Email + 即时渠道</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
@@ -886,10 +898,10 @@
             <div class="card-header">旅程组件配置</div>
             <div class="card-body">
               <ul class="cfg-list">
-                <li><span class="bold">开始组件</span>：事件「加入购物车」（经 Shopify 对接接入），携带购物车金额与商品清单；用户属性 邮件营销同意 ≠ 已退订</li>
+                <li><span class="bold">开始组件</span>：事件「加入购物车」（经 Shopify 对接接入），携带购物车金额与商品清单；用户属性 邮件营销同意 = 已同意；发送前复核退订状态</li>
                 <li><span class="bold">再次进入</span>：可同时多次进入；同一时刻最多 1 个活跃实例，达到上限时替换最早进入的实例（重新加购即按最新一次重新计时）</li>
                 <li><span class="bold">提前退出</span>：事件「订单支付成功」</li>
-                <li><span class="bold">转化统计</span>：事件「订单支付成功」，监听窗口 2 小时；<span class="bold">收入统计</span>：订单金额，监听窗口 2 小时</li>
+                <li><span class="bold">转化统计</span>：事件「订单支付成功」；<span class="bold">收入统计</span>：订单金额，两者窗口设为 7 天。消息统计从发送起算；A/B 报表从到达组件起算，不发第二轮的分支同样可记录转化</li>
                 <li><span class="bold">等待事件</span>：1 小时内等待「开始结账」
                   <ul>
                     <li>已开始结账：<span class="bold">等待</span> 1 小时（仍在结账的用户不打扰）；<span class="bold">Email 模板消息一 · 结账</span>：保留的购物车与结账链接，运费、关税、退换与保修条款各一句</li>
@@ -907,6 +919,7 @@
                   <ul>
                     <li>≥ $500（整机与高价模块）
                       <ul>
+                        <li><span class="bold">A/B 测试</span>：A 组 50% 继续以下第二轮；B 组 50% 直接结束，不再追加。对比期间比例不变，同一用户返回本组件仍进同一组</li>
                         <li><span class="bold">Webhook 取数</span>：购物车商品的当前价格与在售状态，文案按返回值显示当前价；已下架的商品改推同系列在售款</li>
                         <li><span class="bold">条件分支</span>：属性「即时渠道营销同意」（北美项目为短信、欧洲项目为 WhatsApp）
                           <ul>
@@ -919,7 +932,8 @@
                     <li>&lt; $500（配件与线材）：<span class="bold">结束</span>，首轮提醒已足够</li>
                   </ul>
                 </li>
-                <li><span class="bold">交接</span>：现有平台或 Shopify 已开启的弃购流程，第 1 周按市场二选一——该市场由本旅程接管，或本旅程排除该市场；两边不同时发送</li>
+                <li><span class="bold">实验判读</span>：按去重人数比较分支支付率与每位进入用户收入，同时检查退订、投诉及第二轮成本；等满 7 天观察期。用户多次到达时，转化归属事件前最近一次到达；中途不调比例，达标后人工将较优路径调到 100%</li>
+                <li><span class="bold">交接</span>：现有平台或 Shopify 的同类流程排除本旅程试点用户。若进行两平台对比，先由外部固定用户分组、双方互斥；与本旅程第二轮 A/B 分阶段开展，不混合解读</li>
               </ul>
             </div>
           </div>
@@ -1012,6 +1026,7 @@
     <section id="s-journey4" class="section-plain" data-stage="activate" data-scene="4">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">04</div><div class="scene-head-main"><h2>旅程 4｜绑定到第一件成功作品</h2></div></div>
+      <div class="feature-note integration"><strong>接入优势 · 复用已有 App Push</strong>：在已开通应用上增加首件引导，无需为本方案另换推送通道；仍需联通设备绑定、打印结果与统一账号。这是现有合作带来的实施优势，不代表其他平台没有 App Push。</div>
       <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">后续所有旅程的起点</span><span class="pill pill-info">绑定 → 首次成功打印</span><span class="pill">绑定事件触发 · 先观察再触达 · App Push + Email</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
@@ -1080,6 +1095,7 @@
     <section id="s-journey5" class="section-plain" data-stage="retain" data-scene="5">
       <div class="wrap">
       <div class="scene-head"><div class="scene-num" aria-hidden="true">05</div><div class="scene-head-main"><h2>旅程 5｜打印异常补救：按异常类型给方法，连续异常自动建单</h2></div></div>
+      <div class="feature-note"><a href="#adv-events">D1 · 一个节点处理三种后续</a>：等待“重新开始打印”或“联系客服”，都未发生才补发排查方法。相比单事件发生／超时的节点，用更少的节点表达真实的售后路径。</div>
       <div class="row" style="margin-bottom:14px"><span class="pill pill-warn">亮点 · 服务先于促销</span><span class="pill pill-info">绑定 → 首次成功打印</span><span class="pill">异常事件触发 · 多实例最新覆盖 · App Push + Email + Webhook 建工单</span></div>
       <div class="callout info" style="margin-bottom:14px">
         <div class="callout-body">
@@ -1117,7 +1133,7 @@
                     <li>默认（首次异常）
                       <ul>
                         <li><span class="bold">等待</span>：2 小时（App 已当场提示并引导恢复）</li>
-                        <li><span class="bold">等待事件</span>：22 小时内，两个事件分支
+                        <li><a class="feature-tag" href="#adv-events">D1 · 多事件等待</a> <span class="bold">等待事件</span>：22 小时内，两个事件分支
                           <ul>
                             <li>「打印任务开始」，事件属性 设备 ID = 本实例的设备 ID：<span class="bold">结束</span>（若再次异常，以新实例进入，连续次数为 2）</li>
                             <li>「App 内联系客服」：<span class="bold">结束</span>，客服已介入，不再推送排查方法</li>
@@ -1250,6 +1266,7 @@
                 <li><span class="bold">转化统计</span>：事件「订单支付成功」（商品类别 = 模块或配件），监听窗口 3 天；<span class="bold">收入统计</span>：订单金额，监听窗口 3 天</li>
                 <li><span class="bold">可发送时间</span>：终端时区 10:00–20:00</li>
                 <li><span class="bold">Webhook 取数</span>：以用户 ID 请求贵司推荐接口，接口按已购商品清单与 U1 设备清单选出一件兼容件，返回名称、适用机型、价格、图片与商品链接</li>
+                <li class="feature-note review"><strong>接口返回值驱动分支</strong>：不是只把数据发给外部系统，而是读取响应字段决定是否继续；现有平台同等原生能力需核实，不作为已证实的独有功能。<a href="#s-advantage">见优势附录</a></li>
                 <li><span class="bold">条件分支</span>：Webhook 返回值「推荐商品」
                   <ul>
                     <li>为空（已配齐）：<span class="bold">结束</span></li>
@@ -1563,6 +1580,7 @@
           </tbody>
         </table>
         <ul class="notelist">
+          <li>A/B 组件在 MA 内分配旅程内实验组，无需客户上报该组别；表中的测试分组属性仅用于跨平台固定分组，由客户统一维护，不与组件分组混为一谈。</li>
           <li>支付信息、收货地址、账号密码、摄像头画面与延时视频不进入 MA。需要访客同意的地区，站点浏览与加购事件在访客同意前不上报，旅程 1、2 在这些地区的覆盖率会低于北美；订单与结账经服务端接入，不受影响。各渠道营销内容按同意属性发送，同意口径按项目所在市场配置，以贵司法务意见为准。</li>
         </ul>
       </div>
@@ -1605,15 +1623,17 @@
       <div class="wrap">
         <div class="eyebrow">测试计划</div>
         <h2><span class="secnum">6</span>4 周测试计划</h2>
-        <p>设备侧旅程与现有平台的商城旅程不重叠，先行上线；商城侧第 3 周起选一个市场由 MA 接管，其余市场保留现有平台，按市场并行对照。Email 迁移放在最后，由贵司基于测试数据决定。</p>
+        <p>先核对现有平台已覆盖的旅程，只对未覆盖或已划定归属的设备侧场景开展试点；商城侧先在一个市场限定人群验证。旅程 2 用原生 A/B 比较是否追加第二轮，平台替换另做同市场用户对照。Email 迁移放在最后，由贵司基于测试数据决定。</p>
+        <div class="feature-note"><a href="#adv-cap">D3 · 跨旅程的多渠道频控</a>：按用户、渠道及消息类型统一限制发送量，不必在每条旅程重复搭参与规则。频控只覆盖 MA 管理的消息；跨平台仍要靠人群互斥避免重复。</div>
+        <div class="feature-note experiment"><strong>实验约定</strong>：首轮先验证 A/B 分流、无消息分支统计和完整 7 天观察窗口。A/B 不自动选优、不自动调流量；确认收益与成本后人工调整比例。各组件独立分组，不把它当作十一条旅程共用的全局对照组。</div>
         <div class="spacer-md"></div>
         <table>
           <thead><tr><th>周</th><th>目标</th><th>我方动作</th><th>客户动作</th><th>验收口径</th></tr></thead>
           <tbody>
             <tr><td><span class="step-num">1</span></td><td>对齐与埋点</td><td>埋点方案与测试环境；设备与云端事件清单；Shopify 对接配置；新发信子域名认证与预热方案；用贵司商城、App 与云端数据校准漏斗各层的起点</td><td>确认事件清单；U1 云端上报设备事件（App Push 沿用已开通应用）；授权 Shopify 店铺对接；盘点现有平台与 Shopify 已开启的自动化，逐条确定保留、排除或改由 MA 发送；订单系统在签收事件中补充延保字段并上报延保购买；写入各渠道同意属性；上线 App 内订阅表单页与绑定完成页的上手引导；提供兼容件推荐、线材复购、商品价格、客服工单（查询与创建）四个接口，推荐计划写入个人推荐链接；美国短信 10DLC 登记与 WhatsApp 模板报备</td><td>核心事件入库率 ≥ 95%；U1 设备事件与商城订单能按同一账号关联</td></tr>
             <tr><td><span class="step-num">2</span></td><td>设备侧旅程小流量上线</td><td>配置旅程 4 · 5 · 6；设全局频控上限：App Push 通知消息每日 ≤ 3 条、每周 ≤ 8 条（为到货、开箱与异常补救等服务类消息预留额度，推广类旅程按每日 1 条设计）；应用内消息每日 ≤ 2 条；Email 每周 ≤ 4 条；SMS 与 WhatsApp 各每周 ≤ 1 条；旅程 5 设最高旅程优先级</td><td>审核文案与深度链接；新绑定 U1 的 5–10% 试点；与现有平台发送去重：试点人群在现有平台如有同类消息，暂停或排除</td><td>5–10% 用户进入（进入条件加人群限定），首条消息按设计发出、无配置报错；旅程 5 创建的工单在客服系统可见</td></tr>
-            <tr><td><span class="step-num">3</span></td><td>全量与对照，商城侧并行</td><td>设备侧扩至全量；上线旅程 1 · 2 · 3 · 7 · 8 · 9 · 10 · 11，其中旅程 1、2 先在接管市场运行；监控与调优</td><td>选定一个接管市场，关闭该市场现有平台的同类流程；划出 10–20% 对照组不进旅程（测试分组属性在进入条件排除），十一条旅程一致排除；接管市场站点切换网页推送组件</td><td>样本量达标；送达、点击、转化数据；旅程 2 看接管市场相对其他市场的加购到支付，旅程 9 看窗口内补购率，设备侧看激活绑定率、首件成功率与同意率</td></tr>
-            <tr><td><span class="step-num">4</span></td><td>复盘扩面</td><td>效果报告，主指标按相对对照组的提升给出；用真实数据校准漏斗；下批：拓展场景 12–18</td><td>决策扩面顺序与市场；决定 Email 是否迁移及时点（新域名预热 4–6 周）</td><td>主指标相对对照组的提升；决策周期长于测试期的旅程 7、10 按过程事件验收</td></tr>
+            <tr><td><span class="step-num">3</span></td><td>限定人群实验，逐步扩面</td><td>事件与归属验收后按准备情况上线旅程 1 · 2 · 3 · 7 · 8 · 9 · 10 · 11；旅程 2 的 $500 以上用户在 A/B 节点按 50%／50% 分配，分别追加第二轮或结束；不同时修改内容与比例</td><td>确认主指标、基线、最小有意义提升及所需样本；现有平台排除同类试点用户；设备告警与必要服务不纳入停发对照；核实网页推送组件的切换范围</td><td>分支分流及重复到达稳定性正确；不发第二轮的用户仍计入 A/B 转化；分别记录分组人数、支付率、收入、发送成本、退订与投诉</td></tr>
+            <tr><td><span class="step-num">4</span></td><td>复盘并决定下一步</td><td>只对观察窗口已完整的用户出具结果；样本不足则延长，不宣布胜出。若需平台对比，下一阶段在同市场同期按用户固定分为现有流程组与 MA 组，统一观察口径</td><td>确认后人工将较优 A/B 分支调为 100%；平台对比时双向排除分组用户；决定扩面与 Email 是否迁移（新域名预热另行安排）</td><td>报告分支转化率差、每用户收入、成本和投诉；旅程 7、10 观察期不足时只验收过程指标，不当作成交增量。4 周为实施计划，不保证获得充分样本</td></tr>
           </tbody>
         </table>
         <ul class="notelist">
@@ -1622,10 +1642,54 @@
       </div>
     </section>
 
+
+    <section id="s-advantage" class="section-plain">
+      <div class="wrap">
+        <div class="eyebrow">附录 · 已有营销平台，为什么还需要 EngageLab MA</div>
+        <h2><span class="secnum">7</span>不急于替换，先把已有推送变成可衡量的用户经营</h2>
+        <p>现有平台已经承担商城营销，继续保留有效的流程。EngageLab MA 的切入点，是沿用已开通的 App Push，把设备、订单与客服信号连接起来，先验证首件成功、异常恢复与配件复购的新增价值，再决定是否扩大覆盖。</p>
+        <div class="feature-note integration"><strong>接入优势</strong>：已有 App Push 合作可复用应用与通道配置，减少新增推送链路的工作；账号关联、设备事件、同意属性与接口仍需联调，不等于零开发。</div>
+        <h3>一、可直接演示的编排差异</h3>
+        <p>紫色标记对应下表的标准节点或原生功能差异，不代表现有平台通过其他节点或定制开发也无法实现。比较依据为截至 2026 年 10 月 15 日的公开产品文档，客户实际版本与已购模块需共同确认。</p>
+        <table class="comparison-table">
+          <thead><tr><th>差异点</th><th>EngageLab MA</th><th>现有平台标准能力</th><th>对 Snapmaker 的价值与演示</th></tr></thead>
+          <tbody>
+            <tr id="adv-events"><td><span class="feature-tag">D1 多事件等待</span></td><td>一个等待事件节点配置多个事件分支，另设超时路径。</td><td>公开 Wait for Event 节点选择一个事件，按发生／超时两路分流；未提供同节点多事件分支。</td><td><a href="#s-journey5">旅程 5</a>：重新打印、联系客服、仍无动作三路处理，不再向已获帮助的用户追加排查提醒。</td></tr>
+            <tr id="adv-time"><td><span class="feature-tag">D2 用户当地时段</span></td><td>可发送时间节点按终端用户时区限制发送时段。</td><td>公开自动化 Wait 节点的日历日与指定时刻按账户时区；不是按每位收件人当地时区的同等节点。</td><td><a href="#s-journey2">旅程 2</a>：同一套提醒在用户当地 10:00–20:00 发出，减少按时区拆分流程。无终端时区时先补齐用户时区属性。</td></tr>
+            <tr id="adv-cap"><td><span class="feature-tag">D3 多渠道频控</span></td><td>按用户、渠道及消息类型设上限，跨旅程生效；支持分钟、小时、日、周粒度。</td><td>原生 Frequency Cap 面向 Email；SMS 官方 FAQ 明确无专用频控功能，建议用程序参与设置控制。</td><td><a href="#s-plan">测试计划</a>：异常补救与配件推广同时命中一人时，统一约束同一渠道的发送量，减少逐条维护参与规则。</td></tr>
+          </tbody>
+        </table>
+        <div class="feature-note review"><strong>另一个值得演示的能力：接口返回后再决定发不发。</strong> <a href="#s-journey7">旅程 7</a> 按推荐接口返回值判断“有兼容件才推荐”，旅程 10 查询未关闭工单后再决定是否邀约。现有平台公开 Webhook 文档主要描述向外发送及状态码处理，未列出同等的返回字段分支能力；需核实已购模块或定制接口，不能直接说“对方不支持”。</div>
+        <ul class="notelist"><li>D2 只比较上述自动化等待节点，不泛化为对方所有发送能力；D3 不是把五个渠道的条数相加为一个总额度，也不自动协调两套平台的频控。</li></ul>
+        <h3>二、A/B 测试：用数据回答是否值得增加一套 MA</h3>
+        <div class="feature-note experiment"><strong>已支持旅程 A/B 测试</strong>：2–10 个分支，可比较内容、渠道、时机或整段路径；也可设置不追加消息的对照。分支报表查看进入、转化、转化率与收入，验证后人工将较优分支调整为 100%。现有平台也具备 A/B，不把这项能力包装为独有优势。</div>
+        <table>
+          <thead><tr><th>先回答的问题</th><th>怎么验证</th><th>怎样决定扩面</th></tr></thead>
+          <tbody>
+            <tr><td>高客单第二轮提醒值不值？</td><td>旅程 2 按 50%／50% 分配：追加第二轮 vs 不再追加。首轮相同，以到达 A/B 后 7 天支付为主指标。</td><td>比较支付率、每位进入用户收入、渠道成本及退订投诉，不只看点击率。</td></tr>
+            <tr><td>设备侧新增运营是否有效？</td><td>先上线首件引导与异常补救，验证事件、账号与客服联通；若做随机对照，只测试额外教育内容，不停设备告警与必要服务。</td><td>确认首件成功率与人工维护工作量改善，再扩大设备人群；技术联通不等于增量效果已证实。</td></tr>
+            <tr><td>是否将商城流程转给 MA？</td><td>在同一市场、同一时期，外部按用户固定分配现有流程组与 MA 组；双方互相排除。不把不同市场的销售差异当作平台效果。</td><td>统一事件、观察期、成本与收入口径；先验证一条流程，再决定是否迁移更多旅程。</td></tr>
+          </tbody>
+        </table>
+        <h3>三、已有平台时，合作如何推进</h3>
+        <table>
+          <thead><tr><th>客户关注</th><th>建议合作方式</th></tr></thead>
+          <tbody>
+            <tr><td>“我们现在用得很好，为什么要换？”</td><td>不以替换为前提。先确认现有旅程是否已覆盖首件成功、异常恢复、兼容件推荐；只补尚未运营或维护成本高的环节。</td></tr>
+            <tr><td>“现有平台也有推送和自定义事件。”</td><td>认可其能力。比较的是已有应用复用、三路事件等待、用户当地时段与跨旅程频控的具体配置工作，而不是谁有渠道按钮。</td></tr>
+            <tr><td>“又增加一套系统，会不会更复杂？”</td><td>先只做限定人群和少量旅程；确认一套账号映射、事件字典、同意状态与发送归属。联调和长期维护成本都计入试点评估。</td></tr>
+            <tr><td>“一定更便宜吗？”</td><td>不预设结论。按相同覆盖人群与发送量，对比平台及数据基础费用、渠道费、接口维护、迁移、并行期和团队工时，以正式报价核算总成本。</td></tr>
+            <tr><td>“哪些现有能力应该保留？”</td><td>成熟的邮件流程、站内推荐、预测分群与广告联动按实际依赖保留，不承诺本方案全面替代。Email 最后评估，不为迁移而迁移。</td></tr>
+          </tbody>
+        </table>
+        <div class="callout info"><div class="callout-title">建议的第一步</div><div class="callout-body">用现有 App Push 应用演示旅程 5 的三路事件处理、旅程 7 的接口返回分支，再确认一个可量化的试点。我们争取的不是先替换整个系统，而是先证明：新增的运营价值足以覆盖新增成本。</div></div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
-    <div>EngageLab MA · Snapmaker 全渠道旅程编排方案 · 2026 年 9 月</div>
+    <div>EngageLab MA · Snapmaker 全渠道旅程编排方案 · 2026 年 10 月修订</div>
   </footer>
 
   <script>
@@ -1713,6 +1777,8 @@
 
 
     const KIND_STYLE = {
+      advantage: { fill: '#ede9fe', stroke: '#7c3aed', text: '#4c1d95' },
+      abtest: { fill: '#ccfbf1', stroke: '#0f766e', text: '#115e59' },
       entry:   { fill: '#f1f5f9', stroke: '#94a3b8', text: '#111827' },
       wait:    { fill: '#fafafa', stroke: '#d1d5db', text: '#6b7280' },
       branch:  { fill: '#f9fafb', stroke: '#475569', text: '#111827' },
@@ -1923,8 +1989,10 @@
         { id: 'ap1', kind: 'channel', title: 'App Push 通知消息', sub: '购物车商品兼容确认' },
         { id: 'em1b', kind: 'channel', title: 'Email 模板消息一', sub: '机型对比 · 社区作品' },
         { id: 'w2', kind: 'wait', title: '等待', sub: '1 个日历日' },
-        { id: 'st1', kind: 'sendtime', title: '可发送时间', sub: '终端时区 10:00–20:00' },
+        { id: 'st1', kind: 'advantage', title: 'D2 · 可发送时间', sub: '终端时区 10:00–20:00' },
         { id: 'c2', kind: 'branch', title: '条件分支', sub: '事件属性: 购物车金额' },
+        { id: 'ab', kind: 'abtest', title: 'A/B 测试', sub: '第二轮提醒 · 50% / 50%' },
+        { id: 'endControl', kind: 'exitEnd', title: '结束 · 对照组', sub: '不再追加 · 观察支付' },
         { id: 'wh', kind: 'branch', title: 'Webhook 取数', sub: '当前价格与在售状态' },
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '首轮提醒已足够' },
         { id: 'c3', kind: 'branch', title: '条件分支', sub: '属性: 即时渠道营销同意' },
@@ -1940,7 +2008,8 @@
         { from: 'c1', to: 'ap1', label: '已同意' }, { from: 'c1', to: 'em1b', label: '默认' },
         { from: 'em1a', to: 'w2' }, { from: 'ap1', to: 'w2' }, { from: 'em1b', to: 'w2' },
         { from: 'w2', to: 'st1' }, { from: 'st1', to: 'c2' },
-        { from: 'c2', to: 'wh', label: '≥ $500' }, { from: 'c2', to: 'endA', label: '< $500' },
+        { from: 'c2', to: 'ab', label: '≥ $500' }, { from: 'c2', to: 'endA', label: '< $500' },
+        { from: 'ab', to: 'wh', label: 'A · 50%' }, { from: 'ab', to: 'endControl', label: 'B · 50%' },
         { from: 'wh', to: 'c3' },
         { from: 'c3', to: 'im', label: '已同意' }, { from: 'c3', to: 'em2', label: '未同意' },
         { from: 'im', to: 'endB' }, { from: 'em2', to: 'endC' },
@@ -2008,7 +2077,7 @@
         { id: 'wh', kind: 'branch', title: 'Webhook 执行动作', sub: '客服系统建单' },
         { id: 'w1', kind: 'wait', title: '等待', sub: '2 小时' },
         { id: 'emT', kind: 'channel', title: 'Email 模板消息', sub: '服务类 · 工单编号' },
-        { id: 'we', kind: 'wait', title: '等待事件', sub: '22 小时 · 两个事件分支' },
+        { id: 'we', kind: 'advantage', title: 'D1 · 多事件等待', sub: '22 小时 · 两事件 + 超时' },
         { id: 'endA', kind: 'exitEnd', title: '结束', sub: '转人工处理' },
         { id: 'endB', kind: 'exitEnd', title: '结束', sub: '已重新开始' },
         { id: 'endE', kind: 'exitEnd', title: '结束', sub: '客服已介入' },
@@ -2253,10 +2322,10 @@
       ["s-journey3", "3", "发货到开箱", "activate"],
       ["s-journey4", "4", "绑定到第一件成功作品", "activate"],
       ["s-journey5", "5", "打印异常补救", "retain"],
-      ["s-journey6", "6", "非官网购机用户建立联系", "acquire"],
+      ["s-journey6", "6", "非官网购机用户", "acquire"],
       ["s-journey7", "7", "模块与配件扩展", "repeat"],
       ["s-journey8", "8", "耗材复购", "repeat"],
-      ["s-journey9", "9", "保修到期与延保", "retain"],
+      ["s-journey9", "9", "延保补购", "retain"],
       ["s-journey10", "10", "作品分享与推荐返现", "advocacy"],
       ["s-journey11", "11", "设备闲置召回", "retain"]
     ].filter(function (it) { return document.getElementById(it[0]); });
@@ -2317,7 +2386,7 @@
     var items = [
       ["s-market", "业务洞察"], ["s-funnel", "用户漏斗"],
       ["s-scenarios", "十一条旅程"], ["s-data", "数据整合"],
-      ["s-why", "关于 EngageLab"], ["s-plan", "测试计划"]
+      ["s-why", "关于 EngageLab"], ["s-plan", "测试计划"], ["s-advantage", "优势附录"]
     ].filter(function (it) { return document.getElementById(it[0]); });
     if (items.length < 3) return;
 
